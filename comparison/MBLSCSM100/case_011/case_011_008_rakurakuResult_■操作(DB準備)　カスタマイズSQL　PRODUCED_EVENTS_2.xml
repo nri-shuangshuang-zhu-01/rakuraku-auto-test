@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <PRODUCED_EVENTS_2 id='1' idempotency_key='xxxx' caller_id='callerId' destination='xxx' partition_key='out-stock-event' payload='{  \"event\" : [],  \"headers\" : {}}' created_at='2020-08-13 11:07:00' retry_count='1' has_error='False' error_reason='REASON' />
+</dataset>

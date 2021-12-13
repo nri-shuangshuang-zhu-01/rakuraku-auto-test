@@ -1,0 +1,9 @@
+■api名称：　Presigned URL変換API
+■api Request：　/internal/v1/presigned-url/convert?filePath=test/1.txt
+■api方法：　GET
+■api Headers：　X-client-program=test&&Idempotency-Key=25523&&
+■api Body：　-
+■loginUser：　Presigned URL
+■api Response：{
+  "presignedUrl": "http://localhost:4566/store/test/1.txt?X-Amz-Algorithm\u003dAWS4-HMAC-SHA256\u0026X-Amz-Date\u003d20210930T014605Z\u0026X-Amz-SignedHeaders\u003dhost\u0026X-Amz-Expires\u003d60\u0026X-Amz-Credential\u003dtest%2F20210930%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Signature\u003dad268a0ad02ca6cab5b671e87c722baa146317b071591a25fee8be714a7e80c0"
+}

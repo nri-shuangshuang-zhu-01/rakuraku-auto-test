@@ -1,0 +1,935 @@
+openapi: 3.0.0
+info:
+  title: システム管理 メール API
+  version: '1.0'
+  description: |-
+    システム管理として、システムが行うメール送信を本APIを介してSendGridに連携する。
+    また、メールの送受信の記録を保存し、情報の参照を行う。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /v1/mail-template/register:
+    parameters: []
+    post:
+      summary: A1 テンプレート登録
+      operationId: registerMailTemplate
+      responses:
+        '200':
+          $ref: '#/components/responses/RegisterMailTemplateResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterMailTemplateRequest'
+            examples: {}
+        description: ''
+      description: |-
+        メールテンプレート情報を登録する。
+        　　　　以下の業務エラーが発生する可能性があります。
+          - MAL000100 : 構文構造・必須チェックエラー
+          - MAL000101 : 入力チェックエラー（桁数チェック）
+          - MAL000102 : 入力チェック（値チェック）
+      tags:
+        - MailTemplate
+  /v1/mail-template/search:
+    post:
+      summary: A2 メール検索(テンプレート)
+      operationId: searchMailTemplate
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchMailResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        指定された条件に該当するメールテンプレート情報を検索する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMailRequest'
+      tags:
+        - MailTemplate
+    parameters: []
+  /v1/mail/search:
+    post:
+      summary: A2 メール検索(受信メール／送信メール)
+      operationId: searchMail
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchMailResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        指定された条件に該当する受信メール／送信メール情報を検索する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMailRequest'
+      tags:
+        - Mail
+  /v1/mail-template/find:
+    parameters: []
+    get:
+      summary: A3 詳細情報取得(メールテンプレート)
+      responses:
+        '200':
+          $ref: '#/components/responses/FindMailResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: findMailTemplate
+      description: |-
+        指定された条件に該当するメールテンプレートの詳細情報を取得する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL004100 : 入力チェック(相関性チェック)
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: uuid
+          description: メールテンプレートID
+          required: true
+      tags:
+        - MailTemplate
+  /v1/mail/find:
+    parameters: []
+    get:
+      summary: A3 詳細情報取得(受信メール／送信メール)
+      tags:
+        - Mail
+      responses:
+        '200':
+          $ref: '#/components/responses/FindMailResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: findMail
+      description: |-
+        指定された条件に該当する受信メール／送信メールの詳細情報を取得する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL006100 : 入力チェック(相関性チェック)
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/sendReceiveType'
+        - in: query
+          name: id
+          description: メールID
+          schema:
+            type: string
+            format: uuid
+          required: true
+  /v1/mail/send:
+    post:
+      summary: A4 メール送信
+      operationId: sendMail
+      responses:
+        '200':
+          $ref: '#/components/responses/SendMailResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        Sendgrid・現法メールサーバへメール情報を連携する。
+        送信メール情報を登録する。添付ファイルがある場合はS3へ格納する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL004100 : 入力チェック(相関性チェック)
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMailRequest'
+      tags:
+        - Mail
+    parameters: []
+  /v1/mail-template/modify:
+    parameters: []
+    post:
+      summary: A6 テンプレート更新
+      operationId: modifyMailTemplate
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        指定された条件に該当するメールテンプレート情報を更新する。 
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL000102 : 入力チェックエラー（値チェック）
+                  - MAL012100 : 入力チェック(相関性チェック) 該当メールテンプレートIDが存在しない場合
+                  - MAL012101 : 入力チェック(相関性チェック) 楽観排他により更新エラー発生
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyMailTemplateRequest'
+      tags:
+        - MailTemplate
+  /v1/mail/modify:
+    parameters: []
+    post:
+      summary: A7 メール情報更新
+      operationId: modifyMail
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        指定された条件に該当する送信メール情報を更新する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL009100 : 入力チェック(相関性チェック)
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyMailRequest'
+      tags:
+        - Mail
+  /v1/mail-template/remove:
+    post:
+      summary: A8 メール削除(メールテンプレート)
+      operationId: removeMailTemplate
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        指定された条件に該当するメールテンプレート情報を削除する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL010100 : 入力チェック(相関性チェック) 
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveMailRequest'
+      tags:
+        - MailTemplate
+    parameters: []
+  /v1/mail/remove:
+    post:
+      summary: A8 メール削除(受信メール／送信メール)
+      operationId: removeMail
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        指定された条件に該当する受信メール／送信メール情報を削除する。添付ファイルがある場合はS3のファイルを削除する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL010100 : 入力チェック(相関性チェック) 
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      tags:
+        - Mail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveMailRequest'
+  /v1/mail-template/preview:
+    parameters: []
+    post:
+      summary: A9 メールプレビュー
+      operationId: previewMailTemplate
+      responses:
+        '200':
+          $ref: '#/components/responses/PreviewMailTemplateResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        登録済のメールテンプレートに指定された置換文字列を設定し返却する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL013100 : 入力チェック(相関性チェック)
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreviewMailTemplateRequest'
+      tags:
+        - MailTemplate
+  /v1/mail/download:
+    parameters: []
+    get:
+      summary: A10 ファイル取得(受信メール／送信メール)
+      tags:
+        - Mail
+      responses:
+        '200':
+          $ref: '#/components/responses/DownloadMailResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: downloadMail
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - in: query
+          schema:
+            type: string
+            format: uuid
+          description: ファイルID
+          required: true
+          name: fileId
+      description: |-
+        指定された条件に該当する受信メール／送信メールの添付ファイルを取得する。
+        　　　　以下の業務エラーが発生する可能性があります。
+                  - MAL000100 : 構文構造・必須チェックエラー
+                  - MAL000101 : 入力チェックエラー（桁数チェック）
+                  - MAL006100 : 入力チェック(相関性チェック)
+components:
+  schemas:
+    RegisterMailTemplateRequest:
+      title: RegisterMailTemplateRequest
+      type: object
+      description: メール「A1 テンプレート登録API」リクエストボディ
+      properties:
+        serviceCode:
+          type: string
+          description: |
+            サービス区分
+            詳細は[https://www.dummy.jp/](https://www.dummy.jp/) 参照。
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+        name:
+          type: string
+          description: メールテンプレート名
+          minLength: 1
+          maxLength: 200
+        title:
+          type: string
+          description: |
+            メールテンプレート件名（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+        body:
+          type: string
+          description: |
+            メールテンプレート本文（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z]+$'
+      required:
+        - serviceCode
+        - name
+        - title
+        - body
+        - language
+    SearchMailRequest:
+      title: SearchMailRequest
+      type: object
+      description: メール「A2 メール検索API」リクエストボディ
+      properties:
+        sendReceiveType:
+          type: integer
+          description: |
+            送受信種別。メール送信、受信検索時は必須。
+             * 0 - 受信
+             * 1 - 送信
+          minimum: 0
+          maximum: 1
+        status:
+          type: integer
+          description: |
+            メール送信の処理状況。メール送信検索のみ有効。
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 8 - 再リクエスト待ち
+             * 9 - 異常終了
+          minimum: 0
+          maximum: 9
+        createDateTimeFrom:
+          type: string
+          description: '作成日時(FROM)[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        createDateTimeTo:
+          type: string
+          description: '作成日時(TO)[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        asyncStartTime:
+          type: string
+          description: '非同期処理開始時間[YYYY-mm-ddTHH:MM:SS]。メール送信検索のみ有効。'
+          format: date-time
+        asyncEndTime:
+          type: string
+          description: '非同期処理終了時間[YYYY-mm-ddTHH:MM:SS]。メール送信検索のみ有効。'
+          format: date-time
+        serviceCode:
+          type: string
+          minLength: 3
+          maxLength: 3
+          description: |
+            サービス区分
+            詳細は[https://www.dummy.jp/](https://www.dummy.jp/) 参照。
+          pattern: '^[a-zA-Z0-9]+$'
+        id:
+          type: string
+          description: メールテンプレートID。メール送信検索のみ有効。
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: メールテンプレート名。テンプレート検索のみ有効
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z]+$'
+        mailTitle:
+          type: string
+          maxLength: 200
+          description: 件名。メール送信、受信検索で有効。
+          minLength: 1
+        from:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 送信元(From)。メール送信、受信検索で有効。
+        to:
+          type: string
+          minLength: 1
+          maxLength: 500000
+          description: 送信元(To)。メール送信、受信検索で有効。
+        cc:
+          type: string
+          minLength: 1
+          maxLength: 500000
+          description: 送信元(Cc)。メール送信、受信検索で有効。
+        bcc:
+          type: string
+          minLength: 1
+          maxLength: 500000
+          description: 送信元(Bcc)。メール送信検索のみ有効。
+        replyTo:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 返信先(Reply-To)。メール送信検索のみ有効。
+        body:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: メール本文。メール本文内を全文検索。メール送信、受信検索で有効。
+        messageId:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: メッセージ識別ID。メール受信検索のみ有効。
+        references:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: 返信元メッセージ識別ID。メール送信、受信検索で有効。
+      required:
+        - serviceCode
+    SendMailRequest:
+      title: SendMailRequest
+      type: object
+      description: メール「A4 メール送信API」リクエストボディ
+      properties:
+        serviceCode:
+          type: string
+          description: |
+            サービス区分
+            詳細は[https://www.dummy.jp/](https://www.dummy.jp/) 参照。
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+        mailServerType:
+          type: string
+          pattern: '^[a-zA-Z0-9]+$'
+          minLength: 1
+          maxLength: 1
+          description: |
+            送信メールサーバ種別
+             * 0 - SendGrid
+             * 1 - 現法サーバ
+        mailTemplateId:
+          type: string
+          description: |
+            メールテンプレートID。指定されない場合は下記requestパラメータ内の「content」の内容が利用されます。
+          format: uuid
+        request:
+          type: string
+          description: |-
+            メールデータ。
+            フォーマットについては[SendGridリファレンス](https://sendgrid.api-docs.io/v3.0/mail-send) 参照。
+            差出人名、メールアドレスについてデフォルト設定機能がある。詳細は[ガイドライン](https://tickets.tools.misumi.jp/confluence/pages/viewpage.action?pageId=86495220)参照。
+      required:
+        - serviceCode
+        - mailServerType
+        - request
+    ModifyMailTemplateRequest:
+      title: ModifyMailTemplateRequest
+      type: object
+      description: メール「A6 テンプレート更新API」リクエストボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: メールテンプレートID
+        name:
+          type: string
+          description: メールテンプレート名
+          minLength: 1
+          maxLength: 200
+        serviceCode:
+          type: string
+          description: |
+            サービス区分
+            詳細は[https://www.dummy.jp/](https://www.dummy.jp/) 参照。
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+        title:
+          type: string
+          description: |
+            メールテンプレート件名（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+        body:
+          type: string
+          description: |
+            メールテンプレート本文（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z]+$'
+      required:
+        - id
+        - name
+        - serviceCode
+        - title
+        - body
+        - language
+    ModifyMailRequest:
+      title: ModifyMailRequest
+      type: object
+      description: メール「A7 メール情報更新API」リクエストボディ
+      properties:
+        events:
+          type: array
+          description: SendGrid Webhookイベント情報
+          items:
+            $ref: '#/components/schemas/SendGridEvent'
+    RemoveMailRequest:
+      title: RemoveMailRequest
+      type: object
+      description: メール「A8 メール削除API」リクエストボディ
+      properties:
+        sendReceiveType:
+          type: integer
+          description: |
+            送受信種別。メール削除時は必須。
+             * 0 - 受信
+             * 1 - 送信
+          minimum: 0
+          maximum: 1
+        id:
+          type: string
+          format: uuid
+          description: メール・メールテンプレートID
+      required:
+        - id
+    PreviewMailTemplateRequest:
+      title: PreviewMailTemplateRequest
+      type: object
+      description: メール「A9　メールプレビューAPI」リクエストボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: メールテンプレートID
+        substitutions:
+          type: array
+          description: '置換文字列セット["key":"value"]'
+          items:
+            type: string
+      required:
+        - id
+    RegisterMailTemplateResponse:
+      title: RegisterMailTemplateResponse
+      type: object
+      description: メール「A1 テンプレート登録API」レスポンスボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: メールテンプレートID
+      required:
+        - id
+    SearchMailResponse:
+      title: SearchMailResponse
+      type: object
+      description: メール「A2 メール検索API」レスポンスボディ
+      properties:
+        id:
+          type: array
+          description: メール・メールテンプレートID
+          items:
+            type: string
+            format: uuid
+    FindMailResponse:
+      title: FindMailResponse
+      type: object
+      description: メール「A3 詳細情報取得API」レスポンスボディ
+      properties:
+        createDateTime:
+          type: string
+          description: '作成日時[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        asyncStartTime:
+          type: string
+          description: '非同期処理開始時間[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        asyncEndTime:
+          type: string
+          description: '非同期処理終了時間[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        status:
+          type: integer
+          description: |
+            メール送信の処理状況。メール送信の詳細情報取得のみ有効。
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 8 - 再リクエスト待ち
+             * 9 - 異常終了
+          minimum: 0
+          maximum: 9
+        serviceCode:
+          type: string
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+          description: |
+            サービス区分
+            詳細は[https://www.dummy.jp/](https://www.dummy.jp/) 参照。
+        mailTemplateId:
+          type: string
+          format: uuid
+          description: メールテンプレートID。メール送信の詳細情報取得のみ有効。
+        name:
+          type: string
+          description: メールテンプレート名。テンプレート詳細情報取得のみ有効。
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）。テンプレート詳細情報取得のみ有効。
+        updateNumber:
+          type: integer
+          description: 更新番号。テンプレート詳細情報取得のみ有効。
+        mailTitle:
+          type: string
+          description: 件名。メール送信、受信の詳細情報取得のみ有効。
+        from:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 送信元(From)。メール送信、受信の詳細情報取得のみ有効。
+          format: email
+        to:
+          type: string
+          description: 送信先(To)。メール送信、受信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 500000
+          format: email
+        cc:
+          type: string
+          description: 送信先(Cc)。メール送信、受信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 500000
+          format: email
+        bcc:
+          type: string
+          description: 送信先(Bcc)。メール送信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 500000
+          format: email
+        replyTo:
+          type: string
+          description: 返信先(Reply-To)。メール送信、受信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 1000
+          format: email
+        mailText:
+          type: string
+          description: メール本文。メール送信、受信の詳細情報取得のみ有効。
+        mailTemplateTitle:
+          type: string
+          description: メールテンプレート件名。テンプレート詳細情報取得のみ有効。
+        mailTemplateText:
+          type: string
+          description: メールテンプレート本文。テンプレート詳細情報取得のみ有効。
+        messageId:
+          type: string
+          description: メッセージ識別ID。メール受信の詳細情報取得のみ有効。
+        references:
+          type: string
+          description: 返信元メッセージ識別ID。メール送信、受信の詳細情報取得のみ有効。
+        request:
+          type: string
+          description: メールデータ。メール送信の詳細情報取得のみ有効。
+        errorReason:
+          type: string
+          description: エラー理由。メール送信の詳細情報取得のみ有効。
+        fileId:
+          format: uuid
+          description: ファイルID
+          type: array
+          items:
+            type: string
+            format: uuid
+    SendMailResponse:
+      title: SendMailResponse
+      type: object
+      description: メール「A4 メール送信API」レスポンスボディ
+      properties:
+        id:
+          format: uuid
+          description: 送信メールID
+          type: string
+    SendGridEvent:
+      title: SendGridEvent
+      type: object
+      description: SendGrid Webhookイベント情報
+      properties:
+        id:
+          type: string
+          description: メールID
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        email:
+          type: string
+          description: メールアドレス
+        eventId:
+          type: string
+          description: イベントID
+        event:
+          type: string
+          description: イベント
+    PreviewMailTemplateResponse:
+      title: PreviewMailTemplateResponse
+      type: object
+      description: メール「A9 メールプレビューAPI」レスポンスボディ
+      properties:
+        mailTitle:
+          type: string
+          description: 件名（置換後の件名）
+        mailText:
+          type: string
+          description: メール本文（置換後の本文）
+  parameters:
+    subsidiaryCode:
+      name: subsidiaryCode
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 3
+        pattern: '^[a-zA-Z0-9]+$'
+      description: |
+        現法コード
+        詳細は[https://www.dummy.jp/](https://www.dummy.jp/) 参照。
+    authorization:
+      name: authorization
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9]+$'
+      description: ユーザ認証トークン
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+        format: int32
+      description: 一度の検索で取得する最大件数。
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 0
+        format: int32
+      description: 検索結果の取得開始位置。
+    sendReceiveType:
+      name: sendReceiveType
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 1
+      description: |
+        送受信種別。
+         * 0 - 受信
+         * 1 - 送信
+  responses:
+    RegisterMailTemplateResponse:
+      description: メール「A1 テンプレート登録API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RegisterMailTemplateResponse'
+          examples: {}
+      headers: {}
+    SearchMailResponse:
+      description: メール「A2 メール検索API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchMailResponse'
+          examples: {}
+      headers: {}
+    FindMailResponse:
+      description: メール「A3 詳細情報取得API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FindMailResponse'
+          examples:
+            example-1:
+              value:
+                createDateTime: string
+                asyncStartTime: string
+                asyncEndTime: string
+                status: 0
+                serviceCode: str
+                mailTemplateId: 3c1974b9-867c-476a-9c81-05c02be5c789
+                name: string
+                language: string
+                updateNumber: 0
+                mailTitle: string
+                from: user@example.com
+                to: user@example.com
+                cc: user@example.com
+                bcc: user@example.com
+                replyTo: user@example.com
+                mailText: string
+                mailTemplateTitle: string
+                mailTemplateText: string
+                messageId: string
+                references: string
+                request: string
+                errorReason: string
+                fileId:
+                  - 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      headers: {}
+    SendMailResponse:
+      description: メール「A4 メール送信API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SendMailResponse'
+          examples:
+            example-1:
+              value:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      headers: {}
+    PreviewMailTemplateResponse:
+      description: メール「A9 メールプレビューAPI」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PreviewMailTemplateResponse'
+          examples:
+            example-1:
+              value:
+                mailTitle: string
+                mailText: string
+      headers: {}
+    DownloadMailResponse:
+      description: メール「A10 ファイル取得API」レスポンス
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+            description: 添付ファイル
+          examples: {}
+      headers:
+        Content-Disposition:
+          schema:
+            type: string
+          description: attachment; filename="*"
+    ErrorResponse:
+      description: エラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+          examples: {}
+      headers: {}
+tags:
+  - name: Mail
+  - name: MailTemplate

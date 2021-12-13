@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBSCR10020Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBSCR10020Test.java</span></div><h1>MBSCR10020Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBSCR40040&quot;)
+@DisplayName(&quot;MBSCR40040&quot;)
+<span class="nc" id="L15">public class MBSCR10020Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBSCR10020&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBSCR10020&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****2+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****3+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****4+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****5+++++/internal/v1/ccy/search;;通貨情報検索API;;4-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****6+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****7+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;2*****8+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****9+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;2*****10+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****11+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****12+++++/internal/v1/ccy/search;;通貨情報検索API;;2-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****13+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****14+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****15+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****16+++++/internal/v1/ccy/search;;通貨情報検索API;;3-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****17+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;3*****18+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****19+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****20+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****21+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1*****22+++++/internal/v1/ccy/search;;通貨情報検索API;;1-----/v1/bill-to/get;;売掛先情報取得API;;1-----/internal/v1/rate/get;;レート情報取得API;;1&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;TEST001&quot;)
+	@DisplayName(&quot;TEST001&quot;)
+	public void testMBSCR10020_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L52">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L55">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L58">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L61">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L64">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L67">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L69">	}</span>
+
+	@Test
+	@Tag(&quot;TEST002&quot;)
+	@DisplayName(&quot;TEST002&quot;)
+	public void testMBSCR10020_002() throws Exception {
+
+<span class="nc" id="L76">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L80">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L83">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L86">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L89">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L92">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L95">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L98">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L101">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L103">	}</span>
+
+	@Test
+	@Tag(&quot;TEST003&quot;)
+	@DisplayName(&quot;TEST003&quot;)
+	public void testMBSCR10020_003() throws Exception {
+
+<span class="nc" id="L110">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L114">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L117">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L120">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L123">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L126">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L129">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L132">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L135">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L137">	}</span>
+
+	@Test
+	@Tag(&quot;TEST004&quot;)
+	@DisplayName(&quot;TEST004&quot;)
+	public void testMBSCR10020_004() throws Exception {
+
+<span class="nc" id="L144">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L148">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L151">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L154">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L157">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L160">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L163">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L166">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L169">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L171">	}</span>
+
+	@Test
+	@Tag(&quot;TEST005&quot;)
+	@DisplayName(&quot;TEST005&quot;)
+	public void testMBSCR10020_005() throws Exception {
+
+<span class="nc" id="L178">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L182">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L185">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L188">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L191">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L194">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L197">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L200">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L203">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L205">	}</span>
+
+	@Test
+	@Tag(&quot;TEST006&quot;)
+	@DisplayName(&quot;TEST006&quot;)
+	public void testMBSCR10020_006() throws Exception {
+
+<span class="nc" id="L212">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L216">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L219">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L222">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L225">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L228">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L231">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L234">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L237">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L239">	}</span>
+
+	@Test
+	@Tag(&quot;TEST007&quot;)
+	@DisplayName(&quot;TEST007&quot;)
+	public void testMBSCR10020_007() throws Exception {
+
+<span class="nc" id="L246">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L250">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L253">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L256">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L259">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L262">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L265">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L268">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L271">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L273">	}</span>
+
+	@Test
+	@Tag(&quot;TEST008&quot;)
+	@DisplayName(&quot;TEST008&quot;)
+	public void testMBSCR10020_008() throws Exception {
+
+<span class="nc" id="L280">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L284">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L287">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L290">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L293">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L296">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L299">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L302">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L305">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L307">	}</span>
+
+	@Test
+	@Tag(&quot;TEST009&quot;)
+	@DisplayName(&quot;TEST009&quot;)
+	public void testMBSCR10020_009() throws Exception {
+
+<span class="nc" id="L314">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L318">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L321">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L324">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L327">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L330">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L333">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L336">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L339">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L341">	}</span>
+
+	@Test
+	@Tag(&quot;TEST010&quot;)
+	@DisplayName(&quot;TEST010&quot;)
+	public void testMBSCR10020_010() throws Exception {
+
+<span class="nc" id="L348">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L352">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L355">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L358">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L361">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L364">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L367">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L370">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L373">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L375">	}</span>
+
+	@Test
+	@Tag(&quot;TEST011&quot;)
+	@DisplayName(&quot;TEST011&quot;)
+	public void testMBSCR10020_011() throws Exception {
+
+<span class="nc" id="L382">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L386">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L389">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L392">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L395">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L398">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L401">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L404">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L407">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L409">	}</span>
+
+	@Test
+	@Tag(&quot;TEST012&quot;)
+	@DisplayName(&quot;TEST012&quot;)
+	public void testMBSCR10020_012() throws Exception {
+
+<span class="nc" id="L416">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L420">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L423">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L426">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L429">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L432">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L435">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L438">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L441">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L443">	}</span>
+
+	@Test
+	@Tag(&quot;TEST013&quot;)
+	@DisplayName(&quot;TEST013&quot;)
+	public void testMBSCR10020_013() throws Exception {
+
+<span class="nc" id="L450">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L454">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L457">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L460">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L463">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L466">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L469">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L472">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L475">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L477">	}</span>
+
+	@Test
+	@Tag(&quot;TEST014&quot;)
+	@DisplayName(&quot;TEST014&quot;)
+	public void testMBSCR10020_014() throws Exception {
+
+<span class="nc" id="L484">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L488">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L491">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L494">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L497">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L500">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L503">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L506">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L509">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L511">	}</span>
+
+	@Test
+	@Tag(&quot;TEST015&quot;)
+	@DisplayName(&quot;TEST015&quot;)
+	public void testMBSCR10020_015() throws Exception {
+
+<span class="nc" id="L518">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L522">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L525">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L528">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L531">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L534">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L537">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L540">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L543">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L545">	}</span>
+
+	@Test
+	@Tag(&quot;TEST016&quot;)
+	@DisplayName(&quot;TEST016&quot;)
+	public void testMBSCR10020_016() throws Exception {
+
+<span class="nc" id="L552">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L556">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L559">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L562">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L565">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L568">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L571">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L574">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L577">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L579">	}</span>
+
+	@Test
+	@Tag(&quot;TEST017&quot;)
+	@DisplayName(&quot;TEST017&quot;)
+	public void testMBSCR10020_017() throws Exception {
+
+<span class="nc" id="L586">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L590">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L593">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L596">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L599">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L602">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;3&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L605">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L608">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L611">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L613">	}</span>
+
+	@Test
+	@Tag(&quot;TEST018&quot;)
+	@DisplayName(&quot;TEST018&quot;)
+	public void testMBSCR10020_018() throws Exception {
+
+<span class="nc" id="L620">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L624">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L627">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L630">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L633">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L636">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L639">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L642">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L645">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L647">	}</span>
+
+	@Test
+	@Tag(&quot;TEST019&quot;)
+	@DisplayName(&quot;TEST019&quot;)
+	public void testMBSCR10020_019() throws Exception {
+
+<span class="nc" id="L654">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_019/case_019_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L658">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L661">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L664">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L667">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L670">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L673">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L676">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L679">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L681">	}</span>
+
+	@Test
+	@Tag(&quot;TEST020&quot;)
+	@DisplayName(&quot;TEST020&quot;)
+	public void testMBSCR10020_020() throws Exception {
+
+<span class="nc" id="L688">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_020/case_020_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L692">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L695">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L698">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L701">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L704">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L707">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L710">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L713">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L715">	}</span>
+
+	@Test
+	@Tag(&quot;TEST021&quot;)
+	@DisplayName(&quot;TEST021&quot;)
+	public void testMBSCR10020_021() throws Exception {
+
+<span class="nc" id="L722">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_021/case_021_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L726">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L729">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L732">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L735">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L738">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L741">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L744">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L747">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L749">	}</span>
+
+	@Test
+	@Tag(&quot;TEST022&quot;)
+	@DisplayName(&quot;TEST022&quot;)
+	public void testMBSCR10020_022() throws Exception {
+
+<span class="nc" id="L756">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR10020/case_022/case_022_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH_SAP → データクリア・挿入 */
+<span class="nc" id="L760">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;データクリア・挿入&quot;, &quot;17&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L763">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ccy/search → 通貨情報検索API */
+<span class="nc" id="L766">		rakurakuCore.operateMockApi(&quot;/internal/v1/ccy/search&quot;, &quot;通貨情報検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/bill-to/get → 売掛先情報取得API */
+<span class="nc" id="L769">		rakurakuCore.operateMockApi(&quot;/v1/bill-to/get&quot;, &quot;売掛先情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/rate/get → レート情報取得API */
+<span class="nc" id="L772">		rakurakuCore.operateMockApi(&quot;/internal/v1/rate/get&quot;, &quot;レート情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L775">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;incomingPaymentUnmatchSapCcyChangeJob,--subsidiary-code=MJP,--job-net-id=100,--job-execution-id=100&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH_SAP → NOT_ASSERT_COLUMN */
+<span class="nc" id="L778">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH_SAP&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_UNMATCH → NOT_ASSERT_COLUMN */
+<span class="nc" id="L781">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L783">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

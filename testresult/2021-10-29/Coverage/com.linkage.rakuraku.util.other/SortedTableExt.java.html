@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SortedTableExt.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util.other</a> &gt; <span class="el_source">SortedTableExt.java</span></div><h1>SortedTableExt.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util.other;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.regex.Pattern;
+
+import org.dbunit.DatabaseUnitRuntimeException;
+import org.dbunit.dataset.AbstractTable;
+import org.dbunit.dataset.Column;
+import org.dbunit.dataset.Columns;
+import org.dbunit.dataset.DataSetException;
+import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.ITableMetaData;
+import org.dbunit.dataset.datatype.DataType;
+import org.dbunit.dataset.datatype.TypeCastException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@SuppressWarnings({ &quot;rawtypes&quot;, &quot;unchecked&quot; })
+public class SortedTableExt extends AbstractTable {
+
+    /**
+     * Logger for this class
+     */
+<span class="nc" id="L26">    private static final Logger logger = LoggerFactory.getLogger(SortedTableExt.class);</span>
+
+    private final ITable _table;
+    private final Column[] _columns;
+    private Integer[] _indexes;
+
+    /**
+     * The row comparator which is used for sorting
+     */
+    private Comparator rowComparator;
+
+    /**
+     * Sort the decorated table by specified columns order.
+     * 
+     * @param table
+     * decorated table
+     * @param columns
+     * columns to be used for sorting
+     * @throws DataSetException
+     */
+<span class="nc" id="L46">    public SortedTableExt(ITable table, Column[] columns) throws DataSetException {</span>
+<span class="nc" id="L47">        _table = table;</span>
+<span class="nc" id="L48">        _columns = validateAndResolveColumns(columns);</span>
+<span class="nc" id="L49">        initialize();</span>
+<span class="nc" id="L50">    }</span>
+
+    /**
+     * Sort the decorated table by specified columns order.
+     * 
+     * @param table
+     * decorated table
+     * @param columnNames
+     * names of columns to be used for sorting
+     * @throws DataSetException
+     */
+<span class="nc" id="L61">    public SortedTableExt(ITable table, String[] columnNames) throws DataSetException {</span>
+<span class="nc" id="L62">        _table = table;</span>
+<span class="nc" id="L63">        _columns = validateAndResolveColumns(columnNames);</span>
+<span class="nc" id="L64">        initialize();</span>
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Sort the decorated table by specified metadata columns order. All
+     * metadata columns will be used.
+     * 
+     * @param table
+     * The decorated table
+     * @param metaData
+     * The metadata used to retrieve all columns which in turn are
+     * used for sorting the table
+     * @throws DataSetException
+     */
+    public SortedTableExt(ITable table, ITableMetaData metaData) throws DataSetException {
+<span class="nc" id="L79">        this(table, metaData.getColumns());</span>
+<span class="nc" id="L80">    }</span>
+
+    /**
+     * Sort the decorated table by its own columns order which is defined by
+     * {@link ITable#getTableMetaData()}. All table columns will be used.
+     * 
+     * @param table
+     * The decorated table
+     * @throws DataSetException
+     */
+    public SortedTableExt(ITable table) throws DataSetException {
+<span class="nc" id="L91">        this(table, table.getTableMetaData());</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * Verifies that all given columns really exist in the current table and
+     * returns the physical {@link Column} objects from the table.
+     * 
+     * @param columns
+     * @return
+     * @throws DataSetException
+     */
+    private Column[] validateAndResolveColumns(Column[] columns) throws DataSetException {
+<span class="nc" id="L103">        ITableMetaData tableMetaData = _table.getTableMetaData();</span>
+<span class="nc" id="L104">        Column[] resultColumns = Columns.findColumnsByName(columns, tableMetaData);</span>
+<span class="nc" id="L105">        return resultColumns;</span>
+    }
+
+    /**
+     * Verifies that all given columns really exist in the current table and
+     * returns the physical {@link Column} objects from the table.
+     * 
+     * @param columnNames
+     * @return
+     * @throws DataSetException
+     */
+    private Column[] validateAndResolveColumns(String[] columnNames) throws DataSetException {
+<span class="nc" id="L117">        ITableMetaData tableMetaData = _table.getTableMetaData();</span>
+<span class="nc" id="L118">        Column[] resultColumns = Columns.findColumnsByName(columnNames, tableMetaData);</span>
+<span class="nc" id="L119">        return resultColumns;</span>
+    }
+
+    private void initialize() {
+<span class="nc" id="L123">        logger.debug(&quot;initialize() - start&quot;);</span>
+
+        // The default comparator is the one that sorts by string - for
+        // backwards compatibility
+<span class="nc" id="L127">        this.rowComparator = new RowComparatorByString(this._table, this._columns);</span>
+<span class="nc" id="L128">    }</span>
+
+    /**
+     * @return The columns that are used for sorting the table
+     */
+    public Column[] getSortColumns() {
+<span class="nc" id="L134">        return this._columns;</span>
+    }
+
+    private int getOriginalRowIndex(int row) throws DataSetException {
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (logger.isDebugEnabled()) {</span>
+<span class="nc" id="L139">            logger.debug(&quot;getOriginalRowIndex(row={}) - start&quot;, Integer.toString(row));</span>
+        }
+
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        if (_indexes == null) {</span>
+<span class="nc" id="L143">            Integer[] indexes = new Integer[getRowCount()];</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            for (int i = 0; i &lt; indexes.length; i++) {</span>
+<span class="nc" id="L145">                indexes[i] = new Integer(i);</span>
+            }
+
+            try {
+<span class="nc" id="L149">                Arrays.sort(indexes, rowComparator);</span>
+<span class="nc" id="L150">            } catch (DatabaseUnitRuntimeException e) {</span>
+<span class="nc" id="L151">                throw (DataSetException) e.getCause();</span>
+<span class="nc" id="L152">            }</span>
+
+<span class="nc" id="L154">            _indexes = indexes;</span>
+        }
+
+<span class="nc" id="L157">        return _indexes[row].intValue();</span>
+    }
+
+    /**
+     * Whether or not the comparable interface should be used of the compared
+     * columns instead of the plain strings Default value is &lt;code&gt;false&lt;/code&gt;
+     * for backwards compatibility Set whether or not to use the Comparable
+     * implementation of the corresponding column DataType for comparing values
+     * or not. Default value is &lt;code&gt;false&lt;/code&gt; which means that the old
+     * string comparison is used. &lt;br&gt;
+     * 
+     * @param useComparable
+     * @since 2.3.0
+     */
+    public void setUseComparable(boolean useComparable) {
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (logger.isDebugEnabled()) {</span>
+<span class="nc" id="L173">            logger.debug(&quot;setUseComparable(useComparable={}) - start&quot;, Boolean.valueOf(useComparable));</span>
+        }
+
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (useComparable) {</span>
+<span class="nc" id="L177">            setRowComparator(new RowComparator(this._table, this._columns));</span>
+        } else {
+<span class="nc" id="L179">            setRowComparator(new RowComparatorByString(this._table, this._columns));</span>
+        }
+<span class="nc" id="L181">    }</span>
+
+    /**
+     * Sets the comparator to be used for sorting the table rows.
+     * 
+     * @param comparator
+     * that sorts the table rows
+     * @since 2.4.2
+     */
+    public void setRowComparator(Comparator comparator) {
+<span class="nc bnc" id="L191" title="All 2 branches missed.">        if (logger.isDebugEnabled()) {</span>
+<span class="nc" id="L192">            logger.debug(&quot;setRowComparator(comparator={}) - start&quot;, comparator);</span>
+        }
+
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        if (_indexes != null) {</span>
+            // TODO this is an ugly design to avoid increasing the number of
+            // constructors from 4 to 8. To be discussed how to implement it the
+            // best way.
+<span class="nc" id="L199">            throw new IllegalStateException(</span>
+                    &quot;Do not use this method after the table has been used (i.e. #getValue() has been called). &quot;
+                            + &quot;Please invoke this method immediately after the intialization of this object.&quot;);
+        }
+
+<span class="nc" id="L204">        this.rowComparator = comparator;</span>
+<span class="nc" id="L205">    }</span>
+
+    // //////////////////////////////////////////////////////////////////////////
+    // ITable interface
+
+    public ITableMetaData getTableMetaData() {
+<span class="nc" id="L211">        logger.debug(&quot;getTableMetaData() - start&quot;);</span>
+
+<span class="nc" id="L213">        return _table.getTableMetaData();</span>
+    }
+
+    public int getRowCount() {
+<span class="nc" id="L217">        logger.debug(&quot;getRowCount() - start&quot;);</span>
+
+<span class="nc" id="L219">        return _table.getRowCount();</span>
+    }
+
+    public Object getValue(int row, String columnName) throws DataSetException {
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        if (logger.isDebugEnabled()) {</span>
+<span class="nc" id="L224">            logger.debug(&quot;getValue(row={}, columnName={}) - start&quot;, Integer.toString(row), columnName);</span>
+        }
+
+<span class="nc" id="L227">        assertValidRowIndex(row);</span>
+
+<span class="nc" id="L229">        return _table.getValue(getOriginalRowIndex(row), columnName);</span>
+    }
+
+    // //////////////////////////////////////////////////////////////////////////
+    // Comparator interface
+
+    /**
+     * Abstract class for sorting the table rows of a given table in a specific
+     * order
+     */
+    public static abstract class AbstractRowComparator implements Comparator {
+        /**
+         * Logger for this class
+         */
+<span class="nc" id="L243">        private final Logger logger = LoggerFactory.getLogger(AbstractRowComparator.class);</span>
+        private final ITable _table;
+        private final Column[] _sortColumns;
+
+        /**
+         * @param table
+         * The wrapped table to be sorted
+         * @param sortColumns
+         * The columns to be used for sorting in the given order
+         */
+<span class="nc" id="L253">        public AbstractRowComparator(ITable table, Column[] sortColumns) {</span>
+<span class="nc" id="L254">            this._table = table;</span>
+<span class="nc" id="L255">            this._sortColumns = sortColumns;</span>
+<span class="nc" id="L256">        }</span>
+
+        public int compare(Object o1, Object o2) {
+<span class="nc" id="L259">            logger.debug(&quot;compare(o1={}, o2={}) - start&quot;, o1, o2);</span>
+
+<span class="nc" id="L261">            Integer i1 = (Integer) o1;</span>
+<span class="nc" id="L262">            Integer i2 = (Integer) o2;</span>
+
+            try {
+<span class="nc bnc" id="L265" title="All 2 branches missed.">                for (int i = 0; i &lt; _sortColumns.length; i++) {</span>
+<span class="nc" id="L266">                    String columnName = _sortColumns[i].getColumnName();</span>
+
+<span class="nc" id="L268">                    Object value1 = _table.getValue(i1.intValue(), columnName);</span>
+<span class="nc" id="L269">                    Object value2 = _table.getValue(i2.intValue(), columnName);</span>
+
+<span class="nc bnc" id="L271" title="All 4 branches missed.">                    if (value1 == null &amp;&amp; value2 == null) {</span>
+<span class="nc" id="L272">                        continue;</span>
+                    }
+
+<span class="nc bnc" id="L275" title="All 4 branches missed.">                    if (value1 == null &amp;&amp; value2 != null) {</span>
+<span class="nc" id="L276">                        return -1;</span>
+                    }
+
+<span class="nc bnc" id="L279" title="All 4 branches missed.">                    if (value1 != null &amp;&amp; value2 == null) {</span>
+<span class="nc" id="L280">                        return 1;</span>
+                    }
+
+                    // Compare the two values with each other for sorting
+<span class="nc" id="L284">                    int result = compare(_sortColumns[i], value1, value2);</span>
+
+<span class="nc bnc" id="L286" title="All 2 branches missed.">                    if (result != 0) {</span>
+<span class="nc" id="L287">                        return result;</span>
+                    }
+                }
+<span class="nc" id="L290">            } catch (DataSetException e) {</span>
+<span class="nc" id="L291">                throw new DatabaseUnitRuntimeException(e);</span>
+<span class="nc" id="L292">            }</span>
+
+<span class="nc" id="L294">            return 0;</span>
+        }
+
+        /**
+         * @param column
+         * The column to be compared
+         * @param value1
+         * The first value of the given column
+         * @param value2
+         * The second value of the given column
+         * @return 0 if both values are considered equal.
+         * @throws TypeCastException
+         */
+        protected abstract int compare(Column column, Object value1, Object value2) throws TypeCastException;
+
+    }
+
+    /**
+     * Compares the rows with each other in order to sort them in the correct
+     * order using the data type and the Comparable implementation the current
+     * column has.
+     */
+    protected static class RowComparator extends AbstractRowComparator {
+        /**
+         * Logger for this class
+         */
+<span class="nc" id="L320">        private final Logger logger = LoggerFactory.getLogger(RowComparator.class);</span>
+
+        public RowComparator(ITable table, Column[] sortColumns) {
+<span class="nc" id="L323">            super(table, sortColumns);</span>
+<span class="nc" id="L324">        }</span>
+
+        protected int compare(Column column, Object value1, Object value2) throws TypeCastException {
+<span class="nc bnc" id="L327" title="All 2 branches missed.">            if (logger.isDebugEnabled()) {</span>
+<span class="nc" id="L328">                logger.debug(&quot;compare(column={}, value1={}, value2={}) - start&quot;,</span>
+                        new Object[] { column, value1, value2 });
+            }
+
+<span class="nc" id="L332">            DataType dataType = column.getDataType();</span>
+<span class="nc" id="L333">            int result = dataType.compare(value1, value2);</span>
+<span class="nc" id="L334">            return result;</span>
+        }
+
+    }
+
+    /**
+     * Compares the rows with each other in order to sort them in the correct
+     * order using the string value of both values for the comparison.
+     */
+    protected static class RowComparatorByString extends AbstractRowComparator {
+        /**
+         * Logger for this class
+         */
+<span class="nc" id="L347">        private final Logger logger = LoggerFactory.getLogger(RowComparatorByString.class);</span>
+
+        public RowComparatorByString(ITable table, Column[] sortColumns) {
+<span class="nc" id="L350">            super(table, sortColumns);</span>
+<span class="nc" id="L351">        }</span>
+
+        protected int compare(Column column, Object value1, Object value2) throws TypeCastException {
+<span class="nc bnc" id="L354" title="All 2 branches missed.">            if (logger.isDebugEnabled()) {</span>
+<span class="nc" id="L355">                logger.debug(&quot;compare(column={}, value1={}, value2={}) - start&quot;,</span>
+                        new Object[] { column, value1, value2 });
+            }
+
+            // Default behavior since ever
+<span class="nc" id="L360">            String stringValue1 = DataType.asString(value1);</span>
+<span class="nc" id="L361">            String stringValue2 = DataType.asString(value2);</span>
+<span class="nc" id="L362">            Pattern pattern = Pattern.compile(&quot;[+-]?[0-9]+\\.?[0-9]*&quot;);</span>
+<span class="nc bnc" id="L363" title="All 4 branches missed.">            if ((pattern.matcher(stringValue1)).matches() &amp;&amp; (pattern.matcher(stringValue2)).matches()) {</span>
+<span class="nc" id="L364">                int result = (new BigDecimal(stringValue1).compareTo(new BigDecimal(stringValue2)));</span>
+<span class="nc" id="L365">                return result;</span>
+            } else {
+<span class="nc" id="L367">                int result = stringValue1.compareTo(stringValue2);</span>
+<span class="nc" id="L368">                return result;</span>
+            }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String toString() {
+<span class="nc" id="L377">        StringBuilder sb = new StringBuilder(2000);</span>
+
+<span class="nc" id="L379">        sb.append(getClass().getName()).append(&quot;[&quot;);</span>
+<span class="nc" id="L380">        sb.append(&quot;_columns=[&quot;).append(Arrays.toString(_columns)).append(&quot;], &quot;);</span>
+<span class="nc" id="L381">        sb.append(&quot;_indexes=[&quot;).append(_indexes).append(&quot;], &quot;);</span>
+<span class="nc" id="L382">        sb.append(&quot;_table=[&quot;).append(_table).append(&quot;]&quot;);</span>
+<span class="nc" id="L383">        sb.append(&quot;]&quot;);</span>
+
+<span class="nc" id="L385">        return sb.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

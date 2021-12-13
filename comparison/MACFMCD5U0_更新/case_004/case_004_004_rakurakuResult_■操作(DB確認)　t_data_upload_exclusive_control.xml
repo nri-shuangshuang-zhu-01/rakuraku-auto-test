@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_data_upload_exclusive_control control_seq_number="1234567890" data_upload_exclusive_control_seq="1" subsidiary_code="mjp" data_code="sss" mail_address="ssssss" temp_file_code="" file_path="" signature="" input_file_name="sssss" status_code="1" process_result_code="1" update_count="2" delete_flag=" " register_user_type="" register_user="" register_date_time="2021-09-24 11:21:05.0" register_program="" register_client_program="" update_user_type="Customer" update_user="GUEST" update_date_time="2021-10-06 15:09:16.054811" update_program="api-id" update_client_program="temp"/>
+</dataset>

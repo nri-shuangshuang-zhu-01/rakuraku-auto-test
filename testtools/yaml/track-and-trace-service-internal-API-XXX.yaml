@@ -1,0 +1,288 @@
+openapi: 3.0.0
+info:
+  title: API-XXX
+  version: '1.0'
+  description: 配送追跡_送り状登録API
+servers:
+  - url: 'http://localhost:3000/track-and-trace'
+paths:
+  /internal/v1/carrier-invoice/register:
+    parameters: []
+    post:
+      summary: 配送追跡_送り状登録API
+      operationId: registerCarrierInvoiceInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RegisterCarrierInvoiceInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 送り状データを登録する。
+      x-channel:
+        - internal
+        - supplier
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/RegisterCarrierInvoiceInternalInternalRequestV1'
+        description: ''
+      tags:
+        - CarrierInvoiceInternal
+components:
+  schemas:
+    RegisterCarrierInvoiceInternalInternalRequestV1:
+      title: RegisterCarrierInvoiceInternalInternalRequestV1
+      type: object
+      properties:
+        localCorporationCode:
+          type: string
+          description: 現地法人コード
+          maxLength: 3
+        accessIpAddress:
+          type: string
+          description: アクセス元のIPアドレス
+          maxLength: 39
+        sessionId:
+          type: string
+          description: セッションID
+          maxLength: 32
+        screenId:
+          type: string
+          description: 画面ID
+          maxLength: 20
+        processId:
+          type: string
+          description: 処理ID
+          maxLength: 20
+        programType:
+          type: string
+          description: プログラム区分
+          maxLength: 1
+        createDate:
+          type: string
+          description: 作成日
+          maxLength: 8
+          format: date
+        updateDateTime:
+          type: string
+          format: date-time
+          minLength: 14
+          maxLength: 14
+          description: 更新日時
+        registerMode:
+          type: string
+          description: 登録モード
+          maxLength: 1
+        detailInformationList:
+          type: array
+          description: 明細情報リスト
+          items:
+            $ref: '#/components/schemas/RegisterCarrierInvoiceInternalInternalDetailInfoListV1'
+      required:
+        - localCorporationCode
+        - accessIpAddress
+        - sessionId
+        - screenId
+        - processId
+        - programType
+        - updateDateTime
+        - registerMode
+        - detailInformationList
+    RegisterCarrierInvoiceInternalInternalDetailInfoListV1:
+      title: RegisterCarrierInvoiceInternalInternalDetailInfoListV1
+      type: object
+      properties:
+        detailNumber:
+          type: string
+          description: 明細番号
+          maxLength: 3
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        internalExternalType:
+          type: string
+          description: 社内・社外向け区分
+          maxLength: 1
+        invoiceNoDetailInformationList:
+          type: array
+          description: 送り状番号詳細情報リスト
+          items:
+            $ref: '#/components/schemas/RegisterCarrierInvoiceInternalInternalInvNoDetailInfoListV1'
+      required:
+        - detailNumber
+        - globalNumber
+        - internalExternalType
+        - invoiceNoDetailInformationList
+    RegisterCarrierInvoiceInternalInternalInvNoDetailInfoListV1:
+      title: RegisterCarrierInvoiceInternalInternalInvNoDetailInfoListV1
+      type: object
+      properties:
+        'no':
+          type: string
+          description: 'No'
+          maxLength: 2
+        deleteType:
+          type: string
+          description: 削除区分
+          maxLength: 1
+        carrierInvoiceNumber:
+          type: string
+          description: 送り状番号
+          maxLength: 20
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        vsd:
+          type: string
+          description: VSD
+          maxLength: 8
+          format: date
+        packingControlNumber:
+          type: string
+          description: 梱包管理番号
+          maxLength: 15
+        shipmodeCode:
+          type: string
+          description: 扱い便コード
+          maxLength: 3
+        qty:
+          type: integer
+          description: 個数
+          maximum: 999
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+      required:
+        - 'no'
+        - deleteType
+        - carrierInvoiceNumber
+        - plantCode
+        - vsd
+        - packingControlNumber
+        - shipmodeCode
+        - qty
+        - supplierCode
+    RegisterCarrierInvoiceInternalResponseV1:
+      title: RegisterCarrierInvoiceInternalResponseV1
+      type: object
+      properties:
+        resultStatus:
+          type: string
+          description: 結果ステータス
+          maxLength: 4
+        invoiceNoInformationList:
+          type: array
+          description: 送り状番号情報リスト
+          items:
+            $ref: '#/components/schemas/RegisterCarrierInvoiceInternalInvNoInfoListV1'
+        responseDetailInformationList:
+          type: array
+          description: 応答詳細情報リスト
+          items:
+            $ref: '#/components/schemas/RegisterCarrierInvoiceInternalResDetailInfoListV1'
+      required:
+        - resultStatus
+        - invoiceNoInformationList
+    RegisterCarrierInvoiceInternalInvNoInfoListV1:
+      title: RegisterCarrierInvoiceInternalInvNoInfoListV1
+      type: object
+      properties:
+        createDate:
+          type: string
+          description: 作成日
+          format: date
+          maxLength: 8
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        registerMode:
+          type: string
+          description: 登録モード
+          maxLength: 1
+      required:
+        - createDate
+        - subsidiaryCode
+        - registerMode
+    RegisterCarrierInvoiceInternalResDetailInfoListV1:
+      title: RegisterCarrierInvoiceInternalResDetailInfoListV1
+      type: object
+      properties:
+        detailNumber:
+          type: string
+          description: 明細番号
+        detailResultStatus:
+          type: string
+          description: 明細結果ステータス
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        carrierInvoiceNoDeleteInformation:
+          type: string
+          description: 送り状No削除情報
+        invoiceNoDetailInformationList:
+          type: array
+          description: 送り状番号詳細情報リスト
+          items:
+            $ref: '#/components/schemas/RegisterCarrierInvoiceInternalResInvNoDetailInfoListV1'
+      required:
+        - detailNumber
+        - detailResultStatus
+        - globalNumber
+        - carrierInvoiceNoDeleteInformation
+        - invoiceNoDetailInformationList
+    RegisterCarrierInvoiceInternalResInvNoDetailInfoListV1:
+      title: RegisterCarrierInvoiceInternalResInvNoDetailInfoListV1
+      type: object
+      properties:
+        'no':
+          type: string
+          description: 'No'
+        businessMessageList:
+          type: array
+          description: 業務メッセージリスト
+          items:
+            $ref: '#/components/schemas/RegisterCarrierInvoiceInternalBussinessMsgListV1'
+      required:
+        - 'no'
+        - businessMessageList
+    RegisterCarrierInvoiceInternalBussinessMsgListV1:
+      title: RegisterCarrierInvoiceInternalBussinessMsgListV1
+      type: object
+      properties:
+        businessMessageCode:
+          type: string
+          description: 業務メッセージコード
+        businessMessageParameter:
+          type: string
+          description: 業務メッセージパラメータ
+        messageCatagory:
+          type: string
+          description: メッセージ種別
+      required:
+        - businessMessageCode
+        - businessMessageParameter
+        - messageCatagory
+  parameters: {}
+tags:
+  - name: CarrierInvoiceInternal

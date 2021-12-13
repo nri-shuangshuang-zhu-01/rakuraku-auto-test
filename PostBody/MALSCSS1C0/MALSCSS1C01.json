@@ -1,0 +1,16 @@
+{
+  "stopShipmentInfo": [
+    {
+      "businessSceneType": "12",
+      "reasonType": "A1234",
+      "globalNumber": "CA000032000086",
+      "processType": "1"
+    },
+    {
+      "businessSceneType": "34",
+      "reasonType": "A1234",
+      "globalNumber": "CA000032000086",
+      "processType": "1"
+    }
+  ]
+}

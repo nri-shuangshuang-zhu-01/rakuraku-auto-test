@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <c_process_parameter parameter_code='VV001' language_code='JPN' parameter_seq='1' subsidiary_code='MJP' parameter_key1='ST' parameter_key2='SHIP_FRQ_RANK_SET' parameter_key3='MJP' parameter_key4='RANK_SET_FLG' parameter_key5='' usage_explanation='' setting_value_reference1='000000000000' setting_value_reference2='' setting_value_reference3='' setting_value_reference4='' setting_value_reference5='' update_count='0' delete_flag='0' register_user_type='LOGON_USER' register_user='LOGON_USER' register_date_time='2021-06-20 11:20:01' register_program='JOB001' register_client_program='JOB001' update_user_type='UPDATE_USER' update_user='UPDATE_USER' update_date_time='2021-06-20 11:20:01' update_program='JOB001' update_client_program='JOB001' />
+</dataset>

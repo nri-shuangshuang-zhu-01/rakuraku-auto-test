@@ -1,0 +1,24 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+入金グループコード::incoming_payment_group_code::varchar(6)::NOT NULL(PK)
+振込人名1::transfer_name1::varchar(100)::NULL
+振込人名2::transfer_name2::varchar(100)::NULL
+振込人名3::transfer_name3::varchar(100)::NULL
+振込人名4::transfer_name4::varchar(100)::NULL
+振込人名5::transfer_name5::varchar(100)::NULL
+振込人名6::transfer_name6::varchar(100)::NULL
+振込人名7::transfer_name7::varchar(100)::NULL
+振込人名8::transfer_name8::varchar(100)::NULL
+振込人名9::transfer_name9::varchar(100)::NULL
+振込人名10::transfer_name10::varchar(100)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

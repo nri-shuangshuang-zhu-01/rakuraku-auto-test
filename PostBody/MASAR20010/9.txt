@@ -1,0 +1,31 @@
+{
+  "billToCode": "string",
+  "date": "string",
+  "dateFrom": "string",
+  "dateTo": "string",
+  "incomingPaymentStatus": "string",
+  "level": "string",
+  "dunningTitleLevel": "s",
+  "processingSection": "string",
+  "mainDepartmentCode": "string",
+  "tradeStatus": "st",
+  "nonPaymentAmountExtractFrom": 123456,
+  "nonPaymentAmountExtractTo": 456789,
+  "settlementMethodList": [
+    {
+      "settlementMethod": "str"
+    }
+  ],
+  "paymentMeansList": [
+    {
+      "paymentMeans": "st"
+    }
+  ],
+  "subsidiaryCode": "str",
+  "systemDate": "2019-08-24",
+  "sortField": "string",
+  "sortOrder": null,
+  "pageNumber": "string",
+  "displayCount": 0,
+  "responseType": "string"
+}

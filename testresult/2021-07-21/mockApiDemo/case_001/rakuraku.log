@@ -1,0 +1,5 @@
+ケース番号=No.001;実施開始時間=2021-07-21 21:09:14.578;実施終了時間=2021-07-21 21:09:21.131;実施結果=NG.
+【操作(バッチ)】【契約取得バッチ】の操作に失敗しました。
+java.lang.ClassNotFoundException: shipment-control-batch.src.test.java.jp.co.misumi.shipment.control.batch.ArrivalShipmentTotalJobTest
+======以下はアクション毎の確認ログ。======
+【実行結果=NG】【操作(バッチ)】【契約取得バッチ】:開始時間=2021-07-21 21:09:21.074;終了時間=2021-07-21 21:09:21.107

@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_data_upload_exclusive_control control_seq_number="1234567890" subsidiary_code="mjp" data_code="sss" mail_address="ssssss" temp_file_code="" input_file_name="sssss" status_code="0" process_result_code="1" update_count="1" update_user_type="Customer11" update_user="GUEST11" update_date_time="2021-09-24 15:21:05.0" update_program="api-id11" update_client_program="tempppp"/>
+</dataset>

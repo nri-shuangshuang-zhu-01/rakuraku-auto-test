@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_DEAD_STOCK_CLASSIFYColName field="subsidiary_code" comment="現法コード"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="market_code" comment="市場コード"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="plant_code" comment="置場コード"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="ginner_code" comment="統合インナーコード"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="product_code" comment="商品コード"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="current_stock_qty" comment="現在庫数"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="remain_po" comment="発注残"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="rank" comment="ランク"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="automatic_po_type" comment="自動発注区分"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="reorder_point" comment="発注点"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="po_qty" comment="発注数"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="po_lead_time" comment="発注納期"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="supplier_code" comment="仕入先コード"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="evaluation_unit_price" comment="評価単価"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipment_qty_this_month" comment="出荷数（当月）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipment_qty_last_month" comment="出荷数（前月）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="latest_receiving_date" comment="最新入荷日"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="latest_receiving_qty" comment="最新入荷数"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="total_stock_qty" comment="総在庫数"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="current_allocated_qty" comment="現引当数"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_this_month" comment="出庫数（当月）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_last_month" comment="出庫数（前月）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_2months_before" comment="出庫数（前々月）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_3months_before" comment="出庫数（3か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_4months_before" comment="出庫数（4か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_5months_before" comment="出庫数（5か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_6months_before" comment="出庫数（6か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_7months_before" comment="出庫数（7か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_8months_before" comment="出庫数（8か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_9months_before" comment="出庫数（9か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_10months_before" comment="出庫数（10か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="shipping_qty_11months_before" comment="出庫数（11か月前）"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="register_date_time" comment="登録日時"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="register_program" comment="登録プログラム"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="update_date_time" comment="更新日時"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="update_program" comment="更新プログラム"/>
+  <T_DEAD_STOCK_CLASSIFYColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

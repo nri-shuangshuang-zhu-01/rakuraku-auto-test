@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_inquiry_send_to_email_address_to subsidiary_code='MJP' inquiry_send_id='160' email_address='to-mail@nri.co.jp' update_count='0' delete_flag='0' register_user_type='Customer' register_user='GUEST' register_date_time='2021-11-16 14:21:15.560875' register_program='' register_client_program='offset' update_user_type='Customer' update_user='GUEST' update_date_time='2021-11-16 14:21:15.560875' update_program='' update_client_program='offset' />
+</dataset>

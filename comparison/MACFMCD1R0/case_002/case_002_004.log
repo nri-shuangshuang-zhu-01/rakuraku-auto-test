@@ -1,0 +1,36 @@
+■api名称：　登录
+■api Request：　/internal/v1/ul-purpose-data-download/reference?offset=1&limit=20&sortby2=controlSeqNumber&sortby=dataCode DESC
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a55&&
+■api Body：　{  "mailAddress": "123@linkstec.com",  "dataCode": "1003",  "fileName": "file_name",  "createDateFrom": "2020-01-01",  "createDateTo": "2020-01-31",  "statusRequesting": "1",  "statusDownloadable": "1",  "statusDownloaded": "1",  "referenceMaxCount": 10}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "resultInfoList": [
+    {
+      "controlSeqNumber": "1234560006",
+      "mailAddress": "123@linkstec.com",
+      "dataCode": "1003",
+      "fileTypeName": "データ名３",
+      "fileName": "file_name",
+      "createDate": "2020-01-13",
+      "statusCode": "1",
+      "statusName": "依頼中",
+      "resultCode": "0",
+      "resultName": "OK"
+    },
+    {
+      "controlSeqNumber": "1234560007",
+      "mailAddress": "123@linkstec.com",
+      "dataCode": "1003",
+      "fileTypeName": "データ名３",
+      "fileName": "file_name",
+      "createDate": "2020-01-13",
+      "statusCode": "2",
+      "statusName": "DL可能",
+      "resultCode": "1",
+      "resultName": "NG"
+    }
+  ],
+  "errorList": []
+}

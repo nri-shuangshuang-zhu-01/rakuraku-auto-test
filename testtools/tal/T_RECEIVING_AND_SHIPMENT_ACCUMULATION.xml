@@ -1,0 +1,72 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+当月入荷数::this_month_receiving_qty::numeric(15,0)::NULL
+最新入荷日::latest_receiving_date::date::NULL
+最新入荷数::latest_receiving_qty::numeric(7,0)::NULL
+当月出荷数::this_month_shipment_qty::numeric(15,0)::NULL
+最終出荷日::final_shipping_date::date::NULL
+当年月別・入庫数１::this_year_month_receiving_qty1::numeric(15,0)::NULL
+当年月別・出庫数１::this_year_month_shipping_qty1::numeric(15,0)::NULL
+当年月別・入庫数２::this_year_month_receiving_qty2::numeric(15,0)::NULL
+当年月別・出庫数２::this_year_month_shipping_qty2::numeric(15,0)::NULL
+当年月別・入庫数３::this_year_month_receiving_qty3::numeric(15,0)::NULL
+当年月別・出庫数３::this_year_month_shipping_qty3::numeric(15,0)::NULL
+当年月別・入庫数４::this_year_month_receiving_qty4::numeric(15,0)::NULL
+当年月別・出庫数４::this_year_month_shipping_qty4::numeric(15,0)::NULL
+当年月別・入庫数５::this_year_month_receiving_qty5::numeric(15,0)::NULL
+当年月別・出庫数５::this_year_month_shipping_qty5::numeric(15,0)::NULL
+当年月別・入庫数６::this_year_month_receiving_qty6::numeric(15,0)::NULL
+当年月別・出庫数６::this_year_month_shipping_qty6::numeric(15,0)::NULL
+当年月別・入庫数７::this_year_month_receiving_qty7::numeric(15,0)::NULL
+当年月別・出庫数７::this_year_month_shipping_qty7::numeric(15,0)::NULL
+当年月別・入庫数８::this_year_month_receiving_qty8::numeric(15,0)::NULL
+当年月別・出庫数８::this_year_month_shipping_qty8::numeric(15,0)::NULL
+当年月別・入庫数９::this_year_month_receiving_qty9::numeric(15,0)::NULL
+当年月別・出庫数９::this_year_month_shipping_qty9::numeric(15,0)::NULL
+当年月別・入庫数１０::this_year_month_receiving_qty10::numeric(15,0)::NULL
+当年月別・出庫数１０::this_year_month_shipping_qty10::numeric(15,0)::NULL
+当年月別・入庫数１１::this_year_month_receiving_qty11::numeric(15,0)::NULL
+当年月別・出庫数１１::this_year_month_shipping_qty11::numeric(15,0)::NULL
+当年月別・入庫数１２::this_year_month_receiving_qty12::numeric(15,0)::NULL
+当年月別・出庫数１２::this_year_month_shipping_qty12::numeric(15,0)::NULL
+当年計・入庫数::this_year_total_receiving_qty::numeric(17,0)::NULL
+当年計・出庫数::this_year_total_shipping_qty::numeric(17,0)::NULL
+前年月別・入庫数１::last_year_month_receiving_qty1::numeric(15,0)::NULL
+前年月別・出庫数１::last_year_month_shipping_qty1::numeric(15,0)::NULL
+前年月別・入庫数２::last_year_month_receiving_qty2::numeric(15,0)::NULL
+前年月別・出庫数２::last_year_month_shipping_qty2::numeric(15,0)::NULL
+前年月別・入庫数３::last_year_month_receiving_qty3::numeric(15,0)::NULL
+前年月別・出庫数３::last_year_month_shipping_qty3::numeric(15,0)::NULL
+前年月別・入庫数４::last_year_month_receiving_qty4::numeric(15,0)::NULL
+前年月別・出庫数４::last_year_month_shipping_qty4::numeric(15,0)::NULL
+前年月別・入庫数５::last_year_month_receiving_qty5::numeric(15,0)::NULL
+前年月別・出庫数５::last_year_month_shipping_qty5::numeric(15,0)::NULL
+前年月別・入庫数６::last_year_month_receiving_qty6::numeric(15,0)::NULL
+前年月別・出庫数６::last_year_month_shipping_qty6::numeric(15,0)::NULL
+前年月別・入庫数７::last_year_month_receiving_qty7::numeric(15,0)::NULL
+前年月別・出庫数７::last_year_month_shipping_qty7::numeric(15,0)::NULL
+前年月別・入庫数８::last_year_month_receiving_qty8::numeric(15,0)::NULL
+前年月別・出庫数８::last_year_month_shipping_qty8::numeric(15,0)::NULL
+前年月別・入庫数９::last_year_month_receiving_qty9::numeric(15,0)::NULL
+前年月別・出庫数９::last_year_month_shipping_qty9::numeric(15,0)::NULL
+前年月別・入庫数１０::last_year_month_receiving_qty10::numeric(15,0)::NULL
+前年月別・出庫数１０::last_year_month_shipping_qty10::numeric(15,0)::NULL
+前年月別・入庫数１１::last_year_month_receiving_qty11::numeric(15,0)::NULL
+前年月別・出庫数１１::last_year_month_shipping_qty11::numeric(15,0)::NULL
+前年月別・入庫数１２::last_year_month_receiving_qty12::numeric(15,0)::NULL
+前年月別・出庫数１２::last_year_month_shipping_qty12::numeric(15,0)::NULL
+前年計・入庫数::last_year_total_receiving_qty::numeric(17,0)::NULL
+前年計・出庫数::last_year_total_shipping_qty::numeric(17,0)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

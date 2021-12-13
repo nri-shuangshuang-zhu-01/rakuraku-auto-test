@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MybatisCreateWeeklyPoolRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.store.repository.mybatis</a> &gt; <span class="el_source">MybatisCreateWeeklyPoolRepository.java</span></div><h1>MybatisCreateWeeklyPoolRepository.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.store.repository.mybatis;
+
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.Optional;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.iterable.CloseableIterable;
+import jp.co.misumi.fw.core.iterable.DelegatingCloseableIterable;
+import jp.co.misumi.fw.core.time.DefaultTimeProvider;
+import jp.co.misumi.fw.core.time.TimeProvider;
+import jp.co.misumi.replenishstock.domain.entity.CreateWeeklyPoolEntity;
+import jp.co.misumi.replenishstock.domain.entity.ShipmentActualPoolDataFor12monthsEntity;
+import jp.co.misumi.replenishstock.domain.entity.ShipmentActualPoolDataFor52weeksEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyPoolCountEntity;
+import jp.co.misumi.replenishstock.domain.repository.CreateWeeklyPoolRepository;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Delegate;
+
+@RequiredArgsConstructor
+public class MybatisCreateWeeklyPoolRepository implements CreateWeeklyPoolRepository {
+
+  @Delegate private final MybatisCreateWeeklyPoolMapper mapper;
+
+  /**
+   * PKを渡しての検索.
+   *
+   * @param subsidiaryCode 現法コード
+   * @param shipmentFixDate 運用日時
+   * @return 処理結果
+   */
+  @Override
+  public CloseableIterable&lt;CreateWeeklyPoolEntity&gt; searchActualInNarrow(
+<span class="nc bnc" id="L34" title="All 4 branches missed.">      RequestContext context, @NonNull String subsidiaryCode, @NonNull LocalDate shipmentFixDate) {</span>
+<span class="nc" id="L35">    return new DelegatingCloseableIterable&lt;&gt;(</span>
+<span class="nc" id="L36">        mapper.selectActualInNarrow(subsidiaryCode, shipmentFixDate));</span>
+  }
+
+  /**
+   * 出荷実績データの取得.
+   *
+   * @param context context
+   * @param weeklyPoolEntity 週次POOLリスト
+   * @param effectiveDateFrom 適用開始日
+   * @return 処理結果
+   */
+  @Override
+  public Optional&lt;WeeklyPoolCountEntity&gt; searchExcludeCondition(
+      RequestContext context,
+<span class="nc bnc" id="L50" title="All 2 branches missed.">      @NonNull CreateWeeklyPoolEntity weeklyPoolEntity,</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">      @NonNull LocalDate effectiveDateFrom) {</span>
+<span class="nc" id="L52">    return mapper.selectExcludeCondition(weeklyPoolEntity, effectiveDateFrom);</span>
+  }
+
+  /**
+   * PKでの検索.
+   *
+   * @param context context
+   * @param subsidiaryCode 現法コード
+   * @param ginnerCode 統合インナーコード
+   * @param plantCode 置場コード
+   * @return 処理結果
+   */
+  @Override
+  public Optional&lt;WeeklyPoolCountEntity&gt; searchActualPoolTwelve(
+      RequestContext context,
+<span class="nc bnc" id="L67" title="All 2 branches missed.">      @NonNull String subsidiaryCode,</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      @NonNull String ginnerCode,</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">      @NonNull String plantCode) {</span>
+<span class="nc" id="L70">    return mapper.selectActualPoolTwelve(subsidiaryCode, ginnerCode, plantCode);</span>
+  }
+
+  /**
+   * PKでの検索.
+   *
+   * @param context context
+   * @param subsidiaryCode 現法コード
+   * @param ginnerCode 統合インナーコード
+   * @param plantCode 置場コード
+   */
+  @Override
+  public Optional&lt;WeeklyPoolCountEntity&gt; searchActualPoolFiftyTwo(
+      RequestContext context,
+<span class="nc bnc" id="L84" title="All 2 branches missed.">      @NonNull String subsidiaryCode,</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">      @NonNull String ginnerCode,</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">      @NonNull String plantCode) {</span>
+<span class="nc" id="L87">    return mapper.selectActualPoolFiftyTwo(subsidiaryCode, ginnerCode, plantCode);</span>
+  }
+
+  /**
+   * 挿入.
+   *
+   * @param context context
+   * @param shipmentActualPoolDataFor52weeksEntity 出荷実績POOLデータ（52週分）
+   * @return 処理結果
+   */
+  @Override
+  public Integer createActualFiftyTwo(
+      RequestContext context,
+      ShipmentActualPoolDataFor52weeksEntity shipmentActualPoolDataFor52weeksEntity) {
+<span class="nc" id="L101">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L102">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+<span class="nc" id="L103">    shipmentActualPoolDataFor52weeksEntity.setRegisterDateTime(dateTime);</span>
+<span class="nc" id="L104">    shipmentActualPoolDataFor52weeksEntity.setRegisterUser(context.getOperatorId());</span>
+<span class="nc" id="L105">    shipmentActualPoolDataFor52weeksEntity.setRegisterUserType(context.getOperatorType());</span>
+<span class="nc" id="L106">    shipmentActualPoolDataFor52weeksEntity.setRegisterClientProgram(context.getClientProgram());</span>
+    // shipmentActualPoolDataFor52weeksEntity.setRegisterProgram(context.getExecutionProgram());
+<span class="nc" id="L108">    shipmentActualPoolDataFor52weeksEntity.setRegisterProgram(&quot;HP&quot;);</span>
+<span class="nc" id="L109">    shipmentActualPoolDataFor52weeksEntity.setDeleteFlag(&quot;0&quot;);</span>
+<span class="nc" id="L110">    setCommonColumn(context, shipmentActualPoolDataFor52weeksEntity);</span>
+<span class="nc" id="L111">    return mapper.insertActualFiftyTwo(shipmentActualPoolDataFor52weeksEntity);</span>
+  }
+
+  /**
+   * 挿入.
+   *
+   * @param context context
+   * @param shipmentActualPoolDataFor12monthsEntity 出荷実績POOLデータ（12月分）
+   * @return 処理結果
+   */
+  @Override
+  public Integer createActualTwelve(
+      RequestContext context,
+      ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity) {
+<span class="nc" id="L125">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L126">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+<span class="nc" id="L127">    shipmentActualPoolDataFor12monthsEntity.setRegisterDateTime(dateTime);</span>
+<span class="nc" id="L128">    shipmentActualPoolDataFor12monthsEntity.setRegisterUser(context.getOperatorId());</span>
+<span class="nc" id="L129">    shipmentActualPoolDataFor12monthsEntity.setRegisterUserType(context.getOperatorType());</span>
+<span class="nc" id="L130">    shipmentActualPoolDataFor12monthsEntity.setRegisterClientProgram(context.getClientProgram());</span>
+    // shipmentActualPoolDataFor12monthsEntity.setRegisterProgram(context.getExecutionProgram());
+<span class="nc" id="L132">    shipmentActualPoolDataFor12monthsEntity.setRegisterProgram(&quot;HP&quot;);</span>
+<span class="nc" id="L133">    shipmentActualPoolDataFor12monthsEntity.setDeleteFlag(&quot;0&quot;);</span>
+<span class="nc" id="L134">    setCommonColumn(context, shipmentActualPoolDataFor12monthsEntity);</span>
+<span class="nc" id="L135">    return mapper.insertActualTwelve(shipmentActualPoolDataFor12monthsEntity);</span>
+  }
+
+  /**
+   * PKでの更新.
+   *
+   * @param context context
+   * @param shipmentActualPoolDataFor52weeksEntity 出荷実績POOLデータ（52週分）
+   * @return 処理結果
+   */
+  @Override
+  public Integer saveActualFiftyTwo(
+      RequestContext context,
+      ShipmentActualPoolDataFor52weeksEntity shipmentActualPoolDataFor52weeksEntity) {
+<span class="nc" id="L149">    setCommonColumn(context, shipmentActualPoolDataFor52weeksEntity);</span>
+<span class="nc" id="L150">    return mapper.updateActualFiftyTwo(shipmentActualPoolDataFor52weeksEntity);</span>
+  }
+
+  /**
+   * PKでの更新.
+   *
+   * @param context context
+   * @param shipmentActualPoolDataFor12monthsEntity 出荷実績POOLデータ（12月分）
+   * @return 処理結果
+   */
+  @Override
+  public Integer saveActualTwelve(
+      RequestContext context,
+      ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity) {
+<span class="nc" id="L164">    setCommonColumn(context, shipmentActualPoolDataFor12monthsEntity);</span>
+<span class="nc" id="L165">    return mapper.updateActualTwelve(shipmentActualPoolDataFor12monthsEntity);</span>
+  }
+
+  private void setCommonColumn(
+      RequestContext context, ShipmentActualPoolDataFor52weeksEntity entity) {
+    // 現在日時の取得
+<span class="nc" id="L171">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L172">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+<span class="nc" id="L173">    entity.setUpdateDateTime(dateTime);</span>
+<span class="nc" id="L174">    entity.setUpdateUser(context.getOperatorId());</span>
+<span class="nc" id="L175">    entity.setUpdateUserType(context.getOperatorType());</span>
+<span class="nc" id="L176">    entity.setUpdateClientProgram(context.getClientProgram());</span>
+<span class="nc" id="L177">    entity.setUpdateProgram(context.getExecutionProgram());</span>
+<span class="nc" id="L178">    entity.setUpdateCount(0);</span>
+<span class="nc" id="L179">  }</span>
+
+  private void setCommonColumn(
+      RequestContext context, ShipmentActualPoolDataFor12monthsEntity entity) {
+    // 現在日時の取得
+<span class="nc" id="L184">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L185">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+<span class="nc" id="L186">    entity.setUpdateDateTime(dateTime);</span>
+<span class="nc" id="L187">    entity.setUpdateUser(context.getOperatorId());</span>
+<span class="nc" id="L188">    entity.setUpdateUserType(context.getOperatorType());</span>
+<span class="nc" id="L189">    entity.setUpdateClientProgram(context.getClientProgram());</span>
+    // entity.setUpdateProgram(context.getExecutionProgram());
+<span class="nc" id="L191">    entity.setUpdateProgram(&quot;HP&quot;);</span>
+<span class="nc" id="L192">    entity.setUpdateCount(0);</span>
+<span class="nc" id="L193">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

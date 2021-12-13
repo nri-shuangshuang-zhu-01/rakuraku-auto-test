@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a07e44c8-458d-4e4b-86af-3edf901c6a15" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/linkage/apiTest/mockApiDemoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/linkage/apiTest/MALSCSS3P0Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/linkage/apiTest/MALSCSS3P0Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/linkage/batchTest/MBLTTSL100Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/linkage/batchTest/MBLTTSL100Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/mockApiDemo.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/mockApiDemo.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testtools/confs/rakuraku_common.properties" beforeDir="false" afterPath="$PROJECT_DIR$/testtools/confs/rakuraku_common.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/手顺.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/手顺.xlsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="22DsO5NBMrwKje74e5nGJ9gdFSA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rakuraku-core" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="MBLTTSL100Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="rakuraku-auto-test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.linkage.batchTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.linkage.batchTest" />
+      <option name="MAIN_CLASS_NAME" value="com.linkage.batchTest.MBLTTSL100Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MBLTTSL100Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\changsk\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\pleiades\workspace\rakuraku-auto-test" />
+          <option name="myCopyRoot" value="D:\pleiades\workspace\rakuraku-auto-test" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\pleiades\workspace\rakuraku-auto-test" />
+          <option name="myCopyRoot" value="D:\pleiades\workspace\rakuraku-auto-test" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a07e44c8-458d-4e4b-86af-3edf901c6a15" name="Default Changelist" comment="" />
+      <created>1639383459937</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639383459937</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,0 +1,487 @@
+openapi: 3.0.0
+info:
+  title: API-011
+  version: '1.0'
+  description: 在庫調整入力用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /internal/v1/stock-adjustment/search:
+    post:
+      summary: 在庫調整_参照API
+      operationId: searchStockAdjustmentInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SearchStockAdjustmentInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 在庫調整データの各種マスタ情報、在庫データを参照する。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/SearchStockAdjustmentInternalRequestV1'
+        description: ''
+      tags:
+        - StockAdjustmentInternal
+    parameters: []
+  /internal/v1/stock-adjustment/save:
+    post:
+      summary: 在庫調整_更新API
+      operationId: saveStockAdjustmentInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SaveStockAdjustmentInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 在庫調整の登録内容を更新し、チェックリストの出力指示を行う。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              type: array
+              description: 在庫調整情報リスト
+              items:
+                $ref: '#/components/schemas/SaveStockAdjustmentInternalRequestV1'
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      tags:
+        - StockAdjustmentInternal
+    parameters: []
+components:
+  schemas:
+    SearchStockAdjustmentInternalRequestV1:
+      title: SearchStockAdjustmentInternalRequestV1
+      type: object
+      properties:
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+          maxLength: 2
+        stockAdjustmentInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchStockAdjustmentInternalInfoListV1'
+      required:
+        - businessSceneType
+    SearchStockAdjustmentInternalProdInfoListV1:
+      title: SearchStockAdjustmentInternalProdInfoListV1
+      type: object
+      properties:
+        checkResult:
+          type: string
+          description: チェック可否
+          maxLength: 1
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        gInnerCode:
+          type: string
+          maxLength: 14
+          description: 統合インナーコード
+        productCode:
+          type: string
+          maxLength: 234
+          description: 商品コード
+        brandCode:
+          type: string
+          maxLength: 4
+          description: ブランドコード
+        ntvBrandName:
+          type: string
+          description: ブランド名称(現地語)
+          maxLength: 200
+        brandName:
+          type: string
+          description: ブランド名称(英語)
+          maxLength: 15
+        currencyCode:
+          type: string
+          maxLength: 3
+          description: 通貨
+        productControlDepartmentName:
+          type: string
+          maxLength: 240
+          description: 商品所管部門名
+        productControlDepartmentCode:
+          type: string
+          maxLength: 6
+          description: 商品所管部門コード
+        reasonType:
+          type: string
+          maxLength: 5
+          description: 理由区分
+        reasonTypeName:
+          type: string
+          maxLength: 40
+          description: 理由区分名
+        departmentInCharge:
+          type: string
+          description: 責任部署コード
+          maxLength: 4
+        departmentNameInCharge:
+          type: string
+          description: 責任部署名
+          maxLength: 13
+        currentStockQty:
+          type: integer
+          maximum: 9999999
+          description: 現在庫数
+        rackDifference:
+          type: integer
+          description: 棚差異
+        currentStockQtyBeforeMove:
+          type: integer
+          description: 現在庫数移動前
+        currentStockQtyAfterMove:
+          type: integer
+          description: 現在庫数移動後
+        evaluationUnitPrice:
+          type: string
+          description: 評価単価
+          maxLength: 12
+        adjustAmount:
+          type: string
+          description: 調整金額
+          maxLength: 14
+        marketCode:
+          type: string
+          description: 受注数量
+          maxLength: 2
+        errCode:
+          type: string
+          description: エラーコード
+        errMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - checkResult
+        - subsidiaryCode
+        - gInnerCode
+        - productCode
+        - brandCode
+        - ntvBrandName
+        - brandName
+        - currencyCode
+        - productControlDepartmentName
+        - productControlDepartmentCode
+        - reasonType
+        - reasonTypeName
+        - departmentInCharge
+        - departmentNameInCharge
+        - evaluationUnitPrice
+        - adjustAmount
+        - marketCode
+    SaveStockAdjustmentInternalRequestV1:
+      title: SaveStockAdjustmentInternalRequestV1
+      type: object
+      x-examples: {}
+      properties:
+        voucherDate:
+          type: string
+          description: 伝票日付
+          format: date
+          minLength: 8
+          maxLength: 8
+        operationDate:
+          type: string
+          description: 運用日付
+          format: date
+          minLength: 8
+          maxLength: 8
+        stockType:
+          type: string
+          description: 在庫タイプ
+          maxLength: 1
+        registrationDate:
+          type: string
+          description: 入力日
+          format: date
+          minLength: 8
+          maxLength: 8
+        registrationTime:
+          type: string
+          description: 入力時間
+          format: time
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        plantName:
+          type: string
+          description: 置場名
+          maxLength: 45
+        storageLocationCode:
+          type: string
+          description: 保管場所コード
+          maxLength: 4
+        storageLocationName:
+          type: string
+          description: 保管場所名
+          maxLength: 45
+        id:
+          type: string
+          description: ID
+          maxLength: 4
+        reasonType:
+          type: string
+          description: 理由区分
+          maxLength: 5
+        reasonTypeName:
+          type: string
+          description: 理由区分名
+          maxLength: 40
+        processMode:
+          type: string
+          description: 処理モード
+          maxLength: 8
+        processModeName:
+          type: string
+          description: 処理モード名
+        departmentInCharge:
+          type: string
+          description: 責任部署コード
+          maxLength: 4
+        departmentNameInCharge:
+          type: string
+          description: 責任部署名
+          maxLength: 13
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        brandName:
+          type: string
+          maxLength: 200
+          description: ブランド名
+        currentStockQty:
+          type: integer
+          description: 現在庫数
+          maximum: 9999999
+        stockDifferenceQty:
+          type: integer
+          description: 在庫差分数
+          maximum: 9999999
+        currencyCode:
+          type: string
+          description: 通貨
+          maxLength: 3
+        productControlDepartmentCode:
+          type: string
+          description: 商品所管部門コード
+          maxLength: 6
+        productControlDepartmentName:
+          type: string
+          description: 商品所管部門名
+          maxLength: 240
+        currentStockQtyBeforeAdjust:
+          type: integer
+          maximum: 9999999
+          description: 調整前現在庫数
+        currentStockQtyAfterAdjust:
+          type: integer
+          maximum: 9999999
+          description: 調整後現在庫数
+        evaluationUnitPrice:
+          type: integer
+          maximum: 9999999
+          description: 評価単価
+        marketCode:
+          type: string
+          description: 更新日時
+          maxLength: 2
+        updateTime:
+          type: string
+          description: 更新日時
+          maxLength: 14
+          format: date-time
+          minLength: 14
+      required:
+        - voucherDate
+        - operationDate
+        - stockType
+        - registrationDate
+        - registrationTime
+        - plantCode
+        - plantName
+        - storageLocationCode
+        - storageLocationName
+        - id
+        - reasonType
+        - reasonTypeName
+        - departmentInCharge
+        - departmentNameInCharge
+        - productCode
+        - gInnerCode
+        - brandCode
+        - brandName
+        - currencyCode
+        - productControlDepartmentCode
+        - productControlDepartmentName
+        - currentStockQtyBeforeAdjust
+        - currentStockQtyAfterAdjust
+        - evaluationUnitPrice
+        - marketCode
+        - updateTime
+    SaveStockAdjustmentInternalReceiveResListV1:
+      title: SaveStockAdjustmentInternalReceiveResListV1
+      type: object
+      properties:
+        updateResult:
+          type: string
+          description: 更新成否結果
+        ginnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+        voucherNumber:
+          type: string
+          description: 伝票番号
+          maxLength: 6
+        adjustedQty:
+          type: integer
+          description: 調整数
+        currentStockQtyBeforeAdjust:
+          type: integer
+          description: 調整前現在庫数
+        currentStockQtyAfterAdjust:
+          type: integer
+          description: 調整後現在庫数
+        holdStockQtyBeforeAdjust:
+          type: integer
+          description: 調整前保留在庫数
+        holdStockQtyAfterAdjust:
+          type: integer
+          description: 調整後保留在庫数
+        evaluationUnitPrice:
+          type: string
+          description: 評価単価
+        adjustAmount:
+          type: string
+          description: 調整金額
+      required:
+        - updateResult
+    SearchStockAdjustmentInternalInfoListV1:
+      title: SearchStockAdjustmentInternalInfoListV1
+      type: object
+      properties:
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        reasonCode:
+          type: string
+          description: 理由コード
+          maxLength: 5
+        departmentInCharge:
+          type: string
+          maxLength: 4
+          description: 責任部署コード
+        processMode:
+          type: string
+          description: 処理モード
+          maxLength: 8
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        currentStockQty:
+          type: integer
+          description: 現在庫数
+          maximum: 9999999
+        stockDifferenceQty:
+          type: integer
+          description: 返品数
+          maximum: 9999999
+      required:
+        - plantCode
+        - reasonCode
+        - departmentInCharge
+    SearchStockAdjustmentInternalResponseV1:
+      title: SearchStockAdjustmentInternalResponseV1
+      type: object
+      properties:
+        productInfomationList:
+          type: array
+          description: 商品情報リスト
+          items:
+            $ref: '#/components/schemas/SearchStockAdjustmentInternalProdInfoListV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/SearchStockAdjustmentInternalErrorListV1'
+    SearchStockAdjustmentInternalErrorListV1:
+      title: SearchStockAdjustmentInternalErrorListV1
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+    SaveStockAdjustmentInternalResponseV1:
+      title: SaveStockAdjustmentInternalResponseV1
+      type: object
+      properties:
+        receiveResultList:
+          type: array
+          description: 受付結果リスト
+          items:
+            $ref: '#/components/schemas/SaveStockAdjustmentInternalReceiveResListV1'
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - receiveResultList
+  parameters: {}
+tags:
+  - name: StockAdjustmentInternal

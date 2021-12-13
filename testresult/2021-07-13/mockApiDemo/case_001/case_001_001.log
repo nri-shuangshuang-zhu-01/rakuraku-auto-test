@@ -1,0 +1,10 @@
+■api名称：　登录
+■api Request：　/v1/shipmentDataInquery/search?subsidiaryCode=MJP&shipmentDate=2020-01-02&shipmentCenter=AABB
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.26.10&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&Prefer=/v1/area/search->2&/v1/plant/search->3
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "code": "SYS00001",
+  "message": "Server Error"
+}

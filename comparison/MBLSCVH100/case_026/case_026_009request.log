@@ -1,0 +1,7 @@
+http://localhost:4025/v1/MAPPOPO250{"cPoInfo":[{"SubsidiaryCode":"JPN","globalNo":"CA000032000001"},{"SubsidiaryCode":"JPN","globalNo":"CA000032000002"}],"deleteFlag":"0","cpoInfo":[{"SubsidiaryCode":"JPN","globalNo":"CA000032000001"},{"SubsidiaryCode":"JPN","globalNo":"CA000032000002"}]}
+http://localhost:4024/internal/v1/sales-order/search?globalNumber=CA000032000001&globalNumber=CA000032000002&soLineStatus=3
+http://localhost:4010/internal/v1/subsidiary/get?subsidiary_code=MJP
+http://localhost:4015/internal/v1/ginner-info/get-list{"getListGinnerInfoInternalRequestV1DetailList":[{"ginnerCode":"12345678910001"},{"ginnerCode":"12345678910002"}]}
+http://localhost:4015/internal/v1/type-code/get-list{"getListTypeCodeInternalRequestV1DetailList":[{"typeCode":"1882401"},{"typeCode":"1882402"}]}
+http://localhost:4012/internal/v1/customer/get-list{"getListCustomerInternalRequestV1DetailList":[{"customerCode":"BOSCH1"},{"customerCode":"BOSCH2"}]}
+http://localhost:4012/internal/v1/ship-to/get-list{"getListShipToInternalRequestV1DetailList":[{"customerCode":"004264","shipToCode":"BOSCH1"},{"customerCode":"004264","shipToCode":"BOSCH2"}]}

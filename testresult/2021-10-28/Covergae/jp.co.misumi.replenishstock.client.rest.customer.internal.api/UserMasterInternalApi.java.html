@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserMasterInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.customer.internal.api</a> &gt; <span class="el_source">UserMasterInternalApi.java</span></div><h1>UserMasterInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.customer.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.customer.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.CheckUserMasterInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.CheckUserMasterInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.MailSendUserMasterInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.SearchUserMasterInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.UpdateUserMasterInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.UpdateUserMasterInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:17.527774500+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.customer.internal.api.UserMasterInternalApi&quot;)
+public class UserMasterInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L41">    public UserMasterInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L42">        this.apiClient = apiClient;</span>
+<span class="fc" id="L43">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L46">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L50">        this.apiClient = apiClient;</span>
+<span class="nc" id="L51">    }</span>
+
+    /**
+     * 会員マスタ_業務チェックAPI
+     * リクエスト項目により、業務チェックを行い、データとともにチェック結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkUserMasterInternalRequestV1  (optional)
+     
+     * @return CheckUserMasterInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CheckUserMasterInternalResponseV1 checkUserMasterInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckUserMasterInternalRequestV1 checkUserMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L68">        return checkUserMasterInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, checkUserMasterInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 会員マスタ_業務チェックAPI
+     * リクエスト項目により、業務チェックを行い、データとともにチェック結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkUserMasterInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;CheckUserMasterInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CheckUserMasterInternalResponseV1&gt; checkUserMasterInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckUserMasterInternalRequestV1 checkUserMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L86">        Object postBody = checkUserMasterInternalRequestV1;</span>
+        
+<span class="nc" id="L88">        String path = apiClient.expandPath(&quot;/internal/v1/master/user/check&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L90">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L91">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L92">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L93">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L98">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L100">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L102">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L104">            });</span>
+        }
+
+<span class="nc" id="L107">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L110">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L111">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L114">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L116">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L118">        ParameterizedTypeReference&lt;CheckUserMasterInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CheckUserMasterInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L119">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 会員マスタ_メール送信API
+     * リクエスト項目により、メール送信処理結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param mailSendUserMasterInternalRequestV1  (optional)
+     
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public void mailSendUserMasterInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, MailSendUserMasterInternalRequestV1 mailSendUserMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L135">        mailSendUserMasterInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, mailSendUserMasterInternalRequestV1);</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * 会員マスタ_メール送信API
+     * リクエスト項目により、メール送信処理結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param mailSendUserMasterInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;Void&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;Void&gt; mailSendUserMasterInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, MailSendUserMasterInternalRequestV1 mailSendUserMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L153">        Object postBody = mailSendUserMasterInternalRequestV1;</span>
+        
+<span class="nc" id="L155">        String path = apiClient.expandPath(&quot;/internal/v1/master/user/mailSend&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L157">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L158">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L159">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L160">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L165">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L167">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L169">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L171">            });</span>
+        }
+
+<span class="nc" id="L174">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L177">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L178">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L181">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L183">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L185">        ParameterizedTypeReference&lt;Void&gt; returnType = new ParameterizedTypeReference&lt;Void&gt;() {};</span>
+<span class="nc" id="L186">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 会員マスタ_一覧検索API
+     * リクエスト項目の検索条件により、会員マスタを検索し結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param subsidiaryCode 現法コード (required)
+     
+     * @param languageCode 言語コード (required)
+     
+     * @param loginId ログインID (optional)
+     
+     * @param email メールアドレス (optional)
+     
+     * @param customerCode 得意先コード (optional)
+     
+     * @param userNameNative 会員氏名（現地語） (optional)
+     
+     * @param telNumber 電話番号 (optional)
+     
+     * @param customerNameNative1 得意先名（現地語1） (optional)
+     
+     * @param userCode 会員コード (optional)
+     
+     * @param includeNotCustomerDataFlag 得意先なし含むフラグ (optional)
+     
+     * @param excludeDeleteFlag 削除済み表示フラグ (optional)
+     
+     * @param maxCount 最大件数 (optional)
+     
+     * @param startIndex スタートインデックス (optional)
+     
+     * @param maxRecords 表示件数 (optional)
+     
+     * @return SearchUserMasterInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchUserMasterInternalResponseV1 searchUserMasterInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String subsidiaryCode, String languageCode, String loginId, String email, String customerCode, String userNameNative, String telNumber, String customerNameNative1, String userCode, Boolean includeNotCustomerDataFlag, Boolean excludeDeleteFlag, Integer maxCount, Integer startIndex, Integer maxRecords) throws RestClientException {
+<span class="nc" id="L229">        return searchUserMasterInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, subsidiaryCode, languageCode, loginId, email, customerCode, userNameNative, telNumber, customerNameNative1, userCode, includeNotCustomerDataFlag, excludeDeleteFlag, maxCount, startIndex, maxRecords).getBody();</span>
+    }
+
+    /**
+     * 会員マスタ_一覧検索API
+     * リクエスト項目の検索条件により、会員マスタを検索し結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param subsidiaryCode 現法コード (required)
+     
+     * @param languageCode 言語コード (required)
+     
+     * @param loginId ログインID (optional)
+     
+     * @param email メールアドレス (optional)
+     
+     * @param customerCode 得意先コード (optional)
+     
+     * @param userNameNative 会員氏名（現地語） (optional)
+     
+     * @param telNumber 電話番号 (optional)
+     
+     * @param customerNameNative1 得意先名（現地語1） (optional)
+     
+     * @param userCode 会員コード (optional)
+     
+     * @param includeNotCustomerDataFlag 得意先なし含むフラグ (optional)
+     
+     * @param excludeDeleteFlag 削除済み表示フラグ (optional)
+     
+     * @param maxCount 最大件数 (optional)
+     
+     * @param startIndex スタートインデックス (optional)
+     
+     * @param maxRecords 表示件数 (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchUserMasterInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchUserMasterInternalResponseV1&gt; searchUserMasterInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String subsidiaryCode, String languageCode, String loginId, String email, String customerCode, String userNameNative, String telNumber, String customerNameNative1, String userCode, Boolean includeNotCustomerDataFlag, Boolean excludeDeleteFlag, Integer maxCount, Integer startIndex, Integer maxRecords) throws RestClientException {
+<span class="nc" id="L273">        Object postBody = null;</span>
+        
+        // verify the required parameter 'subsidiaryCode' is set
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if (subsidiaryCode == null) {</span>
+<span class="nc" id="L277">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'subsidiaryCode' when calling searchUserMasterInternalV1&quot;);</span>
+        }
+        
+        // verify the required parameter 'languageCode' is set
+<span class="nc bnc" id="L281" title="All 2 branches missed.">        if (languageCode == null) {</span>
+<span class="nc" id="L282">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'languageCode' when calling searchUserMasterInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L285">        String path = apiClient.expandPath(&quot;/internal/v1/master/user/search&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L287">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L288">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L289">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L290">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L292">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;subsidiary_code&quot;, subsidiaryCode));</span>
+<span class="nc" id="L293">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;login_id&quot;, loginId));</span>
+<span class="nc" id="L294">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;email&quot;, email));</span>
+<span class="nc" id="L295">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;customer_code&quot;, customerCode));</span>
+<span class="nc" id="L296">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;user_name_native&quot;, userNameNative));</span>
+<span class="nc" id="L297">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;tel_number&quot;, telNumber));</span>
+<span class="nc" id="L298">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;customer_name_native1&quot;, customerNameNative1));</span>
+<span class="nc" id="L299">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;user_code&quot;, userCode));</span>
+<span class="nc" id="L300">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;include_not_customer_data_flag&quot;, includeNotCustomerDataFlag));</span>
+<span class="nc" id="L301">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;exclude_delete_flag&quot;, excludeDeleteFlag));</span>
+<span class="nc" id="L302">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;max_count&quot;, maxCount));</span>
+<span class="nc" id="L303">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;language_code&quot;, languageCode));</span>
+<span class="nc" id="L304">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;start_index&quot;, startIndex));</span>
+<span class="nc" id="L305">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;max_records&quot;, maxRecords));</span>
+
+        
+
+<span class="nc bnc" id="L309" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L310">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L312">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L314">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L316">            });</span>
+        }
+
+<span class="nc" id="L319">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L322">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L323">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L324">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L326">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L328">        ParameterizedTypeReference&lt;SearchUserMasterInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchUserMasterInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L329">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 会員マスタ_DB登録API
+     * リクエスト項目により、会員マスタ（新規・変更・削除・復活）に反映する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param updateUserMasterInternalRequestV1  (optional)
+     
+     * @return UpdateUserMasterInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public UpdateUserMasterInternalResponseV1 updateUserMasterInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, UpdateUserMasterInternalRequestV1 updateUserMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L346">        return updateUserMasterInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, updateUserMasterInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 会員マスタ_DB登録API
+     * リクエスト項目により、会員マスタ（新規・変更・削除・復活）に反映する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param updateUserMasterInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;UpdateUserMasterInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;UpdateUserMasterInternalResponseV1&gt; updateUserMasterInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, UpdateUserMasterInternalRequestV1 updateUserMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L364">        Object postBody = updateUserMasterInternalRequestV1;</span>
+        
+<span class="nc" id="L366">        String path = apiClient.expandPath(&quot;/internal/v1/master/user/update&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L368">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L369">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L370">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L371">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L375" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L376">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L378">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L380">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L382">            });</span>
+        }
+
+<span class="nc" id="L385">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L388">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L389">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L392">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L394">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L396">        ParameterizedTypeReference&lt;UpdateUserMasterInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;UpdateUserMasterInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L397">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

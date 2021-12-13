@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_RECEIVED_NOT_SHIPPED_MTO subsidiary_code='CHN' so_voucher_no='100004' so_line_key='104' global_number='CA000032000086' supply_type='1' receiving_qty='1' shipment_qty='1' receiving_fix_date='2021-01-01' receiving_fix_process_date='2020-01-01' receiving_purchase_amount='11' receiving_supplier_subsidiary_rate='12' receiving_freight_supplier_rate='13' receiving_supplier_subsidiary_supplier_rate='14' receiving_freight_supplier_subsidiary_rate='15' receiving_product_supplier_rate='16' update_count='0' delete_flag='0' register_user_type='1' register_user='1' register_date_time='2021-01-02' register_program='1' register_client_program='1' update_user_type='1' update_user='1' update_date_time='2021-03-01' update_program='1' update_client_program='1' />
+</dataset>

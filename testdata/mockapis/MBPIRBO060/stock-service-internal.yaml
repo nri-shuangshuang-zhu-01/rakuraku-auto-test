@@ -1,0 +1,2259 @@
+openapi: 3.0.0
+info:
+  title: stock-service-internal API
+  version: '1.0'
+  description: 在庫状況サービス用の 社内チャネル API です。
+  contact:
+    name: dummy
+servers:
+  - url: 'https://localhost:3000/stock'
+    description: 在庫状況サービスAPI
+paths:
+  /internal/v1/stock-allocate/complete:
+    post:
+      summary: 在庫引当API
+      tags:
+        - StockAllocate
+      operationId: completeStockAllocateV1
+      description: |-
+        在庫引当API（ID:MAMIV00020）
+        在庫引当チェックAPIでチェックした引当可能な置場および日付で、在庫の引き当て処理を行う
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      requestBody:
+        description: 在庫引当APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteStockAllocateRequestV1'
+      responses:
+        '200':
+          description: 在庫引当APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompleteStockAllocateResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-allocate/check:
+    post:
+      summary: 在庫引当チェックAPI
+      tags:
+        - StockAllocate
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      operationId: checkStockAllocateV1
+      description: |-
+        在庫引当チェックAPI（ID:MAMIV00010）
+        統合インナーコードおよび置場のリストを指定し、引当可能な置場および日付をチェックする
+      requestBody:
+        description: 在庫引当チェックAPIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckStockAllocateRequestV1'
+      responses:
+        '200':
+          description: 在庫引当チェックAPIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckStockAllocateResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-allocate/cancel:
+    post:
+      summary: 在庫引当取消API
+      tags:
+        - StockAllocate
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      operationId: cancelStockAllocateV1
+      description: |-
+        在庫引当取消API（ID:MAMIV00022）
+        在庫の引当情報の取消を行う
+      requestBody:
+        description: 在庫引当取消APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelStockAllocateRequestV1'
+      responses:
+        '200':
+          description: 在庫引当取消APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelStockAllocateResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-allocate/change:
+    post:
+      summary: 在庫引当変更API
+      tags:
+        - StockAllocate
+      operationId: changeStockAllocateV1
+      description: |-
+        在庫引当変更API（ID:MAMIV00021）
+        在庫の引当情報の変更を行う
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      requestBody:
+        description: 在庫引当変更APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeStockAllocateRequestV1'
+      responses:
+        '200':
+          description: 在庫引当変更APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangeStockAllocateResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-info/search:
+    post:
+      summary: 在庫情報検索API
+      tags:
+        - StockInfo
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      operationId: searchStockInfoV1
+      description: |-
+        在庫情報検索API（ID:MAMIV00052）
+        指定した検索条件に一致するインナーの在庫情報を非同期でまとめて取得する
+      requestBody:
+        description: 在庫情報検索APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchStockInfoRequestV1'
+      responses:
+        '200':
+          description: 在庫情報検索APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchStockInfoResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-info/update:
+    post:
+      summary: 在庫情報更新API
+      tags:
+        - StockInfo
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      operationId: updateStockInfoV1
+      description: |-
+        在庫情報更新API（ID:MAMIV00051）
+        指定したインナー、置場の在庫情報を更新する
+      requestBody:
+        description: 在庫情報更新APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStockInfoRequestV1'
+      responses:
+        '200':
+          description: 在庫情報更新APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateStockInfoResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-info/check:
+    post:
+      summary: 在庫情報参照API
+      tags:
+        - StockInfo
+      x-channel:
+        - internal
+      x-subsidiary:
+        - JPN
+      x-team:
+        - core
+      operationId: checkStockInfoV1
+      description: |-
+        在庫情報参照API（ID:MAMIV00050）
+        指定したインナー、置場の在庫情報を参照する
+      requestBody:
+        description: 在庫情報参照APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckStockInfoRequestV1'
+            examples:
+              example-1:
+                value:
+                  detailList:
+                    - ginnerCode: MDM10040007505
+                      plantCode: 1001
+      responses:
+        '200':
+          description: 在庫情報参照APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckStockInfoResponseV1'
+              examples:
+                example-1:
+                  value:
+                    detailList:
+                      - ginnerCode: MDM10040007505
+                        plantCode: '1001'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 1
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: R
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                      - ginnerCode: MDM10040007505
+                        plantCode: '1002'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 1
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: Z
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                example-2:
+                  value:
+                    detailList:
+                      - ginnerCode: MDM10040007502
+                        plantCode: '1002'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: null
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: R
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                      - ginnerCode: MDM10040007503
+                        plantCode: '1003'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 3
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: R
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                      - ginnerCode: MDM10040007504
+                        plantCode: '1004'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 60
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: R
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                      - ginnerCode: MDM10040007505
+                        plantCode: '1005'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 3
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: R
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                      - ginnerCode: MDM10040007506
+                        plantCode: '1006'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 3
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: Z
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                example-3:
+                  value:
+                    detailList: []
+                example-4:
+                  value:
+                    detailList:
+                      - ginnerCode: MDM10040007505
+                        plantCode: '1001'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 1
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: Z
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                      - ginnerCode: MDM10040007506
+                        plantCode: '1002'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 1
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: Z
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                example-5:
+                  value:
+                    detailList:
+                      - ginnerCode: MDM10040007503
+                        plantCode: '1001'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 1
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: R
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+                example-6:
+                  value:
+                    detailList:
+                      - ginnerCode: MDM10040007505
+                        plantCode: '1001'
+                        poQty: 0
+                        minPoQty: 0
+                        idealPoQty: 0
+                        automaticPoType: s
+                        contractedPoQty: 0
+                        validRate: 0
+                        totalStockQty: 0
+                        totalAllocateQty: 0
+                        totalAvailableQty: 0
+                        currentAvailableQty: 0
+                        currentStockQty: 1
+                        lastDayStockQty: 0
+                        monthBeginStockQty: 0
+                        evaluationUnitPrice: 50.362894
+                        lastDayEvaluationUnitPrice: 50.362894
+                        transferedStockQtyPlus: 0
+                        transferedStockQtyMinus: 0
+                        adjustedStockQtyPlus: 0
+                        adjustedStockQtyMinus: 0
+                        returnedStockQtyPlus: 0
+                        returnedStockQtyMinus: 0
+                        coefficientOfVariation: 50.362894
+                        rank: Z
+                        reorderPoint: 0
+                        previousReorderPoint: 0
+                        warningPoint: 0
+                        minWarningPoint: 0
+                        messageList:
+                          - type: E
+                            code: string
+                            message: string
+                            argumentList:
+                              - string
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-replenish/complete:
+    post:
+      summary: 在庫補充API
+      tags:
+        - StockReplenish
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      operationId: completeStockReplenishV1
+      description: |-
+        在庫補充API（ID:MAMIV00030）
+        在庫の補充処理を行う
+      requestBody:
+        description: 在庫補充APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteStockReplenishRequestV1'
+      responses:
+        '200':
+          description: 在庫補充APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompleteStockReplenishResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-replenish/cancel:
+    post:
+      summary: 在庫補充取消API
+      tags:
+        - StockReplenish
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      operationId: cancelStockReplenishV1
+      description: |-
+        在庫補充取消API（ID:MAMIV00032）
+        在庫の補充情報の取消を行う
+      requestBody:
+        description: 在庫補充取消APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelStockReplenishRequestV1'
+      responses:
+        '200':
+          description: 在庫補充取消APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelStockReplenishResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+  /internal/v1/stock-replenish/change:
+    post:
+      summary: 在庫補充変更API
+      tags:
+        - StockReplenish
+      x-channel:
+        - internal
+      x-subsidiary:
+        - TIW
+      x-team:
+        - core
+      operationId: changeStockReplenishV1
+      description: |-
+        在庫補充変更API（ID:MAMIV00031）
+        在庫の補充情報の変更を行う
+      requestBody:
+        description: 在庫補充変更APIリクエスト
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeStockReplenishRequestV1'
+      responses:
+        '200':
+          description: 在庫補充変更APIレスポンス
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangeStockReplenishResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: examples/N0000000001E.json
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/Authorization
+        - $ref: common-spec.yaml#/components/parameters/X-Debug
+        - $ref: common-spec.yaml#/components/parameters/fields
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+    parameters: []
+components:
+  schemas:
+    CheckStockAllocateRequestV1:
+      title: CheckStockAllocateRequestV1
+      type: object
+      description: 在庫引当チェックAPIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            type: object
+            title: CheckStockAllocateRequestDetailV1
+            description: 明細情報
+            properties:
+              ginnerCode:
+                type: string
+                minLength: 14
+                maxLength: 14
+                description: 統合インナーコード
+              qty:
+                type: integer
+                description: 数量
+                format: int32
+              allocateFlag:
+                type: string
+                x-validate-flag: true
+                description: |-
+                  引当フラグ
+                  引当可能な場合にメモリ内の在庫数量を減産するかどうか。
+                  複数置場を指定した場合、最初に引当可能な置場のみ減算する
+                  0: スライドリストの在庫引当チェックなど、引き当てた数量を減算せずにチェックのみ行う
+                  1: 引き当てた数量を減算してから次の明細のチェックを行う
+              specifyDateFlag:
+                type: string
+                x-validate-flag: true
+                description: |-
+                  指定納期ありフラグ
+                  0: 指定納期なし。最短の引当日を算出
+                  1: 指定納期あり。指定した引当日でチェック
+              plantList:
+                type: array
+                description: |-
+                  置場リスト
+                  チェック対象の置場のリスト
+                items:
+                  type: object
+                  title: CheckStockAllocateRequestDetailPlantV1
+                  description: 置場
+                  properties:
+                    plantCode:
+                      type: string
+                      description: |-
+                        置場コード
+                        チェック対象の置場コード
+                      minLength: 4
+                      maxLength: 4
+                    vrd:
+                      type: string
+                      description: |-
+                        引当日
+                        在庫の引当日
+                        (入庫日ではない)
+                      format: date
+                  required:
+                    - plantCode
+                    - vrd
+            required:
+              - ginnerCode
+              - qty
+              - allocateFlag
+              - specifyDateFlag
+              - plantList
+        allocatedDetailList:
+          description: |-
+            引当済み明細情報リスト
+            引き当て済み情報が指定された場合、引き戻してから引当チェックを行う
+            (変キャン用)
+
+            最初にすべて引き戻してから明細順で引当チェックを行うため。引当済みの明細が引当不可になる可能性がある。引当を変更したくない明細はリクエストしないこと
+          type: array
+          items:
+            $ref: '#/components/schemas/StockDetailBaseV1'
+      required:
+        - detailList
+    CheckStockAllocateResponseV1:
+      title: CheckStockAllocateResponseV1
+      type: object
+      description: 在庫引当チェックAPIレスポンス
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            type: object
+            title: CheckStockAllocateResponseDetailV1
+            description: 明細情報
+            properties:
+              plantList:
+                type: array
+                description: 置場リスト
+                items:
+                  type: object
+                  title: CheckStockAllocateResponsePlantV1
+                  description: 置場
+                  properties:
+                    plantCode:
+                      type: string
+                      minLength: 4
+                      maxLength: 4
+                      description: 置場コード
+                    allocatableFlag:
+                      type: string
+                      x-validate-flag: true
+                      description: |-
+                        引当可能フラグ
+                        0: 引当不可能
+                        1: 引当可能
+                    vrd:
+                      type: string
+                      description: |-
+                        引当日
+                        (指定日に引当不可の場合でも、引当可能な日付を返却)
+                      format: date
+                    evaluationUnitPrice:
+                      type: string
+                      description: 評価単価
+                      format: decimal
+                    automaticPoType:
+                      type: string
+                      description: 自動発注区分
+                    poQty:
+                      type: integer
+                      description: |-
+                        発注数量
+                        自動補充する際の単位数
+                      format: int32
+                    contractedPoQty:
+                      type: integer
+                      description: |-
+                        契約発注数量
+                        グローバル在庫を自動補充発注する際の単位数
+                      format: int32
+                    availableQty:
+                      type: integer
+                      description: |-
+                        利用可能数量
+                        指定した引当日に引当可能な数量
+                      format: int32
+                    currentAvailableQty:
+                      type: integer
+                      description: |-
+                        現利用可能数量
+                        現在引当可能な数量
+                      format: int32
+                    totalAvailableQty:
+                      type: integer
+                      description: |-
+                        総利用可能数量
+                        現利用可能数量+発注残数量
+                      format: int32
+                    rank:
+                      type: string
+                      description: |-
+                        ランク
+                        在庫ランク
+                    messageList:
+                      type: array
+                      description: メッセージリスト
+                      items:
+                        $ref: '#/components/schemas/Message'
+                  required:
+                    - plantCode
+                    - allocatableFlag
+            required:
+              - plantList
+      required:
+        - detailList
+    CompleteStockAllocateRequestV1:
+      title: CompleteStockAllocateRequestV1
+      type: object
+      description: 在庫引当APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            $ref: '#/components/schemas/CompleteStockAllocateRequestDetailV1'
+      required:
+        - detailList
+    CompleteStockAllocateRequestDetailV1:
+      title: CompleteStockAllocateRequestDetailV1
+      description: 明細情報
+      allOf:
+        - $ref: '#/components/schemas/SoInfoV1'
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+      properties:
+        allocationType:
+          $ref: '#/components/schemas/AllocationType'
+      required:
+        - allocationType
+    CompleteStockAllocateResponseV1:
+      title: CompleteStockAllocateResponseV1
+      description: 在庫引当APIレスポンス
+      allOf:
+        - $ref: '#/components/schemas/StockCommandResponseBaseV1'
+    ChangeStockAllocateRequestV1:
+      title: ChangeStockAllocateRequestV1
+      type: object
+      description: 在庫引当変更APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            $ref: '#/components/schemas/ChangeStockAllocateRequestDetailV1'
+        allocatedDetailList:
+          description: |-
+            引当済明細情報リスト
+            引当済明細情報が指定された場合、引き戻してから引当を行う
+
+            引当済明細情報が指定されずに明細情報のみ指定された受注伝票番号、受注明細キーは、新規引当扱いとなる
+
+            逆に引当済明細情報のみ指定され、明細情報が指定されない受注伝票番号、受注明細キーはキャンセル扱いとなる
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocatedStockDetailV1'
+      required:
+        - detailList
+        - allocatedDetailList
+    ChangeStockAllocateRequestDetailV1:
+      title: ChangeStockAllocateRequestDetailV1
+      description: 明細情報
+      allOf:
+        - $ref: '#/components/schemas/SoInfoV1'
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+      properties:
+        allocationType:
+          $ref: '#/components/schemas/AllocationType'
+      required:
+        - allocationType
+    AllocatedStockDetailV1:
+      title: AllocatedStockDetailV1
+      description: 引当済明細情報
+      allOf:
+        - $ref: '#/components/schemas/SoInfoV1'
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+    ChangeStockAllocateResponseV1:
+      title: ChangeStockAllocateResponseV1
+      description: 在庫引当変更APIレスポンス
+      allOf:
+        - $ref: '#/components/schemas/StockCommandResponseBaseV1'
+    CancelStockAllocateRequestV1:
+      title: CancelStockAllocateRequestV1
+      type: object
+      description: 在庫引当取消APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            $ref: '#/components/schemas/CancelStockAllocateRequestDetailV1'
+      required:
+        - detailList
+    CancelStockAllocateRequestDetailV1:
+      title: CancelStockAllocateRequestDetailV1
+      description: 明細情報
+      allOf:
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+        - $ref: '#/components/schemas/SoInfoV1'
+    CancelStockAllocateResponseV1:
+      title: CancelStockAllocateResponseV1
+      description: 在庫引当取消APIレスポンス
+      allOf:
+        - $ref: '#/components/schemas/StockCommandResponseBaseV1'
+    CompleteStockReplenishRequestV1:
+      title: CompleteStockReplenishRequestV1
+      type: object
+      description: 在庫補充APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            $ref: '#/components/schemas/CompleteStockReplenishRequestDetailV1'
+      required:
+        - detailList
+    CompleteStockReplenishRequestDetailV1:
+      title: CompleteStockReplenishRequestDetailV1
+      type: object
+      description: 明細情報
+      allOf:
+        - $ref: '#/components/schemas/PoInfoV1'
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+    CompleteStockReplenishResponseV1:
+      title: CompleteStockReplenishResponseV1
+      description: 在庫補充APIレスポンス
+      allOf:
+        - $ref: '#/components/schemas/StockCommandResponseBaseV1'
+    ChangeStockReplenishRequestV1:
+      title: ChangeStockReplenishRequestV1
+      type: object
+      description: 在庫補充変更APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: |-
+            明細情報リスト
+            変更後の補充情報
+          items:
+            $ref: '#/components/schemas/ChangeStockReplenishRequestDetailV1'
+      required:
+        - detailList
+    ChangeStockReplenishRequestDetailV1:
+      title: ChangeStockReplenishRequestDetailV1
+      type: object
+      description: 明細情報
+      allOf:
+        - $ref: '#/components/schemas/PoInfoV1'
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+      properties:
+        replenishedInfo:
+          $ref: '#/components/schemas/ChangeStockReplenishRequestReplenishedInfoV1'
+      required:
+        - replenishedInfo
+    ChangeStockReplenishRequestReplenishedInfoV1:
+      title: ChangeStockReplenishRequestReplenishedInfoV1
+      description: |-
+        補充済情報
+        変更前の補充情報
+      required:
+        - plantCode
+        - qty
+        - vrd
+      properties:
+        plantCode:
+          type: string
+          minLength: 4
+          maxLength: 4
+          description: 置場コード
+        qty:
+          type: integer
+          description: 数量
+          format: int32
+        vrd:
+          type: string
+          description: VRD
+          format: date
+    ChangeStockReplenishResponseV1:
+      title: ChangeStockReplenishResponseV1
+      description: 在庫補充変更APIレスポンス
+      allOf:
+        - $ref: '#/components/schemas/StockCommandResponseBaseV1'
+    CancelStockReplenishRequestV1:
+      title: CancelStockReplenishRequestV1
+      type: object
+      description: 在庫補充取消APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            $ref: '#/components/schemas/CancelStockReplenishRequestDetailV1'
+      required:
+        - detailList
+    CancelStockReplenishRequestDetailV1:
+      title: CancelStockReplenishRequestDetailV1
+      type: object
+      description: 明細情報
+      allOf:
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+        - $ref: '#/components/schemas/PoInfoV1'
+    CancelStockReplenishResponseV1:
+      title: CancelStockReplenishResponseV1
+      description: 在庫補充取消APIレスポンス
+      allOf:
+        - $ref: '#/components/schemas/StockCommandResponseBaseV1'
+    CheckStockInfoRequestV1:
+      title: CheckStockInfoRequestV1
+      type: object
+      description: 在庫情報参照APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            type: object
+            title: CheckStockInfoRequestDetailV1
+            description: 明細情報
+            properties:
+              ginnerCode:
+                type: string
+                minLength: 14
+                maxLength: 14
+                description: 統合インナーコード
+              plantCode:
+                type: string
+                minLength: 4
+                maxLength: 4
+                description: 置場コード
+            required:
+              - ginnerCode
+              - plantCode
+      required:
+        - detailList
+    CheckStockInfoResponseV1:
+      title: CheckStockInfoResponseV1
+      type: object
+      description: 在庫情報参照APIレスポンス
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            type: object
+            title: CheckStockInfoResponseDetailV1
+            description: 明細情報
+            properties:
+              ginnerCode:
+                type: string
+                minLength: 14
+                maxLength: 14
+                description: 統合インナーコード
+              plantCode:
+                type: string
+                minLength: 4
+                maxLength: 4
+                description: 置場コード
+              poQty:
+                type: integer
+                description: 発注数量
+                format: int32
+              minPoQty:
+                type: integer
+                description: 最低発注数量
+                format: int32
+              idealPoQty:
+                type: integer
+                description: 最適発注数量
+                format: int32
+              automaticPoType:
+                type: string
+                maxLength: 1
+                description: 自動発注区分
+              contractedPoQty:
+                type: integer
+                description: 契約発注数量
+                format: int32
+              validRate:
+                type: integer
+                description: 有効率
+                format: int32
+              totalStockQty:
+                type: integer
+                description: 総在庫数量
+                format: int32
+              totalAllocateQty:
+                type: integer
+                description: 総引当数量
+                format: int32
+              totalAvailableQty:
+                type: integer
+                description: 総利用可能数量
+                format: int32
+              currentAvailableQty:
+                type: integer
+                description: 現利用可能数量
+                format: int32
+              currentStockQty:
+                type: integer
+                description: 現在庫数量
+                format: int32
+              lastDayStockQty:
+                type: integer
+                description: 前日在庫数量
+                format: int32
+              monthBeginStockQty:
+                type: integer
+                description: 月初在庫数量
+                format: int32
+              evaluationUnitPrice:
+                type: string
+                description: 評価単価
+                format: decimal
+              lastDayEvaluationUnitPrice:
+                type: string
+                description: 前日評価単価
+                format: decimal
+              transferedStockQtyPlus:
+                type: integer
+                description: 社内移動(+)
+                format: int32
+              transferedStockQtyMinus:
+                type: integer
+                description: 社内移動(-)
+                format: int32
+              adjustedStockQtyPlus:
+                type: integer
+                description: 在庫調整(+)
+                format: int32
+              adjustedStockQtyMinus:
+                type: integer
+                description: 在庫調整(-)
+                format: int32
+              returnedStockQtyPlus:
+                type: integer
+                description: 返品(+)
+                format: int32
+              returnedStockQtyMinus:
+                type: integer
+                description: 返品(-)
+                format: int32
+              coefficientOfVariation:
+                type: string
+                description: 変動係数
+                format: decimal
+              rank:
+                type: string
+                description: ランク
+              reorderPoint:
+                type: integer
+                description: 発注点
+                format: int32
+              previousReorderPoint:
+                type: integer
+                description: 前回発注点
+                format: int32
+              warningPoint:
+                type: integer
+                description: 警告点
+                format: int32
+              minWarningPoint:
+                type: integer
+                description: 最低警告点
+                format: int32
+              messageList:
+                type: array
+                description: メッセージリスト
+                items:
+                  $ref: '#/components/schemas/Message'
+            required:
+              - poQty
+              - minPoQty
+              - idealPoQty
+              - automaticPoType
+              - contractedPoQty
+              - validRate
+              - totalStockQty
+              - totalAllocateQty
+              - totalAvailableQty
+              - currentAvailableQty
+              - currentStockQty
+              - lastDayStockQty
+              - monthBeginStockQty
+              - evaluationUnitPrice
+              - lastDayEvaluationUnitPrice
+              - transferedStockQtyPlus
+              - transferedStockQtyMinus
+              - adjustedStockQtyPlus
+              - adjustedStockQtyMinus
+              - returnedStockQtyPlus
+              - returnedStockQtyMinus
+              - coefficientOfVariation
+              - rank
+              - reorderPoint
+              - previousReorderPoint
+              - warningPoint
+              - minWarningPoint
+      required:
+        - detailList
+    UpdateStockInfoRequestV1:
+      title: UpdateStockInfoRequestV1
+      type: object
+      description: 在庫情報更新APIリクエスト
+      properties:
+        detailList:
+          type: array
+          description: 明細情報リスト
+          items:
+            type: object
+            title: UpdateStockInfoRequestDetailV1
+            description: 明細情報
+            properties:
+              ginnerCode:
+                type: string
+                minLength: 14
+                maxLength: 14
+                description: 統合インナーコード
+              plantCode:
+                type: string
+                minLength: 4
+                maxLength: 4
+                description: 置場コード
+              coefficientOfVariation:
+                type: string
+                description: |-
+                  変動係数
+                  値が指定された項目を更新
+                format: decimal
+              rank:
+                type: string
+                description: |-
+                  ランク
+                  値が指定された項目を更新
+                maxLength: 1
+              reorderPoint:
+                type: integer
+                description: |-
+                  発注点
+                  値が指定された項目を更新
+                  更新前の値で前回発注点を更新
+                format: int32
+                maximum: 99999
+              warningPoint:
+                type: integer
+                description: |-
+                  警告点
+                  値が指定された項目を更新
+                format: int32
+                maximum: 99999
+              minWarningPoint:
+                type: integer
+                description: |-
+                  最低警告点
+                  値が指定された項目を更新
+                format: int32
+                maximum: 99999
+            required:
+              - ginnerCode
+              - plantCode
+      required:
+        - detailList
+    UpdateStockInfoResponseV1:
+      title: UpdateStockInfoResponseV1
+      description: 在庫情報更新APIレスポンス
+      properties:
+        messageList:
+          type: array
+          description: メッセージリスト
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+        - messageList
+    SearchStockInfoRequestV1:
+      title: SearchStockInfoRequestV1
+      type: object
+      description: 在庫情報検索APIリクエスト
+      properties:
+        plantCode:
+          type: string
+          minLength: 4
+          maxLength: 4
+          description: 置場コード
+        keyType:
+          type: string
+          description: |-
+            比較項目タイプ
+            比較対象の項目
+            1: 総在庫数量
+            2: 総利用可能数量
+          enum:
+            - '1'
+            - '2'
+          x-enum-varnames:
+            - TOTAL_STOCK_QTY
+            - TOTAL_AVAILABLE_QTY
+          x-enum-description:
+            - 総在庫数量
+            - 総利用可能数量
+        valueType:
+          type: string
+          description: |-
+            比較値タイプ
+            比較対象の値
+            1: 警告点
+            2: 発注点
+          enum:
+            - '1'
+            - '2'
+          x-enum-varnames:
+            - WARNING_POINT
+            - REORDER_POINT
+          x-enum-description:
+            - 警告点
+            - 発注点
+        evaluationUnitPriceCheckFlag:
+          type: string
+          x-validate-flag: true
+          description: |-
+            評価単価チェックフラグ
+            有効な評価単価が設定されているかをチェックするかどうか
+            0: チェックしない(デフォルト)
+            1: チェックする
+        deleteCheckFlag:
+          type: string
+          x-validate-flag: true
+          description: |-
+            削除チェックフラグ
+            削除済みかチェックするかどうか
+            0: チェックしない(デフォルト)
+            1: チェックする
+          default: '0'
+        rankList:
+          type: array
+          description: ランクリスト
+          items:
+            description: ランク
+            type: string
+            maxLength: 1
+        automaticPoTypeList:
+          type: array
+          description: 自動発注区分リスト
+          items:
+            description: 自動発注区分
+            type: string
+            maxLength: 1
+      required:
+        - plantCode
+        - keyType
+        - valueType
+    SearchStockInfoResponseV1:
+      title: SearchStockInfoResponseV1
+      type: object
+      description: 在庫情報検索APIレスポンス
+      properties:
+        resultFilePath:
+          type: string
+          maxLength: 200
+          description: 結果ファイルパス
+        messageList:
+          type: array
+          description: メッセージリスト
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+        - messageList
+    StockDetailBaseV1:
+      title: StockDetailBaseV1
+      type: object
+      description: |-
+        在庫の引当情報・補充情報を特定するキーのみのベースモデル。
+        確定・更新・取消時に指定するものでもある。
+      properties:
+        ginnerCode:
+          type: string
+          minLength: 14
+          maxLength: 14
+          description: 統合インナーコード
+        plantCode:
+          type: string
+          minLength: 4
+          maxLength: 4
+          description: 置場コード
+        qty:
+          type: integer
+          description: 数量
+          format: int32
+        vrd:
+          type: string
+          description: 引当日
+          format: date
+      required:
+        - ginnerCode
+        - plantCode
+        - qty
+        - vrd
+    StockCommandResponseBaseV1:
+      title: StockCommandResponseBaseV1
+      type: object
+      description: 在庫・在庫情報における各トラン確定系操作のベースレスポンス
+      properties:
+        detailList:
+          type: array
+          description: 在庫補充レスポンスリスト
+          items:
+            $ref: '#/components/schemas/StockCommandResponseBaseDetailV1'
+      required:
+        - detailList
+    StockCommandResponseBaseDetailV1:
+      title: StockCommandResponseBaseDetailV1
+      type: object
+      description: 在庫補充レスポンス情報
+      allOf:
+        - $ref: '#/components/schemas/StockDetailBaseV1'
+      properties:
+        messageList:
+          type: array
+          description: メッセージリスト
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+        - messageList
+    AllocationType:
+      type: string
+      title: AllocationType
+      description: |-
+        引当区分
+        1: 現在庫/発注残から引当
+        2: 発注して引当
+
+        引当可否チェックを行うかどうかを判定するために使用。「2: 発注して引当」の場合は引当可否チェックを行わない
+      enum:
+        - '1'
+        - '2'
+      x-enum-varnames:
+        - STOCK
+        - PURCHASE
+      x-enum-descriptions:
+        - 現在庫/発注残から引当
+        - 発注して引当
+    SoInfoV1:
+      type: object
+      title: SoInfoV1
+      description: |-
+        受注のキー情報
+        在庫引当情報の登録/消込に使用
+      properties:
+        soSlipNumber:
+          type: string
+          minLength: 10
+          maxLength: 10
+          description: |-
+            受注伝票番号
+            在庫引当情報の登録/消込に使用
+        soLineKey:
+          type: integer
+          description: |-
+            受注明細キー
+            在庫引当情報の登録/消込に使用
+      required:
+        - soSlipNumber
+        - soLineKey
+    PoInfoV1:
+      type: object
+      title: PoInfoV1
+      description: |-
+        発注のキー情報
+        在庫補充情報の登録/消込に使用
+      properties:
+        poSlipNumber:
+          type: string
+          minLength: 10
+          maxLength: 10
+          description: |-
+            購買伝票番号
+            在庫補充情報の登録/消込に使用
+        poLineNumber:
+          type: integer
+          description: |-
+            購買明細番号
+            在庫補充情報の登録/消込に使用
+      required:
+        - poSlipNumber
+        - poLineNumber
+    Message:
+      type: object
+      title: Message
+      properties:
+        type:
+          type: string
+          description: |-
+            種別
+            メッセージの種別
+            E：エラー
+            W：警告
+            I：情報
+          enum:
+            - E
+            - W
+            - I
+          x-enum-varnames:
+            - ERROR
+            - WARNING
+            - INFO
+          x-enum-descriptions:
+            - エラー
+            - 警告
+            - 情報
+        code:
+          type: string
+          maxLength: 8
+          description: コード
+        message:
+          type: string
+          maxLength: 40
+          description: メッセージ
+        argumentList:
+          type: array
+          description: 引数リスト
+          items:
+            type: string
+      required:
+        - type
+        - code
+        - message
+        - argumentList
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: 1ページ内の件数
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: string
+      description: 一覧取得の取得開始位置
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+      description: “ソートキーの降順・昇順” と “ソートキーの項目名” を指定する。昇順指定する場合はソートキー項目名を指定する。降順指定する場合はソートキー項目名の先頭に-(ハイフン)をつける。( -ソートキー項目名 )
+  responses: {}
+  securitySchemes: {}
+tags:
+  - name: StockAllocate
+  - name: StockInfo
+  - name: StockReplenish

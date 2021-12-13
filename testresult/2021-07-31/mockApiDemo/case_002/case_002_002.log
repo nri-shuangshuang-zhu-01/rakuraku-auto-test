@@ -1,0 +1,7 @@
+■api名称：　登录
+■api Request：　/v1/shipmentDataInquery/search?
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.26.10&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&Prefer=/v1/area/search->3&/v1/plant/search->2
+■api Body：　-
+■loginUser：　UserLoginInfo
+java.lang.IllegalArgumentException: Request URI cannot end with ?

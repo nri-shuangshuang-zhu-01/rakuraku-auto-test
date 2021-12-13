@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <C_UL_PURPOSE_UL_RESULT_DATA_DOWNLOAD_FILE control_seq_number='2' data_download_control_seq='1' subsidiary_code='JPN' data_code='2' create_date_time='2019-08-24 22:15:22.0' mail_address='GUEST' temp_file_code='tempFileCodetest2' file_path='filePathtest2' presigned_api_path='presignedApiPathtest2' signature='signaturetest2' display_file_name='displayFileNametest2' status_code='1' process_result_code=' ' process_result_detail='' update_count='1' delete_flag='0' register_user_type='Customer' register_user='GUEST' register_date_time='2021-09-29 13:46:11.874202' register_program='api-id' register_client_program='temp' update_user_type='Customer' update_user='GUEST' update_date_time='2021-09-29 14:49:13.388845' update_program='api-id' update_client_program='temp' />
+</dataset>

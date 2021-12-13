@@ -1,0 +1,7 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+データHUB更新済フラグ::data_hub_updated_flag::char(1)::NULL
+登録日時(システム日時)::register_system_date_time::timestamp with time zone::NULL
+更新日時(システム日時)::update_system_date_time::timestamp with time zone::NULL
+更新プログラム::update_program::varchar(15)::NULL

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MybatisCreateWeeklyOrderDlFileRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.store.repository.mybatis</a> &gt; <span class="el_source">MybatisCreateWeeklyOrderDlFileRepository.java</span></div><h1>MybatisCreateWeeklyOrderDlFileRepository.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.store.repository.mybatis;
+
+import jp.co.misumi.fw.core.iterable.CloseableIterable;
+import jp.co.misumi.fw.core.iterable.DelegatingCloseableIterable;
+import jp.co.misumi.replenishstock.domain.entity.SearchConditionParamEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointExcludeConditionEntity;
+import jp.co.misumi.replenishstock.domain.repository.CreateWeeklyOrderDlFileRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Delegate;
+
+@RequiredArgsConstructor
+public class MybatisCreateWeeklyOrderDlFileRepository implements CreateWeeklyOrderDlFileRepository {
+
+  @Delegate
+  private final MybatisCreateWeeklyOrderDlFileMapper mapper;
+
+  /**
+   * 出力ファイル情報を取得.
+   *
+   * @param searchConditionParamEntity 検索パラメター
+   * @return 取得結果
+   */
+  @Override
+  public CloseableIterable&lt;WeeklyReorderPointExcludeConditionEntity&gt; searchWeeklyReorderPoint(
+      SearchConditionParamEntity searchConditionParamEntity) {
+
+<span class="nc" id="L27">    return new DelegatingCloseableIterable&lt;&gt;(mapper.selectWeeklyReorderPoint(searchConditionParamEntity));</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

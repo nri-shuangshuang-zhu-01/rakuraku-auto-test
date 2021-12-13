@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplenishStockMessages.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.value</a> &gt; <span class="el_source">ReplenishStockMessages.java</span></div><h1>ReplenishStockMessages.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.value;
+
+import java.util.Locale;
+import jp.co.misumi.fw.core.message.domain.EnumMessage;
+
+<span class="fc" id="L6">public enum ReplenishStockMessages implements EnumMessage {</span>
+<span class="fc" id="L7">  VALUE(&quot;&quot;),</span>
+
+<span class="fc" id="L9">  BIRBO050001E(&quot;通貨コードが取得できません。現法コード:{0}&quot;),</span>
+<span class="fc" id="L10">  BIRBO050002I(&quot;取得件数：{0}件、SKIP件数:{1}件、更新件数:{2}件、エラー件数:{3}件&quot;),</span>
+<span class="fc" id="L11">  BIRBO050003E(</span>
+      &quot;レスポンス項目 = NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO050003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『xxxxxxxxxxx』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： x\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： xxxxxxxxxxx&quot;),
+<span class="fc" id="L17">  BIRBO050004E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO050004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L23">  BIRBO050005E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO050005E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： ランク再設定&quot;),
+<span class="fc" id="L29">  BIRBO050006W(&quot;現法情報取得APIは0件を取得しました&quot;),</span>
+<span class="fc" id="L30">  BIRBO050007W(&quot;在庫情報参照APIは0件を取得しました&quot;),</span>
+<span class="fc" id="L31">  BIRBO050008W(&quot;商品情報取得API（List）は0件を取得しました&quot;),</span>
+<span class="fc" id="L32">  BIRBO050009W(&quot;在庫情報更新APIは0件を取得しました&quot;),</span>
+<span class="fc" id="L33">  BIRBO050010W(&quot;置場情報取得API（List）は0件を取得しました&quot;),</span>
+
+<span class="fc" id="L35">  BSCSU100001I(&quot;出荷実績データがありませんでした。&quot;),</span>
+<span class="fc" id="L36">  BSCSU100002I(&quot;出荷実績データ取得管理登録に成功しました&quot;),</span>
+<span class="fc" id="L37">  BSCSU100003E(&quot;出荷実績データ取得管理登録に失敗しました&quot;),</span>
+<span class="fc" id="L38">  BSCVV100004W(&quot;処理対象外の現法コードが指定されました 現法コード：{0}&quot;),</span>
+<span class="fc" id="L39">  BSCVV100003I(&quot;対象現法判定が終了しました,指定の現法は処理対象です&quot;),</span>
+<span class="fc" id="L40">  BSCVV100005E(&quot;コード値の桁数が12桁ではありませんでした。設定値リファレンス1：{0}&quot;),</span>
+<span class="fc" id="L41">  BSCVV100007I(&quot;対象月判定が終了しました,指定の月は処理対象です&quot;),</span>
+<span class="fc" id="L42">  BSCVV100008W(&quot;処理対象外の月が指定されました  設定値リファレンス1：{0}&quot;),</span>
+<span class="fc" id="L43">  BSCVV100006E(&quot;コード値が「0」、「1」のみで構成されていませんでした。設定値リファレンス1：{0}&quot;),</span>
+<span class="fc" id="L44">  BSCVV100010W(&quot;出荷回数データが存在しませんでした&quot;),</span>
+<span class="fc" id="L45">  BSCVV100009I(&quot;出荷回数の取得に成功しました&quot;),</span>
+<span class="fc" id="L46">  BSCVV100011I(&quot;商品マスタ情報を{0}件取得しました。&quot;),</span>
+<span class="fc" id="L47">  BSCVV100012E(&quot;商品マスタ情報が存在しませんでした&quot;),</span>
+<span class="fc" id="L48">  BSCVV100013I(&quot;棚卸ランク計算対象が存在しませんでした&quot;),</span>
+<span class="fc" id="L49">  BSCVV100014I(&quot;棚卸ランク判定処理を{0}件実行しました&quot;),</span>
+<span class="fc" id="L50">  BSCVV100015E(&quot;月次棚卸ランク登録に失敗しました。統合インナーコード：{0}、置場コード：{1}&quot;),</span>
+<span class="fc" id="L51">  BSCSM100001I(&quot;在庫設定マスタデータ(入出荷累積)の更新に成功しました&quot;),</span>
+<span class="fc" id="L52">  BSCSM100002I(&quot;在庫設定マスタデータ(出荷回数)の登録に成功しました&quot;),</span>
+<span class="fc" id="L53">  BSCSM100003I(&quot;入荷実績データが存在しませんでした&quot;),</span>
+<span class="fc" id="L54">  BSCSM100004I(&quot;入荷実績日計データの登録に成功しました&quot;),</span>
+<span class="fc" id="L55">  BSCSM100005E(&quot;入荷実績日計データの登録に失敗しました&quot;),</span>
+<span class="fc" id="L56">  BSCSM100006I(&quot;出荷実績データが存在しませんでした&quot;),</span>
+<span class="fc" id="L57">  BSCSM100007I(&quot;出荷実績日計データの登録に成功しました&quot;),</span>
+<span class="fc" id="L58">  BSCSM100008E(&quot;出荷実績日計データの登録に失敗しました&quot;),</span>
+<span class="fc" id="L59">  BSCSM100009I(&quot;月初稼働日の取得に成功しました&quot;),</span>
+<span class="fc" id="L60">  BSCSM100010E(&quot;検索条件に該当するカレンダー情報が存在しませんでした&quot;),</span>
+<span class="fc" id="L61">  BSCSM100011I(&quot;入出荷累積データの年次・月次初期化に成功しました&quot;),</span>
+<span class="fc" id="L62">  BSCSM100012E(&quot;入出荷累積データの年次・月次初期化に失敗しました&quot;),</span>
+<span class="fc" id="L63">  BSCSM100013I(&quot;入出荷累積データの月次初期化に成功しました&quot;),</span>
+<span class="fc" id="L64">  BSCSM100014E(&quot;入出荷累積データの月次初期化に失敗しました&quot;),</span>
+<span class="fc" id="L65">  BSCSM100015I(&quot;入荷実績データが存在しませんでした&quot;),</span>
+<span class="fc" id="L66">  BSCSM100016I(&quot;出荷実績データが存在しませんでした&quot;),</span>
+<span class="fc" id="L67">  BSCSM100017I(&quot;更新前入出荷累積データの集計処理に成功しました&quot;),</span>
+<span class="fc" id="L68">  BSCSM100018W(&quot;更新前入出荷累積のデータ集計処理に失敗しました&quot;),</span>
+<span class="fc" id="L69">  BSCSM100019I(&quot;更新前の出荷回数データ集計処理に成功しました&quot;),</span>
+<span class="fc" id="L70">  BSCSM100020W(&quot;更新前の出荷回数データ集計処理に失敗しました&quot;),</span>
+<span class="fc" id="L71">  BSCSM100021I(&quot;入荷実績ワークデータの取得に成功しました&quot;),</span>
+<span class="fc" id="L72">  BSCSM100022E(&quot;検索条件に該当する入荷実績ワークデータが存在しませんでした&quot;),</span>
+<span class="fc" id="L73">  BSCSM100023I(&quot;出荷実績ワークデータの取得に成功しました&quot;),</span>
+<span class="fc" id="L74">  BSCSM100024E(&quot;検索条件に該当する出荷実績ワークデータが存在しませんでした&quot;),</span>
+<span class="fc" id="L75">  BSCSM100025I(&quot;入出荷累積の更新に成功しました&quot;),</span>
+<span class="fc" id="L76">  BSCSM100026E(&quot;入出荷累積の更新に失敗しました&quot;),</span>
+<span class="fc" id="L77">  BSCSM100027I(&quot;出荷実績データが存在しませんでした&quot;),</span>
+<span class="fc" id="L78">  BSCSM100028I(&quot;出荷回数の更新に成功しました&quot;),</span>
+<span class="fc" id="L79">  BSCSM100029E(&quot;出荷回数の更新に失敗しました&quot;),</span>
+<span class="fc" id="L80">  BSCSM100030I(&quot;更新後入出荷累積データの集計処理に成功しました&quot;),</span>
+<span class="fc" id="L81">  BSCSM100031W(&quot;更新後入出荷累積のデータ集計処理に失敗しました&quot;),</span>
+<span class="fc" id="L82">  BSCSM100032I(&quot;更新後の出荷回数データ集計処理に成功しました&quot;),</span>
+<span class="fc" id="L83">  BSCSM100033W(&quot;更新後の出荷回数データ集計処理に失敗しました&quot;),</span>
+<span class="fc" id="L84">  BSCSM100034I(&quot;入出荷累積および出荷回数の加算チェックで誤りは検出されませんでした&quot;),</span>
+<span class="fc" id="L85">  BSCSM100035W(&quot;入出荷累積および出荷回数の加算チェックで誤りが検出されました&quot;),</span>
+
+<span class="fc" id="L87">  BSCSM100040W(&quot;発注点計算用パラメータが取得できません。現法コード:{0}&quot;),</span>
+<span class="fc" id="L88">  BSCSM100041W(&quot;発注点計算用パラメータの登録内容が不正です。現法コード:{0}&quot;),</span>
+<span class="fc" id="L89">  BSCSM100042W(&quot;通貨コードが取得できません。現法コード:{0}&quot;),</span>
+  /** add by wuyan start */
+<span class="fc" id="L91">  NSCVA1U0001E(&quot;［項目値］に不正な値が入力されています。正しい値を入力してください。&quot;),</span>
+<span class="fc" id="L92">  NSCVA1U0002E(&quot;在庫情報の更新に失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+<span class="fc" id="L93">  NSCVA1U0004E(</span>
+      &quot;在庫調整登録が成功しました。\n&quot;
+          + &quot;在庫調整入力チェックリストのメール送信に失敗しました。指定の責任部署に該当するメール情報が存在しません。\n&quot;
+          + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),
+<span class="fc" id="L97">  NSCVA1U0005E(</span>
+      &quot;在庫調整登録が成功しました。\n&quot;
+          + &quot;在庫調整入力チェックリストのメール送信に失敗しました。メールテンプレートが取得できません。\n&quot;
+          + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),
+<span class="fc" id="L101">  NSCVA1U0006E(</span>
+      &quot;在庫調整登録が成功しました。\n&quot;
+          + &quot;在庫調整入力チェックリストのメール送信に失敗しました。帳票テンプレートが取得できません。\n&quot;
+          + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),
+<span class="fc" id="L105">  NSCVA1U0007E(</span>
+      &quot;在庫調整登録が成功しました。\n&quot;
+          + &quot;在庫調整入力チェックリストのメール送信に失敗しました。帳票ファイルIDが取得できません。\n&quot;
+          + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),
+<span class="fc" id="L109">  NSCVA1U0008E(</span>
+      &quot;在庫調整登録が成功しました。\n&quot;
+          + &quot;在庫調整入力チェックリストのメール送信に失敗しました。帳票ファイルが取得できません。\n&quot;
+          + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),
+<span class="fc" id="L113">  NSCVA1U0009E(</span>
+      &quot;在庫調整登録が成功しました。\n&quot;
+          + &quot;在庫調整入力チェックリストのメール送信にエラーが発生し、失敗しました。\n&quot;
+          + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),
+<span class="fc" id="L117">  NSCVA1U0010E(&quot;すべての処理が正常に成功しました。&quot;),</span>
+  /** add by wuyan end */
+<span class="fc" id="L119">  SWMPD100001I(&quot;週次・月次POOLデータ実績スライド処理が終了しました。\n&quot; + &quot;更新出荷実績ＰＯＯＬデータ（12月分）：{0}件&quot;),</span>
+
+  /** add by yutailin start */
+<span class="fc" id="L122">  BIRBO110001I(&quot;更新出荷実績ＰＯＯＬデータ（12月分）：{0}件&quot;),</span>
+<span class="fc" id="L123">  BIRBO110002E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO110002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績POOLデータ（12月分）&quot;),
+<span class="fc" id="L129">  BIRBO110003E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO110003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：{0}&quot;),
+<span class="fc" id="L135">  BIRBO190001I(&quot;入力需要予測マスタ：{0}件、入力週次発注点用POOLデータ（月次）：{1}件、出力週次発注点用需要予測：{2}件&quot;),</span>
+<span class="fc" id="L136">  BIRBO190002E(</span>
+      &quot;需要予測マスタに需要予測が存在しない登録でエラー発生。\n&quot;
+          + &quot;・現法コード：{0}\n&quot;
+          + &quot;・統合インナーコード：{1}\n&quot;
+          + &quot;・置場コード：{2}\n&quot;
+          + &quot;・需要予測数量：{3}\n&quot;),
+<span class="fc" id="L142">  BIRBO190003E(</span>
+      &quot;需要予測マスタに需要予測が存在する登録でエラー発生。\n&quot;
+          + &quot;・現法コード：{0}\n&quot;
+          + &quot;・統合インナーコード：{1}\n&quot;
+          + &quot;・置場コード：{2}\n&quot;
+          + &quot;・需要予測数量：{3}\n&quot;),
+<span class="fc" id="L148">  BIRBO190004E(</span>
+      &quot;レスポンス項目 = NULL\n&quot;
+          + &quot;エラーリスト.エラーコード：xxxx\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：「xxxxxxxxxx」\n&quot;
+          + &quot;エラーリスト.エラーレベル：xxxx\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：xxxxxx\n&quot;),
+<span class="fc" id="L154">  BIRBO190005E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO190005E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ：{0}&quot;),
+<span class="fc" id="L160">  BIRBO160001I(&quot;出荷実績：{0}件、\n出力出荷実績ＰＯＯＬデータ（52週分）：{1}件、\n出力出荷実績ＰＯＯＬデータ（12月分）：{2}件&quot;),</span>
+<span class="fc" id="L161">  BIRBO160002E(</span>
+      &quot;レスポンス項目 = NULL\n&quot;
+          + &quot;エラーリスト.エラーコード：xxxx\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：「xxxxxxxxxx」\n&quot;
+          + &quot;エラーリスト.エラーレベル：xxxx\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：xxxxxx\n&quot;),
+<span class="fc" id="L167">  BIRBO160003E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ：{0}&quot;),
+<span class="fc" id="L173">  BIRBO160004E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績POOLデータ（52週分）&quot;),
+<span class="fc" id="L179">  BIRBO160005E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160005E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『登録できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績POOLデータ（52週分）&quot;),
+<span class="fc" id="L185">  BIRBO160006E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160006E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績、出荷実績絞込条件&quot;),
+<span class="fc" id="L191">  BIRBO160007E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160007E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：週次発注点除外条件マスタ&quot;),
+<span class="fc" id="L197">  BIRBO160008E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160008E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績POOLデータ（52週分）&quot;),
+<span class="fc" id="L203">  BIRBO160009E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160009E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績ＰＯＯＬデータ（12月分）&quot;),
+<span class="fc" id="L209">  BIRBO160010E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績ＰＯＯＬデータ（12月分）&quot;),
+<span class="fc" id="L215">  BIRBO160011E(</span>
+      &quot;結果コード：'1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード：BIRBO160005E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ：『登録できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル：'9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ：出荷実績ＰＯＯＬデータ（12月分）&quot;),
+  /** add by yutailin end */
+  /** add by wangduocheng start */
+<span class="fc" id="L223">  BIRBO130001E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO130001E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L229">  BIRBO130002E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO130002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次・週次POOLデータ実績スライド&quot;),
+<span class="fc" id="L235">  BIRBO130003I(&quot;週次・週次POOLデータ実績スライド処理が終了しました。\n&quot; + &quot;更新件数：{0}件&quot;),</span>
+  /** add by wangduocheng end */
+  /** add by zhangqiang start */
+<span class="fc" id="L238">  NIROP110001E(&quot;非同期タスク登録部品実施失敗。&quot;),</span>
+<span class="fc" id="L239">  BIRBO120001E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIR12000001E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L245">  BIRBO120002E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO120002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点用POOLデータ（月次）&quot;),
+<span class="fc" id="L251">  BIRBO120003E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO120003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『登録できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点用POOLデータ（月次）&quot;),
+<span class="fc" id="L257">  BIRBO120004E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO120004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点用POOLデータ（月次）&quot;),
+<span class="fc" id="L263">  BIRBO120005E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO120005E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 出荷実績POOLデータ（12月分）&quot;),
+<span class="fc" id="L269">  BIRBO120006E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO120006E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「XXXXXXXXXXXX」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L275">  BIRBO120007I(</span>
+      &quot;週次・月次POOLデータ論理置場塗替え・集計処理が終了しました。\n&quot; + &quot;入力出荷実績POOLデータ（12月分）：{0}件、出力週次発注点用POOLデータ（月次）：{1}件&quot;),
+<span class="fc" id="L277">  BIRBO180001E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO180001E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L283">  BIRBO180002E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO180002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『削除できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点除外条件マスタ&quot;),
+<span class="fc" id="L289">  BIRBO180003E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO180003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点除外条件マスタ&quot;),
+  /** add by zhangqiang end */
+  /** add by huangrongmei start */
+<span class="fc" id="L297">  BIRBO100001E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO100001E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L303">  BIRBO100002E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO100002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『削除できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 需要予測マスタ&quot;),
+<span class="fc" id="L309">  BIRBO100003E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO100003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 需要予測マスタ&quot;),
+  /** add by huangrongmei end */
+  /** add by oumingkai start */
+<span class="fc" id="L317">  BIRB0200001E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0200001E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「パラメータが存在しません。」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L323">  BIRB0200002E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0200002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『削除できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点用需要予測&quot;),
+<span class="fc" id="L329">  BIRB0210001E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0210001E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「パラメータが存在しません。」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L335">  BIRB0210002E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0210002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「XXXXXXXXXXXX」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L341">  BIRB0210003E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0210003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「XXXXXXXXXXXX」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L347">  BIRB0210004E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0210004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「XXXXXXXXXXXX」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+
+<span class="fc" id="L354">  BIRB0140001I(&quot;入力出荷実績POOLデータ（52週分）：{0}件、出力週次発注点用POOLデータ（週次）：{1}件&quot;),</span>
+<span class="fc" id="L355">  BIRB0140002E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0140002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L361">  BIRB0140003E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0140003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 出荷実績POOLデータ（52週分）&quot;),
+<span class="fc" id="L367">  BIRB0140004E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0140004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「XXXXXXXXXXXX」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L373">  BIRB0140005E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0140005E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『検索できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点用POOLデータ（週次）&quot;),
+<span class="fc" id="L379">  BIRB0140006E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0140006E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『更新できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点用POOLデータ（週次）&quot;),
+<span class="fc" id="L385">  BIRB0140007E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0140007E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『登録できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： 週次発注点用POOLデータ（週次）&quot;),
+  /** add by oumingkai end */
+<span class="fc" id="L392">  NIROP100001I(&quot;NIROP100001I&quot;, &quot;{0}は必須です。&quot;),</span>
+<span class="fc" id="L393">  NIROP100002E(&quot;NIROP100002E&quot;, &quot;{0}は半角文字で入力してください。&quot;),</span>
+<span class="fc" id="L394">  NIROP100003E(&quot;NIROP100003E&quot;, &quot;{0}は{1}桁で入力してください。&quot;),</span>
+<span class="fc" id="L395">  NIROP100004E(&quot;NIROP100004E&quot;, &quot;{0}は半角英大文字または半角数字で入力してください。&quot;),</span>
+<span class="fc" id="L396">  NIROP100005E(&quot;NIROP100005E&quot;, &quot;{0}は半角英大文字または半角数字またはAll*で入力してください。&quot;),</span>
+<span class="fc" id="L397">  NIROP100006E(&quot;NIROP100006E&quot;, &quot;{0}は半角数字{1}桁の日付形式で入力してください。&quot;),</span>
+<span class="fc" id="L398">  NIROP100007E(&quot;NIROP100007E&quot;, &quot;{0}には正しい日付を入力してください。&quot;),</span>
+<span class="fc" id="L399">  NIROP100008E(&quot;NIROP100008E&quot;, &quot;{0}が不正です。&quot;),</span>
+<span class="fc" id="L400">  NIROP100009E(&quot;アップロードファイルは{0}件以下にしてください。&quot;),</span>
+<span class="fc" id="L401">  NIROP100010E(&quot;週次発注点除外条件マスタ情報の参照に失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+<span class="fc" id="L402">  NIROP100011E(&quot;週次発注点除外条件マスタ情報の更新に失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+<span class="fc" id="L403">  NIROP100012E(&quot;週次発注点除外条件マスタ情報の登録に失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+<span class="fc" id="L404">  NIROP100013E(&quot;ファイルのアップロードに失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+<span class="fc" id="L405">  NIROP100014E(&quot;ダウンロード情報の登録に失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+<span class="fc" id="L406">  NIROP100015E(&quot;ダウンロード情報の登録に失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+
+<span class="fc" id="L408">  BSCSU100012I(&quot;在庫情報参照APIのデータ取得失敗しました&quot;),</span>
+<span class="fc" id="L409">  BSCSU100013I(&quot;週次発注点用需要予測のデータ取得失敗しました&quot;),</span>
+<span class="fc" id="L410">  BSCSU100014I(&quot;商品別仕入先情報取得失敗しました&quot;),</span>
+<span class="fc" id="L411">  BSCSU10000XE(&quot;汎用ファイルのアップロードに失敗しました。\n&quot; + &quot;しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。&quot;),</span>
+
+  // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓　sho.daii　API-060 バッチ-090↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+<span class="fc" id="L414">  NIROP090001E(&quot;{0}の指定が不正です。&quot;),</span>
+<span class="fc" id="L415">  NIROP090002E(&quot;週次発注点除外条件マスタに該当データは存在しません。&quot;),</span>
+<span class="fc" id="L416">  NIROP090003E(&quot;非同期タスク登録部品実施失敗。&quot;),</span>
+<span class="fc" id="L417">  NIROP090004E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： NIROP090004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『{1}できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {2}&quot;),
+<span class="fc" id="L423">  BIRBO060001I(&quot;入力週次発注点用需要予測データ：{0}件、出力需要予測マスタ：{1}件。&quot;),</span>
+<span class="fc" id="L424">  BIRBO060002W(&quot;週次発注点用需要予測データは0件！ &quot;),</span>
+<span class="fc" id="L425">  BIRBO060003E(&quot;【共通】調達期間算出ロジック：実施失敗！&quot;),</span>
+<span class="fc" id="L426">  BIRBO060004W(&quot;商品マスタ．サプライヤ指定方法区分が1または2 のデータは０件！&quot;),</span>
+<span class="fc" id="L427">  BIRBO060005W(&quot;在庫情報参照APIから取得されたデータは0件！&quot;),</span>
+<span class="fc" id="L428">  BIRBO060006E(&quot;在庫情報参照API：実施失敗！&quot;),</span>
+<span class="fc" id="L429">  BIRBO060007W(&quot;在庫情報参照APIから取得されたデータに 有効在庫マスタ．ランク ≠ \&quot;Z\&quot; のデータ は0件！&quot;),</span>
+<span class="fc" id="L430">  BIRBO060008W(&quot;商品情報取得API（List）取得されたデータは0件！&quot;),</span>
+<span class="fc" id="L431">  BIRBO060009E(&quot;商品情報取得API（List）：実施失敗！&quot;),</span>
+<span class="fc" id="L432">  BIRBO060010W(&quot;商品別仕入先情報取得API（List）取得されたデータは0件！&quot;),</span>
+<span class="fc" id="L433">  BIRBO060011E(&quot;商品別仕入先情報取得API（List）：実施失敗！&quot;),</span>
+<span class="fc" id="L434">  BIRBO060012W(&quot;発注詳細全体検索APIから取得されたデータは0件！&quot;),</span>
+<span class="fc" id="L435">  BIRBO060013E(&quot;発注詳細全体検索API：実施失敗！&quot;),</span>
+<span class="fc" id="L436">  BIRBO060014E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO060014E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L442">  BIRBO060015E(</span>
+      &quot;レスポンス項目 = NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： xxxx\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『API{0}を呼び出す時、例外エラーが発生いたしました。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： x\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： xxxxxxxxxxx&quot;),
+<span class="fc" id="L448">  BIRBO060016E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRBO060016E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『{1}できませんでした。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {2}&quot;),
+
+  // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑　sho.daii　API-060 バッチ-090↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+  // ** MAPIROP080_週次発注点除外条件マスタDLファイル作成 start*/
+<span class="fc" id="L458">  NIROP080001E(&quot;ダウンロード情報の登録に失敗しました。\\n\&quot; + \&quot;しばらくしてから再実行してもエラーとなる場合は、システム管理者にご連絡ください。&quot;),</span>
+<span class="fc" id="L459">  NIROP080002E(&quot;ファイルのアップロードに失敗しました。\\n\&quot; + \&quot;しばらくしてから再実行してもエラーとなる場合は、システム管理者にご連絡ください。&quot;),</span>
+<span class="fc" id="L460">  NIROP080003E(&quot;ダウンロード情報の登録に失敗しました。\\n\&quot; + \&quot;しばらくしてから再実行してもエラーとなる場合は、システム管理者にご連絡ください。&quot;),</span>
+  // MAPIROP080_週次発注点除外条件マスタDLファイル作成 end */
+
+  // ** 週次発注点計算 start*/
+<span class="fc" id="L464">  BIRBO170001E(</span>
+      &quot;結果コード ： '1'（システムエラー）\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0170001E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 『パラメータが存在しません。』\n&quot;
+          + &quot;エラーリスト.エラーレベル ： '9'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： {0}&quot;),
+<span class="fc" id="L470">  BIRBO170002E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0170002E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「在庫情報の参照に失敗しました。」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L476">  BIRBO170003E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0170003E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「商品情報（List）の取得に失敗しました。」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L482">  BIRBO170004E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0170004E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「商品別仕入先情報取得API（List）」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L488">  BIRBO170005E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0170005E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「【共通】調達期間算出ロジックの呼出に失敗しました。」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L494">  BIRBO170006E(</span>
+      &quot;レスポンス項目 ： NULL\n&quot;
+          + &quot;エラーリスト.エラーコード ： BIRB0170006E\n&quot;
+          + &quot;エラーリスト.エラーメッセージ ： 「在庫情報の更新に失敗しました。」\n&quot;
+          + &quot;エラーリスト.エラーレベル ： 'X'\n&quot;
+          + &quot;エラーリスト.エラーパラメータ ： XXXXXXXXXXXX&quot;),
+<span class="fc" id="L500">  BIRBO170007W(&quot;汎用マスタ安全係数の安全在庫係数登録値が異常です。現法コード：{0}。商品所管部門コード:{1}&quot;),</span>
+<span class="fc" id="L501">  BIRBO170008W(&quot;在庫情報参照APIから取得されたデータは0件。&quot;),</span>
+<span class="fc" id="L502">  BIRBO170009W(&quot;商品情報取得API（List）の取得されたデータは0件。&quot;),</span>
+<span class="fc" id="L503">  BIRBO170010W(&quot;商品別仕入先情報取得API（List）の取得されたデータは0件。&quot;),</span>
+<span class="fc" id="L504">  BIRBO170011I(&quot;週次発注点計算処理が終了しました。&quot;),</span>
+<span class="fc" id="L505">  BIRBO170012I(&quot;取得件数：{0}件、更新件数:{1}件&quot;),</span>
+<span class="fc" id="L506">  BIRBO170013E(&quot;置場情報（List）の取得に失敗しました。&quot;);</span>
+  // ** 週次発注点計算 end*/
+
+  /** add by WangYH end */
+  /** add by WangYH end */
+<span class="fc" id="L511">  private static final Locale LOCALE = new Locale(&quot;ja&quot;, &quot;JP&quot;);</span>
+
+  private String description;
+  private String code;
+
+<span class="fc" id="L516">  ReplenishStockMessages(String description) {</span>
+<span class="fc" id="L517">    this.description = description;</span>
+<span class="fc" id="L518">  }</span>
+
+<span class="fc" id="L520">  ReplenishStockMessages(String code, String description) {</span>
+<span class="fc" id="L521">    this.code = code;</span>
+<span class="fc" id="L522">    this.description = description;</span>
+<span class="fc" id="L523">  }</span>
+
+  @Override
+  public Locale getLocale() {
+<span class="fc" id="L527">    return LOCALE;</span>
+  }
+
+  @Override
+  public boolean isDefault() {
+<span class="fc" id="L532">    return true;</span>
+  }
+
+  @Override
+  public String getDescription() {
+<span class="fc" id="L537">    return description;</span>
+  }
+
+  @Override
+  public String getCode() {
+<span class="fc" id="L542">    return code;</span>
+  }
+
+  @Override
+  public void setCode(String code) {
+<span class="fc" id="L547">    this.code = code;</span>
+<span class="fc" id="L548">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

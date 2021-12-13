@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SHIPMENT_COUNT subsidiary_code='MJP' ginner_code='1000001AaBbCcB' plant_code='1001' shipment_count1='null' shipment_count2='null' shipment_count3='null' shipment_count4='null' shipment_count5='null' shipment_count6='null' shipment_count7='null' shipment_count8='null' shipment_count9='null' shipment_count10='null' shipment_count11='null' shipment_count12='null' update_count='140' delete_flag='0' register_user_type='batch' register_user='LKI' register_date_time='2021-06-20 11:20:01' register_program='JOB001' register_client_program='JOB001' update_user_type='batch' update_user='LKI' update_date_time='2021-08-19 11:20:01' update_program='misumi' update_client_program='misumi' />
+</dataset>

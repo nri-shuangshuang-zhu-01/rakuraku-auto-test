@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Application.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.async</a> &gt; <span class="el_source">Application.java</span></div><h1>Application.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.async;
+
+import jp.co.misumi.fw.async.api.consumer.MisumiFwAsyncAPIConsumerConfigurationDefaults;
+import jp.co.misumi.fw.async.api.consumer.application.AbstractAsyncConsumerApplication;
+import jp.co.misumi.fw.async.api.consumer.command.MisumiAsyncConsumerCommand;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import picocli.CommandLine;
+
+@SpringBootApplication
+public class Application extends AbstractAsyncConsumerApplication {
+
+  public Application(
+      CommandLine.IFactory factory,
+      MisumiAsyncConsumerCommand command,
+      MisumiAsyncConsumerCommand.Run runSubCommand,
+      Environment environment) {
+<span class="nc" id="L20">    super(factory, command, runSubCommand, environment);</span>
+<span class="nc" id="L21">  }</span>
+
+  public static void main(String[] args) {
+<span class="nc" id="L24">    System.exit(SpringApplication.exit(SpringApplication.run(Application.class, args)));</span>
+<span class="nc" id="L25">  }</span>
+
+  @Configuration
+<span class="nc" id="L28">  public static class MisumiFwConfiguration implements</span>
+      MisumiFwAsyncAPIConsumerConfigurationDefaults {
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

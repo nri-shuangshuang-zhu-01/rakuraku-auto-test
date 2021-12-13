@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FileApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.fileuploadcontainer.yaml.container.api</a> &gt; <span class="el_source">FileApi.java</span></div><h1>FileApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.fileuploadcontainer.yaml.container.api;
+
+import jp.co.misumi.replenishstock.client.rest.fileuploadcontainer.yaml.container.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.fileuploadcontainer.yaml.container.Error1;
+import java.io.File;
+import jp.co.misumi.replenishstock.model.rest.client.fileuploadcontainer.yaml.container.FileUploadResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:18.310743900+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.fileuploadcontainer.yaml.container.api.FileApi&quot;)
+public class FileApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L37">    public FileApi(ApiClient apiClient) {</span>
+<span class="fc" id="L38">        this.apiClient = apiClient;</span>
+<span class="fc" id="L39">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L42">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L46">        this.apiClient = apiClient;</span>
+<span class="nc" id="L47">    }</span>
+
+    /**
+     * 
+     * 【標準化提供】ファイルアップロードコンテナのアップロードパスの定義 ファイルアップロードは&amp;#x60;multipart/form-data&amp;#x60;形式で受け付ける。  misumi-fwの[ファイルアップロードコンテナ](https://github.com/misumi-org/misumi-fw/tree/develop/misumi-fw-rest-api-file-upload-server)から返却されるエラーコードとメッセージは各Path定義の&amp;#x60;example&amp;#x60;に記載
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param file  (optional)
+     
+     * @return FileUploadResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public FileUploadResponseV1 uploadFileV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, File file) throws RestClientException {
+<span class="nc" id="L64">        return uploadFileV1WithHttpInfo(context, endpoint, additionalHeaderMap, file).getBody();</span>
+    }
+
+    /**
+     * 
+     * 【標準化提供】ファイルアップロードコンテナのアップロードパスの定義 ファイルアップロードは&amp;#x60;multipart/form-data&amp;#x60;形式で受け付ける。  misumi-fwの[ファイルアップロードコンテナ](https://github.com/misumi-org/misumi-fw/tree/develop/misumi-fw-rest-api-file-upload-server)から返却されるエラーコードとメッセージは各Path定義の&amp;#x60;example&amp;#x60;に記載
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param file  (optional)
+     
+     * @return ResponseEntity&amp;lt;FileUploadResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;FileUploadResponseV1&gt; uploadFileV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, File file) throws RestClientException {
+<span class="nc" id="L82">        Object postBody = null;</span>
+        
+<span class="nc" id="L84">        String path = apiClient.expandPath(&quot;/v1/file/upload&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L86">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L87">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L88">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L89">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (file != null)</span>
+<span class="nc" id="L94">            formParams.add(&quot;file&quot;, new FileSystemResource(file));</span>
+
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L97">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L99">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L101">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L103">            });</span>
+        }
+
+<span class="nc" id="L106">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L109">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L110">        final String[] contentTypes = { </span>
+            &quot;multipart/form-data&quot;
+         };
+<span class="nc" id="L113">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L115">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L117">        ParameterizedTypeReference&lt;FileUploadResponseV1&gt; returnType = new ParameterizedTypeReference&lt;FileUploadResponseV1&gt;() {};</span>
+<span class="nc" id="L118">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

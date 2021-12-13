@@ -1,0 +1,11 @@
+■api名称：　検索
+■api Request：　/internal/v1/shipment-info-inq/reference?shipmentCenter=qqqq&shipmentDate=2021-09-27
+■api方法：　GET
+■api Headers：　X-Client-Program=Test&&Prefer=/internal/v1/area/search->3
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "code": "NSCSR1R0002E",
+  "argumentList": [],
+  "message": "エリア情報の参照に失敗しました。\nしばらくしてから再実行してもエラーとなる場合には、システム管理者にご連絡ください。"
+}

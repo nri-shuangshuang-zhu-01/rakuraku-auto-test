@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_INCOMING_PAYMENTColName field="subsidiary_code" comment="現法コード"/>
+  <T_INCOMING_PAYMENTColName field="acceptance_group_code" comment="検収グループコード"/>
+  <T_INCOMING_PAYMENTColName field="matching_control_number" comment="照合管理番号"/>
+  <T_INCOMING_PAYMENTColName field="incoming_payment_scheduled_line_number" comment="入金予定明細番号"/>
+  <T_INCOMING_PAYMENTColName field="ccy_code_customer_ccy" comment="通貨コード（顧客通貨）"/>
+  <T_INCOMING_PAYMENTColName field="bill_to_code" comment="売掛先コード"/>
+  <T_INCOMING_PAYMENTColName field="bill_closing_day" comment="請求締日"/>
+  <T_INCOMING_PAYMENTColName field="acceptance_date" comment="検収日付"/>
+  <T_INCOMING_PAYMENTColName field="invoice_number" comment="インボイス番号"/>
+  <T_INCOMING_PAYMENTColName field="so_slip_number" comment="受注伝票番号"/>
+  <T_INCOMING_PAYMENTColName field="so_slip_line_number" comment="受注伝票明細番号"/>
+  <T_INCOMING_PAYMENTColName field="advance_payment_flag" comment="前受フラグ"/>
+  <T_INCOMING_PAYMENTColName field="incoming_payment_method" comment="入金方法"/>
+  <T_INCOMING_PAYMENTColName field="payment_due_date" comment="支払期日"/>
+  <T_INCOMING_PAYMENTColName field="scheduled_incoming_payment_amount" comment="入金予定額"/>
+  <T_INCOMING_PAYMENTColName field="offset_amount" comment="相殺額"/>
+  <T_INCOMING_PAYMENTColName field="incoming_payment_amount_customer_ccy" comment="入金額（顧客通貨）"/>
+  <T_INCOMING_PAYMENTColName field="accounting_document_number" comment="会計伝票番号"/>
+  <T_INCOMING_PAYMENTColName field="fiscal_year" comment="会計年度"/>
+  <T_INCOMING_PAYMENTColName field="incoming_payment_date" comment="入金日"/>
+  <T_INCOMING_PAYMENTColName field="matching_control_number_advance_offset" comment="照合管理番号（前受相殺）"/>
+  <T_INCOMING_PAYMENTColName field="process_flag" comment="処理フラグ"/>
+  <T_INCOMING_PAYMENTColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_INCOMING_PAYMENTColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_INCOMING_PAYMENTColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_INCOMING_PAYMENTColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_INCOMING_PAYMENTColName field="register_date_time" comment="登録日時"/>
+  <T_INCOMING_PAYMENTColName field="register_program" comment="登録プログラム"/>
+  <T_INCOMING_PAYMENTColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_INCOMING_PAYMENTColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_INCOMING_PAYMENTColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_INCOMING_PAYMENTColName field="update_date_time" comment="更新日時"/>
+  <T_INCOMING_PAYMENTColName field="update_program" comment="更新プログラム"/>
+  <T_INCOMING_PAYMENTColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

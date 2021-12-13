@@ -1,0 +1,23 @@
+SUB1側現法コード::sub1_subsidiary_code::char(3)::NOT NULL(PK)
+IO調達方法コード::io_supply_means_code::char(3)::NOT NULL(PK)
+SUB2側現法コード::sub2_subsidiary_code::char(3)::NOT NULL
+IO調達方法名::io_supply_means_name::varchar(60)::NOT NULL
+IO調達方法名（現地語）::io_supply_means_name_native::varchar(50)::NULL
+デフォルトフラグ::default_flag::char(1)::NOT NULL
+輸送手段::transport_means::varchar(2)::NOT NULL
+コストプラス算出キー区分::cost_plus_calculation_key_type::varchar(1)::NOT NULL
+出荷日調整フラグ::shipping_date_adjust_flag::char(1)::NOT NULL
+直送区分::direct_shipment_type::char(1)::NOT NULL
+SUB1非表示フラグ::sub1_hide_flag::char(1)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

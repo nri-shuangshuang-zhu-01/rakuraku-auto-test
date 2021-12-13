@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_RECEIVED_NOT_SHIPPED_MTO subsidiary_code='' so_voucher_no='' so_line_key='' global_number='' supply_type='' receiving_qty='' shipment_qty='' receiving_fix_date='' receiving_fix_process_date='' receiving_purchase_amount='' receiving_supplier_subsidiary_rate='' receiving_freight_supplier_rate='' receiving_supplier_subsidiary_supplier_rate='' receiving_freight_supplier_subsidiary_rate='' receiving_product_supplier_rate='' update_count='' delete_flag='' register_user_type='' register_user='' register_date_time='' register_program='' register_client_program='' update_user_type='' update_user='' update_date_time='' update_program='' update_client_program='' />
+</dataset>

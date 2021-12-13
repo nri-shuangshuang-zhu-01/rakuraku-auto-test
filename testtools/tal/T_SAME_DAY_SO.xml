@@ -1,0 +1,24 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+グローバル番号::global_number::char(14)::NOT NULL(PK)
+受注日::so_date::date::NOT NULL(PK)
+集計日::summary_date::date::NOT NULL(PK)
+格納キー::store_key::numeric(10,0)::NOT NULL(PK)
+得意先コード::customer_code::char(6)::NULL
+入力区分::input_type::char(1)::NULL
+受注金額（変更前）（税込）::so_amount_before_change_including_tax::numeric(18,3)::NULL
+受注金額（変更後）（税込）::so_amount_after_change_including_tax::numeric(18,3)::NULL
+伝票区分::slip_type::char(3)::NULL
+決済形態::settlement_method::varchar(3)::NULL
+受注差額::so_difference_amount::numeric(18,3)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

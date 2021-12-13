@@ -1,0 +1,744 @@
+openapi: 3.0.0
+info:
+  title: 与信管理サービス用API
+  version: '1.0'
+  description: 与信管理サービス用API
+servers:
+  - url: 'http://localhost:3000/credit-service'
+paths:
+  /v1/credit-management/search:
+    get:
+      summary: 与信管理検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: <レスポンスデータ>
+                items:
+                  $ref: '#/components/schemas/SearchCreditMasterResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchCreditManagementV1
+      description: リクエスト項目に応じた与信超過リストを取得する
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: customerCodeFrom
+          description: 得意先コード（From）
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: customerCodeTo
+          description: 得意先コード（To）
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: accountsReceivableCodeFrom
+          description: 売掛先コード（From）
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: accountsReceivableCodeTo
+          description: 売掛先コード（To）
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: depositGroupCodeFrom
+          description: 入金グループコード（From）
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: depositGroupCodeTo
+          description: 入金グループコード（To）
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: creditCheckFlag
+          description: 与信チェック対象フラグ
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: creditOverProcessType
+          description: 与信超過時処理区分
+        - schema:
+            type: string
+            maxLength: 80
+          in: query
+          name: nativeMainBusinessDepartment
+          description: 主管事業部
+        - schema:
+            type: string
+            maxLength: 200
+          in: query
+          name: nativeBillToName
+          description: 売掛先名（現地語）
+        - schema:
+            type: string
+            maxLength: 20
+          in: query
+          name: creditLimitAmtFrom
+          description: 与信限度額（From）
+        - schema:
+            type: string
+            maxLength: 20
+          in: query
+          name: creditLimitAmtTo
+          description: 与信限度額（To）
+        - schema:
+            type: integer
+          in: query
+          name: pageNumber
+          description: ページ番号
+        - schema:
+            type: integer
+          in: query
+          name: displayCount
+          description: 表示件数
+      tags:
+        - SearchCreditManagement
+    parameters: []
+  /V1/credit-management/save:
+    post:
+      summary: 与信管理更新API
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: saveCreditManagementV1
+      description: リクエスト項目に応じた与信超過リストを取得し、与信管理情報の更新を行う。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveCreditMasterRequestV1'
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      tags:
+        - SaveCreditManagement
+    parameters: []
+  /v1/credit-management/check:
+    get:
+      summary: 与信チェックAPI
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckCreditMasterResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: checkCreditManagementV1
+      description: 対象の与信超過有無、残額を取得し、与信チェックを行う。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 6
+            minLength: 6
+          in: query
+          name: customerCode
+          description: 得意先コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 15
+            minLength: 1
+          in: query
+          name: amountTotal
+          description: 合計金額
+          required: true
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+          in: query
+          name: settlementMethod
+          description: 決済形態
+          required: true
+      tags:
+        - CheckCreditManagement
+    parameters: []
+  /v1/credit-over-management/search:
+    get:
+      summary: 与信超過リスト検索API
+      tags:
+        - SearchCreditOverManagement
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCreditOverManagementResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchCreditOverManagementV1
+      description: リクエスト項目に応じた与信超過リストを取得し、現法制御マスタより未決済手形金額の与信チェック対象除外設定情報を取得する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: code1
+          description: コード1
+        - schema:
+            type: string
+          in: query
+          name: code2From
+          description: コード2（From）
+        - schema:
+            type: string
+          in: query
+          name: code3To
+          description: コード3（To）
+        - schema:
+            type: string
+          in: query
+          name: code4
+          description: コード4
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: cellCode
+          description: セルコード
+        - schema:
+            type: string
+            maxLength: 18
+          in: query
+          name: creditLimitUsageRateFrom
+          description: 与信使用率（From）
+        - schema:
+            type: string
+            maxLength: 18
+          in: query
+          name: creditLimitUsageRateTo
+          description: 与信使用率（To）
+        - schema:
+            type: string
+            maxLength: 20
+          in: query
+          name: creditLimitAmtFrom
+          description: 与信限度額（From）
+        - schema:
+            type: string
+            maxLength: 20
+          in: query
+          name: creditLimitAmtTo
+          description: 与信限度額（To）
+        - schema:
+            type: string
+            maxLength: 18
+          in: query
+          name: creditLimitOverrunsFrom
+          description: 与信超過額（From）
+        - schema:
+            type: string
+            maxLength: 18
+          in: query
+          name: creditLimitOverrunsTo
+          description: 与信超過額（To）
+        - schema:
+            type: string
+            maxLength: 18
+          in: query
+          name: creditTotalFrom
+          description: 債権合計額（From）
+        - schema:
+            type: string
+            maxLength: 18
+          in: query
+          name: creditTotalTo
+          description: 債権合計額（To）
+        - schema:
+            type: string
+          in: query
+          name: bu
+          description: BU（前方一致）
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: creditCheckFlg
+          description: 与信チェックフラグ
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: creditOverProcessType
+          description: 与信超過時処理区分
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: settlementMethod
+          description: 決済形態
+        - schema:
+            type: string
+            maxLength: 60
+          in: query
+          name: accountsReceivableName
+          description: 売掛先名
+        - schema:
+            type: string
+          in: query
+          name: sortByColumn
+          description: ソート項目
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: sortBy
+          description: ソート順序
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: pageNumber
+          description: ページ番号
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: displayCount
+          description: 表示件数
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: responseType
+          description: レスポンス種別
+          required: true
+    parameters: []
+components:
+  schemas:
+    SearchCreditMasterResponseV1:
+      title: SearchCreditMasterResponseV1
+      type: object
+      properties:
+        accountsReceivableCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        nativeBillToName:
+          type: string
+          maxLength: 200
+          description: 売掛先名（現地語）
+        creditCheckFlg:
+          type: string
+          maxLength: 1
+          description: 与信チェックフラグ
+        creditOverProcessType:
+          type: string
+          maxLength: 1
+          description: 与信超過時処理区分
+        currencyCode:
+          type: string
+          maxLength: 3
+          description: 通貨コード
+        creditLimitAmt:
+          type: string
+          maxLength: 20
+          description: 与信限度額
+        updateDate:
+          type: string
+          maxLength: 8
+          description: 更新日
+        updateUserId:
+          type: string
+          maxLength: 6
+          description: 更新者ID
+        updateUser:
+          type: string
+          maxLength: 256
+          description: 更新者
+      required:
+        - accountsReceivableCode
+        - nativeBillToName
+        - creditCheckFlg
+        - currencyCode
+        - creditLimitAmt
+        - updateDate
+        - updateUserId
+        - updateUser
+    SaveCreditMasterRequestV1:
+      title: SaveCreditMasterRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        updateData:
+          type: array
+          description: <更新データ>
+          items:
+            $ref: '#/components/schemas/SaveCreditMasterUpdateDataV1'
+      required:
+        - subsidiaryCode
+        - updateData
+    SaveCreditMasterUpdateDataV1:
+      title: SaveCreditMasterUpdateDataV1
+      type: object
+      properties:
+        accountsReceivableCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        creditCheckFlag:
+          type: string
+          maxLength: 1
+          description: 与信チェック対象フラグ
+        creditOverProcessType:
+          type: string
+          maxLength: 1
+          description: 与信超過時処理区分
+        creditLimitAmt:
+          type: string
+          maxLength: 20
+          description: 与信限度額
+      required:
+        - creditCheckFlag
+        - creditOverProcessType
+    CheckCreditMasterResponseV1:
+      title: CheckCreditMasterResponseV1
+      type: object
+      properties:
+        creditOverFlg:
+          type: string
+          maxLength: 1
+          description: 与信超過フラグ
+        creditBalance:
+          type: string
+          description: 与信残額
+        creditOverProcessType:
+          type: string
+          maxLength: 1
+          description: 与信超過時処理区分
+        creditCheckExcludeFlg:
+          type: string
+          maxLength: 1
+          description: 与信チェック除外フラグ
+      required:
+        - creditOverFlg
+        - creditBalance
+        - creditOverProcessType
+        - creditCheckExcludeFlg
+    SearchCreditOverManagementHeaderDataV1:
+      title: SearchCreditOverManagementHeaderDataV1
+      type: object
+      description: <ヘッダデータ>
+      properties:
+        accountsReceivableCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        accountsReceivableName:
+          type: string
+          description: 売掛先名
+          maxLength: 60
+        creditCheckFlg:
+          type: string
+          description: 与信チェックフラグ
+          maxLength: 1
+        creditOverProcessType:
+          type: string
+          description: 与信超過時処理区分
+          maxLength: 1
+        customerCode:
+          type: string
+          description: 得意先コード
+          maxLength: 6
+        customerName:
+          type: string
+          description: 得意先名
+          maxLength: 60
+        depositGroupCode:
+          type: string
+          description: 入金グループコード
+          maxLength: 6
+        creditLimitUsageRate:
+          type: string
+          description: 与信使用率
+          maxLength: 18
+        creditLimitAmt:
+          type: string
+          description: 与信限度額
+          maxLength: 20
+        creditLimitOverruns:
+          type: string
+          description: 与信超過額
+          maxLength: 18
+        creditTotal:
+          type: string
+          description: 債権合計額
+          maxLength: 18
+        tradeCurrency:
+          type: string
+          description: 取引通貨
+        paymentTerms:
+          type: string
+          description: 支払条件
+          maxLength: 42
+        noteSite:
+          type: string
+          description: 手形サイト
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+        settlementMethod:
+          type: string
+          description: 決済形態
+          maxLength: 3
+        cellCode:
+          type: string
+          description: セルコード
+          maxLength: 4
+        bu:
+          type: string
+          description: BU
+        soBalance:
+          type: string
+          description: 受注残高
+          maxLength: 18
+        nonPaymentAmount:
+          type: string
+          description: 未入金額
+          maxLength: 23
+        prePaymentAmount:
+          type: string
+          description: 前受金額
+          maxLength: 23
+        nonRefundAmount:
+          type: string
+          description: 未決済手形金額
+          maxLength: 23
+        nonBillAmount:
+          type: string
+          description: 出荷済未請求額
+          maxLength: 23
+      required:
+        - accountsReceivableCode
+        - accountsReceivableName
+        - creditCheckFlg
+        - creditOverProcessType
+        - customerCode
+        - customerName
+        - depositGroupCode
+        - creditLimitUsageRate
+        - creditLimitAmt
+        - creditLimitOverruns
+        - creditTotal
+        - tradeCurrency
+        - paymentTerms
+        - noteSite
+        - paymentMeans
+        - settlementMethod
+        - cellCode
+        - bu
+        - soBalance
+        - nonPaymentAmount
+        - prePaymentAmount
+        - nonRefundAmount
+        - nonBillAmount
+    SearchCreditOverManagementResponseV1:
+      title: SearchCreditOverManagementResponseV1
+      type: object
+      properties:
+        headerData:
+          $ref: '#/components/schemas/SearchCreditOverManagementHeaderDataV1'
+        data:
+          type: array
+          description: <データ>
+          items:
+            $ref: '#/components/schemas/SearchCreditOverManagementDataV1'
+      required:
+        - headerData
+        - data
+    SearchCreditOverManagementDataV1:
+      title: SearchCreditOverManagementDataV1
+      type: object
+      description: <データ>
+      properties:
+        accountsReceivableCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        accountsReceivableName:
+          type: string
+          description: 売掛先名
+          maxLength: 60
+        creditCheckFlg:
+          type: string
+          description: 与信チェックフラグ
+          maxLength: 1
+        creditOverProcessType:
+          type: string
+          description: 与信超過時処理区分
+          maxLength: 1
+        customerCode:
+          type: string
+          description: 得意先コード
+          maxLength: 6
+        customerName:
+          type: string
+          description: 得意先名
+          maxLength: 60
+        depositGroupCode:
+          type: string
+          description: 入金グループコード
+          maxLength: 6
+        creditLimitUsageRate:
+          type: string
+          description: 与信使用率
+          maxLength: 18
+        creditLimitAmt:
+          type: string
+          description: 与信限度額
+          maxLength: 20
+        creditLimitOverruns:
+          type: string
+          description: 与信超過額
+          maxLength: 18
+        creditTotal:
+          type: string
+          description: 債権合計額
+          maxLength: 18
+        tradeCurrency:
+          type: string
+          description: 取引通貨
+        paymentTerms:
+          type: string
+          description: 支払条件
+          maxLength: 42
+        noteSite:
+          type: string
+          description: 手形サイト
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+        settlementMethod:
+          type: string
+          description: 決済形態
+          maxLength: 3
+        cellCode:
+          type: string
+          description: セルコード
+          maxLength: 4
+        bu:
+          type: string
+          description: BU
+        soBalance:
+          type: string
+          description: 受注残高
+          maxLength: 18
+        nonPaymentAmount:
+          type: string
+          description: 未入金額
+          maxLength: 23
+        prePaymentAmount:
+          type: string
+          description: 前受金額
+          maxLength: 23
+        nonRefundAmount:
+          type: string
+          description: 未決済手形金額
+          maxLength: 23
+        nonBillAmount:
+          type: string
+          description: 出荷済未請求額
+          maxLength: 23
+      required:
+        - accountsReceivableCode
+        - accountsReceivableName
+        - creditCheckFlg
+        - creditOverProcessType
+        - customerCode
+        - depositGroupCode
+        - creditLimitUsageRate
+        - creditLimitAmt
+        - creditLimitOverruns
+        - creditTotal
+        - tradeCurrency
+        - paymentTerms
+        - noteSite
+        - paymentMeans
+        - settlementMethod
+        - cellCode
+        - bu
+  parameters: {}
+tags:
+  - name: CheckCreditManagement
+  - name: SaveCreditManagement
+  - name: SearchCreditManagement
+  - name: SearchCreditOverManagement

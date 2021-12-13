@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <m_stock_settingColName field="subsidiary_code" comment="現法コード:現地法人を一意に特定するコード。"/>
+  <m_stock_settingColName field="ginner_code" comment="統合インナーコード:MDMによって新規導入された、現法間をまたいでグローバルで一意に商品を特定するためのキー項目。先頭3桁が&apos;MDM&apos;固定、後続の11桁が桁に意味なし（自動発番）の数字で構成される。"/>
+  <m_stock_settingColName field="plant_code" comment="置場コード:置場を示すコード"/>
+  <m_stock_settingColName field="po_qty" comment="発注数:発注する場合のロット数（１オーダーは発注数×Ｎ）"/>
+  <m_stock_settingColName field="ideal_po_qty" comment="最適発注数:※使用用途不明　契約発注数量と同じ値を設定"/>
+  <m_stock_settingColName field="automatic_po_type" comment="自動発注区分:1：自動発注する、2：手動発注※一部条件時、自動発注、3：発注しない【発売終了時使用】※自置場完結、4：発注しない【発売終了時使用】※他置場考慮、5：手動発注専用"/>
+  <m_stock_settingColName field="contract_po_qty" comment="契約発注数量:最適発注数と同じ"/>
+  <m_stock_settingColName field="rank" comment="ランク"/>
+  <m_stock_settingColName field="reorder_point" comment="発注点"/>
+  <m_stock_settingColName field="previous_reorder_point" comment="前回発注点"/>
+  <m_stock_settingColName field="warning_qty" comment="警告数"/>
+  <m_stock_settingColName field="min_warning_qty" comment="最低警告数"/>
+  <m_stock_settingColName field="variation_coefficient" comment="変動係数"/>
+  <m_stock_settingColName field="update_user_for_master_maintenance" comment="更新者（マスタメンテ用）"/>
+  <m_stock_settingColName field="update_date_time_for_master_maintenance" comment="更新日時（マスタメンテ用）"/>
+  <m_stock_settingColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <m_stock_settingColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <m_stock_settingColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_stock_settingColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <m_stock_settingColName field="register_date_time" comment="登録日時"/>
+  <m_stock_settingColName field="register_program" comment="登録プログラム"/>
+  <m_stock_settingColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <m_stock_settingColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_stock_settingColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <m_stock_settingColName field="update_date_time" comment="更新日時"/>
+  <m_stock_settingColName field="update_program" comment="更新プログラム"/>
+  <m_stock_settingColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

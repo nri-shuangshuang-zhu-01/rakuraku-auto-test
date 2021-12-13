@@ -1,0 +1,25 @@
+伝票区分::slip_type::char(3)::NOT NULL(PK)
+伝票区分名::slip_type_name::varchar(40)::NOT NULL
+伝票区分名（現地語）::slip_type_name_native::varchar(20)::NOT NULL
+伝票区分名（半角カナ）::slip_type_name_hankaku_kana::varchar(40)::NOT NULL
+分類区分::classification_type::char(1)::NULL
+分類区分名::classification_type_name::varchar(40)::NULL
+プロセス区分::process_type::char(1)::NULL
+プロセス区分名::process_type_name::varchar(40)::NULL
+売上デビクレ区分::sales_debit_credit_type::char(1)::NULL
+仕入デビクレ区分::purchase_debit_credit_type::char(1)::NULL
+赤黒請求書フラグ::credit_and_debit_invoice_flag::char(1)::NOT NULL
+運賃／雑費／保険料置換伝区::freight_or_expenses_or_insurance_replace_slip_type::char(3)::NULL
+運賃／雑費／保険料フラグ::freight_or_expenses_or_insurance_flag::char(1)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

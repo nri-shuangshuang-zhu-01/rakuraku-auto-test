@@ -1,0 +1,43 @@
+{
+  "urgentFlag": "0",
+  "customerName": "株式会社TEST",
+  "shipToName": "札幌支社",
+  "shipToCode": "123456",
+  "departmentName": "システム開発部",
+  "picName": "BTC太郎",
+  "sendMediaType": "01",
+  "faxSendToNumber": "011-555-6666",
+  "emailAddressTo": "emailTo@email.com",
+  "emailAddressCc": "emailCc@email.com",
+  "userReplyLimit": "3日以内に注文してください",
+  "inquiryDetailsList": [
+    {
+      "leadTimeProductInquiryId": 1234567,
+      "dunningFlag": "1",
+      "qty": 100,
+      "customerItemReference": "123456",
+      "productCode": "SFJ-10",
+      "storkCode": "T0",
+      "shippingPointCode": "01",
+      "brandName": "ミスミ",
+      "bulkPartialDeliveryType": "1",
+      "salesUnitPrice": "100",
+      "sendType": "1",
+      "inquiryContent": "8/5までに注文をお願いします。"
+    },
+    {
+      "leadTimeProductInquiryId": 1234568,
+      "dunningFlag": "0",
+      "qty": 102,
+      "customerItemReference": "123457",
+      "productCode": "SFJ-11",
+      "storkCode": "T1",
+      "shippingPointCode": "02",
+      "brandName": "1234",
+      "bulkPartialDeliveryType": "2",
+      "salesUnitPrice": "105",
+      "sendType": "2",
+      "inquiryContent": "9/5までに注文をお願いします。"
+    }
+  ]
+}

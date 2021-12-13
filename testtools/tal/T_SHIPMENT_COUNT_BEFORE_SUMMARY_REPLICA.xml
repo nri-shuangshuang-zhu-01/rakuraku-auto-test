@@ -1,0 +1,22 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+グローバル番号::global_number::char(14)::NOT NULL
+受注伝票番号::so_slip_number::varchar(12)::NOT NULL(PK)
+受注明細キー::so_line_key::integer::NOT NULL(PK)
+VSD::vsd::date::NOT NULL
+置場コード::plant_code::char(4)::NOT NULL
+調達区分::supply_type::char(2)::NULL
+出荷仕分用エリアコード::shipment_classification_area_code::char(3)::NULL
+得意先現法置場コード::customer_subsidiary_plant_code::char(4)::NULL
+得意先現法得意先コード::customer_subsidiary_customer_code::char(6)::NULL
+得意先現法配送先コード::customer_subsidiary_ship_to_code::char(6)::NULL
+バッチ区分::batch_type::char(1)::NULL
+ストークコード::stork_code::char(2)::NULL
+出荷方法コード::shipment_method_code::char(2)::NULL
+伝票区分::slip_type::char(3)::NULL
+別納区分::arrn_ship_div::varchar(1)::NULL
+出荷区分::shipment_type::varchar(1)::NULL
+削除フラグ::delete_flag::char(1)::NULL
+データHUB更新済フラグ::data_hub_updated_flag::char(1)::NOT NULL
+登録日時(システム日時)::register_system_date_time::timestamp with time zone::NOT NULL
+更新日時(システム日時)::update_system_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL

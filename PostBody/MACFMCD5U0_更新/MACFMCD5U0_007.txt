@@ -1,0 +1,6 @@
+{
+  "controlSeqNumber": "1234567891",
+  "statusCode": "1",
+  "processResultCode": "2",
+  "updateCount": 1
+}

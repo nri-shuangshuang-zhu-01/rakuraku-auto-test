@@ -1,0 +1,132 @@
+{
+  "localCorporationCode": "str",
+  "accessIpAddress": "string",
+  "sessionId": "string",
+  "screenId": "string",
+  "processId": "string",
+  "programType": "a",
+  "createDate": "",
+  "registerMode": "1",
+  "detailInformationList": [
+    {
+      "detailNumber": "1",
+      "globalNumber": "CA000032000086",
+      "internalExternalType": "0",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "1",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "001@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        },
+        {
+          "no": "2",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "002@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        },
+        {
+          "no": "3",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "003@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        }
+      ]
+    },
+    {
+      "detailNumber": "1",
+      "globalNumber": "CA000032000080",
+      "internalExternalType": "0",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "4",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "004@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        },
+        {
+          "no": "5",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "005@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        },
+        {
+          "no": "6",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "006@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        }
+      ]
+    },
+    {
+      "detailNumber": "1",
+      "globalNumber": "CA000032000082",
+      "internalExternalType": "0",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "7",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "007@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        },
+        {
+          "no": "8",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "008@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        },
+        {
+          "no": "9",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "009@a",
+          "plantCode": null,
+          "vsd": null,
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        }
+      ]
+    }
+  ]
+}

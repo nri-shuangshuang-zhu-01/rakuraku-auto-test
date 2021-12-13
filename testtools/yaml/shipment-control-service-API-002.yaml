@@ -1,0 +1,238 @@
+openapi: 3.0.0
+info:
+  title: API-002
+  version: '1.0'
+  description: 社内移動伝票検索用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/transfer-voucher-no/search:
+    get:
+      summary: 社内移動_伝票参照API
+      operationId: searchTransferVoucherNoV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTransferVoucherNoResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 社内移動の登録内容を参照する。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchTransferVoucherNoRequestV1'
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          required: true
+          description: 現法コード
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: shipmentPlantCode
+          description: 出荷置場コード
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: arrivalPlantCode
+          description: 入荷置場コード
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: shipmentScheduledDate
+          description: 出荷予定日
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: arrivalScheduledDate
+          description: 入荷予定日
+        - schema:
+            type: string
+          in: query
+          name: maxCount
+          required: true
+          description: 参照最大件数
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: '#/components/parameters/sortby2'
+      tags:
+        - TransferVoucherNo
+    parameters: []
+components:
+  schemas:
+    SearchTransferVoucherNoRequestV1:
+      title: SearchTransferVoucherNoRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        shipmentPlantCode:
+          type: string
+          maxLength: 4
+          description: 出荷置場コード
+        arrivalPlantCode:
+          type: string
+          maxLength: 4
+          description: 入荷置場コード
+        shipmentScheduledDate:
+          type: string
+          description: 出荷予定日
+          format: date
+        arrivalScheduledDate:
+          type: string
+          description: 入荷予定日
+          format: date
+        maxCount:
+          description: 参照最大件数
+          type: integer
+      required:
+        - subsidiaryCode
+        - maxCount
+    SearchTransferVoucherNoResponseV1:
+      title: SearchTransferVoucherNoResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        count:
+          description: 件数
+          type: integer
+        transferVoucherList:
+          type: array
+          description: 社内移動伝票リスト
+          items:
+            $ref: '#/components/schemas/SearchTransferVoucherNoVoucherListV1'
+      required:
+        - subsidiaryCode
+        - count
+    SearchTransferVoucherNoVoucherListV1:
+      title: SearchTransferVoucherNoVoucherListV1
+      type: object
+      properties:
+        transferVoucherNumber:
+          type: string
+          maxLength: 6
+          description: 社内移動伝票番号
+        shipmentPlantCode:
+          type: string
+          maxLength: 4
+          description: 出荷置場コード
+        shipmentPlantName:
+          type: string
+          description: 出荷置場名
+          maxLength: 45
+        shipmentStorageLocationCode:
+          type: string
+          maxLength: 4
+          description: 出荷保管場所コード
+        shipmentStorageLocationName:
+          type: string
+          description: 出荷保管場所名
+          maxLength: 45
+        arrivalPlantCode:
+          type: string
+          maxLength: 4
+          description: 入荷置場コード
+        arrivalPlantName:
+          type: string
+          description: 入荷置場名
+          maxLength: 45
+        arrivalStorageLocationCode:
+          type: string
+          maxLength: 4
+          description: 入荷保管場所コード
+        arrivalStorageLocationName:
+          type: string
+          description: 入荷保管場所名
+          maxLength: 45
+        shipmentScheduledDate:
+          type: string
+          format: date
+          description: 出荷予定日
+        arrivalScheduledDate:
+          type: string
+          format: date
+          description: 入荷予定日
+        arrivalMark:
+          type: string
+          description: 到着マーク
+          maxLength: 1
+        unShipmentCount:
+          type: integer
+          description: 未出荷件数
+        arrivalCount:
+          type: integer
+          description: 入荷件数
+        shipmentCount:
+          type: integer
+          description: 出荷件数
+      required:
+        - transferVoucherNumber
+        - shipmentPlantCode
+        - shipmentPlantName
+        - shipmentStorageLocationCode
+        - shipmentStorageLocationName
+        - arrivalPlantCode
+        - arrivalPlantName
+        - arrivalStorageLocationCode
+        - arrivalStorageLocationName
+        - shipmentScheduledDate
+        - arrivalScheduledDate
+        - arrivalMark
+        - unShipmentCount
+        - arrivalCount
+        - shipmentCount
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順1
+    sortby2:
+      name: sortby2
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順2
+tags:
+  - name: TransferVoucherNo

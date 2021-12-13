@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DownloadGeneralPurposeTaskV1Format.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.model.task</a> &gt; <span class="el_source">DownloadGeneralPurposeTaskV1Format.java</span></div><h1>DownloadGeneralPurposeTaskV1Format.java</h1><pre class="source lang-java linenums">
+package jp.co.misumi.replenishstock.model.task;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.processing.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jp.co.misumi.fw.async.api.common.task.annotation.Task;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+
+/**
+ * DownloadGeneralPurposeTaskV1Format
+ * &lt;p&gt;
+ * 汎用ダウンロードタスクデータ
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor
+@NoArgsConstructor
+@Task(type = &quot;download-general-purpose&quot;, version = 1)
+@JsonPropertyOrder({
+    &quot;tempFileId&quot;,
+    &quot;signature&quot;
+})
+@Generated(&quot;jsonschema2pojo&quot;)
+public class DownloadGeneralPurposeTaskV1Format {
+
+    /**
+     * 一時ファイルID
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;tempFileId&quot;)
+    @JsonPropertyDescription(&quot;\u4e00\u6642\u30d5\u30a1\u30a4\u30ebID&quot;)
+    @NotNull
+    private String tempFileId;
+    /**
+     * 署名
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;signature&quot;)
+    @JsonPropertyDescription(&quot;\u7f72\u540d&quot;)
+    @NotNull
+    private String signature;
+    @JsonIgnore
+    @Valid
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * 一時ファイルID
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;tempFileId&quot;)
+    public String getTempFileId() {
+<span class="nc" id="L67">        return tempFileId;</span>
+    }
+
+    /**
+     * 一時ファイルID
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;tempFileId&quot;)
+    public void setTempFileId(String tempFileId) {
+<span class="nc" id="L77">        this.tempFileId = tempFileId;</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * 署名
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;signature&quot;)
+    public String getSignature() {
+<span class="nc" id="L87">        return signature;</span>
+    }
+
+    /**
+     * 署名
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;signature&quot;)
+    public void setSignature(String signature) {
+<span class="nc" id="L97">        this.signature = signature;</span>
+<span class="nc" id="L98">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L102">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L107">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L108">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

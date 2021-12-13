@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <C_UL_PURPOSE_UL_RESULT_DATA_DOWNLOAD_FILE control_seq_number='1234560001' data_download_control_seq='2234560001' subsidiary_code='CHN' data_code='10002' create_date_time='2020-01-13 11:00:00' mail_address='123@linkstec.com' temp_file_code='temp_file_id' file_path='file_path' presigned_api_path='presigned-url' signature='' display_file_name='file_name' status_code='1' process_result_code='1' process_result_detail='' update_count='2' delete_flag='0' register_user_type='Internal' register_user='register_user' register_date_time='2020-01-13 11:00:00' register_program='register_pro' register_client_program='reg_client_pro' update_user_type='Internal' update_user='update_user' update_date_time='2020-01-13 11:00:00' update_program='update_pro' update_client_program='upd_client_pro' />
+</dataset>

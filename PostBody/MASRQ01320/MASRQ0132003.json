@@ -1,0 +1,14 @@
+{
+  "urgentFlag": "0",
+  "customerName": "株式会社TEST",
+  "shipToName": "札幌支社",
+  "shipToCode": "999999",
+  "departmentName": "システム開発部",
+  "picName": "BTC太郎",
+  "sendMediaType": "01",
+  "faxSendToNumber": "011-555-6666",
+  "emailAddressTo": "emailTo@email.com",
+  "emailAddressCc": "emailCc@email.com",
+  "userReplyLimit": "3日以内に注文してください",
+  "inquiryDetailsList": null
+}

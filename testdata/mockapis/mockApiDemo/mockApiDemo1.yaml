@@ -1,0 +1,148 @@
+  /v1/area/search:
+    get:
+      summary: エリア参照API
+      tags:
+        - Area
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAreaResponse'
+              examples:
+                '1':
+                  value:
+                    subsidiaryCode: '11111'
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+                '2':
+                  value:
+                    subsidiaryCode: '22222'
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+                '3':
+                  value:
+                    subsidiaryCode: '33333'
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+                example-4:
+                  value:
+                    subsidiaryCode: string
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+                example-5:
+                  value:
+                    subsidiaryCode: string
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+/v1/plant/search:
+    parameters: []
+    post:
+      summary: 置場マスタ参照API
+      tags:
+        - Plant
+      operationId: searchPlantV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPlantResponse'
+              examples:
+                '1':
+                  value:
+                    - plantCode: '11'
+                      subsidiaryCode: string
+                      plantName: string
+                      nativePlantName: string
+                      nativePlantAbbreviation: string
+                      plantNumber: string
+                      areaCode: string
+                      nativeAddress1: string
+                      nativeAddress2: string
+                      nativeAddress3: string
+                      nativeAddress4: string
+                      telNumber: string
+                      faxNumber: string
+                      postalCode: string
+                '2':
+                  value:
+                    - plantCode: '01 '
+                      subsidiaryCode: MJP
+                      plantName: QCT
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                    - plantCode: '01 '
+                      subsidiaryCode: TIW
+                      plantName: QCT
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                    - plantCode: CCC
+                      subsidiaryCode: CHN
+                      plantName: 苏州
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                    - plantCode: CCD
+                      subsidiaryCode: CHN
+                      plantName: 上海
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                '3':
+                  value:
+                    - plantCode: '44444444'
+                      subsidiaryCode: string
+                      plantName: string
+                      nativePlantName: string
+                      nativePlantAbbreviation: string
+                      plantNumber: string
+                      areaCode: string
+                      nativeAddress1: string
+                      nativeAddress2: string
+                      nativeAddress3: string
+                      nativeAddress4: string
+                      telNumber: string
+                      faxNumber: string
+                      postalCode: string

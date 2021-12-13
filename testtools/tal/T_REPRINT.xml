@@ -1,0 +1,42 @@
+再印刷ID::reprint_id::numeric(10,0)::NOT NULL(PK)
+帳票ID::report_id::varchar(36)::NOT NULL
+ファイルID::file_id::varchar(36)::NULL
+帳票テンプレート名::report_template_name::varchar(200)::NULL
+ユーザーID::user_id::varchar(256)::NOT NULL
+出力区分::output_type::char(1)::NOT NULL
+出力状況::output_status::char(1)::NULL
+帳票種類::report_type::varchar(2)::NULL
+現法コード::subsidiary_code::char(3)::NOT NULL
+送信メールID::send_email_id::varchar(36)::NULL
+メールテンプレートID::email_template_id::varchar(36)::NULL
+送信メールサーバ種別::send_email_server_category::varchar(1)::NULL
+サービス区分::service_type::varchar(3)::NULL
+メールアドレス（TO）::email_address_to::varchar(256)::NULL
+メールアドレス（CC）::email_address_cc::varchar(256)::NULL
+メールアドレス（BCC）::email_address_bcc::varchar(256)::NULL
+メールアドレス（FROM）::email_address_from::varchar(256)::NULL
+メールアドレス（REPLYTO）::email_address_reply_to::varchar(256)::NULL
+メール題名::email_title::varchar(600)::NULL
+メール本文::email_body::text::NULL
+PDFファイル名::pdf_file_name::varchar(100)::NULL
+見積／受注番号::qt_or_so_number::varchar(10)::NULL
+送信FAXID::send_fax_id::varchar(36)::NULL
+FAX顧客コード::fax_customer_code::varchar(6)::NULL
+FAX番号::fax::varchar(60)::NULL
+検索キーワード::search_keyword::varchar(100)::NULL
+再印刷回数::reprint_count::smallint::NULL
+帳票作成日::report_create_date::timestamp with time zone::NULL
+再印刷者ID::reprint_staff_id::varchar(256)::NULL
+売掛先コード::bill_to_code::char(6)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

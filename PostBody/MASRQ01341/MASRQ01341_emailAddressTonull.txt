@@ -1,0 +1,16 @@
+{
+  "sendMediaType": "01",
+  "fax": "08012345678",
+  "emailAddressCc": "cc-mail@nri.co.jp",
+  "from": "from-mail@misumi.co.jp",
+  "replyTo": "reply-to-mail@misumi.co.jp",
+  "subject": "メール件名",
+  "body": "メール本文",
+  "attachFileIdList": [
+    {
+      "fileId": "e0788ada-bee7-5d17-d946-2d3d02c15849"
+    }
+  ],
+  "inquiryId": 1234567,
+  "emailTemplateId": "497f6eca-6276-4993-bfeb-53cbbbba6f08"
+}

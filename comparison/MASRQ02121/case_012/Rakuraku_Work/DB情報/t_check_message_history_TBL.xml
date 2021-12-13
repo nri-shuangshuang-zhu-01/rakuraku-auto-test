@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_check_message_historyColName field="subsidiary_code"/>
+  <t_check_message_historyColName field="lead_time_product_inquiry_id"/>
+  <t_check_message_historyColName field="check_message_type"/>
+  <t_check_message_historyColName field="history_seq"/>
+  <t_check_message_historyColName field="check_message_error_type"/>
+  <t_check_message_historyColName field="check_message_seq"/>
+  <t_check_message_historyColName field="code"/>
+  <t_check_message_historyColName field="message"/>
+  <t_check_message_historyColName field="update_count"/>
+  <t_check_message_historyColName field="delete_flag"/>
+  <t_check_message_historyColName field="register_user_type"/>
+  <t_check_message_historyColName field="register_user"/>
+  <t_check_message_historyColName field="register_date_time"/>
+  <t_check_message_historyColName field="register_program"/>
+  <t_check_message_historyColName field="register_client_program"/>
+  <t_check_message_historyColName field="update_user_type"/>
+  <t_check_message_historyColName field="update_user"/>
+  <t_check_message_historyColName field="update_date_time"/>
+  <t_check_message_historyColName field="update_program"/>
+  <t_check_message_historyColName field="update_client_program"/>
+</dataset>

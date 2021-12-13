@@ -1,0 +1,402 @@
+openapi: 3.0.0
+info:
+  title: API-083
+  version: '1.0'
+  description: 別納照会用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/arranged-shipment/search-and-download:
+    post:
+      summary: 別納_参照ダウンロードAPI
+      tags:
+        - ArrangedShipment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAndDownloadArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchAndDownloadArrangedShipmentV1
+      description: 仕入先マスタ、発注テーブル、受注明細テーブル、別納データ、直送先マスタ、得意先マスタの登録内容を参照する。ファイルのダウンロードを実行する
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchAndDownloadArrangedShipmentRequestV1'
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: '#/components/parameters/sortby2'
+    parameters: []
+components:
+  schemas:
+    SearchAndDownloadArrangedShipmentRequestV1:
+      title: SearchAndDownloadArrangedShipmentRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        shipmentDateFrom:
+          type: string
+          description: 出荷日（From）
+          format: date
+        shipmentDateTo:
+          type: string
+          description: 出荷日（To）
+          format: date
+        oldPlantCode:
+          type: string
+          maxLength: 4
+          description: 旧置場コード
+        newPlantCode:
+          type: string
+          description: 新置場コード
+          maxLength: 4
+        supplierCode:
+          type: array
+          description: 仕入先コード
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 4
+        supplierGroupCode:
+          type: string
+          description: POCグループ1
+        stockMto:
+          type: string
+          description: 在庫／MTO
+        globalNumber:
+          type: array
+          description: グローバル番号
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 14
+        registerUserId:
+          type: array
+          description: 登録者ID
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 6
+        arrnStatus:
+          type: string
+          description: 別納状態
+        contactList:
+          type: string
+          description: 連絡リスト
+          maxLength: 1
+        productCode:
+          type: array
+          description: 商品コード
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 234
+        gInnerCode:
+          type: array
+          description: 統合インナーコード
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 11
+        brandCode:
+          type: array
+          description: ブランド
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 4
+        customerCode:
+          type: array
+          description: 得意先コード
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 6
+        voucherType:
+          type: array
+          description: 伝区
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 3
+        marketCode:
+          type: array
+          description: 市場
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 2
+        supplierInvoiceNumber:
+          type: array
+          description: Supplier I/V No
+          maxItems: 20
+          items:
+            type: string
+            maxLength: 25
+        outputResultType:
+          type: string
+          description: 出力結果区分
+          maxLength: 1
+        maxCount:
+          type: integer
+          description: 最大件数
+        deliveryRouteDiv:
+          type: string
+          description: 納入経路変更区分
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+      required:
+        - subsidiaryCode
+        - shipmentDateFrom
+        - shipmentDateTo
+        - maxCount
+    SearchAndDownloadArrangedShipmentResponseV1:
+      title: SearchAndDownloadArrangedShipmentResponseV1
+      type: object
+      properties:
+        searchResultList:
+          type: array
+          description: 検索結果リスト
+          items:
+            $ref: '#/components/schemas/SearchAndDownloadArrangedShipmentItemListV1'
+        TSVFileCreateResult:
+          type: string
+          description: TSVファイル作成結果可否
+        arrnSearchResultDownloadFile:
+          type: string
+          description: 別納検索結果DLファイル
+      required:
+        - searchResultList
+        - TSVFileCreateResult
+        - arrnSearchResultDownloadFile
+    SearchAndDownloadArrangedShipmentItemListV1:
+      title: SearchAndDownloadArrangedShipmentItemListV1
+      type: object
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランド
+          maxLength: 4
+        nativeBrandName:
+          type: string
+          description: ブランド名称(現地語)
+          maxLength: 200
+        brandName:
+          type: string
+          description: 'ブランド名称(英語) '
+          maxLength: 15
+        contactList:
+          type: string
+          description: 連絡リスト
+          maxLength: 1
+        soQty:
+          type: integer
+          description: 受注数量
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        customerCode:
+          type: string
+          description: 得意先コード
+          maxLength: 6
+        shippingToCode:
+          type: string
+          description: 直送先コード
+          maxLength: 6
+        marketCode:
+          type: string
+          description: 市場
+          maxLength: 2
+        oldPlantCode:
+          type: string
+          description: 旧置場コード
+          maxLength: 4
+        oldStorageLocationCode:
+          type: string
+          description: 旧保管場所コード
+          maxLength: 4
+        newPlantCode:
+          type: string
+          description: 新置場
+          maxLength: 4
+        newStorageLocationCode:
+          type: string
+          description: 新保管場所コード
+          maxLength: 4
+        vrd:
+          type: string
+          description: VRD
+          format: date
+        vsd:
+          type: string
+          description: VSD
+          format: date
+        arrnStatus:
+          type: string
+          description: 別納状態
+          maxLength: 1
+        stockMto:
+          type: string
+          description: 在庫／MTO
+          maxLength: 1
+        supplierName:
+          type: string
+          description: 仕入先名
+        customerName:
+          type: string
+          description: 得意先名
+          maxLength: 60
+        shippingUserName:
+          type: string
+          description: 配送先名
+          maxLength: 200
+        reasonCode:
+          type: string
+          description: 理由コード
+          maxLength: 3
+        voucherType:
+          type: string
+          description: 伝区
+          maxLength: 3
+        sendSlip:
+          type: string
+          description: 伝票送付
+          maxLength: 1
+        supplierGroupCode:
+          type: string
+          description: POCグループ1
+        supplierInvoiceNumber:
+          type: string
+          description: Supplier Invoice No
+          maxLength: 25
+        registerTime:
+          type: string
+          description: 登録日時
+          format: date-time
+        registerUserId:
+          type: string
+          description: 登録者ID
+          maxLength: 6
+        outputTime:
+          type: string
+          description: 出力日時
+          format: date-time
+        updateId:
+          type: string
+          description: 更新者ID
+          maxLength: 6
+        marketName:
+          type: string
+          description: 市場名
+        oldPlantName:
+          type: string
+          description: 旧置場名
+        newPlantName:
+          type: string
+          description: 新置場名
+        oldStorageLocationName:
+          type: string
+          description: 新保管場所名
+        reasonName:
+          type: string
+          description: 理由名
+        voucherTypeName:
+          type: string
+          description: 伝票区分名
+        contactListStatusName:
+          type: string
+      required:
+        - globalNumber
+        - productCode
+        - brandCode
+        - nativeBrandName
+        - brandName
+        - contactList
+        - soQty
+        - supplierCode
+        - customerCode
+        - shippingToCode
+        - marketCode
+        - oldPlantCode
+        - oldStorageLocationCode
+        - newPlantCode
+        - newStorageLocationCode
+        - vrd
+        - vsd
+        - arrnStatus
+        - stockMto
+        - supplierName
+        - customerName
+        - shippingUserName
+        - reasonCode
+        - voucherType
+        - sendSlip
+        - supplierGroupCode
+        - supplierInvoiceNumber
+        - registerTime
+        - registerUserId
+        - outputTime
+        - marketName
+        - oldPlantName
+        - newPlantName
+        - oldStorageLocationName
+        - reasonName
+        - voucherTypeName
+        - contactListStatusName
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順1
+    sortby2:
+      name: sortby2
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順2
+tags:
+  - name: ArrangedShipment

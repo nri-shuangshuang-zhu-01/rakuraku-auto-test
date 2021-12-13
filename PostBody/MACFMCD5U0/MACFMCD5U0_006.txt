@@ -1,0 +1,13 @@
+{
+"controlSeqNumber":null,
+"dataCode":"",
+"createTime": "2019-08-24T14:15:22Z",
+"tempFileCode":null,
+"filePath":null,
+"presignedApiPath":null,
+"signature":null,
+"displayFileName":null,
+"statusCode": "1",
+"processResultCode": "1",
+"updateCount": null
+}

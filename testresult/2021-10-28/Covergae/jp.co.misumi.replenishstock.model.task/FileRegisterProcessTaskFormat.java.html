@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FileRegisterProcessTaskFormat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.model.task</a> &gt; <span class="el_source">FileRegisterProcessTaskFormat.java</span></div><h1>FileRegisterProcessTaskFormat.java</h1><pre class="source lang-java linenums">
+package jp.co.misumi.replenishstock.model.task;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.processing.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jp.co.misumi.fw.async.api.common.task.annotation.Task;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+
+/**
+ * FileRegisterProcessTaskFormat
+ * &lt;p&gt;
+ * 週次発注点除外条件マスタDLファイル作成タスク情報
+ * 
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor
+@NoArgsConstructor
+@Task(type = &quot;file-register-task-request&quot;, version = 1)
+@JsonPropertyOrder({
+    &quot;userId&quot;,
+    &quot;subsidiaryCode&quot;,
+    &quot;jobControlArea1&quot;
+})
+@Generated(&quot;jsonschema2pojo&quot;)
+public class FileRegisterProcessTaskFormat {
+
+    /**
+     * 現法コード
+     * 
+     */
+    @JsonProperty(&quot;userId&quot;)
+    @JsonPropertyDescription(&quot;\u73fe\u6cd5\u30b3\u30fc\u30c9&quot;)
+    private String userId;
+    /**
+     * ユーザID
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;subsidiaryCode&quot;)
+    @JsonPropertyDescription(&quot;\u30e6\u30fc\u30b6ID&quot;)
+    @NotNull
+    private String subsidiaryCode;
+    /**
+     * JOB制御用エリア１
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;jobControlArea1&quot;)
+    @JsonPropertyDescription(&quot;JOB\u5236\u5fa1\u7528\u30a8\u30ea\u30a2\uff11&quot;)
+    @NotNull
+    private String jobControlArea1;
+    @JsonIgnore
+    @Valid
+    private Map&lt;String, Object&gt; additionalProperties = new HashMap&lt;String, Object&gt;();
+
+    /**
+     * 現法コード
+     * 
+     */
+    @JsonProperty(&quot;userId&quot;)
+    public String getUserId() {
+<span class="nc" id="L74">        return userId;</span>
+    }
+
+    /**
+     * 現法コード
+     * 
+     */
+    @JsonProperty(&quot;userId&quot;)
+    public void setUserId(String userId) {
+<span class="nc" id="L83">        this.userId = userId;</span>
+<span class="nc" id="L84">    }</span>
+
+    /**
+     * ユーザID
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;subsidiaryCode&quot;)
+    public String getSubsidiaryCode() {
+<span class="nc" id="L93">        return subsidiaryCode;</span>
+    }
+
+    /**
+     * ユーザID
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;subsidiaryCode&quot;)
+    public void setSubsidiaryCode(String subsidiaryCode) {
+<span class="nc" id="L103">        this.subsidiaryCode = subsidiaryCode;</span>
+<span class="nc" id="L104">    }</span>
+
+    /**
+     * JOB制御用エリア１
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;jobControlArea1&quot;)
+    public String getJobControlArea1() {
+<span class="nc" id="L113">        return jobControlArea1;</span>
+    }
+
+    /**
+     * JOB制御用エリア１
+     * (Required)
+     * 
+     */
+    @JsonProperty(&quot;jobControlArea1&quot;)
+    public void setJobControlArea1(String jobControlArea1) {
+<span class="nc" id="L123">        this.jobControlArea1 = jobControlArea1;</span>
+<span class="nc" id="L124">    }</span>
+
+    @JsonAnyGetter
+    public Map&lt;String, Object&gt; getAdditionalProperties() {
+<span class="nc" id="L128">        return this.additionalProperties;</span>
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+<span class="nc" id="L133">        this.additionalProperties.put(name, value);</span>
+<span class="nc" id="L134">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

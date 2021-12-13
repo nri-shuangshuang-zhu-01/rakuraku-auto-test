@@ -1,0 +1,127 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+売掛先コード::bill_to_code::char(6)::NOT NULL(PK)
+旧売掛先コード::old_bill_to_code::varchar(9)::NULL
+売掛主管部署::ar_main_department::varchar(4)::NULL
+ミスミ担当者コード::misumi_pic_code::varchar(6)::NULL
+売掛先名（現地語）::bill_to_name_native::varchar(60)::NULL
+売掛先名略称（現地語）::bill_to_name_abbreviation_native::varchar(10)::NULL
+売掛先名（現地語検索用インデックス）::bill_to_name_native_for_search_index::varchar(132)::NULL
+売掛先名::bill_to_name::varchar(60)::NOT NULL
+国コード::country_code::char(3)::NOT NULL
+言語コード::language_code::char(3)::NOT NULL
+郵便番号::postal_code::varchar(10)::NULL
+住所1（現地語）::address1_native::varchar(30)::NOT NULL
+住所2（現地語）::address2_native::varchar(30)::NULL
+住所3（現地語）::address3_native::varchar(30)::NULL
+住所4（現地語）::address4_native::varchar(30)::NULL
+住所1::address1::varchar(30)::NULL
+住所2::address2::varchar(30)::NULL
+住所3::address3::varchar(30)::NULL
+住所4::address4::varchar(30)::NULL
+請求書送付先部課名（現地語）::invoice_send_destination_department_name_native::varchar(30)::NULL
+請求書送付先担当者（現地語）::invoice_send_destination_pic_native::varchar(20)::NULL
+電話番号::tel::varchar(20)::NULL
+売掛先FAX番号::bill_to_fax::varchar(20)::NULL
+督促先FAX番号::dunning_to_fax::varchar(20)::NULL
+売掛先メールアドレス（TO）::bill_to_email_address_to::varchar(256)::NULL
+売掛先メールアドレス（CC）::bill_to_email_address_cc::varchar(256)::NULL
+督促先メールアドレス（TO）::dunning_to_email_address_to::varchar(256)::NULL
+督促先メールアドレス（CC）::dunning_to_email_address_cc::varchar(256)::NULL
+税金計算書送付先メールアドレス1::tax_account_statement_send_destination_email_address1::varchar(256)::NULL
+税金計算書送付先メールアドレス2::tax_account_statement_send_destination_email_address2::varchar(256)::NULL
+取引停止区分::trade_stop_type::char(1)::NOT NULL
+サービス停止区分::service_stop_type::char(1)::NOT NULL
+検収区分::acceptance_type::char(1)::NOT NULL
+検収グループコード::acceptance_group_code::varchar(6)::NOT NULL
+インコタームズ::incoterms::varchar(3)::NULL
+支払条件::payment_terms::varchar(42)::NOT NULL
+決済形態::settlement_method::varchar(3)::NOT NULL
+支払手段::payment_means::varchar(2)::NOT NULL
+売掛金締め単位::ar_closing_unit::varchar(1)::NULL
+売掛金締日::ar_closing_day::numeric(2,0)::NULL
+売掛金支払月::ar_payment_month::numeric(2,0)::NULL
+売掛金支払日::ar_payment_date::numeric(2,0)::NULL
+売掛金支払サイト_最終::ar_payment_site_final::numeric(3,0)::NULL
+売掛金支払サイト_早割::ar_payment_site_early_payment_discount::numeric(3,0)::NULL
+売掛金早期入金割引率::ar_early_incoming_payment_discount_rate::numeric(5,2)::NULL
+振込手数料::transfer_fee::varchar(1)::NOT NULL
+顧客口座銀行コード::customer_account_bank_code::char(15)::NULL
+顧客口座区分::customer_account_type::char(1)::NULL
+顧客口座番号::customer_account_number::varchar(30)::NULL
+顧客口座人名（現地語可）::customer_account_name_native_allowed::varchar(80)::NULL
+振込口座銀行コード::transfer_account_bank_code::char(15)::NULL
+振込口座区分::transfer_account_type::char(1)::NULL
+振込口座番号::transfer_account_number::varchar(30)::NULL
+振込口座人名::transfer_account_name::varchar(80)::NULL
+仮想口座フラグ::virtual_account_flag::char(1)::NULL
+手形条件（金額）::note_payable_condition_amount::numeric(20,3)::NULL
+手形条件（支払月）::note_payable_condition_payment_month::numeric(2,0)::NULL
+手形条件（支払日）::note_payable_condition_payment_date::numeric(2,0)::NULL
+支払サイト::payment_site::numeric(4,0)::NULL
+請求書送付区分::invoice_send_type::char(1)::NOT NULL
+請求書経由区分::invoice_via_type::varchar(1)::NULL
+請求書経由区分_子::invoice_via_type_child::varchar(1)::NULL
+請求書送付媒体::invoice_send_media::varchar(2)::NULL
+督促状送付区分::dunning_letter_send_type::char(1)::NOT NULL
+督促状送付媒体::dunning_letter_send_media::varchar(2)::NULL
+商品名印字フラグ::product_name_print_flag::char(1)::NOT NULL
+消費税記載区分::consumption_tax_mention_type::char(1)::NOT NULL
+内税外税区分::in_ex_tax_type::char(1)::NOT NULL
+通貨コード::ccy_code::char(3)::NOT NULL
+レートタイプコード::rate_type_code::varchar(4)::NOT NULL
+売掛難易度::ar_difficulty::varchar(3)::NULL
+統一発票区分::government_uniform_invoice_type::varchar(1)::NULL
+会社代表者名（現地語）::company_representative_name_native::varchar(12)::NULL
+売掛注釈1::ar_remarks1::varchar(60)::NULL
+売掛注釈2::ar_remarks2::varchar(60)::NULL
+売掛注釈3::ar_remarks3::varchar(60)::NULL
+売掛注釈4::ar_remarks4::varchar(60)::NULL
+売掛注釈5::ar_remarks5::varchar(60)::NULL
+INVOICE注釈1::invoice_remarks1::varchar(60)::NULL
+INVOICE注釈2::invoice_remarks2::varchar(60)::NULL
+INVOICE注釈3::invoice_remarks3::varchar(60)::NULL
+INVOICE注釈4::invoice_remarks4::varchar(60)::NULL
+物品税管理地::gst_payment_place::varchar(75)::NULL
+部署名::department_name::varchar(30)::NULL
+物品税管理区::commissionerate::varchar(25)::NULL
+停止理由コード::stop_reason_code::varchar(3)::NULL
+決算月::settlement_month::numeric(2,0)::NULL
+決算締切日::settlement_closing_day::numeric(2,0)::NULL
+決算設定::settlement_setting::varchar(1)::NOT NULL
+市町村コード::city_code::varchar(5)::NULL
+請求書出力順::invoice_output_order::varchar(1)::NOT NULL
+全銀コード::zengin_code::char(7)::NULL
+自動振替フラグ::automatic_transfer_flag::char(1)::NOT NULL
+預金種類::deposit_type::varchar(1)::NULL
+口座番号::account_number::varchar(30)::NULL
+預金者名（カナ）::depositor_name_kana::varchar(30)::NULL
+新規コード::new_code::char(1)::NULL
+自動振替登録日::automatic_transfer_register_date::date::NULL
+FB停止区分::fb_stop_type::char(1)::NOT NULL
+ユーザー振込銀行::user_transfer_bank::varchar(4)::NULL
+ユーザー振込支店::user_transfer_branch::varchar(3)::NULL
+売掛QCT拠点コード::ar_qct_base_code::char(2)::NULL
+締日前倒し設定区分::closing_day_front_loading_setting_type::varchar(1)::NOT NULL
+業種区分::industry_type::char(2)::NULL
+経路区分::channel_type::char(2)::NULL
+都度請求登録::each_bill_register::char(1)::NULL
+請求書伝発帳票コード::invoice_slip_output_report_code::varchar(7)::NULL
+請求書まとめフラグ::invoice_summary_flag::char(1)::NULL
+カスタマーステートメント送付対象フラグ::customer_statement_send_flag::char(1)::NULL
+カスタマーステートメント送付媒体区分::customer_statement_send_media_type::char(2)::NULL
+SWIFTコード::swift_code::varchar(11)::NULL
+取崩し照合許可フラグ::withdrawal_collation_allow_flag::char(1)::NULL
+FAX番号::fax::varchar(20)::NULL
+メールアドレス::email_address::varchar(256)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

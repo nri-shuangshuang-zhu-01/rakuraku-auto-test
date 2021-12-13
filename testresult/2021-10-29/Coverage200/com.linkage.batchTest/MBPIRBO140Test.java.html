@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBPIRBO140Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBPIRBO140Test.java</span></div><h1>MBPIRBO140Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBPIRBO140機能確認&quot;)
+@DisplayName(&quot;MBPIRBO140機能確認&quot;)
+<span class="nc" id="L15">public class MBPIRBO140Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBPIRBO140&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBPIRBO140&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****2+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-2-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****3+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****4+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-3-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****5+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-3-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****6+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-2-----/internal/v1/plant/search;;置場情報検索API;;example-2-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****7+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-2*****8+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****9+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****10+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****11+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****12+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****13+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****14+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****15+++++/internal/v1/product/get-list;;商品情報取得API（List）;;URL異常-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****16+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****17+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****18+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****19+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****20+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****21+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****22+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****23+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****24+++++/internal/v1/product/get-list;;商品情報取得API（List）;;-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****25+++++/internal/v1/product/get-list;;商品情報取得API（List）;;URL異常-----/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****26+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****27+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****28+++++/internal/v1/product/get-list;;商品情報取得API（List）;;example-1-----/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;TEST001&quot;)
+	@DisplayName(&quot;TEST001&quot;)
+	public void testMBPIRBO140_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L52">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L55">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L58">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L61">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L64">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L67">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L70">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L72">	}</span>
+
+	@Test
+	@Tag(&quot;TEST002&quot;)
+	@DisplayName(&quot;TEST002&quot;)
+	public void testMBPIRBO140_002() throws Exception {
+
+<span class="nc" id="L79">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L83">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L86">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L89">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L92">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L95">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L98">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L101">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L104">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L107">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L109">	}</span>
+
+	@Test
+	@Tag(&quot;TEST003&quot;)
+	@DisplayName(&quot;TEST003&quot;)
+	public void testMBPIRBO140_003() throws Exception {
+
+<span class="nc" id="L116">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L120">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L123">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L126">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L129">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L132">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L135">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L138">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L141">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L144">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L146">	}</span>
+
+	@Test
+	@Tag(&quot;TEST004&quot;)
+	@DisplayName(&quot;TEST004&quot;)
+	public void testMBPIRBO140_004() throws Exception {
+
+<span class="nc" id="L153">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L157">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L160">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L163">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=TIW,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L166">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L169">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L171">	}</span>
+
+	@Test
+	@Tag(&quot;TEST005&quot;)
+	@DisplayName(&quot;TEST005&quot;)
+	public void testMBPIRBO140_005() throws Exception {
+
+<span class="nc" id="L178">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L182">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L185">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L188">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L191">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L194">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L196">	}</span>
+
+	@Test
+	@Tag(&quot;TEST006&quot;)
+	@DisplayName(&quot;TEST006&quot;)
+	public void testMBPIRBO140_006() throws Exception {
+
+<span class="nc" id="L203">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L207">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L210">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L213">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L216">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L219">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L222">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L225">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L227">	}</span>
+
+	@Test
+	@Tag(&quot;TEST007&quot;)
+	@DisplayName(&quot;TEST007&quot;)
+	public void testMBPIRBO140_007() throws Exception {
+
+<span class="nc" id="L234">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L238">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L241">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L244">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L247">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L250">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L253">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L256">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L259">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L262">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L264">	}</span>
+
+	@Test
+	@Tag(&quot;TEST008&quot;)
+	@DisplayName(&quot;TEST008&quot;)
+	public void testMBPIRBO140_008() throws Exception {
+
+<span class="nc" id="L271">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L275">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L278">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L281">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L284">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L287">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L290">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L293">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L296">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L299">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L301">	}</span>
+
+	@Test
+	@Tag(&quot;TEST009&quot;)
+	@DisplayName(&quot;TEST009&quot;)
+	public void testMBPIRBO140_009() throws Exception {
+
+<span class="nc" id="L308">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L312">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L315">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L318">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L321">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L324">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L327">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L330">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L333">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L336">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L338">	}</span>
+
+	@Test
+	@Tag(&quot;TEST010&quot;)
+	@DisplayName(&quot;TEST010&quot;)
+	public void testMBPIRBO140_010() throws Exception {
+
+<span class="nc" id="L345">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L349">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--subsidiary-code=JPN,--job-net-id=NetId1235,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L351">	}</span>
+
+	@Test
+	@Tag(&quot;TEST011&quot;)
+	@DisplayName(&quot;TEST011&quot;)
+	public void testMBPIRBO140_011() throws Exception {
+
+<span class="nc" id="L358">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L362">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--job-net-id=NetId1236,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L364">	}</span>
+
+	@Test
+	@Tag(&quot;TEST012&quot;)
+	@DisplayName(&quot;TEST012&quot;)
+	public void testMBPIRBO140_012() throws Exception {
+
+<span class="nc" id="L371">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L375">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L377">	}</span>
+
+	@Test
+	@Tag(&quot;TEST013&quot;)
+	@DisplayName(&quot;TEST013&quot;)
+	public void testMBPIRBO140_013() throws Exception {
+
+<span class="nc" id="L384">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L388">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L390">	}</span>
+
+	@Test
+	@Tag(&quot;TEST014&quot;)
+	@DisplayName(&quot;TEST014&quot;)
+	public void testMBPIRBO140_014() throws Exception {
+
+<span class="nc" id="L397">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L401">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L404">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L407">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L410">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L412">	}</span>
+
+	@Test
+	@Tag(&quot;TEST015&quot;)
+	@DisplayName(&quot;TEST015&quot;)
+	public void testMBPIRBO140_015() throws Exception {
+
+<span class="nc" id="L419">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L423">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L426">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L429">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L432">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L435">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L437">	}</span>
+
+	@Test
+	@Tag(&quot;TEST016&quot;)
+	@DisplayName(&quot;TEST016&quot;)
+	public void testMBPIRBO140_016() throws Exception {
+
+<span class="nc" id="L444">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L448">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L451">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L454">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L457">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L460">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L463">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L466">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L469">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L472">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L474">	}</span>
+
+	@Test
+	@Tag(&quot;TEST017&quot;)
+	@DisplayName(&quot;TEST017&quot;)
+	public void testMBPIRBO140_017() throws Exception {
+
+<span class="nc" id="L481">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L485">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L488">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L491">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L494">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L497">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L500">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L503">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L506">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L509">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L511">	}</span>
+
+	@Test
+	@Tag(&quot;TEST018&quot;)
+	@DisplayName(&quot;TEST018&quot;)
+	public void testMBPIRBO140_018() throws Exception {
+
+<span class="nc" id="L518">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L522">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L525">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L528">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L531">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L534">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L537">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L540">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L543">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L546">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L548">	}</span>
+
+	@Test
+	@Tag(&quot;TEST019&quot;)
+	@DisplayName(&quot;TEST019&quot;)
+	public void testMBPIRBO140_019() throws Exception {
+
+<span class="nc" id="L555">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_019/case_019_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L559">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L562">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L565">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L568">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L571">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L574">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L577">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L580">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L583">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L585">	}</span>
+
+	@Test
+	@Tag(&quot;TEST020&quot;)
+	@DisplayName(&quot;TEST020&quot;)
+	public void testMBPIRBO140_020() throws Exception {
+
+<span class="nc" id="L592">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_020/case_020_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L596">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--subsidiary-code=JPN,--job-net-id=NetId1235,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L598">	}</span>
+
+	@Test
+	@Tag(&quot;TEST021&quot;)
+	@DisplayName(&quot;TEST021&quot;)
+	public void testMBPIRBO140_021() throws Exception {
+
+<span class="nc" id="L605">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_021/case_021_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L609">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--job-net-id=NetId1236,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L611">	}</span>
+
+	@Test
+	@Tag(&quot;TEST022&quot;)
+	@DisplayName(&quot;TEST022&quot;)
+	public void testMBPIRBO140_022() throws Exception {
+
+<span class="nc" id="L618">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_022/case_022_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L622">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L624">	}</span>
+
+	@Test
+	@Tag(&quot;TEST023&quot;)
+	@DisplayName(&quot;TEST023&quot;)
+	public void testMBPIRBO140_023() throws Exception {
+
+<span class="nc" id="L631">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_023/case_023_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L635">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+<span class="nc" id="L637">	}</span>
+
+	@Test
+	@Tag(&quot;TEST024&quot;)
+	@DisplayName(&quot;TEST024&quot;)
+	public void testMBPIRBO140_024() throws Exception {
+
+<span class="nc" id="L644">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_024/case_024_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L648">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L651">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L654">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L657">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L659">	}</span>
+
+	@Test
+	@Tag(&quot;TEST025&quot;)
+	@DisplayName(&quot;TEST025&quot;)
+	public void testMBPIRBO140_025() throws Exception {
+
+<span class="nc" id="L666">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_025/case_025_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L670">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L673">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L676">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L679">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L682">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L684">	}</span>
+
+	@Test
+	@Tag(&quot;TEST026&quot;)
+	@DisplayName(&quot;TEST026&quot;)
+	public void testMBPIRBO140_026() throws Exception {
+
+<span class="nc" id="L691">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_026/case_026_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L695">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L698">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L701">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L704">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L707">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L710">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L713">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L716">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L719">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L721">	}</span>
+
+	@Test
+	@Tag(&quot;TEST027&quot;)
+	@DisplayName(&quot;TEST027&quot;)
+	public void testMBPIRBO140_027() throws Exception {
+
+<span class="nc" id="L728">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_027/case_027_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L732">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L735">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L738">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L741">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L744">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L747">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L750">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L753">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L756">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L758">	}</span>
+
+	@Test
+	@Tag(&quot;TEST028&quot;)
+	@DisplayName(&quot;TEST028&quot;)
+	public void testMBPIRBO140_028() throws Exception {
+
+<span class="nc" id="L765">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO140/case_028/case_028_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → データクリア・挿入 */
+<span class="nc" id="L769">		rakurakuCore.operateDBPrepare(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → データクリア・挿入 */
+<span class="nc" id="L772">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product/get-list → 商品情報取得API（List） */
+<span class="nc" id="L775">		rakurakuCore.operateMockApi(&quot;/internal/v1/product/get-list&quot;, &quot;商品情報取得API（List）&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L778">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L781">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L784">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L787">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;○&quot; , &quot;weeklyPoolDataLogicalPlantReplaceJob,--operation-date=20221010,--subsidiary-code=JPN,--job-net-id=NetId1234,--job-execution-id=&lt;weeklyPoolDataLogicalPlantReplaceJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS → NOT_ASSERT_COLUMN */
+<span class="nc" id="L790">		rakurakuCore.operateDBConfirm(&quot;T_SHIPMENT_ACTUAL_POOL_DATA_FOR_52WEEKS&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L793">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_POOL_DATA_WEEKLY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;○&quot;);</span>
+
+<span class="nc" id="L795">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

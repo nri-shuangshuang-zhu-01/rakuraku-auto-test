@@ -1,0 +1,27 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+出荷回数1::shipment_count1::integer::NULL
+出荷回数2::shipment_count2::integer::NULL
+出荷回数3::shipment_count3::integer::NULL
+出荷回数4::shipment_count4::integer::NULL
+出荷回数5::shipment_count5::integer::NULL
+出荷回数6::shipment_count6::integer::NULL
+出荷回数7::shipment_count7::integer::NULL
+出荷回数8::shipment_count8::integer::NULL
+出荷回数9::shipment_count9::integer::NULL
+出荷回数10::shipment_count10::integer::NULL
+出荷回数11::shipment_count11::integer::NULL
+出荷回数12::shipment_count12::integer::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

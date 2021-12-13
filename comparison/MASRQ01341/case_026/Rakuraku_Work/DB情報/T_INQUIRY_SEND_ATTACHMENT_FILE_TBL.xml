@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="subsidiary_code"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="inquiry_send_id"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="file_id"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="send_report_type"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="update_count"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="delete_flag"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="register_user_type"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="register_user"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="register_date_time"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="register_program"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="register_client_program"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="update_user_type"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="update_user"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="update_date_time"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="update_program"/>
+  <T_INQUIRY_SEND_ATTACHMENT_FILEColName field="update_client_program"/>
+</dataset>

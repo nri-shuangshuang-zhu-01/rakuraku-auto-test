@@ -1,0 +1,543 @@
+openapi: 3.0.0
+info:
+  title: product-service-supplier
+  version: '1.0'
+  description: 商品サービス用の Public API です。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000/product'
+paths:
+  /supplier/v1/supplier-user/search:
+    parameters: []
+    get:
+      summary: サプライヤユーザー情報検索API
+      operationId: searchSupplierUserSupplierV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchSupplierUserSupplierResponseV1'
+              examples:
+                '1':
+                  value:
+                    recordCount: 1
+                    supplierUserSupplierV1List:
+                      - subsidiaryCode: TIW
+                        supplierCode: A001
+                        supplierUserId: mail@yahoo.com
+                        name: 山田
+                record0:
+                  value:
+                    recordCount: 0
+                    supplierUserSupplierV1List: null
+                'null':
+                  value:
+                    recordCount: 1
+                    supplierUserSupplierV1List:
+                      - subsidiaryCode: TIW
+                        supplierUserId: mail@yahoo.com
+                        name: 山田
+                empty:
+                  value:
+                    recordCount: 1
+                    supplierUserSupplierV1List:
+                      - subsidiaryCode: TIW
+                        supplierCode: ''
+                        supplierUserId: mail@yahoo.com
+                        name: 山田
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          サプライヤユーザーマスタ M_SUPPLIER_USER
+      parameters:
+        - schema:
+            type: string
+            maxLength: 4
+            example: A001
+            minLength: 4
+          in: query
+          name: supplier_code
+          description: 仕入先コード
+        - schema:
+            type: string
+            maxLength: 256
+            minLength: 1
+          in: query
+          name: supplier_user_id
+          description: サプライヤユーザーID
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      tags:
+        - SupplierUserSupplier
+      x-channel:
+        - supplier
+  /supplier/v1/supplier/search:
+    get:
+      summary: 仕入先情報検索API
+      tags:
+        - SupplierSupplier
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchSupplierSupplierResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    supplierSupplierV1List:
+                      - subsidiaryCode: CHN
+                        supplierCode: '9572'
+                        languageCode: CHN
+                        importExpenseType: DUMMY
+                        rateTypeCode: RMBM
+                        ccyCode: USD
+                        customerInfoNonDisclosureType: '0'
+                        poChangeType: '0'
+                        address1: Unit A103
+                        address2: 'SH Hi-Tech king World,4/F'
+                        address3: East Beijing Road
+                        address4: 'SHANGHAI,CHINA'
+                        address1Native1: 上海市北京H668号上海科技京城A103-105室
+                        address2Native1: 'HSING RD.SEC,1,WU KU'
+                        address3Native1: 'FAX: 6329-1102'
+                        address4Native1: 'TEL: 5308-7184'
+                        address1Native2: 上海市北京H668号上海科技京城A103-105室
+                        address2Native2: 'HSING RD.SEC,1,WU KU'
+                        address3Native2: 'FAX: 6329-1102'
+                        address4Native2: 'TEL: 5308-7184'
+                        companyEntityType: カ）
+                        companyName: QIF Precision Measuring Instrument
+                        companyNameNative: 上海全精密量莉有限公司
+                        companyNameKana: 上海全精密
+                        companyNameForSearchKana: 上海精密
+                        processingDepartment: DUMMY
+                        processingDepartmentNative: DUMMY
+                        processingDepartmentKana: DUMMY
+                        picPosition: DUMMY
+                        picRole: DUMMY
+                        picName: 千葉
+                        picNameKana: DUMMY
+                        picNameNative: DUMMY
+                        tel: 5308-7184
+                        purchaseAppropriateDataSendType: A
+                        processingSection: 0
+                        poSendType: A
+                        countryCode: '106'
+                        fixedTimeSendType1: '0'
+                        fixedTimeSendType2: '0'
+                        fixedTimeSendType3: '0'
+                        fixedTimeSendType4: '0'
+                        fixedTimeSendType5: '0'
+                        taxFlag: '0'
+                        localCcyFlag: '0'
+                        localFlag: '1'
+                        licenseNumber: AA
+                        incoterms: FOB
+                        remarks1: DUMMY
+                        remarks2: DUMMY
+                        remarks3: DUMMY
+                        remarks4: DUMMY
+                        remarks5: DUMMY
+                        supplierSubsidiaryCode: S01
+                        tiFlag: '0'
+                        poHoldFlag: '1'
+                        emailAddress: DUMMY
+                        supplierWorkingCalendarCode: C9572
+                        orderChangeNeedsAdvanceNoticeFlag: '0'
+                        officeRegisterNumber: DUMMY
+                        businessHours: DUMMY
+                        misumiSubsidiaryFlag: '0'
+                        groupCompanyFlag: '0'
+                        outsideRegionFlag: '0'
+                        taxAreaCode: abc
+                        pocControlField: DUMMY
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchSupplierSupplierV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          仕入先マスタ M_SUPPLIER
+          サプライヤユーザーマスタ M_SUPPLIER_USER
+      parameters:
+        - schema:
+            type: string
+            maxLength: 4
+            example: A001
+            minLength: 4
+          in: query
+          name: supplier_code
+          description: 仕入先コード
+        - schema:
+            type: string
+            maxLength: 256
+            minLength: 1
+          in: query
+          name: supplier_user_id
+          description: サプライヤユーザーID
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      x-channel:
+        - supplier
+    parameters: []
+components:
+  schemas:
+    SearchSupplierUserSupplierResponseV1:
+      title: SearchSupplierUserSupplierResponseV1
+      type: object
+      description: サプライヤユーザー情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        supplierUserSupplierV1List:
+          type: array
+          description: サプライヤユーザー情報リスト
+          items:
+            $ref: '#/components/schemas/SupplierUserSupplierV1'
+      required:
+        - recordCount
+    SupplierUserSupplierV1:
+      title: SupplierUserSupplierV1
+      type: object
+      x-examples: {}
+      description: サプライヤユーザー情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        supplierCode:
+          type: string
+          description: 仕入先コード
+        supplierUserId:
+          type: string
+          description: サプライヤユーザーID
+        name:
+          type: string
+          description: 氏名
+      required:
+        - subsidiaryCode
+        - supplierCode
+        - supplierUserId
+    SearchSupplierSupplierResponseV1:
+      title: SearchSupplierSupplierResponseV1
+      type: object
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        supplierSupplierV1List:
+          type: array
+          description: 仕入先情報リスト
+          items:
+            $ref: '#/components/schemas/SupplierSupplierV1'
+      required:
+        - recordCount
+      description: 仕入先情報検索APIのレスポンス電文
+    SupplierSupplierV1:
+      title: SupplierSupplierV1
+      type: object
+      description: 仕入先情報
+      x-examples: {}
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        supplierCode:
+          type: string
+          description: 仕入先コード
+        languageCode:
+          type: string
+          description: 言語コード
+        importExpenseType:
+          type: string
+          description: 輸入諸費用区分
+        rateTypeCode:
+          type: string
+          description: レートタイプコード
+        ccyCode:
+          type: string
+          description: 通貨コード
+        customerInfoNonDisclosureType:
+          type: string
+          description: 顧客情報非開示区分
+        poChangeType:
+          type: string
+          description: 発注変更区分
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        address1Native1:
+          type: string
+          description: 住所1（現地語1）
+        address2Native1:
+          type: string
+          description: 住所2（現地語1）
+        address3Native1:
+          type: string
+          description: 住所3（現地語1）
+        address4Native1:
+          type: string
+          description: 住所4（現地語1）
+        address1Native2:
+          type: string
+          description: 住所1（現地語2）
+        address2Native2:
+          type: string
+          description: 住所2（現地語2）
+        address3Native2:
+          type: string
+          description: 住所3（現地語2）
+        address4Native2:
+          type: string
+          description: 住所4（現地語2）
+        companyEntityType:
+          type: string
+          description: 資本形態
+        companyName:
+          type: string
+          description: 企業名
+        companyNameNative:
+          type: string
+          description: 企業名（現地語）
+        companyNameKana:
+          type: string
+          description: 企業名（カナ）
+        companyNameForSearchKana:
+          type: string
+          description: 企業名（検索用カナ名）
+        processingDepartment:
+          type: string
+          description: 担当部課
+        processingDepartmentNative:
+          type: string
+          description: 担当部課（現地語）
+        processingDepartmentKana:
+          type: string
+          description: 担当部課（カナ）
+        picPosition:
+          type: string
+          description: 担当者役職
+        picRole:
+          type: string
+          description: 担当者役割
+        picName:
+          type: string
+          description: 担当者名
+        picNameKana:
+          type: string
+          description: 担当者名（カナ）
+        picNameNative:
+          type: string
+          description: 担当者名（現地語）
+        tel:
+          type: string
+          description: 電話番号
+        purchaseAppropriateDataSendType:
+          type: string
+          description: 仕入計上データ伝送区分
+        processingSection:
+          type: integer
+          description: 担当課
+        poSendType:
+          type: string
+          description: 発注伝送区分
+        countryCode:
+          type: string
+          description: 国コード
+        fixedTimeSendType1:
+          type: string
+          description: 定時送信区分1
+        fixedTimeSendType2:
+          type: string
+          description: 定時送信区分2
+        fixedTimeSendType3:
+          type: string
+          description: 定時送信区分3
+        fixedTimeSendType4:
+          type: string
+          description: 定時送信区分4
+        fixedTimeSendType5:
+          type: string
+          description: 定時送信区分5
+        taxFlag:
+          type: string
+          description: 課税フラグ
+        localCcyFlag:
+          type: string
+          description: 海外通貨使用フラグ
+        localFlag:
+          type: string
+          description: 現地フラグ
+        licenseNumber:
+          type: string
+          description: ライセンス番号
+        incoterms:
+          type: string
+          description: インコタームズ
+        remarks1:
+          type: string
+          description: 注釈1
+        remarks2:
+          type: string
+          description: 注釈2
+        remarks3:
+          type: string
+          description: 注釈3
+        remarks4:
+          type: string
+          description: 注釈4
+        remarks5:
+          type: string
+          description: 注釈5
+        supplierSubsidiaryCode:
+          type: string
+          description: 発注先現法コード
+        tiFlag:
+          type: string
+          description: TI対象フラグ
+        poHoldFlag:
+          type: string
+          description: 発注引付対象フラグ
+        emailAddress:
+          type: string
+          description: メールアドレス
+        supplierWorkingCalendarCode:
+          type: string
+          description: 仕入先稼動カレンダコード
+        orderChangeNeedsAdvanceNoticeFlag:
+          type: string
+          description: 注文変更時要事前連絡フラグ
+        officeRegisterNumber:
+          type: string
+          description: 事務所登録番号
+        businessHours:
+          type: string
+          description: 営業時間
+        misumiSubsidiaryFlag:
+          type: string
+          description: ミスミ現法フラグ
+        groupCompanyFlag:
+          type: string
+          description: グループ会社フラグ
+        outsideRegionFlag:
+          type: string
+          description: 域外フラグ
+        taxAreaCode:
+          type: string
+          description: 税金エリアコード
+        pocControlField:
+          type: string
+          description: POC管理項目
+        poMediaType:
+          type: string
+          description: 発注媒体区分
+      required:
+        - subsidiaryCode
+        - supplierCode
+        - languageCode
+        - rateTypeCode
+        - ccyCode
+        - address1
+        - companyName
+        - countryCode
+  responses:
+    ErrorResponse:
+      description: Bad Request
+      content:
+        application/json;charset=utf-8:
+          schema:
+            $ref: ../../common-spec/common-spec.yaml#/components/schemas/Error1
+          examples:
+            '@Example':
+              value:
+                target: ''
+                code: SYS00003
+                argumentList: []
+                message: Constraint violation
+                detailList:
+                  - target: supplierCode
+                    code: SYS03113
+                    argumentList: []
+                    message: supplierCodemust be between 4 and 4
+                    detailList: []
+                  - target: companyName
+                    code: SYS03113
+                    argumentList: []
+                    message: companyName must be between 1 and 50
+                    detailList: []
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 1
+      description: ソート順
+tags:
+  - name: SupplierUserSupplier
+  - name: SupplierSupplier

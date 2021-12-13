@@ -1,0 +1,10 @@
+http://localhost:4015/internal/v1/product/search?ginner_code=MDM10040007505&product_code=1&brand_code=MSM1&released_flag=0
+http://localhost:4015/internal/v1/product/search?ginner_code=MDM10040007502&product_code=2&brand_code=MSM2&released_flag=0
+http://localhost:4015/internal/v1/product/search?ginner_code=MDM10040007509&product_code=3&brand_code=MSM3&released_flag=0
+http://localhost:4010/internal/v1/subsidiary/get?subsidiary_code=MJP
+http://localhost:4010/internal/v1/reason-type/get-list{"getListReasonTypeInternalRequestV1DetailList":[{"businessSceneType":"11","reasonType":"A1234"},{"businessSceneType":"11","reasonType":"A1235"},{"businessSceneType":"11","reasonType":"A1236"}]}
+http://localhost:4015/internal/v1/product-control-department/get-list{"getListProductControlDepartmentInternalRequestV1DetailList":[{"productControlDepartmentCode":"000001"},{"productControlDepartmentCode":"000001"},{"productControlDepartmentCode":"000001"}]}
+http://localhost:4015/internal/v1/brand/get-list{"getListBrandInternalRequestV1DetailList":[{"brandCode":"MSM1"},{"brandCode":"MSM1"},{"brandCode":"MSM1"}]}
+http://localhost:4015/internal/v1/ginner-info/get-list{"getListGinnerInfoInternalRequestV1DetailList":[{"ginnerCode":"MDM10040007505"},{"ginnerCode":"MDM10040007505"},{"ginnerCode":"MDM10040007505"}]}
+http://localhost:4015/internal/v1/type-code/get-list{"getListTypeCodeInternalRequestV1DetailList":[{"typeCode":"J070403"},{"typeCode":"J070403"},{"typeCode":"J070403"}]}
+http://localhost:4015/internal/v1/product-classification/get-list{"getListProductClassificationInternalRequestV1DetailList":[{"classifyCode":"22024203"},{"classifyCode":"22024203"},{"classifyCode":"22024203"}]}

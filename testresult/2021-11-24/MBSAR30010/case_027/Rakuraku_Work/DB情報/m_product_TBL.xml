@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <m_productColName field="subsidiary_code" comment="現法コード:国内は「MJP」固定　現地法人を一意に特定するコード。"/>
+  <m_productColName field="ginner_code" comment="統合インナーコード:MDMによって新規導入された、現法間をまたいでグローバルで一意に商品を特定するためのキー項目。先頭3桁が&apos;MDM&apos;固定、後続の11桁が桁に意味なし（自動発番）の数字で構成される。"/>
+  <m_productColName field="product_group_code" comment="商品グループコード:初期値：NULL ※入力文字数：7文字"/>
+  <m_productColName field="brand_code" comment="ブランドコード:初期値：NULL 入力文字数：4文字"/>
+  <m_productColName field="weight_formula_type" comment="重量式区分:有効値　NULL：重量計算なし、01～63、99：該当の計算式を利用"/>
+  <m_productColName field="sales_unit_price_ccy_code" comment="売単価通貨コード:通貨単位。通貨マスタに存在するコード。"/>
+  <m_productColName field="so_message_code" comment="受注メッセージコード:値(1111等)が設定されていれば受注MSGテーブルを参照する"/>
+  <m_productColName field="product_control_department_code" comment="商品所管部門コード:商品所管部門マスタに存在する商品所管部門コード"/>
+  <m_productColName field="product_code" comment="商品コード:インナーコードと対になっているコード。カタログに表記されている。"/>
+  <m_productColName field="hs_code" comment="HSコード:輸出入統計品目番号。世界税関機構によって定められた番号。"/>
+  <m_productColName field="product_name_english" comment="商品名（英語）:商品の英語名称。"/>
+  <m_productColName field="product_name_native" comment="商品名（現地語）:商品の現地語名称（日本語の場合、カナ表記）。"/>
+  <m_productColName field="stock_flag" comment="在庫品フラグ:有効値　0：在庫しない  1：在庫品"/>
+  <m_productColName field="component_flag" comment="部材品フラグ:有効値  0：部材親商品ではない、1：部材親商品"/>
+  <m_productColName field="unit_price_check_type" comment="単価チェック区分:有効値　0：標準単価　1：1変数で単価を設定　2：2変数で単価を設定　3：3変数で単価を設定　4：4変数で単価を設定　5：5変数で単価を設定"/>
+  <m_productColName field="supplier_specify_method_type" comment="サプライヤ指定方法区分:有効値　0:1社のみの商品（通常） 1:エリア別にメーカーを設定"/>
+  <m_productColName field="specification_condition_type" comment="規格条件区分:規格条件式を区別する区分。入力文字数は最大5文字"/>
+  <m_productColName field="product_check_master_flag" comment="商品チェックマスタ有無フラグ:商品チェックマスタ参照要否を表す。0：チェックマスタ無、1：チェックマスタ有"/>
+  <m_productColName field="product_assort" comment="商品種別:0：通常商品　&#xD;&#xA;3:アルミフレーム（WDH単価算出）&#xD;&#xA;5:FA洗浄(親)&#xD;&#xA;8:海外専用規格品(日本国内ユーザへの販売禁止商品)　&#xD;&#xA;B:アルミフレーム（一日納期）&#xD;&#xA;C:ツール(親)&#xD;&#xA;D:金属プレート&#xD;&#xA;F：VONA個別対応製品"/>
+  <m_productColName field="big_order_min_threshold_qty" comment="大口下限数量:大口扱いとする最小数量"/>
+  <m_productColName field="big_order_max_threshold_qty" comment="大口上限数量:大口扱いとする最大数量"/>
+  <m_productColName field="product_weight" comment="商品重量:商品１本あたりの単位重量"/>
+  <m_productColName field="product_weight_unit" comment="商品重量単位:重量の単位"/>
+  <m_productColName field="release_date" comment="発売日:発売される年月日。商品マスタ登録年月から半年以内の年月。"/>
+  <m_productColName field="product_delivery_destination_type" comment="商品納入先区分:有効値　2：営業所52、3：営業所53、9：メーカー直送、C：営業所52/53"/>
+  <m_productColName field="delivery_note_destination_type" comment="納品書納入先区分:有効値　2：営業所52、3：営業所53、9：メーカー直送、C：営業所52/53"/>
+  <m_productColName field="po_format_type" comment="発注フォーマット区分:発注伝送ファイルのフォーマット区分を指定（01～17が登録可能）※STEP2管理項目"/>
+  <m_productColName field="weight_coefficient" comment="重量係数:重量計算で使用する係数"/>
+  <m_productColName field="developed_date" comment="開発日:YYYYMMDD"/>
+  <m_productColName field="css_send_flag" comment="CSS伝送フラグ:有効値　0：図面データ作成不要、1：図面データ作成　※STEP2管理項目"/>
+  <m_productColName field="stamp_type" comment="刻印区分:有効値　0：刻印不可、1：1行刻印、2：2行刻印  ※STEP2管理項目"/>
+  <m_productColName field="stamp_column_length" comment="刻印桁数:刻印する桁数を指定（２桁） ※STEP2管理項目"/>
+  <m_productColName field="maker_direct_shipment_type" comment="メーカ直送区分:有効値　0：納区分けなし　1：１変数で納区を振分け　2：２変数で納区を振分け　3：３変数で納区を振分け※ACEで使用されているもの。"/>
+  <m_productColName field="saturday_holiday_count_method_type" comment="土祝カウント方法区分:有効値　0：カウントする　1：カウントしない　2：土曜日カウント除外　3：祝日カウント除外　4：メーカー固有カレンダ参照　※納期計算用"/>
+  <m_productColName field="pack_qty" comment="パック数量:1パックに含まれる商品点数"/>
+  <m_productColName field="product_abolition_date" comment="商品廃止日:YYYYMMDD"/>
+  <m_productColName field="reorder_point_logic_flag" comment="発注点ロジックフラグ:有効値　0：通常ロジック、1：新ロジック"/>
+  <m_productColName field="mto_exclude_flag" comment="製作品扱除外フラグ:有効値　0：製作品での出荷数を対象　1：製作品での出荷数を対象外　※発注点ロジックフラグが０の場合、NULLを設定する。"/>
+  <m_productColName field="object_period" comment="対象期間:1&apos;～&apos;99&apos;　発注点ロジックフラグ＝’１’の時のみ指定可能　※日次発注点計算の対象期間（過去○○日分の出荷を対象とするか）"/>
+  <m_productColName field="safety_stock_coefficient" comment="安全在庫係数:&apos;01.00&apos;～99.99&apos;　発注点ロジックフラグ＝’１’の時のみ指定可能"/>
+  <m_productColName field="heavy_flag" comment="大重量フラグ:有効値　0：通常商品、1：大重量商品"/>
+  <m_productColName field="expensive_flag" comment="高額商品フラグ:有効値　0：通常商品、1：高額商品"/>
+  <m_productColName field="heavy_threshold" comment="大重量閾値:&apos;1&apos;～&apos;999&apos;　大重量フラグ＝&apos;1&apos;の時のみ指定可能"/>
+  <m_productColName field="expensive_threshold" comment="高額商品閾値:&apos;1&apos;～&apos;999&apos;　高額商品フラグ＝&apos;1&apos;の時のみ指定可能"/>
+  <m_productColName field="chargeable_material_flag" comment="有償支給フラグ:初期値：NULL　　有効値　0：有償支給品対象外　1：有償支給品"/>
+  <m_productColName field="po_qty_per_case" comment="発注入り数:1～99999　※ミスミから仕入先に発注するときの発注単位"/>
+  <m_productColName field="lead_time_calculation_formula_type" comment="納期計算式区分:有効値　0：最大値取得、　1：加算方式"/>
+  <m_productColName field="so_stop_flag" comment="受注停止フラグ:有効値　0：受注可能、　1：受注停止"/>
+  <m_productColName field="shipment_stop_flag" comment="出荷停止フラグ:有効値　0：出荷可能、　1：出荷停止"/>
+  <m_productColName field="abolition_message" comment="廃止品メッセージ:初期値：NULL ※入力文字数：250文字　※ACE関連、用途不明"/>
+  <m_productColName field="piece_charge_calculation_method_type" comment="バラチャージ計算方式区分:0：バラチャージなし、1：可算方式、2：按分方式"/>
+  <m_productColName field="po_product_code" comment="発注用商品コード:初期値：NULL 入力文字数：20文字　※ミスミが仕入先に発注するときに使用する商品コード"/>
+  <m_productColName field="order_unit_qty" comment="注文単位数量:初期値：1　　※ECALから連携時は数量スライド01を設定　※ミスミが得意先から受け付ける際の受注単位数量"/>
+  <m_productColName field="stock_priority_flag" comment="在庫優先フラグ:0：指定なし　1：優先"/>
+  <m_productColName field="pre_stock_replenishment_flag" comment="事前在庫補充フラグ:0：指定なし　1：事前補充発注可"/>
+  <m_productColName field="remarks" comment="注釈:注釈欄　※ミスミ内部向けの留意点が入力される。"/>
+  <m_productColName field="tax_free_flag" comment="非課税フラグ:有効値　0：課税、1：非課税　※先行登録機能では非課税設定は許容しない。"/>
+  <m_productColName field="hazardous_material_flag" comment="危険品フラグ:0：通常品　1：危険品"/>
+  <m_productColName field="gti_flag" comment="GTI対象フラグ:TI Apply フラグ。グローバルTI対象商品であるかのフラグ。"/>
+  <m_productColName field="io_so_message_flag" comment="現法間受注メッセージフラグ:現法取引の場合にSub1へ登録受注メッセージの返却するかどうかのフラグ　0：返却しない　1：返却する"/>
+  <m_productColName field="qty_unit" comment="数量単位:KG、EA、などの商品の数量や寸法の単位"/>
+  <m_productColName field="qc_flag" comment="QCフラグ:QC品の判定に使用するフラグ（0：通常商品、1：QC品）"/>
+  <m_productColName field="heavy_long_flag" comment="重長品フラグ"/>
+  <m_productColName field="product_type" comment="商品区分:1: MTO品、2: 完成品 3:特注品"/>
+  <m_productColName field="distribution_name_english" comment="流通用名（英語）:通関等で利用する一般名称。型・桁は商品名（現地語）に合わせただけ。※英語は30ケタだが長いほうに合わせている"/>
+  <m_productColName field="distribution_name_native" comment="流通用名（現地語）:通関等で利用する一般名称。型・桁は商品名（現地語）に合わせただけ。"/>
+  <m_productColName field="maker_product_code" comment="メーカ型番:メーカーの本来の型番。ミスミ内検索でヒットさせるための項目。型・桁は商品名（現地語）に合わせただけ。ミスミ型番登録時になるべく合わせているが、ミスミシステム制約で合わないときがあるため別項目持ち"/>
+  <m_productColName field="trading_company_code" comment="商社コード:トラスココードなど、商社が販売する際の商品コード。ミスミ内検索でヒットさせるための項目。型・桁は商品名（現地語）に合わせただけ。"/>
+  <m_productColName field="stock_cooperative_product_flag" comment="在庫連携対象商品フラグ"/>
+  <m_productColName field="catalog_lead_time" comment="カタログ納期:納区「0」のセンター出荷品の納期"/>
+  <m_productColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <m_productColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <m_productColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_productColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <m_productColName field="register_date_time" comment="登録日時"/>
+  <m_productColName field="register_program" comment="登録プログラム"/>
+  <m_productColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <m_productColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_productColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <m_productColName field="update_date_time" comment="更新日時"/>
+  <m_productColName field="update_program" comment="更新プログラム"/>
+  <m_productColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

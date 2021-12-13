@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="subsidiary_code" comment="現法コード"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="so_voucher_no" comment="受注伝票番号"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="so_line_key" comment="受注明細キー"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="global_number" comment="グローバル番号"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="supply_type" comment="調達区分:01：在庫品、02：在庫品受注製作品扱い、 03：MTO品、 04：非在庫品"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_qty" comment="入荷数量"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="shipment_qty" comment="出荷数量"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_fix_date" comment="入荷確定日"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_fix_process_date" comment="入荷確定処理日"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_purchase_amount" comment="入荷仕入金額"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_supplier_subsidiary_rate" comment="入荷仕入先現法レート"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_freight_supplier_rate" comment="入荷運賃仕入先レート"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_supplier_subsidiary_supplier_rate" comment="入荷発注先現法仕入先レート"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_freight_supplier_subsidiary_rate" comment="入荷運賃発注先現法レート"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="receiving_product_supplier_rate" comment="入荷商品仕入先レート"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="register_date_time" comment="登録日時"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="register_program" comment="登録プログラム"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="update_date_time" comment="更新日時"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="update_program" comment="更新プログラム"/>
+  <T_RECEIVED_NOT_SHIPPED_MTOColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

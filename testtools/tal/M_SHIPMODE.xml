@@ -1,0 +1,22 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+扱い便コード::shipmode_code::varchar(3)::NOT NULL(PK)
+配送業者名（現地語）::shipping_company_name_native::varchar(50)::NOT NULL
+配送業者名略称（現地語）::shipping_company_name_abbreviation_native::varchar(10)::NOT NULL
+配送業者名::shipping_company_name::varchar(100)::NOT NULL
+配送業者名略称::shipping_company_name_abbreviation::varchar(20)::NOT NULL
+配送業者URL::shipping_company_url::varchar(256)::NULL
+配送業者顧客番号必須フラグ::carrier_account_number_mandatory_flag::char(1)::NOT NULL
+配送無料フラグ::shipping_free_flag::char(1)::NULL
+並び順::sort_order::integer::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

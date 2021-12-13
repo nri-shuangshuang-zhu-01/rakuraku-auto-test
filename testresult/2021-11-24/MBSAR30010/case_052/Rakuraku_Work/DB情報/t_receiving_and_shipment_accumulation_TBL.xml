@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_receiving_and_shipment_accumulationColName field="subsidiary_code" comment="現法コード"/>
+  <t_receiving_and_shipment_accumulationColName field="ginner_code" comment="統合インナーコード"/>
+  <t_receiving_and_shipment_accumulationColName field="plant_code" comment="置場コード"/>
+  <t_receiving_and_shipment_accumulationColName field="this_month_receiving_qty" comment="当月入荷数"/>
+  <t_receiving_and_shipment_accumulationColName field="latest_receiving_date" comment="最新入荷日"/>
+  <t_receiving_and_shipment_accumulationColName field="latest_receiving_qty" comment="最新入荷数"/>
+  <t_receiving_and_shipment_accumulationColName field="this_month_shipment_qty" comment="当月出荷数"/>
+  <t_receiving_and_shipment_accumulationColName field="final_shipping_date" comment="最終出荷日"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty1" comment="当年月別・入庫数１"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty1" comment="当年月別・出庫数１"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty2" comment="当年月別・入庫数２"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty2" comment="当年月別・出庫数２"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty3" comment="当年月別・入庫数３"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty3" comment="当年月別・出庫数３"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty4" comment="当年月別・入庫数４"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty4" comment="当年月別・出庫数４"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty5" comment="当年月別・入庫数５"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty5" comment="当年月別・出庫数５"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty6" comment="当年月別・入庫数６"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty6" comment="当年月別・出庫数６"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty7" comment="当年月別・入庫数７"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty7" comment="当年月別・出庫数７"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty8" comment="当年月別・入庫数８"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty8" comment="当年月別・出庫数８"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty9" comment="当年月別・入庫数９"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty9" comment="当年月別・出庫数９"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty10" comment="当年月別・入庫数１０"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty10" comment="当年月別・出庫数１０"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty11" comment="当年月別・入庫数１１"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty11" comment="当年月別・出庫数１１"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_receiving_qty12" comment="当年月別・入庫数１２"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_month_shipping_qty12" comment="当年月別・出庫数１２"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_total_receiving_qty" comment="当年計・入庫数"/>
+  <t_receiving_and_shipment_accumulationColName field="this_year_total_shipping_qty" comment="当年計・出庫数"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty1" comment="前年月別・入庫数１"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty1" comment="前年月別・出庫数１"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty2" comment="前年月別・入庫数２"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty2" comment="前年月別・出庫数２"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty3" comment="前年月別・入庫数３"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty3" comment="前年月別・出庫数３"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty4" comment="前年月別・入庫数４"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty4" comment="前年月別・出庫数４"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty5" comment="前年月別・入庫数５"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty5" comment="前年月別・出庫数５"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty6" comment="前年月別・入庫数６"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty6" comment="前年月別・出庫数６"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty7" comment="前年月別・入庫数７"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty7" comment="前年月別・出庫数７"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty8" comment="前年月別・入庫数８"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty8" comment="前年月別・出庫数８"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty9" comment="前年月別・入庫数９"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty9" comment="前年月別・出庫数９"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty10" comment="前年月別・入庫数１０"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty10" comment="前年月別・出庫数１０"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty11" comment="前年月別・入庫数１１"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty11" comment="前年月別・出庫数１１"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_receiving_qty12" comment="前年月別・入庫数１２"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_month_shipping_qty12" comment="前年月別・出庫数１２"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_total_receiving_qty" comment="前年計・入庫数"/>
+  <t_receiving_and_shipment_accumulationColName field="last_year_total_shipping_qty" comment="前年計・出庫数"/>
+  <t_receiving_and_shipment_accumulationColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <t_receiving_and_shipment_accumulationColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <t_receiving_and_shipment_accumulationColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_receiving_and_shipment_accumulationColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <t_receiving_and_shipment_accumulationColName field="register_date_time" comment="登録日時"/>
+  <t_receiving_and_shipment_accumulationColName field="register_program" comment="登録プログラム"/>
+  <t_receiving_and_shipment_accumulationColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <t_receiving_and_shipment_accumulationColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_receiving_and_shipment_accumulationColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <t_receiving_and_shipment_accumulationColName field="update_date_time" comment="更新日時"/>
+  <t_receiving_and_shipment_accumulationColName field="update_program" comment="更新プログラム"/>
+  <t_receiving_and_shipment_accumulationColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

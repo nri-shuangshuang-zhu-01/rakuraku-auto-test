@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <c_ul_purpose_ul_result_data_download_fileColName field="control_seq_number" comment="管理SEQ番号:非同期処理に処理対象を指示するための単項目キー"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="data_download_control_seq" comment="データダウンロード制御SEQ"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="subsidiary_code" comment="現法コード:データの現法を一意に特定するコード"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="data_code" comment="データコード:対象データを認識するコード"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="create_date_time" comment="作成日時:オンラインロケール日付"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="mail_address" comment="メールアドレス:登録時のメールアドレス"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="temp_file_code" comment="一時ファイルコード:アップロード時に生成される一時ファイルコード"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="file_path" comment="ファイルパス:アップロード後に移動したファイルパス"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="presigned_api_path" comment="PresignedURL変換APIパス:PresignedURLを生成するAPIパス"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="signature" comment="署名:S3にアクセスための検証用署名"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="display_file_name" comment="表示用ファイル名:画面に表示するファイル名"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="status_code" comment="ステータスコード:１：処理中　２：DL可能　３：DL済"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="process_result_code" comment="処理結果コード:処理結果　1：OK　0：NG　&quot;&quot;（半角スペース）：未処理"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="process_result_detail" comment="処理結果詳細:エラー発生時のエラーコードとエラーメッセージの詳細を記載する項目"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_date_time" comment="登録日時"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_program" comment="登録プログラム"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_date_time" comment="更新日時"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_program" comment="更新プログラム"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

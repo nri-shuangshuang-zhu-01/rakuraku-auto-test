@@ -1,0 +1,82 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+納期型番確認ID::lead_time_product_inquiry_id::bigint::NOT NULL(PK)
+依頼回答区分::inquiry_reply_type::char(1)::NOT NULL
+履歴SEQ::history_seq::integer::NOT NULL
+Sub1グローバル番号::sub1_global_number::char(14)::NULL
+Sub1見積時納期型番確認受付番号::sub1_qt_lead_time_product_inquiry_receive_number::char(6)::NULL
+Sub1受注時納期型番確認受付番号::sub1_so_lead_time_product_inquiry_receive_number::char(6)::NULL
+得意先現法得意先コード::customer_subsidiary_customer_code::char(6)::NULL
+得意先現法直送先コード::customer_subsidiary_direct_shipment_country_code::char(6)::NULL
+得意先現法置場コード::customer_subsidiary_plant_code::char(4)::NULL
+希望納期(VSD)::request_vsd::date::NULL
+分納可否フラグ::partial_delivery_possibility_flag::char(1)::NULL
+見積目的タイプ::qt_purpose_type::char(1)::NULL
+顧客担当コメント::customer_pic_comment::varchar::NULL
+緊急フラグ::urgent_flag::char(1)::NULL
+依頼理由コード(起因)::request_code_cause::char(4)::NULL
+依頼理由コード(事由)::request_code_reason::char(4)::NULL
+対応可否タイプ::deal_possibility_flag::char(1)::NULL
+仕入先見積有効期限日時::supplier_qt_expiration_date_time::timestamp with time zone::NULL
+回答現法コード::reply_subsidiary_code::char(3)::NULL
+回答商品コード::reply_product_code::varchar(234)::NULL
+回答ブランドコード::reply_brand_code::char(4)::NULL
+キャンセル変更タイプ::cancel_change_type::char(1)::NULL
+回答理由コード(起因)::contact_reply_code_cause::char(4)::NULL
+回答理由コード(事由)::contact_reply_code_reason::char(4)::NULL
+事業部コメント::reply_content::varchar::NULL
+回答売単価::reply_sales_unit_price::numeric(14,3)::NULL
+仕入先依頼日時::supplier_request_date_time::timestamp with time zone::NULL
+仕入先依頼担当者ID::supplier_request_pic_id::varchar(6)::NULL
+仕入先回答日時::supplier_reply_date_time::timestamp with time zone::NULL
+仕入先回答担当者ID::supplier_reply_pic_id::varchar(6)::NULL
+市場セルコード::market_cell_code::char(4)::NULL
+依頼仕入先コード::request_supplier_code::char(4)::NULL
+在庫空回しフラグ::stock_skip_flag::char(1)::NULL
+仕入先担当立て日時::supplier_assign_date_time::timestamp with time zone::NULL
+発注先現法先行納期変更フラグ::supplier_subsidiary_advanced_lead_time_change_flag::char(1)::NULL
+仕入先コメント１::supplier_comment1::varchar(8)::NULL
+仕入先コメント２::supplier_comment2::varchar(8)::NULL
+仕入先コメント３::supplier_comment3::varchar(8)::NULL
+仕入先コメント自由入力::supplier_comment_free::varchar::NULL
+仕入先回答ファイルID::supplier_reply_file_id::varchar(256)::NULL
+仕入先回答ファイル名::supplier_reply_file_name::varchar(256)::NULL
+回答売単価変更フラグ::reply_sales_unit_price_change_flag::char(1)::NULL
+発注先現法在庫空回しフラグ::supplier_subsidiary_stock_skip_flag::char(1)::NULL
+発注先現法ストークコード::supplier_subsidiary_stork_code::char(2)::NULL
+発注先現法出荷方法コード::supplier_subsidiary_shipment_method_code::char(2)::NULL
+発注先現法特注区分::supplier_subsidiary_special_order_type::char(1)::NULL
+発注先現法置場コード::supplier_subsidiary_plant_code::char(4)::NULL
+発注先現法仕入先コード::supplier_subsidiary_supplier_code::char(4)::NULL
+発注先現法SSD::supplier_subsidiary_ssd::date::NULL
+発注先現法VSD::supplier_subsidiary_vsd::date::NULL
+発注先現法VRD::supplier_subsidiary_vrd::date::NULL
+発注先現法CRD::supplier_subsidiary_crd::date::NULL
+発注先現法依頼日時::supplier_subsidiary_request_date_time::timestamp with time zone::NULL
+発注先現法依頼担当者ID::supplier_subsidiary_request_pic_id::char(6)::NULL
+発注先現法回答日時::supplier_subsidiary_reply_date_time::timestamp with time zone::NULL
+発注先現法回答担当者ID::supplier_subsidiary_reply_pic_id::char(6)::NULL
+輸入現法事業部回答者ID::import_subsidiary_business_unit_reply_pic_id::char(6)::NULL
+輸入現法事業部回答者日時::import_subsidiary_business_unit_reply_date_time::timestamp with time zone::NULL
+発注先現法事業部回答者ID::supplier_subsidiary_business_unit_reply_pic_id::char(6)::NULL
+発注先現法事業部回答者日時::supplier_subsidiary_business_unit_reply_date_time::timestamp with time zone::NULL
+発注先現法コード::supplier_subsidiary_code::char(3)::NULL
+仕入先担当者::supplier_pic_id::char(6)::NULL
+依頼回数::request_count::integer::NULL
+仕入先回答期限日時::supplier_reply_expiration_date_time::timestamp with time zone::NULL
+値引き前売単価::sales_unit_price_before_discount_rate::numeric(14,3)::NULL
+値引き前売単価（税込）::sales_unit_price_before_discount_rate_including_tax::numeric(14,3)::NULL
+発注先現法納期型番確認ID::supplier_subsidiary_lead_time_product_inquiry_id::bigint::NULL
+売単価通貨コード::sales_unit_price_ccy_code::char(3)::NULL
+依頼元仕入先コード::original_request_supplier_code::char(4)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_CARRIER_INVOICE_REPLICAColName field="subsidiary_code"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="global_number"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="create_date"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="carrier_invoice_number"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="program_type"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="internal_external_type"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="plant_code"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="vsd"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="packing_control_number"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="shipmode_code"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="qty"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="process_type"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="delete_flag"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="data_hub_updated_flag"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="register_system_date_time"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="update_system_date_time"/>
+  <T_CARRIER_INVOICE_REPLICAColName field="update_program"/>
+</dataset>

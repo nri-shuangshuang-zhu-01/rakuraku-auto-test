@@ -1,0 +1,40 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+現地法人名::subsidiary_name::varchar(45)::NOT NULL
+現地法人名（現地語）::subsidiary_name_native::varchar(40)::NOT NULL
+国コード::country_code::char(3)::NOT NULL
+言語コード::language_code::char(3)::NOT NULL
+ライセンス番号::license_number::varchar(20)::NULL
+税登録番号::tax_register_number::varchar(60)::NULL
+住所1::address1::varchar(30)::NOT NULL
+住所2::address2::varchar(30)::NULL
+住所3::address3::varchar(30)::NULL
+住所4::address4::varchar(30)::NULL
+住所1（現地語）::address1_native::varchar(30)::NOT NULL
+住所2（現地語）::address2_native::varchar(30)::NULL
+住所3（現地語）::address3_native::varchar(30)::NULL
+住所4（現地語）::address4_native::varchar(30)::NULL
+郵便番号::postal_code::varchar(10)::NULL
+電話番号::tel::varchar(20)::NOT NULL
+FAX番号::fax::varchar(20)::NOT NULL
+通貨コード::ccy_code::char(3)::NOT NULL
+日付形式::date_format::varchar(8)::NOT NULL
+タイムゾーン::time_zone::varchar(25)::NULL
+会計開始年度::fiscal_start_year::numeric(4,0)::NOT NULL
+会計開始月::fiscal_start_month::numeric(2,0)::NOT NULL
+決算月::settlement_month::numeric(2,0)::NOT NULL
+梱包重量::packing_weight::numeric(9,2)::NOT NULL
+保留期間適用カレンダコード::hold_period_apply_calendar_code::char(5)::NOT NULL
+現法システム区分::subsidiary_system_type::char(1)::NOT NULL
+並び順::sort_order::integer::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

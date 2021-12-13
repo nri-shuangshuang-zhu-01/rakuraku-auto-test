@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_event_send_receiving_actual_replica subsidiary_code="JPN" plant_code="JSA " global_number="12345678901235" purchase_slip_number="1234567891" purchase_slip_line_number="11" data_hub_updated_flag="0" register_system_date_time="2020-09-11 01:01:02.0" update_system_date_time="2021-09-11 17:08:32.682696"/>
+  <t_event_send_receiving_actual_replica subsidiary_code="JPN" plant_code="JSB " global_number="12345678901236" purchase_slip_number="1234567892" purchase_slip_line_number="12" data_hub_updated_flag="0" register_system_date_time="2020-09-11 01:01:03.0" update_system_date_time="2021-09-11 17:08:32.682696"/>
+  <t_event_send_receiving_actual_replica subsidiary_code="JPN" plant_code="JSC " global_number="12345678901237" purchase_slip_number="1234567893" purchase_slip_line_number="13" data_hub_updated_flag="0" register_system_date_time="2020-09-11 01:01:04.0" update_system_date_time="2021-09-11 17:08:32.682696"/>
+</dataset>

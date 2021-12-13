@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RakurakuCore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.core</a> &gt; <span class="el_source">RakurakuCore.java</span></div><h1>RakurakuCore.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.core;
+
+import com.linkage.rakuraku.constant.RakurakuConst;
+import com.linkage.rakuraku.exp.RakurakuException;
+import com.linkage.rakuraku.util.RakurakuCaptureUtils;
+import com.linkage.rakuraku.util.RakurakuDBUtils;
+import com.linkage.rakuraku.util.RakurakuDateUtils;
+import com.linkage.rakuraku.util.RakurakuFileUtils;
+import com.linkage.rakuraku.util.RakurakuWebUtils;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class RakurakuCore {
+
+    /* ブラウザインスタンス */
+    public static WebDriver driver;
+
+    /* ブラウザ種別 */
+    private String driverType;
+
+<span class="nc" id="L43">    private static String apiMock = &quot;&quot;;</span>
+
+    /* キャプチャツール */
+    public static RakurakuCaptureUtils guiCamera;
+
+    /* logPathを取得 */
+    public static String resultPath;
+
+    /* ケース毎のエビデンスパス */
+    public static String eachEviPath;
+
+    /* ケース実施日 */
+    public static String runDate;
+
+    public static String s1;
+
+    /* 実行ロガー */
+    public static StringBuilder logBuilder;
+
+    /* ケース実行OK、NG */
+<span class="nc" id="L63">    public static boolean OKFlag = true;</span>
+
+    public static boolean flg;
+
+    public static String flg1;
+
+    /* エラーメッセージ */
+    public static String messageStr;
+
+    /* 変数マップ */
+    public static Map&lt;String, String&gt; variablesMap;
+
+    /**
+     * ケース毎の自動化インスタンス
+     *
+     * @param
+     * @throws Exception
+     */
+<span class="nc" id="L81">    public RakurakuCore(String eachOnePath, String driverType) throws Exception {</span>
+<span class="nc" id="L82">        RakurakuDateUtils.setRunDate();</span>
+<span class="nc" id="L83">        resultPath = eachOnePath.substring(0, eachOnePath.lastIndexOf(RakurakuConst.ONE_SLASH));</span>
+<span class="nc" id="L84">        RakurakuFileUtils.getEachEviPath(resultPath);</span>
+<span class="nc" id="L85">        RakurakuFileUtils.delAllFile();</span>
+<span class="nc" id="L86">        RakurakuFileUtils.makeEachEviDir();</span>
+<span class="nc" id="L87">        RakurakuWebUtils.mockHeaders = &quot;&quot;;</span>
+<span class="nc" id="L88">        this.driverType = driverType;</span>
+<span class="nc" id="L89">        logBuilder = new StringBuilder();</span>
+<span class="nc" id="L90">        variablesMap = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L91">        guiCamera = new RakurakuCaptureUtils(eachOnePath.substring(eachOnePath.lastIndexOf(RakurakuConst.ONE_SLASH)));</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * テストクラス開始
+     *
+     * @param dbunit
+     * @param funcId
+     * @throws Exception
+     */
+    public static void initialize(String dbunit, String funcId) throws Exception {
+
+<span class="nc" id="L103">        File dir = new File(RakurakuFileUtils.getToolPath() + &quot;/testdata/mockapis/&quot; + funcId);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (dir.exists()) {</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (dir.isDirectory()) {</span>
+<span class="nc" id="L106">                String filesPath = RakurakuFileUtils.getToolPath() + &quot;/testdata/mockapis/&quot; + funcId;</span>
+<span class="nc" id="L107">                File files = new File(filesPath);</span>
+<span class="nc" id="L108">                File[] fs = files.listFiles();</span>
+                String dockerPath;
+<span class="nc bnc" id="L110" title="All 2 branches missed.">                for(File f:fs){</span>
+<span class="nc" id="L111">                    String[] aa = f.getName().split(&quot;\\.&quot;);</span>
+<span class="nc" id="L112">                    dockerPath = RakurakuDBUtils.getProps().getProperty(&quot;YAML_PATH&quot;) + &quot;\\&quot; + RakurakuDBUtils.getProps().getProperty(aa[0]);</span>
+<span class="nc" id="L113">                    FileUtils.copyFile(new File(f.getPath()), new File(dockerPath));</span>
+                }
+<span class="nc" id="L115">                String dockerSERVICE = RakurakuDBUtils.getProps().getProperty(&quot;DOCKER_SERVICE&quot;);</span>
+                Process pro;
+<span class="nc" id="L117">                String batFile = RakurakuFileUtils.getToolPath() + &quot;/testdata/mockapis/&quot; + funcId + &quot;/dockerCmd.bat&quot;;</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                if(new File(batFile).exists()) {</span>
+<span class="nc" id="L119">                    FileUtils.forceDelete(new File(batFile));</span>
+                }
+<span class="nc" id="L121">                String fileStr = &quot;cd /d &quot; + dockerSERVICE + &quot;\r\ndocker-compose restart\r\nexit&quot;;</span>
+<span class="nc" id="L122">                FileUtils.writeStringToFile(new File(batFile), fileStr);</span>
+
+<span class="nc" id="L124">                String command = &quot;cmd /c start &quot; + batFile;</span>
+<span class="nc" id="L125">                pro = Runtime.getRuntime().exec(command);</span>
+<span class="nc" id="L126">                pro.waitFor();</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">                if (pro.exitValue() == 0) {</span>
+<span class="nc" id="L128">                    BufferedReader br = new BufferedReader(new InputStreamReader(pro.getInputStream()));</span>
+                    String line;
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                    while ((line = br.readLine()) != null) {</span>
+                    }
+<span class="nc bnc" id="L132" title="All 2 branches missed.">                    if (br != null) {</span>
+<span class="nc" id="L133">                        br.close();</span>
+                    }
+<span class="nc" id="L135">                    pro.destroy();</span>
+<span class="nc" id="L136">                    pro = null;</span>
+<span class="nc" id="L137">                    System.out.println(&quot;dockerの起動に成功しました&quot;);</span>
+<span class="nc" id="L138">                    FileUtils.forceDelete(new File(batFile));</span>
+<span class="nc" id="L139">                    Thread.sleep(1000);</span>
+<span class="nc" id="L140">                } else {</span>
+<span class="nc" id="L141">                    System.out.println(&quot;dockerの起動に失敗しました&quot;);</span>
+<span class="nc" id="L142">                    throw new RakurakuException(&quot;dockerの起動に失敗しました&quot;);</span>
+                }
+            }
+        }
+
+
+
+//    	if(&quot;Y&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;DOCKER_FLG&quot;))) {
+//	    	String copyPath = RakurakuFileUtils.getToolPath() + &quot;/testdata/mockapis/&quot; + funcId + &quot;/&quot; + funcId + &quot;.yaml&quot;;
+//	    	if(!new File(copyPath).exists()) {
+//	    		System.out.println(copyPath + &quot;は存在しません&quot;);
+//	    		throw new RakurakuException(copyPath + &quot;は存在しません&quot;);
+//	    	}
+//	    	String yamlPath = RakurakuDBUtils.getProps().getProperty(&quot;DOCKER_YAML&quot;);
+//	    	FileUtils.copyFile(new File(copyPath), new File(yamlPath));
+//
+//	    	String dockerPath = RakurakuDBUtils.getProps().getProperty(&quot;DOCKER_SERVICE&quot;);
+//	    	Process pro;
+//	    	String batFile = RakurakuFileUtils.getToolPath() + &quot;/testdata/mockapis/&quot; + funcId + &quot;/dockerCmd.bat&quot;;
+//	    	if(new File(batFile).exists()) {
+//	    		FileUtils.forceDelete(new File(batFile));
+//	    	}
+//	    	String fileStr = &quot;cd /d &quot; + dockerPath + &quot;\r\ndocker-compose restart\r\nexit&quot;;
+//	    	FileUtils.writeStringToFile(new File(batFile), fileStr);
+//
+//	    	String command = &quot;cmd /c start &quot; + batFile;
+//	    	pro = Runtime.getRuntime().exec(command);
+//	    	pro.waitFor();
+//	    	if (pro.exitValue() == 0) {
+//	    		BufferedReader br = new BufferedReader(new InputStreamReader(pro.getInputStream()));
+//	            String line;
+//	            while ((line = br.readLine()) != null) {
+//	            }
+//	            if (br != null) {
+//	                br.close();
+//	            }
+//	            pro.destroy();
+//	            pro = null;
+//	    		System.out.println(&quot;dockerの起動に成功しました&quot;);
+//	    		FileUtils.forceDelete(new File(batFile));
+//	    		Thread.sleep(1000);
+//	        } else {
+//	        	System.out.println(&quot;dockerの起動に失敗しました&quot;);
+//	            throw new RakurakuException(&quot;dockerの起動に失敗しました&quot;);
+//	        }
+//    	}else if(&quot;Ym&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;DOCKER_FLG&quot;))) {
+//            String dockerPath = RakurakuDBUtils.getProps().getProperty(&quot;DOCKER_SERVICE&quot;);
+//            Process pro;
+//            String batFile = RakurakuFileUtils.getToolPath() + &quot;/testdata/mockapis/dockerCmd.bat&quot;;
+//            if(new File(batFile).exists()) {
+//                FileUtils.forceDelete(new File(batFile));
+//            }
+//            String fileStr = &quot;cd /d &quot; + dockerPath + &quot;\r\ndocker-compose restart\r\nexit&quot;;
+//            FileUtils.writeStringToFile(new File(batFile), fileStr);
+//
+//            String command = &quot;cmd /c start &quot; + batFile;
+//            pro = Runtime.getRuntime().exec(command);
+//            pro.waitFor();
+//            if (pro.exitValue() == 0) {
+//                BufferedReader br = new BufferedReader(new InputStreamReader(pro.getInputStream()));
+//                String line;
+//                while ((line = br.readLine()) != null) {
+//                }
+//                if (br != null) {
+//                    br.close();
+//                }
+//                pro.destroy();
+//                pro = null;
+//                System.out.println(&quot;dockerの起動に成功しました&quot;);
+//                FileUtils.forceDelete(new File(batFile));
+//                Thread.sleep(1000);
+//            } else {
+//                System.out.println(&quot;dockerの起動に失敗しました&quot;);
+//                throw new RakurakuException(&quot;dockerの起動に失敗しました&quot;);
+//            }
+//        }
+<span class="nc" id="L218">    }</span>
+
+    /**
+     * テストケース開始
+     *
+     * @param dbunit
+     * @param funcId
+     * @throws Exception
+     */
+    public static void setUp(String dbunit, String funcId) throws Exception {
+<span class="nc" id="L228">        RakurakuDBUtils.initialize(dbunit, funcId);</span>
+<span class="nc" id="L229">        messageStr = RakurakuConst.BLANK;</span>
+<span class="nc" id="L230">        RakurakuCore.OKFlag = true;</span>
+<span class="nc" id="L231">        flg = true;</span>
+<span class="nc" id="L232">    }</span>
+
+    /**
+     * テストケース終了
+     *
+     * @throws Exception
+     */
+    public static void tearDown() throws Exception {
+<span class="nc" id="L240">    String ApiBatch = &quot;E:\\ApiBatch.log&quot;;</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        if(new File(ApiBatch).exists()) {</span>
+<span class="nc" id="L242">            FileUtils.forceDelete(new File(ApiBatch));</span>
+        }
+<span class="nc" id="L244">        String copyPath = &quot;E:\\request.log&quot;;</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">        if(!new File(copyPath).exists()) {</span>
+
+        }else{
+<span class="nc" id="L248">            String requestPath = guiCamera.getSeqNoPath() + &quot;request.log&quot;;</span>
+<span class="nc" id="L249">            FileUtils.writeStringToFile(new File(requestPath), &quot;&quot;);</span>
+<span class="nc" id="L250">            FileUtils.copyFile(new File(copyPath), new File(requestPath));</span>
+<span class="nc" id="L251">            FileUtils.forceDelete(new File(copyPath));</span>
+        }
+<span class="nc" id="L253">        String cpath = &quot;E:\\intercept.log&quot;;</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        if(!new File(cpath).exists()) {</span>
+
+        }else{
+<span class="nc" id="L257">            String interceptPath = guiCamera.getSeqNoPath() + &quot;response.log&quot;;</span>
+<span class="nc" id="L258">            FileUtils.writeStringToFile(new File(interceptPath), &quot;&quot;);</span>
+<span class="nc" id="L259">            FileUtils.copyFile(new File(cpath), new File(interceptPath));</span>
+<span class="nc" id="L260">            FileUtils.forceDelete(new File(cpath));</span>
+        }
+<span class="nc bnc" id="L262" title="All 2 branches missed.">        if (RakurakuCore.OKFlag) {</span>
+<span class="nc" id="L263">            RakurakuFileUtils.logFileOK();</span>
+        } else {
+<span class="nc" id="L265">            RakurakuFileUtils.logFileNG(messageStr);</span>
+        }
+<span class="nc bnc" id="L267" title="All 2 branches missed.">        if (driver != null) {</span>
+<span class="nc" id="L268">            driver.quit();</span>
+<span class="nc" id="L269">            RakurakuCore.driver = null;</span>
+        }
+
+<span class="nc" id="L272">        String apiPath = eachEviPath + &quot;\\Rakuraku_api\\apimock.csv&quot;;</span>
+<span class="nc" id="L273">        File file = new File(apiPath);</span>
+<span class="nc" id="L274">        File fileParent = file.getParentFile();</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">        if (!fileParent.exists()) {</span>
+<span class="nc" id="L276">            fileParent.mkdirs();</span>
+        }
+<span class="nc" id="L278">        file.createNewFile();</span>
+
+<span class="nc" id="L280">        FileWriter fw = null;</span>
+<span class="nc" id="L281">        fw = new FileWriter(apiPath);</span>
+<span class="nc" id="L282">        fw.write(apiMock);</span>
+<span class="nc" id="L283">        fw.close();</span>
+<span class="nc" id="L284">        apiMock = &quot;&quot;;</span>
+<span class="nc" id="L285">    }</span>
+
+    /**
+     * テストクラス終了
+     *
+     * @throws Exception
+     */
+    public static void release(String str) throws Exception {
+<span class="nc" id="L293">	RakurakuDBUtils.release();</span>
+<span class="nc" id="L294">        RakurakuFileUtils.evidenceTool(str);</span>
+<span class="nc" id="L295">    }</span>
+
+    public void operateFiles(String filepath,String flg) throws IOException {
+<span class="nc bnc" id="L298" title="All 4 branches missed.">        if (!&quot;〇&quot;.equals(flg) &amp;&amp; !&quot;○&quot;.equals(flg)) {</span>
+
+        }else{
+<span class="nc" id="L301">            String fName = filepath.trim();</span>
+<span class="nc" id="L302">            String temp[] = fName.split(&quot;\\\\&quot;);</span>
+<span class="nc" id="L303">            String fileName = temp[temp.length-1];</span>
+<span class="nc" id="L304">            String fpath = &quot;&quot;;</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">            for(int i=0;i&lt;temp.length - 1;i++){</span>
+<span class="nc" id="L306">                fpath = fpath + temp[i] + &quot;\\&quot;;</span>
+            }
+<span class="nc" id="L308">            File file = new File(fpath);</span>
+<span class="nc" id="L309">            File[] fs = file.listFiles();</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">            for(File f:fs){</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">                if(!f.isDirectory())</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">                    if(f.getName().contains(fileName)){</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">                        if(f.getName().contains(&quot;.zip&quot;)){</span>
+
+                        }else{
+<span class="nc" id="L316">                            File filelog =new File(guiCamera.getSeqNoPath() + &quot;.log&quot;);</span>
+<span class="nc" id="L317">                            filelog.createNewFile();</span>
+<span class="nc" id="L318">                            FileUtils.copyFile(f, filelog);</span>
+                        }
+                    }
+            }
+
+        }
+<span class="nc" id="L324">    }</span>
+
+    /**
+     * 操作(DB準備)
+     *
+     * @param
+     * @param
+     * @throws Exception
+     */
+    public void operateDBPrepare(String tableName, String opeType, String tableNo) throws Exception {
+<span class="nc" id="L334">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+        try {
+
+            // 処理開始====================================
+<span class="nc" id="L338">            RakurakuDBUtils.operateTable(tableName, opeType, tableNo, guiCamera);</span>
+<span class="nc" id="L339">            RakurakuDBUtils.commit();</span>
+            // 処理終了====================================
+
+<span class="nc" id="L342">            logging(&quot;【操作(DB準備)】【テーブル：&quot; + tableName + &quot;,DB状態：&quot; + tableNo + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L343">        } catch (Throwable e) {</span>
+<span class="nc" id="L344">            logging(&quot;【操作(DB準備)】【テーブル：&quot; + tableName + &quot;,DB状態：&quot; + tableNo + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L345">            throw new RakurakuException(&quot;【操作(DB準備)】【テーブル：&quot; + tableName + &quot;,DB状態：&quot; + tableNo + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L346">        }</span>
+<span class="nc" id="L347">    }</span>
+
+    /**
+     * 操作(DB確認)
+     *
+     * @param
+     * @param
+     * @throws Exception
+     */
+    public void operateDBConfirm(String tableName, String notAssertColumns, String tableNo) throws Exception {
+<span class="nc" id="L357">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+        try {
+
+            // 処理開始====================================
+<span class="nc" id="L361">            RakurakuDBUtils.confirmTable(tableName, notAssertColumns, tableNo, guiCamera);</span>
+            // 処理終了====================================
+
+<span class="nc" id="L364">            logging(&quot;【操作(DB確認)】【テーブル：&quot; + tableName + &quot;,DB状態：&quot; + tableNo + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L365">        } catch (Throwable e) {</span>
+<span class="nc" id="L366">            logging(&quot;【操作(DB確認)】【テーブル：&quot; + tableName + &quot;,DB状態：&quot; + tableNo + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L367">            throw new RakurakuException(&quot;【操作(DB確認)】【テーブル：&quot; + tableName + &quot;,DB状態：&quot; + tableNo + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L368">        }</span>
+<span class="nc" id="L369">    }</span>
+
+    /**
+     * 操作(画面)
+     *
+     * @param actionViewNm 対象画面名称
+     * @param actionType 画面アクション種別
+     * @param actionEleNm 画面アクション論理名
+     * @param actionEle 画面アクション物理名
+     * @param actionEleWay 画面アクション取得方式
+     * @param actionOpeWay 画面アクション操作方法
+     * @param actionOpeValue 画面アクション操作値
+     * @throws Exception
+     */
+    public void operateWeb(String actionViewNm, String actionType, String actionEleNm, String actionEle,
+            String actionEleWay, String actionOpeWay, String actionOpeValue) throws Exception {
+<span class="nc" id="L385">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc" id="L386">        String logOpeNm = &quot;【操作(画面)】【操作タイプ：&quot; + actionType + &quot;,操作対象：&quot; + actionViewNm + &quot;.&quot; + actionEleNm + &quot;,操作値：&quot;</span>
+                + actionOpeValue + &quot;】&quot;;
+        try {
+
+            // 処理開始====================================
+<span class="nc bnc" id="L391" title="All 2 branches missed.">            if (!RakurakuConst.WEB_VARIABLE_SET.equals(actionType)) {</span>
+<span class="nc" id="L392">                actionOpeValue = RakurakuWebUtils.getRealValueAfterReplace(actionOpeValue);</span>
+            }
+<span class="nc" id="L394">            String targetPartialUrl = actionViewNm.split(RakurakuConst.LEFT_BRACK_2BYTE)[0];</span>
+<span class="nc" id="L395">            targetPartialUrl = targetPartialUrl.split(RakurakuConst.SPLIT_LEFT_BRACK)[0];</span>
+<span class="nc" id="L396">            WebElement editELe = null;</span>
+<span class="nc" id="L397">            List&lt;WebElement&gt; editELeList = null;</span>
+<span class="nc bnc" id="L398" title="All 19 branches missed.">            switch (actionType) {</span>
+                case RakurakuConst.WEB_URL_REDIRECT:
+<span class="nc" id="L400">                    operateWebGetUrl(actionOpeValue);</span>
+<span class="nc" id="L401">                    break;</span>
+
+                case RakurakuConst.WEB_FRAME_SWITCH:
+<span class="nc" id="L404">                    operateWebFrameSwitch(targetPartialUrl, actionOpeValue);</span>
+<span class="nc" id="L405">                    break;</span>
+
+                case RakurakuConst.WEB_TEXTBOX:
+<span class="nc" id="L408">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L409">                    operateWebTextBox(editELe, actionOpeWay, actionOpeValue);</span>
+<span class="nc" id="L410">                    break;</span>
+
+                case RakurakuConst.WEB_RADIO:
+                case RakurakuConst.WEB_CHECKBOX:
+                case RakurakuConst.WEB_BUTTON_LINK:
+<span class="nc" id="L415">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L416">                    operateWebSaveElementPosition(editELe, actionType);</span>
+<span class="nc" id="L417">                    operateWebClick(editELe, actionOpeWay, actionOpeValue);</span>
+<span class="nc" id="L418">                    break;</span>
+
+                case RakurakuConst.WEB_PULLDOWN:
+<span class="nc" id="L421">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L422">                    operateWebSelect(editELe, actionOpeValue);</span>
+<span class="nc" id="L423">                    break;</span>
+
+                // TODO case &quot;マルチプルダウンリスト&quot;:break;
+
+                case RakurakuConst.WEB_FILEBOX:
+<span class="nc" id="L428">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L429">                    operateWebFileBox(editELe, actionOpeWay, actionOpeValue);</span>
+<span class="nc" id="L430">                    break;</span>
+
+                case RakurakuConst.WEB_DETAIL_LIST:
+<span class="nc" id="L433">                    editELeList = operateWebGetElements(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L434">                    operateWebList(editELeList, actionOpeWay, actionOpeValue);</span>
+<span class="nc" id="L435">                    break;</span>
+
+                case RakurakuConst.WEB_DIALOG:
+<span class="nc" id="L438">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L439">                    operateWebDialog(editELe, actionOpeValue);</span>
+<span class="nc" id="L440">                    break;</span>
+
+                case RakurakuConst.WEB_SLEEP:
+<span class="nc bnc" id="L443" title="All 2 branches missed.">                    if (StringUtils.isNumeric(actionOpeValue)) {</span>
+<span class="nc" id="L444">                        Thread.sleep(Long.parseLong(actionOpeValue) * 1000);</span>
+                    }
+                    break;
+
+                case RakurakuConst.WEB_FOCUS:
+<span class="nc" id="L449">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L450">                    editELe.click();</span>
+<span class="nc" id="L451">                    break;</span>
+
+                case RakurakuConst.WEB_TAB_KEY:
+<span class="nc" id="L454">                    Robot robot = new Robot();</span>
+<span class="nc" id="L455">                    robot.keyPress(KeyEvent.VK_TAB);</span>
+<span class="nc" id="L456">                    robot.keyRelease(KeyEvent.VK_TAB);</span>
+<span class="nc" id="L457">                    robot.delay(100);</span>
+<span class="nc" id="L458">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc bnc" id="L459" title="All 2 branches missed.">                    if (!editELe.getLocation().equals(driver.switchTo().activeElement().getLocation())) {</span>
+<span class="nc" id="L460">                        throw new RakurakuException(&quot;【タブキー確認】タブキーを押下した後、フォーカスが想定外要素へ飛びました。&quot;);</span>
+                    }
+                    break;
+
+                case RakurakuConst.WEB_OUTPUT:
+<span class="nc" id="L465">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L466">                    operateWebOutput(editELe, actionOpeValue);</span>
+<span class="nc" id="L467">                    break;</span>
+
+                case RakurakuConst.WEB_PAGE_CLOSE:
+<span class="nc" id="L470">                    RakurakuWebUtils.webPageClose(driver);</span>
+<span class="nc" id="L471">                    break;</span>
+
+                case RakurakuConst.WEB_PAGE_BACK:
+<span class="nc" id="L474">                    RakurakuWebUtils.webPageBack(driver);</span>
+<span class="nc" id="L475">                    break;</span>
+
+                case RakurakuConst.WEB_PAGE_FORWARD:
+<span class="nc" id="L478">                    RakurakuWebUtils.webPageForward(driver);</span>
+<span class="nc" id="L479">                    break;</span>
+
+                case RakurakuConst.WEB_VARIABLE_SET:
+<span class="nc" id="L482">                    operateWebSetVarible(targetPartialUrl, actionEle, actionEleWay, actionOpeWay, actionEleNm,</span>
+                            actionOpeValue);
+<span class="nc" id="L484">                    break;</span>
+
+                case RakurakuConst.WEB_CAPTURE_FULLSCREEN:
+<span class="nc" id="L487">                    guiCamera.snapshotFullScreen(driver);</span>
+<span class="nc" id="L488">                    break;</span>
+
+                case RakurakuConst.WEB_CAPTURE_SCROLLSCREEN:
+<span class="nc" id="L491">                    guiCamera.snapshotScrollScreen(driver);</span>
+<span class="nc" id="L492">                    break;</span>
+
+                default:
+<span class="nc" id="L495">                    editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L496">                    operateWebTextBox(editELe, actionOpeWay, actionOpeValue);</span>
+                    break;
+            }
+            // 処理終了====================================
+
+<span class="nc" id="L501">            logging(logOpeNm, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L502">        } catch (Throwable e) {</span>
+<span class="nc" id="L503">            logging(logOpeNm, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L504">            throw new RakurakuException(&quot;【操作(画面)】【&quot; + actionViewNm + &quot;.&quot; + actionEleNm + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L505">        }</span>
+<span class="nc" id="L506">    }</span>
+
+    /**
+     * 操作(バッチ)
+     *
+     * @param batchName
+     * @param batchCmd
+     * @param params
+     * @throws Exception
+     */
+    public void operateBatch(String batchName, String batchCmd, String params) throws Exception {
+<span class="nc" id="L517">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+        try {
+
+            // 処理開始====================================
+<span class="nc" id="L521">            RakurakuWebUtils.runBat(batchCmd, params);</span>
+            // 処理終了====================================
+
+<span class="nc" id="L524">            logging(&quot;【操作(バッチ)】【&quot; + batchName + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L525">        } catch (Throwable e) {</span>
+<span class="nc" id="L526">            logging(&quot;【操作(バッチ)】【&quot; + batchName + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L527">            throw new RakurakuException(&quot;【操作(バッチ)】【&quot; + batchName + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L528">        }</span>
+<span class="nc" id="L529">    }</span>
+
+    public void DOCKERYaml(String funcId,int maxYanml) throws Exception {
+<span class="nc bnc" id="L532" title="All 2 branches missed.">        for (int j = 1; j &lt; maxYanml + 1; j++) {</span>
+<span class="nc" id="L533">            String copyPath = RakurakuFileUtils.getToolPath() + &quot;/testdata/mockapis/&quot; + funcId + &quot;/&quot; + funcId + j + &quot;.yaml&quot;;</span>
+<span class="nc bnc" id="L534" title="All 2 branches missed.">            if(!new File(copyPath).exists()) {</span>
+<span class="nc" id="L535">                System.out.println(copyPath + &quot;は存在しません&quot;);</span>
+<span class="nc" id="L536">                throw new RakurakuException(copyPath + &quot;は存在しません&quot;);</span>
+            }
+<span class="nc" id="L538">            String yamlPath = RakurakuDBUtils.getProps().getProperty(&quot;DOCKER_YAML&quot; + j);</span>
+<span class="nc" id="L539">            FileUtils.copyFile(new File(copyPath), new File(yamlPath));</span>
+<span class="nc" id="L540">            String a = &quot;&quot;;</span>
+        }
+
+<span class="nc" id="L543">    }</span>
+
+    public void operateYamls(String mockApiNm,String apiName ,String example,String maxYaml) throws Exception {
+<span class="nc" id="L546">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc" id="L547">        String wPath = &quot;E:\\ApiBatch.log&quot;;</span>
+<span class="nc" id="L548">        File filelog =new File(wPath);</span>
+<span class="nc bnc" id="L549" title="All 2 branches missed.">        if(!filelog.exists()) {</span>
+<span class="nc" id="L550">            filelog.createNewFile();</span>
+        }
+<span class="nc" id="L552">        FileWriter fw = null;</span>
+<span class="nc" id="L553">        fw = new FileWriter(wPath,true);</span>
+<span class="nc" id="L554">        fw.write(mockApiNm  + &quot;::&quot; + example + &quot;\r\n&quot;);</span>
+<span class="nc" id="L555">        fw.close();</span>
+//            flg1 = &quot;ok&quot;;
+//            if (flg = true){
+//                flg = false;
+//                int a = Integer.parseInt(maxYaml);
+//                s1 = yamlName.substring(0, yamlName.length() - 1);
+//                DOCKERYaml(s1,a);
+//            }
+        try {
+
+            // 処理開始====================================
+<span class="nc bnc" id="L566" title="All 2 branches missed.">            if(StringUtils.isNotBlank(RakurakuWebUtils.mockHeaders)) {</span>
+<span class="nc" id="L567">                RakurakuWebUtils.mockHeaders = RakurakuWebUtils.mockHeaders + &quot;&amp;&quot; + mockApiNm + &quot;-&gt;&quot; + example;</span>
+            }else {
+<span class="nc" id="L569">                RakurakuWebUtils.mockHeaders = &quot;Prefer=&quot; + mockApiNm + &quot;-&gt;&quot; + example;</span>
+            }
+
+<span class="nc" id="L572">            apiMock = apiMock+ mockApiNm + &quot;::&quot; + apiName + &quot;::&quot; + example + &quot;\\r\\n&quot;;</span>
+            // 処理終了====================================
+
+<span class="nc" id="L575">            logging(&quot;【操作(api)】【&quot; + mockApiNm + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L576">        } catch (Throwable e) {</span>
+<span class="nc" id="L577">            logging(&quot;【操作(api)】【&quot; + mockApiNm + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L578">            throw new RakurakuException(&quot;【操作(api)】【&quot; + mockApiNm + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L579">        }</span>
+<span class="nc" id="L580">    }</span>
+
+    public void operateMockApi(String mockApiNm,String apiName ,String example) throws Exception {
+<span class="nc" id="L583">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+
+<span class="nc" id="L585">    	String wPath = &quot;E:\\ApiBatch.log&quot;;</span>
+<span class="nc" id="L586">        File filelog =new File(wPath);</span>
+<span class="nc bnc" id="L587" title="All 2 branches missed.">        if(!filelog.exists()) {</span>
+<span class="nc" id="L588">            filelog.createNewFile();</span>
+        }
+<span class="nc" id="L590">        FileWriter fw = null;</span>
+<span class="nc" id="L591">        fw = new FileWriter(wPath,true);</span>
+<span class="nc" id="L592">        fw.write(mockApiNm  + &quot;::&quot; + example + &quot;\r\n&quot;);</span>
+<span class="nc" id="L593">        fw.close();</span>
+        try {
+
+            // 処理開始====================================
+<span class="nc bnc" id="L597" title="All 2 branches missed.">        	if(StringUtils.isNotBlank(RakurakuWebUtils.mockHeaders)) {</span>
+<span class="nc" id="L598">        		RakurakuWebUtils.mockHeaders = RakurakuWebUtils.mockHeaders + &quot;&amp;&quot; + mockApiNm + &quot;-&gt;&quot; + example;</span>
+        	}else {
+<span class="nc" id="L600">        		RakurakuWebUtils.mockHeaders = &quot;Prefer=&quot; + mockApiNm + &quot;-&gt;&quot; + example;</span>
+        	}
+
+            // 処理終了====================================
+
+<span class="nc" id="L605">            logging(&quot;【操作(api)】【&quot; + mockApiNm + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L606">        } catch (Throwable e) {</span>
+<span class="nc" id="L607">            logging(&quot;【操作(api)】【&quot; + mockApiNm + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L608">            throw new RakurakuException(&quot;【操作(api)】【&quot; + mockApiNm + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L609">        }</span>
+<span class="nc" id="L610">    }</span>
+
+    /**
+     * 操作(api)
+     *
+     * @param apiNm
+     * @param
+     * @param callMeth
+     * @param
+     * @param apiKind
+     * @throws Exception
+     */
+    public void operateApi(String apiNm, String apiKind, String callMeth, String requestHeaders, String loginUser,
+            String requestBody) throws Exception {
+<span class="nc" id="L624">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+
+        try {
+            // 処理開始====================================
+<span class="nc" id="L628">        	apiKind = RakurakuWebUtils.getRealValueAfterReplace(apiKind);</span>
+<span class="nc" id="L629">            callMeth = RakurakuWebUtils.getRealValueAfterReplace(callMeth);</span>
+<span class="nc" id="L630">            RakurakuWebUtils.callApi(apiNm, apiKind, callMeth, requestHeaders, requestBody, loginUser, guiCamera);</span>
+
+            // 処理終了====================================
+
+<span class="nc" id="L634">            logging(&quot;【操作(api)】【&quot; + apiNm + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+
+<span class="nc" id="L636">        } catch (Throwable e) {</span>
+<span class="nc" id="L637">            logging(&quot;【操作(api)】【&quot; + apiNm + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L638">            throw new RakurakuException(&quot;【操作(api)】【&quot; + apiNm + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L639">        }</span>
+
+<span class="nc" id="L641">    }</span>
+
+    public void operateApiConfirm(String apiKind, String notAssertColumns, String expected) throws Exception {
+<span class="nc" id="L644">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc bnc" id="L645" title="All 2 branches missed.">        if (expected.contains(&quot;{&quot;)) {</span>
+
+        } else {
+<span class="nc" id="L648">            File file = new File(expected);</span>
+<span class="nc" id="L649">            BufferedReader reader = null;</span>
+<span class="nc" id="L650">            StringBuffer sbf = new StringBuffer();</span>
+<span class="nc" id="L651">            reader = new BufferedReader(new FileReader(file));</span>
+            String tempStr;
+<span class="nc bnc" id="L653" title="All 2 branches missed.">            while ((tempStr = reader.readLine()) != null) {</span>
+<span class="nc" id="L654">                sbf.append(tempStr);</span>
+            }
+<span class="nc" id="L656">            reader.close();</span>
+<span class="nc" id="L657">            expected = sbf.toString();</span>
+        }
+        try {
+
+            // handle begin====================================
+<span class="nc" id="L662">            apiKind = RakurakuWebUtils.getRealValueAfterReplace(apiKind);</span>
+<span class="nc" id="L663">            String[] notAssertColumn = new String[] {};</span>
+<span class="nc bnc" id="L664" title="All 4 branches missed.">            if (!&quot;&quot;.equals(notAssertColumns) &amp;&amp; !&quot;NOT_ASSERT_COLUMN&quot;.equals(notAssertColumns)) {</span>
+<span class="nc bnc" id="L665" title="All 2 branches missed.">                if (notAssertColumns.contains(&quot;NOT_ASSERT_COLUMN&quot;)) {</span>
+<span class="nc" id="L666">                    notAssertColumns = notAssertColumns.replace(&quot;NOT_ASSERT_COLUMN&quot;, &quot;&quot;);</span>
+<span class="nc" id="L667">                    notAssertColumn = notAssertColumns.split(&quot;,&quot;);</span>
+                }
+            }
+<span class="nc" id="L670">            RakurakuWebUtils.apiConfirm(apiKind, expected, notAssertColumn, guiCamera);</span>
+            // handle end====================================
+
+<span class="nc" id="L673">            logging(&quot;【操作(api確認】【&quot; + apiKind</span>
+                    + &quot;】&quot;, startTime, &quot;OK&quot;);
+<span class="nc" id="L675">        } catch (Throwable e) {</span>
+<span class="nc" id="L676">            logging(&quot;【操作(api確認】【&quot; + apiKind</span>
+                    + &quot;】&quot;, startTime, &quot;NG&quot;);
+<span class="nc" id="L678">            throw new RakurakuException(</span>
+                    &quot;【操作(api確認】【&quot; + apiKind
+                            + &quot;】の操作に失敗しました。&quot;,
+                    e);
+<span class="nc" id="L682">        }</span>
+<span class="nc" id="L683">    }</span>
+
+    /**
+     * 操作(csvチェック)
+     *
+     * @param csvName
+     * @param
+     * @param
+     * @param notAssertColumns
+     * @throws Exception
+     */
+    public void operateCsvCheck(String csvName, String notAssertColumns, String opeVal) throws Exception {
+<span class="nc" id="L695">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+        try {
+
+            // 処理開始====================================
+<span class="nc" id="L699">            RakurakuWebUtils.checkCSV(csvName, notAssertColumns, opeVal, guiCamera);</span>
+            // 処理終了====================================
+
+<span class="nc" id="L702">            logging(&quot;【操作(csvチェック)】【CSV名称：&quot; + csvName + &quot;,CSV状態：&quot; + opeVal + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L703">        } catch (Throwable e) {</span>
+<span class="nc" id="L704">            logging(&quot;【操作(csvチェック)】【CSV名称：&quot; + csvName + &quot;,CSV状態：&quot; + opeVal + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L705">            throw new RakurakuException(&quot;【操作(csvチェック)】【CSV名称：&quot; + csvName + &quot;,CSV状態：&quot; + opeVal + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L706">        }</span>
+<span class="nc" id="L707">    }</span>
+
+    /**
+     * 操作(ログチェック)
+     *
+     * @param logName
+     * @param logPath
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    public void operateLogCheck(String logName, String logPath, String actionOpeValue) throws Exception {
+<span class="nc" id="L718">        String startTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+        try {
+
+            // 処理開始====================================
+<span class="nc bnc" id="L722" title="All 4 branches missed.">            if (RakurakuConst.HIGH_ROUND.equals(actionOpeValue) || RakurakuConst.LOW_ROUND.equals(actionOpeValue)) {</span>
+<span class="nc" id="L723">                RakurakuWebUtils.checkLog(logName, guiCamera);</span>
+            }
+            // 処理終了====================================
+
+<span class="nc" id="L727">            logging(&quot;【操作(ログチェック)】【&quot; + logName + &quot;】&quot;, startTime, &quot;OK&quot;);</span>
+<span class="nc" id="L728">        } catch (Throwable e) {</span>
+<span class="nc" id="L729">            logging(&quot;【操作(ログチェック)】【&quot; + logName + &quot;】&quot;, startTime, &quot;NG&quot;);</span>
+<span class="nc" id="L730">            throw new RakurakuException(&quot;【操作(ログチェック)】【&quot; + logName + &quot;】の操作に失敗しました。&quot;, e);</span>
+<span class="nc" id="L731">        }</span>
+<span class="nc" id="L732">    }</span>
+
+    /**
+     * URLリダイレクト
+     *
+     * @param url
+     * @throws Exception
+     */
+    private void operateWebGetUrl(String url) throws Exception {
+<span class="nc" id="L741">        boolean firstFlag = false;</span>
+<span class="nc bnc" id="L742" title="All 2 branches missed.">        if (driver == null) {</span>
+<span class="nc" id="L743">            firstFlag = true;</span>
+<span class="nc bnc" id="L744" title="All 2 branches missed.">            if (driverType.contains(RakurakuConst.BROWSER_IE)) {</span>
+<span class="nc" id="L745">                driver = RakurakuWebUtils.getIEDriver();</span>
+<span class="nc bnc" id="L746" title="All 2 branches missed.">            } else if (RakurakuConst.BROWSER_FIREFOX.equals(driverType)) {</span>
+<span class="nc" id="L747">                driver = RakurakuWebUtils.getFireFoxDriver();</span>
+<span class="nc bnc" id="L748" title="All 2 branches missed.">            } else if (RakurakuConst.BROWSER_CHROME.equals(driverType)) {</span>
+<span class="nc" id="L749">                driver = RakurakuWebUtils.getChromeDriver();</span>
+            } else {
+<span class="nc" id="L751">                driver = RakurakuWebUtils.getSPDriver(driverType);</span>
+            }
+        }
+<span class="nc" id="L754">        driver.get(url);</span>
+<span class="nc" id="L755">        RakurakuWebUtils.waitForLoad(driver);</span>
+<span class="nc bnc" id="L756" title="All 2 branches missed.">        if (!firstFlag) {</span>
+<span class="nc" id="L757">            guiCamera.snapshotFullScreen(driver);</span>
+        }
+<span class="nc" id="L759">    }</span>
+
+    /**
+     * Frameスイッチ
+     *
+     * @param targetPartialUrl
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    private void operateWebFrameSwitch(String targetPartialUrl, String actionOpeValue) throws Exception {
+<span class="nc" id="L769">        RakurakuWebUtils.jumpToView(driver, targetPartialUrl);</span>
+<span class="nc" id="L770">        RakurakuWebUtils.waitForLoad(driver);</span>
+<span class="nc bnc" id="L771" title="All 2 branches missed.">        if (StringUtils.isNumeric(actionOpeValue)) {</span>
+<span class="nc" id="L772">            driver.switchTo().frame(Integer.parseInt(actionOpeValue));</span>
+        } else {
+<span class="nc" id="L774">            driver.switchTo().frame(actionOpeValue);</span>
+        }
+<span class="nc" id="L776">        Thread.sleep(500);</span>
+<span class="nc" id="L777">    }</span>
+
+    /**
+     * テキストボックス
+     *
+     * @param
+     * @param editELe
+     * @param actionOpeWay
+     * @throws Exception
+     */
+    private void operateWebTextBox(WebElement editELe, String actionOpeWay, String actionOpeValue) throws Exception {
+<span class="nc bnc" id="L788" title="All 3 branches missed.">        switch (actionOpeWay) {</span>
+            case RakurakuConst.SELENIUM_ACTIONS:
+<span class="nc" id="L790">                Actions action = new Actions(driver);</span>
+<span class="nc" id="L791">                action.click(editELe).perform();</span>
+<span class="nc" id="L792">                RakurakuWebUtils.webClearElementValue(editELe, driver);</span>
+<span class="nc" id="L793">                action.sendKeys(editELe, actionOpeValue).perform();</span>
+<span class="nc" id="L794">                break;</span>
+            case RakurakuConst.SELENIUM_JS:
+<span class="nc" id="L796">                JavascriptExecutor js = (JavascriptExecutor) driver;</span>
+<span class="nc" id="L797">                js.executeScript(&quot;arguments[0].click()&quot;, editELe);</span>
+<span class="nc" id="L798">                js.executeScript(&quot;arguments[0].value='&quot; + actionOpeValue + &quot;'&quot;, editELe);</span>
+<span class="nc" id="L799">                break;</span>
+            default:
+<span class="nc" id="L801">                editELe.click();</span>
+<span class="nc" id="L802">                editELe.clear();</span>
+<span class="nc" id="L803">                editELe.sendKeys(actionOpeValue);</span>
+                break;
+        }
+<span class="nc" id="L806">    }</span>
+
+    /**
+     * ラジオボタン,チェックボックス,ボタンリンク
+     *
+     * @param
+     * @param editELe
+     * @param actionOpeWay
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    private void operateWebClick(WebElement editELe, String actionOpeWay, String actionOpeValue) throws Exception {
+        // シングルクリック
+<span class="nc bnc" id="L819" title="All 4 branches missed.">        if (RakurakuConst.HIGH_ROUND.equals(actionOpeValue) || RakurakuConst.LOW_ROUND.equals(actionOpeValue)) {</span>
+<span class="nc bnc" id="L820" title="All 3 branches missed.">            switch (actionOpeWay) {</span>
+                case RakurakuConst.SELENIUM_ACTIONS:
+<span class="nc" id="L822">                    Actions action = new Actions(driver);</span>
+<span class="nc" id="L823">                    action.click(editELe).perform();</span>
+<span class="nc" id="L824">                    break;</span>
+                case RakurakuConst.SELENIUM_JS:
+<span class="nc" id="L826">                    JavascriptExecutor js = (JavascriptExecutor) driver;</span>
+<span class="nc" id="L827">                    js.executeScript(&quot;arguments[0].click()&quot;, editELe);</span>
+<span class="nc" id="L828">                    break;</span>
+                default:
+<span class="nc" id="L830">                    editELe.click();</span>
+                    break;
+            }
+        }
+
+        // ダブルクリック
+<span class="nc bnc" id="L836" title="All 2 branches missed.">        if (RakurakuConst.DOUBLE_ROUND.equals(actionOpeValue)) {</span>
+<span class="nc" id="L837">            Actions action = new Actions(driver);</span>
+<span class="nc" id="L838">            action.doubleClick(editELe).perform();</span>
+        }
+
+        // コンテキストクリック
+<span class="nc bnc" id="L842" title="All 2 branches missed.">        if (RakurakuConst.SOLID_ROUND.equals(actionOpeValue)) {</span>
+<span class="nc" id="L843">            Actions action = new Actions(driver);</span>
+<span class="nc" id="L844">            action.contextClick(editELe).perform();</span>
+        }
+
+        // マウスオバー
+<span class="nc bnc" id="L848" title="All 2 branches missed.">        if (RakurakuConst.SOLID_ANGLE.equals(actionOpeValue)) {</span>
+<span class="nc" id="L849">            Actions action = new Actions(driver);</span>
+<span class="nc" id="L850">            action.moveToElement(editELe).perform();</span>
+<span class="nc" id="L851">            Thread.sleep(1000);</span>
+        }
+<span class="nc" id="L853">    }</span>
+
+    /**
+     * プルダウンリスト
+     *
+     * @param
+     * @param editELe
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    private void operateWebSelect(WebElement editELe, String actionOpeValue) throws Exception {
+<span class="nc" id="L864">        new Select(editELe).selectByVisibleText(actionOpeValue);</span>
+<span class="nc" id="L865">    }</span>
+
+    /**
+     * ファイルボックス
+     *
+     * @param
+     * @param editELe
+     * @param actionOpeWay
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    private void operateWebFileBox(WebElement editELe, String actionOpeWay, String actionOpeValue) throws Exception {
+<span class="nc bnc" id="L877" title="All 2 branches missed.">        switch (actionOpeWay) {</span>
+            case RakurakuConst.SELENIUM_ACTIONS:
+            case RakurakuConst.SELENIUM_JS:
+<span class="nc" id="L880">                Actions action = new Actions(driver);</span>
+<span class="nc" id="L881">                action.doubleClick(editELe).perform();</span>
+<span class="nc" id="L882">                RakurakuWebUtils.webUploadFileInputForIE(actionOpeValue);</span>
+<span class="nc" id="L883">                break;</span>
+            default:
+<span class="nc" id="L885">                editELe.sendKeys(actionOpeValue);</span>
+                break;
+        }
+<span class="nc" id="L888">    }</span>
+
+    /**
+     * 一覧リスト
+     *
+     * @param
+     * @param editELeList
+     * @param actionOpeWay
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    private void operateWebList(List&lt;WebElement&gt; editELeList, String actionOpeWay, String actionOpeValue)
+            throws Exception {
+<span class="nc bnc" id="L901" title="All 2 branches missed.">        if (actionOpeValue.length() &lt; 3) {</span>
+<span class="nc" id="L902">            return;</span>
+        }
+<span class="nc" id="L904">        actionOpeValue = actionOpeValue.substring(1, actionOpeValue.length() - 1);</span>
+<span class="nc" id="L905">        String[] valueAttr = actionOpeValue.split(RakurakuConst.COMMA);</span>
+<span class="nc bnc" id="L906" title="All 2 branches missed.">        for (String index : valueAttr) {</span>
+<span class="nc bnc" id="L907" title="All 3 branches missed.">            switch (actionOpeWay) {</span>
+                case RakurakuConst.SELENIUM_ACTIONS:
+<span class="nc" id="L909">                    Actions action = new Actions(driver);</span>
+<span class="nc" id="L910">                    action.click(editELeList.get(Integer.parseInt(index))).perform();</span>
+<span class="nc" id="L911">                    break;</span>
+                case RakurakuConst.SELENIUM_JS:
+<span class="nc" id="L913">                    JavascriptExecutor js = (JavascriptExecutor) driver;</span>
+<span class="nc" id="L914">                    js.executeScript(&quot;arguments[0].click()&quot;, editELeList.get(Integer.parseInt(index)));</span>
+<span class="nc" id="L915">                    break;</span>
+                default:
+<span class="nc" id="L917">                    editELeList.get(Integer.parseInt(index)).click();</span>
+                    break;
+            }
+        }
+<span class="nc" id="L921">    }</span>
+
+    /**
+     * ダイアログ(alert,confirm,prompt)
+     *
+     * @param
+     * @param editELe
+     * @param
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    private void operateWebDialog(WebElement editELe, String actionOpeValue) throws Exception {
+        // シングルクリック
+<span class="nc" id="L934">        Thread.sleep(500);</span>
+<span class="nc bnc" id="L935" title="All 4 branches missed.">        if (RakurakuConst.HIGH_ROUND.equals(actionOpeValue) || RakurakuConst.LOW_ROUND.equals(actionOpeValue)) {</span>
+<span class="nc" id="L936">            driver.switchTo().alert().accept();</span>
+<span class="nc bnc" id="L937" title="All 2 branches missed.">        } else if (RakurakuConst.CROSS.equals(actionOpeValue)) {</span>
+<span class="nc" id="L938">            driver.switchTo().alert().dismiss();</span>
+        } else {
+<span class="nc" id="L940">            driver.switchTo().alert().sendKeys(actionOpeValue);</span>
+<span class="nc" id="L941">            driver.switchTo().alert().accept();</span>
+        }
+<span class="nc" id="L943">        Thread.sleep(500);</span>
+<span class="nc" id="L944">    }</span>
+
+    /**
+     * 出力確認
+     *
+     * @param editELe
+     * @param actionOpeValue
+     * @throws Exception
+     */
+    private void operateWebOutput(WebElement editELe, String actionOpeValue) throws Exception {
+        boolean retFlag;
+<span class="nc" id="L955">        String msgStr = &quot;&quot;;</span>
+<span class="nc bnc" id="L956" title="All 7 branches missed.">        switch (actionOpeValue) {</span>
+            case RakurakuConst.SOLID_ROUND:// 活性
+<span class="nc" id="L958">                retFlag = editELe.isEnabled();</span>
+<span class="nc" id="L959">                msgStr = &quot;活性非活性の検証に失敗しました。予想：活性。実際：非活性。&quot;;</span>
+<span class="nc" id="L960">                break;</span>
+
+            case RakurakuConst.HIGH_ROUND:// 非活性
+            case RakurakuConst.LOW_ROUND:// 非活性
+<span class="nc bnc" id="L964" title="All 2 branches missed.">                retFlag = !editELe.isEnabled();</span>
+<span class="nc" id="L965">                msgStr = &quot;活性非活性の検証に失敗しました。予想：非活性。実際：活性。&quot;;</span>
+<span class="nc" id="L966">                break;</span>
+
+            case RakurakuConst.DOUBLE_ROUND:// 選択されている
+<span class="nc" id="L969">                retFlag = editELe.isSelected();</span>
+<span class="nc" id="L970">                msgStr = &quot;選択非選択の検証に失敗しました。予想：選択されている。実際：選択されていない。&quot;;</span>
+<span class="nc" id="L971">                break;</span>
+
+            case RakurakuConst.CROSS:// 選択されていない
+<span class="nc bnc" id="L974" title="All 2 branches missed.">                retFlag = !editELe.isSelected();</span>
+<span class="nc" id="L975">                msgStr = &quot;選択非選択の検証に失敗しました。予想：選択されていない。実際：選択されている。&quot;;</span>
+<span class="nc" id="L976">                break;</span>
+
+            case RakurakuConst.SOLID_ANGLE:// 表示
+<span class="nc" id="L979">                retFlag = editELe.isDisplayed();</span>
+<span class="nc" id="L980">                msgStr = &quot;表示非表示の検証に失敗しました。予想：表示される。実際：表示されていない。&quot;;</span>
+<span class="nc" id="L981">                break;</span>
+
+            case RakurakuConst.HOLLOW_ANGLE:// 非表示
+<span class="nc bnc" id="L984" title="All 2 branches missed.">                retFlag = !editELe.isDisplayed();</span>
+<span class="nc" id="L985">                msgStr = &quot;表示非表示の検証に失敗しました。予想：表示されいない。実際：表示されている。&quot;;</span>
+<span class="nc" id="L986">                break;</span>
+
+            default:// テキスト
+<span class="nc" id="L989">                String value = editELe.getAttribute(&quot;value&quot;);</span>
+<span class="nc" id="L990">                retFlag = actionOpeValue.equals(value);</span>
+<span class="nc" id="L991">                String text = &quot;&quot;;</span>
+<span class="nc bnc" id="L992" title="All 2 branches missed.">                if (!retFlag) {</span>
+<span class="nc" id="L993">                    text = editELe.getText();</span>
+<span class="nc" id="L994">                    retFlag = actionOpeValue.equals(text);</span>
+                }
+<span class="nc" id="L996">                msgStr = &quot;出力内容の検証に失敗しました。予想：” + actionOpeValue + ”。実際：属性value=&quot; + value + &quot;;htmltext=&quot; + text + &quot;。&quot;;</span>
+                break;
+        }
+<span class="nc bnc" id="L999" title="All 2 branches missed.">        if (!retFlag) {</span>
+<span class="nc" id="L1000">            throw new RakurakuException(msgStr);</span>
+        }
+<span class="nc" id="L1002">    }</span>
+
+    private void operateWebSetVarible(String targetPartialUrl, String actionEle, String actionEleWay,
+            String actionOpeWay, String variableVal, String variableNm) throws Exception {
+<span class="nc bnc" id="L1006" title="All 2 branches missed.">        if (!Pattern.compile(&quot;[$][{].*?[}]&quot;).matcher(variableNm).matches()) {</span>
+<span class="nc" id="L1007">            throw new RakurakuException(&quot;変数は「${variable}」の形にしてください。&quot;);</span>
+        }
+<span class="nc bnc" id="L1009" title="All 4 branches missed.">        if (StringUtils.isNotBlank(actionEle) &amp;&amp; StringUtils.isNotBlank(actionEleWay)</span>
+<span class="nc bnc" id="L1010" title="All 2 branches missed.">                &amp;&amp; StringUtils.isNotBlank(actionOpeWay)) {</span>
+<span class="nc" id="L1011">            WebElement editELe = operateWebGetElement(targetPartialUrl, actionEle, actionEleWay);</span>
+<span class="nc" id="L1012">            variableVal = editELe.getAttribute(&quot;value&quot;);</span>
+<span class="nc bnc" id="L1013" title="All 2 branches missed.">            if (StringUtils.isNotBlank(variableVal)) {</span>
+<span class="nc" id="L1014">                variableVal = editELe.getText();</span>
+            }
+<span class="nc" id="L1016">            variablesMap.put(variableNm, variableVal);</span>
+<span class="nc bnc" id="L1017" title="All 2 branches missed.">        } else if (StringUtils.isNotBlank(variableVal)) {</span>
+<span class="nc" id="L1018">            variablesMap.put(variableNm, variableVal);</span>
+        } else {
+<span class="nc" id="L1020">            throw new RakurakuException(&quot;設定したい変数はみ見つかりませんでした。&quot;);</span>
+        }
+<span class="nc" id="L1022">    }</span>
+
+    /**
+     * 画面要素取得
+     *
+     * @param actionEle
+     * @param actionEleWay
+     * @throws Exception
+     */
+    private WebElement operateWebGetElement(String targetPartialUrl, String actionEle, String actionEleWay)
+            throws Exception {
+<span class="nc" id="L1033">        RakurakuWebUtils.jumpToView(driver, targetPartialUrl);</span>
+<span class="nc" id="L1034">        RakurakuWebUtils.waitForLoad(driver);</span>
+<span class="nc" id="L1035">        By by = null;</span>
+<span class="nc bnc" id="L1036" title="All 9 branches missed.">        switch (actionEleWay) {</span>
+            case RakurakuConst.BY_ID:
+<span class="nc" id="L1038">                by = By.id(actionEle);</span>
+<span class="nc" id="L1039">                break;</span>
+            case RakurakuConst.BY_NAME:
+<span class="nc" id="L1041">                by = By.name(actionEle);</span>
+<span class="nc" id="L1042">                break;</span>
+            case RakurakuConst.BY_XPATH:
+<span class="nc" id="L1044">                by = By.xpath(actionEle);</span>
+<span class="nc" id="L1045">                break;</span>
+            case RakurakuConst.BY_LINKTEXT:
+<span class="nc" id="L1047">                by = By.linkText(actionEle);</span>
+<span class="nc" id="L1048">                break;</span>
+            case RakurakuConst.BY_PARTIALLINKTEXT:
+<span class="nc" id="L1050">                by = By.partialLinkText(actionEle);</span>
+<span class="nc" id="L1051">                break;</span>
+            case RakurakuConst.BY_TAGNAME:
+<span class="nc" id="L1053">                by = By.tagName(actionEle);</span>
+<span class="nc" id="L1054">                break;</span>
+            case RakurakuConst.BY_CSSSELECTOR:
+<span class="nc" id="L1056">                by = By.cssSelector(actionEle);</span>
+<span class="nc" id="L1057">                break;</span>
+            case RakurakuConst.BY_CLASSNAME:
+<span class="nc" id="L1059">                by = By.className(actionEle);</span>
+<span class="nc" id="L1060">                break;</span>
+            default:
+<span class="nc" id="L1062">                by = By.id(actionEle);</span>
+                break;
+        }
+<span class="nc" id="L1065">        WebElement we = null;</span>
+        try {
+<span class="nc" id="L1067">            we = driver.findElement(by);</span>
+<span class="nc" id="L1068">        } catch (NoSuchElementException e) {</span>
+<span class="nc" id="L1069">            throw new RakurakuException(&quot;画面要素が見つかりませんでした。&quot;, e);</span>
+<span class="nc" id="L1070">        }</span>
+<span class="nc" id="L1071">        return we;</span>
+    }
+
+    /**
+     * 画面要素複数取得
+     *
+     * @param actionEle
+     * @param actionEleWay
+     * @throws Exception
+     */
+    private List&lt;WebElement&gt; operateWebGetElements(String targetPartialUrl, String actionEle, String actionEleWay)
+            throws Exception {
+<span class="nc" id="L1083">        RakurakuWebUtils.jumpToView(driver, targetPartialUrl);</span>
+<span class="nc" id="L1084">        RakurakuWebUtils.waitForLoad(driver);</span>
+<span class="nc" id="L1085">        By by = null;</span>
+<span class="nc bnc" id="L1086" title="All 9 branches missed.">        switch (actionEleWay) {</span>
+            case RakurakuConst.BY_ID:
+<span class="nc" id="L1088">                by = By.id(actionEle);</span>
+<span class="nc" id="L1089">                break;</span>
+            case RakurakuConst.BY_NAME:
+<span class="nc" id="L1091">                by = By.name(actionEle);</span>
+<span class="nc" id="L1092">                break;</span>
+            case RakurakuConst.BY_XPATH:
+<span class="nc" id="L1094">                by = By.id(actionEle);</span>
+<span class="nc" id="L1095">                break;</span>
+            case RakurakuConst.BY_LINKTEXT:
+<span class="nc" id="L1097">                by = By.linkText(actionEle);</span>
+<span class="nc" id="L1098">                break;</span>
+            case RakurakuConst.BY_PARTIALLINKTEXT:
+<span class="nc" id="L1100">                by = By.partialLinkText(actionEle);</span>
+<span class="nc" id="L1101">                break;</span>
+            case RakurakuConst.BY_TAGNAME:
+<span class="nc" id="L1103">                by = By.tagName(actionEle);</span>
+<span class="nc" id="L1104">                break;</span>
+            case RakurakuConst.BY_CSSSELECTOR:
+<span class="nc" id="L1106">                by = By.cssSelector(actionEle);</span>
+<span class="nc" id="L1107">                break;</span>
+            case RakurakuConst.BY_CLASSNAME:
+<span class="nc" id="L1109">                by = By.className(actionEle);</span>
+<span class="nc" id="L1110">                break;</span>
+            default:
+<span class="nc" id="L1112">                by = By.id(actionEle);</span>
+                break;
+        }
+<span class="nc" id="L1115">        List&lt;WebElement&gt; weList = null;</span>
+        try {
+<span class="nc" id="L1117">            weList = driver.findElements(by);</span>
+<span class="nc" id="L1118">        } catch (NoSuchElementException e) {</span>
+<span class="nc" id="L1119">            throw new RakurakuException(&quot;画面要素リストが見つかりませんでした。&quot;, e);</span>
+<span class="nc" id="L1120">        }</span>
+<span class="nc" id="L1121">        return weList;</span>
+    }
+
+    /**
+     * 画面ボタン要素位置保存
+     *
+     * @param we
+     * @param actionType
+     */
+    private void operateWebSaveElementPosition(WebElement we, String actionType) throws Exception {
+<span class="nc bnc" id="L1131" title="All 2 branches missed.">        if (!&quot;Y&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;CAPTURE_LINE_MARK&quot;))) {</span>
+<span class="nc" id="L1132">            return;</span>
+        }
+<span class="nc bnc" id="L1134" title="All 4 branches missed.">        if (!RakurakuConst.WEB_BUTTON_LINK.equals(actionType) || StringUtils.isBlank(RakurakuCaptureUtils.nowPicName)</span>
+<span class="nc bnc" id="L1135" title="All 2 branches missed.">                || !RakurakuCaptureUtils.lastPicUrl.equals(driver.getCurrentUrl())) {</span>
+<span class="nc" id="L1136">            return;</span>
+        }
+<span class="nc" id="L1138">        int x = we.getLocation().getX() * 72 / 96;</span>
+<span class="nc" id="L1139">        int y = we.getLocation().getY() * 72 / 96;</span>
+<span class="nc" id="L1140">        int w = we.getSize().getWidth() * 72 / 96;</span>
+<span class="nc" id="L1141">        int h = we.getSize().getHeight() * 72 / 96;</span>
+<span class="nc" id="L1142">        String eachPosition = x + &quot;,&quot; + y + &quot;,&quot; + w + &quot;,&quot; + h;</span>
+<span class="nc" id="L1143">        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(</span>
+                new FileOutputStream(eachEviPath + &quot;/Rakuraku_Work/WebActionPositions.properties&quot;, true), &quot;UTF-8&quot;));
+<span class="nc" id="L1145">        bw.write(RakurakuCaptureUtils.nowPicName + &quot;=&quot; + eachPosition + &quot;\r\n&quot;);</span>
+<span class="nc" id="L1146">        bw.close();</span>
+<span class="nc" id="L1147">    }</span>
+
+    private void logging(String operateNm, String startTime, String result) {
+<span class="nc" id="L1150">        RakurakuCore.logBuilder.append(&quot;【実行結果=&quot; + result + &quot;】&quot;);</span>
+<span class="nc" id="L1151">        RakurakuCore.logBuilder.append(operateNm);</span>
+<span class="nc" id="L1152">        RakurakuCore.logBuilder.append(&quot;:&quot;);</span>
+<span class="nc" id="L1153">        RakurakuCore.logBuilder.append(&quot;開始時間=&quot; + startTime);</span>
+<span class="nc" id="L1154">        RakurakuCore.logBuilder.append(&quot;;終了時間=&quot; + RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;));</span>
+<span class="nc" id="L1155">        RakurakuCore.logBuilder.append(&quot;\n&quot;);</span>
+<span class="nc" id="L1156">    }</span>
+
+    public static void main(String args[]) throws Exception {
+<span class="nc" id="L1159">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

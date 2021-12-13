@@ -1,0 +1,45 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-detail/get?subsidiaryCode=MJP&billToCode=BILLTO&startIndex=1&responseCount=9&sortOrder=Due Date&invoiceStatus=Close
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=6a037a9e-2500-4724-a005-998a1ab13a91&&Prefer=/internal/v1/ccy/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "billToData": {
+    "billToName": "60",
+    "telNumber": "20",
+    "fax": "20",
+    "emailTo": "256",
+    "emailCc": "256",
+    "sendMedia": "2",
+    "paymentTerms": "042",
+    "tradeCurrency": "123",
+    "mainBusinessUnitCode": "4",
+    "acceptanceExist": "0",
+    "notePayableamount": 20.301,
+    "dunningLetterSendType": "1"
+  },
+  "noPaymentInfo": [
+    {
+      "invoiceNumber": "001",
+      "invoiceDate": "2021-05-27",
+      "paymentMeans": "YM",
+      "dunningLevel": "D",
+      "paymentDueDate": "2021-09-10",
+      "delayDays": "-76",
+      "nonPaymentAmount": 9325.4,
+      "billedAmount": 8523.3,
+      "incomingPaymentAmount": 5864.3,
+      "paymentCompleteDate": "2021-06-26",
+      "delayReasonType": "REA",
+      "paymentTermss": "PAYMENTTERMS",
+      "dunningLetterSendMedia": "DU",
+      "updateTime": "2021-09-10T01:00:00+09:00",
+      "updateUser": "JOB102",
+      "tradeStatus": "TR",
+      "reDate": "2021-09-10",
+      "clearFlag": "1"
+    }
+  ],
+  "errorList": []
+}

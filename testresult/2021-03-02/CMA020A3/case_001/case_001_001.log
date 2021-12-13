@@ -1,0 +1,17 @@
+■api名称：　登录
+■api Request：　/rest/MOCKAPI/CMA020A3
+■api方法：　POST
+■api Headers：　Accept=application/json,Content-Type=application/json;charset=UTF-8
+■api Body：　{    "SubsidiaryCd":"1",    "Id":"1",    "McPlantCd":"1",    "McPlantName":"1",    "ReasonCd":"1",    "ReasonName":"1",    "ProcessDiv":"1",    "ProcessDivName":"1",    "DepartmentInCharge":"aA9",    "DepartmentInChargeName":"aZ09",    "AdjustedDate":"aZ09",    "StockAdjustmentNo":"aZ09",    "ProductList":[        {            "InnerCode":"1",            "ProductCode":"aA09",            "Brand":"1",            "OnHand":"111",            "ReturnGoodsQuantity":"122",            "OnHold":"1",            "OnHandPrice":"1",            "Currency":"aA9",            "DepCode":"aA9",            "DepName":"aA9"        }    ]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "data": [
+    {
+      "VoucherNo": "aZ09"
+    }
+  ],
+  "resultCode": 0,
+  "messages": null,
+  "validationResults": null
+}

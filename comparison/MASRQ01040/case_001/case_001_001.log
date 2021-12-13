@@ -1,0 +1,9 @@
+■api名称：　登录
+■api Request：　/internal/v1/customer-lead-time-product-inquiry/check?customerCode=BOSCH9
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=1&&x-User-Type=System&&x-Auth-Id=string&&x-datadog-trace-id=string&&Authorization=string&&CacheControl=string&&Prefer=/internal/v1/customer/get->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "leadTimeProductInquiryFlag": "0"
+}

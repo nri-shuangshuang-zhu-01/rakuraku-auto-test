@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <c_process_parameterColName field="parameter_code" comment="パラメータコード"/>
+  <c_process_parameterColName field="language_code" comment="言語コード:言語マスタから言語コードを取得して設定"/>
+  <c_process_parameterColName field="parameter_seq" comment="パラメータSEQ:パラメータパターン連番"/>
+  <c_process_parameterColName field="subsidiary_code" comment="現法コード"/>
+  <c_process_parameterColName field="parameter_key1" comment="パラメータキー1"/>
+  <c_process_parameterColName field="parameter_key2" comment="パラメータキー2"/>
+  <c_process_parameterColName field="parameter_key3" comment="パラメータキー3"/>
+  <c_process_parameterColName field="parameter_key4" comment="パラメータキー4"/>
+  <c_process_parameterColName field="parameter_key5" comment="パラメータキー5"/>
+  <c_process_parameterColName field="usage_explanation" comment="用途説明"/>
+  <c_process_parameterColName field="setting_value_reference1" comment="設定値リファレンス1"/>
+  <c_process_parameterColName field="setting_value_reference2" comment="設定値リファレンス2"/>
+  <c_process_parameterColName field="setting_value_reference3" comment="設定値リファレンス3"/>
+  <c_process_parameterColName field="setting_value_reference4" comment="設定値リファレンス4"/>
+  <c_process_parameterColName field="setting_value_reference5" comment="設定値リファレンス5"/>
+  <c_process_parameterColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <c_process_parameterColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <c_process_parameterColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_process_parameterColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <c_process_parameterColName field="register_date_time" comment="登録日時"/>
+  <c_process_parameterColName field="register_program" comment="登録プログラム"/>
+  <c_process_parameterColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <c_process_parameterColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_process_parameterColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <c_process_parameterColName field="update_date_time" comment="更新日時"/>
+  <c_process_parameterColName field="update_program" comment="更新プログラム"/>
+  <c_process_parameterColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

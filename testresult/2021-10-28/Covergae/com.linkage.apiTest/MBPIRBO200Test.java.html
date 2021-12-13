@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBPIRBO200Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.apiTest</a> &gt; <span class="el_source">MBPIRBO200Test.java</span></div><h1>MBPIRBO200Test.java</h1><pre class="source lang-java linenums">package com.linkage.apiTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBPIRBO200&quot;)
+@DisplayName(&quot;MBPIRBO200&quot;)
+<span class="nc" id="L15">public class MBPIRBO200Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBPIRBO200&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBPIRBO200&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;TEST001&quot;)
+	@DisplayName(&quot;TEST001&quot;)
+	public void testMBPIRBO200_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO200/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_DEMAND_FORECAST → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_DEMAND_FORECAST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L49">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;deleteWeeklyReorderPointDemandForecastDataJob,--subsidiary-code=TIW,--job-net-id=12345,--job-execution-id=12345&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_DEMAND_FORECAST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L52">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_DEMAND_FORECAST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L54">	}</span>
+
+	@Test
+	@Tag(&quot;TEST002&quot;)
+	@DisplayName(&quot;TEST002&quot;)
+	public void testMBPIRBO200_002() throws Exception {
+
+<span class="nc" id="L61">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO200/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_WEEKLY_REORDER_POINT_DEMAND_FORECAST → データクリア・挿入 */
+<span class="nc" id="L65">		rakurakuCore.operateDBPrepare(&quot;T_WEEKLY_REORDER_POINT_DEMAND_FORECAST&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L68">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;deleteWeeklyReorderPointDemandForecastDataJob,--subsidiary-code=JPN,--job-id=12345,--job-net-id=12345&quot;);</span>
+
+		/* 操作(DB確認) → T_WEEKLY_REORDER_POINT_DEMAND_FORECAST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L71">		rakurakuCore.operateDBConfirm(&quot;T_WEEKLY_REORDER_POINT_DEMAND_FORECAST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L73">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

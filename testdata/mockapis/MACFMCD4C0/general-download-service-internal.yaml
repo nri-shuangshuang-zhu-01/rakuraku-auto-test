@@ -1,0 +1,781 @@
+openapi: 3.0.0
+info:
+  title: general-download-service-internal
+  version: '1.0'
+  description: 共通サービス社内向け用API
+servers:
+  - url: 'http://localhost:3000/general-download'
+paths:
+  /internal/v1/ul-purpose-data-download/reference:
+    post:
+      summary: 共通_UL用/UL結果データダウンロード参照API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SearchGeneralDounloadInternalResponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: referenceUlPurposeDataDownloadInternalV1
+      description: UL用/UL結果データダウンロード参照APIを呼び出して、UL用/UL結果データダウンロード情報を参照する。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ReferenceUlPurposeDataDownloadInternalRequestV1'
+        description: ''
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: '#/components/parameters/sortby2'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      tags:
+        - UlPurposeDataDownloadInternal
+    parameters: []
+  /internal/v1/ul-purpose-data-download/excute:
+    post:
+      summary: 共通_UL用/UL結果データダウンロード実行API
+      tags:
+        - UlPurposeDataDownloadInternal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExcuteUlPurposeDataDownloadInternalReponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: excuteUlPurposeDataDownloadInternalV1
+      description: 画面のリクエストを参照し、ファイルをダウンロードし、ファイルのステータスを変更する
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1'
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+    parameters: []
+  /internal/v1/ul-purpose-data-download/remove:
+    post:
+      summary: 共通_UL用/UL結果データダウンロード削除API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/DeleteUlPurposeDataDownloadInternalReponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: removeUlPurposeDataDownloadInternalV1
+      description: UL用/UL結果データダウンロードファイル制御の情報内容を削除する。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1'
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+      tags:
+        - UlPurposeDataDownloadInternal
+    parameters: []
+  /internal/v1/ul-purpose-data-download/save:
+    post:
+      summary: 共通_UL用/UL結果データダウンロード_登録更新API
+      tags:
+        - UlPurposeDataDownloadInternal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SaveUlPurposeDataDownloadInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: saveUlPurposeDataDownloadInternalV1
+      description: UL用/UL結果データダウンロード制御に対し、ダウンロードファイルの情報を登録またはステータスの更新を行う
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/SaveUlPurposeDataDownloadInternalRequestV1'
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+    parameters: []
+  /internal/v1/data-upload/register:
+    post:
+      summary: 共通_データアップロード登録API
+      tags:
+        - DataUploadInternal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RegisterDataUploadInternalResponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: registerDataUploadInternalV1
+      description: リクエスト元で設定する情報を基に、データアップロード排他テーブルにステータス未処理として登録する
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/RegisterDataUploadInternalRequestV1'
+        description: ''
+  /internal/v1/data-upload/save:
+    post:
+      summary: 共通_データアップロード_ステータス更新API
+      tags:
+        - DataUploadInternal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SaveDataUploadInternalResponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: saveDataUploadInternalV1
+      description: アップロードされたファイルに対し、処理の開始完了に応じてステータスを更新する
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/SaveDataUploadInternalRequestV1'
+        description: ''
+    parameters: []
+  /internal/v1/ul-data-download-pulldown/get:
+    post:
+      summary: 共通_UL用/UL結果データダウンロードファイル情報リスト取得API
+      tags:
+        - UlDataDownloadPulldownInternal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/GetUlDataDownloadPulldownInternalResponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: getUlDataDownloadPulldownInternalV1
+      description: UL用/UL結果データダウンロード権限マスタ、UL用/UL結果データダウンロード大分類マスタとUL用/UL結果データダウンロード中分類マスタ参照する。
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUlDataDownloadPulldownInternalRequestV1'
+    parameters: []
+components:
+  schemas:
+    ReferenceUlPurposeDataDownloadInternalRequestV1:
+      title: ReferenceUlPurposeDataDownloadInternalRequestV1
+      type: object
+      description: ''
+      properties:
+        mailAddress:
+          type: string
+          description: メールアドレス
+          maxLength: 256
+        dataCode:
+          type: string
+          description: データコード
+          maxLength: 5
+        fileName:
+          type: string
+          description: ファイル名
+          maxLength: 432
+        createDateFrom:
+          type: string
+          description: 作成日from
+          format: date
+        createDateTo:
+          type: string
+          description: 作成日to
+          format: date
+        statusRequesting:
+          type: string
+          description: ステータス 　依頼中チェックボックス
+          maxLength: 1
+        statusDownloadable:
+          type: string
+          description: ステータス 　DL可能チェックボックス
+          maxLength: 1
+        statusDownloaded:
+          type: string
+          description: ステータス 　DL済チェックボックス
+          maxLength: 1
+        referenceMaxCount:
+          type: integer
+          description: 参照最大件数
+      required:
+        - createDateFrom
+        - referenceMaxCount
+    ReferenceUlPurposeDataDownloadInternalResInfoListV1:
+      title: ReferenceUlPurposeDataDownloadInternalResInfoListV1
+      type: object
+      properties:
+        controlSeqNumber:
+          type: string
+          description: 管理SEQ番号
+        mailAddress:
+          type: string
+          description: メールアドレス
+        dataCode:
+          type: string
+          description: データコード
+        fileTypeName:
+          type: string
+          description: データ名
+        fileName:
+          type: string
+          description: ファイル名
+        createDate:
+          type: string
+          description: 作成日
+          format: date
+        statusCode:
+          type: string
+          description: ステータスコード
+        statusName:
+          type: string
+          description: ステータス名
+        resultCode:
+          type: string
+          description: 結果コード
+        resultName:
+          type: string
+          description: 結果
+      required:
+        - controlSeqNumber
+        - mailAddress
+        - dataCode
+        - fileTypeName
+        - fileName
+        - createDate
+        - statusCode
+        - statusName
+        - resultCode
+        - resultName
+    ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1:
+      title: ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1
+      type: object
+      properties:
+        controlSeqNumber:
+          type: string
+          description: 管理SEQ番号
+          maxLength: 10
+      required:
+        - controlSeqNumber
+    ExcuteUlPurposeDataDownloadInternalReponseV1:
+      title: ExcuteUlPurposeDataDownloadInternalReponseV1
+      type: object
+      properties:
+        presignedUrl:
+          type: string
+          description: PresignedURL
+        updateResult:
+          type: string
+          description: 更新可否結果
+        errorList:
+          type: array
+          description: エラーコード
+          items:
+            $ref: '#/components/schemas/ReferenceUlPurposeDataDownloadInternalErrorListV1'
+      required:
+        - presignedUrl
+        - updateResult
+    DeleteUlPurposeDataDownloadInternalReponseV1:
+      title: DeleteUlPurposeDataDownloadInternalReponseV1
+      type: object
+      description: 削除可否結果リスト
+      properties:
+        deleteResult:
+          type: string
+          description: 削除可否結果
+          maxLength: 1
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - deleteResult
+    SaveUlPurposeDataDownloadInternalRequestV1:
+      title: SaveUlPurposeDataDownloadInternalRequestV1
+      type: object
+      properties:
+        controlSeqNumber:
+          type: string
+          maxLength: 10
+          description: 管理SEQ番号
+        dataCode:
+          type: string
+          description: データコード
+          maxLength: 5
+        createTime:
+          type: string
+          description: 作成日時
+          format: date-time
+        tempFileCode:
+          type: string
+          description: 一時ファイルコード
+          maxLength: 256
+        filePath:
+          type: string
+          maxLength: 256
+          description: ファイルパス
+        presignedApiPath:
+          type: string
+          maxLength: 256
+          description: PresignedURL生成APIパス
+        signature:
+          type: string
+          maxLength: 256
+          description: 署名
+        displayFileName:
+          type: string
+          description: 表示用ファイル名
+          maxLength: 432
+        statusCode:
+          type: string
+          description: ステータスコード
+          maxLength: 1
+        processResultCode:
+          type: string
+          description: 処理結果コード
+          maxLength: 1
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+    SaveUlPurposeDataDownloadInternalResponseV1:
+      title: SaveUlPurposeDataDownloadInternalResponseV1
+      type: object
+      properties:
+        controlSeqNumber:
+          type: string
+          description: 管理SEQ番号
+        updateCount:
+          type: integer
+          description: 更新回数
+        updateResult:
+          type: string
+          description: 更新可否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - updateResult
+    SaveDataUploadInternalRequestV1:
+      title: SaveDataUploadInternalRequestV1
+      type: object
+      properties:
+        controlSeqNumber:
+          type: string
+          maxLength: 10
+          description: 管理SEQ番号
+        statusCode:
+          type: string
+          maxLength: 1
+          description: ステータスコード
+        processResultCode:
+          type: string
+          maxLength: 1
+          description: 処理結果コード
+        updateCount:
+          type: integer
+          maximum: 9999
+          description: 更新回数
+      required:
+        - controlSeqNumber
+        - statusCode
+    SaveDataUploadInternalResponseV1:
+      title: SaveDataUploadInternalResponseV1
+      type: object
+      properties:
+        updateCount:
+          type: integer
+          description: 更新回数
+        updateResult:
+          type: string
+          description: 更新可否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - updateResult
+    RegisterDataUploadInternalRequestV1:
+      title: RegisterDataUploadInternalRequestV1
+      type: object
+      properties:
+        dataCode:
+          type: string
+          maxLength: 5
+          description: データコード
+        mailAddress:
+          type: string
+          maxLength: 6
+          description: メールアドレス
+        tempFileCode:
+          type: string
+          maxLength: 256
+          description: 一時ファイルコード
+        filePath:
+          type: string
+          maxLength: 256
+          description: ファイルパス
+        signature:
+          type: string
+          maxLength: 256
+          description: 署名
+        inputFileName:
+          type: string
+          maxLength: 144
+          description: 入力ファイル名
+      required:
+        - dataCode
+        - mailAddress
+        - tempFileCode
+        - filePath
+        - signature
+        - inputFileName
+    RegisterDataUploadInternalResponseV1:
+      title: RegisterDataUploadInternalResponseV1
+      type: object
+      properties:
+        controlSeqNumber:
+          type: string
+          description: 管理SEQ番号
+        updateResult:
+          type: string
+          description: 更新可否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - updateResult
+    SearchGeneralDounloadInternalResponseV1:
+      title: SearchGeneralDounloadInternalResponseV1
+      type: object
+      properties:
+        resultInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceUlPurposeDataDownloadInternalResInfoListV1'
+        errorList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceUlPurposeDataDownloadInternalErrorListV1'
+    ReferenceUlPurposeDataDownloadInternalErrorListV1:
+      title: ReferenceUlPurposeDataDownloadInternalErrorListV1
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+    GetUlDataDownloadPulldownInternalResponseV1:
+      title: GetUlDataDownloadPulldownInternalResponseV1
+      type: object
+      properties:
+        largeClassificationList:
+          type: array
+          description: 大分類リスト
+          items:
+            $ref: '#/components/schemas/LargeClassificationInternalListV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+      required:
+        - largeClassificationList
+    LargeClassificationInternalListV1:
+      title: LargeClassificationInternalListV1
+      type: object
+      properties:
+        dataLargeClassificationCode:
+          type: string
+          description: データ大分類コード
+        dataLargeClassificationNameJapanese:
+          type: string
+          description: データ大分類名（日本語）
+        dataLargeClassificationNameEnglish:
+          type: string
+          description: データ大分類名（英語）
+        mediumClassificationList:
+          type: array
+          description: 中分類リスト
+          items:
+            $ref: '#/components/schemas/MediumClassificationInternalListV1'
+      required:
+        - dataLargeClassificationCode
+        - dataLargeClassificationNameJapanese
+        - dataLargeClassificationNameEnglish
+        - mediumClassificationList
+    MediumClassificationInternalListV1:
+      title: MediumClassificationInternalListV1
+      type: object
+      properties:
+        dataMediumClassificationCode:
+          type: string
+          description: データ中分類コード
+        dataMediumClassificationNameJapanese:
+          type: string
+          description: データ中分類名（日本語）
+        dataMediumClassificationNameEnglish:
+          type: string
+          description: データ中分類名（英語）
+        dataList:
+          type: array
+          description: データリスト
+          items:
+            $ref: '#/components/schemas/dataInternalListV1'
+      required:
+        - dataMediumClassificationCode
+        - dataMediumClassificationNameJapanese
+        - dataMediumClassificationNameEnglish
+        - dataList
+    dataInternalListV1:
+      title: dataInternalListV1
+      type: object
+      properties:
+        dataCode:
+          type: string
+          description: データコード
+        dataNameJapanese:
+          type: string
+          description: データ名（日本語）
+        dataNameEnglish:
+          type: string
+          description: データ名（英語）
+      required:
+        - dataCode
+        - dataNameJapanese
+        - dataNameEnglish
+    ErrorList:
+      title: ErrorList
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+    GetUlDataDownloadPulldownInternalRequestV1:
+      title: GetUlDataDownloadPulldownInternalRequestV1
+      type: object
+      properties:
+        authorityCode:
+          type: array
+          description: 権限コード
+          items:
+            type: string
+      required:
+        - authorityCode
+  responses: {}
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      schema:
+        type: string
+      description: ソート順1
+    sortby2:
+      name: sortby2
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順2
+tags:
+  - name: UlDataDownloadPulldownInternal
+  - name: UlPurposeDataDownloadInternal
+  - name: DataUploadInternal
+  - name: PresignedUrlInternal

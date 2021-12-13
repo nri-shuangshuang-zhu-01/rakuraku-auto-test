@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultRegistWeeklyOrderTimeExclusiondlService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultRegistWeeklyOrderTimeExclusiondlService.java</span></div><h1>DefaultRegistWeeklyOrderTimeExclusiondlService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.iterable.CloseableIterable;
+import jp.co.misumi.fw.core.util.StringUtil;
+import jp.co.misumi.replenishstock.domain.client.task.RegisterWeeklyOrderTimeExclusionProducer;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointExcludeConditionEntity;
+import jp.co.misumi.replenishstock.domain.repository.RegistWeeklyOrderTimeExclusionDlServiceRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderDlRequestV1;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderDlRequestplantCdListV1;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderDlResponseDataV1;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderDlResponseV1;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.kafka.common.utils.Utils;
+import org.springframework.context.MessageSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
+
+/**
+ * 週次発注点除外条件マスタDL非同期タスク登録.
+ *
+ * @author LKG　sho.daii
+ * @since 1.0.0 @Date 2021/09/12
+ */
+@RequiredArgsConstructor
+@Named
+public class DefaultRegistWeeklyOrderTimeExclusiondlService
+    implements RegistWeeklyOrderTimeExclusionDlService {
+
+  private final RegistWeeklyOrderTimeExclusionDlServiceRepository registWeeklyRepository;
+  private final PlatformTransactionManager tm;
+
+  // messageSource
+  private final MessageSource messageSource;
+
+  // 非同期タスク登録部品
+  private final RegisterWeeklyOrderTimeExclusionProducer regitWeeklyDlProducer;
+
+  @Override
+  public RegistWeeklyOrderDlResponseV1 regist(
+      RequestContext context, RegistWeeklyOrderDlRequestV1 registrequestV1) throws Exception {
+<span class="nc" id="L51">    final TransactionTemplate tt = new TransactionTemplate(tm);</span>
+
+    // ResponseDataの初期化
+<span class="nc" id="L54">    RegistWeeklyOrderDlResponseDataV1 responDataTmp = new RegistWeeklyOrderDlResponseDataV1();</span>
+
+    // Requestを判断する
+<span class="nc" id="L57">    RegistWeeklyOrderDlRequestV1 checkedRequestV1 =</span>
+<span class="nc" id="L58">        checkSearchConditionParamEntity(registrequestV1);</span>
+
+    // 取得されたレコードの処理　DBに検索する
+<span class="nc" id="L61">    Map&lt;String, List&lt;WeeklyReorderPointExcludeConditionEntity&gt;&gt; downloadEntityListMap =</span>
+        new HashMap&lt;&gt;();
+<span class="nc" id="L63">    IOException ex =</span>
+<span class="nc" id="L64">        tt.execute(</span>
+            tx -&gt; {
+              // RepositoryでDBに入る
+              try (final CloseableIterable&lt;WeeklyReorderPointExcludeConditionEntity&gt;
+<span class="nc" id="L68">                  downloadEntity = registWeeklyRepository.findListByPk(checkedRequestV1, context)) {</span>
+<span class="nc" id="L69">                downloadEntityListMap.put(</span>
+<span class="nc" id="L70">                    &quot;downloadEntityList&quot;, Utils.toList(downloadEntity.iterator()));</span>
+<span class="nc" id="L71">              } catch (IOException e) {</span>
+<span class="nc" id="L72">                return e;</span>
+<span class="nc" id="L73">              }</span>
+<span class="nc" id="L74">              return null;</span>
+            });
+
+    // DB検索が異常終了の場合
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (ex != null) {</span>
+<span class="nc" id="L79">      throw new BusinessException(</span>
+          messageSource,
+          ReplenishStockMessages.NIROP090004E,
+          ex,
+          ReplenishStockConstants.ERROR_CODE4,
+          ReplenishStockConstants.SEARCH,
+          ReplenishStockConstants.M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITION);
+    }
+
+<span class="nc bnc" id="L88" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(downloadEntityListMap.get(&quot;downloadEntityList&quot;))) {</span>
+      // Responseのエラーコード設定　2：失敗　1：成功
+<span class="nc" id="L90">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP090002E, null);</span>
+    } else {
+
+      // リクエスト項目.得意先コード
+<span class="nc" id="L94">      StringBuilder jobEldar = new StringBuilder();</span>
+<span class="nc" id="L95">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_CUSTOMER_CODE);</span>
+<span class="nc" id="L96">      jobEldar.append(registrequestV1.getCustomerCode());</span>
+<span class="nc" id="L97">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.配送先コード
+<span class="nc" id="L100">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_SHIP_TO_CODE);</span>
+<span class="nc" id="L101">      jobEldar.append(registrequestV1.getShipToCode());</span>
+<span class="nc" id="L102">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.統合インナーコード
+<span class="nc" id="L105">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_GINNER_CODE);</span>
+<span class="nc" id="L106">      jobEldar.append(registrequestV1.getGinnerCd());</span>
+<span class="nc" id="L107">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.分析コード(from)
+<span class="nc" id="L110">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_CLASSIFY_CODE_FROME);</span>
+<span class="nc" id="L111">      jobEldar.append(registrequestV1.getClassifyCodeFrom());</span>
+<span class="nc" id="L112">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.分析コード(to)
+<span class="nc" id="L115">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_CLASSIFY_CODE_TO);</span>
+<span class="nc" id="L116">      jobEldar.append(registrequestV1.getClassifyCodeTo());</span>
+<span class="nc" id="L117">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.置場リスト
+<span class="nc" id="L120">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_PLANT_CODE_LIST);</span>
+<span class="nc" id="L121">      jobEldar.append(registrequestV1.getPlantCdList());</span>
+<span class="nc" id="L122">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.適用開始日(From)
+<span class="nc" id="L125">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_EFFECTIVE_DATE_FROM);</span>
+<span class="nc" id="L126">      jobEldar.append(registrequestV1.getEffectiveDateFrom());</span>
+<span class="nc" id="L127">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.適用開始日(To)
+<span class="nc" id="L130">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_EFFECTIVE_DATE_TO);</span>
+<span class="nc" id="L131">      jobEldar.append(registrequestV1.getEffectiveDateTo());</span>
+<span class="nc" id="L132">      jobEldar.append(ReplenishStockConstants.CHAR_COMMA);</span>
+
+      // リクエスト項目.削除フラグ
+<span class="nc" id="L135">      jobEldar.append(ReplenishStockConstants.CONCERT_JSON_DELETE_FLAG);</span>
+<span class="nc" id="L136">      jobEldar.append(registrequestV1.getDelFlg());</span>
+
+      // 非同期タスク登録部品
+      try {
+
+        // 非同期タスク登録部品を呼ぶだす、
+        // 変数；リクエスト項目.現法コード,リクエスト項目.ユーザID,JOB制御用エリア１
+<span class="nc" id="L143">        regitWeeklyDlProducer.sendRegisWeekendL(</span>
+<span class="nc" id="L144">            context.getSubsidiaryCode(), registrequestV1.getUserId(), jobEldar.toString(), context);</span>
+<span class="nc" id="L145">      } catch (BusinessException e) {</span>
+<span class="nc" id="L146">        throw new BusinessException(messageSource, ReplenishStockMessages.NIROP090003E, null);</span>
+<span class="nc" id="L147">      }</span>
+    }
+
+    // Responseの初期化
+<span class="nc" id="L151">    RegistWeeklyOrderDlResponseV1 registResponse = new RegistWeeklyOrderDlResponseV1();</span>
+
+    // Responseのエラーコード設定　2：失敗　1：成功
+<span class="nc" id="L154">    responDataTmp.setResultCd(ReplenishStockConstants.RESULT_CODE_SUCCESS);</span>
+
+    // Responseの設定
+<span class="nc" id="L157">    registResponse.setResponsedata(responDataTmp);</span>
+
+<span class="nc" id="L159">    return registResponse;</span>
+  }
+
+  /**
+   * 検索パラメタに未指定の項目を判断設定する.
+   *
+   * @param registrequestV1 検索パラメタエンテイテイ
+   */
+  private RegistWeeklyOrderDlRequestV1 checkSearchConditionParamEntity(
+      RegistWeeklyOrderDlRequestV1 registrequestV1) {
+    // 配送先コード
+<span class="nc bnc" id="L170" title="All 2 branches missed.">    if (StringUtil.isEmpty(registrequestV1.getShipToCode())) {</span>
+<span class="nc" id="L171">      registrequestV1.setShipToCode(ReplenishStockConstants.ASTERISK_SHIP_TO_CODE);</span>
+    }
+
+    // 統合インナーコード
+<span class="nc bnc" id="L175" title="All 2 branches missed.">    if (StringUtil.isEmpty(registrequestV1.getGinnerCd())) {</span>
+<span class="nc" id="L176">      registrequestV1.setGinnerCd(ReplenishStockConstants.ASTERISK_GINNER_CODE);</span>
+    }
+
+    // 置場リスト
+<span class="nc bnc" id="L180" title="All 2 branches missed.">    if (org.springframework.util.CollectionUtils.isEmpty(registrequestV1.getPlantCdList())) {</span>
+<span class="nc" id="L181">      RegistWeeklyOrderDlRequestplantCdListV1 registWeeklyOrderDlRequestplantCdListV1 =</span>
+          new RegistWeeklyOrderDlRequestplantCdListV1();
+<span class="nc" id="L183">      registWeeklyOrderDlRequestplantCdListV1.setPlantCd(</span>
+          ReplenishStockConstants.ASTERISK_PLANT_CODE_LIST);
+<span class="nc" id="L185">      registrequestV1.getPlantCdList().add(registWeeklyOrderDlRequestplantCdListV1);</span>
+    }
+
+    // 分析コード(from) 分析コード(to)
+<span class="nc bnc" id="L189" title="All 2 branches missed.">    if (StringUtil.isEmpty(registrequestV1.getClassifyCodeFrom())</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        &amp;&amp; StringUtil.isEmpty(registrequestV1.getClassifyCodeTo())) {</span>
+<span class="nc" id="L191">      registrequestV1.setClassifyCodeTo(ReplenishStockConstants.ASTERISK_CLASSIFY_CODE);</span>
+<span class="nc" id="L192">      registrequestV1.setClassifyCodeFrom(ReplenishStockConstants.ASTERISK_CLASSIFY_CODE);</span>
+    }
+<span class="nc" id="L194">    return registrequestV1;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

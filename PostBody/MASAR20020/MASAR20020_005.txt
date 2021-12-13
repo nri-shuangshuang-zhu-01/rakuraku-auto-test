@@ -1,0 +1,17 @@
+{
+  "requestDataList":[{
+      "billToCode":"123456",
+      "level":"1",
+      "delayDays":"st",
+      "invoiceNumber":"101010",
+      "invoiceIssueDate":"2020-02-02",
+      "subsidiaryCode":"JPN",
+      "loginUser":"string",
+      "promisedPaymentDate":"2020-09-10",
+      "sendMedia":null,
+      "fax":"string",
+      "emailTo":"user@example.com",
+      "emailCc":"user@example.com"
+  }],
+  "dunningLetterOutputType":"0"	
+}

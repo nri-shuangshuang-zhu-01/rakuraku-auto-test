@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="subsidiary_code"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="ginner_code"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="product_code"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="release_date"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="data_hub_updated_flag"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="register_system_date_time"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="update_system_date_time"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="update_program"/>
+</dataset>

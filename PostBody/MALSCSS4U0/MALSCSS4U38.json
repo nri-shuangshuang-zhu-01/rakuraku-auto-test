@@ -1,0 +1,39 @@
+{
+  "cancelStopShipmentInfo": [
+    {
+      "soSlipNumber": "a5678",
+      "soLineKey": 0,
+      "globalNumber": "CA000032000086",
+      "inputProcessDate": "2019-08-24",
+      "plantCode": "A123",
+      "supplyType": "01",
+      "storageLocationCode": "stri",
+      "customerCode": "string",
+      "customerSubsidiaryCode": "str",
+      "supplierCode": "stri",
+      "slipType": "str",
+      "vsd": "2019-02-24",
+      "vrd": "2019-03-24",
+      "crd": "2019-04-24",
+      "ssd": "2019-05-24",
+      "stockFlag": "s",
+      "componentFlag": "1",
+      "productWeight": "",
+      "soQty": 0,
+      "productCode": "AAAA",
+      "brandCode": "str2",
+      "ginnerCode": "str3",
+      "soInputDate": "2019-06-24",
+      "customerItemSubReference": "string1",
+      "nativeOrderPicName": "string2",
+      "reasonType": "str",
+      "analisysCode": "str4",
+      "productControlDepartmentCode": "str5",
+      "storkCode": "st",
+      "shipmentMeansCode": "s1",
+      "faxNumber": "123",
+      "soDate": "2020-08-24",
+      "marketCode": "s2"
+    }
+  ]
+}

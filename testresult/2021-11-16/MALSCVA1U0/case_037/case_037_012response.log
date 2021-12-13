@@ -1,0 +1,3 @@
+{"resultList":[{"adjustVoucherNo":"123456","adjustVoucherNoSeq":"123456_1","inPlantCd":"00T2","inStorageLocation":"00T2","gInnerCd":"123456","innerCd":"123456","stockAdjustVoucherNo":"A1234567","beforeCurrentStockQty":1,"afterCurrentStockQty":2,"beforeHoldStockQty":3,"afterHoldStockQty":4,"evaluationUnitPrice":"12","adjustDate":"20121212","status":"OK","errorCode":""}]}
+{"mailTitle":"出荷不可連絡リスト >> 連絡","mailText":"出荷不可連絡リストを送付します。"}
+{"type":"https://stoplight.io/prism/errors#NO_PATH_MATCHED_ERROR","title":"Route not resolved, no path matched","status":404,"detail":"The route /internal/v1/report/print hasn't been found in the specification file"}

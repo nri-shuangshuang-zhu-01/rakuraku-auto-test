@@ -1,0 +1,12 @@
+■api名称：　印刷
+■api Request：　/internal/v1/stop-shipment/print
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=1&&Idempotency-Key=1&&Prefer=/v1/gw-stop-shipment/reference->example-2&/internal/v1/product-classification/get-list->example-2&/internal/v1/reason-type/get-list->example-2&/internal/v1/customer/get-list->example-2&/internal/v1/supplier/get-list->example-2&/internal/v1/plant/get-list->example-2&/v1/mail-template/preview->example-1&/internal/v1/report/find->example-2&/internal/v1/report/print->example-1&/internal/v1/report/download->example-1&/v1/mail/send->example-1&/v1/gw-stop-shipment/save->example-2
+■api Body：　 {  "businessSceneType": "st",  "printList": [    {      "globalNumber": "CA000032000086",      "productCode": "string",      "brandCode": "stri",      "contactList": "s",      "qty": 9999999,      "marketCode": "st",      "plantCode": "0001",      "storageLocationCode": "stri",      "slipType":"str",      "soArrivalDate": "2019-08-24T14:15:22Z",      "soShipmentDate": "2019-08-24T14:15:22Z",      "soStatusType": "1",      "stopShipmentFlag": "1",      "inputProcessDate": "2019-08-24",      "time": "14:15:22Z",      "id": "string",      "historyDisplayType": "s",      "updateCount": 9999    }  ]}
+■loginUser：　
+■Response：：
+{
+  "code": "NSCSS3P0010E",
+  "argumentList": [],
+  "message": "指定のメール情報に該当するデータは存在しません。"
+}

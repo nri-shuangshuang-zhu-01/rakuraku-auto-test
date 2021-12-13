@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry subsidiary_code='JPN' inquiry_id='1' urgent_flag='1' customer_code='123456' customer_name='baruIOKliCoeOUCzElFW' ship_to_code='123654' ship_to_name='myNqfKCJXaUsLNgVXDkJ' department_name='gJDFPulsgybHxKZgvImi' pic_name='NyIIybKVFBhtMpuNkURX' send_media_type='01' fax_send_to_number='12345' email_address_to='123456' email_address_cc='1234567' inquiry_reply_limit='12345678' qt_expiration_date_time='2021-08-28 08:00:00' contact_id='12' update_count='1' delete_flag='0' register_user_type='111111111111111' register_user='34' register_date_time='2021-08-28 08:00:00' register_program='222222222222222' register_client_program='222222222222223' update_user_type='222222222222224' update_user='2' update_date_time='2021-08-28 08:00:00' update_program='222222222222225' update_client_program='222222222222226' />
+</dataset>

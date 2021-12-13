@@ -1,0 +1,11 @@
+{
+"generalKeyList":[{
+    "screenDisplayFieldIdentifier":"CD",
+    "generalKey1":"002",
+    "generalKey2":"004",
+    "generalKey3":"005",
+    "generalKey4":"006",
+    "generalKey5":""
+}
+]
+}

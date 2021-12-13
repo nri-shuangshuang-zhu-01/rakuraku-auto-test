@@ -1,0 +1,5 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SHIPMENT_ACTUAL_REPLICA subsidiary_code='CHN' plant_code='1601' global_number='22345600000003' so_slip_number='3234567011' so_line_key='32011' ginner_code='12345600001601' product_code='123456789000003' classify_code='12300003' shipment_fix_date='2020-12-10' shipment_qty='60' supply_type='01' data_hub_updated_flag='1' register_system_date_time='2020-02-11 10:01:00' update_system_date_time='2020-02-13 11:01:00' update_program='JOB102' />
+    <T_SHIPMENT_ACTUAL_REPLICA subsidiary_code='CHN' plant_code='1602' global_number='22345600000003' so_slip_number='3234567011' so_line_key='32011' ginner_code='12345600001602' product_code='123456789000003' classify_code='12300003' shipment_fix_date='2020-12-15' shipment_qty='10' supply_type='01' data_hub_updated_flag='1' register_system_date_time='2020-02-11 10:01:00' update_system_date_time='2020-02-13 11:01:00' update_program='JOB102' />
+</dataset>

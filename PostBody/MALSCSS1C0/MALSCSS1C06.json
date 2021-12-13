@@ -1,0 +1,9 @@
+{
+  "stopShipmentInfo": [
+    {
+      "reasonType": "A1234",
+      "globalNumber": "CA000032000086",
+      "processType": "1"
+    }
+  ]
+}

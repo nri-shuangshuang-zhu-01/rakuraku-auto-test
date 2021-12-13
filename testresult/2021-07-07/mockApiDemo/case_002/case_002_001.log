@@ -1,0 +1,73 @@
+■api名称：　登录
+■api Request：　/v1/shipmentDataInquery/search?subsidiaryCode=MJP&shipmentDate=2020-01-02&shipmentCenter=AABB
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.26.10&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&Prefer=/v1/area/search->3&/v1/plant/search->2
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "subsidiaryCode": "MJP",
+  "shipmentCenter": "AABB",
+  "shipmentDate": "2020-01-02",
+  "resultCount": 1,
+  "internalShipmentAreaList": [],
+  "internalShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 0,
+    "mtoBeforeRecQtySubtotal": 0,
+    "stock1stSubtotal": 0,
+    "stock2ndSubtotal": 0,
+    "stock3rdSubtotal": 0,
+    "stock4thSubtotal": 0,
+    "recRecQtySubtotal": 0,
+    "recRcQtySubtotal": 0,
+    "storkRecQtySubtotal": 0,
+    "storkRcQtySubtotal": 0,
+    "totalRecQtySubtotal": 0,
+    "totalRcQtySubtotal": 0
+  },
+  "overseasShipmentAreaList": [
+    {
+      "shippingDestinationCode": "01 ",
+      "shippingDestinationName": "QCT",
+      "stockBefore": 6000,
+      "mtoBefore": 600,
+      "stock1st": 6600,
+      "stock2nd": 6900,
+      "stock3rd": 7200,
+      "stock4th": 7500,
+      "recQtySubtotal": 34800,
+      "rcQty": 15,
+      "storkRecQty": 6300,
+      "storkRcQty": 3,
+      "recQtyTotal": 34863,
+      "rcQtyTotal": 18
+    }
+  ],
+  "overseasShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 6000,
+    "mtoBeforeRecQtySubtotal": 600,
+    "stock1stSubtotal": 6600,
+    "stock2ndSubtotal": 6900,
+    "stock3rdSubtotal": 7200,
+    "stock4thSubtotal": 7500,
+    "recRecQtySubtotal": 34800,
+    "recRcQtySubtotal": 15,
+    "storkRecQtySubtotal": 6300,
+    "storkRcQtySubtotal": 3,
+    "totalRecQtySubtotalSubtotal": 34863,
+    "totalRcQtySubtotal": 18
+  },
+  "internalOverseasAreaTotalList": {
+    "stockBeforeRecQtyTotal": 6000,
+    "mtoBeforeRecQtyTotal": 600,
+    "stock1stTotal": 6600,
+    "stock2ndTotal": 6900,
+    "stock3rdTotal": 7200,
+    "stock4thTotal": 7500,
+    "recRecQtyTotal": 34800,
+    "recRcQtyTotal": 15,
+    "storkRecQtyTotal": 6300,
+    "storkRcQtyTotal": 3,
+    "totalRecQtyTotal": 34863,
+    "totalRcQtyTotal": 18
+  }
+}

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReasonTypeInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api</a> &gt; <span class="el_source">ReasonTypeInternalApi.java</span></div><h1>ReasonTypeInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListReasonTypeInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListReasonTypeInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.SearchReasonTypeInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:18.711785900+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api.ReasonTypeInternalApi&quot;)
+public class ReasonTypeInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L38">    public ReasonTypeInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L39">        this.apiClient = apiClient;</span>
+<span class="fc" id="L40">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L43">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L47">        this.apiClient = apiClient;</span>
+<span class="nc" id="L48">    }</span>
+
+    /**
+     * 理由区分情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。   理由区分マスタ M_REASON_TYPE
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListReasonTypeInternalRequestV1 理由区分情報取得API（List）の検索リクエスト電文 (required)
+     
+     * @return GetListReasonTypeInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetListReasonTypeInternalResponseV1 getListReasonTypeInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListReasonTypeInternalRequestV1 getListReasonTypeInternalRequestV1) throws RestClientException {
+<span class="nc" id="L65">        return getListReasonTypeInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, getListReasonTypeInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 理由区分情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。   理由区分マスタ M_REASON_TYPE
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListReasonTypeInternalRequestV1 理由区分情報取得API（List）の検索リクエスト電文 (required)
+     
+     * @return ResponseEntity&amp;lt;GetListReasonTypeInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetListReasonTypeInternalResponseV1&gt; getListReasonTypeInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListReasonTypeInternalRequestV1 getListReasonTypeInternalRequestV1) throws RestClientException {
+<span class="nc" id="L83">        Object postBody = getListReasonTypeInternalRequestV1;</span>
+        
+        // verify the required parameter 'getListReasonTypeInternalRequestV1' is set
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (getListReasonTypeInternalRequestV1 == null) {</span>
+<span class="nc" id="L87">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'getListReasonTypeInternalRequestV1' when calling getListReasonTypeInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L90">        String path = apiClient.expandPath(&quot;/internal/v1/reason-type/get-list&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L92">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L93">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L94">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L95">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L100">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L102">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L104">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L106">            });</span>
+        }
+
+<span class="nc" id="L109">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L112">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L113">        final String[] contentTypes = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L116">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L118">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L120">        ParameterizedTypeReference&lt;GetListReasonTypeInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetListReasonTypeInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L121">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 理由区分情報検索API
+     * 以下のマスタの一覧を返却します。   理由区分マスタ M_REASON_TYPE
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param businessSceneType 業務シーン区分 (optional)
+     
+     * @param causeType 起因区分 (optional)
+     
+     * @param seq 事由区分 (optional)
+     
+     * @param reasonType 理由区分 (optional)
+     
+     * @param reasonTypeName 理由区分名 (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return SearchReasonTypeInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchReasonTypeInternalResponseV1 searchReasonTypeInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String businessSceneType, String causeType, String seq, String reasonType, String reasonTypeName, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="nc" id="L152">        return searchReasonTypeInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, businessSceneType, causeType, seq, reasonType, reasonTypeName, offset, limit, sortby).getBody();</span>
+    }
+
+    /**
+     * 理由区分情報検索API
+     * 以下のマスタの一覧を返却します。   理由区分マスタ M_REASON_TYPE
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param businessSceneType 業務シーン区分 (optional)
+     
+     * @param causeType 起因区分 (optional)
+     
+     * @param seq 事由区分 (optional)
+     
+     * @param reasonType 理由区分 (optional)
+     
+     * @param reasonTypeName 理由区分名 (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchReasonTypeInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchReasonTypeInternalResponseV1&gt; searchReasonTypeInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String businessSceneType, String causeType, String seq, String reasonType, String reasonTypeName, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="nc" id="L184">        Object postBody = null;</span>
+        
+<span class="nc" id="L186">        String path = apiClient.expandPath(&quot;/internal/v1/reason-type/search&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L188">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L189">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L190">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L191">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L193">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;business_scene_type&quot;, businessSceneType));</span>
+<span class="nc" id="L194">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;cause_type&quot;, causeType));</span>
+<span class="nc" id="L195">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;seq&quot;, seq));</span>
+<span class="nc" id="L196">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;reason_type&quot;, reasonType));</span>
+<span class="nc" id="L197">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;reason_type_name&quot;, reasonTypeName));</span>
+<span class="nc" id="L198">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;offset&quot;, offset));</span>
+<span class="nc" id="L199">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;limit&quot;, limit));</span>
+<span class="nc" id="L200">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;sortby&quot;, sortby));</span>
+
+        
+
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L205">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L207">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L209">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L211">            });</span>
+        }
+
+<span class="nc" id="L214">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L217">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L218">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L219">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L221">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L223">        ParameterizedTypeReference&lt;SearchReasonTypeInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchReasonTypeInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L224">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

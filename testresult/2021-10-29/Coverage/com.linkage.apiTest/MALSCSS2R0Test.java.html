@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MALSCSS2R0Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.apiTest</a> &gt; <span class="el_source">MALSCSS2R0Test.java</span></div><h1>MALSCSS2R0Test.java</h1><pre class="source lang-java linenums">package com.linkage.apiTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;Example機能確認&quot;)
+@DisplayName(&quot;Example機能確認&quot;)
+<span class="nc" id="L15">public class MALSCSS2R0Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MALSCSS2R0&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MALSCSS2R0&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;1-----/internal/v1/code/search;;コード情報取得API（List）;;1*****2+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;2-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;2-----/internal/v1/plant/get-list;;置場情報取得API（List）;;2-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;2-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;2-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;2-----/internal/v1/code/search;;コード情報取得API（List）;;2*****3+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;3-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;3-----/internal/v1/plant/get-list;;置場情報取得API（List）;;3-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;3-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;3-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;2-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;3-----/internal/v1/code/search;;コード情報取得API（List）;;3*****4+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;6-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;1-----/internal/v1/code/search;;コード情報取得API（List）;;1*****5+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;1-----/internal/v1/code/search;;コード情報取得API（List）;;1*****6+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;1-----/internal/v1/code/search;;コード情報取得API（List）;;1*****7+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;1-----/internal/v1/code/search;;コード情報取得API（List）;;1*****8+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;1-----/internal/v1/code/search;;コード情報取得API（List）;;1*****9+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;4-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;-----/internal/v1/plant/get-list;;置場情報取得API（List）;;-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;-----/internal/v1/code/search;;コード情報取得API（List）;;*****10+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;4-----/internal/v1/plant/get-list;;置場情報取得API（List）;;-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;-----/internal/v1/code/search;;コード情報取得API（List）;;*****11+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;4-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;-----/internal/v1/code/search;;コード情報取得API（List）;;*****12+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;4-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;-----/internal/v1/code/search;;コード情報取得API（List）;;*****13+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;4-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;-----/internal/v1/code/search;;コード情報取得API（List）;;*****14+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;4-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;-----/internal/v1/code/search;;コード情報取得API（List）;;*****15+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;4-----/internal/v1/code/search;;コード情報取得API（List）;;*****16+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;1-----/internal/v1/plant/get-list;;置場情報取得API（List）;;1-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;1-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;1-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;1-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;1-----/internal/v1/code/search;;コード情報取得API（List）;;4*****17+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;1-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;5-----/internal/v1/plant/get-list;;置場情報取得API（List）;;5-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;5-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;5-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;5-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;5-----/internal/v1/code/search;;コード情報取得API（List）;;1*****18+++++/v1/gw-stop-shipment/search;;出荷不可検索(MS→GW);;5-----/internal/v1/product-classification/get-list;;製品分類情報取得API（List）;;-----/internal/v1/plant/get-list;;置場情報取得API（List）;;-----/internal/v1/supplier/get-list;;仕入先情報取得API（List）;;-----/internal/v1/brand/get-list;;ブランド情報取得API（List）;;-----/internal/v1/reason-type/get-list;;理由区分情報取得API（List）;;-----/internal/v1/slip-type/get-list;;伝票区分情報取得API（List）;;-----/internal/v1/code/search;;コード情報取得API（List）;;&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;受注状態が1(未変更)1件確認&quot;)
+	@DisplayName(&quot;受注状態が1(未変更)1件確認&quot;)
+	public void testMALSCSS2R0_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L52">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L55">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L58">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L61">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L64">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L67">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L70">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L73">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L76">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L78">	}</span>
+
+	@Test
+	@Tag(&quot;受注状態が2(変更済)1件確認&quot;)
+	@DisplayName(&quot;受注状態が2(変更済)1件確認&quot;)
+	public void testMALSCSS2R0_002() throws Exception {
+
+<span class="nc" id="L85">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L89">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L92">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L95">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L98">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L101">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L104">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L107">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L110">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L113">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L116">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;2&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L119">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_002.txt&quot;);</span>
+
+<span class="nc" id="L121">	}</span>
+
+	@Test
+	@Tag(&quot;受注状態が3(削除)複数件確認&quot;)
+	@DisplayName(&quot;受注状態が3(削除)複数件確認&quot;)
+	public void testMALSCSS2R0_003() throws Exception {
+
+<span class="nc" id="L128">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L132">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L135">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L138">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L141">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L144">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L147">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L150">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L153">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L156">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L159">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;3&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L162">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_003.txt&quot;);</span>
+
+<span class="nc" id="L164">	}</span>
+
+	@Test
+	@Tag(&quot;複数件確認&quot;)
+	@DisplayName(&quot;複数件確認&quot;)
+	public void testMALSCSS2R0_004() throws Exception {
+
+<span class="nc" id="L171">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L175">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L178">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L181">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;6&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L184">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L187">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L190">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L193">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L196">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L199">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L202">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L205">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_004.txt&quot;);</span>
+
+<span class="nc" id="L207">	}</span>
+
+	@Test
+	@Tag(&quot;0件確認&quot;)
+	@DisplayName(&quot;0件確認&quot;)
+	public void testMALSCSS2R0_005() throws Exception {
+
+<span class="nc" id="L214">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L218">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L221">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L224">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L227">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L230">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L233">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L236">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L239">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L242">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L245">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L248">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_005.txt&quot;);</span>
+
+<span class="nc" id="L250">	}</span>
+
+	@Test
+	@Tag(&quot;最小値(NULL)確認&quot;)
+	@DisplayName(&quot;最小値(NULL)確認&quot;)
+	public void testMALSCSS2R0_006() throws Exception {
+
+<span class="nc" id="L257">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L261">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L264">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L267">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L270">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L273">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L276">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L279">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L282">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L285">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L288">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L291">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_006.txt&quot;);</span>
+
+<span class="nc" id="L293">	}</span>
+
+	@Test
+	@Tag(&quot;最小値(空白)確認&quot;)
+	@DisplayName(&quot;最小値(空白)確認&quot;)
+	public void testMALSCSS2R0_007() throws Exception {
+
+<span class="nc" id="L300">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L304">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L307">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L310">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L313">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L316">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L319">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L322">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L325">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L328">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L331">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L334">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_007.txt&quot;);</span>
+
+<span class="nc" id="L336">	}</span>
+
+	@Test
+	@Tag(&quot;最大値確認&quot;)
+	@DisplayName(&quot;最大値確認&quot;)
+	public void testMALSCSS2R0_008() throws Exception {
+
+<span class="nc" id="L343">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L347">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L350">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L353">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L356">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L359">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L362">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L365">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L368">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L371">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L374">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L377">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_008.txt&quot;);</span>
+
+<span class="nc" id="L379">	}</span>
+
+	@Test
+	@Tag(&quot;出荷不可受注発注検索APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;出荷不可受注発注検索APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_009() throws Exception {
+
+<span class="nc" id="L386">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L390">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L393">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L396">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L399">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L401">	}</span>
+
+	@Test
+	@Tag(&quot;製品分類マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;製品分類マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_010() throws Exception {
+
+<span class="nc" id="L408">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L412">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L415">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L418">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L421">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L424">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L426">	}</span>
+
+	@Test
+	@Tag(&quot;置場マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;置場マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_011() throws Exception {
+
+<span class="nc" id="L433">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L437">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L440">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L443">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L446">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L449">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L452">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L454">	}</span>
+
+	@Test
+	@Tag(&quot;仕入先マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;仕入先マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_012() throws Exception {
+
+<span class="nc" id="L461">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L465">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L468">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L471">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L474">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L477">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L480">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L483">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L485">	}</span>
+
+	@Test
+	@Tag(&quot;ブランドマスタ参照APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;ブランドマスタ参照APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_013() throws Exception {
+
+<span class="nc" id="L492">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L496">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L499">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L502">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L505">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L508">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L511">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L514">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L517">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L519">	}</span>
+
+	@Test
+	@Tag(&quot;理由区分マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;理由区分マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_014() throws Exception {
+
+<span class="nc" id="L526">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L530">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L533">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L536">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L539">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L542">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L545">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L548">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L551">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L554">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L556">	}</span>
+
+	@Test
+	@Tag(&quot;伝票区分マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;伝票区分マスタ参照APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_015() throws Exception {
+
+<span class="nc" id="L563">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L567">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L570">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L573">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L576">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L579">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L582">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L585">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L588">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L591">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L594">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L596">	}</span>
+
+	@Test
+	@Tag(&quot;コードマスタ参照APIのレスポンスがエラーこと確認&quot;)
+	@DisplayName(&quot;コードマスタ参照APIのレスポンスがエラーこと確認&quot;)
+	public void testMALSCSS2R0_016() throws Exception {
+
+<span class="nc" id="L603">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L607">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L610">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L613">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L616">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L619">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L622">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L625">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L628">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L631">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L634">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L637">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L639">	}</span>
+
+	@Test
+	@Tag(&quot;API呼出0件確認&quot;)
+	@DisplayName(&quot;API呼出0件確認&quot;)
+	public void testMALSCSS2R0_017() throws Exception {
+
+<span class="nc" id="L646">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L650">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L653">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L656">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類情報取得API（List） */
+<span class="nc" id="L659">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類情報取得API（List）&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場情報取得API（List） */
+<span class="nc" id="L662">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場情報取得API（List）&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先情報取得API（List） */
+<span class="nc" id="L665">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先情報取得API（List）&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/brand/get-list → ブランド情報取得API（List） */
+<span class="nc" id="L668">		rakurakuCore.operateMockApi(&quot;/internal/v1/brand/get-list&quot;, &quot;ブランド情報取得API（List）&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分情報取得API（List） */
+<span class="nc" id="L671">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分情報取得API（List）&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/slip-type/get-list → 伝票区分情報取得API（List） */
+<span class="nc" id="L674">		rakurakuCore.operateMockApi(&quot;/internal/v1/slip-type/get-list&quot;, &quot;伝票区分情報取得API（List）&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/code/search → コード情報取得API（List） */
+<span class="nc" id="L677">		rakurakuCore.operateMockApi(&quot;/internal/v1/code/search&quot;, &quot;コード情報取得API（List）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L680">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L682">	}</span>
+
+	@Test
+	@Tag(&quot;最大参照件数確認&quot;)
+	@DisplayName(&quot;最大参照件数確認&quot;)
+	public void testMALSCSS2R0_018() throws Exception {
+
+<span class="nc" id="L689">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS2R0/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_screen_field_display → データクリア・挿入 */
+<span class="nc" id="L693">		rakurakuCore.operateDBPrepare(&quot;c_screen_field_display&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → idempotent_requests → DELETE_ALL */
+<span class="nc" id="L696">		rakurakuCore.operateDBPrepare(&quot;idempotent_requests&quot;, &quot;DELETE_ALL&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/search → 出荷不可検索(MS→GW) */
+<span class="nc" id="L699">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/search&quot;, &quot;出荷不可検索(MS→GW)&quot;, &quot;5&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/bulk-reference? → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48 → UserLoginInfo */
+<span class="nc" id="L702">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/bulk-reference?offset=12&amp;limit=22&amp;sortby=sort1&amp;sortby2=sort2&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;x-Client-Program=test&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2R0\\MALSCSS2R0_001.txt&quot;);</span>
+
+<span class="nc" id="L704">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

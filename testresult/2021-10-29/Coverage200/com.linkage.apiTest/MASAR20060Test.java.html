@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MASAR20060Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.apiTest</a> &gt; <span class="el_source">MASAR20060Test.java</span></div><h1>MASAR20060Test.java</h1><pre class="source lang-java linenums">package com.linkage.apiTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;Example機能確認&quot;)
+@DisplayName(&quot;Example機能確認&quot;)
+<span class="nc" id="L15">public class MASAR20060Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MASAR20060&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MASAR20060&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	public void testMASAR20060_001() throws Exception {
+
+<span class="nc" id="L40">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L44">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L47">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_001.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L50">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L52">	}</span>
+
+	@Test
+	public void testMASAR20060_002() throws Exception {
+
+<span class="nc" id="L57">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L61">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L64">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_003.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L67">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L69">	}</span>
+
+	@Test
+	public void testMASAR20060_003() throws Exception {
+
+<span class="nc" id="L74">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L78">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L81">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_004.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L84">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L86">	}</span>
+
+	@Test
+	public void testMASAR20060_004() throws Exception {
+
+<span class="nc" id="L91">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L95">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L98">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_001.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L101">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L103">	}</span>
+
+	@Test
+	public void testMASAR20060_005() throws Exception {
+
+<span class="nc" id="L108">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L112">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L115">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_002.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L118">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L120">	}</span>
+
+	@Test
+	public void testMASAR20060_006() throws Exception {
+
+<span class="nc" id="L125">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L129">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L132">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_001.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L135">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L137">	}</span>
+
+	@Test
+	public void testMASAR20060_007() throws Exception {
+
+<span class="nc" id="L142">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L146">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L149">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_007.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L152">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L154">	}</span>
+
+	@Test
+	public void testMASAR20060_008() throws Exception {
+
+<span class="nc" id="L159">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L163">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L166">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_001.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L169">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L171">	}</span>
+
+	@Test
+	public void testMASAR20060_009() throws Exception {
+
+<span class="nc" id="L176">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASAR20060/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → t_non_payment_management → データクリア・挿入 */
+<span class="nc" id="L180">		rakurakuCore.operateDBPrepare(&quot;t_non_payment_management&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/non-payment/save → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58 → UserLoginInfo */
+<span class="nc" id="L183">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/non-payment/save&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a58&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MASAR20060\\MASAR20060_008.txt&quot;);</span>
+
+		/* 操作(DB確認) → t_non_payment_management → NOT_ASSERT_COLUMN */
+<span class="nc" id="L186">		rakurakuCore.operateDBConfirm(&quot;t_non_payment_management&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L188">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

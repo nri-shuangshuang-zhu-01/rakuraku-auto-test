@@ -1,0 +1,77 @@
+■api名称：　検索
+■api Request：　/internal/v1/shipment-info-inq/reference?shipmentCenter=qqqq&shipmentDate=2021-09-27
+■api方法：　GET
+■api Headers：　X-Client-Program=Test&&Prefer=/internal/v1/area/search->1&/internal/v1/plant/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "subsidiaryCode": "MJP",
+  "shipmentCenter": "qqqq",
+  "shipmentDate": "2021-09-27",
+  "internalShipmentAreaList": [
+    {
+      "shipToAreaCode": "9999",
+      "shipToAreaName": "japan",
+      "stockBefore": 3,
+      "mtoBefore": 8,
+      "stock1st": 0,
+      "stock2nd": 0,
+      "stock3rd": 0,
+      "stock4th": 0,
+      "urgentShipmentStock": 0,
+      "RcShipmentrecQtySubtotal": 11,
+      "rcQty": 1,
+      "storkRecQty": 0,
+      "storkRcQty": 0,
+      "recQtyTotal": 11,
+      "rcQtyTotal": 1
+    }
+  ],
+  "internalShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 3,
+    "mtoBeforeRecQtySubtotal": 8,
+    "stock1stSubtotal": 0,
+    "stock2ndSubtotal": 0,
+    "stock3rdSubtotal": 0,
+    "stock4thSubtotal": 0,
+    "urgentShipmentStockRecSubtotal": 0,
+    "recRecQtySubtotal": 11,
+    "recRcQtySubtotal": 1,
+    "storkRecQtySubtotal": 0,
+    "storkRcQtySubtotal": 0,
+    "totalRecQtySubtotal": 11,
+    "totalRcQtySubtotal": 1
+  },
+  "internalOverseasShipmentAreaList": [],
+  "internalOverseasShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 0,
+    "mtoBeforeRecQtySubtotal": 0,
+    "stock1stSubtotal": 0,
+    "stock2ndSubtotal": 0,
+    "stock3rdSubtotal": 0,
+    "stock4thSubtotal": 0,
+    "urgentShipmentStockRecSubtotal": 0,
+    "recRecQtySubtotal": 0,
+    "recRcQtySubtotal": 0,
+    "storkRecQtySubtotal": 0,
+    "storkRcQtySubtotal": 0,
+    "totalRecQtySubtotalSubtotal": 0,
+    "totalRcQtySubtotal": 0
+  },
+  "internalOverseasAreaTotalList": {
+    "stockBeforeRecQtyTotal": 3,
+    "mtoBeforeRecQtyTotal": 8,
+    "stock1stTotal": 0,
+    "stock2ndTotal": 0,
+    "stock3rdTotal": 0,
+    "stock4thTotal": 0,
+    "urgentShipmentsStockRecQtyTotal": 0,
+    "recRecQtyTotal": 11,
+    "recRcQtyTotal": 1,
+    "storkRecQtyTotal": 0,
+    "storkRcQtyTotal": 0,
+    "totalRecQtyTotal": 11,
+    "totalRcQtyTotal": 1
+  },
+  "errorList": []
+}

@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_RESULT_LOG subsidiary_code="CHN" g_inner_code="12345600000001" plant_code="1001" shipment_fix_date="2021-07-21" total_shipment_qty="60" shipment_frequency="1" update_count="0" delete_flag="0" register_user="" register_system_time="2021-07-31 10:52:43.314" register_time="2021-07-31 10:52:43.314" register_local_time="2021-07-31 10:52:43.314" register_program="JOB001" update_user="" update_system_time="2021-07-31 10:52:43.314" update_time="2021-07-31 10:52:43.314" update_local_time="2021-07-31 10:52:43.314" update_program="JOB001"/>
+</dataset>

@@ -1,0 +1,36 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+総在庫数量::total_stock_qty::integer::NULL
+総引当数量::total_allocate_qty::integer::NULL
+総利用可能数量::total_available_qty::integer::NULL
+現利用可能数量::current_available_qty::integer::NULL
+現在庫数量::current_stock_qty::integer::NULL
+前日在庫数量::last_day_stock_qty::integer::NULL
+月初在庫数量::month_begin_stock_qty::integer::NULL
+評価単価::evaluation_unit_price::numeric(11)::NULL
+前日評価単価::last_day_evaluation_unit_price::numeric(12,3)::NULL
+社内移動(+)::transfered_stock_qty_plus::integer::NULL
+社内移動(-)::transfered_stock_qty_minus::integer::NULL
+在庫調整(+)::adjusted_stock_qty_plus::integer::NULL
+在庫調整(-)::adjusted_stock_qty_minus::integer::NULL
+返品(+)::returned_stock_qty_plus::integer::NULL
+返品(-)::returned_stock_qty_minus::integer::NULL
+変動係数::coefficient_of_variation::integer::NULL
+ランク::rank::char(1)::NULL
+発注点::reorder_point::integer::NULL
+前回発注点::previous_reorder_point::integer::NULL
+警告点::warning_point::integer::NULL
+最低警告点::min_warning_point::integer::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

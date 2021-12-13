@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITION subsidiary_code='JPN' customer_code='LKGLKG' ship_to_code='LKILKI' ginner_code='MDM10040007505' classify_code='2009' plant_code='1002' supply_type='1' effective_start_date='2021-09-09' update_count='0' delete_flag='0' register_user_type='Internal' register_user='RFC 2821 STMP 001' register_date_time='2021-09-09 15:17:02.126' register_program='program' register_client_program='aprogram' update_user_type='Internal' update_user='RFC 2821 STMP 002' update_date_time='2021-09-09 15:19:17.727' update_program='program' update_client_program='aprogram' />
+</dataset>

@@ -1,0 +1,11 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-detail/get?subsidiaryCode=516&billToCode=100861&startIndex=1&responseCount=3&sortOrder=Due Date&invoiceNumber=123&invoiceStatus=Open
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=6a037a9e-2500-4724-a005-998a1ab13a46&&Prefer=/internal/v1/ccy/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "code": "NAR20050001W",
+  "argumentList": [],
+  "message": "指定された検索条件による該当件数は0件でした。"
+}

@@ -1,0 +1,11 @@
+{
+  "mailAddress": null,
+  "dataCode": "1002",
+  "fileName": "file_name",
+  "createDateFrom": "2020-01-01",
+  "createDateTo": "2020-01-31",
+  "statusRequesting": "1",
+  "statusDownloadable": "1",
+  "statusDownloaded": "1",
+  "referenceMaxCount": 10
+}

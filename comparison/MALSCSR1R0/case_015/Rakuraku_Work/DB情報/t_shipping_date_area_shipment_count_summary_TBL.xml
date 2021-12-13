@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_shipping_date_area_shipment_count_summaryColName field="subsidiary_code" comment="現法コード"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="vsd" comment="VSD"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="plant_code" comment="置場コード"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="ship_to_area_code" comment="出荷先エリアコード:得意先現法置場、または出荷仕分用エリアコードが設定"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="supply_type" comment="調達区分:01：在庫品、02：在庫品受注製作品扱い、 03：MTO品、 04：非在庫品"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="shipment_count_summary_display_type" comment="出荷件数集計表示区分:00：前当、01：当当（1回目）、02：当当（2回目）、03：当当（3回目）、04：当当（4回目）、07：当日着荷、08：緊急出荷、09：直送"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="customer_code" comment="得意先コード"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="ship_to_code" comment="配送先コード"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="summary_qty" comment="集計数量"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="register_date_time" comment="登録日時"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="register_program" comment="登録プログラム"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="update_date_time" comment="更新日時"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="update_program" comment="更新プログラム"/>
+  <t_shipping_date_area_shipment_count_summaryColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

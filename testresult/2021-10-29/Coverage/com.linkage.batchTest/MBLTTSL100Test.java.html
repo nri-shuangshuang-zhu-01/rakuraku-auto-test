@@ -1,0 +1,2618 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBLTTSL100Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBLTTSL100Test.java</span></div><h1>MBLTTSL100Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBLTTSL100&quot;)
+@DisplayName(&quot;MBLTTSL100&quot;)
+<span class="nc" id="L15">public class MBLTTSL100Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBLTTSL100&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBLTTSL100&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;TEST001&quot;)
+	@DisplayName(&quot;TEST001&quot;)
+	public void testMBLTTSL100_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L52">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L55">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L58">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L61">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L64">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L67">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L70">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L73">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L76">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L78">	}</span>
+
+	@Test
+	@Tag(&quot;TEST002&quot;)
+	@DisplayName(&quot;TEST002&quot;)
+	public void testMBLTTSL100_002() throws Exception {
+
+<span class="nc" id="L85">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L89">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L92">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L95">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L98">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L101">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L104">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L107">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L110">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L113">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L116">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L119">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L121">	}</span>
+
+	@Test
+	@Tag(&quot;TEST003&quot;)
+	@DisplayName(&quot;TEST003&quot;)
+	public void testMBLTTSL100_003() throws Exception {
+
+<span class="nc" id="L128">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L132">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L135">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L138">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L141">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L144">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L147">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L150">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L153">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L156">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L159">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L162">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L164">	}</span>
+
+	@Test
+	@Tag(&quot;TEST004&quot;)
+	@DisplayName(&quot;TEST004&quot;)
+	public void testMBLTTSL100_004() throws Exception {
+
+<span class="nc" id="L171">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L175">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L178">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L181">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L184">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L187">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L190">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L193">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L196">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L199">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L202">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L205">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L207">	}</span>
+
+	@Test
+	@Tag(&quot;TEST005&quot;)
+	@DisplayName(&quot;TEST005&quot;)
+	public void testMBLTTSL100_005() throws Exception {
+
+<span class="nc" id="L214">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L218">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L221">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L224">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L227">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L230">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L233">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L236">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L239">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L242">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L245">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L248">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L250">	}</span>
+
+	@Test
+	@Tag(&quot;TEST006&quot;)
+	@DisplayName(&quot;TEST006&quot;)
+	public void testMBLTTSL100_006() throws Exception {
+
+<span class="nc" id="L257">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L261">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L264">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L267">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L270">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L273">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L276">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L279">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L282">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L285">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L288">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L291">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L293">	}</span>
+
+	@Test
+	@Tag(&quot;TEST007&quot;)
+	@DisplayName(&quot;TEST007&quot;)
+	public void testMBLTTSL100_007() throws Exception {
+
+<span class="nc" id="L300">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L304">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L307">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L310">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L313">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L316">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L319">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L322">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L325">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L328">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L331">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L334">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L336">	}</span>
+
+	@Test
+	@Tag(&quot;TEST008&quot;)
+	@DisplayName(&quot;TEST008&quot;)
+	public void testMBLTTSL100_008() throws Exception {
+
+<span class="nc" id="L343">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L347">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L350">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L353">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L356">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L359">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L362">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L365">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L368">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L371">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L374">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L377">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L379">	}</span>
+
+	@Test
+	@Tag(&quot;TEST009&quot;)
+	@DisplayName(&quot;TEST009&quot;)
+	public void testMBLTTSL100_009() throws Exception {
+
+<span class="nc" id="L386">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L390">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L393">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L396">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L399">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L402">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L405">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L408">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L411">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L414">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L417">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L420">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L422">	}</span>
+
+	@Test
+	@Tag(&quot;TEST010&quot;)
+	@DisplayName(&quot;TEST010&quot;)
+	public void testMBLTTSL100_010() throws Exception {
+
+<span class="nc" id="L429">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L433">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L436">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L439">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L442">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L445">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L448">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L451">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L454">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L457">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L460">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L463">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L465">	}</span>
+
+	@Test
+	@Tag(&quot;TEST011&quot;)
+	@DisplayName(&quot;TEST011&quot;)
+	public void testMBLTTSL100_011() throws Exception {
+
+<span class="nc" id="L472">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L476">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L479">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L482">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L485">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L488">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L491">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L494">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L497">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L500">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L503">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L506">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L508">	}</span>
+
+	@Test
+	@Tag(&quot;TEST012&quot;)
+	@DisplayName(&quot;TEST012&quot;)
+	public void testMBLTTSL100_012() throws Exception {
+
+<span class="nc" id="L515">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L519">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L522">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L525">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L528">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L531">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L534">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L537">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L540">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L543">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L546">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L549">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L551">	}</span>
+
+	@Test
+	@Tag(&quot;TEST013&quot;)
+	@DisplayName(&quot;TEST013&quot;)
+	public void testMBLTTSL100_013() throws Exception {
+
+<span class="nc" id="L558">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L562">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L565">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L568">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L571">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L574">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L577">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L580">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L583">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L586">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L589">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L592">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L594">	}</span>
+
+	@Test
+	@Tag(&quot;TEST014&quot;)
+	@DisplayName(&quot;TEST014&quot;)
+	public void testMBLTTSL100_014() throws Exception {
+
+<span class="nc" id="L601">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L605">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L608">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L611">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L614">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L617">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L620">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L623">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L626">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L629">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L632">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L635">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L637">	}</span>
+
+	@Test
+	@Tag(&quot;TEST015&quot;)
+	@DisplayName(&quot;TEST015&quot;)
+	public void testMBLTTSL100_015() throws Exception {
+
+<span class="nc" id="L644">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L648">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L651">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L654">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L657">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L660">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L663">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L666">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L669">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L672">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L675">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L678">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L680">	}</span>
+
+	@Test
+	@Tag(&quot;TEST016&quot;)
+	@DisplayName(&quot;TEST016&quot;)
+	public void testMBLTTSL100_016() throws Exception {
+
+<span class="nc" id="L687">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L691">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L694">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L697">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L700">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L703">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L706">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L709">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L712">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L715">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L718">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L721">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L723">	}</span>
+
+	@Test
+	@Tag(&quot;TEST017&quot;)
+	@DisplayName(&quot;TEST017&quot;)
+	public void testMBLTTSL100_017() throws Exception {
+
+<span class="nc" id="L730">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L734">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L737">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L740">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L743">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L746">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L749">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L752">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L755">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L758">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L761">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L764">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L766">	}</span>
+
+	@Test
+	@Tag(&quot;TEST018&quot;)
+	@DisplayName(&quot;TEST018&quot;)
+	public void testMBLTTSL100_018() throws Exception {
+
+<span class="nc" id="L773">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L777">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L780">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L783">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L786">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L789">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L792">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L795">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L798">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L801">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L804">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L807">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L809">	}</span>
+
+	@Test
+	@Tag(&quot;TEST019&quot;)
+	@DisplayName(&quot;TEST019&quot;)
+	public void testMBLTTSL100_019() throws Exception {
+
+<span class="nc" id="L816">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_019/case_019_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L820">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L823">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L826">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L829">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L832">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L835">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L838">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L841">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L844">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L847">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L850">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L852">	}</span>
+
+	@Test
+	@Tag(&quot;TEST020&quot;)
+	@DisplayName(&quot;TEST020&quot;)
+	public void testMBLTTSL100_020() throws Exception {
+
+<span class="nc" id="L859">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_020/case_020_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L863">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L866">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L869">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L872">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L875">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L878">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L881">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L884">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L887">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L890">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L893">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L895">	}</span>
+
+	@Test
+	@Tag(&quot;TEST021&quot;)
+	@DisplayName(&quot;TEST021&quot;)
+	public void testMBLTTSL100_021() throws Exception {
+
+<span class="nc" id="L902">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_021/case_021_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L906">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L909">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L912">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;17&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L915">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L918">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L921">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L924">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L927">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L930">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L933">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L936">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L938">	}</span>
+
+	@Test
+	@Tag(&quot;TEST022&quot;)
+	@DisplayName(&quot;TEST022&quot;)
+	public void testMBLTTSL100_022() throws Exception {
+
+<span class="nc" id="L945">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_022/case_022_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L949">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;17&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L952">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L955">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L958">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L961">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L964">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L967">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L970">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L973">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L976">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L979">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L981">	}</span>
+
+	@Test
+	@Tag(&quot;TEST023&quot;)
+	@DisplayName(&quot;TEST023&quot;)
+	public void testMBLTTSL100_023() throws Exception {
+
+<span class="nc" id="L988">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_023/case_023_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L992">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L995">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L998">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1001">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1004">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1007">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1010">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1013">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1016">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1019">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1022">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1024">	}</span>
+
+	@Test
+	@Tag(&quot;TEST024&quot;)
+	@DisplayName(&quot;TEST024&quot;)
+	public void testMBLTTSL100_024() throws Exception {
+
+<span class="nc" id="L1031">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_024/case_024_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1035">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;21&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1038">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1041">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1044">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1047">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1050">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1053">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1056">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1059">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1062">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1065">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1067">	}</span>
+
+	@Test
+	@Tag(&quot;TEST025&quot;)
+	@DisplayName(&quot;TEST025&quot;)
+	public void testMBLTTSL100_025() throws Exception {
+
+<span class="nc" id="L1074">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_025/case_025_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1078">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1081">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1084">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1087">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1090">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1093">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1096">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1099">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1102">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1105">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1108">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1110">	}</span>
+
+	@Test
+	@Tag(&quot;TEST026&quot;)
+	@DisplayName(&quot;TEST026&quot;)
+	public void testMBLTTSL100_026() throws Exception {
+
+<span class="nc" id="L1117">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_026/case_026_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1121">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1124">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1127">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1130">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1133">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1136">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1139">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1142">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1145">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1148">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1151">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1153">	}</span>
+
+	@Test
+	@Tag(&quot;TEST027&quot;)
+	@DisplayName(&quot;TEST027&quot;)
+	public void testMBLTTSL100_027() throws Exception {
+
+<span class="nc" id="L1160">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_027/case_027_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1164">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;22&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1167">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1170">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;21&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1173">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1176">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1179">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1182">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1185">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1188">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1191">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1194">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1196">	}</span>
+
+	@Test
+	@Tag(&quot;TEST028&quot;)
+	@DisplayName(&quot;TEST028&quot;)
+	public void testMBLTTSL100_028() throws Exception {
+
+<span class="nc" id="L1203">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_028/case_028_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1207">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;22&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1210">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1213">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1216">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1219">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1222">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1225">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1228">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1231">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1234">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1237">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1239">	}</span>
+
+	@Test
+	@Tag(&quot;TEST029&quot;)
+	@DisplayName(&quot;TEST029&quot;)
+	public void testMBLTTSL100_029() throws Exception {
+
+<span class="nc" id="L1246">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_029/case_029_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1250">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1253">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1256">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1259">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1262">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1265">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1268">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1271">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1274">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1277">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1280">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1282">	}</span>
+
+	@Test
+	@Tag(&quot;TEST030&quot;)
+	@DisplayName(&quot;TEST030&quot;)
+	public void testMBLTTSL100_030() throws Exception {
+
+<span class="nc" id="L1289">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_030/case_030_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1293">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1296">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1299">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1302">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1305">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1308">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1311">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1314">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1317">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1320">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1323">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1325">	}</span>
+
+	@Test
+	@Tag(&quot;TEST031&quot;)
+	@DisplayName(&quot;TEST031&quot;)
+	public void testMBLTTSL100_031() throws Exception {
+
+<span class="nc" id="L1332">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_031/case_031_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1336">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1339">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1342">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1345">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1348">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1351">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1354">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1357">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1360">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1363">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1366">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1368">	}</span>
+
+	@Test
+	@Tag(&quot;TEST032&quot;)
+	@DisplayName(&quot;TEST032&quot;)
+	public void testMBLTTSL100_032() throws Exception {
+
+<span class="nc" id="L1375">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_032/case_032_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1379">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1382">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1385">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1388">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1391">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1394">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1397">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1400">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1403">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1406">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1409">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1411">	}</span>
+
+	@Test
+	@Tag(&quot;TEST033&quot;)
+	@DisplayName(&quot;TEST033&quot;)
+	public void testMBLTTSL100_033() throws Exception {
+
+<span class="nc" id="L1418">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_033/case_033_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1422">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1425">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1428">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1431">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1434">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1437">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1440">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1443">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1446">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1449">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1452">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1454">	}</span>
+
+	@Test
+	@Tag(&quot;TEST034&quot;)
+	@DisplayName(&quot;TEST034&quot;)
+	public void testMBLTTSL100_034() throws Exception {
+
+<span class="nc" id="L1461">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_034/case_034_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1465">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1468">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1471">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1474">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1477">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1480">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1483">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1486">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1489">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1492">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1495">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1497">	}</span>
+
+	@Test
+	@Tag(&quot;TEST035&quot;)
+	@DisplayName(&quot;TEST035&quot;)
+	public void testMBLTTSL100_035() throws Exception {
+
+<span class="nc" id="L1504">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_035/case_035_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1508">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1511">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1514">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1517">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1520">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1523">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1526">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1529">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1532">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1535">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1538">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1540">	}</span>
+
+	@Test
+	@Tag(&quot;TEST036&quot;)
+	@DisplayName(&quot;TEST036&quot;)
+	public void testMBLTTSL100_036() throws Exception {
+
+<span class="nc" id="L1547">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_036/case_036_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1551">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1554">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1557">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1560">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1563">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1566">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1569">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1572">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1575">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1578">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1581">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1583">	}</span>
+
+	@Test
+	@Tag(&quot;TEST037&quot;)
+	@DisplayName(&quot;TEST037&quot;)
+	public void testMBLTTSL100_037() throws Exception {
+
+<span class="nc" id="L1590">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_037/case_037_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1594">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1597">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1600">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;24&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1603">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1606">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1609">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1612">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1615">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1618">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1621">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1624">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1626">	}</span>
+
+	@Test
+	@Tag(&quot;TEST038&quot;)
+	@DisplayName(&quot;TEST038&quot;)
+	public void testMBLTTSL100_038() throws Exception {
+
+<span class="nc" id="L1633">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_038/case_038_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1637">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;24&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1640">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1643">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1646">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1649">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1652">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1655">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1658">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1661">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1664">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1667">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1669">	}</span>
+
+	@Test
+	@Tag(&quot;TEST039&quot;)
+	@DisplayName(&quot;TEST039&quot;)
+	public void testMBLTTSL100_039() throws Exception {
+
+<span class="nc" id="L1676">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_039/case_039_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1680">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;25&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1683">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1686">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1689">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1692">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1695">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1698">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1701">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1704">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1707">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1710">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1712">	}</span>
+
+	@Test
+	@Tag(&quot;TEST040&quot;)
+	@DisplayName(&quot;TEST040&quot;)
+	public void testMBLTTSL100_040() throws Exception {
+
+<span class="nc" id="L1719">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_040/case_040_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1723">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;25&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1726">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1729">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1732">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1735">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1738">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1741">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1744">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1747">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1750">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1753">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1755">	}</span>
+
+	@Test
+	@Tag(&quot;TEST041&quot;)
+	@DisplayName(&quot;TEST041&quot;)
+	public void testMBLTTSL100_041() throws Exception {
+
+<span class="nc" id="L1762">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_041/case_041_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1766">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;25&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1769">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1772">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1775">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1778">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1781">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1784">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1787">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1790">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1793">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1796">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1798">	}</span>
+
+	@Test
+	@Tag(&quot;TEST042&quot;)
+	@DisplayName(&quot;TEST042&quot;)
+	public void testMBLTTSL100_042() throws Exception {
+
+<span class="nc" id="L1805">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_042/case_042_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1809">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1812">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1815">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;26&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1818">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1821">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1824">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1827">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1830">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1833">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1836">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1839">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1841">	}</span>
+
+	@Test
+	@Tag(&quot;TEST043&quot;)
+	@DisplayName(&quot;TEST043&quot;)
+	public void testMBLTTSL100_043() throws Exception {
+
+<span class="nc" id="L1848">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_043/case_043_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1852">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1855">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1858">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;27&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1861">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1864">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1867">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1870">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1873">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1876">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1879">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1882">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1884">	}</span>
+
+	@Test
+	@Tag(&quot;TEST044&quot;)
+	@DisplayName(&quot;TEST044&quot;)
+	public void testMBLTTSL100_044() throws Exception {
+
+<span class="nc" id="L1891">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_044/case_044_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1895">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1898">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1901">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;28&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1904">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1907">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1910">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1913">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1916">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1919">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1922">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1925">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1927">	}</span>
+
+	@Test
+	@Tag(&quot;TEST045&quot;)
+	@DisplayName(&quot;TEST045&quot;)
+	public void testMBLTTSL100_045() throws Exception {
+
+<span class="nc" id="L1934">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_045/case_045_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1938">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1941">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1944">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;29&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1947">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1950">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1953">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1956">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1959">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1962">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1965">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1968">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1970">	}</span>
+
+	@Test
+	@Tag(&quot;TEST046&quot;)
+	@DisplayName(&quot;TEST046&quot;)
+	public void testMBLTTSL100_046() throws Exception {
+
+<span class="nc" id="L1977">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_046/case_046_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L1981">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L1984">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1987">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;30&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L1990">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L1993">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1996">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1999">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2002">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2005">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2008">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2011">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2013">	}</span>
+
+	@Test
+	@Tag(&quot;TEST047&quot;)
+	@DisplayName(&quot;TEST047&quot;)
+	public void testMBLTTSL100_047() throws Exception {
+
+<span class="nc" id="L2020">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_047/case_047_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2024">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2027">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2030">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;31&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2033">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2036">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2039">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2042">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2045">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2048">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2051">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2054">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2056">	}</span>
+
+	@Test
+	@Tag(&quot;TEST048&quot;)
+	@DisplayName(&quot;TEST048&quot;)
+	public void testMBLTTSL100_048() throws Exception {
+
+<span class="nc" id="L2063">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_048/case_048_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2067">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2070">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2073">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;32&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2076">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2079">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2082">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2085">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2088">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2091">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2094">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2097">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2099">	}</span>
+
+	@Test
+	@Tag(&quot;TEST049&quot;)
+	@DisplayName(&quot;TEST049&quot;)
+	public void testMBLTTSL100_049() throws Exception {
+
+<span class="nc" id="L2106">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_049/case_049_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2110">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2113">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2116">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;33&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2119">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2122">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2125">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2128">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2131">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2134">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2137">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2140">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2142">	}</span>
+
+	@Test
+	@Tag(&quot;TEST050&quot;)
+	@DisplayName(&quot;TEST050&quot;)
+	public void testMBLTTSL100_050() throws Exception {
+
+<span class="nc" id="L2149">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_050/case_050_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2153">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2156">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2159">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;34&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2162">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2165">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2168">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2171">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2174">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2177">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2180">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2183">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2185">	}</span>
+
+	@Test
+	@Tag(&quot;TEST051&quot;)
+	@DisplayName(&quot;TEST051&quot;)
+	public void testMBLTTSL100_051() throws Exception {
+
+<span class="nc" id="L2192">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_051/case_051_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2196">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2199">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2202">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;35&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2205">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2208">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2211">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2214">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2217">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2220">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2223">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2226">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2228">	}</span>
+
+	@Test
+	@Tag(&quot;TEST052&quot;)
+	@DisplayName(&quot;TEST052&quot;)
+	public void testMBLTTSL100_052() throws Exception {
+
+<span class="nc" id="L2235">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_052/case_052_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2239">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2242">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2245">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;36&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2248">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2251">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2254">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2257">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2260">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2263">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2266">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2269">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2271">	}</span>
+
+	@Test
+	@Tag(&quot;TEST053&quot;)
+	@DisplayName(&quot;TEST053&quot;)
+	public void testMBLTTSL100_053() throws Exception {
+
+<span class="nc" id="L2278">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_053/case_053_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2282">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2285">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2288">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;37&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2291">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2294">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2297">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2300">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2303">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2306">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2309">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2312">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2314">	}</span>
+
+	@Test
+	@Tag(&quot;TEST054&quot;)
+	@DisplayName(&quot;TEST054&quot;)
+	public void testMBLTTSL100_054() throws Exception {
+
+<span class="nc" id="L2321">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_054/case_054_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2325">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2328">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2331">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;38&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2334">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2337">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2340">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2343">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2346">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2349">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2352">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2355">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2357">	}</span>
+
+	@Test
+	@Tag(&quot;TEST055&quot;)
+	@DisplayName(&quot;TEST055&quot;)
+	public void testMBLTTSL100_055() throws Exception {
+
+<span class="nc" id="L2364">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_055/case_055_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2368">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;26&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2371">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2374">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;33&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2377">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2380">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2383">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2386">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2389">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2392">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2395">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2398">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2400">	}</span>
+
+	@Test
+	@Tag(&quot;TEST056&quot;)
+	@DisplayName(&quot;TEST056&quot;)
+	public void testMBLTTSL100_056() throws Exception {
+
+<span class="nc" id="L2407">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_056/case_056_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2411">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2414">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2417">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;39&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2420">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2423">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2426">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2429">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2432">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2435">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2438">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2441">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2443">	}</span>
+
+	@Test
+	@Tag(&quot;TEST057&quot;)
+	@DisplayName(&quot;TEST057&quot;)
+	public void testMBLTTSL100_057() throws Exception {
+
+<span class="nc" id="L2450">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_057/case_057_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2454">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;27&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2457">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2460">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;40&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2463">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2466">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2469">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2472">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2475">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2478">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2481">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2484">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2486">	}</span>
+
+	@Test
+	@Tag(&quot;TEST058&quot;)
+	@DisplayName(&quot;TEST058&quot;)
+	public void testMBLTTSL100_058() throws Exception {
+
+<span class="nc" id="L2493">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_058/case_058_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2497">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;27&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2500">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2503">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;41&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2506">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2509">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2512">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2515">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2518">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2521">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2524">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2527">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2529">	}</span>
+
+	@Test
+	@Tag(&quot;TEST059&quot;)
+	@DisplayName(&quot;TEST059&quot;)
+	public void testMBLTTSL100_059() throws Exception {
+
+<span class="nc" id="L2536">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_059/case_059_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2540">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;28&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2543">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2546">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;42&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2549">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2552">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2555">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2558">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2561">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2564">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2567">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2570">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2572">	}</span>
+
+	@Test
+	@Tag(&quot;TEST060&quot;)
+	@DisplayName(&quot;TEST060&quot;)
+	public void testMBLTTSL100_060() throws Exception {
+
+<span class="nc" id="L2579">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLTTSL100/case_060/case_060_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_CARRIER_INVOICE → データクリア・挿入 */
+<span class="nc" id="L2583">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE&quot;, &quot;データクリア・挿入&quot;, &quot;29&quot;);</span>
+
+		/* 操作(DB準備) → M_CARRIER_INVOICE_PRIORITY → データクリア・挿入 */
+<span class="nc" id="L2586">		rakurakuCore.operateDBPrepare(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_REPLICA → データクリア・挿入 */
+<span class="nc" id="L2589">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;33&quot;);</span>
+
+		/* 操作(DB準備) → T_CARRIER_INVOICE_RECEIVE_LOG → データクリア・挿入 */
+<span class="nc" id="L2592">		rakurakuCore.operateDBPrepare(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → PRODUCED_EVENTS_2 → データクリア・挿入 */
+<span class="nc" id="L2595">		rakurakuCore.operateDBPrepare(&quot;PRODUCED_EVENTS_2&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L2598">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;carrierInvoiceRegisterJob,--operation-date=20210709,--job-net-id=100,--job-execution-id=&lt;jobExecutionId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2601">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → M_CARRIER_INVOICE_PRIORITY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2604">		rakurakuCore.operateDBConfirm(&quot;M_CARRIER_INVOICE_PRIORITY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2607">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_CARRIER_INVOICE_RECEIVE_LOG → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2610">		rakurakuCore.operateDBConfirm(&quot;T_CARRIER_INVOICE_RECEIVE_LOG&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → PRODUCED_EVENTS_2 → NOT_ASSERT_COLUMN */
+<span class="nc" id="L2613">		rakurakuCore.operateDBConfirm(&quot;PRODUCED_EVENTS_2&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L2615">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

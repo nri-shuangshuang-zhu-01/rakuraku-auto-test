@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SAME_DAY_SO subsidiary_code='TTT' global_number='asdasd        ' so_date='2012-12-12' summary_date='2012-12-12' store_key='1' customer_code='BOSCH8' input_type='1' so_amount_before_change_including_tax='1' so_amount_after_change_including_tax='1' slip_type='   ' settlement_method='' so_difference_amount='0' update_count='1' delete_flag='0' register_user_type='AAA' register_user='AAA' register_date_time='2012-12-12' register_program='test' register_client_program='test' update_user_type='test' update_user='test' update_date_time='2012-12-12' update_program='test' update_client_program='test' />
+</dataset>

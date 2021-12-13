@@ -1,0 +1,25 @@
+ {
+  "businessSceneType": null,
+  "printList": [
+    {
+      "globalNumber": "CA000032000086",
+      "productCode": "123456",
+      "brandCode": "stri",
+      "contactList": "s",
+      "qty": 9999999,
+      "marketCode": "st",
+      "plantCode": "0001",
+      "storageLocationCode": "stri",
+      "slipType":"str",
+      "soArrivalDate": "2019-08-24T14:15:22Z",
+      "soShipmentDate": "2019-08-25T14:15:22Z",
+      "soStatusType": "1",
+      "stopShipmentFlag": "1",
+      "inputProcessDate": "2019-08-24",
+      "time": "14:15:22Z",
+      "id": "string",
+      "historyDisplayType": "s",
+      "updateCount": 9999
+    }
+  ]
+}

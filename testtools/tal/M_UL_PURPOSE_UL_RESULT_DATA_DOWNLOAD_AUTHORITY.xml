@@ -1,0 +1,20 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+権限コード::authority_code::text::NOT NULL(PK)
+中分類コード::medium_classification_code::varchar(4)::NOT NULL(PK)
+データコード::data_code::varchar(5)::NOT NULL(PK)
+表示順::display_order::numeric(3,0)::NOT NULL
+データ名（日本語）::data_name_japanese::varchar(25)::NOT NULL
+データ名（英語）::data_name_english::varchar(50)::NOT NULL
+ファイル保存期間::file_retain_deadline::integer::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

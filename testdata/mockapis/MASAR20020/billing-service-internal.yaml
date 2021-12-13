@@ -1,0 +1,3444 @@
+openapi: 3.0.0
+info:
+  title: billing-service-internal
+  version: '1.0'
+  description: 請求サービス社内向け用API
+servers:
+  - url: 'http://localhost:3000/billing'
+paths:
+  /internal/v1/non-payment/get:
+    parameters: []
+    post:
+      summary: 未入金管理情報取得API
+      operationId: searchNonPaymentInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/GetNonPaymentInternalResponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: リクエスト項目に応じた未入金管理情報を、未入金管理テーブルおよび売掛先マスタより取得する
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/GetNonPaymentInternalRequestV1'
+            examples: {}
+        description: ''
+      tags:
+        - NonPaymentInternal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+  /internal/v1/non-payment-level/up:
+    post:
+      summary: 未入金管理情報レベルUPAPI
+      operationId: upNonPaymentLevelInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpNonPaymentLevelInternalResponseV1'
+              examples:
+                '1':
+                  value:
+                    dunningLetterOutputType: s
+                    requestData:
+                      - billToCode: string
+                        level: s
+                        delayDays: st
+                        invoiceNumber: string
+                        invoiceIssueDate: '2019-08-24'
+                        subsidiaryCode: str
+                        loginUser: string
+                        promisedPaymentDate: '2019-08-24'
+                    errorList:
+                      - errorCode: string
+                        errorMessage: string
+                '2':
+                  value:
+                    dunningLetterOutputType: s
+                    requestData:
+                      - billToCode: string
+                        level: s
+                        delayDays: st
+                        invoiceNumber: string
+                        invoiceIssueDate: '2019-08-24'
+                        subsidiaryCode: str
+                        loginUser: string
+                        promisedPaymentDate: '2019-08-24'
+                    errorList:
+                      - errorCode: string
+                        errorMessage: string
+                '3':
+                  value:
+                    dunningLetterOutputType: null
+                    requestData:
+                      - billToCode: null
+                        level: null
+                        delayDays: null
+                        invoiceNumber: null
+                        invoiceIssueDate: null
+                        subsidiaryCode: null
+                        loginUser: null
+                        promisedPaymentDate: null
+                    errorList:
+                      - errorCode: null
+                        errorMessage: null
+                '4':
+                  value:
+                    dunningLetterOutputType: ''
+                    requestData:
+                      - billToCode: ''
+                        level: ''
+                        delayDays: ''
+                        invoiceNumber: ''
+                        invoiceIssueDate: ''
+                        subsidiaryCode: ''
+                        loginUser: ''
+                        promisedPaymentDate: ''
+                    errorList:
+                      - errorCode: ''
+                        errorMessage: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 対象未入金データの督促レベルをUPする
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/UpNonPaymentLevelInternalRequestV1'
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      tags:
+        - NonPaymentLevelInternal
+    parameters: []
+  /internal/v1/non-payment-level/down:
+    post:
+      summary: 未入金管理情報レベルDOWNAPI
+      operationId: downNonPaymentLevelInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownNonPaymentLevelInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 対象未入金データの督促レベルをDOWNする。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/DownNonPaymentLevelInternalRequestV1'
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      tags:
+        - NonPaymentLevelInternal
+    parameters: []
+  /internal/v1/dunning-letter-download/issue:
+    post:
+      summary: 督促状発行(ダウンロード含む)API
+      operationId: issueDunningLetterDownloadInternalV1
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/IssueDunningLetterDownloadInternalRequestV1'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+          text/html:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      description: 対象未入金データの督促状を作成し、指定の媒体で出力する。
+      x-channel:
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueDunningLetterDownloadInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      tags:
+        - DunningLetterDownloadInternal
+    parameters: []
+  /internal/v1/dunning-letter-non-download/issue:
+    post:
+      summary: 督促状発行(ダウンロード無し)API
+      tags:
+        - DunningLetterNonDownloadInternal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueDunningLetterNonDownloadInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: issueDunningLetterNonDownloadInternalV1
+      description: 対象未入金データの督促状を作成し、指定の媒体で出力する。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/IssueDunningLetterNonDownloadInternalRequestV1'
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+  /internal/v1/non-payment-detail/get:
+    get:
+      summary: 未入金詳細情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/GetNonPaymentDetailInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: getDetailNonPaymentInternalV1
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          required: true
+          description: 現法コード
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: billToCode
+          required: true
+          description: 売掛先コード
+        - schema:
+            type: string
+            maxLength: 16
+          in: query
+          name: invoiceNumber
+          description: インボイスNo
+        - schema:
+            type: string
+          in: query
+          name: invoiceStatus
+          description: インボイスステータス
+        - schema:
+            type: string
+          in: query
+          name: startIndex
+          description: 取得開始位置
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: responseCount
+          description: 返却件数
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+          description: ソート順
+          required: true
+      description: リクエスト項目に応じた、売掛先単位の未入金管理情報を取得する。
+      x-channel:
+        - internal
+      tags:
+        - NonPaymentDetailInternal
+    parameters: []
+  /internal/v1/non-payment/save:
+    post:
+      summary: 未入金管理情報更新API
+      operationId: saveNonPaymentInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveNonPaymentInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/SaveNonPaymentInternalRequestV1'
+        description: ''
+      description: 対象未入金データのコンタクト履歴を登録する。
+      x-channel:
+        - internal
+      tags:
+        - NonPaymentInternal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+    parameters: []
+  /internal/v1/customer-statement/search:
+    parameters: []
+    post:
+      summary: CustomerStatement検索API
+      operationId: searchCustomerStatementInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SearchCustomerStatementInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/SearchCustomerStatementInternalRequestV1'
+      description: リクエスト項目に応じたCustomer Statement情報の件数を、未入金管理テーブル、入金アンマッチデータより取得する
+      x-channel:
+        - internal
+      tags:
+        - CustomerStatementInternal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+  /internal/v1/reprint/get:
+    get:
+      summary: 再印刷検索データ取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/GetReprintInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: getReprintInternalV1
+      description: リクエスト項目を基に再印刷テーブル、社員マスタ、汎用マスタから検索を行う。
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - schema:
+            type: string
+            maxLength: 5
+          in: query
+          description: 出力区分
+          name: outputType
+          required: true
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          description: 現法コード
+          name: subsidiaryCode
+          required: true
+        - schema:
+            type: string
+            format: date
+          in: query
+          description: 作成日（自）
+          name: createDateFrom
+          required: true
+        - schema:
+            type: string
+            format: date
+          in: query
+          description: 作成日（至）
+          name: createDateTo
+          required: true
+        - schema:
+            type: string
+          in: query
+          description: 帳票種別
+          name: reportType
+          required: true
+        - schema:
+            type: string
+            maxLength: 100
+          in: query
+          description: 検索キーワード
+          name: searchKeyWord
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          description: 作成者ID
+          name: createUserId
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          description: 出力状況
+          name: outputStatus
+          required: true
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          description: 売掛先コード
+          name: billToCode
+        - schema:
+            type: string
+          in: query
+          description: ページ番号
+          name: pageNumber
+          required: true
+        - schema:
+            type: integer
+            maxLength: 10
+          in: query
+          description: 表示件数
+          name: displayCount
+          required: true
+      tags:
+        - ReprintInternal
+    parameters: []
+  /internal/v1/reprint/execute:
+    post:
+      summary: 再印刷API
+      operationId: executeReprintInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecuteReprintInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExecuteReprintInternalRequestV1'
+        description: ''
+      description: 帳票の再印刷を行う。
+      x-channel:
+        - internal
+      tags:
+        - ReprintInternal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+    parameters: []
+  /internal/v1/screen-field-display/get:
+    parameters: []
+    post:
+      summary: 共通_画面表示項目取得API
+      tags:
+        - ScreenFieldDisplayInternal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      operationId: getScreenFieldDisplayInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/GetScreenFieldDisplayInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 画面表示項目管理の登録内容を参照する。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/GetScreenFieldDisplayInternalRequestV1'
+        description: ''
+  /internal/v1/customer-statement/output:
+    post:
+      summary: CustomerStatement出力API
+      tags:
+        - CustomerStatementInternal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputCustomerStatementInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: outputCustomerStatementInternalV1
+      description: リクエスト項目に応じたCustomer Statement情報を送付方法（印刷、メール、FAX）に従い出力する。
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/OutputCustomerStatementInternalRequestV1'
+        description: ''
+  /internal/v1/acceptance-group/search:
+    parameters: []
+    post:
+      summary: 検収グループ情報検索API
+      operationId: searchAcceptanceGroupInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAcceptanceGroupInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    acceptanceGroupInternalV1List:
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '860583'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          検収グループマスタ M_ACCEPTANCE_GROUP
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1'
+        description: 検収グループ情報検索APIのリクエスト電文
+      x-channel:
+        - internal
+      tags:
+        - AcceptanceGroupInternal
+  /internal/v1/acceptance-group/get:
+    get:
+      summary: 検収グループ情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAcceptanceGroupInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    acceptanceGroupInternalV1:
+                      subsidiaryCode: JKT
+                      acceptanceGroupCode: '860583'
+                      incomingPaymentGroupCode: '860582'
+                      acceptanceGroupNameNative: 精密
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getAcceptanceGroupInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          検収グループマスタ M_ACCEPTANCE_GROUP
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          name: acceptance_group_code
+          description: 検収グループコード
+          required: true
+      tags:
+        - AcceptanceGroupInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/bill-to/search:
+    post:
+      summary: 売掛先情報検索API
+      operationId: searchBillToInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchBillToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    billToInternalV1List:
+                      - subsidiaryCode: KOR
+                        billToCode: '558814'
+                        oldBillToCode: 'null'
+                        arMainDepartment: KA
+                        misumiPicCode: VO00
+                        billToNameNative: 심보선
+                        billToNameAbbreviationNative: 심보선
+                        billToNameNativeForSearchIndex: 심보선
+                        billToName: SHIM BO SEON
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '558814'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: KRW
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        fbStopType: '1'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalCollationAllowFlag: string
+                        fax: 'null'
+                        emailAddress: 'null'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchBillToInternalRequestV1'
+        description: 売掛先情報検索APIのリクエスト電文
+      tags:
+        - BillToInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/bill-to/get:
+    get:
+      summary: 売掛先情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBillToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    billToInternalV1:
+                      subsidiaryCode: KOR
+                      billToCode: '558814'
+                      oldBillToCode: 'null'
+                      arMainDepartment: KA
+                      misumiPicCode: VO00
+                      billToNameNative: 심보선
+                      billToNameAbbreviationNative: 심보선
+                      billToNameNativeForSearchIndex: 심보선
+                      billToName: SHIM BO SEON
+                      countryCode: '103'
+                      languageCode: KOR
+                      postalCode: 446-901
+                      address1Native: 경기도 용인시 기흥구 원고매로 12
+                      address2Native: (고매동) 리더스타워 6층
+                      address3Native: 엠케이에스코리아
+                      address4Native: 'null'
+                      address1: GYEONGGI YONGINSI GIHEUNGGU
+                      address2: WONGOMAERO12
+                      address3: 'null'
+                      address4: 'null'
+                      invoiceSendDestinationDepartmentNameNative: 'null'
+                      invoiceSendDestinationPicNative: 'null'
+                      tel: 031-8021-1344
+                      billToFax: 031-8005-9324
+                      dunningToFax: 031-8005-9324
+                      billToEmailAddressTo: bsshim@mksinst.com
+                      billToEmailAddressCc: dummy1
+                      dunningToEmailAddressTo: bsshim@mksinst.com
+                      dunningToEmailAddressCc: dummy2
+                      taxAccountStatementSendDestinationEmailAddress1: 'null'
+                      taxAccountStatementSendDestinationEmailAddress2: '0'
+                      tradeStopType: '0'
+                      serviceStopType: '0'
+                      acceptanceType: '0'
+                      acceptanceGroupCode: '558814'
+                      incoterms: DDP
+                      paymentTerms: Credit Card
+                      settlementMethod: CCD
+                      paymentMeans: '50'
+                      arClosingUnit: E
+                      arClosingDay: 31
+                      arPaymentMonth: 0
+                      arPaymentDate: 1
+                      arPaymentSiteFinal: 14
+                      arPaymentSiteEarlyPaymentDiscount: 0
+                      arEarlyIncomingPaymentDiscountRate: '0'
+                      transferFee: '0'
+                      customerAccountBankCode: 'null'
+                      customerAccountType: '0'
+                      customerAccountNumber: 'null'
+                      customerAccountNameNativeAllowed: 'null'
+                      transferAccountBankCode: 24106K
+                      transferAccountType: '1'
+                      transferAccountNumber: 140-003-465017
+                      transferAccountName: (주)한국미스미
+                      virtualAccountFlag: '0'
+                      notePayableConditionAmount: '0'
+                      notePayableConditionPaymentMonth: 0
+                      notePayableConditionPaymentDate: 1
+                      paymentSite: 0
+                      invoiceSendType: '0'
+                      invoiceViaType: '0'
+                      invoiceViaTypeChild: 'null'
+                      invoiceSendMedia: 'null'
+                      dunningLetterSendType: '1'
+                      dunningLetterSendMedia: AF
+                      productNamePrintFlag: '0'
+                      consumptionTaxMentionType: '0'
+                      inExTaxType: '0'
+                      ccyCode: KRW
+                      rateTypeCode: KKRM
+                      arDifficulty: 'null'
+                      governmentUniformInvoiceType: '0'
+                      companyRepresentativeNameNative: 'null'
+                      arRemarks1: 'null'
+                      arRemarks2: 'null'
+                      arRemarks3: 'null'
+                      arRemarks4: 'null'
+                      arRemarks5: 'null'
+                      invoiceRemarks1: 'null'
+                      invoiceRemarks2: 'null'
+                      invoiceRemarks3: 'null'
+                      invoiceRemarks4: 'null'
+                      gstPaymentPlace: 'null'
+                      departmentName: 'null'
+                      commissionerate: 'null'
+                      stopReasonCode: 'null'
+                      settlementMonth: 0
+                      settlementClosingDay: 0
+                      settlementSetting: '0'
+                      cityCode: 'null'
+                      invoiceOutputOrder: '0'
+                      zenginCode: '0'
+                      automaticTransferFlag: '0'
+                      depositType: '1'
+                      accountNumber: '1'
+                      depositorNameKana: '1'
+                      newCode: '1'
+                      automaticTransferRegisterDate: '2019-08-24'
+                      fbStopType: '1'
+                      userTransferBank: 'null'
+                      userTransferBranch: 'null'
+                      arQctBaseCode: 'null'
+                      closingDayFrontLoadingSettingType: '0'
+                      industryType: '0'
+                      channelType: '10'
+                      eachBillRegister: 'null'
+                      invoiceSlipOutputReportCode: 'null'
+                      invoiceSummaryFlag: 'null'
+                      customerStatementSendFlag: '1'
+                      customerStatementSendMediaType: '3'
+                      swiftCode: 'null'
+                      withdrawalCollationAllowFlag: string
+                      fax: 'null'
+                      emailAddress: 'null'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getBillToInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 6
+            example: '860583'
+            minLength: 6
+          in: query
+          name: bill_to_code
+          description: 売掛先コード
+          required: true
+      tags:
+        - BillToInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/bill-to/get-list:
+    post:
+      summary: 売掛先情報取得API（List）
+      operationId: getListBillToInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListBillToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListBillToInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        billToInternalV1:
+                          subsidiaryCode: KOR
+                          billToCode: '558814'
+                          oldBillToCode: 'null'
+                          arMainDepartment: KA
+                          misumiPicCode: VO00
+                          billToNameNative: 심보선
+                          billToNameAbbreviationNative: 심보선
+                          billToNameNativeForSearchIndex: 심보선
+                          billToName: SHIM BO SEON
+                          countryCode: '103'
+                          languageCode: KOR
+                          postalCode: 446-901
+                          address1Native: 경기도 용인시 기흥구 원고매로 12
+                          address2Native: (고매동) 리더스타워 6층
+                          address3Native: 엠케이에스코리아
+                          address4Native: 'null'
+                          address1: GYEONGGI YONGINSI GIHEUNGGU
+                          address2: WONGOMAERO12
+                          address3: 'null'
+                          address4: 'null'
+                          invoiceSendDestinationDepartmentNameNative: 'null'
+                          invoiceSendDestinationPicNative: 'null'
+                          tel: 031-8021-1344
+                          billToFax: 031-8005-9324
+                          dunningToFax: 031-8005-9324
+                          billToEmailAddressTo: bsshim@mksinst.com
+                          billToEmailAddressCc: dummy1
+                          dunningToEmailAddressTo: bsshim@mksinst.com
+                          dunningToEmailAddressCc: dummy2
+                          taxAccountStatementSendDestinationEmailAddress1: 'null'
+                          taxAccountStatementSendDestinationEmailAddress2: '0'
+                          tradeStopType: '0'
+                          serviceStopType: '0'
+                          acceptanceType: '0'
+                          acceptanceGroupCode: '558814'
+                          incoterms: DDP
+                          paymentTerms: Credit Card
+                          settlementMethod: CCD
+                          paymentMeans: '50'
+                          arClosingUnit: E
+                          arClosingDay: 31
+                          arPaymentMonth: 0
+                          arPaymentDate: 1
+                          arPaymentSiteFinal: 14
+                          arPaymentSiteEarlyPaymentDiscount: 0
+                          arEarlyIncomingPaymentDiscountRate: '0'
+                          transferFee: '0'
+                          customerAccountBankCode: 'null'
+                          customerAccountType: '0'
+                          customerAccountNumber: 'null'
+                          customerAccountNameNativeAllowed: 'null'
+                          transferAccountBankCode: 24106K
+                          transferAccountType: '1'
+                          transferAccountNumber: 140-003-465017
+                          transferAccountName: (주)한국미스미
+                          virtualAccountFlag: '0'
+                          notePayableConditionAmount: '0'
+                          notePayableConditionPaymentMonth: 0
+                          notePayableConditionPaymentDate: 1
+                          paymentSite: 0
+                          invoiceSendType: '0'
+                          invoiceViaType: '0'
+                          invoiceViaTypeChild: 'null'
+                          invoiceSendMedia: 'null'
+                          dunningLetterSendType: '1'
+                          dunningLetterSendMedia: AF
+                          productNamePrintFlag: '0'
+                          consumptionTaxMentionType: '0'
+                          inExTaxType: '0'
+                          ccyCode: KRW
+                          rateTypeCode: KKRM
+                          arDifficulty: 'null'
+                          governmentUniformInvoiceType: '0'
+                          companyRepresentativeNameNative: 'null'
+                          arRemarks1: 'null'
+                          arRemarks2: 'null'
+                          arRemarks3: 'null'
+                          arRemarks4: 'null'
+                          arRemarks5: 'null'
+                          invoiceRemarks1: 'null'
+                          invoiceRemarks2: 'null'
+                          invoiceRemarks3: 'null'
+                          invoiceRemarks4: 'null'
+                          gstPaymentPlace: 'null'
+                          departmentName: 'null'
+                          commissionerate: 'null'
+                          stopReasonCode: 'null'
+                          settlementMonth: 0
+                          settlementClosingDay: 0
+                          settlementSetting: '0'
+                          cityCode: 'null'
+                          invoiceOutputOrder: '0'
+                          zenginCode: '0'
+                          automaticTransferFlag: '0'
+                          depositType: '1'
+                          accountNumber: '1'
+                          depositorNameKana: '1'
+                          newCode: '1'
+                          automaticTransferRegisterDate: '2019-08-24'
+                          fbStopType: '1'
+                          userTransferBank: 'null'
+                          userTransferBranch: 'null'
+                          arQctBaseCode: 'null'
+                          closingDayFrontLoadingSettingType: '0'
+                          industryType: '0'
+                          channelType: '10'
+                          eachBillRegister: 'null'
+                          invoiceSlipOutputReportCode: 'null'
+                          invoiceSummaryFlag: 'null'
+                          customerStatementSendFlag: '1'
+                          customerStatementSendMediaType: '3'
+                          swiftCode: 'null'
+                          withdrawalCollationAllowFlag: string
+                          fax: 'null'
+                          emailAddress: 'null'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      tags:
+        - BillToInternal
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListBillToInternalRequestV1'
+        description: 売掛先情報取得API（List）のリクエスト電文
+components:
+  schemas:
+    GetScreenFieldDisplayInternalGeneralKeyListV1:
+      title: GetScreenFieldDisplayInternalGeneralKeyListV1
+      type: object
+      properties:
+        olDisplayElementIdentifier:
+          type: string
+          description: 画面表示項目識別子
+          maxLength: 2
+        generalKey1:
+          type: string
+          description: 汎用キー1
+          maxLength: 5
+        generalKey2:
+          type: string
+          description: 汎用キー2
+          maxLength: 20
+        generalKey3:
+          type: string
+          description: 汎用キー3
+          maxLength: 20
+        generalKey4:
+          type: string
+          description: 汎用キー4
+          maxLength: 20
+        generalKey5:
+          type: string
+          description: 汎用キー5
+          maxLength: 20
+    GetScreenFieldDisplayInternalResponseV1:
+      title: GetScreenFieldDisplayInternalResponseV1
+      type: object
+      properties:
+        ScreenFieldDisplayInternalList:
+          type: array
+          description: 画面項目リスト
+          items:
+            $ref: '#/components/schemas/GetScreenFieldDisplayInternalListV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    GetScreenFieldDisplayInternalListByIdV1:
+      title: GetScreenFieldDisplayInternalListByIdV1
+      type: object
+      properties:
+        generalKey1:
+          type: string
+          description: 汎用キー1
+          maxLength: 5
+        generalKey2:
+          type: string
+          description: 汎用キー2
+          maxLength: 20
+        generalKey3:
+          type: string
+          description: 汎用キー3
+          maxLength: 20
+        generalKey4:
+          type: string
+          description: 汎用キー4
+          maxLength: 20
+        generalKey5:
+          type: string
+          description: 汎用キー5
+          maxLength: 20
+        codeValueReference1:
+          type: string
+          description: コード値リファレンス１
+          maxLength: 600
+        codeValueReference2:
+          type: string
+          description: コード値リファレンス２
+          maxLength: 600
+        codeValueReference3:
+          type: string
+          description: コード値リファレンス３
+          maxLength: 600
+        codeValueReference4:
+          type: string
+          description: コード値リファレンス４
+          maxLength: 600
+        codeValueReference5:
+          type: string
+          description: コード値リファレンス５
+          maxLength: 600
+    GetScreenFieldDisplayInternalListV1:
+      title: GetScreenFieldDisplayInternalListV1
+      type: object
+      properties:
+        olDisplayElementIdentifier:
+          type: string
+          description: 画面表示項目識別子
+          maxLength: 2
+        ScreenFieldDisplayInternalListIdentifier:
+          type: array
+          description: 画面項目リスト（識別子別）
+          items:
+            $ref: '#/components/schemas/GetScreenFieldDisplayInternalListByIdV1'
+    GetScreenFieldDisplayInternalRequestV1:
+      title: GetScreenFieldDisplayInternalRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        generalKeyList:
+          type: array
+          description: 汎用キーリスト
+          items:
+            $ref: '#/components/schemas/GetScreenFieldDisplayInternalGeneralKeyListV1'
+    GetNonPaymentInternalRequestV1:
+      title: GetNonPaymentInternalRequestV1
+      type: object
+      description: ''
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        date:
+          type: string
+          description: 日付
+        paymentDueDateFrom:
+          type: string
+          description: 支払期日(From)
+        promisedPaymentDateFrom:
+          type: string
+          description: 支払約束日(From)
+        paymentDueDateTo:
+          type: string
+          description: 支払期日(To)
+        promisedPaymentDateTo:
+          type: string
+          description: 支払約束日(To)
+        incomingPaymentStatus:
+          type: string
+          description: 入金状況
+        level:
+          type: string
+          description: レベル
+        dunningLevel:
+          type: string
+          maxLength: 1
+          description: 督促レベル
+        titleLevel:
+          type: string
+          description: タイトルレベル
+          maxLength: 1
+        ininChargeId:
+          type: string
+          description: 担当ID
+        mainDepartmentCode:
+          type: string
+          description: 主管部署コード
+        tradeStatus:
+          type: string
+          maxLength: 2
+          description: 取引状態
+        nonPaymentAmountExtractFrom:
+          type: string
+          maxLength: 23
+          description: 未入金額抽出 (From)
+        nonPaymentAmountExtractTo:
+          type: string
+          maxLength: 23
+          description: 未入金額抽出 (To)
+        settlementMethodList:
+          type: array
+          description: 決済形態リスト
+          items:
+            $ref: '#/components/schemas/SearchNonPaymentInternalSettlementMethodListV1'
+        paymentMeansList:
+          description: 支払手段リスト
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchNonPaymentInternalPaymentMeansListV1'
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        systemDate:
+          type: string
+          format: date
+          description: システム日付
+        sortField:
+          type: string
+          description: ソート項目
+        sortOrder:
+          type: string
+          description: ソート順序
+        pageNumber:
+          type: string
+          description: ページ番号
+        displayCount:
+          type: integer
+          description: 表示件数
+        responseType:
+          type: string
+          description: レスポンス種別
+      required:
+        - date
+        - incomingPaymentStatus
+        - level
+        - dunningLevel
+        - titleLevel
+        - tradeStatus
+        - subsidiaryCode
+        - systemDate
+        - pageNumber
+        - displayCount
+        - responseType
+    SearchNonPaymentInternalInfoListV1:
+      title: SearchNonPaymentInternalInfoListV1
+      type: object
+      description: レスポンスデータ
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        nativeBillToName:
+          type: string
+          description: 売掛先名（現地語）
+          maxLength: 200
+        billToName:
+          type: string
+          description: 売掛先名
+          maxLength: 60
+        staffId:
+          type: string
+          description: Staff ID
+        invoiceNumber:
+          type: string
+          description: インボイス番号
+          maxLength: 16
+        invoiceDate:
+          type: string
+          description: インボイス日付
+          format: date
+        billYeanMonth:
+          type: string
+          description: 請求年月
+          maxLength: 4
+        ccyCodeCustomerCcy:
+          type: string
+          description: 通貨コード(顧客通貨)
+          maxLength: 3
+        billedAmountCustomerCcy:
+          type: string
+          description: 請求金額(顧客通貨)
+          format: decimal
+          maxLength: 23
+        nonPaymentAmountCustomerCcy:
+          type: string
+          description: 未入金額(顧客通貨)
+          format: decimal
+          maxLength: 23
+        incomingPaymentAmountCustomerCcy:
+          type: string
+          description: 入金額（顧客通貨）
+          format: decimal
+          maxLength: 23
+        billedAmountSubsidiaryCcy:
+          type: string
+          description: 請求金額（現法通貨）
+          format: decimal
+          maxLength: 23
+        ccyCodeSubsidiaryCcy:
+          type: string
+          description: 通貨コード(現法通貨)
+          maxLength: 3
+        nonPaymentAmountSubsidiaryCcy:
+          type: string
+          description: 未入金額（現法通貨）
+          format: decimal
+          maxLength: 23
+        paymentDueDate:
+          type: string
+          description: 支払期日
+          format: date
+        promisedPaymentDate:
+          type: string
+          description: 支払約束日
+          format: date
+        incomingPaymentCompleteDate:
+          type: string
+          description: 入金完了日
+          format: date
+        dunningLetterSendMedia:
+          type: string
+          description: 督促状送付媒体
+          maxLength: 2
+        dunningLetterSendUserId:
+          type: string
+          description: 督促状送信者ID
+          maxLength: 6
+        dunningLetterSendRequestDate:
+          type: string
+          description: 督促状送信依頼日
+          format: date
+        dunningLevel:
+          type: string
+          description: 督促レベル
+          maxLength: 1
+        titleLevel:
+          type: string
+          description: タイトルレベル
+          maxLength: 1
+        mainDepartmentCode:
+          type: string
+          description: 主管部署コード
+        acceptanceType:
+          type: string
+          description: 検収区分
+          maxLength: 1
+        settlementMethod:
+          type: string
+          description: 決済形態
+          maxLength: 3
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+        tradeStatusType:
+          type: string
+          description: 取引状態区分
+          maxLength: 2
+        delayReasonType:
+          type: string
+          description: 遅延理由区分
+        customerPoReference:
+          type: string
+          description: 顧客ヘッダー注文番号
+          maxLength: 25
+        customerTtemSubReference:
+          type: string
+          description: 顧客注文番号(枝番)
+          maxLength: 54
+        customerItemReference:
+          type: string
+          description: 顧客注文番号(親番)
+          maxLength: 35
+        updateCount:
+          type: integer
+          description: 更新回数
+        deleteFlag:
+          type: string
+          description: 削除フラグ
+          maxLength: 1
+        registerUser:
+          type: string
+          description: 登録者
+          maxLength: 256
+        registerSystemDateTime:
+          type: string
+          description: 登録日時（システム日時）
+          format: date-time
+        registerSubsidiaryDateTime:
+          type: string
+          description: 登録日時（現法日時）
+          format: date-time
+        registerLocaleDateTime:
+          type: string
+          description: 登録日時（ロケール日時）
+          format: date-time
+        registerProgram:
+          type: string
+          description: 登録プログラム
+          maxLength: 15
+        updateUser:
+          type: string
+          description: 更新者
+          maxLength: 256
+        updateSystemDateTime:
+          type: string
+          description: 更新日時（システム日時）
+          format: date-time
+        updateSubsidiaryDateTime:
+          type: string
+          description: 更新日時（現法日時）
+          format: date-time
+        updateLocaleDateTime:
+          type: string
+          description: 登録日時（ロケール日時）
+          format: date-time
+        updateProgram:
+          type: string
+          description: 更新プログラム
+          maxLength: 15
+        delayDays:
+          type: string
+          description: 遅延日数
+          maxLength: 2
+        dunningLetterSendType:
+          type: string
+          description: 督促状送付区分
+          maxLength: 1
+      required:
+        - subsidiaryCode
+        - billToCode
+        - billToName
+        - invoiceNumber
+        - invoiceDate
+        - updateCount
+        - deleteFlag
+        - registerUser
+        - registerSystemDateTime
+        - registerSubsidiaryDateTime
+        - registerLocaleDateTime
+        - registerProgram
+        - updateUser
+        - updateSystemDateTime
+        - updateSubsidiaryDateTime
+        - updateLocaleDateTime
+        - updateProgram
+        - delayDays
+        - dunningLetterSendType
+    UpNonPaymentLevelInternalRequestV1:
+      title: UpNonPaymentLevelInternalRequestV1
+      type: object
+      description: ''
+      properties:
+        requestDataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpNonPaymentLevelInternalRequestDataListV1'
+        dunningLetterOutputType:
+          type: string
+          description: 督促状出力区分
+      required:
+        - requestDataList
+        - dunningLetterOutputType
+    DownNonPaymentLevelInternalRequestV1:
+      title: DownNonPaymentLevelInternalRequestV1
+      description: リクエストデータ
+      type: object
+      properties:
+        downNonPaymentLevelList:
+          type: array
+          description: ''
+          items:
+            $ref: '#/components/schemas/DownNonPaymentLevelInfo'
+    DownNonPaymentLevelInfo:
+      title: DownNonPaymentLevelInfo
+      description: リクエストデータ
+      type: object
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        level:
+          type: string
+          description: レベル
+          maxLength: 1
+        invoiceIssueDate:
+          type: string
+          description: Invoice発行日
+          format: date
+        invoiceNumber:
+          type: string
+          description: Invoice番号
+          maxLength: 16
+        promisedPaymentDate:
+          type: string
+          description: 支払約束日
+          format: date
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+    IssueDunningLetterDownloadInternalRequestV1:
+      title: IssueDunningLetterDownloadInternalRequestV1
+      type: object
+      description: リクエストデータ
+      properties:
+        dunningLetterDownloadList:
+          type: array
+          description: 督促状リスト
+          items:
+            $ref: '#/components/schemas/DunningLetterDownloadInfo'
+    DunningLetterDownloadInfo:
+      title: DunningLetterDownloadInfo
+      type: object
+      description: リクエストデータ
+      properties:
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        level:
+          type: string
+          description: レベル
+          maxLength: 1
+        delayDays:
+          type: string
+          maxLength: 2
+          description: 遅延日数
+        invoiceNumber:
+          type: string
+          maxLength: 16
+          description: Invoice番号
+        invoiceIssueDate:
+          type: string
+          format: date
+          description: Invoice発行日
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        loginUser:
+          type: string
+          description: ログインユーザ
+        promisedpaymentDate:
+          type: string
+          format: date
+          description: 支払約束日
+        sendMedia:
+          type: string
+          maxLength: 2
+          description: 送信媒体
+        fax:
+          type: string
+          maxLength: 60
+          description: FAX
+        emailTo:
+          type: string
+          maxLength: 256
+          format: email
+          description: e-mail To
+        emailCc:
+          type: string
+          maxLength: 256
+          format: email
+          description: e-mail Cc
+      required:
+        - billToCode
+        - level
+        - delayDays
+        - invoiceNumber
+        - invoiceIssueDate
+        - subsidiaryCode
+        - loginUser
+        - promisedpaymentDate
+        - sendMedia
+    GetNonPaymentDetailInternalResponseV1:
+      title: GetNonPaymentDetailInternalResponseV1
+      type: object
+      description: ''
+      properties:
+        billToData:
+          $ref: '#/components/schemas/GetNonPaymentDetailInternalBillToDataV1'
+        noPaymentInfo:
+          type: array
+          description: 未入金管理情報
+          items:
+            $ref: '#/components/schemas/GetNonPaymentDetailInternalInfoListV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+      required:
+        - billToData
+        - noPaymentInfo
+    SaveNonPaymentInternalRequestV1:
+      title: SaveNonPaymentInternalRequestV1
+      type: object
+      properties:
+        registerObjectList:
+          type: array
+          description: 登録対象情報
+          items:
+            $ref: '#/components/schemas/SaveNonPaymentInternalRegisiterObjectListV1'
+        registerDataList:
+          $ref: '#/components/schemas/SaveNonPaymentInternalRegisiterDataListV1'
+      required:
+        - registerObjectList
+    SearchCustomerStatementInternalResponseV1:
+      title: SearchCustomerStatementInternalResponseV1
+      type: object
+      properties:
+        searchResultCount:
+          type: integer
+          description: 検索結果件数
+        customerStatementSendMediaType:
+          type: string
+          maxLength: 1
+          description: カスタマーステートメント送付媒体区分
+        billToEmailAddressTo:
+          type: string
+          format: email
+          maxLength: 256
+          description: 売掛先メールアドレス(To)
+        billToEmailAddressCc:
+          type: string
+          format: email
+          maxLength: 256
+          description: 売掛先メールアドレス(Cc)
+        faxNumberBillTo:
+          type: string
+          maxLength: 60
+          description: 売掛先ＦＡＸ番号
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - searchResultCount
+    SearchCustomerStatementInternalRequestV1:
+      title: SearchCustomerStatementInternalRequestV1
+      type: object
+      description: ''
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        billToCodeFrom:
+          type: string
+          description: 売掛先コード(From)
+          maxLength: 6
+        billToCodeTo:
+          type: string
+          description: 売掛先コード(To)
+          maxLength: 6
+        billToClosingDate:
+          type: string
+          description: 売掛先締日
+          maxLength: 2
+        inChargeId:
+          type: string
+          description: 担当ID
+        paymentDueDateFrom:
+          type: string
+          description: 支払期日 (From)
+        paymentDueDateTo:
+          type: string
+          description: 支払期日 (To)
+        invoiceNumberFrom:
+          type: string
+          description: Invoice番号 (From)
+          maxLength: 16
+        invoiceNumberTo:
+          type: string
+          description: Invoice番号 (To)
+          maxLength: 16
+        invoiceDateFrom:
+          type: string
+          description: Invoice日付 (From)
+        invoiceDateTo:
+          type: string
+          description: Invoice日付 (To)
+        InvoiceDisplayObject:
+          type: string
+          description: Invoice表示対象
+        billToCodeList:
+          type: array
+          description: 売掛先コードリスト
+          items:
+            $ref: '#/components/schemas/SearchCustomerStatementInternalBillToCodeListV1'
+        displayDataFlagInvoice:
+          type: string
+          description: 表示データフラグ_Invoice
+        displayDataFlagAdvancePayment:
+          type: string
+          description: 表示データフラグ_前受金
+        displayDataFlagProvisionalPayment:
+          type: string
+          description: 表示データフラグ_仮受金
+        billToDirectSpecifiedFlag:
+          type: string
+          description: 売掛先直接指定フラグ
+      required:
+        - subsidiaryCode
+    GetReprintInternalInfoListV1:
+      title: GetReprintInternalInfoListV1
+      description: 再印刷情報
+      type: object
+      properties:
+        outputType:
+          type: string
+          description: 出力区分
+          maxLength: 1
+        createDate:
+          type: string
+          description: 作成日
+          format: date
+        reportType:
+          type: string
+          description: 帳票種別
+        searchKeyWord:
+          type: string
+          description: 検索キーワード
+          maxLength: 100
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        outputStatus:
+          type: string
+          description: 出力状況
+          maxLength: 1
+        createUserId:
+          type: string
+          description: 作成者ID
+        createUserName:
+          type: string
+          description: 作成者名
+        reprintuserId:
+          type: string
+          description: 再印刷者ID
+          maxLength: 6
+        reprintedName:
+          type: string
+          description: 再印刷者
+        reprintCount:
+          type: string
+          description: 再印刷回数
+          maxLength: 3
+        reprintId:
+          type: string
+          description: 再印刷ID
+          maxLength: 10
+      required:
+        - outputType
+        - reportType
+        - outputStatus
+        - createUserId
+        - reprintCount
+        - reprintId
+    ExecuteReprintInternalRequestV1:
+      title: ExecuteReprintInternalRequestV1
+      description: 再印刷情報
+      type: object
+      properties:
+        reprintList:
+          type: array
+          description: 再印刷情報
+          items:
+            $ref: '#/components/schemas/ReprintInfo'
+    ReprintInfo:
+      title: ReprintInfo
+      description: 再印刷情報
+      type: object
+      properties:
+        reprintId:
+          type: string
+          description: 再印刷ID
+          maxLength: 10
+        outputType:
+          type: string
+          description: 出力区分
+          maxLength: 1
+        loginUser:
+          type: string
+          description: ログインユーザ
+        outputStatus:
+          type: string
+          description: 出力状況
+          maxLength: 1
+        reprintCount:
+          type: string
+          description: 再印刷回数
+          maxLength: 3
+      required:
+        - reprintId
+        - outputType
+        - loginUser
+        - outputStatus
+        - reprintCount
+    UpNonPaymentLevelInternalRequestDataListV1:
+      title: UpNonPaymentLevelInternalRequestDataListV1
+      type: object
+      description: ''
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        level:
+          type: string
+          description: レベル
+        delayDays:
+          type: string
+          description: 遅延日数
+          maxLength: 2
+        invoiceNumber:
+          type: string
+          description: Invoice番号
+          maxLength: 16
+        invoiceIssueDate:
+          type: string
+          description: Invoice発行日
+          format: date
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        loginUser:
+          type: string
+          description: ログインユーザ
+        promisedPaymentDate:
+          type: string
+          description: 支払約束日
+          format: date
+        sendMedia:
+          type: string
+          description: 送信媒体
+          maxLength: 2
+        fax:
+          type: string
+          description: FAX
+          maxLength: 60
+        emailTo:
+          type: string
+          description: e-mail To
+          format: email
+          maxLength: 256
+        emailCc:
+          type: string
+          description: e-mail Cc
+          format: email
+          maxLength: 256
+      required:
+        - billToCode
+        - level
+        - delayDays
+        - invoiceNumber
+        - invoiceIssueDate
+        - subsidiaryCode
+        - loginUser
+        - promisedPaymentDate
+    GetNonPaymentDetailInternalBillToDataV1:
+      title: GetNonPaymentDetailInternalBillToDataV1
+      type: object
+      properties:
+        billToName:
+          type: string
+          description: 売掛先名
+          maxLength: 60
+        telNumber:
+          type: string
+          description: TEL
+          maxLength: 60
+        fax:
+          type: string
+          description: FAX
+          maxLength: 60
+        emailTo:
+          type: string
+          description: E_Mail(To)
+          format: email
+          maxLength: 256
+        emailCc:
+          type: string
+          description: E_Mail(Cc)
+          format: email
+          maxLength: 256
+        sendMedia:
+          type: string
+          description: 送信媒体
+          maxLength: 2
+        paymentTerms:
+          type: string
+          description: 支払条件
+          maxLength: 42
+        tradeCurrency:
+          type: string
+          description: 取引通貨
+          maxLength: 3
+        mainBusinessUnitCode:
+          type: string
+          description: 主管事業部
+          maxLength: 4
+        acceptanceExist:
+          type: string
+          description: 検収有無
+          maxLength: 1
+        notePayableamount:
+          type: string
+          description: 手形金額
+          format: decimal
+        dunningLetterSendType:
+          type: string
+          description: 督促状送付区分
+          maxLength: 1
+      required:
+        - billToName
+        - paymentTerms
+        - dunningLetterSendType
+    GetNonPaymentDetailInternalInfoListV1:
+      title: GetNonPaymentDetailInternalInfoListV1
+      type: object
+      properties:
+        invoiceNumber:
+          type: string
+          description: インボイス番号
+        invoiceDate:
+          type: string
+          description: Invoice Date
+          format: date
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+        dunningLevel:
+          type: string
+          description: 督促レベル
+          maxLength: 1
+        paymentDueDate:
+          type: string
+          description: 支払期日
+          format: date
+        delayDays:
+          type: string
+          description: 遅延日数
+          maxLength: 2
+        nonPaymentAmount:
+          type: string
+          description: 未入金額（顧客通貨）
+          format: decimal
+        billedAmount:
+          type: string
+          description: 請求金額（顧客通貨）
+          format: decimal
+        incomingPaymentAmount:
+          type: string
+          description: 入金額
+          format: decimal
+        paymentCompleteDate:
+          type: string
+          description: 支払完了日
+          format: date
+        delayReasonType:
+          type: string
+          description: 遅延理由区分
+          maxLength: 3
+        paymentTermss:
+          type: string
+          description: 支払条件
+          maxLength: 42
+        dunningLetterSendMedia:
+          type: string
+          description: 督促状送付媒体
+          maxLength: 2
+        updateTime:
+          type: string
+          description: 更新日時（現法日時）
+          format: date-time
+        updateUser:
+          type: string
+          description: 更新者
+          maxLength: 256
+        tradeStatus:
+          type: string
+          description: 取引状態
+          maxLength: 2
+        reDate:
+          type: string
+          description: 支払約束日
+          format: date
+        clearFlag:
+          type: string
+          description: 消込フラグ
+          maxLength: 1
+      required:
+        - invoiceNumber
+        - invoiceDate
+    SaveNonPaymentInternalRegisiterObjectListV1:
+      title: SaveNonPaymentInternalRegisiterObjectListV1
+      type: object
+      description: 登録対象情報
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        invoiceNumber:
+          type: string
+          maxLength: 16
+          description: Invoice番号
+        invoiceIssueDate:
+          type: string
+          format: date
+          description: Invoice発行日
+      required:
+        - subsidiaryCode
+        - billToCode
+        - invoiceNumber
+        - invoiceIssueDate
+    SaveNonPaymentInternalRegisiterDataListV1:
+      title: SaveNonPaymentInternalRegisiterDataListV1
+      type: object
+      description: 登録データ
+      properties:
+        tradeStatus:
+          type: string
+          description: 取引状態
+          maxLength: 2
+        delayReason:
+          type: string
+          description: 遅延理由
+          maxLength: 3
+        promisedpaymentDate:
+          type: string
+          format: date
+          description: 支払約束日
+    SearchCustomerStatementInternalBillToCodeListV1:
+      title: SearchCustomerStatementInternalBillToCodeListV1
+      type: object
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+    SearchNonPaymentInternalSettlementMethodListV1:
+      title: SearchNonPaymentInternalSettlementMethodListV1
+      type: object
+      properties:
+        settlementMethod:
+          type: string
+          description: 決済形態
+          maxLength: 3
+    SearchNonPaymentInternalPaymentMeansListV1:
+      title: SearchNonPaymentInternalPaymentMeansListV1
+      type: object
+      properties:
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+    ErrorList:
+      title: ErrorList
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+    GetNonPaymentInternalResponseV1:
+      title: GetNonPaymentInternalResponseV1
+      type: object
+      properties:
+        nonPaymentInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchNonPaymentInternalInfoListV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    GetReprintInternalResponseV1:
+      title: GetReprintInternalResponseV1
+      type: object
+      properties:
+        reprintInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetReprintInternalInfoListV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    IssueDunningLetterNonDownloadInternalRequestV1:
+      title: IssueDunningLetterNonDownloadInternalRequestV1
+      type: object
+      properties:
+        dunningLetterNonDownloadList:
+          type: array
+          description: 督促状情報
+          items:
+            $ref: '#/components/schemas/DunningLetterNonDownloadInfo'
+    DunningLetterNonDownloadInfo:
+      title: DunningLetterNonDownloadInfo
+      type: object
+      properties:
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        level:
+          type: string
+          description: レベル
+          maxLength: 1
+        delayDays:
+          type: string
+          maxLength: 2
+          description: 遅延日数
+        invoiceNumber:
+          type: string
+          maxLength: 16
+          description: Invoice番号
+        invoiceIssueDate:
+          type: string
+          format: date
+          description: Invoice発行日
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        loginUser:
+          type: string
+          description: ログインユーザ
+        promisedpaymentDate:
+          type: string
+          format: date
+          description: 支払約束日
+      required:
+        - billToCode
+        - level
+        - delayDays
+        - invoiceNumber
+        - invoiceIssueDate
+        - subsidiaryCode
+        - loginUser
+        - promisedpaymentDate
+    OutputCustomerStatementInternalRequestV1:
+      title: OutputCustomerStatementInternalRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        loginUser:
+          type: string
+          description: ログインユーザ
+        billToCodeFrom:
+          type: string
+          description: 売掛先コード(From)
+          maxLength: 6
+        billToCodeTo:
+          type: string
+          description: 売掛先コード(To)
+          maxLength: 6
+        billToClosingDate:
+          type: integer
+          description: 売掛先締日
+          maximum: 31
+        inChargeId:
+          type: string
+          description: 担当ID
+        paymentDueDateFrom:
+          type: string
+          description: 支払期日 (From)
+        paymentDueDateTo:
+          type: string
+          description: 支払期日 (To)
+        invoiceNumberFrom:
+          type: string
+          description: Invoice番号 (From)
+          maxLength: 16
+        invoiceNumberTo:
+          type: string
+          description: Invoice番号 (To)
+          maxLength: 16
+        invoiceDateFrom:
+          type: string
+          description: Invoice日付 (From)
+        invoiceDateTo:
+          type: string
+          description: Invoice日付 (To)
+        InvoiceDisplayObject:
+          type: string
+          description: Invoice表示対象
+        billToCodeList:
+          type: array
+          description: 売掛先コードリスト
+          items:
+            $ref: '#/components/schemas/SearchCustomerStatementInternalBillToCodeListV1'
+        displayDataFlagInvoice:
+          type: string
+          description: 表示データフラグ_Invoice
+        displayDataFlagAdvancePayment:
+          type: string
+          description: 表示データフラグ_前受金
+        displayDataFlagProvisionalPayment:
+          type: string
+          description: 表示データフラグ_仮受金
+        billToDirectSpecifiedFlag:
+          type: string
+          description: 売掛先直接指定フラグ
+        issueDate:
+          type: string
+          description: 発行日
+        sendMethod:
+          type: string
+          description: 送付方法
+        emailTo:
+          type: string
+          description: E-mail_To
+        emailCc:
+          type: string
+          description: E-mail_Cc
+        fax:
+          type: string
+          description: Fax
+      required:
+        - subsidiaryCode
+        - loginUser
+        - sendMethod
+    UpNonPaymentLevelInternalResponseV1:
+      title: UpNonPaymentLevelInternalResponseV1
+      type: object
+      properties:
+        dunningLetterOutputType:
+          type: string
+          maxLength: 1
+          description: 督促状出力区分
+        requestData:
+          type: array
+          description: リクエストデータ
+          items:
+            $ref: '#/components/schemas/UpNonPaymentLevelInternalRequestDataForResV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    UpNonPaymentLevelInternalRequestDataForResV1:
+      title: UpNonPaymentLevelInternalRequestDataForResV1
+      type: object
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        level:
+          type: string
+          description: レベル
+          maxLength: 1
+        delayDays:
+          type: string
+          description: 遅延日数
+          maxLength: 2
+        invoiceNumber:
+          type: string
+          description: Invoice番号
+          maxLength: 16
+        invoiceIssueDate:
+          type: string
+          description: Invoice発行日
+          format: date
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        loginUser:
+          type: string
+          description: ログインユーザ
+        promisedPaymentDate:
+          type: string
+          description: 支払約束日
+          format: date
+      required:
+        - billToCode
+        - level
+        - delayDays
+        - invoiceNumber
+        - invoiceIssueDate
+        - subsidiaryCode
+        - loginUser
+        - promisedPaymentDate
+    DownNonPaymentLevelInternalResponseV1:
+      title: DownNonPaymentLevelInternalResponseV1
+      type: object
+      properties:
+        requestData:
+          type: array
+          description: リクエストデータ
+          items:
+            $ref: '#/components/schemas/DownNonPaymentLevelInternalRequestV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    IssueDunningLetterDownloadInternalReqDataForResV1:
+      title: IssueDunningLetterDownloadInternalReqDataForResV1
+      type: object
+      properties:
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        level:
+          type: string
+          description: レベル
+          maxLength: 1
+        delayDays:
+          type: string
+          maxLength: 2
+          description: 遅延日数
+        invoiceNumber:
+          type: string
+          maxLength: 16
+          description: Invoice番号
+        invoiceIssueDate:
+          type: string
+          format: date
+          description: Invoice発行日
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        loginUser:
+          type: string
+          description: ログインユーザ
+        promisedpaymentDate:
+          type: string
+          format: date
+          description: 支払約束日
+        sendMedia:
+          type: string
+          maxLength: 2
+          description: 送信媒体
+      required:
+        - billToCode
+        - level
+        - delayDays
+        - invoiceNumber
+        - invoiceIssueDate
+        - subsidiaryCode
+        - loginUser
+        - promisedpaymentDate
+        - sendMedia
+    IssueDunningLetterDownloadInternalResponseV1:
+      title: IssueDunningLetterDownloadInternalResponseV1
+      type: object
+      properties:
+        requestData:
+          type: array
+          description: リクエストデータ
+          items:
+            $ref: '#/components/schemas/IssueDunningLetterDownloadInternalReqDataForResV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    IssueDunningLetterNonDownloadInternalResponseV1:
+      title: IssueDunningLetterNonDownloadInternalResponseV1
+      type: object
+      properties:
+        requestData:
+          type: array
+          description: リクエストデータ
+          items:
+            $ref: '#/components/schemas/IssueDunningLetterNonDownloadInternalRequestV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    SaveNonPaymentInternalReqDataForResV1:
+      title: SaveNonPaymentInternalReqDataForResV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        invoiceNumber:
+          type: string
+          maxLength: 16
+          description: Invoice番号
+        invoiceIssueDate:
+          type: string
+          format: date
+          description: Invoice発行日
+        tradeStatus:
+          type: string
+          description: 取引状態
+          maxLength: 2
+        delayReason:
+          type: string
+          description: 遅延理由
+          maxLength: 3
+        promisedpaymentDate:
+          type: string
+          format: date
+          description: 支払約束日
+      required:
+        - subsidiaryCode
+        - billToCode
+        - invoiceNumber
+        - invoiceIssueDate
+    SaveNonPaymentInternalResponseV1:
+      title: SaveNonPaymentInternalResponseV1
+      type: object
+      properties:
+        requestData:
+          type: array
+          description: リクエストデータ
+          items:
+            $ref: '#/components/schemas/SaveNonPaymentInternalReqDataForResV1'
+        errorList:
+          type: array
+          description: エラーリスト
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    OutputCustomerStatementInternalResponseV1:
+      title: OutputCustomerStatementInternalResponseV1
+      type: object
+      properties:
+        errorList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    AcceptanceGroupInternalV1:
+      title: AcceptanceGroupInternalV1
+      type: object
+      x-examples: {}
+      description: 検収グループ情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+        incomingPaymentGroupCode:
+          type: string
+          description: 入金グループコード
+        acceptanceGroupNameNative:
+          type: string
+          description: 検収グループ名（現地語）
+      required:
+        - subsidiaryCode
+        - acceptanceGroupCode
+        - incomingPaymentGroupCode
+        - acceptanceGroupNameNative
+    BillToInternalV1:
+      title: BillToInternalV1
+      type: object
+      description: 売掛先情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        billToCode:
+          type: string
+          description: 売掛先コード
+        oldBillToCode:
+          type: string
+          description: 旧売掛先コード
+        arMainDepartment:
+          type: string
+          description: 売掛主管部署
+        misumiPicCode:
+          type: string
+          description: ミスミ担当者コード
+        billToNameNative:
+          type: string
+          description: 売掛先名（現地語）
+        billToNameAbbreviationNative:
+          type: string
+          description: 売掛先名略称（現地語）
+        billToNameNativeForSearchIndex:
+          type: string
+          description: 売掛先名（現地語検索用インデックス）
+        billToName:
+          type: string
+          description: 売掛先名
+        countryCode:
+          type: string
+          description: 国コード
+        languageCode:
+          type: string
+          description: 言語コード
+        postalCode:
+          type: string
+          description: 郵便番号
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        invoiceSendDestinationDepartmentNameNative:
+          type: string
+          description: 請求書送付先部課名（現地語）
+        invoiceSendDestinationPicNative:
+          type: string
+          description: 請求書送付先担当者（現地語）
+        tel:
+          type: string
+          description: 電話番号
+        billToFax:
+          type: string
+          description: 売掛先FAX番号
+        dunningToFax:
+          type: string
+          description: 督促先FAX番号
+        billToEmailAddressTo:
+          type: string
+          description: 売掛先メールアドレス（TO）
+        billToEmailAddressCc:
+          type: string
+          description: 売掛先メールアドレス（CC）
+        dunningToEmailAddressTo:
+          type: string
+          description: 督促先メールアドレス（TO）
+        dunningToEmailAddressCc:
+          type: string
+          description: 督促先メールアドレス（CC）
+        taxAccountStatementSendDestinationEmailAddress1:
+          type: string
+          description: 税金計算書送付先メールアドレス1
+        taxAccountStatementSendDestinationEmailAddress2:
+          type: string
+          description: 税金計算書送付先メールアドレス2
+        tradeStopType:
+          type: string
+          description: 取引停止区分
+        serviceStopType:
+          type: string
+          description: サービス停止区分
+        acceptanceType:
+          type: string
+          description: 検収区分
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+        incoterms:
+          type: string
+          description: インコタームズ
+        paymentTerms:
+          type: string
+          description: 支払条件
+        settlementMethod:
+          type: string
+          description: 決済形態
+        paymentMeans:
+          type: string
+          description: 支払手段
+        arClosingUnit:
+          type: string
+          description: 売掛金締め単位
+        arClosingDay:
+          description: 売掛金締日
+          type: integer
+        arPaymentMonth:
+          description: 売掛金支払月
+          type: integer
+        arPaymentDate:
+          description: 売掛金支払日
+          type: integer
+        arPaymentSiteFinal:
+          description: 売掛金支払サイト_最終
+          type: integer
+        arPaymentSiteEarlyPaymentDiscount:
+          description: 売掛金支払サイト_早割
+          type: integer
+        arEarlyIncomingPaymentDiscountRate:
+          type: string
+          description: 売掛金早期入金割引率
+          format: decimal
+        transferFee:
+          type: string
+          description: 振込手数料
+        customerAccountBankCode:
+          type: string
+          description: 顧客口座銀行コード
+        customerAccountType:
+          type: string
+          description: 顧客口座区分
+        customerAccountNumber:
+          type: string
+          description: 顧客口座番号
+        customerAccountNameNativeAllowed:
+          type: string
+          description: 顧客口座人名（現地語可）
+        transferAccountBankCode:
+          type: string
+          description: 振込口座銀行コード
+        transferAccountType:
+          type: string
+          description: 振込口座区分
+        transferAccountNumber:
+          type: string
+          description: 振込口座番号
+        transferAccountName:
+          type: string
+          description: 振込口座人名
+        virtualAccountFlag:
+          type: string
+          description: 仮想口座フラグ
+        notePayableConditionAmount:
+          type: string
+          description: 手形条件（金額）
+          format: decimal
+        notePayableConditionPaymentMonth:
+          description: 手形条件（支払月）
+          type: integer
+        notePayableConditionPaymentDate:
+          type: integer
+          description: 手形条件（支払日）
+        paymentSite:
+          type: integer
+          description: 支払サイト
+        invoiceSendType:
+          type: string
+          description: 請求書送付区分
+        invoiceViaType:
+          type: string
+          description: 請求書経由区分
+        invoiceViaTypeChild:
+          type: string
+          description: 請求書経由区分_子
+        invoiceSendMedia:
+          type: string
+          description: 請求書送付媒体
+        dunningLetterSendType:
+          type: string
+          description: 督促状送付区分
+        dunningLetterSendMedia:
+          type: string
+          description: 督促状送付媒体
+        productNamePrintFlag:
+          type: string
+          description: 商品名印字フラグ
+        consumptionTaxMentionType:
+          type: string
+          description: 消費税記載区分
+        inExTaxType:
+          type: string
+          description: 内税外税区分
+        ccyCode:
+          type: string
+          description: 通貨コード
+        rateTypeCode:
+          type: string
+          description: レートタイプコード
+        arDifficulty:
+          type: string
+          description: 売掛難易度
+        governmentUniformInvoiceType:
+          type: string
+          description: 統一発票区分
+        companyRepresentativeNameNative:
+          type: string
+          description: 会社代表者名（現地語）
+        arRemarks1:
+          type: string
+          description: 売掛注釈1
+        arRemarks2:
+          type: string
+          description: 売掛注釈2
+        arRemarks3:
+          type: string
+          description: 売掛注釈3
+        arRemarks4:
+          type: string
+          description: 売掛注釈4
+        arRemarks5:
+          type: string
+          description: 売掛注釈5
+        invoiceRemarks1:
+          type: string
+          description: INVOICE注釈1
+        invoiceRemarks2:
+          type: string
+          description: INVOICE注釈2
+        invoiceRemarks3:
+          type: string
+          description: INVOICE注釈3
+        invoiceRemarks4:
+          type: string
+          description: INVOICE注釈4
+        gstPaymentPlace:
+          type: string
+          description: 物品税管理地
+        departmentName:
+          type: string
+          description: 部署名
+        commissionerate:
+          type: string
+          description: 物品税管理区
+        stopReasonCode:
+          type: string
+          description: 停止理由コード
+        settlementMonth:
+          description: 決算月
+          type: integer
+        settlementClosingDay:
+          description: 決算締切日
+          type: integer
+        settlementSetting:
+          type: string
+          description: 決算設定
+        cityCode:
+          type: string
+          description: 市町村コード
+        invoiceOutputOrder:
+          type: string
+          description: 請求書出力順
+        zenginCode:
+          type: string
+          description: 全銀コード
+        automaticTransferFlag:
+          type: string
+          description: 自動振替フラグ
+        depositType:
+          type: string
+          description: 預金種類
+        accountNumber:
+          type: string
+          description: 口座番号
+        depositorNameKana:
+          type: string
+          description: 預金者名（カナ）
+        newCode:
+          type: string
+          description: 新規コード
+        automaticTransferRegisterDate:
+          type: string
+          description: 自動振替登録日
+          format: date
+        fbStopType:
+          type: string
+          description: FB停止区分
+        userTransferBank:
+          type: string
+          description: ユーザー振込銀行
+        userTransferBranch:
+          type: string
+          description: ユーザー振込支店
+        arQctBaseCode:
+          type: string
+          description: 売掛QCT拠点コード
+        closingDayFrontLoadingSettingType:
+          type: string
+          description: 締日前倒し設定区分
+        industryType:
+          type: string
+          description: 業種区分
+        channelType:
+          type: string
+          description: 経路区分
+        eachBillRegister:
+          type: string
+          description: 都度請求登録
+        invoiceSlipOutputReportCode:
+          type: string
+          description: 請求書伝発帳票コード
+        invoiceSummaryFlag:
+          type: string
+          description: 請求書まとめフラグ
+        customerStatementSendFlag:
+          type: string
+          description: カスタマーステートメント送付対象フラグ
+        customerStatementSendMediaType:
+          type: string
+          description: カスタマーステートメント送付媒体区分
+        swiftCode:
+          type: string
+          description: SWIFTコード
+        withdrawalCollationAllowFlag:
+          type: string
+          description: 取崩し照合許可フラグ
+        fax:
+          type: string
+          description: FAX番号
+        emailAddress:
+          type: string
+          description: メールアドレス
+      required:
+        - subsidiaryCode
+        - billToCode
+        - billToName
+        - countryCode
+        - languageCode
+        - address1Native
+        - tradeStopType
+        - serviceStopType
+        - acceptanceType
+        - acceptanceGroupCode
+        - paymentTerms
+        - settlementMethod
+        - paymentMeans
+        - transferFee
+        - invoiceSendType
+        - dunningLetterSendType
+        - productNamePrintFlag
+        - consumptionTaxMentionType
+        - inExTaxType
+        - ccyCode
+        - rateTypeCode
+        - settlementSetting
+        - invoiceOutputOrder
+        - automaticTransferFlag
+        - fbStopType
+        - closingDayFrontLoadingSettingType
+    SearchAcceptanceGroupInternalResponseV1:
+      title: SearchAcceptanceGroupInternalResponseV1
+      type: object
+      description: 検収グループ情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        acceptanceGroupInternalV1List:
+          type: array
+          description: 検収グループ情報リスト
+          items:
+            $ref: '#/components/schemas/AcceptanceGroupInternalV1'
+      required:
+        - recordCount
+    GetAcceptanceGroupInternalResponseV1:
+      title: GetAcceptanceGroupInternalResponseV1
+      type: object
+      description: 検収グループ情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        acceptanceGroupInternalV1:
+          $ref: '#/components/schemas/AcceptanceGroupInternalV1'
+      required:
+        - recordCount
+    SearchBillToInternalResponseV1:
+      title: SearchBillToInternalResponseV1
+      type: object
+      description: 売掛先情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1List:
+          type: array
+          description: 売掛先情報リスト
+          items:
+            $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - recordCount
+    GetBillToInternalResponseV1:
+      title: GetBillToInternalResponseV1
+      type: object
+      description: 売掛先情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1:
+          $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - recordCount
+    SearchBillToInternalRequestV1:
+      title: SearchBillToInternalRequestV1
+      type: object
+      description: 売掛先情報検索APIのリクエスト項目電文
+      properties:
+        billToCodeList:
+          type: array
+          maxLength: 6
+          minLength: 6
+          description: 売掛先情報検索APIのリクエスト項目電文詳細の売掛先コード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchBillToInternalRequestV1BillToCode'
+        billToCodeFrom:
+          type: string
+          description: 売掛先コード（From）
+          minLength: 6
+          maxLength: 6
+        billToCodeTo:
+          type: string
+          description: 売掛先コード（To）
+          minLength: 6
+          maxLength: 6
+        billToNameNative:
+          type: string
+          description: 売掛先名（現地語）
+          minLength: 1
+          maxLength: 60
+        billToName:
+          type: string
+          description: 売掛先名
+          minLength: 1
+          maxLength: 60
+        settlementMethod:
+          type: string
+          description: 決済形態
+          minLength: 1
+          maxLength: 3
+        arMainDepartment:
+          type: string
+          description: 売掛主管部署
+          minLength: 1
+          maxLength: 4
+        acceptanceGroupCodeList:
+          type: array
+          maxLength: 6
+          minLength: 6
+          description: 売掛先情報検索APIのリクエスト項目電文詳細の検収グループコード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchBillToInternalRequestV1AcceptanceGroupCode'
+    SearchAcceptanceGroupInternalRequestV1:
+      title: SearchAcceptanceGroupInternalRequestV1
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文
+      properties:
+        acceptanceGroupCodeList:
+          type: array
+          description: 検収グループ情報検索APIのリクエスト項目電文詳細の検収グループコード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCode'
+        incomingPaymentGroupCodeList:
+          type: array
+          description: 検収グループ情報検索APIのリクエスト項目電文詳細の入金グループコード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1IncomingPaymentGroupCode'
+        incomingPaymentGroupCodeFrom:
+          type: string
+          description: 入金グループコード（From）
+          minLength: 6
+          maxLength: 6
+        incomingPaymentGroupCodeTo:
+          type: string
+          description: 入金グループコード（To）
+          minLength: 6
+          maxLength: 6
+    SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCode:
+      title: SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCode
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文詳細の検収グループコード情報
+      properties:
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+          maxLength: 6
+          minLength: 6
+      required:
+        - acceptanceGroupCode
+    SearchAcceptanceGroupInternalRequestV1IncomingPaymentGroupCode:
+      title: SearchAcceptanceGroupInternalRequestV1IncomingPaymentGroupCode
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文詳細の入金グループコード情報
+      properties:
+        incomingPaymentGroupCode:
+          type: string
+          description: 入金グループコード
+          maxLength: 6
+          minLength: 6
+      required:
+        - incomingPaymentGroupCode
+    SearchBillToInternalRequestV1BillToCode:
+      title: SearchBillToInternalRequestV1BillToCode
+      type: object
+      description: 売掛先情報検索APIのリクエスト項目電文詳細の売掛先コード情報
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+          minLength: 6
+          example: '860583'
+      required:
+        - billToCode
+    SearchBillToInternalRequestV1AcceptanceGroupCode:
+      title: SearchBillToInternalRequestV1AcceptanceGroupCode
+      type: object
+      description: 売掛先情報検索APIのリクエスト項目電文詳細の検収グループコード情報
+      properties:
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+          maxLength: 6
+          minLength: 6
+      required:
+        - acceptanceGroupCode
+    GetListBillToInternalRequestV1:
+      title: GetListBillToInternalRequestV1
+      type: object
+      description: 売掛先情報取得API（List）のリクエスト電文
+      properties:
+        getListBillToInternalRequestV1DetailList:
+          type: array
+          description: 売掛先情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListBillToInternalRequestV1Detail'
+      required:
+        - getListBillToInternalRequestV1DetailList
+    GetListBillToInternalRequestV1Detail:
+      title: GetListBillToInternalRequestV1Detail
+      type: object
+      description: 売掛先情報取得API（List）のリクエスト電文詳細
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          minLength: 6
+          maxLength: 6
+      required:
+        - billToCode
+    GetListBillToInternalResponseV1:
+      title: GetListBillToInternalResponseV1
+      type: object
+      description: 売掛先情報取得API（List）のレスポンス電文
+      properties:
+        getListBillToInternalResponseV1DetailList:
+          type: array
+          description: 売掛先情報リスト
+          items:
+            $ref: '#/components/schemas/GetListBillToInternalResponseV1Detail'
+    GetListBillToInternalResponseV1Detail:
+      title: GetListBillToInternalResponseV1Detail
+      type: object
+      description: 売掛先情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1:
+          $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - lineNo
+        - recordCount
+  responses:
+    ErrorResponse:
+      description: エラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+          examples:
+            '@Example':
+              value:
+                target: ''
+                code: SYS00003
+                argumentList: []
+                message: Constraint violation
+                detailList:
+                  - target: 'acceptanceGroupCodeList[0].acceptanceGroupCode'
+                    code: SYS03113
+                    argumentList: []
+                    message: 'acceptanceGroupCodeList[0].acceptanceGroupCode must not be null, blank, or empty'
+                    detailList: []
+                  - target: 'billToCodeList[0].billToCode'
+                    code: SYS03113
+                    argumentList: []
+                    message: 'billToCodeList[0].billToCode must not be null, blank, or empty'
+                    detailList: []
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 返却件数
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 取得開始位置
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 1
+      description: ソート順
+tags:
+  - name: CustomerStatementInternal
+  - name: DunningLetterDownloadInternal
+  - name: DunningLetterNonDownloadInternal
+  - name: NonPaymentDetailInternal
+  - name: NonPaymentInternal
+  - name: NonPaymentLevelInternal
+  - name: ReprintInternal
+  - name: ScreenFieldDisplayInternal
+  - name: AcceptanceGroupInternal
+  - name: BillToInternal

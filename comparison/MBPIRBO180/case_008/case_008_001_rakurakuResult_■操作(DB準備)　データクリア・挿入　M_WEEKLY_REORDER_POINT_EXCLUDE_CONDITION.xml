@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITION subsidiary_code='TIW' customer_code='008' ship_to_code='002   ' ginner_code='003' classify_code='004' plant_code='005 ' supply_type='0' effective_start_date='2020-09-18' update_count='0' delete_flag='0' register_user_type='test1' register_user='tyou' register_date_time='2020-09-18 00:00:00' register_program='006' register_client_program='007' update_user_type='008' update_user='kyou' update_date_time='2020-09-18 00:00:00' update_program='009' update_client_program='010' />
+</dataset>

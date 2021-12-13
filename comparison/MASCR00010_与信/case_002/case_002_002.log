@@ -1,0 +1,63 @@
+■api名称：　検索
+■api Request：　/internal/v1/screen-field-display/get
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=test&&x-Client-Program=test&&
+■api Body：　{  "subsidiaryCode":"",  "generalKeyList":[{      "olDisplayElementIdentifier":"ab",      "generalKey1":"11112",      "generalKey2":"3334",      "generalKey3":"3335",      "generalKey4":"3336",      "generalKey5":"3337"  },{      "olDisplayElementIdentifier":"st",      "generalKey1":"11113",      "generalKey2":"3335",      "generalKey3":"3336",      "generalKey4":"3337",      "generalKey5":"3338"  },{      "olDisplayElementIdentifier":"qw",      "generalKey1":"11114",      "generalKey2":"3336",      "generalKey3":"3337",      "generalKey4":"3338",      "generalKey5":"3339"  }]  }
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "ScreenFieldDisplayInternalList": [
+    {
+      "olDisplayElementIdentifier": "ab",
+      "ScreenFieldDisplayInternalListIdentifier": [
+        {
+          "generalKey1": "11112",
+          "generalKey2": "3334",
+          "generalKey3": "3335",
+          "generalKey4": "3336",
+          "generalKey5": "3337",
+          "codeValueReference1": "3338",
+          "codeValueReference2": "3339",
+          "codeValueReference3": "3340",
+          "codeValueReference4": "3341",
+          "codeValueReference5": "3342"
+        }
+      ]
+    },
+    {
+      "olDisplayElementIdentifier": "st",
+      "ScreenFieldDisplayInternalListIdentifier": [
+        {
+          "generalKey1": "11113",
+          "generalKey2": "3335",
+          "generalKey3": "3336",
+          "generalKey4": "3337",
+          "generalKey5": "3338",
+          "codeValueReference1": "3339",
+          "codeValueReference2": "3340",
+          "codeValueReference3": "3341",
+          "codeValueReference4": "3342",
+          "codeValueReference5": "3343"
+        }
+      ]
+    },
+    {
+      "olDisplayElementIdentifier": "qw",
+      "ScreenFieldDisplayInternalListIdentifier": [
+        {
+          "generalKey1": "11114",
+          "generalKey2": "3336",
+          "generalKey3": "3337",
+          "generalKey4": "3338",
+          "generalKey5": "3339",
+          "codeValueReference1": "3340",
+          "codeValueReference2": "3341",
+          "codeValueReference3": "3342",
+          "codeValueReference4": "3343",
+          "codeValueReference5": "3344"
+        }
+      ]
+    }
+  ],
+  "errorList": []
+}

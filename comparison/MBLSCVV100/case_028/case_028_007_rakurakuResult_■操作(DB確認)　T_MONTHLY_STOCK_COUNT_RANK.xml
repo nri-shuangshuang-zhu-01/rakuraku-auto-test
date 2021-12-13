@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_MONTHLY_STOCK_COUNT_RANK subsidiary_code="MJP" ginner_code="1000001AaBbCcA" plant_code="1001" product_code="00001" shipment_frequency_rank="B" update_count="0" delete_flag="0" register_user_type="Batch" register_user="MBLSCVV100" register_date_time="2021-10-13 12:04:13.23395" register_program="MBLSCVV100" register_client_program="MBLSCVV100" update_user_type="Batch" update_user="MBLSCVV100" update_date_time="2021-10-13 12:04:13.23395" update_program="MBLSCVV100" update_client_program="MBLSCVV100"/>
+</dataset>

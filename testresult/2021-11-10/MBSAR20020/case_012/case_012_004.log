@@ -1,0 +1,47 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.1)
+
+2021-11-10 17:51:27 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.6.Final
+2021-11-10 17:51:27 [main] INFO  j.c.misumi.billing.batch.Application - Starting Application using Java 11.0.3 on SZ-GADZ051006 with PID 10752 (E:\pleiades\workspace\billing-service\billing-batch\build\libs\billing-batch-1.0.0-SNAPSHOT.jar started by zhuss in D:\pleiades\workspace\rakuraku-auto-test)
+2021-11-10 17:51:27 [main] INFO  j.c.misumi.billing.batch.Application - No active profile set, falling back to default profiles: default
+2021-11-10 17:51:29 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'producedEventPartitionResolver' and 'jp.co.misumi.fw.event.api.producer.client.database.store.mybatis.ProducedEventPartitionResolver' mapperInterface. Bean already defined with the same name!
+2021-11-10 17:51:29 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'producedEventTableNameResolver' and 'jp.co.misumi.fw.event.api.producer.client.database.store.mybatis.ProducedEventTableNameResolver' mapperInterface. Bean already defined with the same name!
+2021-11-10 17:51:31 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-11-10 17:51:31 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-10 17:51:31 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2021-11-10 17:51:31 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-11-10 17:51:31 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-11-10 17:51:31 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3614 ms
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+Registered type handler: 'class java.time.ZonedDateTime'
+Property 'mapperLocations' was not specified.
+2021-11-10 17:51:34 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-11-10 17:51:35 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: ce7b9ae4-5e55-499a-ba73-2a02150326f5
+
+2021-11-10 17:51:35 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@778c23de, org.springframework.security.web.context.SecurityContextPersistenceFilter@48d4910d, org.springframework.security.web.header.HeaderWriterFilter@2ec1ca1e, org.springframework.security.web.csrf.CsrfFilter@34e017c5, org.springframework.security.web.authentication.logout.LogoutFilter@3d1b5fff, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@ef39393, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2a42b533, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@64fb61b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@65d1b5a6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5986de06, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@499eb113, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@39e33cb0, org.springframework.security.web.session.SessionManagementFilter@5fc156d9, org.springframework.security.web.access.ExceptionTranslationFilter@7fc9903b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@522026d1]
+2021-11-10 17:51:35 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-11-10 17:51:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-10 17:51:35 [main] INFO  j.c.misumi.billing.batch.Application - Started Application in 9.908 seconds (JVM running for 11.109)
+2021-11-10 17:51:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-11-10 17:51:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+JDBC Connection [HikariProxyConnection@1967651051 wrapping org.postgresql.jdbc.PgConnection@6db18ce7] will be managed by Spring
+==>  Preparing: SELECT DISTINCT t1.subsidiary_code as subsidiaryCode ,t1.bill_to_code as billToCode ,t1.invoice_number as invoiceNumber ,TO_CHAR(t1.bill_closing_day,'YYYYMM') as billClosingDay FROM t_incoming_payment t1 WHERE t1.subsidiary_code = ? and t1.process_flag = '0' and t1.advance_payment_flag = '0' and t1.delete_flag = '0' and TO_CHAR(t1.incoming_payment_date,'YYYYMMDD') <= ? and exists (select subsidiary_code , bill_to_code ,invoice_number ,invoice_date from t_non_payment_management t2 where t1.subsidiary_code = t2.subsidiary_code and t1.bill_to_code = t2.bill_to_code and t1.invoice_number = t2.invoice_number and to_char(t1.bill_closing_day,'YYYYMM') = to_char(t2.invoice_date,'YYYYMM') and t2.delete_flag = '0' and t2.non_payment_amount_customer_ccy > 0 )
+==> Parameters: MSR(String), 20200905(String)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+<==      Total: 0
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+2021-11-10 17:51:36 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-11-10 17:51:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2021-11-10 17:51:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_FREQUENCYColName field="subsidiary_code"/>
+  <T_SHIPMENT_FREQUENCYColName field="g_inner_code"/>
+  <T_SHIPMENT_FREQUENCYColName field="plant_code"/>
+  <T_SHIPMENT_FREQUENCYColName field="inner_code"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_jan"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_feb"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_mar"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_apr"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_may"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_jun"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_jul"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_aug"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_sep"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_oct"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_nov"/>
+  <T_SHIPMENT_FREQUENCYColName field="shipment_frequency_dec"/>
+  <T_SHIPMENT_FREQUENCYColName field="update_count"/>
+  <T_SHIPMENT_FREQUENCYColName field="delete_flag"/>
+  <T_SHIPMENT_FREQUENCYColName field="register_user"/>
+  <T_SHIPMENT_FREQUENCYColName field="register_system_time"/>
+  <T_SHIPMENT_FREQUENCYColName field="register_time"/>
+  <T_SHIPMENT_FREQUENCYColName field="register_local_time"/>
+  <T_SHIPMENT_FREQUENCYColName field="register_program"/>
+  <T_SHIPMENT_FREQUENCYColName field="update_user"/>
+  <T_SHIPMENT_FREQUENCYColName field="update_system_time"/>
+  <T_SHIPMENT_FREQUENCYColName field="update_time"/>
+  <T_SHIPMENT_FREQUENCYColName field="update_local_time"/>
+  <T_SHIPMENT_FREQUENCYColName field="update_program"/>
+</dataset>

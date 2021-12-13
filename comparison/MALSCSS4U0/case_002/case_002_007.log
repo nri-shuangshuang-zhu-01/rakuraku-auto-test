@@ -1,0 +1,12 @@
+■api名称：　入力更新
+■api Request：　/internal/v1/stop-shipment/cancel
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=200&&Prefer=/v1/gw-stop-shipment/reference->example-1&/internal/v1/product-classification/get-list->example-1&/internal/v1/reason-type/get-list->example-2&/internal/v1/supplier/get-list->example-2&/internal/v1/plant/get-list->example-2&/v1/mail-template/preview->example-2&/v1/report/find->example-1&/v1/report/print->example-1&/v1/report/download->example-2&/v1/mail/send->example-1&/v1/gw-stop-shipment/save->example-1
+■api Body：　{  "soSlipNumber": [    {      "soSlipNumber": "a5678",      "soLineKey": 0,      "globalNumber": "CA000032000030",      "inputProcessDate": "2019-08-24",      "plantCode": "A123",      "supplyType": "01",      "storageLocationCode": "stri",      "customerCode": "string",      "customerSubsidiaryCode": "str",      "supplierCode": "stri",      "slipType": "str",      "slipSendType": "s",      "vsd": "2019-02-24",      "vrd": "2019-03-24",      "crd": "2019-04-24",      "ssd": "2019-05-24",      "stockType": "s",      "componentFlag": "1",      "productWeight": "123",      "soQty": 0,      "productCode": "str1",      "brandCode": "str2",      "ginnerCode": "str3",      "soInputDate": "2019-06-24",      "customerItemSubReference": "string1",      "nativeOrderPicName": "string2",      "reasonType": "str",      "analisysCode": "str4",      "productControlDepartmentCode": "str5",      "storkCode": "st",      "shipmentMeansCode": "s1",      "faxNumber": "123",      "soDate": "2020-08-24",      "marketCode": "s2"    }  ]}
+■loginUser：　
+■Response：：
+{
+  "code": "NSCSS4U0005E",
+  "argumentList": [],
+  "message": "出荷不可情報の更新に失敗しました。\\n\" + \"しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。"
+}

@@ -1,0 +1,31 @@
+■api名称：　登录
+■api Request：　/internal/v1/stock-adjustment/reference
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.26.10&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=1&&Prefer=/internal/v1/subsidiary/get->1&/internal/v1/reason-type/get-list->2&/internal/v1/product/search->1&/internal/v1/product-control-department/get-list->2&/internal/v1/brand/get-list->5&/internal/v1/ginner-info/get-list->5&/internal/v1/type-code/get-list->2&/internal/v1/product-classification/get-list->2
+■api Body：　{  "businessSceneType": "11",  "stockAdjustmentInfoList": [    {      "plantCode": "1234",      "reasonType": "A1234",      "responsibilityDepartmentCode": "1",      "processMode": "1",      "ginnerCode": "MDM10040007505",      "productCode": "1",      "brandCode": "MSM1",      "currentStockQty": 9999919,      "stockDifferenceQty": 9999999    },    {      "plantCode": "1234",      "reasonType": "A1234",      "responsibilityDepartmentCode": "1",      "processMode": "1",      "ginnerCode": "MDM10040007502",      "productCode": "1",      "brandCode": "MSM1",      "currentStockQty": 9999919,      "stockDifferenceQty": 9999999    }  ]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "productInfomationList": [
+    {
+      "checkResult": "NG",
+      "subsidiaryCode": "MJP",
+      "errorList": [
+        {
+          "errorCode": "NSCVA1R0025E",
+          "errorMessage": "同一商品が複数指定されています。重複する指定を削除してください。"
+        }
+      ]
+    },
+    {
+      "checkResult": "NG",
+      "subsidiaryCode": "MJP",
+      "errorList": [
+        {
+          "errorCode": "NSCVA1R0025E",
+          "errorMessage": "同一商品が複数指定されています。重複する指定を削除してください。"
+        }
+      ]
+    }
+  ]
+}

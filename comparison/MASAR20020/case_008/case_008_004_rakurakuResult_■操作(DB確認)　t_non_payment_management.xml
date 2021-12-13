@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_non_payment_management subsidiary_code="JPN" bill_to_code="123460" invoice_number="101014" invoice_date="2020-02-06" promised_payment_date="2020-09-14" dunning_level="5" update_count="14" delete_flag="0" register_user_type="6771" register_user="6772" register_date_time="2020-09-08 01:01:05.0" register_program="5660" register_client_program="5661" update_user_type="5662" update_user="5663" update_date_time="2020-09-09 01:01:05.0" update_program="3536" update_client_program="3537"/>
+</dataset>

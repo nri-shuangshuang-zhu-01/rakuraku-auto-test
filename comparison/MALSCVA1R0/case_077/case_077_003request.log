@@ -1,0 +1,8 @@
+http://localhost:4015/internal/v1/product/search?ginner_code=MDM10040007505&product_code=1&brand_code=MSM1&released_flag=0
+http://localhost:4010/internal/v1/subsidiary/get?subsidiary_code=MJP
+http://localhost:4010/internal/v1/reason-type/get-list{"getListReasonTypeInternalRequestV1DetailList":[{"businessSceneType":"11","reasonType":"A1234"}]}
+http://localhost:4015/internal/v1/product-control-department/get-list{"getListProductControlDepartmentInternalRequestV1DetailList":[]}
+http://localhost:4015/internal/v1/brand/get-list{"getListBrandInternalRequestV1DetailList":[]}
+http://localhost:4015/internal/v1/ginner-info/get-list{"getListGinnerInfoInternalRequestV1DetailList":[]}
+http://localhost:4015/internal/v1/type-code/get-list{"getListTypeCodeInternalRequestV1DetailList":[{"typeCode":"J070401"}]}
+http://localhost:4015/internal/v1/product-classification/get-list{"getListProductClassificationInternalRequestV1DetailList":[{"classifyCode":"22024201"}]}

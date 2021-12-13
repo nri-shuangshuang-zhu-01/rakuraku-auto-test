@@ -1,0 +1,10 @@
+{"recordCount":1,"productInternalV1List":null}
+{"recordCount":1,"productInternalV1List":null}
+{"recordCount":1,"productInternalV1List":null}
+{"recordCount":1,"subsidiaryInternalV1":null,"subsidiaryControlInternalV1List":[{"subsidiaryCode":"JPN","controlCode":"dummy","flag":"0","type":"45","value":"3","fieldNameEnglish":"DEF","fieldType":"1","remarks":"aa"}]}
+{"getListReasonTypeInternalResponseV1DetailList":null}
+{"getListProductControlDepartmentInternalResponseV1DetailList":null}
+{"getListBrandInternalResponseV1DetailList":null}
+{"getListGinnerInfoInternalResponseV1DetailList":[{"lineNo":1,"recordCount":0,"ginnerInfoInternalV1":null}]}
+{"getListTypeCodeInternalResponseV1DetailList":null}
+{"getListProductClassificationInternalResponseV1DetailList":null}

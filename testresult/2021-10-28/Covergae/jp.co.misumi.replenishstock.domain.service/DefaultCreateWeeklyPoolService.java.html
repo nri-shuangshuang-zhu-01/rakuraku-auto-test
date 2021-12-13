@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultCreateWeeklyPoolService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultCreateWeeklyPoolService.java</span></div><h1>DefaultCreateWeeklyPoolService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.DEFAULT_CREATE_WEEKLY_POOL_ERROR;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.DEFAULT_CREATE_WEEKLY_POOL_START;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.DEFAULT_CREATE_WEEKLY_POOL_SUCCESS;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.INT_0;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.MINUS_01;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.PURE_DATE_PATTERN;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.SUPPLY_TYPE_01;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.SUPPLY_TYPE_02;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.VOUCHER_DIV_311;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.replenishstock.domain.client.ProductInternalClient;
+import jp.co.misumi.replenishstock.domain.entity.CreateWeeklyPoolEntity;
+import jp.co.misumi.replenishstock.domain.entity.ShipmentActualPoolDataFor12monthsEntity;
+import jp.co.misumi.replenishstock.domain.entity.ShipmentActualPoolDataFor52weeksEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyPoolCountEntity;
+import jp.co.misumi.replenishstock.domain.repository.CreateWeeklyPoolRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1Detail;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.kafka.common.utils.Utils;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+/**
+ * 週次POOL作成.
+ *
+ * @author LKG　yo.tairin
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+@Service
+public class DefaultCreateWeeklyPoolService implements CreateWeeklyPoolService {
+  private final Log log = LogFactory.getLog(DefaultCreateWeeklyPoolService.class);
+<span class="fc" id="L58">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L59">      MessageLoggerFactory.getLogger(DefaultCreateWeeklyPoolService.class);</span>
+  private final MessageSource messageSource;
+
+  private final CreateWeeklyPoolRepository weeklyPoolRepository;
+
+  private final ProductInternalClient productInternalClient;
+
+  /**
+   * 週次POOL作成.
+   *
+   * @param context リクエスト共通
+   * @param operationDate 運用日付
+   * @param subsidiaryCode 現法コード
+   * @return 処理結果
+   * @throws BusinessException 異常
+   */
+  @Override
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+  public boolean create(RequestContext context, String operationDate, String subsidiaryCode)
+      throws BusinessException {
+<span class="nc" id="L79">    log.info(DEFAULT_CREATE_WEEKLY_POOL_START);</span>
+    // 「出荷実績」テーブル取得件数
+<span class="nc" id="L81">    int shipmentRecordCount = 0;</span>
+    // 出荷実績ＰＯＯＬデータ（52週分）出力件数
+<span class="nc" id="L83">    Integer shipmentFiftyTwoCount = INT_0;</span>
+    // 出荷実績ＰＯＯＬデータ（12月分）出力件数
+<span class="nc" id="L85">    Integer shipmentTwelveCount = INT_0;</span>
+
+    boolean judgeResult;
+
+    List&lt;CreateWeeklyPoolEntity&gt; weeklyPoolEntityList;
+
+    // 「出荷実績」テーブルと「出荷実績絞込条件」テーブルを結合し、対象データを取得する。
+    try {
+<span class="nc" id="L93">      weeklyPoolEntityList =</span>
+<span class="nc" id="L94">          Utils.toList(</span>
+              weeklyPoolRepository
+<span class="nc" id="L96">                  .searchActualInNarrow(</span>
+                      context,
+                      subsidiaryCode,
+<span class="nc" id="L99">                      LocalDate.parse(</span>
+<span class="nc" id="L100">                          operationDate, DateTimeFormatter.ofPattern(PURE_DATE_PATTERN)))</span>
+<span class="nc" id="L101">                  .iterator());</span>
+<span class="nc" id="L102">    } catch (Exception e) {</span>
+<span class="nc" id="L103">      log.info(DEFAULT_CREATE_WEEKLY_POOL_ERROR);</span>
+<span class="nc" id="L104">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO160006E, e);</span>
+<span class="nc" id="L105">    }</span>
+
+    // 対象データが1件以上存在する場合
+<span class="nc bnc" id="L108" title="All 2 branches missed.">    if (!CollectionUtils.isEmpty(weeklyPoolEntityList)) {</span>
+      // 商品情報取得API（List）を呼出、商品マスタ取得を行う。
+<span class="nc" id="L110">      List&lt;GetListProductInternalResponseV1Detail&gt; productResponseList =</span>
+<span class="nc" id="L111">          getProductInternalInfo(context, weeklyPoolEntityList);</span>
+
+      // 「出荷実績」テーブル件数
+<span class="nc" id="L114">      shipmentRecordCount = weeklyPoolEntityList.size();</span>
+
+<span class="nc" id="L116">      Map&lt;String, Integer&gt; productInternalMap = new HashMap&lt;&gt;();</span>
+
+<span class="nc bnc" id="L118" title="All 2 branches missed.">      for (GetListProductInternalResponseV1Detail productInternal : productResponseList) {</span>
+<span class="nc" id="L119">        productInternalMap.put(</span>
+<span class="nc" id="L120">            productInternal.getProductInternalV1().getGinnerCode(),</span>
+<span class="nc" id="L121">            productInternal.getProductInternalV1().getBigOrderMaxThresholdQty());</span>
+<span class="nc" id="L122">      }</span>
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">      for (CreateWeeklyPoolEntity weeklyPoolEntity : weeklyPoolEntityList) {</span>
+<span class="nc" id="L125">        weeklyPoolEntity.setBigOrderMaxThresholdQty(</span>
+<span class="nc" id="L126">            BigDecimal.valueOf(productInternalMap.get(weeklyPoolEntity.getGinnerCode())));</span>
+
+        // POOL除外対象の判定
+<span class="nc" id="L129">        judgeResult = judgeExclude(context, operationDate, weeklyPoolEntity);</span>
+
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (!judgeResult) {</span>
+<span class="nc" id="L132">          continue;</span>
+        }
+
+        // 出荷実績ＰＯＯＬデータ（52週分）の更新
+<span class="nc" id="L136">        shipmentFiftyTwoCount =</span>
+<span class="nc" id="L137">            operateActualFiftyTwo(context, shipmentFiftyTwoCount, weeklyPoolEntity);</span>
+        // 出荷実績ＰＯＯＬデータ（12月分）の更新
+<span class="nc" id="L139">        shipmentTwelveCount = operateActualTwelve(context, shipmentTwelveCount, weeklyPoolEntity);</span>
+<span class="nc" id="L140">      }</span>
+    }
+    // 終了メッセージと入出力件数を表示する。
+<span class="nc" id="L143">    log.info(DEFAULT_CREATE_WEEKLY_POOL_SUCCESS);</span>
+<span class="nc" id="L144">    messageLogger.log(</span>
+        messageSource,
+        ReplenishStockMessages.BIRBO160001I,
+        null,
+<span class="nc" id="L148">        shipmentRecordCount,</span>
+        shipmentFiftyTwoCount,
+        shipmentTwelveCount);
+<span class="nc" id="L151">    return true;</span>
+  }
+
+  /**
+   * 商品情報取得API（List）を呼出、商品マスタ取得を行う.
+   *
+   * @param context リクエスト共通
+   * @param weeklyPoolEntityList 出荷実績リスト
+   * @return 処理結果
+   */
+  private List&lt;GetListProductInternalResponseV1Detail&gt; getProductInternalInfo(
+      RequestContext context, List&lt;CreateWeeklyPoolEntity&gt; weeklyPoolEntityList)
+      throws BusinessException {
+
+    // リクエストの初期化
+<span class="nc" id="L166">    GetListProductInternalRequestV1 productRequest = new GetListProductInternalRequestV1();</span>
+<span class="nc" id="L167">    List&lt;GetListProductInternalRequestV1Detail&gt; productDetailList = new ArrayList&lt;&gt;();</span>
+    GetListProductInternalRequestV1Detail productRequestDetail;
+
+<span class="nc bnc" id="L170" title="All 2 branches missed.">    for (CreateWeeklyPoolEntity weeklyPoolEntity : weeklyPoolEntityList) {</span>
+<span class="nc" id="L171">      productRequestDetail = new GetListProductInternalRequestV1Detail();</span>
+<span class="nc" id="L172">      productRequestDetail.setGinnerCode(weeklyPoolEntity.getGinnerCode());</span>
+<span class="nc" id="L173">      productDetailList.add(productRequestDetail);</span>
+<span class="nc" id="L174">    }</span>
+
+    // Request取得
+<span class="nc" id="L177">    productRequest.setGetListProductInternalRequestV1DetailList(productDetailList);</span>
+
+    // Response取得
+    GetListProductInternalResponseV1 productResponse;
+    try {
+      // 商品情報取得API（List）を呼出、商品マスタ取得を行う。
+<span class="nc" id="L183">      productResponse = productInternalClient.getListProductrInternalV1(context, productRequest);</span>
+<span class="nc" id="L184">    } catch (Exception e) {</span>
+<span class="nc" id="L185">      log.info(DEFAULT_CREATE_WEEKLY_POOL_ERROR);</span>
+<span class="nc" id="L186">      messageLogger.log(messageSource, ReplenishStockMessages.BIRBO160002E, e);</span>
+<span class="nc" id="L187">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO160002E, e);</span>
+<span class="nc" id="L188">    }</span>
+
+<span class="nc bnc" id="L190" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(productResponse.getGetListProductInternalResponseV1DetailList())) {</span>
+<span class="nc" id="L191">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO160002E, null);</span>
+    }
+
+<span class="nc" id="L194">    return productResponse.getGetListProductInternalResponseV1DetailList();</span>
+  }
+
+  /**
+   * POOL除外対象の判定.
+   *
+   * @param context リクエスト共通
+   * @param operationDate 運用日付
+   * @param weeklyPoolEntity 出荷実績エンティティ
+   * @return 処理結果
+   * @throws BusinessException 異常
+   */
+  private boolean judgeExclude(
+      RequestContext context, String operationDate, CreateWeeklyPoolEntity weeklyPoolEntity)
+      throws BusinessException {
+
+    Optional&lt;WeeklyPoolCountEntity&gt; exCountOp;
+
+    // 週次発注点除外条件マスタを検索する。
+    try {
+<span class="nc" id="L214">      exCountOp =</span>
+<span class="nc" id="L215">          weeklyPoolRepository.searchExcludeCondition(</span>
+              context,
+              weeklyPoolEntity,
+<span class="nc" id="L218">              LocalDate.parse(operationDate, DateTimeFormatter.ofPattern(PURE_DATE_PATTERN)));</span>
+<span class="nc" id="L219">    } catch (Exception e) {</span>
+<span class="nc" id="L220">      log.info(DEFAULT_CREATE_WEEKLY_POOL_ERROR);</span>
+<span class="nc" id="L221">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO160007E, e);</span>
+<span class="nc" id="L222">    }</span>
+
+<span class="nc bnc" id="L224" title="All 4 branches missed.">    if (exCountOp.isPresent() &amp;&amp; exCountOp.get().getExCount().compareTo(INT_0) &gt; INT_0) {</span>
+<span class="nc" id="L225">      return false;</span>
+    }
+
+<span class="nc bnc" id="L228" title="All 2 branches missed.">    if (!VOUCHER_DIV_311.equals(weeklyPoolEntity.getSlipType())) {</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">      if (!weeklyPoolEntity.getBigOrderMaxThresholdQty().equals(MINUS_01)) {</span>
+<span class="nc" id="L230">        return weeklyPoolEntity</span>
+<span class="nc" id="L231">                .getShipmentQty()</span>
+<span class="nc" id="L232">                .compareTo(weeklyPoolEntity.getBigOrderMaxThresholdQty())</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">            &lt; INT_0;</span>
+      } else {
+<span class="nc" id="L235">        return false;</span>
+      }
+    }
+<span class="nc" id="L238">    return true;</span>
+  }
+
+  /**
+   * 出荷実績ＰＯＯＬデータ（52週分）の更新.
+   *
+   * @param context リクエスト共通
+   * @param weeklyPoolEntity 出荷実績エンティティ
+   * @return 処理結果
+   * @throws BusinessException 異常
+   */
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+  public Integer operateActualFiftyTwo(
+      RequestContext context, int shipmentFiftyTwoCount, CreateWeeklyPoolEntity weeklyPoolEntity)
+      throws BusinessException {
+
+<span class="nc" id="L254">    ReplenishStockMessages errMsg = ReplenishStockMessages.BIRBO160008E;</span>
+
+<span class="nc" id="L256">    final ShipmentActualPoolDataFor52weeksEntity fiftyTwoEntity =</span>
+        new ShipmentActualPoolDataFor52weeksEntity(
+<span class="nc" id="L258">            weeklyPoolEntity.getSubsidiaryCode(),</span>
+<span class="nc" id="L259">            weeklyPoolEntity.getGinnerCode(),</span>
+<span class="nc" id="L260">            weeklyPoolEntity.getPlantCode());</span>
+    try {
+      // 出荷実績POOLデータ（52週分）の検索を行う
+<span class="nc" id="L263">      Optional&lt;WeeklyPoolCountEntity&gt; actualFiftyTwoCountOp =</span>
+<span class="nc" id="L264">          weeklyPoolRepository.searchActualPoolFiftyTwo(</span>
+              context,
+<span class="nc" id="L266">              weeklyPoolEntity.getSubsidiaryCode(),</span>
+<span class="nc" id="L267">              weeklyPoolEntity.getGinnerCode(),</span>
+<span class="nc" id="L268">              weeklyPoolEntity.getPlantCode());</span>
+
+<span class="nc bnc" id="L270" title="All 2 branches missed.">      if (actualFiftyTwoCountOp.isPresent()) {</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        if (actualFiftyTwoCountOp.get().getActualFiftyTwoCount().compareTo(INT_0) &gt; INT_0) {</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">          if (SUPPLY_TYPE_01.equals(weeklyPoolEntity.getSupplyType())</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">              || SUPPLY_TYPE_02.equals(weeklyPoolEntity.getSupplyType())) {</span>
+<span class="nc" id="L274">            fiftyTwoEntity.setStockShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+<span class="nc" id="L275">            fiftyTwoEntity.setMtoModeShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+          } else {
+<span class="nc" id="L277">            fiftyTwoEntity.setStockShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+<span class="nc" id="L278">            fiftyTwoEntity.setMtoModeShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+          }
+
+<span class="nc" id="L281">          errMsg = ReplenishStockMessages.BIRBO160004E;</span>
+          // 出荷実績ＰＯＯＬデータ（52週分）の更新を行う。
+<span class="nc" id="L283">          shipmentFiftyTwoCount += weeklyPoolRepository.saveActualFiftyTwo(context, fiftyTwoEntity);</span>
+
+        } else {
+<span class="nc bnc" id="L286" title="All 2 branches missed.">          if (SUPPLY_TYPE_01.equals(weeklyPoolEntity.getSupplyType())</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">              || SUPPLY_TYPE_02.equals(weeklyPoolEntity.getSupplyType())) {</span>
+<span class="nc" id="L288">            fiftyTwoEntity.setStockShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+<span class="nc" id="L289">            fiftyTwoEntity.setMtoModeShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+          } else {
+<span class="nc" id="L291">            fiftyTwoEntity.setStockShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+<span class="nc" id="L292">            fiftyTwoEntity.setMtoModeShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+          }
+
+<span class="nc" id="L295">          errMsg = ReplenishStockMessages.BIRBO160005E;</span>
+          // 出荷実績ＰＯＯＬデータ（52週分）の登録を行う。
+<span class="nc" id="L297">          shipmentFiftyTwoCount +=</span>
+<span class="nc" id="L298">              weeklyPoolRepository.createActualFiftyTwo(context, fiftyTwoEntity);</span>
+        }
+      }
+<span class="nc" id="L301">    } catch (Exception e) {</span>
+<span class="nc" id="L302">      log.info(DEFAULT_CREATE_WEEKLY_POOL_ERROR);</span>
+<span class="nc" id="L303">      throw new BusinessException(messageSource, errMsg, e);</span>
+<span class="nc" id="L304">    }</span>
+<span class="nc" id="L305">    return shipmentFiftyTwoCount;</span>
+  }
+
+  /**
+   * 出荷実績ＰＯＯＬデータ（12月分）の更新.
+   *
+   * @param context リクエスト共通
+   * @param weeklyPoolEntity 出荷実績エンティティ
+   * @return 処理結果
+   * @throws BusinessException 異常
+   */
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+  public Integer operateActualTwelve(
+      RequestContext context, int shipmentTwelveCount, CreateWeeklyPoolEntity weeklyPoolEntity)
+      throws BusinessException {
+
+<span class="nc" id="L321">    ReplenishStockMessages errMsg = ReplenishStockMessages.BIRBO160009E;</span>
+
+<span class="nc" id="L323">    final ShipmentActualPoolDataFor12monthsEntity twelveEntity =</span>
+        new ShipmentActualPoolDataFor12monthsEntity(
+<span class="nc" id="L325">            weeklyPoolEntity.getSubsidiaryCode(),</span>
+<span class="nc" id="L326">            weeklyPoolEntity.getGinnerCode(),</span>
+<span class="nc" id="L327">            weeklyPoolEntity.getPlantCode());</span>
+    try {
+      // 出荷実績POOLデータ（12月分）の検索を行う
+<span class="nc" id="L330">      Optional&lt;WeeklyPoolCountEntity&gt; actualTwelveCountOp =</span>
+<span class="nc" id="L331">          weeklyPoolRepository.searchActualPoolTwelve(</span>
+              context,
+<span class="nc" id="L333">              weeklyPoolEntity.getSubsidiaryCode(),</span>
+<span class="nc" id="L334">              weeklyPoolEntity.getGinnerCode(),</span>
+<span class="nc" id="L335">              weeklyPoolEntity.getPlantCode());</span>
+
+<span class="nc bnc" id="L337" title="All 2 branches missed.">      if (actualTwelveCountOp.isPresent()) {</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">        if (actualTwelveCountOp.get().getActualTwelveCount().compareTo(INT_0) &gt; INT_0) {</span>
+<span class="nc bnc" id="L339" title="All 2 branches missed.">          if (SUPPLY_TYPE_01.equals(weeklyPoolEntity.getSupplyType())</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">              || SUPPLY_TYPE_02.equals(weeklyPoolEntity.getSupplyType())) {</span>
+<span class="nc" id="L341">            twelveEntity.setStockShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+<span class="nc" id="L342">            twelveEntity.setMtoModeShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+          } else {
+<span class="nc" id="L344">            twelveEntity.setStockShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+<span class="nc" id="L345">            twelveEntity.setMtoModeShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+          }
+
+          // 出荷実績ＰＯＯＬデータ（12月分）の更新を行う。
+<span class="nc" id="L349">          errMsg = ReplenishStockMessages.BIRBO160010E;</span>
+<span class="nc" id="L350">          shipmentTwelveCount += weeklyPoolRepository.saveActualTwelve(context, twelveEntity);</span>
+
+        } else {
+<span class="nc bnc" id="L353" title="All 2 branches missed.">          if (SUPPLY_TYPE_01.equals(weeklyPoolEntity.getSupplyType())</span>
+<span class="nc bnc" id="L354" title="All 2 branches missed.">              || SUPPLY_TYPE_02.equals(weeklyPoolEntity.getSupplyType())) {</span>
+<span class="nc" id="L355">            twelveEntity.setStockShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+<span class="nc" id="L356">            twelveEntity.setMtoModeShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+          } else {
+<span class="nc" id="L358">            twelveEntity.setStockShipmentQty1(BigDecimal.valueOf(INT_0));</span>
+<span class="nc" id="L359">            twelveEntity.setMtoModeShipmentQty1(weeklyPoolEntity.getShipmentQty());</span>
+          }
+
+<span class="nc" id="L362">          errMsg = ReplenishStockMessages.BIRBO160011E;</span>
+          // 出荷実績ＰＯＯＬデータ（12月分）の登録を行う。
+<span class="nc" id="L364">          shipmentTwelveCount += weeklyPoolRepository.createActualTwelve(context, twelveEntity);</span>
+        }
+      }
+<span class="nc" id="L367">    } catch (Exception e) {</span>
+<span class="nc" id="L368">      log.info(DEFAULT_CREATE_WEEKLY_POOL_ERROR);</span>
+<span class="nc" id="L369">      throw new BusinessException(messageSource, errMsg, e);</span>
+<span class="nc" id="L370">    }</span>
+<span class="nc" id="L371">    return shipmentTwelveCount;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

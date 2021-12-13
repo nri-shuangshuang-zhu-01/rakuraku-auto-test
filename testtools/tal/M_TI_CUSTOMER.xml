@@ -1,0 +1,22 @@
+現法コードFROM::subsidiary_code_from::CHAR(3)::NOT NULL(PK)
+現法コードTO::subsidiary_code_to::CHAR(3)::NOT NULL(PK)
+得意先現法得意先コード::customer_subsidiary_customer_code::CHAR(6)::NOT NULL(PK)
+得意先現法配送先コード::customer_subsidiary_ship_to_code::CHAR(6)::NOT NULL(PK)
+市場コード::market_code::VARCHAR(2)::NOT NULL(PK)
+Aストーク早割価格区分::a_stork_early_bird_discount_price_type::CHAR(1)::NOT NULL
+Aストーク納入変更区分::a_stork_delivery_change_type::CHAR(1)::NOT NULL
+Aストーク早割価格設定::a_stork_early_bird_discount_price_setting::numeric(20,3)::NULL
+Aストーク仕入単価設定フラグ::a_stork_purchase_unit_price_setting_flag::CHAR(1)::NOT NULL
+標準納期短縮区分::regular_lead_time_cut_type::CHAR(1)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

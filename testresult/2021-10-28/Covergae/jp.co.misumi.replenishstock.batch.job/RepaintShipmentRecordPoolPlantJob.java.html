@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepaintShipmentRecordPoolPlantJob.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.batch.job</a> &gt; <span class="el_source">RepaintShipmentRecordPoolPlantJob.java</span></div><h1>RepaintShipmentRecordPoolPlantJob.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.batch.job;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import jp.co.misumi.fw.batch.job.AbstractJob;
+import jp.co.misumi.fw.batch.job.annotation.Job;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.replenishstock.domain.entity.RepaintPlantResponseEntity;
+import jp.co.misumi.replenishstock.domain.entity.RepaintShipmentRecordPoolPlantEntity;
+import jp.co.misumi.replenishstock.domain.service.RepaintShipmentRecordPoolPlantService;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.MessageSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionException;
+import org.springframework.transaction.support.TransactionTemplate;
+import picocli.CommandLine;
+
+/**
+ * RepaintShipmentRecordPoolPlantJob.
+ *
+ * &lt;p&gt;coding by LKG欧
+ *
+ * @since 1.0.0
+ */
+@Job(id = &quot;MBPIRBO210&quot;, name = &quot;repaintShipmentRecordPoolPlantJob&quot;)
+@RequiredArgsConstructor
+public class RepaintShipmentRecordPoolPlantJob extends AbstractJob {
+  private final Log log = LogFactory.getLog(RepaintShipmentRecordPoolPlantJob.class);
+  private final RepaintShipmentRecordPoolPlantService defaultRepaintShipmentRecordPoolPlantService;
+  private final PlatformTransactionManager tm;
+<span class="fc" id="L41">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L42">      MessageLoggerFactory.getLogger(RepaintShipmentRecordPoolPlantJob.class);</span>
+  private final MessageSource messageSource;
+  // 現法コード
+  @CommandLine.Option(
+      names = {&quot;--subsidiary-code&quot;},
+      description = &quot;subsidiary code&quot;,
+      required = false)
+  private String subsidiaryCode;
+  // 実施区分
+  @CommandLine.Option(
+      names = {&quot;--implement-div&quot;},
+      description = &quot;implement div&quot;,
+      required = false)
+  private String implementDiv;
+  // 処理区分
+  @CommandLine.Option(
+      names = {&quot;--process-type&quot;},
+      description = &quot;process type&quot;,
+      required = false)
+  private String processType;
+  // 統合インナーコード
+  @CommandLine.Option(
+      names = {&quot;--ginner-code&quot;},
+      description = &quot;ginner code&quot;,
+      required = false)
+  private String ginnerCode;
+  // 論理置場
+  @CommandLine.Option(
+      names = {&quot;--plant-code&quot;},
+      description = &quot;plant code&quot;,
+      required = false)
+  private String plantCode;
+  // 商品納入先区分
+  @CommandLine.Option(
+      names = {&quot;--delivery-div&quot;},
+      description = &quot;delivery div&quot;,
+      required = false)
+  private String deliveryDiv;
+  // 納入先マップ
+  @CommandLine.Option(
+      names = {&quot;--deli-map&quot;},
+      description = &quot;deli map&quot;,
+      required = false)
+  private Map&lt;String, String&gt; deliMap;
+  // 置場リスト
+  @CommandLine.Option(
+      names = {&quot;--plant-list&quot;},
+      description = &quot;plant list&quot;,
+      required = false)
+  private ArrayList&lt;String&gt; plantList;
+
+  @CommandLine.Spec CommandLine.Model.CommandSpec spec;
+
+  @Override
+  public Integer execute(RequestContext requestContext) throws Exception {
+<span class="fc" id="L97">    Integer checkCode = checkParam();</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">    if (checkCode.equals(ReplenishStockConstants.INT_1)) {</span>
+<span class="fc" id="L99">      return checkCode;</span>
+    }
+<span class="fc" id="L101">    RepaintShipmentRecordPoolPlantEntity repaintPoolPlantEntity =</span>
+        new RepaintShipmentRecordPoolPlantEntity();
+<span class="fc" id="L103">    repaintPoolPlantEntity.setSubsidiaryCode(subsidiaryCode);</span>
+<span class="fc" id="L104">    repaintPoolPlantEntity.setImplementDiv(implementDiv);</span>
+<span class="fc" id="L105">    repaintPoolPlantEntity.setProcessType(processType);</span>
+<span class="fc" id="L106">    repaintPoolPlantEntity.setGinnerCode(ginnerCode);</span>
+<span class="fc" id="L107">    repaintPoolPlantEntity.setPlantCode(plantCode);</span>
+<span class="fc" id="L108">    repaintPoolPlantEntity.setDeliveryDiv(deliveryDiv);</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">    if (&quot;1&quot;.equals(implementDiv)) {</span>
+<span class="fc" id="L110">      repaintPoolPlantEntity.setDeliMap(deliMap);</span>
+<span class="fc" id="L111">      repaintPoolPlantEntity.setPlantList(plantList);</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">    } else if (&quot;2&quot;.equals(implementDiv)) {</span>
+<span class="fc" id="L113">      Map&lt;String, String&gt; tempMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L114">      String[] strMap =</span>
+          deliMap
+<span class="fc" id="L116">              .toString()</span>
+<span class="fc" id="L117">              .substring(1, deliMap.toString().length() - 1)</span>
+<span class="fc" id="L118">              .split(ReplenishStockConstants.CHAR_COMMA);</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">      for (int i = 0; i &lt; strMap.length; i++) {</span>
+<span class="fc" id="L120">        String[] str = strMap[i].split(ReplenishStockConstants.CONCERT_JSON_CHARACTER_FOURTH);</span>
+<span class="fc" id="L121">        tempMap.put(str[0], str[1]);</span>
+      }
+<span class="fc" id="L123">      repaintPoolPlantEntity.setDeliMap(tempMap);</span>
+
+<span class="fc" id="L125">      String[] strList =</span>
+          plantList
+<span class="fc" id="L127">              .toString()</span>
+<span class="fc" id="L128">              .substring(1, plantList.toString().length() - 1)</span>
+<span class="fc" id="L129">              .split(ReplenishStockConstants.CHAR_COMMA);</span>
+<span class="fc" id="L130">      List&lt;String&gt; tempList = Arrays.asList(strList.clone());</span>
+<span class="fc" id="L131">      repaintPoolPlantEntity.setPlantList(tempList);</span>
+    }
+
+    Integer resultStatusCode;
+    try {
+<span class="fc" id="L136">      final TransactionTemplate tt = new TransactionTemplate(tm);</span>
+<span class="fc" id="L137">      resultStatusCode =</span>
+<span class="fc" id="L138">          tt.execute(</span>
+              tx -&gt; {
+<span class="fc" id="L140">                RepaintPlantResponseEntity responseResult = null;</span>
+                try {
+<span class="fc" id="L142">                  responseResult =</span>
+<span class="fc" id="L143">                      defaultRepaintShipmentRecordPoolPlantService.repaintShipmentRecordPoolPlant(</span>
+                          requestContext, repaintPoolPlantEntity);
+<span class="fc" id="L145">                } catch (Exception e) {</span>
+<span class="fc" id="L146">                  return CommandLine.ExitCode.SOFTWARE;</span>
+<span class="fc" id="L147">                }</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">                return responseResult != null</span>
+<span class="fc" id="L149">                    ? CommandLine.ExitCode.OK</span>
+<span class="nc" id="L150">                    : CommandLine.ExitCode.SOFTWARE;</span>
+              });
+<span class="nc" id="L152">    } catch (TransactionException e) {</span>
+      //      messageSource.
+<span class="nc" id="L154">      return CommandLine.ExitCode.SOFTWARE;</span>
+<span class="fc" id="L155">    }</span>
+<span class="fc" id="L156">    return resultStatusCode;</span>
+  }
+
+  /**
+   * 入力パラメータのチェック.
+   *
+   * @return チェック結果
+   */
+  private Integer checkParam() {
+<span class="fc" id="L165">    HashMap&lt;String, String&gt; validateMap = new HashMap&lt;&gt;();</span>
+    // 1-2起動パラメータチェック結果の判定
+<span class="fc bfc" id="L167" title="All 2 branches covered.">    if (this.subsidiaryCode == null) {</span>
+<span class="fc" id="L168">      validateMap.put(&quot;subsidiaryCode&quot;, &quot;現法コード&quot;);</span>
+    }
+<span class="fc bfc" id="L170" title="All 2 branches covered.">    if (this.implementDiv == null) {</span>
+<span class="fc" id="L171">      validateMap.put(&quot;implementDiv&quot;, &quot;実施区分&quot;);</span>
+    }
+<span class="fc bfc" id="L173" title="All 2 branches covered.">    if (this.processType == null) {</span>
+<span class="fc" id="L174">      validateMap.put(&quot;processType&quot;, &quot;処理区分&quot;);</span>
+    }
+<span class="fc bfc" id="L176" title="All 2 branches covered.">    if (this.ginnerCode == null) {</span>
+<span class="fc" id="L177">      validateMap.put(&quot;ginnerCode&quot;, &quot;統合インナーコード&quot;);</span>
+    }
+<span class="fc bfc" id="L179" title="All 2 branches covered.">    if (this.plantCode == null) {</span>
+<span class="fc" id="L180">      validateMap.put(&quot;plantCode&quot;, &quot;論理置場&quot;);</span>
+    }
+<span class="fc bfc" id="L182" title="All 2 branches covered.">    if (this.deliveryDiv == null) {</span>
+<span class="fc" id="L183">      validateMap.put(&quot;deliveryDiv&quot;, &quot;商品納入先区分&quot;);</span>
+    }
+<span class="fc bfc" id="L185" title="All 2 branches covered.">    if (this.deliMap == null) {</span>
+<span class="fc" id="L186">      validateMap.put(&quot;deliMap&quot;, &quot;納入先マップ&quot;);</span>
+    }
+<span class="fc bfc" id="L188" title="All 2 branches covered.">    if (this.plantList == null) {</span>
+<span class="fc" id="L189">      validateMap.put(&quot;plantList&quot;, &quot;置場リスト&quot;);</span>
+    }
+<span class="fc bfc" id="L191" title="All 2 branches covered.">    if (!validateMap.isEmpty()) {</span>
+
+<span class="fc" id="L193">      StringBuilder errorParameters = new StringBuilder();</span>
+<span class="fc" id="L194">      String errorParameterStr = nullParam(validateMap, errorParameters);</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">      if (errorParameterStr.isEmpty()) {</span>
+<span class="fc" id="L196">        return ReplenishStockConstants.INT_0;</span>
+      } else {
+<span class="fc" id="L198">        messageLogger.log(</span>
+            messageSource, ReplenishStockMessages.BIRB0210001E, null, errorParameterStr);
+<span class="fc" id="L200">        return ReplenishStockConstants.INT_1;</span>
+      }
+    }
+<span class="fc" id="L203">    return ReplenishStockConstants.INT_0;</span>
+  }
+
+  /**
+   * 存在しないパラメータの処理.
+   *
+   * @return チェック結果
+   */
+  private String nullParam(HashMap&lt;String, String&gt; validateMap, StringBuilder errorParameters) {
+<span class="fc" id="L212">    Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iterator = validateMap.entrySet().iterator();</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">    if (validateMap.containsKey(&quot;implementDiv&quot;)) {</span>
+<span class="fc" id="L214">      return errorParametersAppend(iterator, errorParameters);</span>
+    } else {
+
+<span class="fc bfc" id="L217" title="All 2 branches covered.">      if (this.implementDiv.equals(&quot;2&quot;)) {</span>
+<span class="fc" id="L218">        return errorParametersAppend(iterator, errorParameters);</span>
+      }
+<span class="pc bpc" id="L220" title="1 of 2 branches missed.">      if (this.implementDiv.equals(&quot;1&quot;)) {</span>
+<span class="fc bfc" id="L221" title="All 2 branches covered.">        while (iterator.hasNext()) {</span>
+<span class="fc" id="L222">          Map.Entry&lt;String, String&gt; tempMap = iterator.next();</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">          if (tempMap.getKey().equals(&quot;subsidiaryCode&quot;)</span>
+<span class="pc bpc" id="L224" title="1 of 2 branches missed.">              || tempMap.getKey().equals(this.implementDiv)</span>
+<span class="fc bfc" id="L225" title="All 2 branches covered.">              || tempMap.getKey().equals(&quot;processType&quot;)) {</span>
+<span class="fc" id="L226">            errorParameters.append(tempMap.getValue());</span>
+<span class="fc" id="L227">            errorParameters.append(ReplenishStockConstants.CHAR_COMMA);</span>
+          }
+<span class="fc" id="L229">        }</span>
+<span class="fc" id="L230">        return errorParametersString(errorParameters);</span>
+      }
+    }
+<span class="nc" id="L233">    return errorParameters.toString();</span>
+  }
+
+  /**
+   * errorParametersAppend パラメータの追加処理.
+   *
+   * @param iterator イテレータ
+   * @param errorParameters パラメータ
+   * @return String結果
+   */
+  private String errorParametersAppend(
+      Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iterator, StringBuilder errorParameters) {
+
+<span class="fc bfc" id="L246" title="All 2 branches covered.">    while (iterator.hasNext()) {</span>
+<span class="fc" id="L247">      Map.Entry&lt;String, String&gt; tempMap = iterator.next();</span>
+<span class="fc" id="L248">      errorParameters.append(tempMap.getValue());</span>
+<span class="fc" id="L249">      errorParameters.append(ReplenishStockConstants.CHAR_COMMA);</span>
+<span class="fc" id="L250">    }</span>
+<span class="fc" id="L251">    return errorParametersString(errorParameters);</span>
+  }
+
+  /**
+   * errorParametersString パラメータの文字列.
+   *
+   * @param errorParameters エラーパラメータ
+   * @return 文字列
+   */
+  private String errorParametersString(StringBuilder errorParameters) {
+<span class="fc bfc" id="L261" title="All 2 branches covered.">    return errorParameters.toString().equals(ReplenishStockConstants.QUOTATION_MASKS)</span>
+<span class="fc" id="L262">        ? errorParameters.toString()</span>
+<span class="fc" id="L263">        : errorParameters.substring(</span>
+<span class="fc" id="L264">            ReplenishStockConstants.INT_0,</span>
+<span class="fc" id="L265">            errorParameters.length() - ReplenishStockConstants.INT_1);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

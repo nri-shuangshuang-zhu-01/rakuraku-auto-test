@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_ACTUAL_REPLICA subsidiary_code="CHN" plant_code="1001" global_number="22345600000001" so_slip_number="3234567001" so_line_key="32001" ginner_code="12345600000010" product_code="123456789000001" classify_code="12300001" shipment_fix_date="2021-02-01" shipment_qty="20" supply_type="01" data_hub_updated_flag="1" register_system_date_time="2020-01-11 10:00:00.0" update_system_date_time="2020-01-13 11:00:00.0" update_program="JOB102"/>
+  <T_SHIPMENT_ACTUAL_REPLICA subsidiary_code="MJP" plant_code="1006" global_number="22345600000011" so_slip_number="3234567007" so_line_key="32007" ginner_code="12345600000006" product_code="123456789000010" classify_code="12300010" shipment_fix_date="2021-02-01" shipment_qty="200" supply_type="01" data_hub_updated_flag="1" register_system_date_time="2020-08-11 10:07:00.0" update_system_date_time="2020-08-13 11:07:00.0" update_program="JOB102"/>
+</dataset>

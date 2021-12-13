@@ -1,0 +1,27 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+国コード::country_code::char(3)::NOT NULL(PK)
+郵便番号::postal_code::varchar(10)::NOT NULL(PK)
+市町村コード::city_code::varchar(5)::NULL
+住所1（現地語）::address1_native::varchar(30)::NOT NULL
+住所2（現地語）::address2_native::varchar(30)::NOT NULL
+住所1::address1::varchar(30)::NOT NULL
+住所2::address2::varchar(30)::NOT NULL
+住所3（現地語）::address3_native::varchar(30)::NULL
+住所4（現地語）::address4_native::varchar(30)::NULL
+住所3::address3::varchar(30)::NULL
+住所4::address4::varchar(30)::NULL
+配送日数用エリアコード::shipping_days_area_code::char(3)::NOT NULL
+調達先選定用エリアコード::supplier_choice_area_code::char(3)::NOT NULL
+出荷仕分用エリアコード::shipment_classification_area_code::char(3)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

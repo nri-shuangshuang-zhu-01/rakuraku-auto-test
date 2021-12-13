@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <c_ul_purpose_ul_result_data_download_file control_seq_number='1' data_download_control_seq='null' subsidiary_code='JPN' data_code='S12' create_date_time='2021-09-09 17:31:00' mail_address='1' temp_file_code='null' file_path='null' presigned_api_path='null' signature='null' display_file_name='null' status_code='1' process_result_code='null' process_result_detail='null' update_count='null' delete_flag='0' register_user_type='null' register_user='null' register_date_time='null' register_program='null' register_client_program='null' update_user_type='null' update_user='null' update_date_time='null' update_program='null' update_client_program='null' />
+</dataset>

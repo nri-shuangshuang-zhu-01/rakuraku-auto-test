@@ -1,0 +1,15 @@
+画面項目リスト::ol_element_list::1
+画面表示項目識別子::ol_display_element_identifier::2
+画面項目リスト（識別子別）::ol_element_list_identifier::
+汎用キー1::general_key1::3
+汎用キー2::general_key2::3
+汎用キー3::general_key3::3
+汎用キー4::general_key4::3
+汎用キー5::general_key5::3
+コード値リファレンス１::code_value_reference1::3
+コード値リファレンス２::code_value_reference2::3
+コード値リファレンス３::code_value_reference3::3
+コード値リファレンス４::code_value_reference4::3
+コード値リファレンス５::code_value_reference5::3
+エラーコード::error_code::1
+エラーメッセージ::error_message::1

@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_AR_BALANCE_SUMMARY subsidiary_code="MJP" bill_to_code="123457" summary_date="2021-10-05" non_payment_amount="11.003" shipped_invoice_unissued_amount="21.003" unsettled_note_amount="31.003" update_count="0" delete_flag="0" register_user_type="Office" register_user="SMTP" register_date_time="2021-10-19 13:11:12.0" register_program="reg" register_client_program="rClient" update_user_type="Office" update_user="SMTP" update_date_time="2021-10-19 13:11:12.0" update_program="pro" update_client_program="cPro"/>
+</dataset>

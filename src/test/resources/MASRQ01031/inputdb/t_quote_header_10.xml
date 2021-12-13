@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_quote_header subsidiary_code='123' lead_time_product_inquiry_id='12345678' customer_code='A00001' ship_to_code='B00001' orderer_department='注文者部課' order_pic_name='注文担当者名' customer_delivery_pic_department='納入担当者部課' customer_delivery_pic_code='asd987' customer_delivery_pic_name='納入担当者氏名' fax='123456789' customer_tax_free_type='1' payment_means='A0' lead_time_complete_type='0' sales_unit_price_change_reason='lass' bulk_partial_delivery_fix_type='0' total_amount='9' total_amount_including_tax='9' update_count='0' delete_flag='0' register_user_type='Office' register_user='user' register_date_time='2021-11-26 0:00:00' register_program='MASRQ01031' register_client_program='MASRQ01031' update_user_type='Office' update_user='user' update_date_time='2021-11-27 0:00:00' update_program='MASRQ01031' update_client_program='MASRQ01031' />
+</dataset>

@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry subsidiary_code='MJP' inquiry_id='1234567' urgent_flag='1' customer_code='' customer_name='2021-08-21 11:11:12.5' ship_to_code='07' ship_to_name='07' department_name='11' pic_name='0' send_media_type='5' fax_send_to_number='6' email_address_to='17acdc' email_address_cc='2021-08-21 14:11:11.5' inquiry_reply_limit='99999999999996' qt_expiration_date_time='2021-08-15 0:00:05' contact_id='13338' update_count='0' delete_flag='0' register_user_type='Customer' register_user='misumi6' register_date_time='2021-08-21 11:11:12.0' register_program='misumi16' register_client_program='misumi128' update_user_type='Customer' update_user='misumi128' update_date_time='2021-08-21 11:11:12.0' update_program='misumi128' update_client_program='misumi16' />
+</dataset>

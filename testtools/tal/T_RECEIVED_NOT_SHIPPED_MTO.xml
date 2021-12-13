@@ -1,0 +1,27 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+受注伝票番号::so_voucher_no::varchar(12)::NOT NULL(PK)
+受注明細キー::so_line_key::integer::NOT NULL(PK)
+グローバル番号::global_number::char(14)::NOT NULL
+調達区分::supply_type::char(2)::NULL
+入荷数量::receiving_qty::numeric(7,0)::NULL
+出荷数量::shipment_qty::numeric(7,0)::NULL
+入荷確定日::receiving_fix_date::date::NULL
+入荷確定処理日::receiving_fix_process_date::date::NULL
+入荷仕入金額::receiving_purchase_amount::numeric(18,3)::NULL
+入荷仕入先現法レート::receiving_supplier_subsidiary_rate::numeric(23,9)::NULL
+入荷運賃仕入先レート::receiving_freight_supplier_rate::numeric(23,9)::NULL
+入荷発注先現法仕入先レート::receiving_supplier_subsidiary_supplier_rate::numeric(23,9)::NULL
+入荷運賃発注先現法レート::receiving_freight_supplier_subsidiary_rate::numeric(23,9)::NULL
+入荷商品仕入先レート::receiving_product_supplier_rate::numeric(23,9)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

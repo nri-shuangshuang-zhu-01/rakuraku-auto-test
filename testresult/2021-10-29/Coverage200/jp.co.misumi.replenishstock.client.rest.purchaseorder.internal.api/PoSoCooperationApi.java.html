@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoSoCooperationApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.api</a> &gt; <span class="el_source">PoSoCooperationApi.java</span></div><h1>PoSoCooperationApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.CheckCancelPoSoCooperationInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.CheckCancelPoSoCooperationInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.CheckChangePoSoCooperationInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.CheckChangePoSoCooperationInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.CheckPoSoCooperationInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.CheckPoSoCooperationInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.FixCancelPoSoCooperationInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.FixCancelPoSoCooperationInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.FixChangePoSoCooperationInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.FixChangePoSoCooperationInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.FixPoSoCooperationInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.FixPoSoCooperationInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:20.943781+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.api.PoSoCooperationApi&quot;)
+public class PoSoCooperationApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L47">    public PoSoCooperationApi(ApiClient apiClient) {</span>
+<span class="fc" id="L48">        this.apiClient = apiClient;</span>
+<span class="fc" id="L49">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L52">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L56">        this.apiClient = apiClient;</span>
+<span class="nc" id="L57">    }</span>
+
+    /**
+     * 発注キャンセルチェック（受注連携）API
+     * 発注キャンセルチェック（受注連携）API（ID:MAPPOPO350）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注キャンセルチェック（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkCancelPoSoCooperationInternalRequestV1 発注キャンセルチェック（受注連携）APIリクエスト (optional)
+     
+     * @return CheckCancelPoSoCooperationInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CheckCancelPoSoCooperationInternalResponseV1 checkCancelPoSoCooperationV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckCancelPoSoCooperationInternalRequestV1 checkCancelPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L74">        return checkCancelPoSoCooperationV1WithHttpInfo(context, endpoint, additionalHeaderMap, checkCancelPoSoCooperationInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 発注キャンセルチェック（受注連携）API
+     * 発注キャンセルチェック（受注連携）API（ID:MAPPOPO350）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注キャンセルチェック（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkCancelPoSoCooperationInternalRequestV1 発注キャンセルチェック（受注連携）APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CheckCancelPoSoCooperationInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CheckCancelPoSoCooperationInternalResponseV1&gt; checkCancelPoSoCooperationV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckCancelPoSoCooperationInternalRequestV1 checkCancelPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L92">        Object postBody = checkCancelPoSoCooperationInternalRequestV1;</span>
+        
+<span class="nc" id="L94">        String path = apiClient.expandPath(&quot;/internal/v1/po-so-cooperation/check-cancel&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L96">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L97">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L98">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L99">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L104">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L106">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L108">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L110">            });</span>
+        }
+
+<span class="nc" id="L113">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L116">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L117">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L120">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L122">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L124">        ParameterizedTypeReference&lt;CheckCancelPoSoCooperationInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CheckCancelPoSoCooperationInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L125">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 発注変更チェック（受注連携）API
+     * 発注変更チェック（受注連携）API（ID:MAPPOPO330）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注変更チェック（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkChangePoSoCooperationInternalRequestV1 発注変更チェック（受注連携）APIリクエスト (optional)
+     
+     * @return CheckChangePoSoCooperationInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CheckChangePoSoCooperationInternalResponseV1 checkChangePoSoCooperationV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckChangePoSoCooperationInternalRequestV1 checkChangePoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L142">        return checkChangePoSoCooperationV1WithHttpInfo(context, endpoint, additionalHeaderMap, checkChangePoSoCooperationInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 発注変更チェック（受注連携）API
+     * 発注変更チェック（受注連携）API（ID:MAPPOPO330）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注変更チェック（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkChangePoSoCooperationInternalRequestV1 発注変更チェック（受注連携）APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CheckChangePoSoCooperationInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CheckChangePoSoCooperationInternalResponseV1&gt; checkChangePoSoCooperationV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckChangePoSoCooperationInternalRequestV1 checkChangePoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L160">        Object postBody = checkChangePoSoCooperationInternalRequestV1;</span>
+        
+<span class="nc" id="L162">        String path = apiClient.expandPath(&quot;/internal/v1/po-so-cooperation/check-change&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L164">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L165">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L166">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L167">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L172">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L174">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L176">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L178">            });</span>
+        }
+
+<span class="nc" id="L181">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L184">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L185">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L188">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L190">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L192">        ParameterizedTypeReference&lt;CheckChangePoSoCooperationInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CheckChangePoSoCooperationInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L193">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 発注チェック（受注連携）API
+     * 発注チェック（受注連携）API（ID:MAPPOPO310）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注チェック（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkPoSoCooperationInternalRequestV1 発注チェック（受注連携）APIリクエスト (optional)
+     
+     * @return CheckPoSoCooperationInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CheckPoSoCooperationInternalResponseV1 checkPoSoCooperationV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckPoSoCooperationInternalRequestV1 checkPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L210">        return checkPoSoCooperationV1WithHttpInfo(context, endpoint, additionalHeaderMap, checkPoSoCooperationInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 発注チェック（受注連携）API
+     * 発注チェック（受注連携）API（ID:MAPPOPO310）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注チェック（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkPoSoCooperationInternalRequestV1 発注チェック（受注連携）APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CheckPoSoCooperationInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CheckPoSoCooperationInternalResponseV1&gt; checkPoSoCooperationV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckPoSoCooperationInternalRequestV1 checkPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L228">        Object postBody = checkPoSoCooperationInternalRequestV1;</span>
+        
+<span class="nc" id="L230">        String path = apiClient.expandPath(&quot;/internal/v1/po-so-cooperation/check&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L232">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L233">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L234">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L235">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L240">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L242">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L244">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L246">            });</span>
+        }
+
+<span class="nc" id="L249">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L252">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L253">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L256">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L258">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L260">        ParameterizedTypeReference&lt;CheckPoSoCooperationInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CheckPoSoCooperationInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L261">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 発注キャンセル（受注連携）API
+     * 発注キャンセル（受注連携）API（ID:MAPPOPO340）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注キャンセル（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fixCancelPoSoCooperationInternalRequestV1 発注キャンセル（受注連携）APIリクエスト (optional)
+     
+     * @return FixCancelPoSoCooperationInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public FixCancelPoSoCooperationInternalResponseV1 fixCancelPoSoCooperationV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, FixCancelPoSoCooperationInternalRequestV1 fixCancelPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L278">        return fixCancelPoSoCooperationV1WithHttpInfo(context, endpoint, additionalHeaderMap, fixCancelPoSoCooperationInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 発注キャンセル（受注連携）API
+     * 発注キャンセル（受注連携）API（ID:MAPPOPO340）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注キャンセル（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fixCancelPoSoCooperationInternalRequestV1 発注キャンセル（受注連携）APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;FixCancelPoSoCooperationInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;FixCancelPoSoCooperationInternalResponseV1&gt; fixCancelPoSoCooperationV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, FixCancelPoSoCooperationInternalRequestV1 fixCancelPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L296">        Object postBody = fixCancelPoSoCooperationInternalRequestV1;</span>
+        
+<span class="nc" id="L298">        String path = apiClient.expandPath(&quot;/internal/v1/po-so-cooperation/fix-cancel&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L300">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L301">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L302">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L303">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L307" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L308">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L310">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L312">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L314">            });</span>
+        }
+
+<span class="nc" id="L317">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L320">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L321">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L324">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L326">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L328">        ParameterizedTypeReference&lt;FixCancelPoSoCooperationInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;FixCancelPoSoCooperationInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L329">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 発注変更（受注連携）API
+     * 発注変更（受注連携）API（ID:MAPPOPO320）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注変更（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fixChangePoSoCooperationInternalRequestV1 発注変更（受注連携）APIリクエスト (optional)
+     
+     * @return FixChangePoSoCooperationInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public FixChangePoSoCooperationInternalResponseV1 fixChangePoSoCooperationV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, FixChangePoSoCooperationInternalRequestV1 fixChangePoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L346">        return fixChangePoSoCooperationV1WithHttpInfo(context, endpoint, additionalHeaderMap, fixChangePoSoCooperationInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 発注変更（受注連携）API
+     * 発注変更（受注連携）API（ID:MAPPOPO320）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注変更（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fixChangePoSoCooperationInternalRequestV1 発注変更（受注連携）APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;FixChangePoSoCooperationInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;FixChangePoSoCooperationInternalResponseV1&gt; fixChangePoSoCooperationV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, FixChangePoSoCooperationInternalRequestV1 fixChangePoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L364">        Object postBody = fixChangePoSoCooperationInternalRequestV1;</span>
+        
+<span class="nc" id="L366">        String path = apiClient.expandPath(&quot;/internal/v1/po-so-cooperation/fix-change&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L368">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L369">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L370">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L371">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L375" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L376">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L378">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L380">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L382">            });</span>
+        }
+
+<span class="nc" id="L385">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L388">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L389">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L392">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L394">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L396">        ParameterizedTypeReference&lt;FixChangePoSoCooperationInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;FixChangePoSoCooperationInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L397">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 発注確定（受注連携）API
+     * 発注確定（受注連携）API（ID:MAPPOPO300）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注確定（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fixPoSoCooperationInternalRequestV1 発注確定（受注連携）APIリクエスト (optional)
+     
+     * @return FixPoSoCooperationInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public FixPoSoCooperationInternalResponseV1 fixPoSoCooperationV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, FixPoSoCooperationInternalRequestV1 fixPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L414">        return fixPoSoCooperationV1WithHttpInfo(context, endpoint, additionalHeaderMap, fixPoSoCooperationInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 発注確定（受注連携）API
+     * 発注確定（受注連携）API（ID:MAPPOPO300）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注確定（受注連携）APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fixPoSoCooperationInternalRequestV1 発注確定（受注連携）APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;FixPoSoCooperationInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;FixPoSoCooperationInternalResponseV1&gt; fixPoSoCooperationV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, FixPoSoCooperationInternalRequestV1 fixPoSoCooperationInternalRequestV1) throws RestClientException {
+<span class="nc" id="L432">        Object postBody = fixPoSoCooperationInternalRequestV1;</span>
+        
+<span class="nc" id="L434">        String path = apiClient.expandPath(&quot;/internal/v1/po-so-cooperation/fix&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L436">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L437">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L438">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L439">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L443" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L444">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L445" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L446">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L447" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L448">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L450">            });</span>
+        }
+
+<span class="nc" id="L453">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L456">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L457">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L460">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L462">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L464">        ParameterizedTypeReference&lt;FixPoSoCooperationInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;FixPoSoCooperationInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L465">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

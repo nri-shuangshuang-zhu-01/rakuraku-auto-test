@@ -1,0 +1,12 @@
+■api名称：　検索
+■api Request：　/internal/v1/screen-field-display/get
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=test&&x-Client-Program=test&&
+■api Body：　{  "subsidiaryCode":"JPN",  "generalKeyList":[{      "olDisplayElementIdentifier":"st",      "generalKey1":"001",      "generalKey2":"002",      "generalKey3":"003",      "generalKey4":"004",      "generalKey5":"005"  }]  }
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NAR00010003E",
+  "argumentList": [],
+  "message": "指定の画面表示項目情報に該当するデータは存在しません。"
+}

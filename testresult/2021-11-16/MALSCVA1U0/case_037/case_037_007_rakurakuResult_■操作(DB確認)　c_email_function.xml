@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <c_email_function subsidiary_code="JPN" email_function_code="ASRSCSS3R0" email_function_name="在庫調整入力（総数入力）" update_count="1" delete_flag="0" register_user_type="Internal" register_user="DUMMY1" register_date_time="2021-09-15 00:00:00.0" register_program="DUMMY2" register_client_program="DUMMY3" update_user_type="Internal" update_user="DUMMY1" update_date_time="2021-09-15 00:00:00.0" update_program="DUMMY2" update_client_program="DUMMY3"/>
+  <c_email_function subsidiary_code="JPN" email_function_code="ASVTCVA1E0" email_function_name="在庫調整入力（総数入力）" update_count="1" delete_flag="0" register_user_type="Internal" register_user="DUMMY1" register_date_time="2021-09-15 00:00:00.0" register_program="DUMMY2" register_client_program="DUMMY3" update_user_type="Internal" update_user="DUMMY1" update_date_time="2021-09-15 00:00:00.0" update_program="DUMMY2" update_client_program="DUMMY3"/>
+</dataset>

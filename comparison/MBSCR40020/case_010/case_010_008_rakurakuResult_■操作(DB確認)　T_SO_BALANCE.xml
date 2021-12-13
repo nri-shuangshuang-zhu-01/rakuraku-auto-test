@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SO_BALANCE subsidiary_code="MJP" customer_code="999999" so_balance_amount="999999999999999.999" update_count="9" delete_flag="0" register_user_type="LKI6" register_user="LKI" register_date_time="2020-08-29 15:05:07.0" register_program="1" register_client_program="LKI" update_user_type="LKI" update_user="LKI" update_date_time="2021-09-08 15:05:07.0" update_program="JOB001" update_client_program="LKI"/>
+</dataset>

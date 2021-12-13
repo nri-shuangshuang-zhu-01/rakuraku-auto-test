@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry_remind_detail subsidiary_code='MJP' lead_time_product_inquiry_id='12345678' remind_type='1' remind_sent_count='2' remind_date_time='2021-11-19 0:00:00' expire_date_time='2021-11-20 0:00:00' update_count='0' delete_flag='0' register_user_type='Office' register_user='user' register_date_time='2021-11-26 0:00:00' register_program='MASRQ01031' register_client_program='MASRQ01031' update_user_type='Office' update_user='user' update_date_time='2021-11-27 0:00:00' update_program='MASRQ01031' update_client_program='MASRQ01031' />
+</dataset>

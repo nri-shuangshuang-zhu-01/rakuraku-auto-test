@@ -1,0 +1,13 @@
+{
+"controlSeqNumber": "2",
+"dataCode": "2",
+"createTime": "2019-08-24T14:15:22Z",
+"tempFileCode": "tempFileCodetest2",
+"filePath": "filePathtest2",
+"presignedApiPath": "presignedApiPathtest1",
+"signature": "signaturetest2",
+"displayFileName": "",
+"statusCode": "1",
+"processResultCode": "0",
+"updateCount": 0
+}

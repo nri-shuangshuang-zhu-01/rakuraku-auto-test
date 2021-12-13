@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultCreateWeeklyOrderDlFileService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultCreateWeeklyOrderDlFileService.java</span></div><h1>DefaultCreateWeeklyOrderDlFileService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.common.idempotency.domain.value.IdempotentRequestStatus;
+import jp.co.misumi.fw.common.idempotency.transaction.DefaultPhase;
+import jp.co.misumi.fw.common.idempotency.transaction.IdempotentRequestProcessor;
+import jp.co.misumi.fw.common.idempotency.transaction.Phase;
+import jp.co.misumi.fw.common.idempotency.transaction.Result;
+import jp.co.misumi.fw.common.idempotency.transaction.annotation.NamedIdempotentRequestProcessor;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.iterable.CloseableIterable;
+import jp.co.misumi.fw.core.time.TimeProvider;
+import jp.co.misumi.fw.core.util.StringUtil;
+import jp.co.misumi.fw.rest.api.common.file.upload.config.RestFileUploadConfiguration;
+import jp.co.misumi.fw.rest.api.common.file.upload.domain.entity.TemporaryFile;
+import jp.co.misumi.fw.rest.api.common.file.upload.domain.value.TemporaryFileId;
+import jp.co.misumi.fw.rest.api.common.file.upload.facade.TemporaryFileService;
+import jp.co.misumi.replenishstock.domain.client.GeneralUploadClient;
+import jp.co.misumi.replenishstock.domain.client.UlPurposeDataDownloadInternalClient;
+import jp.co.misumi.replenishstock.domain.entity.SearchConditionParamEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointExcludeConditionEntity;
+import jp.co.misumi.replenishstock.domain.repository.CreateWeeklyOrderDlFileRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.client.fileuploadcontainer.yaml.container.FileUploadResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderDlRequestplantCdListV1;
+import jp.co.misumi.replenishstock.model.task.FileRegisterProcessTaskFormat;
+import lombok.RequiredArgsConstructor;
+import org.apache.kafka.common.utils.Utils;
+import org.springframework.context.MessageSource;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.client.RestClientException;
+
+@RequiredArgsConstructor
+@NamedIdempotentRequestProcessor(&quot;createWeeklyOrderDlFileService&quot;)
+public class DefaultCreateWeeklyOrderDlFileService
+    implements IdempotentRequestProcessor&lt;FileRegisterProcessTaskFormat&gt; {
+
+  // 週次発注点除外条件
+  private final CreateWeeklyOrderDlFileRepository createWeeklyRepository;
+
+  // json序列化インターフェース
+  private final ObjectMapper objectMapper;
+
+  // 汎用ファイルアップロードAPI（DL用ファイル）クライアント
+  private final GeneralUploadClient generalUploadClient;
+
+  // 共通_UL用/UL結果データダウンロード_登録更新APIクライアント
+  private final UlPurposeDataDownloadInternalClient ulPurposeDataDownloadInternalClient;
+
+  private final MessageSource messageSource;
+
+  private final TimeProvider timeProvider;
+
+  private final RestFileUploadConfiguration restFileUploadConfiguration;
+  private final TemporaryFileService temporaryFileService;
+
+  /**
+   * 冪等処理.
+   *
+   * @return 冪等処理の最終的な結果
+   */
+  @Override
+  public List&lt;Phase&lt;FileRegisterProcessTaskFormat&gt;&gt; getPhases() {
+<span class="nc" id="L79">    return List.of(</span>
+        new DefaultPhase&lt;&gt;(
+            IdempotentRequestStatus.CREATED,
+            ((context, format) -&gt; {
+<span class="nc" id="L83">              create(format, context);</span>
+<span class="nc" id="L84">              return Result.of(</span>
+                  IdempotentRequestStatus.OK, &quot;Processed Success&quot;); // 冪等処理の最終的な結果を第2引数に入れる
+            })));
+  }
+
+  /**
+   * MAPIROP080_週次発注点除外条件マスタDLファイル作成.
+   *
+   * @param processTaskFormat タスク
+   * @param context 共通
+   * @throws IOException 異常
+   */
+  public void create(FileRegisterProcessTaskFormat processTaskFormat, RequestContext context)
+      throws BusinessException, IOException {
+
+    // 1. UL用/UL結果データダウンロード登録・更新API（開始）
+<span class="nc" id="L100">    final SaveUlPurposeDataDownloadInternalResponseV1 ulDataDownloadRespStart =</span>
+<span class="nc" id="L101">        startUlDataDownloadRegister(context);</span>
+
+    // 1、APIリクエストから、検索パラメターを取得し、ダウンロード対象の検索条件セット
+<span class="nc" id="L104">    SearchConditionParamEntity searchParamEntity = getSearchConditionParamEntity(processTaskFormat);</span>
+
+    // 検索パラメターを補足
+<span class="nc" id="L107">    final SearchConditionParamEntity searchConditionParamEntity =</span>
+<span class="nc" id="L108">        checkSearchConditionParamEntity(searchParamEntity);</span>
+
+    // 3. ダウンロードデータ取得
+<span class="nc" id="L111">    List&lt;WeeklyReorderPointExcludeConditionEntity&gt; weeklyList =</span>
+<span class="nc" id="L112">        searchDownloadInfo(searchConditionParamEntity);</span>
+
+    // DLファイルを出力
+<span class="nc" id="L115">    File file = outputDownloadFile(weeklyList, processTaskFormat);</span>
+
+    // 汎用ファイルアップロード処理（共通）
+<span class="nc" id="L118">    final FileUploadResponseV1 fileUploadResponseV1 = uploadGeneralFile(context, file);</span>
+
+    // 保存先ファイルコピー
+<span class="nc" id="L121">    String filePath = copyFile(context, fileUploadResponseV1);</span>
+
+    // UL用/UL結果データダウンロード登録・更新API（終了）
+<span class="nc" id="L124">    endUlDataDownloadRegister(</span>
+        context, ulDataDownloadRespStart, filePath, fileUploadResponseV1, file);
+<span class="nc" id="L126">  }</span>
+
+  /**
+   * 保存先ファイルコピー（UL用ファイル）.
+   *
+   * @param context 共通
+   * @param fileUploadResponseV1 汎用ファイルアップロードのレスポンス
+   * @return ファイルパース
+   */
+  public String copyFile(RequestContext context, FileUploadResponseV1 fileUploadResponseV1) {
+<span class="nc" id="L136">    TemporaryFileId temporaryFileId =</span>
+<span class="nc" id="L137">        new TemporaryFileId(fileUploadResponseV1.getTemporaryFileId());</span>
+<span class="nc" id="L138">    temporaryFileService.copy(</span>
+        context,
+        temporaryFileId,
+<span class="nc" id="L141">        restFileUploadConfiguration.getStoreBucket()); // コピーだけするならこの行だけでOK</span>
+<span class="nc" id="L142">    TemporaryFile temporaryFile = temporaryFileService.findById(context, temporaryFileId);</span>
+<span class="nc" id="L143">    return temporaryFile.getStoredFilePath();</span>
+  }
+
+  /**
+   * UL用/UL結果データダウンロード登録・更新API(開始).
+   *
+   * @param context 共通
+   * @return レスポンス
+   */
+  public SaveUlPurposeDataDownloadInternalResponseV1 startUlDataDownloadRegister(
+      RequestContext context) throws BusinessException {
+
+    // リクエスト項目設定
+<span class="nc" id="L156">    SaveUlPurposeDataDownloadInternalRequestV1 ulDataDownloadRequest =</span>
+        new SaveUlPurposeDataDownloadInternalRequestV1();
+
+    // todo 呼び出し元プログラム = 固定値：&quot;MAPIROP080&quot;、何処に設定しますか
+
+    // todo データコード  固定値 &quot;XXX&quot;
+<span class="nc" id="L162">    ulDataDownloadRequest.setDataCode(ReplenishStockConstants.DATE_CODE);</span>
+
+    // 作成日時
+<span class="nc" id="L165">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+
+    // 作成日時
+<span class="nc" id="L168">    ulDataDownloadRequest.setCreateTime(dateTime);</span>
+
+    // UL用/UL結果データダウンロード登録・更新API(開始)レスポンス
+<span class="nc" id="L171">    SaveUlPurposeDataDownloadInternalResponseV1 ulDataDownloadRespStart = null;</span>
+
+    try {
+
+      // UL用/UL結果データダウンロード登録・更新API呼出
+<span class="nc" id="L176">      ulDataDownloadRespStart =</span>
+<span class="nc" id="L177">          ulPurposeDataDownloadInternalClient.saveUlPurposeDataDownloadInternalV1(</span>
+              context, ulDataDownloadRequest);
+<span class="nc" id="L179">    } catch (RestClientException e) {</span>
+
+      // API異常の場合
+<span class="nc" id="L182">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP080001E, null);</span>
+<span class="nc" id="L183">    }</span>
+
+<span class="nc" id="L185">    return ulDataDownloadRespStart;</span>
+  }
+
+  /**
+   * UL用/UL結果データダウンロード登録・更新API(終了).
+   *
+   * @param context 共通
+   * @param ulDataDownloadRespStart UL用/UL結果データダウンロード登録・更新API（開始）レスポンス
+   * @param filePath アップロードファイルパス
+   * @param fileUploadResponseV1 汎用ファイルアップロード部品レスポンス
+   */
+  public void endUlDataDownloadRegister(
+      RequestContext context,
+      SaveUlPurposeDataDownloadInternalResponseV1 ulDataDownloadRespStart,
+      String filePath,
+      FileUploadResponseV1 fileUploadResponseV1,
+      File file)
+      throws BusinessException {
+    try {
+
+      // UL用/UL結果データダウンロード登録・更新API(終了)リクエスト
+<span class="nc" id="L206">      SaveUlPurposeDataDownloadInternalRequestV1 ulDataDownloadRequest =</span>
+          new SaveUlPurposeDataDownloadInternalRequestV1();
+
+<span class="nc" id="L209">      TemporaryFileId temporaryFileId =</span>
+<span class="nc" id="L210">          new TemporaryFileId(fileUploadResponseV1.getTemporaryFileId());</span>
+
+      // リクエスト項目設定
+      // todo 呼び出し元プログラム = 固定値：&quot;MAPIROP080&quot;、何処に設定しますか
+
+      // 管理SEQ番号 = UL用/UL結果データダウンロード登録・更新API.レスポンス.管理SEQ番号
+<span class="nc" id="L216">      ulDataDownloadRequest.setControlSeqNumber(ulDataDownloadRespStart.getControlSeqNumber());</span>
+
+      // 一時ファイルコード
+<span class="nc" id="L219">      ulDataDownloadRequest.setTempFileCode(temporaryFileId.getTemporaryFileId());</span>
+
+      // ファイルパス
+<span class="nc" id="L222">      ulDataDownloadRequest.setFilePath(filePath);</span>
+
+      // todo PresignedURL変換APIパス
+<span class="nc" id="L225">      ulDataDownloadRequest.setPresignedApiPath(&quot;&quot;);</span>
+
+      // 署名
+<span class="nc" id="L228">      ulDataDownloadRequest.setSignature(temporaryFileId.getSignature());</span>
+
+      // 表示用ファイル名 = &quot;MAPIROP080&quot;(機能ID) ＋ &quot;_現法コード&quot; + &quot;_処理日付時刻　(yyyyMMddHHmmssSSS)&quot;
+<span class="nc" id="L231">      ulDataDownloadRequest.setDisplayFileName(file.getName());</span>
+
+      // ステータスコード
+<span class="nc" id="L234">      ulDataDownloadRequest.setStatusCode(ReplenishStockConstants.STRING_2);</span>
+
+      // 更新回数
+<span class="nc" id="L237">      ulDataDownloadRequest.setUpdateCount(ulDataDownloadRespStart.getUpdateCount());</span>
+
+<span class="nc" id="L239">      ulPurposeDataDownloadInternalClient.saveUlPurposeDataDownloadInternalV1(</span>
+          context, ulDataDownloadRequest);
+<span class="nc" id="L241">    } catch (RestClientException e) {</span>
+
+      // todo
+<span class="nc" id="L244">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP080003E, null);</span>
+<span class="nc" id="L245">    }</span>
+<span class="nc" id="L246">  }</span>
+
+  /**
+   * 検索パラメタに未指定の項目がある場合、このメソッドを呼び出し.
+   *
+   * @param searchParamEntity 検索パラメタエンテイテイ
+   */
+  private SearchConditionParamEntity checkSearchConditionParamEntity(
+      SearchConditionParamEntity searchParamEntity) {
+
+    // 検索パラメタを補足する
+    // 変数.配送先コードが未指定の場合は初期値（All *）を検索条件に追加する
+<span class="nc bnc" id="L258" title="All 2 branches missed.">    if (StringUtil.isEmpty(searchParamEntity.getShipToCode())) {</span>
+<span class="nc" id="L259">      searchParamEntity.setShipToCode(ReplenishStockConstants.ASTERISK_SHIP_TO_CODE);</span>
+    }
+
+    // 変数.統合インナーコード：未指定の場合は初期値（All *）を検索条件に追加する
+<span class="nc bnc" id="L263" title="All 2 branches missed.">    if (StringUtil.isEmpty(searchParamEntity.getGinnerCode())) {</span>
+<span class="nc" id="L264">      searchParamEntity.setGinnerCode(ReplenishStockConstants.ASTERISK_GINNER_CODE);</span>
+    }
+
+    // 変数.置場リスが未指定の場合は初期値（All *）を検索条件に追加する
+<span class="nc bnc" id="L268" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(searchParamEntity.getPlantCdList())) {</span>
+<span class="nc" id="L269">      List&lt;RegistWeeklyOrderDlRequestplantCdListV1&gt; plantCdList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L270">      final RegistWeeklyOrderDlRequestplantCdListV1 plantCdListV1 =</span>
+          new RegistWeeklyOrderDlRequestplantCdListV1();
+<span class="nc" id="L272">      plantCdListV1.setPlantCd(ReplenishStockConstants.ASTERISK_PLANT_CODE_LIST);</span>
+<span class="nc" id="L273">      plantCdList.add(plantCdListV1);</span>
+<span class="nc" id="L274">      searchParamEntity.setPlantCdList(plantCdList);</span>
+    }
+
+    // 変数.分析コード:From-Toが両方未指定の場合は初期値（All *）を
+    // 検索条件に追加する
+<span class="nc bnc" id="L279" title="All 2 branches missed.">    if (StringUtil.isEmpty(searchParamEntity.getClassifyCodeTO())</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">        &amp;&amp; StringUtil.isEmpty(searchParamEntity.getClassifyCodeFrom())) {</span>
+<span class="nc" id="L281">      searchParamEntity.setClassifyCodeTO(ReplenishStockConstants.ASTERISK_CLASSIFY_CODE);</span>
+<span class="nc" id="L282">      searchParamEntity.setClassifyCodeFrom(ReplenishStockConstants.ASTERISK_CLASSIFY_CODE);</span>
+    }
+
+<span class="nc" id="L285">    return searchParamEntity;</span>
+  }
+
+  /**
+   * DLファイルを出力する.
+   *
+   * @param weeklyList 次発注点除外条件マスタエンテイテイ
+   * @throws IOException io異常
+   */
+  private File outputDownloadFile(
+      List&lt;WeeklyReorderPointExcludeConditionEntity&gt; weeklyList,
+      FileRegisterProcessTaskFormat processTaskFormat)
+      throws IOException {
+
+    // ファイル名を設定
+<span class="nc" id="L300">    String subsidiaryCode = processTaskFormat.getSubsidiaryCode();</span>
+<span class="nc" id="L301">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+
+<span class="nc" id="L303">    final String dateTimeStr =</span>
+<span class="nc" id="L304">        dateTime.format(DateTimeFormatter.ofPattern(ReplenishStockConstants.ZONE_DATE_TIME_FORMAT));</span>
+
+<span class="nc" id="L306">    String fileName =</span>
+        ReplenishStockConstants.BATCH_ID_WEEKLY_ORDER_DL_FILE
+            + subsidiaryCode
+            + ReplenishStockConstants.FILE_NAME_CHARACTER_UNDERLINE
+            + dateTimeStr
+            + ReplenishStockConstants.TXT_FILE_SUFFIX;
+
+<span class="nc" id="L313">    File file = new File(fileName);</span>
+
+<span class="nc" id="L315">    try (BufferedWriter bw =</span>
+        new BufferedWriter(
+            new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+
+<span class="nc" id="L319">      String title =</span>
+          ReplenishStockConstants.SUBSIDIARY_CODE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.CUSTOMER_CODE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.SHIP_TO_CODE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.GINNER_CODE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.CLASSIFY_CODE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.PLANT_CODE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.SUPPLY_TYPE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.EFFECTIVE_DATE_FROM
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.UPDATE_COUNT
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.DELETE_FLAG
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.REGISTER_USER_TYPE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.REGISTER_USER
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.REGISTER_DATE_TIME
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.REGISTER_PROGRAM
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.REGISTER_CLIENT_PROGRAM
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.UPDATE_USER_TYPE
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.UPDATE_USER
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.UPDATE_DATE_TIME
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.UPDATE_PROGRAM
+              + ReplenishStockConstants.TAB_SEPARATOR
+              + ReplenishStockConstants.UPDATE_CLIENT_PROGRAM;
+<span class="nc" id="L359">      bw.write(title);</span>
+<span class="nc" id="L360">      bw.newLine();</span>
+
+<span class="nc bnc" id="L362" title="All 2 branches missed.">      for (WeeklyReorderPointExcludeConditionEntity entity : weeklyList) {</span>
+<span class="nc bnc" id="L363" title="All 2 branches missed.">        if (entity != null) {</span>
+<span class="nc" id="L364">          String entityString = getEntityString(entity);</span>
+<span class="nc" id="L365">          bw.write(entityString);</span>
+<span class="nc" id="L366">          bw.newLine();</span>
+        }
+<span class="nc" id="L368">      }</span>
+    }
+<span class="nc" id="L370">    return file;</span>
+  }
+
+  /**
+   * 出力フォーマルを作成する.
+   *
+   * @param entity 週次発注点除外条件マスタエンテイテイ
+   * @return 週次発注点除外条件マスタエンテイテイの出力フォーマル
+   */
+  private String getEntityString(WeeklyReorderPointExcludeConditionEntity entity) {
+<span class="nc" id="L380">    return entity.getSubsidiaryCode()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L382">        + entity.getCustomerCode()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L384">        + entity.getShipToCode()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L386">        + entity.getGinnerCode()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L388">        + entity.getClassifyCode()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L390">        + entity.getPlantCode()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L392">        + entity.getSupplyType()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L394">        + entity.getEffectiveStartDate()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L396">        + entity.getUpdateCount()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L398">        + entity.getDeleteFlag()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L400">        + entity.getRegisterDateTime()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L402">        + entity.getRegisterUser()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L404">        + entity.getRegisterUserType()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L406">        + entity.getRegisterClientProgram()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L408">        + entity.getRegisterProgram()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L410">        + entity.getUpdateDateTime()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L412">        + entity.getUpdateUser()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L414">        + entity.getUpdateUserType()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L416">        + entity.getUpdateClientProgram()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR
+<span class="nc" id="L418">        + entity.getUpdateProgram()</span>
+        + ReplenishStockConstants.TAB_SEPARATOR;
+  }
+
+  /**
+   * ダウンロード情報を取得.
+   *
+   * @param searchConditionParamEntity 検索パラメター
+   * @return 取得結果
+   */
+  private List&lt;WeeklyReorderPointExcludeConditionEntity&gt; searchDownloadInfo(
+      SearchConditionParamEntity searchConditionParamEntity) throws IOException {
+
+<span class="nc" id="L431">    List&lt;WeeklyReorderPointExcludeConditionEntity&gt; excludeConditionEntityList = null;</span>
+
+    // 週次発注点除外条件マスタを検索してから、ダウンロード情報を取得する。
+<span class="nc" id="L434">    try (CloseableIterable&lt;WeeklyReorderPointExcludeConditionEntity&gt; resultIterable =</span>
+<span class="nc" id="L435">        createWeeklyRepository.searchWeeklyReorderPoint(searchConditionParamEntity)) {</span>
+<span class="nc" id="L436">      excludeConditionEntityList = Utils.toList(resultIterable.iterator());</span>
+    }
+
+<span class="nc" id="L439">    return excludeConditionEntityList;</span>
+  }
+
+  /**
+   * json文字列からエンテイテイに変更する.
+   *
+   * @param processTaskFormat リクエスト
+   * @return 検索パラメターエンテイテイ
+   * @throws JsonProcessingException 異常
+   */
+  private SearchConditionParamEntity getSearchConditionParamEntity(
+      FileRegisterProcessTaskFormat processTaskFormat) throws JsonProcessingException {
+
+    // 「リクエスト.JOB制御用エリア１」を取得
+    // 参照「API設計書_MAPIROP090_週次発注点除外条件マスタDL非同期タスク登録」
+    // 機能呼出仕様 --&gt; リクエスト項目設定
+    // JOB制御用エリア１ =
+    // &quot;customer_code=&quot; +リクエスト項目.得意先コード　+　”,” +
+    // &quot;ship_to_code=&quot; +リクエスト項目.配送先コード　+　”,” +
+    // &quot;ginner_code_FROM=&quot; + リクエスト項目.統合インナーコード(From)　+　”,” +
+    // &quot;ginner_code_TO=&quot; +リクエスト項目.インナーコード(To)　+　”,” +
+    // &quot;classify_code_FROM=&quot; +リクエスト項目.分析コード(from)　+　”,” +
+    // &quot;classify_code_TO=&quot; +リクエスト項目.分析コード(to)　+　”,” +
+    // &quot;plant_code_LIST=&quot; +リクエスト項目.置場リスト +　”,” +
+    // &quot;effective_start_date_FROM=&quot; +リクエスト項目.適用開始日(From)　+　”,” +
+    // &quot;effective_start_date_TO=&quot; +リクエスト項目.適用開始日(To)　+　”,” +
+    // &quot;delete_flag=&quot; +リクエスト項目.削除フラグ
+<span class="nc" id="L466">    String jobControlArea1 = processTaskFormat.getJobControlArea1();</span>
+
+<span class="nc" id="L468">    final StringBuilder stringBuilder = new StringBuilder();</span>
+
+    // 現法コードを追加する
+<span class="nc" id="L471">    final String requestStr =</span>
+        stringBuilder
+<span class="nc" id="L473">            .append(&quot;{\&quot;&quot;)</span>
+<span class="nc" id="L474">            .append(</span>
+                ReplenishStockConstants.CONCERT_JSON_SUBSIDIARY_CODE
+<span class="nc" id="L476">                    + processTaskFormat.getSubsidiaryCode()</span>
+                    + &quot;,&quot;)
+<span class="nc" id="L478">            .append(jobControlArea1)</span>
+<span class="nc" id="L479">            .append(&quot;\&quot;}&quot;)</span>
+<span class="nc" id="L480">            .toString();</span>
+
+    // 以下のコードは文字列をjsonに変換するためです、読みやすいように定数を設定しない
+<span class="nc" id="L483">    final String replace1 = requestStr.replace(&quot;RegistWeeklyOrderDlRequestplantCdListV1(&quot;, &quot;{&quot;);</span>
+
+<span class="nc" id="L485">    final String replace2 = replace1.replace(&quot;)&quot;, &quot;}&quot;);</span>
+
+<span class="nc" id="L487">    String replace3 = replace2.replace(&quot;=&quot;, &quot;\&quot;:\&quot;&quot;);</span>
+
+<span class="nc" id="L489">    final String replace4 = replace3.replace(&quot;,&quot;, &quot;\&quot;,\&quot;&quot;);</span>
+
+<span class="nc" id="L491">    final String replace5 = replace4.replace(&quot;\&quot;[&quot;, &quot;[&quot;).replace(&quot;]\&quot;&quot;, &quot;]&quot;);</span>
+
+<span class="nc" id="L493">    final String replace6 = replace5.replace(&quot;}\&quot;&quot;, &quot;\&quot;}&quot;).replace(&quot;}]&quot;, &quot;\&quot;}]&quot;);</span>
+
+<span class="nc" id="L495">    final String replace7 = replace6.replace(&quot;\&quot; {&quot;, &quot;{\&quot;&quot;);</span>
+
+<span class="nc" id="L497">    final String replace8 = replace7.replace(&quot;{plantCd&quot;, &quot;{\&quot;plantCd&quot;);</span>
+
+    // json文字列からエンテイテイに変更する
+    // 例えば以下のフォーマット
+    // {
+    //  &quot;subsidiaryCode&quot;: &quot;xxx&quot;,
+    //  &quot;customer_code&quot;: &quot;xxx&quot;,
+    //  &quot;ship_to_code&quot;: &quot;xxx&quot;,
+    //  &quot;ginner_code&quot;: &quot;xxx&quot;,
+    //  &quot;classify_code_FROM&quot;: &quot;xxx&quot;,
+    //  &quot;classify_code_TO&quot;: &quot;xxx&quot;,
+    //  &quot;plant_code_LIST&quot;: [
+    //    {
+    //      &quot;plantCd&quot;: &quot;xxx&quot;
+    //    },
+    //    {
+    //      &quot;plantCd&quot;: &quot;xxx&quot;
+    //    },
+    //    {
+    //      &quot;plantCd&quot;: &quot;xxx&quot;
+    //    }
+    //   ...
+    //  ],
+    //  &quot;effective_start_date_FROM&quot;: &quot;xxx&quot;,
+    //  &quot;effective_start_date_TO&quot;: &quot;xxx&quot;,
+    //  &quot;delete_Flag&quot;: &quot;xxx&quot;
+    // }
+<span class="nc" id="L524">    return objectMapper.readValue(replace8, SearchConditionParamEntity.class);</span>
+  }
+
+  /**
+   * 汎用ファイルアップロードAPI（DL用ファイル）呼出.
+   *
+   * @param context リクエスト共通項目情報
+   * @param uploadResultFile アップロード結果ファイル
+   * @return 処理結果
+   */
+  private FileUploadResponseV1 uploadGeneralFile(RequestContext context, File uploadResultFile)
+      throws BusinessException {
+    try {
+
+      // 汎用ファイルアップロードAPI（DL用ファイル）を呼び出す
+<span class="nc" id="L539">      return generalUploadClient.uploadFileV1(context, uploadResultFile);</span>
+<span class="nc" id="L540">    } catch (RestClientException e) {</span>
+<span class="nc" id="L541">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP080002E, e);</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

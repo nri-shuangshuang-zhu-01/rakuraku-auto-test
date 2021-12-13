@@ -1,0 +1,30 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+DL商品タイプコード::dl_product_type_code::varchar(25)::NOT NULL(PK)
+DL追加工コード（置換前）::dl_additional_process_code_before_replace::varchar(12)::NOT NULL(PK)
+DL追加工コード（置換後）::dl_additional_process_code_after_replace::varchar(12)::NULL
+置換ルール1_指定有無フラグ::replace_rule1_specify_flag::char(1)::NOT NULL
+置換ルール1_特定記号::replace_rule1_specify_symbol::varchar(7)::NULL
+置換ルール2_指定有無フラグ::replace_rule2_specify_flag::char(1)::NOT NULL
+置換ルール2_特定記号::replace_rule2_specify_symbol::varchar(7)::NULL
+置換ルール3_指定有無フラグ::replace_rule3_specify_flag::char(1)::NULL
+置換ルール3_特定記号::replace_rule3_specify_symbol::varchar(7)::NULL
+置換ルール4_指定有無フラグ::replace_rule4_specify_flag::char(1)::NULL
+置換ルール4_特定記号::replace_rule4_specify_symbol::varchar(7)::NULL
+置換ルール5_指定有無フラグ::replace_rule5_specify_flag::char(1)::NULL
+置換ルール5_特定記号::replace_rule5_specify_symbol::varchar(7)::NULL
+注釈::remarks::varchar(60)::NULL
+逆変換フラグ::reconverted_flag::char(1)::NULL
+DL追加工コード（逆変換後）::dl_additional_process_code_reconverted::varchar(12)::NULL
+ハイフン付与::hyphen_add::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

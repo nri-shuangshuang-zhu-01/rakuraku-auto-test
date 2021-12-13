@@ -1,0 +1,14 @@
+■api名称：　共通_データアップロード_ステータス更新API
+■api Request：　/internal/v1/data-upload/save
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=temp&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a28&&
+■api Body：　{  "controlSeqNumber": "1234567890",  "statusCode": "3",  "processResultCode": "2",  "updateCount": 1}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NFMCD5D0002E",
+  "argumentList": [
+    "ステータスコード"
+  ],
+  "message": "ステータスコードに不正な値が入力されています。正しい値を入力してください"
+}

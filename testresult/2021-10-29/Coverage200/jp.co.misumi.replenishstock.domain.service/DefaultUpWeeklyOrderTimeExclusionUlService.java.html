@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultUpWeeklyOrderTimeExclusionUlService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultUpWeeklyOrderTimeExclusionUlService.java</span></div><h1>DefaultUpWeeklyOrderTimeExclusionUlService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Pattern;
+import javax.validation.Valid;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.common.idempotency.domain.value.IdempotentRequestStatus;
+import jp.co.misumi.fw.common.idempotency.transaction.DefaultPhase;
+import jp.co.misumi.fw.common.idempotency.transaction.IdempotentRequestProcessor;
+import jp.co.misumi.fw.common.idempotency.transaction.Phase;
+import jp.co.misumi.fw.common.idempotency.transaction.Result;
+import jp.co.misumi.fw.common.idempotency.transaction.annotation.NamedIdempotentRequestProcessor;
+import jp.co.misumi.fw.common.objectstorage.storage.ObjectStorageClient;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.time.TimeProvider;
+import jp.co.misumi.fw.core.util.StringUtil;
+import jp.co.misumi.fw.rest.api.common.file.upload.config.RestFileUploadConfiguration;
+import jp.co.misumi.fw.rest.api.common.file.upload.domain.entity.TemporaryFile;
+import jp.co.misumi.fw.rest.api.common.file.upload.domain.value.TemporaryFileId;
+import jp.co.misumi.fw.rest.api.common.file.upload.facade.TemporaryFileService;
+import jp.co.misumi.replenishstock.domain.client.GeneralUploadClient;
+import jp.co.misumi.replenishstock.domain.client.UlPurposeDataDownloadInternalClient;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyOrderTimeExcludeUlErrEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointExcludeConditionProcessEntity;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointExcludeConditionProcessRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.client.fileuploadcontainer.yaml.container.FileUploadResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderUlErrorListV1;
+import jp.co.misumi.replenishstock.model.task.DownloadGeneralPurposeTaskV1Format;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.ByteOrderMark;
+import org.apache.commons.io.input.BOMInputStream;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.context.MessageSource;
+import org.springframework.web.client.RestClientException;
+
+@RequiredArgsConstructor
+@NamedIdempotentRequestProcessor(&quot;DefaultUpWeeklyOrderTimeExclusionUlService&quot;)
+public class DefaultUpWeeklyOrderTimeExclusionUlService
+    implements UpWeeklyOrderTimeExclusionUlService,
+        IdempotentRequestProcessor&lt;DownloadGeneralPurposeTaskV1Format&gt; {
+
+  private final WeeklyReorderPointExcludeConditionProcessRepository weeklyReorderRepository;
+  private final UlPurposeDataDownloadInternalClient ulPurposeDownloadClient;
+  private final GeneralUploadClient generalUploadClient;
+  private final MessageSource messageSource;
+  private final ObjectStorageClient objectStorageClient;
+  private final RestFileUploadConfiguration config;
+  private final TemporaryFileService temporaryFileService;
+  private final TimeProvider timeProvider;
+
+  /**
+   * 冪等処理.
+   *
+   * @return 冪等処理の最終的な結果
+   */
+  @Override
+  public List&lt;Phase&lt;DownloadGeneralPurposeTaskV1Format&gt;&gt; getPhases() {
+<span class="nc" id="L78">    return List.of(</span>
+        new DefaultPhase&lt;&gt;(
+            IdempotentRequestStatus.CREATED,
+            ((context, format) -&gt; {
+<span class="nc" id="L82">              update(context, format);</span>
+<span class="nc" id="L83">              return Result.of(</span>
+                  IdempotentRequestStatus.OK, &quot;Processed Success&quot;); // 冪等処理の最終的な結果を第2引数に入れる
+            })));
+  }
+
+  /**
+   * MAPIROP100_週次発注点除外条件マスタULマスタ更新.
+   *
+   * @param context 共通
+   * @param taskFormat タスク
+   * @throws Exception 異常
+   */
+  @Override
+  public void update(RequestContext context, @Valid DownloadGeneralPurposeTaskV1Format taskFormat)
+      throws BusinessException, IOException {
+
+    // UL用/UL結果データダウンロード登録・更新API(開始)
+<span class="nc" id="L100">    SaveUlPurposeDataDownloadInternalResponseV1 saveUlPurResponse =</span>
+<span class="nc" id="L101">        startGeneralDownloadInternal(context);</span>
+
+    // アップロードファイルの一時ファイル管理情報取得
+<span class="nc" id="L104">    TemporaryFile temporaryFile = getTempFileId(context, taskFormat);</span>
+
+    // アップロードファイル取得
+<span class="nc" id="L107">    InputStream is = getFile(temporaryFile);</span>
+
+    // アップロードファイル名取得
+<span class="nc" id="L110">    String upLoadFileName = getFileName(temporaryFile);</span>
+
+    // アップロードファイル読んだ、DBを更新し、UL結果ファイルを作成します
+<span class="nc" id="L113">    StringBuilder sb = getUlResultFile(context, is);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">    if (StringUtil.isEmpty(sb.toString())) {</span>
+<span class="nc" id="L115">      return;</span>
+    }
+
+    // UL結果ファイル出力
+<span class="nc" id="L119">    File uploadFile = outUlResultFile(sb, upLoadFileName);</span>
+
+    // 汎用ファイルアップロードAPI（UL用ファイル）呼出
+<span class="nc" id="L122">    FileUploadResponseV1 fileUploadResponseV1 = uploadGeneralFile(context, uploadFile);</span>
+
+    // 保存先ファイルコピー
+<span class="nc" id="L125">    String filePath = copyFile(context, fileUploadResponseV1);</span>
+
+    // UL用/UL結果データダウンロード登録・更新API(終了)
+<span class="nc" id="L128">    registerGeneralDownload(context, saveUlPurResponse, filePath, fileUploadResponseV1);</span>
+<span class="nc" id="L129">  }</span>
+
+  /**
+   * UL用/UL結果データダウンロード登録・更新API(開始).
+   *
+   * @param context 共通
+   * @return レスポンス
+   */
+  public SaveUlPurposeDataDownloadInternalResponseV1 startGeneralDownloadInternal(
+      RequestContext context) throws BusinessException {
+
+<span class="nc" id="L140">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+
+<span class="nc" id="L142">    SaveUlPurposeDataDownloadInternalRequestV1 saveRequestV1 =</span>
+        new SaveUlPurposeDataDownloadInternalRequestV1();
+
+    SaveUlPurposeDataDownloadInternalResponseV1 saveUlResponseV1;
+
+    try {
+      // 登録設定項目
+      // データコード
+<span class="nc" id="L150">      saveRequestV1.setDataCode(ReplenishStockConstants.DATE_CODE);</span>
+      // 作成日時
+<span class="nc" id="L152">      saveRequestV1.setCreateTime(dateTime);</span>
+      // UL用/UL結果データダウンロード登録・更新API呼出
+<span class="nc" id="L154">      saveUlResponseV1 =</span>
+<span class="nc" id="L155">          ulPurposeDownloadClient.saveUlPurposeDataDownloadInternalV1(context, saveRequestV1);</span>
+<span class="nc" id="L156">    } catch (RestClientException e) {</span>
+      // API返却エラー
+<span class="nc" id="L158">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP100014E, null);</span>
+<span class="nc" id="L159">    }</span>
+
+<span class="nc" id="L161">    return saveUlResponseV1;</span>
+  }
+
+  /**
+   * 一時ファイル管理情報取得.
+   *
+   * @param context リクエスト共通項目情報
+   * @param taskFormat リクエスト情報
+   * @return TemporaryFileId
+   */
+  public TemporaryFile getTempFileId(
+      RequestContext context, DownloadGeneralPurposeTaskV1Format taskFormat) {
+<span class="nc" id="L173">    TemporaryFileId temporaryFileId =</span>
+<span class="nc" id="L174">        new TemporaryFileId(taskFormat.getTempFileId(), taskFormat.getSignature());</span>
+<span class="nc" id="L175">    return temporaryFileService.findById(context, temporaryFileId);</span>
+  }
+
+  /**
+   * ファイル取得.
+   *
+   * @param temporaryFile 一時ファイル管理情報
+   * @return InputStream
+   */
+  public InputStream getFile(TemporaryFile temporaryFile) {
+<span class="nc" id="L185">    return (InputStream)</span>
+<span class="nc" id="L186">        objectStorageClient.getObject(temporaryFile.getKey(), temporaryFile.getStorage());</span>
+  }
+
+  /**
+   * ファイル名取得.
+   *
+   * @param temporaryFile 一時ファイル管理情報
+   * @return ファイル名
+   */
+  public String getFileName(TemporaryFile temporaryFile) {
+<span class="nc" id="L196">    return temporaryFile</span>
+<span class="nc" id="L197">        .getStoredFilePath()</span>
+<span class="nc" id="L198">        .substring(</span>
+<span class="nc" id="L199">            temporaryFile.getStoredFilePath().lastIndexOf(ReplenishStockConstants.CHAR_SLASH)</span>
+<span class="nc" id="L200">                + ReplenishStockConstants.INT_1);</span>
+  }
+
+  /**
+   * アップロードファイル読み、DBを更新し、UL結果ファイルを作成します.
+   *
+   * @param context 共通
+   * @param is InputStream
+   * @return StringBuilder
+   */
+  private StringBuilder getUlResultFile(RequestContext context, InputStream is)
+      throws BusinessException, IOException {
+
+    // 現法コード
+<span class="nc" id="L214">    String subsidiaryCode = context.getSubsidiaryCode();</span>
+    // 最大エラー数初期化
+<span class="nc" id="L216">    int maxErrorLen = ReplenishStockConstants.INT_0;</span>
+    // UL結果ファイル
+<span class="nc" id="L218">    StringBuilder sb = new StringBuilder();</span>
+    // UL結果ファイルデータ
+<span class="nc" id="L220">    StringBuilder sbContent = new StringBuilder();</span>
+
+    // アップロードファイルのデータ存在チェック
+<span class="nc" id="L223">    List&lt;WeeklyReorderPointExcludeConditionProcessEntity&gt; loadFileList = getUploadFile(is);</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(loadFileList)) {</span>
+      // アップロードファイルのレコード件数が0件の場合、処理正常終了
+<span class="nc bnc" id="L226" title="All 2 branches missed.">    } else if (loadFileList.size() &gt; ReplenishStockConstants.MAX_RECORD) {</span>
+      // アップロードファイルのレコード件数&gt;5000、エラーUL結果編集.
+<span class="nc" id="L228">      sb = editUlErrResult();</span>
+    } else {
+      // アップロードファイル読込、レコード件数を繰り返し
+<span class="nc bnc" id="L231" title="All 2 branches missed.">      for (WeeklyReorderPointExcludeConditionProcessEntity entity : loadFileList) {</span>
+
+        // 処理フラグ
+        int syoRiFlg;
+        // 項目チェックエラー取得
+<span class="nc" id="L236">        WeeklyOrderTimeExcludeUlErrEntity errorMsg = getErrInfo(subsidiaryCode, entity);</span>
+
+        // チェックエラーが発生した場合
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        if (CollectionUtils.isNotEmpty(errorMsg.getErrorList())) {</span>
+          // 処理フラグは”1”（エラー）を設定し、UL結果ファイル出力
+          // 最大エラー数取得
+<span class="nc bnc" id="L242" title="All 2 branches missed.">          if (errorMsg.getErrorLen() &gt; maxErrorLen) {</span>
+<span class="nc" id="L243">            maxErrorLen = errorMsg.getErrorLen();</span>
+          }
+<span class="nc" id="L245">          syoRiFlg = ReplenishStockConstants.INT_1;</span>
+        } else {
+          // 週次発注点除外条件マスタDB処理
+<span class="nc" id="L248">          executeWeeklyReorderPointExcludeCondition(context, entity);</span>
+          // 変数．処理フラグ　＝”0”（正常）を設定し、UL結果ファイル出力
+<span class="nc" id="L250">          syoRiFlg = ReplenishStockConstants.INT_0;</span>
+        }
+
+        // UL結果ファイル内容の編集
+<span class="nc" id="L254">        StringBuilder tmpSbContent = editUlContent(syoRiFlg, entity, errorMsg.getErrorList());</span>
+<span class="nc" id="L255">        sbContent = sbContent.append(tmpSbContent);</span>
+<span class="nc" id="L256">      }</span>
+      // UL結果ファイルタイトルの編集
+<span class="nc" id="L258">      StringBuilder sbTitle = editUlTitle(maxErrorLen);</span>
+      // UL結果ファイルの編集
+<span class="nc" id="L260">      sb = sbTitle.append(sbContent);</span>
+    }
+<span class="nc" id="L262">    return sb;</span>
+  }
+
+  /**
+   * アップロードデータ取得.
+   *
+   * @param is アップロードファイル
+   * @return list
+   */
+  private List&lt;WeeklyReorderPointExcludeConditionProcessEntity&gt; getUploadFile(InputStream is)
+      throws IOException {
+<span class="nc" id="L273">    List&lt;WeeklyReorderPointExcludeConditionProcessEntity&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L274">    BufferedReader br =</span>
+        new BufferedReader(
+            new InputStreamReader(
+                new BOMInputStream(is, ByteOrderMark.UTF_8), StandardCharsets.UTF_8));
+    String str;
+    // 行目の初期化
+<span class="nc" id="L280">    int fileLine = 0;</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">    while ((str = br.readLine()) != null) {</span>
+<span class="nc" id="L282">      fileLine++;</span>
+      // 2行目から読む
+<span class="nc bnc" id="L284" title="All 2 branches missed.">      if (fileLine &gt; 1) {</span>
+        // アップロードファイルデータ情報の初期化
+<span class="nc" id="L286">        WeeklyReorderPointExcludeConditionProcessEntity entity =</span>
+            new WeeklyReorderPointExcludeConditionProcessEntity();
+        // アップロードファイルデータ情報の設定
+<span class="nc" id="L289">        String[] strArray = str.split(ReplenishStockConstants.TAB_SEPARATOR);</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">        if (strArray.length == ReplenishStockConstants.INT_9) {</span>
+          // 現法コード
+<span class="nc" id="L292">          entity.setSubsidiaryCode(String.valueOf(strArray[ReplenishStockConstants.INT_0]));</span>
+          // 得意先コード
+<span class="nc" id="L294">          entity.setCustomerCode(String.valueOf(strArray[ReplenishStockConstants.INT_1]));</span>
+          // 配送先コード
+<span class="nc" id="L296">          entity.setShipToCode(String.valueOf(strArray[ReplenishStockConstants.INT_2]));</span>
+          // 統合インナーコード
+<span class="nc" id="L298">          entity.setGinnerCode(String.valueOf(strArray[ReplenishStockConstants.INT_3]));</span>
+          // 分析コード
+<span class="nc" id="L300">          entity.setClassifyCode(String.valueOf(strArray[ReplenishStockConstants.INT_4]));</span>
+          // 置場コード
+<span class="nc" id="L302">          entity.setPlantCode(String.valueOf(strArray[ReplenishStockConstants.INT_5]));</span>
+          // 調達区分
+<span class="nc" id="L304">          entity.setSupplyType(String.valueOf(strArray[ReplenishStockConstants.INT_6]));</span>
+          // 適用開始日
+<span class="nc" id="L306">          entity.setEffectiveStartDate(String.valueOf(strArray[ReplenishStockConstants.INT_7]));</span>
+          // 削除フラグ
+<span class="nc" id="L308">          entity.setDeleteFlag(String.valueOf(strArray[ReplenishStockConstants.INT_8]));</span>
+<span class="nc" id="L309">          list.add(entity);</span>
+        }
+<span class="nc" id="L311">      }</span>
+    }
+<span class="nc" id="L313">    br.close();</span>
+<span class="nc" id="L314">    return list;</span>
+  }
+
+  /**
+   * 項目チェック.
+   *
+   * @param subsidiaryCode 現法コード
+   * @param entity 週次発注点除外条件マスタデータ情報
+   * @return WeeklyOrderTimeExcludeUlErrEntity
+   */
+  private WeeklyOrderTimeExcludeUlErrEntity getErrInfo(
+      String subsidiaryCode, WeeklyReorderPointExcludeConditionProcessEntity entity) {
+
+    // 一時用エラー情報
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+    // エラー情報
+<span class="nc" id="L330">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+    // 単項目チェック
+    // 現法コードチェック
+<span class="nc" id="L334">    tmpErrorList = chkSubCode(entity.getSubsidiaryCode());</span>
+<span class="nc" id="L335">    errorList.addAll(tmpErrorList);</span>
+
+    // 得意先コードチェック
+<span class="nc" id="L338">    tmpErrorList = chkCusCode(entity.getCustomerCode());</span>
+<span class="nc" id="L339">    errorList.addAll(tmpErrorList);</span>
+
+    // 配送先コードチェック
+<span class="nc" id="L342">    tmpErrorList = chkShipCode(entity.getShipToCode());</span>
+<span class="nc" id="L343">    errorList.addAll(tmpErrorList);</span>
+
+    // 統合インナーコードチェック
+<span class="nc" id="L346">    tmpErrorList = chkGinCode(entity.getGinnerCode());</span>
+<span class="nc" id="L347">    errorList.addAll(tmpErrorList);</span>
+
+    // 分析コードチェック
+<span class="nc" id="L350">    tmpErrorList = chkClassifyCode(entity.getClassifyCode());</span>
+<span class="nc" id="L351">    errorList.addAll(tmpErrorList);</span>
+
+    // 置場コードチェック
+<span class="nc" id="L354">    tmpErrorList = chkPlantCode(entity.getPlantCode());</span>
+<span class="nc" id="L355">    errorList.addAll(tmpErrorList);</span>
+
+    // 調達区分チェック
+<span class="nc" id="L358">    tmpErrorList = chkSupplyType(entity.getSupplyType());</span>
+<span class="nc" id="L359">    errorList.addAll(tmpErrorList);</span>
+
+    // 適用開始日チェック
+<span class="nc" id="L362">    tmpErrorList = chkEffStartDate(entity.getEffectiveStartDate());</span>
+<span class="nc" id="L363">    errorList.addAll(tmpErrorList);</span>
+
+    // 削除フラグチェック
+<span class="nc" id="L366">    tmpErrorList = chkDelFlag(entity.getDeleteFlag());</span>
+<span class="nc" id="L367">    errorList.addAll(tmpErrorList);</span>
+
+    // 現法チェック
+<span class="nc" id="L370">    tmpErrorList = chkSubCodeValue(subsidiaryCode, entity.getSubsidiaryCode());</span>
+<span class="nc" id="L371">    errorList.addAll(tmpErrorList);</span>
+
+    // エラーリスト編集
+<span class="nc" id="L374">    errorList.removeIf(ObjectUtils::isEmpty);</span>
+
+    // アップロードファイルエラー情報の初期化
+<span class="nc" id="L377">    WeeklyOrderTimeExcludeUlErrEntity errorMsg = new WeeklyOrderTimeExcludeUlErrEntity();</span>
+
+    // エラー情報の設定
+<span class="nc" id="L380">    errorMsg.setErrorList(errorList);</span>
+    // エラー数の設定
+<span class="nc" id="L382">    errorMsg.setErrorLen(errorList.size());</span>
+
+<span class="nc" id="L384">    return errorMsg;</span>
+  }
+
+  /**
+   * 週次発注点除外条件マスタDB処理.
+   *
+   * @param context リクエスト共通項目情報
+   * @param weeklyReorderEntity 週次発注点除外条件マスタ情報
+   */
+  private void executeWeeklyReorderPointExcludeCondition(
+      RequestContext context, WeeklyReorderPointExcludeConditionProcessEntity weeklyReorderEntity)
+      throws BusinessException {
+
+    Optional&lt;WeeklyReorderPointExcludeConditionProcessEntity&gt; optionalWeeklyReorderEntity;
+
+    // 週次発注点除外条件マスタを検索する
+    try {
+<span class="nc" id="L401">      optionalWeeklyReorderEntity =</span>
+<span class="nc" id="L402">          weeklyReorderRepository.findOneByPk(context, weeklyReorderEntity);</span>
+<span class="nc" id="L403">    } catch (Exception e) {</span>
+<span class="nc" id="L404">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP100010E, e);</span>
+<span class="nc" id="L405">    }</span>
+
+    // 週次発注点除外条件データ存在チェック
+<span class="nc bnc" id="L408" title="All 2 branches missed.">    if (optionalWeeklyReorderEntity.isPresent()) {</span>
+      try {
+        // 週次発注点除外条件データを更新
+<span class="nc" id="L411">        weeklyReorderRepository.updateOneByPk(context, weeklyReorderEntity);</span>
+<span class="nc" id="L412">      } catch (Exception e) {</span>
+<span class="nc" id="L413">        throw new BusinessException(messageSource, ReplenishStockMessages.NIROP100011E, e);</span>
+<span class="nc" id="L414">      }</span>
+    } else {
+      try {
+        // 週次発注点除外条件データを登録
+<span class="nc" id="L418">        weeklyReorderRepository.createOne(context, weeklyReorderEntity);</span>
+<span class="nc" id="L419">      } catch (Exception e) {</span>
+<span class="nc" id="L420">        throw new BusinessException(messageSource, ReplenishStockMessages.NIROP100012E, e);</span>
+<span class="nc" id="L421">      }</span>
+    }
+<span class="nc" id="L423">  }</span>
+
+  /**
+   * レコード件数エラー、UL結果編集.
+   *
+   * @return StringBuilder
+   */
+  private StringBuilder editUlErrResult() {
+<span class="nc" id="L431">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L432">    sb.append(ReplenishStockConstants.STR_STS)</span>
+<span class="nc" id="L433">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L434">        .append(ReplenishStockConstants.MESSAGE_ID)</span>
+<span class="nc" id="L435">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L436">        .append(ReplenishStockConstants.MESSAGE_TEXT)</span>
+<span class="nc" id="L437">        .append(ReplenishStockConstants.LINE_SEPARATOR)</span>
+<span class="nc" id="L438">        .append(ReplenishStockConstants.STR_NG)</span>
+<span class="nc" id="L439">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L440">        .append(ReplenishStockMessages.NIROP100009E.getCode())</span>
+<span class="nc" id="L441">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L442">        .append(</span>
+<span class="nc" id="L443">            MessageFormat.format(</span>
+<span class="nc" id="L444">                ReplenishStockMessages.NIROP100009E.getDescription(),</span>
+                ReplenishStockConstants.MAX_RECORD));
+<span class="nc" id="L446">    return sb;</span>
+  }
+
+  /**
+   * UL結果ファイル内容の編集.
+   *
+   * @param sts 処理フラグ
+   * @param entity 週次発注点除外条件マスタデータ情報
+   * @param errorList エラー情報
+   * @return StringBuilder
+   */
+  private StringBuilder editUlContent(
+      int sts,
+      WeeklyReorderPointExcludeConditionProcessEntity entity,
+      List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList) {
+
+<span class="nc" id="L462">    StringBuilder sb = new StringBuilder();</span>
+
+    // 該当行の全項目、NG、ﾒｯｾｰｼﾞID、メッセージをUL結果ファイルに出力する
+<span class="nc" id="L465">    sb.append(entity.getSubsidiaryCode())</span>
+<span class="nc" id="L466">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L467">        .append(entity.getCustomerCode())</span>
+<span class="nc" id="L468">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L469">        .append(entity.getShipToCode())</span>
+<span class="nc" id="L470">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L471">        .append(entity.getGinnerCode())</span>
+<span class="nc" id="L472">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L473">        .append(entity.getClassifyCode())</span>
+<span class="nc" id="L474">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L475">        .append(entity.getPlantCode())</span>
+<span class="nc" id="L476">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L477">        .append(entity.getSupplyType())</span>
+<span class="nc" id="L478">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L479">        .append(entity.getEffectiveStartDate())</span>
+<span class="nc" id="L480">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L481">        .append(entity.getDeleteFlag())</span>
+<span class="nc" id="L482">        .append(ReplenishStockConstants.TAB_SEPARATOR);</span>
+<span class="nc bnc" id="L483" title="All 2 branches missed.">    if (sts == ReplenishStockConstants.INT_1) {</span>
+<span class="nc" id="L484">      sb.append(ReplenishStockConstants.STR_NG);</span>
+      // チェックエラー存在の場合、エラーメッセージIDとエラーメッセージの設定
+<span class="nc bnc" id="L486" title="All 2 branches missed.">      for (RegistWeeklyOrderUlErrorListV1 error : errorList) {</span>
+<span class="nc" id="L487">        sb.append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L488">            .append(error.getErrorCode())</span>
+<span class="nc" id="L489">            .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L490">            .append(error.getErrorMsg());</span>
+<span class="nc" id="L491">      }</span>
+    } else {
+<span class="nc" id="L493">      sb.append(ReplenishStockConstants.STR_OK)</span>
+<span class="nc" id="L494">          .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L495">          .append(ReplenishStockConstants.BLANK)</span>
+<span class="nc" id="L496">          .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L497">          .append(ReplenishStockConstants.BLANK);</span>
+    }
+<span class="nc" id="L499">    sb.append(ReplenishStockConstants.LINE_SEPARATOR);</span>
+
+<span class="nc" id="L501">    return sb;</span>
+  }
+
+  /**
+   * UL結果ファイルタイトルの編集.
+   *
+   * @param maxErrorLen 最大エラー数
+   * @return StringBuilder
+   */
+  private StringBuilder editUlTitle(Integer maxErrorLen) {
+
+<span class="nc" id="L512">    StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L514">    sb.append(ReplenishStockConstants.SUBSIDIARY_CODE)</span>
+<span class="nc" id="L515">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L516">        .append(ReplenishStockConstants.CUSTOMER_CODE)</span>
+<span class="nc" id="L517">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L518">        .append(ReplenishStockConstants.SHIP_TO_CODE)</span>
+<span class="nc" id="L519">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L520">        .append(ReplenishStockConstants.GINNER_CODE)</span>
+<span class="nc" id="L521">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L522">        .append(ReplenishStockConstants.CLASSIFY_CODE)</span>
+<span class="nc" id="L523">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L524">        .append(ReplenishStockConstants.PLANT_CODE)</span>
+<span class="nc" id="L525">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L526">        .append(ReplenishStockConstants.SUPPLY_TYPE)</span>
+<span class="nc" id="L527">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L528">        .append(ReplenishStockConstants.EFFECTIVE_DATE_FROM)</span>
+<span class="nc" id="L529">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L530">        .append(ReplenishStockConstants.DELETE_FLAG)</span>
+<span class="nc" id="L531">        .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L532">        .append(ReplenishStockConstants.STR_STS);</span>
+<span class="nc bnc" id="L533" title="All 2 branches missed.">    for (int i = 0; i &lt; maxErrorLen; i++) {</span>
+<span class="nc" id="L534">      sb.append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L535">          .append(ReplenishStockConstants.MESSAGE_ID)</span>
+<span class="nc" id="L536">          .append(ReplenishStockConstants.TAB_SEPARATOR)</span>
+<span class="nc" id="L537">          .append(ReplenishStockConstants.MESSAGE_TEXT);</span>
+    }
+<span class="nc" id="L539">    sb.append(ReplenishStockConstants.LINE_SEPARATOR);</span>
+
+<span class="nc" id="L541">    return sb;</span>
+  }
+
+  /**
+   * UL結果ファイル出力.
+   *
+   * @param sb ファイル内容
+   * @return UL結果ファイル
+   */
+  private File outUlResultFile(StringBuilder sb, String fileName) throws IOException {
+
+    // &quot;RES_&quot; ＋ [アップロードファイル名]
+<span class="nc" id="L553">    String resFileName =</span>
+        ReplenishStockConstants.FILE_NAME_RES
+            + ReplenishStockConstants.FILE_NAME_CHARACTER_UNDERLINE
+            + fileName;
+
+<span class="nc" id="L558">    File file = new File(resFileName);</span>
+<span class="nc" id="L559">    try (BufferedWriter bw =</span>
+        new BufferedWriter(
+            new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+<span class="nc" id="L562">      bw.write(sb.toString());</span>
+    }
+<span class="nc" id="L564">    return file;</span>
+  }
+
+  /**
+   * 汎用ファイルアップロードAPI（UL用ファイル）呼出.
+   *
+   * @param context リクエスト共通項目情報
+   * @param uploadResultFile アップロード結果ファイル
+   * @return 処理結果
+   */
+  public FileUploadResponseV1 uploadGeneralFile(RequestContext context, File uploadResultFile)
+      throws BusinessException {
+    try {
+<span class="nc" id="L577">      return generalUploadClient.uploadFileV1(context, uploadResultFile);</span>
+<span class="nc" id="L578">    } catch (RestClientException e) {</span>
+<span class="nc" id="L579">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP100013E, null);</span>
+    }
+  }
+
+  /**
+   * 保存先ファイルコピー（UL用ファイル）.
+   *
+   * @param context 共通
+   * @param fileUploadResponseV1 汎用ファイルアップロードのレスポンス
+   * @return ファイルパース
+   */
+  public String copyFile(RequestContext context, FileUploadResponseV1 fileUploadResponseV1) {
+<span class="nc" id="L591">    TemporaryFileId temporaryFileId =</span>
+<span class="nc" id="L592">        new TemporaryFileId(fileUploadResponseV1.getTemporaryFileId());</span>
+<span class="nc" id="L593">    temporaryFileService.copy(</span>
+        context,
+        temporaryFileId,
+<span class="nc" id="L596">        config.getStoreBucket()</span>
+            + ReplenishStockConstants.SAVE_FILE_PATH_UPLOAD_DOWNLOAD); // コピーだけするならこの行だけでOK
+<span class="nc" id="L598">    TemporaryFile temporaryFile = temporaryFileService.findById(context, temporaryFileId);</span>
+<span class="nc" id="L599">    return temporaryFile.getStoredFilePath();</span>
+  }
+
+  /**
+   * UL用/UL結果データダウンロード登録・更新API(終了).
+   *
+   * @param context リクエスト共通項目情報
+   * @param saveUlPurResponse リクエスト共通項目情報
+   * @param filePath アップロードファイルパス
+   * @param fileUploadResponseV1 汎用ファイルアップロードAPIレスポンス
+   */
+  public void registerGeneralDownload(
+      RequestContext context,
+      SaveUlPurposeDataDownloadInternalResponseV1 saveUlPurResponse,
+      String filePath,
+      FileUploadResponseV1 fileUploadResponseV1)
+      throws BusinessException {
+    try {
+<span class="nc" id="L617">      SaveUlPurposeDataDownloadInternalRequestV1 saveRequestV1 =</span>
+          new SaveUlPurposeDataDownloadInternalRequestV1();
+<span class="nc" id="L619">      saveRequestV1.setDataCode(&quot;&quot;);</span>
+<span class="nc" id="L620">      saveRequestV1.setCreateTime(timeProvider.currentZonedDateTime());</span>
+<span class="nc" id="L621">      saveRequestV1.setProcessResultCode(&quot;&quot;);</span>
+
+      // 管理SEQ番号
+<span class="nc" id="L624">      saveRequestV1.setControlSeqNumber(saveUlPurResponse.getControlSeqNumber());</span>
+<span class="nc" id="L625">      TemporaryFileId temporaryFileId =</span>
+<span class="nc" id="L626">          new TemporaryFileId(fileUploadResponseV1.getTemporaryFileId());</span>
+      // 一時ファイルコード
+<span class="nc" id="L628">      saveRequestV1.setTempFileCode(temporaryFileId.getTemporaryFileId());</span>
+      // ファイルパス
+<span class="nc" id="L630">      saveRequestV1.setFilePath(filePath);</span>
+      // PresignedURL変換APIパス
+<span class="nc" id="L632">      saveRequestV1.setPresignedApiPath(&quot;&quot;);</span>
+      // 署名
+<span class="nc" id="L634">      saveRequestV1.setSignature(temporaryFileId.getSignature());</span>
+      // 表示用ファイル名: 固定値 &quot;RES_&quot; ＋ [アップロードファイル名]
+<span class="nc" id="L636">      String resFIleName =</span>
+<span class="nc" id="L637">          filePath.substring(</span>
+<span class="nc" id="L638">              filePath.lastIndexOf(ReplenishStockConstants.CHAR_SLASH)</span>
+<span class="nc" id="L639">                  + ReplenishStockConstants.INT_1);</span>
+<span class="nc" id="L640">      saveRequestV1.setDisplayFileName(resFIleName);</span>
+      // ステータスコード
+<span class="nc" id="L642">      saveRequestV1.setStatusCode(ReplenishStockConstants.STRING_2);</span>
+      // 更新回数
+<span class="nc" id="L644">      saveRequestV1.setUpdateCount(saveUlPurResponse.getUpdateCount());</span>
+
+<span class="nc" id="L646">      ulPurposeDownloadClient.saveUlPurposeDataDownloadInternalV1(context, saveRequestV1);</span>
+<span class="nc" id="L647">    } catch (RestClientException e) {</span>
+<span class="nc" id="L648">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP100015E, null);</span>
+<span class="nc" id="L649">    }</span>
+<span class="nc" id="L650">  }</span>
+
+  /**
+   * 現法コードチェック.
+   *
+   * @param subsidiaryCode 現法コード
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkSubCode(String subsidiaryCode) {
+
+<span class="nc" id="L660">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 必須チェック
+<span class="nc" id="L664">    tmpErrorList = chkEmpty(subsidiaryCode, ReplenishStockConstants.SUBSIDIARY_CODE);</span>
+<span class="nc bnc" id="L665" title="All 2 branches missed.">    if (CollectionUtils.isNotEmpty(tmpErrorList)) {</span>
+<span class="nc" id="L666">      errorList.addAll(tmpErrorList);</span>
+<span class="nc" id="L667">      return errorList;</span>
+    }
+
+    // 半角チェック
+<span class="nc" id="L671">    tmpErrorList = chkHalfWidth(subsidiaryCode, ReplenishStockConstants.SUBSIDIARY_CODE);</span>
+<span class="nc" id="L672">    errorList.addAll(tmpErrorList);</span>
+
+    // 桁数チェック
+<span class="nc" id="L675">    tmpErrorList =</span>
+<span class="nc" id="L676">        chkDigits(</span>
+<span class="nc" id="L677">            subsidiaryCode, ReplenishStockConstants.SUBSIDIARY_CODE, ReplenishStockConstants.INT_3);</span>
+<span class="nc" id="L678">    errorList.addAll(tmpErrorList);</span>
+
+    // 英数字チェック
+<span class="nc" id="L681">    tmpErrorList = chkAlphanumeric(subsidiaryCode, ReplenishStockConstants.SUBSIDIARY_CODE);</span>
+<span class="nc" id="L682">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L684">    return errorList;</span>
+  }
+
+  /**
+   * 得意先コードチェック.
+   *
+   * @param customerCode 得意先コード
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkCusCode(String customerCode) {
+
+<span class="nc" id="L695">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 必須チェック
+<span class="nc" id="L699">    tmpErrorList = chkEmpty(customerCode, ReplenishStockConstants.CUSTOMER_CODE);</span>
+<span class="nc bnc" id="L700" title="All 2 branches missed.">    if (CollectionUtils.isNotEmpty(tmpErrorList)) {</span>
+<span class="nc" id="L701">      errorList.addAll(tmpErrorList);</span>
+<span class="nc" id="L702">      return errorList;</span>
+    }
+
+    // 半角チェック
+<span class="nc" id="L706">    tmpErrorList = chkHalfWidth(customerCode, ReplenishStockConstants.CUSTOMER_CODE);</span>
+<span class="nc" id="L707">    errorList.addAll(tmpErrorList);</span>
+
+    // 桁数チェック
+<span class="nc" id="L710">    tmpErrorList =</span>
+<span class="nc" id="L711">        chkDigits(</span>
+<span class="nc" id="L712">            customerCode, ReplenishStockConstants.CUSTOMER_CODE, ReplenishStockConstants.INT_6);</span>
+<span class="nc" id="L713">    errorList.addAll(tmpErrorList);</span>
+
+    // 英数字チェック
+<span class="nc" id="L716">    tmpErrorList = chkAlphanumeric(customerCode, ReplenishStockConstants.CUSTOMER_CODE);</span>
+<span class="nc" id="L717">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L719">    return errorList;</span>
+  }
+
+  /**
+   * 配送先コードチェック.
+   *
+   * @param shipToCode 配送先コード
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkShipCode(String shipToCode) {
+
+<span class="nc" id="L730">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 半角チェック
+<span class="nc" id="L734">    tmpErrorList = chkHalfWidth(shipToCode, ReplenishStockConstants.SHIP_TO_CODE);</span>
+<span class="nc" id="L735">    errorList.addAll(tmpErrorList);</span>
+
+    // 桁数チェック
+<span class="nc" id="L738">    tmpErrorList =</span>
+<span class="nc" id="L739">        chkDigits(shipToCode, ReplenishStockConstants.SHIP_TO_CODE, ReplenishStockConstants.INT_6);</span>
+<span class="nc" id="L740">    errorList.addAll(tmpErrorList);</span>
+
+    // 英数字またはAll *チェック
+<span class="nc" id="L743">    tmpErrorList = chkAlphanumericKgu(shipToCode, ReplenishStockConstants.SHIP_TO_CODE);</span>
+<span class="nc" id="L744">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L746">    return errorList;</span>
+  }
+
+  /**
+   * 統合インナーコードチェック.
+   *
+   * @param ginCode 統合インナーコード
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkGinCode(String ginCode) {
+
+<span class="nc" id="L757">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 半角チェック
+<span class="nc" id="L761">    tmpErrorList = chkHalfWidth(ginCode, ReplenishStockConstants.GINNER_CODE);</span>
+<span class="nc" id="L762">    errorList.addAll(tmpErrorList);</span>
+
+    // 桁数チェック
+<span class="nc" id="L765">    tmpErrorList =</span>
+<span class="nc" id="L766">        chkDigits(ginCode, ReplenishStockConstants.GINNER_CODE, ReplenishStockConstants.INT_14);</span>
+<span class="nc" id="L767">    errorList.addAll(tmpErrorList);</span>
+
+    // 英数字またはAll *チェック
+<span class="nc" id="L770">    tmpErrorList = chkAlphanumericKgu(ginCode, ReplenishStockConstants.GINNER_CODE);</span>
+<span class="nc" id="L771">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L773">    return errorList;</span>
+  }
+
+  /**
+   * 分析コードチェック.
+   *
+   * @param classifyCode 分析コード
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkClassifyCode(String classifyCode) {
+
+<span class="nc" id="L784">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 半角チェック
+<span class="nc" id="L788">    tmpErrorList = chkHalfWidth(classifyCode, ReplenishStockConstants.CLASSIFY_CODE);</span>
+<span class="nc" id="L789">    errorList.addAll(tmpErrorList);</span>
+
+    // 桁数チェック
+<span class="nc" id="L792">    tmpErrorList =</span>
+<span class="nc" id="L793">        chkDigits(</span>
+<span class="nc" id="L794">            classifyCode, ReplenishStockConstants.CLASSIFY_CODE, ReplenishStockConstants.INT_8);</span>
+<span class="nc" id="L795">    errorList.addAll(tmpErrorList);</span>
+
+    // 英数字またはAll *チェック
+<span class="nc" id="L798">    tmpErrorList = chkAlphanumericKgu(classifyCode, ReplenishStockConstants.CLASSIFY_CODE);</span>
+<span class="nc" id="L799">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L801">    return errorList;</span>
+  }
+
+  /**
+   * 置場コードチェック.
+   *
+   * @param plantCode 置場コード
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkPlantCode(String plantCode) {
+
+<span class="nc" id="L812">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 半角チェック
+<span class="nc" id="L816">    tmpErrorList = chkHalfWidth(plantCode, ReplenishStockConstants.PLANT_CODE);</span>
+<span class="nc" id="L817">    errorList.addAll(tmpErrorList);</span>
+
+    // 桁数チェック
+<span class="nc" id="L820">    tmpErrorList =</span>
+<span class="nc" id="L821">        chkDigits(plantCode, ReplenishStockConstants.PLANT_CODE, ReplenishStockConstants.INT_4);</span>
+<span class="nc" id="L822">    errorList.addAll(tmpErrorList);</span>
+
+    // 英数字またはAll *チェック
+<span class="nc" id="L825">    tmpErrorList = chkAlphanumericKgu(plantCode, ReplenishStockConstants.PLANT_CODE);</span>
+<span class="nc" id="L826">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L828">    return errorList;</span>
+  }
+
+  /**
+   * 調達区分チェック.
+   *
+   * @param supplyType 調達区分
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkSupplyType(String supplyType) {
+
+<span class="nc" id="L839">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 半角チェック
+<span class="nc" id="L843">    tmpErrorList = chkHalfWidth(supplyType, ReplenishStockConstants.SUPPLY_TYPE);</span>
+<span class="nc" id="L844">    errorList.addAll(tmpErrorList);</span>
+
+    // 桁数チェック
+<span class="nc" id="L847">    tmpErrorList =</span>
+<span class="nc" id="L848">        chkDigits(supplyType, ReplenishStockConstants.SUPPLY_TYPE, ReplenishStockConstants.INT_1);</span>
+<span class="nc" id="L849">    errorList.addAll(tmpErrorList);</span>
+
+    // 英数字またはAll *チェック
+<span class="nc" id="L852">    tmpErrorList = chkAlphanumericKgu(supplyType, ReplenishStockConstants.SUPPLY_TYPE);</span>
+<span class="nc" id="L853">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L855">    return errorList;</span>
+  }
+
+  /**
+   * 適用開始日チェック.
+   *
+   * @param effDate 適用開始日
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkEffStartDate(String effDate) {
+
+<span class="nc" id="L866">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 必須チェック
+<span class="nc" id="L870">    tmpErrorList = chkEmpty(effDate, ReplenishStockConstants.EFFECTIVE_DATE_FROM);</span>
+<span class="nc bnc" id="L871" title="All 2 branches missed.">    if (CollectionUtils.isNotEmpty(tmpErrorList)) {</span>
+<span class="nc" id="L872">      errorList.addAll(tmpErrorList);</span>
+<span class="nc" id="L873">      return errorList;</span>
+    }
+
+    // 半角チェック
+<span class="nc" id="L877">    tmpErrorList = chkHalfWidth(effDate, ReplenishStockConstants.EFFECTIVE_DATE_FROM);</span>
+<span class="nc" id="L878">    errorList.addAll(tmpErrorList);</span>
+
+    // 日付形式チェック
+<span class="nc" id="L881">    tmpErrorList =</span>
+<span class="nc" id="L882">        chkDate(</span>
+<span class="nc" id="L883">            effDate, ReplenishStockConstants.EFFECTIVE_DATE_FROM, ReplenishStockConstants.INT_8);</span>
+<span class="nc" id="L884">    errorList.addAll(tmpErrorList);</span>
+
+    // 日付妥当性チェック
+<span class="nc" id="L887">    tmpErrorList = chkDateValid(effDate, ReplenishStockConstants.EFFECTIVE_DATE_FROM);</span>
+<span class="nc" id="L888">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L890">    return errorList;</span>
+  }
+
+  /**
+   * 削除フラグチェック.
+   *
+   * @param deleteFlag 削除フラグ
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkDelFlag(String deleteFlag) {
+
+<span class="nc" id="L901">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+    // 桁数チェック
+<span class="nc" id="L905">    tmpErrorList =</span>
+<span class="nc" id="L906">        chkDigits(deleteFlag, ReplenishStockConstants.DELETE_FLAG, ReplenishStockConstants.INT_1);</span>
+<span class="nc" id="L907">    errorList.addAll(tmpErrorList);</span>
+
+<span class="nc" id="L909">    return errorList;</span>
+  }
+
+  /**
+   * 現法コードチェック.
+   *
+   * @param subsidiaryCode 現法コード
+   * @param str アップロードファイルの現法コード
+   * @return エラー情報リスト
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkSubCodeValue(String subsidiaryCode, String str) {
+
+<span class="nc" id="L921">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+    List&lt;RegistWeeklyOrderUlErrorListV1&gt; tmpErrorList;
+
+<span class="nc bnc" id="L924" title="All 4 branches missed.">    if (StringUtil.isNotEmpty(str.trim()) &amp;&amp; !subsidiaryCode.equals(str)) {</span>
+<span class="nc" id="L925">      tmpErrorList =</span>
+<span class="nc" id="L926">          editErrMsg(</span>
+              ReplenishStockMessages.NIROP100008E,
+              ReplenishStockConstants.SUBSIDIARY_CODE,
+<span class="nc" id="L929">              ReplenishStockConstants.INT_0);</span>
+<span class="nc" id="L930">      errorList.addAll(tmpErrorList);</span>
+    }
+
+<span class="nc" id="L933">    return errorList;</span>
+  }
+
+  /**
+   * 必須チェック.
+   *
+   * @param str チェック項目
+   * @param strName 項目名
+   * @return エラー情報
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkEmpty(String str, String strName) {
+
+<span class="nc" id="L945">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L947" title="All 2 branches missed.">    if (StringUtil.isEmpty(str.trim())) {</span>
+<span class="nc" id="L948">      errorList =</span>
+<span class="nc" id="L949">          editErrMsg(ReplenishStockMessages.NIROP100001I, strName, ReplenishStockConstants.INT_0);</span>
+    }
+<span class="nc" id="L951">    return errorList;</span>
+  }
+
+  /**
+   * 半角チェック.
+   *
+   * @param str チェック項目
+   * @param strName 項目名
+   * @return エラー情報
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkHalfWidth(String str, String strName) {
+
+<span class="nc" id="L963">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L965" title="All 2 branches missed.">    if (str.length() != str.getBytes().length) {</span>
+<span class="nc" id="L966">      errorList =</span>
+<span class="nc" id="L967">          editErrMsg(ReplenishStockMessages.NIROP100002E, strName, ReplenishStockConstants.INT_0);</span>
+<span class="nc" id="L968">      return errorList;</span>
+    }
+<span class="nc" id="L970">    return errorList;</span>
+  }
+
+  /**
+   * 桁数チェック.
+   *
+   * @param str チェック項目
+   * @param strName 項目名
+   * @param len 項目桁数
+   * @return エラー情報
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkDigits(String str, String strName, int len) {
+
+<span class="nc" id="L983">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L985" title="All 2 branches missed.">    if (str.length() != len) {</span>
+<span class="nc" id="L986">      errorList = editErrMsg(ReplenishStockMessages.NIROP100003E, strName, len);</span>
+<span class="nc" id="L987">      return errorList;</span>
+    }
+<span class="nc" id="L989">    return errorList;</span>
+  }
+
+  /**
+   * 英数字チェック.
+   *
+   * @param str チェック項目
+   * @param strName 項目名
+   * @return エラー情報
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkAlphanumeric(String str, String strName) {
+
+<span class="nc" id="L1001">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L1003" title="All 2 branches missed.">    if (chkChar(str)) {</span>
+<span class="nc" id="L1004">      errorList =</span>
+<span class="nc" id="L1005">          editErrMsg(ReplenishStockMessages.NIROP100004E, strName, ReplenishStockConstants.INT_0);</span>
+<span class="nc" id="L1006">      return errorList;</span>
+    }
+<span class="nc" id="L1008">    return errorList;</span>
+  }
+
+  /**
+   * 英数字またはAll*チェック.
+   *
+   * @param str チェック項目
+   * @param strName 項目名
+   * @return エラー情報
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkAlphanumericKgu(String str, String strName) {
+
+<span class="nc" id="L1020">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L1022" title="All 4 branches missed.">    if (chkChar(str) &amp;&amp; chkCharKgu(str)) {</span>
+<span class="nc" id="L1023">      errorList =</span>
+<span class="nc" id="L1024">          editErrMsg(ReplenishStockMessages.NIROP100005E, strName, ReplenishStockConstants.INT_0);</span>
+<span class="nc" id="L1025">      return errorList;</span>
+    }
+<span class="nc" id="L1027">    return errorList;</span>
+  }
+
+  /**
+   * 日付形式チェック.
+   *
+   * @param str チェック項目
+   * @param strName 項目名
+   * @param len 項目桁数
+   * @return エラー情報
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkDate(String str, String strName, int len) {
+
+<span class="nc" id="L1040">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+    // 正規表現：日付形式
+<span class="nc" id="L1043">    String regex = ReplenishStockConstants.REGULAR_DATECHECK;</span>
+<span class="nc bnc" id="L1044" title="All 2 branches missed.">    if (!Pattern.matches(regex, str)) {</span>
+<span class="nc" id="L1045">      errorList = editErrMsg(ReplenishStockMessages.NIROP100006E, strName, len);</span>
+<span class="nc" id="L1046">      return errorList;</span>
+    }
+<span class="nc" id="L1048">    return errorList;</span>
+  }
+
+  /**
+   * 日付妥当性チェック.
+   *
+   * @param str チェック項目
+   * @param strName 項目名
+   * @return エラー情報
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; chkDateValid(String str, String strName) {
+
+<span class="nc" id="L1060">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+
+    try {
+<span class="nc" id="L1063">      int intYear =</span>
+<span class="nc" id="L1064">          Integer.parseInt(</span>
+<span class="nc" id="L1065">              str.substring(ReplenishStockConstants.INT_0, ReplenishStockConstants.INT_4));</span>
+<span class="nc" id="L1066">      int intMonth =</span>
+<span class="nc" id="L1067">          Integer.parseInt(</span>
+<span class="nc" id="L1068">              str.substring(ReplenishStockConstants.INT_4, ReplenishStockConstants.INT_6));</span>
+<span class="nc" id="L1069">      int intDay =</span>
+<span class="nc" id="L1070">          Integer.parseInt(</span>
+<span class="nc" id="L1071">              str.substring(ReplenishStockConstants.INT_6, ReplenishStockConstants.INT_8));</span>
+<span class="nc" id="L1072">      Calendar cal = new GregorianCalendar();</span>
+<span class="nc" id="L1073">      cal.setLenient(false);</span>
+<span class="nc" id="L1074">      cal.set(intYear, intMonth - ReplenishStockConstants.INT_1, intDay);</span>
+<span class="nc" id="L1075">      cal.getTime();</span>
+<span class="nc" id="L1076">    } catch (Exception iae) {</span>
+<span class="nc" id="L1077">      errorList =</span>
+<span class="nc" id="L1078">          editErrMsg(ReplenishStockMessages.NIROP100007E, strName, ReplenishStockConstants.INT_0);</span>
+<span class="nc" id="L1079">      return errorList;</span>
+<span class="nc" id="L1080">    }</span>
+<span class="nc" id="L1081">    return errorList;</span>
+  }
+
+  /**
+   * 半角英大文字または半角数字チェック.
+   *
+   * @param str String
+   * @return boolean
+   */
+  private boolean chkChar(String str) {
+    // 正規表現:半角英大文字または半角数字
+<span class="nc" id="L1092">    String pattern = ReplenishStockConstants.REGULAR_CHARCHECK;</span>
+<span class="nc bnc" id="L1093" title="All 2 branches missed.">    for (int i = 0; i &lt; str.length(); i++) {</span>
+<span class="nc" id="L1094">      char charData = str.charAt(i);</span>
+<span class="nc bnc" id="L1095" title="All 2 branches missed.">      if (!Pattern.matches(pattern, String.valueOf(charData))) {</span>
+<span class="nc" id="L1096">        return true;</span>
+      }
+    }
+<span class="nc" id="L1099">    return false;</span>
+  }
+
+  /**
+   * All*チェック.
+   *
+   * @param str String
+   * @return boolean
+   */
+  private boolean chkCharKgu(String str) {
+<span class="nc bnc" id="L1109" title="All 2 branches missed.">    for (int i = 0; i &lt; str.length(); i++) {</span>
+<span class="nc" id="L1110">      char charData = str.charAt(i);</span>
+<span class="nc bnc" id="L1111" title="All 2 branches missed.">      if (charData != ReplenishStockConstants.CHAR_MI) {</span>
+<span class="nc" id="L1112">        return true;</span>
+      }
+    }
+<span class="nc" id="L1115">    return false;</span>
+  }
+
+  /**
+   * エラーメッセージ編集.
+   *
+   * @param errMsg エラーメッセージ
+   * @param strName 項目名
+   * @param len 項目桁数
+   * @return List
+   */
+  private List&lt;RegistWeeklyOrderUlErrorListV1&gt; editErrMsg(
+      ReplenishStockMessages errMsg, String strName, int len) {
+
+<span class="nc" id="L1129">    List&lt;RegistWeeklyOrderUlErrorListV1&gt; errorList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L1130">    RegistWeeklyOrderUlErrorListV1 error = new RegistWeeklyOrderUlErrorListV1();</span>
+<span class="nc" id="L1131">    error.setErrorCode(errMsg.getCode());</span>
+<span class="nc bnc" id="L1132" title="All 2 branches missed.">    if (ReplenishStockConstants.INT_0 == len) {</span>
+<span class="nc" id="L1133">      error.setErrorMsg(MessageFormat.format(errMsg.getDescription(), strName));</span>
+    } else {
+<span class="nc" id="L1135">      error.setErrorMsg(MessageFormat.format(errMsg.getDescription(), strName, len));</span>
+    }
+<span class="nc" id="L1137">    errorList.add(error);</span>
+<span class="nc" id="L1138">    return errorList;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

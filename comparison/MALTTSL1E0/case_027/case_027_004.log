@@ -1,0 +1,169 @@
+■api名称：　登录
+■api Request：　/internal/v1/carrier-invoice/register
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&Idempotency-Key=1&&X-Client-Program=1&&Prefer=/internal/v1/sales-order/search->1&/internal/v1/closing-time/get-list->1&/internal/v1/next-business-day/search->1
+■api Body：　{  "localCorporationCode": "str",  "accessIpAddress": "string",  "sessionId": "string",  "screenId": "string",  "processId": "string",  "programType": "a",  "createDate": "",  "registerMode": "1",  "detailInformationList": [    {      "detailNumber": "1",      "globalNumber": "CA000032000086",      "internalExternalType": "0",      "invoiceNoDetailInformationList": [        {          "no": "1",          "deleteType": "0",          "carrierInvoiceNumber": "001@a",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        },        {          "no": "2",          "deleteType": "0",          "carrierInvoiceNumber": "001@b",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        }      ]    },    {      "detailNumber": "2",      "globalNumber": "CA000032000086",      "internalExternalType": "0",      "invoiceNoDetailInformationList": [        {          "no": "3",          "deleteType": "0",          "carrierInvoiceNumber": "001@c",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        },        {          "no": "4",          "deleteType": "1",          "carrierInvoiceNumber": "001@d",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        }      ]    },    {      "detailNumber": "3",      "globalNumber": "CA000032000086",      "internalExternalType": "0",      "invoiceNoDetailInformationList": [        {          "no": "5",          "deleteType": "0",          "carrierInvoiceNumber": "001@c",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        },        {          "no": "6",          "deleteType": "1",          "carrierInvoiceNumber": "001@d",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        }      ]    },    {      "detailNumber": "4",      "globalNumber": "CA000032000086",      "internalExternalType": "0",      "invoiceNoDetailInformationList": [        {          "no": "7",          "deleteType": "0",          "carrierInvoiceNumber": "001@c",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        },        {          "no": "8",          "deleteType": "1",          "carrierInvoiceNumber": "001@d",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        }      ]    },    {      "detailNumber": "5",      "globalNumber": "CA000032000086",      "internalExternalType": "0",      "invoiceNoDetailInformationList": [        {          "no": "9",          "deleteType": "0",          "carrierInvoiceNumber": "001@c",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        },        {          "no": "10",          "deleteType": "1",          "carrierInvoiceNumber": "001@d",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        }      ]    },    {      "detailNumber": "6",      "globalNumber": "CA000032000086",      "internalExternalType": "0",      "invoiceNoDetailInformationList": [        {          "no": "11",          "deleteType": "0",          "carrierInvoiceNumber": "001@c",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        },        {          "no": "12",          "deleteType": "1",          "carrierInvoiceNumber": "001@d",          "plantCode": null,          "vsd": null,          "packingControlNumber": "45",          "shipmodeCode": "0",          "qty": null,          "supplierCode": "0010"        }      ]    }  ]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "resultStatus": "3001",
+  "invoiceNoInformationList": {
+    "createDate": "2019-08-24",
+    "subsidiaryCode": "JPN",
+    "registerMode": "1"
+  },
+  "responseDetailInformationList": [
+    {
+      "detailNumber": "1",
+      "detailResultStatus": "0000",
+      "globalNumber": "CA000032000086",
+      "carrierInvoiceNoDeleteInformation": "001@a,001@b",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "1",
+          "businessMessageList": [
+            {}
+          ]
+        },
+        {
+          "no": "2",
+          "businessMessageList": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "detailNumber": "2",
+      "detailResultStatus": "0000",
+      "globalNumber": "CA000032000086",
+      "carrierInvoiceNoDeleteInformation": "001@c,001@d",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "3",
+          "businessMessageList": [
+            {}
+          ]
+        },
+        {
+          "no": "4",
+          "businessMessageList": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "detailNumber": "3",
+      "detailResultStatus": "3001",
+      "globalNumber": "CA000032000086",
+      "carrierInvoiceNoDeleteInformation": "001@c,001@d",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "5",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        },
+        {
+          "no": "6",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "detailNumber": "4",
+      "detailResultStatus": "3001",
+      "globalNumber": "CA000032000086",
+      "carrierInvoiceNoDeleteInformation": "001@c,001@d",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "7",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        },
+        {
+          "no": "8",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "detailNumber": "5",
+      "detailResultStatus": "3001",
+      "globalNumber": "CA000032000086",
+      "carrierInvoiceNoDeleteInformation": "001@c,001@d",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "9",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        },
+        {
+          "no": "10",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "detailNumber": "6",
+      "detailResultStatus": "3001",
+      "globalNumber": "CA000032000086",
+      "carrierInvoiceNoDeleteInformation": "001@c,001@d",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "11",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        },
+        {
+          "no": "12",
+          "businessMessageList": [
+            {
+              "businessMessageCode": "NTTSL1E0011E",
+              "businessMessageParameter": "送り状の登録に失敗しました。",
+              "messageCatagory": "E"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

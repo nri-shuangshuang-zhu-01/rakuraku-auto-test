@@ -1,0 +1,33 @@
+{
+  "registerObjectList": [
+    {
+      "subsidiaryCode": "JPN",
+      "billToCode": "123456",
+      "invoiceNumber": "123456",
+      "invoiceIssueDate": "2019-08-24"
+    },
+    {
+       "subsidiaryCode": "JPN",
+       "billToCode": "123457",
+       "invoiceNumber": "123457",
+       "invoiceIssueDate": "2019-08-24"
+        },
+    {
+       "subsidiaryCode": "JPN",
+       "billToCode": "123458",
+       "invoiceNumber": "123458",
+       "invoiceIssueDate": "2019-08-24"
+        },
+    {
+       "subsidiaryCode": "JPN",
+       "billToCode": "123459",
+       "invoiceNumber": "123459",
+       "invoiceIssueDate": "2019-08-24"
+    }
+  ],
+  "registerDataList": {
+    "tradeStatus": "04",
+    "delayReason": "str",
+    "promisedpaymentDate": "2019-08-24"
+  }
+}

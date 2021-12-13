@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_stock_status subsidiary_code="CHN" ginner_code="MDM00000000001" plant_code="P001" total_stock_qty="99999" total_allocate_qty="999" total_available_qty="4" current_available_qty="999" current_stock_qty="8" last_day_stock_qty="222" month_begin_stock_qty="5" evaluation_unit_price="1.000" last_day_evaluation_unit_price="90.000" transfered_stock_qty_plus="20" transfered_stock_qty_minus="10" adjusted_stock_qty_plus="20" adjusted_stock_qty_minus="10" returned_stock_qty_plus="20" returned_stock_qty_minus="10" update_count="0" delete_flag="0" register_user_type="Office" register_user="LKG001" register_date_time="2021-10-11 16:45:34.0" register_program="DeadStockTool" register_client_program="DeadStockTool" update_user_type="Office" update_user="LKG001" update_date_time="2021-10-11 16:45:34.0" update_program="DeadStockTool" update_client_program="DeadStockTool"/>
+</dataset>

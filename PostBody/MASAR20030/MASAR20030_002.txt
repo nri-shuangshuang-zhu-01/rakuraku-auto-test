@@ -1,0 +1,37 @@
+    {
+      "downNonPaymentLevelList": [
+        {
+          "billToCode": "123457",
+          "level": "2",
+          "invoiceIssueDate": "2020-02-03",
+          "invoiceNumber": "101011",
+          "promisedPaymentDate": "2020-09-11",
+          "subsidiaryCode": "TIW"
+        },
+	{
+          "billToCode": "123458",
+          "level": "3",
+          "invoiceIssueDate": "2020-02-04",
+          "invoiceNumber": "101012",
+          "promisedPaymentDate": "2020-09-12",
+          "subsidiaryCode": "TIW"
+        },
+	{
+          "billToCode": "123459",
+          "level": "4",
+          "invoiceIssueDate": "2020-02-05",
+          "invoiceNumber": "101013",
+          "promisedPaymentDate": "2020-09-13",
+          "subsidiaryCode": "TIW"
+        }
+      ]
+    }
+
+
+
+
+
+
+
+
+

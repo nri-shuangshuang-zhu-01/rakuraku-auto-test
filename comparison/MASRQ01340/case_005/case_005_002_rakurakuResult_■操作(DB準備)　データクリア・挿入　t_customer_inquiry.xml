@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry subsidiary_code='JPN' inquiry_id='1234567890' urgent_flag='1' customer_code='C00001' customer_name='customer_name01' ship_to_code='S00001' ship_to_name='ship_to_name01' department_name='department_name01' pic_name='pic_name01' send_media_type='1' fax_send_to_number='111222333' email_address_to='メールアドレス（TO）' email_address_cc='メールアドレス（CC）' inquiry_reply_limit='ユーザ回答期限' qt_expiration_date_time='2021-09-28' contact_id='0' update_count='0' delete_flag='1' register_user_type='Customer' register_user='XSH' register_date_time='2021-09-28' register_program='MSM' register_client_program='MSM' update_user_type='Customer' update_user='XSH' update_date_time='2021-09-28' update_program='MSM' update_client_program='MSM' />
+</dataset>

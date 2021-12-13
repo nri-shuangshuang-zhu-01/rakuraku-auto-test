@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="product_control_department_code" comment="商品所管部門コード:商品所管部門を一意に特定するコード。"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="language_code" comment="言語コード:言語マスタに登録されている言語コード"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="product_control_department_name" comment="商品所管部門名:商品所管部門の名称（英語）"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="product_control_department_name_native" comment="商品所管部門名（現地語）:商品所管部門の名称（現地語）　※各国統一マスタの為、日本語漢字を使用。"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="product_control_department_name_kana" comment="商品所管部門名（カナ）:商品所管部門の名称（現地語）　※各国統一マスタの為、日本語カナを使用。"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="product_control_department_name_abbreviation" comment="商品所管部門名（略称）:商品所管部門の略称名称"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="product_control_department_name_abbreviation_native" comment="商品所管部門名（略称）（現地語）:商品所管部門の略称名称（現地語）"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="register_date_time" comment="登録日時"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="register_program" comment="登録プログラム"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="update_date_time" comment="更新日時"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="update_program" comment="更新プログラム"/>
+  <M_PRODUCT_CONTROL_DEPARTMENTColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

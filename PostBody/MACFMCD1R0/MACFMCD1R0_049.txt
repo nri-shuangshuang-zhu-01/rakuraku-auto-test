@@ -1,0 +1,11 @@
+{
+  "mailAddress": "123@linkstec.com",
+  "dataCode": "1002",
+  "fileName": "file_name",
+  "createDateFrom": "2020-01-01",
+  "createDateTo": "2020-01-31",
+  "statusRequesting": "12",
+  "statusDownloadable": "0",
+  "statusDownloaded": "0",
+  "referenceMaxCount": 10
+}

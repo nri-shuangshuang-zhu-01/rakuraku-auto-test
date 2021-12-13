@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_FREQUENCY subsidiary_code="CHN" g_inner_code="12345600000001" plant_code="1001" inner_code="10000000001" shipment_frequency_jan="11" shipment_frequency_feb="21" shipment_frequency_mar="31" shipment_frequency_apr="41" shipment_frequency_may="51" shipment_frequency_jun="61" shipment_frequency_jul="71" shipment_frequency_aug="81" shipment_frequency_sep="91" shipment_frequency_oct="101" shipment_frequency_nov="111" shipment_frequency_dec="121" update_count="23" delete_flag="1" register_user="LOGON_USER" register_system_time="2020-06-21 11:20:00.0" register_time="2020-06-21 11:20:01.0" register_local_time="2020-06-21 11:20:02.0" register_program="JOB001" update_user="UPDATE_USER" update_system_time="2020-07-21 11:20:00.0" update_time="2020-07-21 11:20:01.0" update_local_time="2020-07-21 11:20:02.0" update_program="JOB101"/>
+</dataset>

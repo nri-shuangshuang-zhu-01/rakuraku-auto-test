@@ -1,0 +1,14 @@
+{
+  "registerObjectList": [
+    {
+      "subsidiaryCode": "JPN",
+      "billToCode": "123456",
+      "invoiceIssueDate": "2019-08-24"
+    }
+  ],
+  "registerDataList": {
+    "tradeStatus": "st",
+    "delayReason": "str",
+    "promisedpaymentDate": "2019-08-24"
+  }
+}

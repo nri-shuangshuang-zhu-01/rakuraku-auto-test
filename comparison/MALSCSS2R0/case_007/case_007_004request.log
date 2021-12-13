@@ -1,0 +1,8 @@
+http://localhost:4017/v1/gw-stop-shipment/search{"subsidiaryCd":"MJP","globalNo":"CA000032000086","custCd":"BOSCH9","supplierCd":"95","voucherDiv":"1","vsd":["2019-03-03","2019-04-04"],"vrd":["2019-01-01","2019-02-02"],"stockDiv":"","outputFlg":"","classifyCd":"at","deliDiv":"","plantCd":"","voucherSend":"1","shipmentPlace":"","updUsr":"string","orderAttribute":"","supplierIVNo":"swring","orderDiv":"1","showhistoryDiv":"0","limit":22,"offSet":12,"sort":["sort1","sort2"]}
+http://localhost:4015/internal/v1/product-classification/get-list{"getListProductClassificationInternalRequestV1DetailList":[{"classifyCode":"class123"}]}
+http://localhost:4010/internal/v1/plant/get-list{"getListPlantInternalRequestV1DetailList":[{"plantCode":"pla1"},{"plantCode":"loc1"}]}
+http://localhost:4015/internal/v1/supplier/get-list{"getListSupplierInternalRequestV1DetailList":[{"supplierCode":"1shc"}]}
+http://localhost:4015/internal/v1/brand/get-list{"getListBrandInternalRequestV1DetailList":[{"brandCode":"Bra1"}]}
+http://localhost:4010/internal/v1/reason-type/get-list{"getListReasonTypeInternalRequestV1DetailList":[{"businessSceneType":"11","reasonType":"reas1"}]}
+http://localhost:4010/internal/v1/slip-type/get-list{"getListSlipTypeInternalRequestV1DetailList":[{"slipType":"vs1"}]}
+http://localhost:4010/internal/v1/code/search?classification_code=voucher_sending_type

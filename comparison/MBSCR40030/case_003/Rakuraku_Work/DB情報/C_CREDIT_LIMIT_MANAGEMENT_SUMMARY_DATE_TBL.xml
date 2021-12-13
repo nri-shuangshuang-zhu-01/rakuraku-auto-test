@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="subsidiary_code"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="summary_date"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="update_count"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="delete_flag"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="register_user_type"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="register_user"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="register_date_time"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="register_program"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="register_client_program"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="update_user_type"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="update_user"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="update_date_time"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="update_program"/>
+  <C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATEColName field="update_client_program"/>
+</dataset>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <temporary_filesColName field="id"/>
+  <temporary_filesColName field="temporary_file_id"/>
+  <temporary_filesColName field="temporary_file_path"/>
+  <temporary_filesColName field="auth_user_type"/>
+  <temporary_filesColName field="auth_user_name"/>
+  <temporary_filesColName field="stored_file_path"/>
+  <temporary_filesColName field="register_date_time"/>
+  <temporary_filesColName field="register_user"/>
+  <temporary_filesColName field="register_user_type"/>
+  <temporary_filesColName field="register_client_program"/>
+  <temporary_filesColName field="register_program"/>
+  <temporary_filesColName field="update_date_time"/>
+  <temporary_filesColName field="update_user"/>
+  <temporary_filesColName field="update_user_type"/>
+  <temporary_filesColName field="update_client_program"/>
+  <temporary_filesColName field="update_program"/>
+  <temporary_filesColName field="update_count"/>
+  <temporary_filesColName field="delete_flag"/>
+</dataset>

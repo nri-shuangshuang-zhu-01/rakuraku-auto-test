@@ -1,0 +1,20 @@
+{
+  "subsidiaryCode": "JPN",
+  "billToCodeFrom": null,
+  "billToCodeTo": null,
+  "billToClosingDate": null,
+  "processingSection": null,
+  "paymentDueDateFrom": null,
+  "paymentDueDateTo": null,
+  "invoiceNumberFrom": null,
+  "invoiceNumberTo": null,
+  "invoiceDateFrom": null,
+  "invoiceDateTo": null,
+  "InvoiceDisplayObject": null,
+  "billToCodeList": [
+  ],
+  "displayDataFlagInvoice": 1,
+  "displayDataFlagAdvancePayment": null,
+  "displayDataFlagProvisionalPayment": null,
+  "billToDirectSpecifiedFlag": null
+}

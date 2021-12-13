@@ -1,0 +1,4 @@
+http://localhost:4010/internal/v1/ccy/search
+http://localhost:4020/v1/bill-to/get?bill_to_code=558814
+http://localhost:4020/v1/bill-to/get?bill_to_code=558814
+http://localhost:4020/v1/bill-to/get?bill_to_code=558814

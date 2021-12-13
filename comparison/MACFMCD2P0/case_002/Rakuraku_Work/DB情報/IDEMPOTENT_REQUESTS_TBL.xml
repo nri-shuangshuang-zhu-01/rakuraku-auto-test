@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <IDEMPOTENT_REQUESTSColName field="id"/>
+  <IDEMPOTENT_REQUESTSColName field="key"/>
+  <IDEMPOTENT_REQUESTSColName field="target_id"/>
+  <IDEMPOTENT_REQUESTSColName field="method"/>
+  <IDEMPOTENT_REQUESTSColName field="status"/>
+  <IDEMPOTENT_REQUESTSColName field="processor_name"/>
+  <IDEMPOTENT_REQUESTSColName field="result"/>
+  <IDEMPOTENT_REQUESTSColName field="result_type_name"/>
+  <IDEMPOTENT_REQUESTSColName field="retry_count"/>
+  <IDEMPOTENT_REQUESTSColName field="request_context"/>
+  <IDEMPOTENT_REQUESTSColName field="request_context_type_name"/>
+  <IDEMPOTENT_REQUESTSColName field="request_data"/>
+  <IDEMPOTENT_REQUESTSColName field="request_data_type_name"/>
+  <IDEMPOTENT_REQUESTSColName field="last_run_at"/>
+  <IDEMPOTENT_REQUESTSColName field="register_date_time"/>
+  <IDEMPOTENT_REQUESTSColName field="register_user"/>
+  <IDEMPOTENT_REQUESTSColName field="register_user_type"/>
+  <IDEMPOTENT_REQUESTSColName field="register_client_program"/>
+  <IDEMPOTENT_REQUESTSColName field="register_program"/>
+  <IDEMPOTENT_REQUESTSColName field="update_date_time"/>
+  <IDEMPOTENT_REQUESTSColName field="update_user"/>
+  <IDEMPOTENT_REQUESTSColName field="update_user_type"/>
+  <IDEMPOTENT_REQUESTSColName field="update_client_program"/>
+  <IDEMPOTENT_REQUESTSColName field="update_program"/>
+  <IDEMPOTENT_REQUESTSColName field="update_count"/>
+  <IDEMPOTENT_REQUESTSColName field="delete_flag"/>
+</dataset>

@@ -1,0 +1,26 @@
+{
+  "stopShipmentList": [
+    {
+      "globalNumber": "CA000032000086",
+      "processType": "1",
+      "bussinessSceneType": "st",
+      "reasonType": "A1234",
+      "commentNote": "string",
+      "plantCode": "",
+      "storageLocationCode": "",
+      "soQty": 0,
+      "supplierCode": "",
+      "supplierName": "",
+      "ginnerCode": "",
+      "productCode": "",
+      "brandCode": "",
+      "brandName": "",
+      "customerCode": "",
+      "customerName": "",
+      "stockFlag": "",
+      "componentFlag": "",
+      "inputProcessDate": "2019-08-24",
+      "updateCount": 0
+    }
+  ]
+}

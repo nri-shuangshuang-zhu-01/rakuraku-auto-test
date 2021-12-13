@@ -1,0 +1,2 @@
+{"type":"https://stoplight.io/prism/errors#UNPROCESSABLE_ENTITY","title":"Invalid request","status":422,"detail":"optional property \"example\"\n└─ cannot decode true, should be string"}
+

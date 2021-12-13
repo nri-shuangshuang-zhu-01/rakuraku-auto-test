@@ -1,0 +1,13 @@
+受付結果リスト::reception_result_list::1
+更新成否結果::update_result::2
+統合インナーコード::inner_code::2
+伝票番号::voucher_number::2
+調整数::adjusted_qty::2
+調整前現在庫数::current_stock_qty_before_move::2
+調整後現在庫数::current_stock_qty_after_move::2
+調整前保留在庫数::hold_stock_qty_before_move::2
+調整後保留在庫数::hold_stock_qty_after_move::2
+評価単価::evaluation_unit_price::2
+調整金額::adjust_amount::2
+エラーコード::error_code::1
+エラーメッセージ::error_message::1

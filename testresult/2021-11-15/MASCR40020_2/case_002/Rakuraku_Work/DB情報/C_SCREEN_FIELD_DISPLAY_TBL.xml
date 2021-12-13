@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <C_SCREEN_FIELD_DISPLAYColName field="control_seq_number" comment="管理SEQ番号"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="subsidiary_code" comment="現法コード:データの現法を一意に特定するコード"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="language_code" comment="言語コード"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="general_purpose_key1" comment="汎用キー1"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="general_purpose_key2" comment="汎用キー2"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="general_purpose_key3" comment="汎用キー3"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="general_purpose_key4" comment="汎用キー4"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="general_purpose_key5" comment="汎用キー5"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="code_value_reference1" comment="コード値リファレンス1"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="code_value_reference2" comment="コード値リファレンス2"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="code_value_reference3" comment="コード値リファレンス3"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="code_value_reference4" comment="コード値リファレンス4"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="code_value_reference5" comment="コード値リファレンス5"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="display_order" comment="表示順"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="register_date_time" comment="登録日時"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="register_program" comment="登録プログラム"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="update_date_time" comment="更新日時"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="update_program" comment="更新プログラム"/>
+  <C_SCREEN_FIELD_DISPLAYColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

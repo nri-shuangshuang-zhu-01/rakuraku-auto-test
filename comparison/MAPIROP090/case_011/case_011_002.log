@@ -1,0 +1,12 @@
+■api名称：　登录
+■api Request：　/internal/v1/replenish-stock/RegistWeeklyOrderDlApi
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.26.10&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=1&&
+■api Body：　{  "userId": "002",  "shipToCode": "LKILKI",  "customerCode": "LKGLKF",  "innerCdFrom": "MDM10040007504",  "innerCdTo": "MDM10040007506",  "classifyCodeFrom": "2009",  "classifyCodeTo": "2009",  "plantCdList":[{    "plantCd": "1001"},{"plantCd": "1009"},{"plantCd": "1010"}],  "effectiveDateFrom": "2021-08-20",  "effectiveDateTo": "2021-09-30",  "delFlg": "true"}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "BIR09000004W",
+  "argumentList": [],
+  "message": "週次発注点除外条件マスタに該当データは存在しません。"
+}

@@ -1,0 +1,56 @@
+■api名称：　登录
+■api Request：　/v1/shipmentDataInquery/search?subsidiaryCode=MJP&shipmentDate=2020-01-02&shipmentCenter=AABB
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.26.10&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&Prefer=/v1/area/search->2&/v1/plant/search->3
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "subsidiaryCode": "MJP",
+  "shipmentCenter": "AABB",
+  "shipmentDate": "2020-01-02",
+  "resultCount": 0,
+  "internalShipmentAreaList": [],
+  "internalShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 0,
+    "mtoBeforeRecQtySubtotal": 0,
+    "stock1stSubtotal": 0,
+    "stock2ndSubtotal": 0,
+    "stock3rdSubtotal": 0,
+    "stock4thSubtotal": 0,
+    "recRecQtySubtotal": 0,
+    "recRcQtySubtotal": 0,
+    "storkRecQtySubtotal": 0,
+    "storkRcQtySubtotal": 0,
+    "totalRecQtySubtotal": 0,
+    "totalRcQtySubtotal": 0
+  },
+  "overseasShipmentAreaList": [],
+  "overseasShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 0,
+    "mtoBeforeRecQtySubtotal": 0,
+    "stock1stSubtotal": 0,
+    "stock2ndSubtotal": 0,
+    "stock3rdSubtotal": 0,
+    "stock4thSubtotal": 0,
+    "recRecQtySubtotal": 0,
+    "recRcQtySubtotal": 0,
+    "storkRecQtySubtotal": 0,
+    "storkRcQtySubtotal": 0,
+    "totalRecQtySubtotalSubtotal": 0,
+    "totalRcQtySubtotal": 0
+  },
+  "internalOverseasAreaTotalList": {
+    "stockBeforeRecQtyTotal": 0,
+    "mtoBeforeRecQtyTotal": 0,
+    "stock1stTotal": 0,
+    "stock2ndTotal": 0,
+    "stock3rdTotal": 0,
+    "stock4thTotal": 0,
+    "recRecQtyTotal": 0,
+    "recRcQtyTotal": 0,
+    "storkRecQtyTotal": 0,
+    "storkRcQtyTotal": 0,
+    "totalRecQtyTotal": 0,
+    "totalRcQtyTotal": 0
+  }
+}

@@ -1,0 +1,36 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+仕入先コード::supplier_code::char(4)::NOT NULL(PK)
+商品チェック連番::product_check_seq::numeric(10,0)::NOT NULL(PK)
+商品コード行番号::product_code_row_number::numeric(10,0)::NULL
+チェック位置::check_position::numeric(3,0)::NULL
+必須／オプション区分::mandatory_or_option_type::char(1)::NOT NULL
+定位置／キーワード::position_keyword::char(1)::NOT NULL
+チェック方法区分::check_method_type::varchar(1)::NULL
+キーワード::keyword::varchar(7)::NULL
+関連記号区分::symbol_type::char(1)::NULL
+関連記号::symbol::varchar(7)::NULL
+範囲値FROM::range_from::numeric(10,4)::NULL
+範囲値TO::range_to::numeric(10,4)::NULL
+パラメータチェック値1::parameter_check_value1::numeric(10,4)::NULL
+パラメータチェック値2::parameter_check_value2::numeric(10,4)::NULL
+パラメータチェック値3::parameter_check_value3::numeric(10,4)::NULL
+パラメータチェック値4::parameter_check_value4::numeric(10,4)::NULL
+パラメータチェック値5::parameter_check_value5::numeric(10,4)::NULL
+パラメータチェック値6::parameter_check_value6::numeric(10,4)::NULL
+メーカ直送適用フラグ::maker_direct_shipment_apply_flag::char(1)::NULL
+メーカ判別区分::maker_specify_type::char(1)::NULL
+追加工指定可能フラグ::additional_process_specify_possible_flag::char(1)::NULL
+単価パラメータ::unit_price_parameter::numeric(1,0)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

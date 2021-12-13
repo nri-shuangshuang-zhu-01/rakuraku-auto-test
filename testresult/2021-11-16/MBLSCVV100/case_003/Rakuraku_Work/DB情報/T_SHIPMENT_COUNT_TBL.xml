@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_COUNTColName field="subsidiary_code" comment="現法コード"/>
+  <T_SHIPMENT_COUNTColName field="ginner_code" comment="統合インナーコード"/>
+  <T_SHIPMENT_COUNTColName field="plant_code" comment="置場コード"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count1" comment="出荷回数1"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count2" comment="出荷回数2"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count3" comment="出荷回数3"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count4" comment="出荷回数4"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count5" comment="出荷回数5"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count6" comment="出荷回数6"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count7" comment="出荷回数7"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count8" comment="出荷回数8"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count9" comment="出荷回数9"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count10" comment="出荷回数10"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count11" comment="出荷回数11"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count12" comment="出荷回数12"/>
+  <T_SHIPMENT_COUNTColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_SHIPMENT_COUNTColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_SHIPMENT_COUNTColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_SHIPMENT_COUNTColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_SHIPMENT_COUNTColName field="register_date_time" comment="登録日時"/>
+  <T_SHIPMENT_COUNTColName field="register_program" comment="登録プログラム"/>
+  <T_SHIPMENT_COUNTColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_SHIPMENT_COUNTColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_SHIPMENT_COUNTColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_SHIPMENT_COUNTColName field="update_date_time" comment="更新日時"/>
+  <T_SHIPMENT_COUNTColName field="update_program" comment="更新プログラム"/>
+  <T_SHIPMENT_COUNTColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

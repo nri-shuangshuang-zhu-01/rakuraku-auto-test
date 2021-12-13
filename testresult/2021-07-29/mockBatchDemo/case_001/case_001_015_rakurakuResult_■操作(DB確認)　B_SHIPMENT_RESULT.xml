@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <B_SHIPMENT_RESULT subsidiary_code="CHN" global_number="22345600000001" plant_code="1001" g_inner_code="12345600000001" inner_code="10000000001" product_code="123456789000001" classify_code="12300001" shipment_fix_date="2020-02-21" shipment_quantity="20" order_attribution="01" update_hub_flag="0" register_system_time="2020-01-11 10:00:00.0" update_system_time="2020-01-13 11:00:00.0" update_program="JOB102"/>
+  <B_SHIPMENT_RESULT subsidiary_code="CHN" global_number="22345600000002" plant_code="1001" g_inner_code="12345600000001" inner_code="10000000002" product_code="123456789000001" classify_code="12300001" shipment_fix_date="2020-02-21" shipment_quantity="20" order_attribution="01" update_hub_flag="0" register_system_time="2020-01-11 10:00:00.0" update_system_time="2020-01-13 11:00:00.0" update_program="JOB102"/>
+</dataset>

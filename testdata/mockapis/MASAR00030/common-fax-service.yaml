@@ -1,0 +1,598 @@
+openapi: 3.0.0
+info:
+  title: システム管理 FAX API
+  version: '1.0'
+  description: |-
+    システム管理として、システムが行うFAX送信を本APIを介して現法FAXサーバーに連携する。
+    また、FAX送受信の記録を保存し、情報の参照を行う。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /v1/fax/search:
+    parameters: []
+    post:
+      summary: A1 検索(受信/送信)
+      operationId: searchFax
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchFaxResponse'
+        '400':
+          $ref: '#/components/responses/ErrorReponse'
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      description: |-
+        指定された条件に該当する受信/送信FAX情報を検索する。
+        　　　　以下の業務エラーが発生する可能性がある。
+                  - FAX000100 : 構文構造・必須チェックエラー
+                  - FAX000101 : 入力チェックエラー（桁数チェック）
+      tags:
+        - Fax
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchFaxRequest'
+  /v1/fax/find:
+    get:
+      summary: A2 詳細情報取得(受信/送信)
+      tags:
+        - Fax
+      responses:
+        '200':
+          $ref: '#/components/responses/FindFaxResponse'
+        '400':
+          $ref: '#/components/responses/ErrorReponse'
+      operationId: findFax
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/sendReceiveType'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: id
+          description: FAX ID
+          required: true
+      description: |-
+        指定されたFAX IDに該当する受信/送信FAXの詳細情報を取得する。
+        　　　　以下の業務エラーが発生する可能性がある。
+                  - FAX000100 : 構文構造・必須チェックエラー
+                  - FAX000101 : 入力チェックエラー（桁数チェック）
+                  - FAX002101 : 入力チェック(相関性チェック)
+  /v1/fax/receive:
+    post:
+      summary: A3 FAX情報登録(受信)
+      operationId: receiveFax
+      responses:
+        '200':
+          $ref: '#/components/responses/ReceiveFaxResponse'
+        '400':
+          $ref: '#/components/responses/ErrorReponse'
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReceiveFaxRequest'
+        description: ''
+      description: |-
+        連携された受信FAX情報・FAXファイルを登録する。
+        　　　　以下の業務エラーが発生する可能性がある。
+                  - FAX000100 : 構文構造・必須チェックエラー
+                  - FAX000101 : 入力チェックエラー（桁数チェック）
+      tags:
+        - Fax
+    parameters: []
+  /v1/fax/send:
+    post:
+      summary: A4 FAX送信
+      operationId: sendFax
+      responses:
+        '200':
+          $ref: '#/components/responses/SendFaxResponse'
+        '400':
+          $ref: '#/components/responses/ErrorReponse'
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendFaxRequest'
+            examples: {}
+      description: |-
+        連携されたFAX送信情報・FAXファイルを登録する。
+        　　　　以下の業務エラーが発生する可能性がある。
+                  - FAX000100 : 構文構造・必須チェックエラー
+                  - FAX000101 : 入力チェックエラー（桁数チェック）
+      tags:
+        - Fax
+    parameters: []
+  /v1/fax/download:
+    get:
+      summary: A5 ファイル取得(受信/送信)
+      tags:
+        - Fax
+      responses:
+        '200':
+          $ref: '#/components/responses/DownloadFaxResponse'
+        '400':
+          $ref: '#/components/responses/ErrorReponse'
+      operationId: downloadFax
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+        - in: query
+          name: fileId
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ファイルID
+      description: |-
+        指定された条件に該当する受信/送信FAXファイルを取得する。
+        　　　　以下の業務エラーが発生する可能性がある。
+                  - FAX000100 : 構文構造・必須チェックエラー
+                  - FAX000101 : 入力チェックエラー（桁数チェック）
+                  - FAX006100 : 入力チェック(相関性チェック)
+  /v1/fax/remove:
+    post:
+      summary: A6 FAX情報削除(送信/受信)
+      operationId: removeFax
+      description: |-
+        指定された条件に該当する送信FAX情報・FAXファイルを削除する。
+        　　　　以下の業務エラーが発生する可能性がある。
+                   - FAX000100 : 構文構造・必須チェックエラー
+                   - FAX000101 : 入力チェックエラー（桁数チェック）
+                   - FAX008100 : 入力チェック(相関性チェック)
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveFaxRequest'
+        description: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorReponse'
+      tags:
+        - Fax
+    parameters: []
+  /v1/fax/modify:
+    post:
+      summary: A7 FAX情報更新
+      operationId: modifyFax
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorReponse'
+      description: |-
+        指定された送信FAX情報を更新する。
+        　　　　以下の業務エラーが発生する可能性がある。
+                   - FAX000100 : 構文構造・必須チェックエラー
+                   - FAX000101 : 入力チェックエラー（桁数チェック）
+                   - FAX009100 : 入力チェック(相関性チェック)
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyFaxRequest'
+      tags:
+        - Fax
+    parameters: []
+  /v1/fax/upload:
+    post:
+      summary: A8 ファイルアップロード(送信)
+      operationId: uploadFax
+      responses:
+        '200':
+          $ref: '#/components/responses/uploadFaxResponse'
+      description: |
+        指定されたFAX送信用ファイルをアップロードする。
+        　　　　以下の業務エラーが発生する可能性がある。
+                   - FAXxxxxxx : ファイルがアップロードできませんでした。
+      parameters:
+        - $ref: '#/components/parameters/subsidiaryCode'
+        - $ref: '#/components/parameters/authorization'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              format: binary
+              description: ''
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 送信ファイル
+              required:
+                - file
+        description: ''
+      tags:
+        - Fax
+components:
+  schemas:
+    SearchFaxRequest:
+      description: FAX「A1 検索API」リクエストボディ
+      type: object
+      title: SearchFaxRequest
+      properties:
+        sendReceiveType:
+          type: integer
+          description: |-
+            送受信種別。 
+            * 0 - 受信 
+            * 1 - 送信
+          minimum: 0
+          maximum: 9
+        faxNumber:
+          type: string
+          description: |-
+            FAX番号
+            ※受信の場合は送信元、送信の場合は送信先の電話番号
+        createDateTimeFrom:
+          type: string
+          description: '作成日時(FROM)[YYYY-mm-DDTHH:MM:SS]'
+          format: date-time
+        createDateTimeTo:
+          type: string
+          description: '作成日時(TO)[YYYY-mm-DDTHH:MM:SS]'
+          format: date-time
+        asyncStartTime:
+          type: string
+          description: |-
+            非同期処理開始時間[YYYY-mm-DDTHH:MM:SS]
+            ※FAX送信検索のみ有効
+          format: date-time
+        asyncEndTime:
+          type: string
+          description: |-
+            非同期処理終了時間[YYYY-mm-DDTHH:MM:SS]
+            ※FAX送信検索のみ有効
+          format: date-time
+        status:
+          type: integer
+          minimum: 0
+          maximum: 9
+          description: |-
+            FAX送信の処理状況。※FAX送信の検索のみ有効。
+             * 0 - 処理中
+      required:
+        - sendReceiveType
+    ReceiveFaxRequest:
+      title: ReceiveFaxRequest
+      type: object
+      description: FAX「A3 情報登録API」リクエストボディ
+      properties:
+        file:
+          type: string
+          description: |-
+            受信ファイル
+            ※TIFFファイル
+          format: binary
+      required:
+        - file
+    SendFaxRequest:
+      title: SendFaxRequest
+      type: object
+      description: FAX「A4 送信API」リクエストボディ
+      properties:
+        faxSendType:
+          type: string
+          description: |-
+            FAX送信種別
+             * 0 - G標準
+          pattern: '^[a-zA-Z0-9]+$'
+        fileId:
+          type: string
+          format: uuid
+          description: ファイルID
+        sendInfo:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: |-
+            送信情報
+            帳票種類 + '_' + 現法コード + '_' + QT/SO番号 + '_' + 顧客コード + '_' + FAX番号 + '$' + YYYYMMDD + '.' + HH24MISS + '.' + 登録ユーザID
+            ※QT/SO番号がない場合は '99999999999' を設定する。
+            ※拡張子「.pdf」は付けない
+      required:
+        - faxSendType
+        - fileId
+        - sendInfo
+    ModifyFaxRequest:
+      title: ModifyFaxRequest
+      type: object
+      description: FAX「A7 情報更新API」リクエストボディ
+      properties:
+        id:
+          type: string
+          description: FAX ID
+          format: uuid
+        status:
+          type: integer
+          description: |-
+            状態
+            * -0 - 処理中
+            * -1 - 異常終了
+            * -2 - 正常終了
+          minimum: 0
+          maximum: 9
+      required:
+        - id
+        - status
+    SearchFaxResponse:
+      title: SearchFaxResponse
+      type: object
+      description: FAX「A1 検索API」レスポンスボディ
+      properties:
+        id:
+          type: array
+          format: uuid
+          description: FAX Id
+          items:
+            type: string
+            format: uuid
+    FindFaxResponse:
+      description: FAX「A2 詳細情報取得API」レスポンスボディ
+      type: object
+      title: FindFaxResponse
+      properties:
+        createDateTime:
+          type: string
+          description: '作成日時[YYYY-MM-DDTHH:MM:SS̟±HH:MM]'
+          format: zoned-date-time
+        faxNumber:
+          type: string
+          description: FAX番号
+        fileName:
+          type: string
+          maxLength: 200
+          minLength: 1
+          description: ファイル名
+        asyncStartTime:
+          type: string
+          description: |-
+            非同期処理開始時間[YYYY-MM-DDTHH:MM:SS̟±HH:MM]
+            ※FAX送信の詳細情報取得のみ有
+          format: zoned-date-time
+        asyncEndTime:
+          type: string
+          description: |-
+            非同期処理終了時間[YYYY-mm-ddTHH:MM:SS±HH:MM]
+            ※FAX送信の詳細情報取得のみ有効。
+          format: zoned-date-time
+        status:
+          type: integer
+          minimum: 0
+          maximum: 9
+          description: |-
+            FAX送信の処理状況
+             * 0 - 処理中
+             * 1 - 正常終了
+             * 2 - 異常終了
+            ※FAX送信の詳細情報取得のみ有効。
+        originalFileId:
+          type: string
+          format: uuid
+          description: ファイルID（TIFF/PDF形式）
+        fileId:
+          type: array
+          description: |-
+            ファイルID（PNG形式）
+            ※ページ順に先頭からファイルIDが設定されます。
+          items:
+            type: string
+            format: uuid
+      required:
+        - createDateTime
+        - faxNumber
+        - fileName
+    ReceiveFaxResponse:
+      title: ReceiveFaxResponse
+      type: object
+      description: FAX「A3 情報登録API」レスポンスボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: FAX ID
+      required:
+        - id
+    Error:
+      title: Error
+      type: object
+      description: API共通のエラーレスポンスボディ
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+          description: 業務エラーのエラーコード
+        arguments:
+          type: array
+          items:
+            type: object
+        message:
+          type: string
+          description: 業務エラーのエラーメッセージ
+        details:
+          type: string
+      required:
+        - code
+        - message
+    RemoveFaxRequest:
+      description: FAX「A6 FAX情報削除API」レスポンスボディ
+      type: object
+      title: RemoveFaxRequest
+      properties:
+        id:
+          type: string
+          description: FAX ID
+          format: uuid
+        sendReceiveType:
+          type: integer
+          minimum: 0
+          maximum: 9
+          description: |
+            送受信種別。
+             * 0 - 受信
+             * 1 - 送信
+      required:
+        - id
+        - sendReceiveType
+    uploadFaxResponse:
+      title: uploadFaxResponse
+      type: object
+      description: FAX「A8 ファイルアップロードAPI」レスポンスボディ
+      properties:
+        fileId:
+          type: string
+          description: ファイルID
+          format: uuid
+    SendFaxResponse:
+      title: SendFaxResponse
+      type: object
+      description: FAX「A4 FAX送信API」レスポンスボディ
+      properties:
+        id:
+          type: string
+          description: 送信FAX ID
+          format: uuid
+      required:
+        - id
+      x-examples:
+        '1':
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+  parameters:
+    subsidiaryCode:
+      name: subsidiaryCode
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 3
+        pattern: '^[a-zA-Z0-9]+$'
+      description: '現法コード 詳細は[https://www.dummy.jp/](https://www.dummy.jp/) にて確認可能。'
+    authorization:
+      name: authorization
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9]+$'
+      description: ユーザ認証トークン
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 10
+        format: int32
+      description: 一度の検索で取得する最大件数
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 0
+        format: int32
+      description: 検索結果の取得開始位置
+    sendReceiveType:
+      name: sendReceiveType
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 9
+      description: 送受信種別。 * 0 - 受信 * 1 - 送信
+    Idempotency-Key:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: 冪等性キー
+  responses:
+    FindFaxResponse:
+      description: FAX「A2 詳細情報取得API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FindFaxResponse'
+    DownloadFaxResponse:
+      description: FAX「A5 ファイル取得」レスポンス
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+            description: FAXファイル
+      headers:
+        Content-Disposition:
+          schema:
+            type: string
+          description: attachment; filename="*"
+    ReceiveFaxResponse:
+      description: FAX「A3 情報登録API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReceiveFaxResponse'
+    SearchFaxResponse:
+      description: FAX「A1 検索API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchFaxResponse'
+          examples: {}
+    ErrorReponse:
+      description: エラーレスポンス
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    uploadFaxResponse:
+      description: FAX「A8 ファイルアップロードAPI」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/uploadFaxResponse'
+    SendFaxResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SendFaxResponse'
+          examples: {}
+tags:
+  - name: Fax

@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <M_UL_PURPOSE_UL_RESULT_DATA_DOWNLOAD_AUTHORITY subsidiary_code='CHN' authority_code='customerUser' data_medium_classification_code='MID' data_code='10001' display_order='101' data_name_japanese='データ名' data_name_english='data_name' file_retain_deadline='1' update_count='1' delete_flag='0' register_user_type='Internal' register_user='register_user' register_date_time='2020-01-13 11:00:00' register_program='register_pro' register_client_program='reg_client_pro' update_user_type='Internal' update_user='update_user' update_date_time='2020-01-13 11:00:00' update_program='update_pro' update_client_program='upd_client_pro' />
+</dataset>

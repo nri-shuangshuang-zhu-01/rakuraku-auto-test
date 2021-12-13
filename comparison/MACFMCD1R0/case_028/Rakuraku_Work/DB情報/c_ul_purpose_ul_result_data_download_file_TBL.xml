@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <c_ul_purpose_ul_result_data_download_fileColName field="control_seq_number"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="data_download_control_seq"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="subsidiary_code"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="data_code"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="create_date_time"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="mail_address"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="temp_file_code"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="file_path"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="presigned_api_path"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="signature"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="display_file_name"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="status_code"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="process_result_code"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="process_result_detail"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_count"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="delete_flag"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_user_type"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_user"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_date_time"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_program"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="register_client_program"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_user_type"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_user"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_date_time"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_program"/>
+  <c_ul_purpose_ul_result_data_download_fileColName field="update_client_program"/>
+</dataset>

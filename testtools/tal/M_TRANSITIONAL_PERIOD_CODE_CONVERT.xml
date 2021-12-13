@@ -1,0 +1,27 @@
+コード種別::code_category::varchar(100)::NOT NULL(PK)
+連番::seq::numeric(10,0)::NOT NULL(PK)
+ZETTAコード1名::zetta_code1_name::varchar(100)::NULL
+ZETTAコード2名::zetta_code2_name::varchar(100)::NULL
+ZETTAコード3名::zetta_code3_name::varchar(100)::NULL
+ZETTAコード1値::zetta_code1_value::varchar(100)::NULL
+ZETTAコード2値::zetta_code2_value::varchar(100)::NULL
+ZETTAコード3値::zetta_code3_value::varchar(100)::NULL
+NEWTONコード1名::newton_code1_name::varchar(100)::NULL
+NEWTONコード2名::newton_code2_name::varchar(100)::NULL
+NEWTONコード3名::newton_code3_name::varchar(100)::NULL
+NEWTONコード1値::newton_code1_value::varchar(100)::NULL
+NEWTONコード2値::newton_code2_value::varchar(100)::NULL
+NEWTONコード3値::newton_code3_value::varchar(100)::NULL
+優先フラグ::priority_flag::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

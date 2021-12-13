@@ -1,0 +1,44 @@
+現法コード::subsidiary_code::char(3)::NULL
+市場コード::market_code::varchar(2)::NULL
+置場コード::plant_code::char(4)::NULL
+統合インナーコード::ginner_code::varchar(14)::NULL
+商品コード::product_code::varchar(234)::NULL
+現在庫数::current_stock_qty::numeric(7,0)::NULL
+発注残::remain_po::numeric(7,0)::NULL
+ランク::rank::char(1)::NULL
+自動発注区分::automatic_po_type::char(1)::NULL
+発注点::reorder_point::numeric(7,0)::NULL
+発注数::po_qty::numeric(7,0)::NULL
+発注納期::po_lead_time::numeric(3,0)::NULL
+仕入先コード::supplier_code::char(4)::NULL
+評価単価::evaluation_unit_price::numeric(14,3)::NULL
+出荷数（当月）::shipment_qty_this_month::numeric(7,0)::NULL
+出荷数（前月）::shipment_qty_last_month::numeric(15,0)::NULL
+最新入荷日::latest_receiving_date::date::NULL
+最新入荷数::latest_receiving_qty::numeric(7,0)::NULL
+総在庫数::total_stock_qty::numeric(7,0)::NULL
+現引当数::current_allocated_qty::numeric(7,0)::NULL
+出庫数（当月）::shipping_qty_this_month::numeric(15,0)::NULL
+出庫数（前月）::shipping_qty_last_month::numeric(15,0)::NULL
+出庫数（前々月）::shipping_qty_2months_before::numeric(15,0)::NULL
+出庫数（3か月前）::shipping_qty_3months_before::numeric(15,0)::NULL
+出庫数（4か月前）::shipping_qty_4months_before::numeric(15,0)::NULL
+出庫数（5か月前）::shipping_qty_5months_before::numeric(15,0)::NULL
+出庫数（6か月前）::shipping_qty_6months_before::numeric(15,0)::NULL
+出庫数（7か月前）::shipping_qty_7months_before::numeric(15,0)::NULL
+出庫数（8か月前）::shipping_qty_8months_before::numeric(15,0)::NULL
+出庫数（9か月前）::shipping_qty_9months_before::numeric(15,0)::NULL
+出庫数（10か月前）::shipping_qty_10months_before::numeric(15,0)::NULL
+出庫数（11か月前）::shipping_qty_11months_before::numeric(15,0)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

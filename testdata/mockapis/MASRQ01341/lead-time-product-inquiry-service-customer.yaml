@@ -1,0 +1,2409 @@
+openapi: 3.0.0
+info:
+  title: lead-time-product-inquiry-customer API
+  version: '1.0'
+  description: 納期・型番確認サービス用の 顧客チャネルAPI です。
+  contact:
+    name: dummy
+  termsOfService: dummy
+servers:
+  - url: 'https://localhost:3000/lead-time-product-inquiry'
+    description: 納期・型番確認サービスAPI
+paths:
+  /v1/lead-time-product-inquiry/cancel:
+    post:
+      summary: 納期型番確認キャンセルAPI
+      operationId: cancelLeadTimeProductInquiryV1
+      tags:
+        - LeadTimeProductInquiry
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000004E.json
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000001E.json
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelLeadTimeProductInquiryRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryIdList:
+                    - 123456
+        description: API個別
+      description: 納期型番明細の調整キャンセルを行うAPI
+      x-channel:
+        - customer
+      x-subsidiary:
+        - TIW
+    parameters: []
+  /v1/lead-time-product-inquiry/request:
+    post:
+      summary: 納期型番確認依頼API
+      operationId: requestLeadTimeProductInquirysV1
+      tags:
+        - LeadTimeProductInquiry
+      description: 納期型番明細の調整依頼を行うAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestLeadTimeProductInquiryRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryDetailList:
+                    - leadTimeProductInquiryGroupType: '1'
+                      qty: 10
+                      customerItemReference: '56789'
+                      customerItemSubReference: '123'
+                      brandCode: MSM1
+                      productCode: PPDB5-25
+        description: API個別
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestLeadTimeProductInquiryResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryDetailList:
+                      - leadTimeProductInquiryId: 1234567
+                        receiveDateTime: '2019-08-24T14:15:22Z'
+                        leadTimeProductInquiryGroupType: '1'
+                        leadTimeProductInquiryStatus: '01'
+                        customerItemReference: '4567899'
+                        customerItemSubReference: '123'
+                        deleteDateTime: '2019-08-24T14:15:22Z'
+                        reLeadTimeProductInquiryId: 1234534
+                        reReceiveDateTime: '2019-08-10T10:11:37Z'
+                        qty: 10
+                        approveDateTime: '2019-08-25T15:20:05Z'
+                        soDateTime: '2019-08-25T15:20:05Z'
+                        product:
+                          productCode: BKA5
+                          brandCode: BKA5
+                          ginnerCode: MDM00000529288
+                        reply:
+                          replyDateTime: '2019-08-25T15:20:05Z'
+                          responseMessage: ご依頼を受け付けました。
+                          soExpirationDateTime: '2019-08-24T14:15:22Z'
+                          salesPrice:
+                            salesUnitPrice: '10.00'
+                            salesUnitPriceIncludingTax: '20.00'
+                            salesUnitPriceCcyCode: TWD
+                            salesUnitPriceBeforeDiscount: '10.00'
+                            salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                          discount:
+                            discountRate: '50.00'
+                          stork:
+                            storkCode: T0
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        approve:
+                          requestBulkPartialDeliveryType: '1'
+                          product:
+                            productCode: BKA5
+                            brandCode: MSM1
+                            ginnerCode: MDM00000529288
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        errorMessageList:
+                          - code: string
+                            message: string
+                        warningMessageList:
+                          - code: string
+                            message: string
+                        informationMessageList:
+                          - code: string
+                            message: string
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000004E.json
+                NRQ00010001E:
+                  value:
+                    code: NRQ00010001E
+                    message: 調整テーブルに明細を登録することができませんでした。
+                NRQ00010002E:
+                  value:
+                    code: NRQ00010002E
+                    message: 依頼元明細の更新をすることができませんでした。
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000001E.json
+      x-channel:
+        - customer
+      x-subsidiary:
+        - TIW
+    parameters: []
+  /v1/lead-time-product-inquiry/rerequest:
+    post:
+      summary: 納期型番確認再依頼API
+      operationId: rerequestLeadTimeProductInquiryV1
+      tags:
+        - LeadTimeProductInquiry
+      description: 納期型番明細の調整再依頼を行うAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RerequestLeadTimeProductInquiryRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryDetailList:
+                    - leadTimeProductInquiryGroupType: '1'
+                      qty: 10
+                      originalLeadTimeProductInquiryId: 1234534
+                      brandCode: MSM1
+                      productCode: PPDB5-25
+        description: API個別
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RerequestLeadTimeProductInquiryResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryDetailList:
+                      - leadTimeProductInquiryId: 1234567
+                        receiveDateTime: '2019-08-24T14:15:22Z'
+                        leadTimeProductInquiryGroupType: '1'
+                        leadTimeProductInquiryStatus: '01'
+                        customerItemReference: '4567899'
+                        customerItemSubReference: '123'
+                        deleteDateTime: '2019-08-24T14:15:22Z'
+                        reLeadTimeProductInquiryId: 1234534
+                        reReceiveDateTime: '2019-08-10T10:11:37Z'
+                        qty: 10
+                        approveDateTime: '2019-08-25T15:20:05Z'
+                        soDateTime: '2019-08-25T15:20:05Z'
+                        product:
+                          productCode: BKA5
+                          brandCode: BKA5
+                          ginnerCode: MDM00000529288
+                        reply:
+                          replyDateTime: '2019-08-25T15:20:05Z'
+                          responseMessage: ご依頼を受け付けました。
+                          soExpirationDateTime: '2019-08-24T14:15:22Z'
+                          salesPrice:
+                            salesUnitPrice: '10.00'
+                            salesUnitPriceIncludingTax: '20.00'
+                            salesUnitPriceCcyCode: TWD
+                            salesUnitPriceBeforeDiscount: '10.00'
+                            salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                          discount:
+                            discountRate: '50.00'
+                          stork:
+                            storkCode: T0
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        approve:
+                          requestBulkPartialDeliveryType: '1'
+                          product:
+                            productCode: BKA5
+                            brandCode: MSM1
+                            ginnerCode: MDM00000529288
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        errorMessageList:
+                          - code: string
+                            message: string
+                        warningMessageList:
+                          - code: string
+                            message: string
+                        informationMessageList:
+                          - code: string
+                            message: string
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000004E.json
+                NRQ00030001E:
+                  value:
+                    code: NRQ00030001E
+                    message: 元調整明細情報が取得できません。
+                NRQ00030002E:
+                  value:
+                    code: NRQ00030002E
+                    message: 依頼元明細の更新をすることができませんでした。
+                NRQ00030003E:
+                  value:
+                    code: NRQ00030003E
+                    message: '有効期限内の調整明細が存在します。{0}'
+                NRQ00030004E:
+                  value:
+                    code: NRQ00030004E
+                    message: 'カートに追加済みの調整明細が存在します。{0}'
+                NRQ00030005E:
+                  value:
+                    code: NRQ00030005E
+                    message: '見積／注文済の調整明細が存在します。{0}'
+                NRQ00030006E:
+                  value:
+                    code: NRQ00030006E
+                    message: '再依頼済の調整明細が存在します。{0}'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000001E.json
+      x-channel:
+        - customer
+      x-subsidiary:
+        - TIW
+    parameters: []
+  /v1/lead-time-product-inquiry/approve:
+    post:
+      summary: 納期型番確認承認API
+      tags:
+        - LeadTimeProductInquiry
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApproveLeadTimeProductInquiryResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryDetailList:
+                      - leadTimeProductInquiryId: 1234567
+                        receiveDateTime: '2019-08-24T14:15:22Z'
+                        leadTimeProductInquiryGroupType: '1'
+                        leadTimeProductInquiryStatus: '01'
+                        customerItemReference: '4567899'
+                        customerItemSubReference: '123'
+                        deleteDateTime: '2019-08-24T14:15:22Z'
+                        reLeadTimeProductInquiryId: 1234534
+                        reReceiveDateTime: '2019-08-10T10:11:37Z'
+                        qty: 10
+                        approveDateTime: '2019-08-25T15:20:05Z'
+                        soDateTime: '2019-08-25T15:20:05Z'
+                        product:
+                          productCode: BKA5
+                          brandCode: BKA5
+                          ginnerCode: MDM00000529288
+                        reply:
+                          replyDateTime: '2019-08-25T15:20:05Z'
+                          responseMessage: ご依頼を受け付けました。
+                          soExpirationDateTime: '2019-08-24T14:15:22Z'
+                          salesPrice:
+                            salesUnitPrice: '10.00'
+                            salesUnitPriceIncludingTax: '20.00'
+                            salesUnitPriceCcyCode: TWD
+                            salesUnitPriceBeforeDiscount: '10.00'
+                            salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                          discount:
+                            discountRate: '50.00'
+                          stork:
+                            storkCode: T0
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        approve:
+                          requestBulkPartialDeliveryType: '1'
+                          product:
+                            productCode: BKA5
+                            brandCode: MSM1
+                            ginnerCode: MDM00000529288
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        errorMessageList:
+                          - code: string
+                            message: string
+                        warningMessageList:
+                          - code: string
+                            message: string
+                        informationMessageList:
+                          - code: string
+                            message: string
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000004E.json
+                NRQ00050001E:
+                  value:
+                    code: NRQ00050001E
+                    message: 調整明細情報が取得できません。
+                NRQ00050002E:
+                  value:
+                    code: NRQ00050002E
+                    message: 対象明細が正しく抽出できません。
+                NRQ00050003E:
+                  value:
+                    code: NRQ00050003E
+                    message: '納期型番確認グループ区分が「1：納期」の場合、{0}が必須入力です。'
+                NRQ00050004E:
+                  value:
+                    code: NRQ00050004E
+                    message: '納期型番確認グループ区分が「2：型番」の場合、{0}が必須入力です。'
+                NRQ00050005E:
+                  value:
+                    code: NRQ00050005E
+                    message: 追加済み明細はカートに追加できません。
+                NRQ00050006E:
+                  value:
+                    code: NRQ00050006E
+                    message: '再依頼済の調整明細が存在します。{0}'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000007E.json
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000002E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000002E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000001E.json
+      operationId: approveLeadTimeProductInquiryV1
+      description: 調整内容の確定をし、カートに追加するAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproveLeadTimeProductInquiryRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryDetailList:
+                    - leadTimeProductInquiryId: 1234567
+                      customerItemReference: '123'
+                      customerItemSubReference: '456'
+                      qty: 10
+                      requestBulkPartialDeliveryType: '1'
+                      productCode: '22233333'
+                      brandCode: MSM1
+        description: API個別
+      x-channel:
+        - customer
+      x-subsidiary:
+        - TIW
+    parameters: []
+  /v1/lead-time-product-inquiry/search:
+    get:
+      summary: 納期型番確認検索API
+      operationId: searchLeadTimeProductInquiryV1
+      tags:
+        - LeadTimeProductInquiry
+      description: 納期型番確認一覧を検索するAPI。
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseV1'
+              examples:
+                example:
+                  value:
+                    totalCount: 10
+                    leadTimeProductInquiryDetailList:
+                      - leadTimeProductInquiryId: 1234567
+                        receiveDateTime: '2019-08-24T14:15:22Z'
+                        leadTimeProductInquiryGroupType: '1'
+                        leadTimeProductInquiryStatus: '01'
+                        customerItemReference: '4567899'
+                        customerItemSubReference: '123'
+                        deleteDateTime: '2019-08-24T14:15:22Z'
+                        reLeadTimeProductInquiryId: 1234534
+                        reReceiveDateTime: '2019-08-10T10:11:37Z'
+                        qty: 10
+                        approveDateTime: '2019-08-25T15:20:05Z'
+                        soDateTime: '2019-08-25T15:20:05Z'
+                        product:
+                          productCode: BKA5
+                          brandCode: BKA5
+                          ginnerCode: MDM00000529288
+                        reply:
+                          replyDateTime: '2019-08-25T15:20:05Z'
+                          responseMessage: ご依頼を受け付けました。
+                          soExpirationDateTime: '2019-08-24T14:15:22Z'
+                          salesPrice:
+                            salesUnitPrice: '10.00'
+                            salesUnitPriceIncludingTax: '20.00'
+                            salesUnitPriceCcyCode: TWD
+                            salesUnitPriceBeforeDiscount: '10.00'
+                            salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                          discount:
+                            discountRate: '50.00'
+                          stork:
+                            storkCode: T0
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        approve:
+                          requestBulkPartialDeliveryType: '1'
+                          product:
+                            productCode: BKA5
+                            brandCode: MSM1
+                            ginnerCode: MDM00000529288
+                          partialDeliveryList:
+                            - bulkPartialDeliveryType: '1'
+                              partialDeliverySeq: 5
+                              vrd: '2021-01-01'
+                              vsd: '2021-01-01'
+                              specifiedVsd: '2021-01-01'
+                              vslt: 3
+                              specifiedVslt: 3
+                              ssd: '2021-01-01'
+                              specifiedSsd: '2021-01-01'
+                              sslt: 3
+                              specifiySslt: 3
+                              crd: '2021-01-03'
+                              qty: 10
+                        errorMessageList:
+                          - code: string
+                            message: string
+                        warningMessageList:
+                          - code: string
+                            message: string
+                        informationMessageList:
+                          - code: string
+                            message: string
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+            multipart/form-data:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000004E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000004E.json
+                NRQ00020001E:
+                  value:
+                    code: NRQ00020001E
+                    message: '依頼日(From：{0})が依頼日(To：{1})より未来日に設定されました。'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000006E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000006E.json
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000007E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000007E.json
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000000001E:
+                  value:
+                    $ref: ../../misumi-api-spec/common-spec/examples/N0000000001E.json
+      parameters:
+        - name: leadTimeProductInquiryId
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 1234567789
+            maxLength: 20
+          description: 納期型番確認ID
+        - name: requestDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2020-03-05'
+          description: 依頼日
+        - name: requestFromDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2020-03-02'
+          description: 依頼日(From)
+        - name: requestToDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2020-03-06'
+          description: 依頼日(To)
+        - name: leadTimeProductInquiryGroupType
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '1'
+            enum:
+              - '0'
+              - '1'
+              - '2'
+          description: 納期型番確認グループ区分
+        - name: customerItemReference
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '56789'
+            maxLength: 20
+          description: 顧客注文番号（親番）
+        - name: customerItemSubReference
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '03'
+            maxLength: 54
+          description: 顧客注文番号（枝番）
+        - name: requestProductCode
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 78
+            example: BKA
+          description: 依頼型番
+        - name: leadTimeProductInquiryStatus
+          in: query
+          schema:
+            type: string
+            enum:
+              - '01'
+              - '02'
+              - '03'
+              - '04'
+              - '05'
+            example: '01'
+          description: 納期型番確認ステータス 01：未処理 02：処理中 03：調整済 04：QT/SO確定 05：削除済
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      x-channel:
+        - customer
+      x-subsidiary:
+        - TIW
+    parameters: []
+components:
+  schemas:
+    RerequestLeadTimeProductInquiryRequestV1:
+      title: RerequestLeadTimeProductInquiryRequestV1
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryGroupType: '1'
+                qty: 10
+                originalLeadTimeProductInquiryId: 1234534
+                brandCode: MSM1
+                productCode: PPDB5-25
+      description: 納期型番確認再依頼APIのリクエスト
+      allOf:
+        - $ref: '#/components/schemas/RerequestLeadTimeProductInquiryRequestBaseV1'
+    RequestLeadTimeProductInquiryRequestV1:
+      title: RequestLeadTimeProductInquiryRequestV1
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryGroupType: '1'
+                qty: 10
+                customerItemReference: '56789'
+                customerItemSubReference: '123'
+                brandCode: MSM1
+                productCode: PPDB5-25
+      description: 納期型番確認依頼APIのリクエスト
+      allOf:
+        - $ref: '#/components/schemas/RequestLeadTimeProductInquiryRequestBaseV1'
+    SearchLeadTimeProductInquiryResponseV1:
+      title: SearchLeadTimeProductInquiryResponseV1
+      description: 納期型番確認検索APIの正常終了レスポンス
+      x-examples:
+        example:
+          value:
+            totalCount: 10
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      allOf:
+        - $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseBaseV1'
+    RerequestLeadTimeProductInquiryResponseV1:
+      title: RerequestLeadTimeProductInquiryResponseV1
+      description: 納期型番確認再依頼APIの正常終了レスポンス
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      allOf:
+        - $ref: '#/components/schemas/RerequestLeadTimeProductInquiryResponseBaseV1'
+    ApproveLeadTimeProductInquiryRequestV1:
+      title: ApproveLeadTimeProductInquiryRequestV1
+      description: 納期型番確認承認APIのリクエスト
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                customerItemReference: '123'
+                customerItemSubReference: '456'
+                qty: 10
+                requestBulkPartialDeliveryType: '1'
+                productCode: '22233333'
+                brandCode: MSM1
+      allOf:
+        - $ref: '#/components/schemas/ApproveLeadTimeProductInquiryRequestBaseV1'
+    CancelLeadTimeProductInquiryRequestV1:
+      title: CancelLeadTimeProductInquiryRequestV1
+      description: 納期型番確認キャンセルAPIのリクエスト
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryIdList:
+              - 123456
+      allOf:
+        - $ref: '#/components/schemas/CancelLeadTimeProductInquiryRequestBaseV1'
+    ApproveLeadTimeProductInquiryResponseV1:
+      title: ApproveLeadTimeProductInquiryResponseV1
+      description: 納期型番確認承認APIの正常終了レスポンス
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      allOf:
+        - $ref: '#/components/schemas/ApproveLeadTimeProductInquiryResponseBaseV1'
+    SearchLeadTimeProductInquiryResponseDetailV1:
+      title: SearchLeadTimeProductInquiryResponseDetailV1
+      type: object
+      description: 納期型番確認検索APIレスポンスの調整明細
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryId: 1234567
+            receiveDateTime: '2019-08-24T14:15:22Z'
+            leadTimeProductInquiryGroupType: '1'
+            leadTimeProductInquiryStatus: '01'
+            customerItemReference: '4567899'
+            customerItemSubReference: '123'
+            deleteDateTime: '2019-08-24T14:15:22Z'
+            reLeadTimeProductInquiryId: 1234534
+            reReceiveDateTime: '2019-08-10T10:11:37Z'
+            qty: 10
+            approveDateTime: '2019-08-25T15:20:05Z'
+            soDateTime: '2019-08-25T15:20:05Z'
+            product:
+              productCode: BKA5
+              brandCode: BKA5
+              ginnerCode: MDM00000529288
+            reply:
+              replyDateTime: '2019-08-25T15:20:05Z'
+              responseMessage: ご依頼を受け付けました。
+              soExpirationDateTime: '2019-08-24T14:15:22Z'
+              salesPrice:
+                salesUnitPrice: '10.00'
+                salesUnitPriceIncludingTax: '20.00'
+                salesUnitPriceCcyCode: TWD
+                salesUnitPriceBeforeDiscount: '10.00'
+                salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+              discount:
+                discountRate: '50.00'
+              stork:
+                storkCode: T0
+              partialDeliveryList:
+                - bulkPartialDeliveryType: '1'
+                  partialDeliverySeq: 5
+                  vrd: '2021-01-01'
+                  vsd: '2021-01-01'
+                  specifiedVsd: '2021-01-01'
+                  vslt: 3
+                  specifiedVslt: 3
+                  ssd: '2021-01-01'
+                  specifiedSsd: '2021-01-01'
+                  sslt: 3
+                  specifiySslt: 3
+                  crd: '2021-01-03'
+                  qty: 10
+            approve:
+              requestBulkPartialDeliveryType: '1'
+              product:
+                productCode: BKA5
+                brandCode: MSM1
+                ginnerCode: MDM00000529288
+              partialDeliveryList:
+                - bulkPartialDeliveryType: '1'
+                  partialDeliverySeq: 5
+                  vrd: '2021-01-01'
+                  vsd: '2021-01-01'
+                  specifiedVsd: '2021-01-01'
+                  vslt: 3
+                  specifiedVslt: 3
+                  ssd: '2021-01-01'
+                  specifiedSsd: '2021-01-01'
+                  sslt: 3
+                  specifiySslt: 3
+                  crd: '2021-01-03'
+                  qty: 10
+            errorMessageList:
+              - code: string
+                message: string
+            warningMessageList:
+              - code: string
+                message: string
+            informationMessageList:
+              - code: string
+                message: string
+      properties:
+        leadTimeProductInquiryId:
+          type: integer
+          description: 納期型番確認ID
+          example: 1234567
+        receiveDateTime:
+          type: string
+          description: 受付日時
+          format: date-time
+          example: '2019-08-24T14:15:22Z'
+        leadTimeProductInquiryGroupType:
+          type: string
+          description: |-
+            納期型番確認グループ区分
+            "0"：納期型番確認でない
+            "1"：納期
+            "2"：型番
+            ※本APIでは 0 は返却しない
+          enum:
+            - '0'
+            - '1'
+            - '2'
+          example: '1'
+        leadTimeProductInquiryStatus:
+          type: string
+          description: |-
+            納期型番確認ステータス
+            01：未処理
+            02：処理中
+            03：調整済
+            04：QT/SO確定
+            05：削除済
+          enum:
+            - '01'
+            - '02'
+            - '03'
+            - '04'
+            - '05'
+          example: '01'
+        customerItemReference:
+          type: string
+          description: 顧客注文番号（親番）
+          example: '4567899'
+          maxLength: 20
+        customerItemSubReference:
+          type: string
+          description: 顧客注文番号（枝番）
+          example: '123'
+          maxLength: 54
+        deleteDateTime:
+          type: string
+          description: 削除日時
+          format: date-time
+          example: '2019-08-24T14:15:22Z'
+        reLeadTimeProductInquiryId:
+          type: integer
+          description: 再依頼納期型番確認ID
+          example: 1234534
+        reReceiveDateTime:
+          type: string
+          description: 再依頼受付日時
+          format: date-time
+          example: '2019-08-10T10:11:37Z'
+        qty:
+          type: integer
+          description: 数量
+          example: 10
+          minimum: 1
+          maximum: 99999
+        approveDateTime:
+          type: string
+          description: |-
+            承認日時
+            提案された明細を顧客が承認した日時
+          format: date-time
+          example: '2019-08-25T15:20:05Z'
+        soDateTime:
+          type: string
+          description: |-
+            受注日時
+            提案された明細を顧客が注文確定した日時
+          format: date-time
+          example: '2019-08-25T15:20:05Z'
+        product:
+          type: object
+          description: 商品
+          title: SearchLeadTimeProductInquiryResponseDetailProductV1
+          required:
+            - productCode
+          properties:
+            productCode:
+              type: string
+              maxLength: 78
+              description: 商品コード
+              example: BKA5
+            brandCode:
+              type: string
+              minLength: 4
+              maxLength: 4
+              description: ブランドコード
+              example: BKA5
+            ginnerCode:
+              type: string
+              description: 統合インナーコード
+              example: MDM00000529288
+              minLength: 14
+              maxLength: 14
+        reply:
+          type: object
+          description: |-
+            回答
+            ※回答があった場合に値を返却
+          title: SearchLeadTimeProductInquiryResponseDetailReplyV1
+          required:
+            - salesPrice
+            - discount
+            - stork
+            - partialDeliveryList
+          properties:
+            replyDateTime:
+              type: string
+              description: 回答日時
+              format: date-time
+              example: '2019-08-25T15:20:05Z'
+            responseMessage:
+              type: string
+              description: 提案メッセージ
+              example: ご依頼を受け付けました。
+            soExpirationDateTime:
+              type: string
+              description: 注文有効期限日時
+              format: date-time
+              example: '2019-08-24T14:15:22Z'
+            salesPrice:
+              type: object
+              description: 回答売値
+              title: SearchLeadTimeProductInquiryResponseDetailReplySalesPriceV1
+              properties:
+                salesUnitPrice:
+                  type: string
+                  example: '10.00'
+                  description: 売単価
+                  format: decimal
+                salesUnitPriceIncludingTax:
+                  type: string
+                  description: 売単価（税込）
+                  format: decimal
+                  example: '20.00'
+                salesUnitPriceCcyCode:
+                  type: string
+                  description: 売単価通貨コード
+                  example: TWD
+                  minLength: 3
+                  maxLength: 3
+                salesUnitPriceBeforeDiscount:
+                  type: string
+                  format: decimal
+                  description: |-
+                    値引前売単価
+                    値引き適用前の売単価
+                  example: '10.00'
+                salesUnitPriceBeforeDiscountIncludingTax:
+                  type: string
+                  format: decimal
+                  description: |-
+                    値引前売単価(税込)
+                    値引き適用前の売単価(税込)
+                  example: '11.00'
+            discount:
+              type: object
+              description: 値引
+              title: SearchLeadTimeProductInquiryResponseDetailReplyDiscountV1
+              properties:
+                discountRate:
+                  type: string
+                  format: decimal
+                  description: |-
+                    値引率
+                    各種値引の合計率
+                  example: '50.00'
+            stork:
+              type: object
+              description: 回答ストーク
+              title: SearchLeadTimeProductInquiryResponseDetailReplyStorkV1
+              properties:
+                storkCode:
+                  type: string
+                  example: T0
+                  description: |-
+                    ストークコード
+                    　T0​：Ｔストーク​
+                    　A0​：Ａストーク
+                    　A1​：Ａストーク早割
+                    　B0：Ｂストーク
+                    　C0：Ｃストーク
+                    　Z0：Ｚストーク
+                    　L0：Ｌストーク
+                    　V0：Ｖストーク
+                  enum:
+                    - T0
+                    - A0
+                    - A1
+                    - B0
+                    - C0
+                    - Z0
+                    - L0
+                    - V0
+            partialDeliveryList:
+              type: array
+              description: 分納提案リスト
+              items:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseDetailPartialDeliveryV1'
+        approve:
+          type: object
+          description: |-
+            承認
+            ※承認があった場合に値を返却
+          title: SearchLeadTimeProductInquiryResponseDetailFixV1
+          required:
+            - product
+            - partialDeliveryList
+          properties:
+            requestBulkPartialDeliveryType:
+              type: string
+              description: |-
+                希望一括分納タイプ
+                ・1：一括納入
+                ・2：分割納入
+              enum:
+                - '1'
+                - '2'
+              example: '1'
+            product:
+              type: object
+              description: 確定商品
+              title: SearchLeadTimeProductInquiryResponseDetailFixProductV1
+              properties:
+                productCode:
+                  type: string
+                  maxLength: 78
+                  description: 商品コード
+                  example: BKA5
+                brandCode:
+                  type: string
+                  description: ブランドコード
+                  maxLength: 4
+                  example: MSM1
+                  minLength: 4
+                ginnerCode:
+                  type: string
+                  example: MDM00000529288
+                  minLength: 14
+                  maxLength: 14
+                  description: 統合インナーコード
+            partialDeliveryList:
+              type: array
+              description: 分納明細リスト
+              items:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseDetailPartialDeliveryV1'
+        errorMessageList:
+          type: array
+          description: エラーメッセージリスト
+          items:
+            $ref: '#/components/schemas/Message'
+        warningMessageList:
+          type: array
+          description: 警告メッセージリスト
+          items:
+            $ref: '#/components/schemas/Message'
+        informationMessageList:
+          type: array
+          description: 情報メッセージリスト
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+        - leadTimeProductInquiryId
+        - receiveDateTime
+        - leadTimeProductInquiryGroupType
+        - leadTimeProductInquiryStatus
+        - product
+        - reply
+        - approve
+        - errorMessageList
+        - warningMessageList
+        - informationMessageList
+    SearchLeadTimeProductInquiryResponseDetailPartialDeliveryV1:
+      title: SearchLeadTimeProductInquiryResponseDetailPartialDeliveryV1
+      type: object
+      description: 分納提案リスト
+      x-examples:
+        example:
+          value:
+            bulkPartialDeliveryType: '1'
+            partialDeliverySeq: 5
+            vrd: '2021-01-01'
+            vsd: '2021-01-01'
+            specifiedVsd: '2021-01-01'
+            vslt: 3
+            specifiedVslt: 3
+            ssd: '2021-01-01'
+            specifiedSsd: '2021-01-01'
+            sslt: 3
+            specifiySslt: 3
+            crd: '2021-01-03'
+            qty: 10
+      properties:
+        bulkPartialDeliveryType:
+          type: string
+          description: |-
+            一括分納タイプ
+            ・1：一括納入
+            ・2：分割納入
+          enum:
+            - '1'
+            - '2'
+          example: '1'
+        partialDeliverySeq:
+          type: integer
+          description: 分納連番
+          example: 5
+          minimum: 1
+        vrd:
+          type: string
+          description: VRD
+          format: date
+          example: '2021-01-01'
+        vsd:
+          type: string
+          description: VSD
+          format: date
+          example: '2021-01-01'
+        specifiedVsd:
+          type: string
+          description: 指定VSD
+          format: date
+          example: '2021-01-01'
+        vslt:
+          type: integer
+          description: VSLT
+          example: 3
+        specifiedVslt:
+          type: integer
+          description: 指定VSLT
+          example: 3
+        ssd:
+          type: string
+          description: SSD
+          format: date
+          example: '2021-01-01'
+        specifiedSsd:
+          type: string
+          description: 指定SSD
+          format: date
+          example: '2021-01-01'
+        sslt:
+          type: integer
+          description: SSLT
+          example: 3
+        specifiySslt:
+          type: integer
+          description: 指定SSLT
+          example: 3
+        crd:
+          type: string
+          description: CRD
+          format: date
+          example: '2021-01-03'
+        qty:
+          type: integer
+          description: 数量
+          example: 10
+          minimum: 1
+          maximum: 99999
+      required:
+        - bulkPartialDeliveryType
+        - partialDeliverySeq
+    RequestLeadTimeProductInquiryResponseV1:
+      title: RequestLeadTimeProductInquiryResponseV1
+      description: 納期型番確認依頼APIの正常終了レスポンス
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      allOf:
+        - $ref: '#/components/schemas/RequestLeadTimeProductInquiryResponseBaseV1'
+    CancelLeadTimeProductInquiryRequestBaseV1:
+      title: CancelLeadTimeProductInquiryRequestBaseV1
+      type: object
+      description: 納期型番確認キャンセルAPIのリクエストベースモデル
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryIdList:
+              - 123456
+      properties:
+        leadTimeProductInquiryIdList:
+          type: array
+          description: 納期型番確認IDリスト
+          items:
+            type: integer
+            example: 123456
+      required:
+        - leadTimeProductInquiryIdList
+    RequestLeadTimeProductInquiryRequestBaseV1:
+      title: RequestLeadTimeProductInquiryRequestBaseV1
+      type: object
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryGroupType: '1'
+                qty: 10
+                customerItemReference: '56789'
+                customerItemSubReference: '123'
+                brandCode: MSM1
+                productCode: PPDB5-25
+      description: 納期型番確認依頼APIのリクエストベースモデル
+      properties:
+        leadTimeProductInquiryDetailList:
+          type: array
+          description: 納期型番確認明細リスト
+          items:
+            type: object
+            properties:
+              leadTimeProductInquiryGroupType:
+                type: string
+                description: |-
+                  納期型番確認グループ区分
+                  "0"：納期型番確認でない
+                  "1"：納期
+                  "2"：型番
+                  ※本APIでは 0 は指定しない
+                enum:
+                  - '0'
+                  - '1'
+                  - '2'
+                example: '1'
+              qty:
+                type: integer
+                description: 数量
+                example: 10
+                minimum: 1
+                maximum: 99999
+              customerItemReference:
+                type: string
+                description: 顧客注文番号（親番）
+                example: '56789'
+                maxLength: 20
+              customerItemSubReference:
+                type: string
+                description: 顧客注文番号（枝番）
+                example: '123'
+                maxLength: 54
+              brandCode:
+                type: string
+                description: ブランドコード
+                example: MSM1
+                minLength: 4
+                maxLength: 4
+              productCode:
+                type: string
+                maxLength: 78
+                description: 商品コード
+                example: PPDB5-25
+            required:
+              - leadTimeProductInquiryGroupType
+              - qty
+              - productCode
+      required:
+        - leadTimeProductInquiryDetailList
+    RequestLeadTimeProductInquiryResponseBaseV1:
+      title: RequestLeadTimeProductInquiryResponseBaseV1
+      type: object
+      description: 納期型番確認依頼APIのレスポンスベースモデル
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      properties:
+        leadTimeProductInquiryDetailList:
+          type: array
+          description: 納期型番確認明細のリスト
+          items:
+            $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseDetailV1'
+      required:
+        - leadTimeProductInquiryDetailList
+    RerequestLeadTimeProductInquiryRequestBaseV1:
+      title: RerequestLeadTimeProductInquiryRequestBaseV1
+      type: object
+      description: 納期型番確認再依頼APIのリクエストベースモデル
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryGroupType: '1'
+                qty: 10
+                originalLeadTimeProductInquiryId: 1234534
+                brandCode: MSM1
+                productCode: PPDB5-25
+      properties:
+        leadTimeProductInquiryDetailList:
+          type: array
+          description: 納期型番確認明細リスト
+          items:
+            type: object
+            properties:
+              leadTimeProductInquiryGroupType:
+                type: string
+                description: |-
+                  納期型番確認グループ区分
+                  "0"：納期型番確認でない
+                  "1"：納期
+                  "2"：型番
+                  ※本APIでは 0 は指定しない
+                enum:
+                  - '0'
+                  - '1'
+                  - '2'
+                example: '1'
+              qty:
+                type: integer
+                description: 数量
+                example: 10
+                minimum: 1
+                maximum: 99999
+              originalLeadTimeProductInquiryId:
+                type: integer
+                description: 元納期型番確認ID
+                example: 1234534
+              brandCode:
+                type: string
+                example: MSM1
+                description: ブランドコード
+                minLength: 4
+                maxLength: 4
+              productCode:
+                type: string
+                maxLength: 78
+                example: PPDB5-25
+                description: 商品コード
+            required:
+              - leadTimeProductInquiryGroupType
+      required:
+        - leadTimeProductInquiryDetailList
+    RerequestLeadTimeProductInquiryResponseBaseV1:
+      title: RerequestLeadTimeProductInquiryResponseBaseV1
+      type: object
+      description: 納期型番確認再依頼APIのレスポンスベースモデル
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      properties:
+        leadTimeProductInquiryDetailList:
+          type: array
+          description: 納期型番確認明細のリスト
+          items:
+            $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseDetailV1'
+      required:
+        - leadTimeProductInquiryDetailList
+    ApproveLeadTimeProductInquiryRequestBaseV1:
+      title: ApproveLeadTimeProductInquiryRequestBaseV1
+      type: object
+      description: 納期型番確認承認APIのリクエストベースモデル
+      x-examples:
+        型番訂正時の必須項目:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                qty: 10
+                productCode: '22233333'
+                brandCode: MSM1
+        納期確認時の必須項目:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                requestBulkPartialDeliveryType: '1'
+      properties:
+        leadTimeProductInquiryDetailList:
+          type: array
+          description: 納期型番確認明細リスト
+          items:
+            type: object
+            properties:
+              leadTimeProductInquiryId:
+                type: integer
+                description: 納期型番確認ID
+                example: 1234567
+              customerItemReference:
+                type: string
+                description: 顧客注文番号（親番）
+                example: '123'
+                maxLength: 20
+              customerItemSubReference:
+                type: string
+                description: 顧客注文番号（枝番）
+                example: '456'
+                maxLength: 54
+              qty:
+                type: integer
+                description: 数量
+                example: 10
+                minimum: 1
+                maximum: 99999
+              requestBulkPartialDeliveryType:
+                type: string
+                description: |-
+                  一括分納顧客希望
+                    ・1：一括納入
+                    ・2：分割納入
+                enum:
+                  - '1'
+                  - '2'
+                example: '1'
+              productCode:
+                type: string
+                maxLength: 78
+                description: 商品コード
+                example: '22233333'
+              brandCode:
+                type: string
+                description: ブランドコード
+                example: MSM1
+                minLength: 4
+                maxLength: 4
+            required:
+              - leadTimeProductInquiryId
+      required:
+        - leadTimeProductInquiryDetailList
+    ApproveLeadTimeProductInquiryResponseBaseV1:
+      title: ApproveLeadTimeProductInquiryResponseBaseV1
+      type: object
+      description: 納期型番確認承認APIのレスポンスベースモデル
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      properties:
+        leadTimeProductInquiryDetailList:
+          type: array
+          description: 納期型番確認明細のリスト
+          items:
+            $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseDetailV1'
+      required:
+        - leadTimeProductInquiryDetailList
+    SearchLeadTimeProductInquiryResponseBaseV1:
+      title: SearchLeadTimeProductInquiryResponseBaseV1
+      type: object
+      description: 納期型番確認検索APIのレスポンスベースモデル
+      x-examples:
+        example:
+          value:
+            totalCount: 10
+            leadTimeProductInquiryDetailList:
+              - leadTimeProductInquiryId: 1234567
+                receiveDateTime: '2019-08-24T14:15:22Z'
+                leadTimeProductInquiryGroupType: '1'
+                leadTimeProductInquiryStatus: '01'
+                customerItemReference: '4567899'
+                customerItemSubReference: '123'
+                deleteDateTime: '2019-08-24T14:15:22Z'
+                reLeadTimeProductInquiryId: 1234534
+                reReceiveDateTime: '2019-08-10T10:11:37Z'
+                qty: 10
+                approveDateTime: '2019-08-25T15:20:05Z'
+                soDateTime: '2019-08-25T15:20:05Z'
+                product:
+                  productCode: BKA5
+                  brandCode: BKA5
+                  ginnerCode: MDM00000529288
+                reply:
+                  replyDateTime: '2019-08-25T15:20:05Z'
+                  responseMessage: ご依頼を受け付けました。
+                  soExpirationDateTime: '2019-08-24T14:15:22Z'
+                  salesPrice:
+                    salesUnitPrice: '10.00'
+                    salesUnitPriceIncludingTax: '20.00'
+                    salesUnitPriceCcyCode: TWD
+                    salesUnitPriceBeforeDiscount: '10.00'
+                    salesUnitPriceBeforeDiscountIncludingTax: '11.00'
+                  discount:
+                    discountRate: '50.00'
+                  stork:
+                    storkCode: T0
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                approve:
+                  requestBulkPartialDeliveryType: '1'
+                  product:
+                    productCode: BKA5
+                    brandCode: MSM1
+                    ginnerCode: MDM00000529288
+                  partialDeliveryList:
+                    - bulkPartialDeliveryType: '1'
+                      partialDeliverySeq: 5
+                      vrd: '2021-01-01'
+                      vsd: '2021-01-01'
+                      specifiedVsd: '2021-01-01'
+                      vslt: 3
+                      specifiedVslt: 3
+                      ssd: '2021-01-01'
+                      specifiedSsd: '2021-01-01'
+                      sslt: 3
+                      specifiySslt: 3
+                      crd: '2021-01-03'
+                      qty: 10
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                informationMessageList:
+                  - code: string
+                    message: string
+      properties:
+        totalCount:
+          type: integer
+          description: 総件数
+          example: 10
+        leadTimeProductInquiryDetailList:
+          type: array
+          description: 納期型番確認明細のリスト
+          items:
+            $ref: '#/components/schemas/SearchLeadTimeProductInquiryResponseDetailV1'
+      required:
+        - totalCount
+        - leadTimeProductInquiryDetailList
+    Message:
+      title: Message
+      type: object
+      properties:
+        code:
+          type: string
+          maxLength: 8
+          description: コード
+        message:
+          type: string
+          maxLength: 1000
+          description: メッセージ
+      required:
+        - code
+        - message
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 100
+      description: 1ページ内件数
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '1'
+        minLength: 1
+      description: 取得開始位置
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+      description: “ソートキーの降順・昇順” と “ソートキーの項目名” を指定する。昇順指定する場合はソートキー項目名を指定する。降順指定する場合はソートキー項目名の先頭に-(ハイフン)をつける。( -ソートキー項目名 )
+    XApplicationId:
+      schema:
+        type: string
+      in: header
+      name: X-Application-Id
+      description: アプリケーションID
+      required: true
+  responses: {}
+  securitySchemes: {}
+tags:
+  - name: LeadTimeProductInquiry
+  - name: Request

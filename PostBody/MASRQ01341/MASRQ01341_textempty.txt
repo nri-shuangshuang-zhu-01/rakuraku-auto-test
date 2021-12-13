@@ -1,0 +1,17 @@
+{
+  "sendMediaType": "02",
+  "fax": "",
+  "emailAddressTo": "",
+  "emailAddressCc": "",
+  "from": "",
+  "replyTo": "",
+  "subject": "",
+  "body": "",
+  "attachFileIdList": [
+    {
+      "fileId": ""
+    }
+  ],
+  "inquiryId": "",
+  "emailTemplateId": ""
+}

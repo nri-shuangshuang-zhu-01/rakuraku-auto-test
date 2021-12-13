@@ -1,0 +1,10 @@
+■api名称：　检索
+■api Request：　/supplier/v1/lead-time-product-inquiry-history/search?leadTimeProductInquiryId=101&updateCount=0
+■api方法：　GET
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Application-Id=string&&X-Client-Program=offset&&Idempotency-Key=string&&X-User-Type=Supplier&&Prefer=/supplier/v1/supplier-user/search->2&/internal/v1/supplier/get->1&/internal/v1/customer/get->1&/internal/v1/ship-to/get->1&/internal/v1/brand/get->1&/internal/v1/plant/get->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "code": "N0000000001E",
+  "message": "Server Error"
+}

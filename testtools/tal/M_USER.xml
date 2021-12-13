@@ -1,0 +1,91 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+会員コード::user_code::varchar(8)::NOT NULL(PK)
+得意先コード::customer_code::char(6)::NULL
+部門::department::varchar(30)::NULL
+部門（現地語）::department_native::varchar(30)::NULL
+会員氏名::user_name::varchar(120)::NULL
+会員氏名（現地語）::user_name_native::varchar(120)::NOT NULL
+TEL番号::tel_number::varchar(20)::NULL
+FAX番号::fax::varchar(20)::NULL
+EMAIL::email::varchar(256)::NULL
+注文請けメール受信可否フラグ::order_confirmation_email_receivable_flag::char(1)::NULL
+メルマガ受信可否フラグ::email_magazine_receivable_flag::char(1)::NULL
+出荷完了メール受信可否フラグ::advance_shipment_notice_email_receivable_flag::char(1)::NULL
+基本情報_配送先コード::basic_info_ship_to_code::char(6)::NULL
+顧客ID::customer_id::decimal(10,0)::NULL
+顧客DB_ログインID::customer_db_login_id::varchar(50)::NULL
+顧客型番付与フラグ::customer_product_code_add_flag::char(1)::NULL
+CCメールアドレス2::cc_email_address2::varchar(256)::NULL
+CCフラグ2::cc_flag2::char(1)::NULL
+CCメールアドレス3::cc_email_address3::varchar(256)::NULL
+CCフラグ3::cc_flag3::char(1)::NULL
+CCメール登録有効期限::cc_email_register_expiration::timestamp::NULL
+従業員コード::employee_code::varchar(256)::NULL
+支払方法フラグ::payment_method_flag::char(1)::NULL
+配送サービスコード::shipping_service_code::varchar(15)::NULL
+配送料支払い方法区分::freight_payment_method_type::char(2)::NULL
+配送会社アカウント番号::shipping_company_account_number::varchar(15)::NULL
+本登録完了フラグ::register_complete_flag::char(1)::NULL
+登録完了日付::register_complete_date::date::NULL
+言語コード::language_code::char(3)::NULL
+パスワード再発行有効期限::password_expiration::timestamp::NULL
+型番候補表示設定::product_code_candidate_display_setting::varchar(1)::NULL
+選択式アンケート回答1::select_enquete_answer1::varchar(1)::NULL
+選択式アンケート回答2::select_enquete_answer2::varchar(1)::NULL
+選択式アンケート回答3::select_enquete_answer3::varchar(1)::NULL
+選択式アンケート回答4::select_enquete_answer4::varchar(1)::NULL
+選択式アンケート回答5::select_enquete_answer5::varchar(1)::NULL
+選択式アンケート回答6::select_enquete_answer6::varchar(1)::NULL
+選択式アンケート回答7::select_enquete_answer7::varchar(1)::NULL
+選択式アンケート回答8::select_enquete_answer8::varchar(1)::NULL
+入力式アンケート回答1::input_enquete_answer1::varchar(80)::NULL
+入力式アンケート回答2::input_enquete_answer2::varchar(80)::NULL
+入力式アンケート回答3::input_enquete_answer3::varchar(80)::NULL
+与信情報::credit_limit_info::varchar(100)::NULL
+反映日時::reflection_date_time::timestamp::NULL
+顧客コード（顧客システム）::customer_code_customer_system::varchar(10)::NULL
+エラー明細PDFダウンロードフラグ::error_detail_pdf_download_flag::char(1)::NULL
+URL伝達利用フラグ::url_transmission_flag::char(1)::NULL
+一時保存機能利用フラグ::so_qt_save_enable_flag::char(1)::NULL
+一時保存通知メール利用フラグ::so_qt_save_notice_email_flag::char(1)::NULL
+正解候補表示フラグ::product_code_correct_candidate_display_setting_flag::char(1)::NULL
+メール送信形式区分::email_send_format_type::varchar(1)::NULL
+見積請けメール受信可否フラグ::qt_confirmation_email_receivable_flag::char(1)::NULL
+WOSトップページ利用フラグ::wos_top_page_flag::char(1)::NULL
+商品画像非表示フラグ::product_image_hide_flag::char(1)::NULL
+単価差異通知メール受信可否フラグ::unit_price_difference_notice_email_receivable_flag::char(1)::NULL
+基本情報_扱い便コード::basic_info_shipmode_code::varchar(3)::NULL
+基本情報_配送方法名::basic_info_shipping_method_name::varchar(200)::NULL
+基本情報_支払方法名::basic_info_payment_method_name::varchar(200)::NULL
+クレカ領収書非表示フラグ::proviso_hide_flag::char(1)::NULL
+配信許諾チャネル区分_EMAIL::opt_in_email::varchar(1)::NULL
+配信許諾チャネル区分_TEL::opt_in_tel::varchar(1)::NULL
+配信許諾チャネル区分_SMS::opt_in_sms::varchar(1)::NULL
+配信許諾チャネル区分_FAX番号::opt_in_fax::varchar(1)::NULL
+配信許諾チャネル区分_VISIT::opt_in_visit::varchar(1)::NULL
+配信許諾チャネル区分_PDM::opt_in_pdm::varchar(1)::NULL
+配信許諾チャネル区分_予備1::opt_in_reserve1::varchar(1)::NULL
+配信許諾チャネル区分_予備2::opt_in_reserve2::varchar(1)::NULL
+配信許諾チャネル区分_予備3::opt_in_reserve3::varchar(1)::NULL
+配信許諾チャネル区分_予備4::opt_in_reserve4::varchar(1)::NULL
+配信許諾確認日付::opt_in_confirmation_date::date::NULL
+最終ログイン日付::last_login_date::timestamp::NULL
+銀行振込フラグ::enable_bank_transfer_flag::char(1)::NULL
+代引きフラグ::enable_cash_on_delivery_flag::char(1)::NULL
+クレジットカードフラグ::enable_credit_card_flag::char(1)::NULL
+オンライン決済フラグ::enable_online_settlement_flag::char(1)::NULL
+PayPalフラグ::enable_paypal_flag::char(1)::NULL
+携帯番号::mobile_phone_number::varchar(20)::NULL
+国コード::country_code::char(3)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

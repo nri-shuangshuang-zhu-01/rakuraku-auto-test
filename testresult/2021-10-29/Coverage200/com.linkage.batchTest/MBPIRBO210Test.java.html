@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBPIRBO210Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBPIRBO210Test.java</span></div><h1>MBPIRBO210Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBPIRBO210&quot;)
+@DisplayName(&quot;MBPIRBO210&quot;)
+<span class="nc" id="L15">public class MBPIRBO210Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBPIRBO210&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBPIRBO210&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****2+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-2-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****3+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-3-----/internal/v1/plant/search;;置場情報検索API;;example-2-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****4+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;URL異常-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****5+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;URL異常-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****6+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****7+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****8+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****9+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-2*****10+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;URL異常*****11+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****12+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****13+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-3*****14+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-4*****15+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****16+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****17+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****18+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****19+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****20+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****21+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****22+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****23+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****24+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****25+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****26+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****27+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****28+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****29+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****30+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-3-----/internal/v1/plant/search;;置場情報検索API;;example-2-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****31+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-2*****32+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;URL異常-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****33+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;URL異常-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****34+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;URL異常*****35+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****36+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;example-1-----/internal/v1/plant/search;;置場情報検索API;;example-1-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;*****37+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****38+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****39+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****40+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****41+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****42+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****43+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****44+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1*****45+++++/internal/v1/delivery-destination/search;;納入先情報検索API;;-----/internal/v1/plant/search;;置場情報検索API;;-----/internal/v1/stock-setting/get;;在庫設定情報取得API;;example-1&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;TEST001&quot;)
+	@DisplayName(&quot;TEST001&quot;)
+	public void testMBPIRBO210_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L46">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L49">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L52">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L54">	}</span>
+
+	@Test
+	@Tag(&quot;TEST002&quot;)
+	@DisplayName(&quot;TEST002&quot;)
+	public void testMBPIRBO210_002() throws Exception {
+
+<span class="nc" id="L61">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L65">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L68">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L71">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L73">	}</span>
+
+	@Test
+	@Tag(&quot;TEST003&quot;)
+	@DisplayName(&quot;TEST003&quot;)
+	public void testMBPIRBO210_003() throws Exception {
+
+<span class="nc" id="L80">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L84">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L87">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L90">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L92">	}</span>
+
+	@Test
+	@Tag(&quot;TEST004&quot;)
+	@DisplayName(&quot;TEST004&quot;)
+	public void testMBPIRBO210_004() throws Exception {
+
+<span class="nc" id="L99">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L103">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L106">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L108">	}</span>
+
+	@Test
+	@Tag(&quot;TEST005&quot;)
+	@DisplayName(&quot;TEST005&quot;)
+	public void testMBPIRBO210_005() throws Exception {
+
+<span class="nc" id="L115">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L119">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L122">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L125">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L127">	}</span>
+
+	@Test
+	@Tag(&quot;TEST006&quot;)
+	@DisplayName(&quot;TEST006&quot;)
+	public void testMBPIRBO210_006() throws Exception {
+
+<span class="nc" id="L134">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L138">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L141">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L143">	}</span>
+
+	@Test
+	@Tag(&quot;TEST007&quot;)
+	@DisplayName(&quot;TEST007&quot;)
+	public void testMBPIRBO210_007() throws Exception {
+
+<span class="nc" id="L150">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+<span class="nc" id="L153">	}</span>
+
+	@Test
+	@Tag(&quot;TEST008&quot;)
+	@DisplayName(&quot;TEST008&quot;)
+	public void testMBPIRBO210_008() throws Exception {
+
+<span class="nc" id="L160">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+<span class="nc" id="L163">	}</span>
+
+	@Test
+	@Tag(&quot;TEST009&quot;)
+	@DisplayName(&quot;TEST009&quot;)
+	public void testMBPIRBO210_009() throws Exception {
+
+<span class="nc" id="L170">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L174">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L177">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L179">	}</span>
+
+	@Test
+	@Tag(&quot;TEST010&quot;)
+	@DisplayName(&quot;TEST010&quot;)
+	public void testMBPIRBO210_010() throws Exception {
+
+<span class="nc" id="L186">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L190">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L193">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L195">	}</span>
+
+	@Test
+	@Tag(&quot;TEST011&quot;)
+	@DisplayName(&quot;TEST011&quot;)
+	public void testMBPIRBO210_011() throws Exception {
+
+<span class="nc" id="L202">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L206">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L209">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=2=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L211">	}</span>
+
+	@Test
+	@Tag(&quot;TEST012&quot;)
+	@DisplayName(&quot;TEST012&quot;)
+	public void testMBPIRBO210_012() throws Exception {
+
+<span class="nc" id="L218">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L222">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L225">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=1,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=2=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L227">	}</span>
+
+	@Test
+	@Tag(&quot;TEST013&quot;)
+	@DisplayName(&quot;TEST013&quot;)
+	public void testMBPIRBO210_013() throws Exception {
+
+<span class="nc" id="L234">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L238">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L241">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=2=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L243">	}</span>
+
+	@Test
+	@Tag(&quot;TEST014&quot;)
+	@DisplayName(&quot;TEST014&quot;)
+	public void testMBPIRBO210_014() throws Exception {
+
+<span class="nc" id="L250">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L254">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L257">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=2=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L259">	}</span>
+
+	@Test
+	@Tag(&quot;TEST015&quot;)
+	@DisplayName(&quot;TEST015&quot;)
+	public void testMBPIRBO210_015() throws Exception {
+
+<span class="nc" id="L266">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L270">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L273">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L276">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L278">	}</span>
+
+	@Test
+	@Tag(&quot;TEST016&quot;)
+	@DisplayName(&quot;TEST016&quot;)
+	public void testMBPIRBO210_016() throws Exception {
+
+<span class="nc" id="L285">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L289">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L292">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L295">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L297">	}</span>
+
+	@Test
+	@Tag(&quot;TEST017&quot;)
+	@DisplayName(&quot;TEST017&quot;)
+	public void testMBPIRBO210_017() throws Exception {
+
+<span class="nc" id="L304">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L308">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L311">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L313">	}</span>
+
+	@Test
+	@Tag(&quot;TEST018&quot;)
+	@DisplayName(&quot;TEST018&quot;)
+	public void testMBPIRBO210_018() throws Exception {
+
+<span class="nc" id="L320">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L324">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L327">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L329">	}</span>
+
+	@Test
+	@Tag(&quot;TEST019&quot;)
+	@DisplayName(&quot;TEST019&quot;)
+	public void testMBPIRBO210_019() throws Exception {
+
+<span class="nc" id="L336">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_019/case_019_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L340">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L343">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L345">	}</span>
+
+	@Test
+	@Tag(&quot;TEST020&quot;)
+	@DisplayName(&quot;TEST020&quot;)
+	public void testMBPIRBO210_020() throws Exception {
+
+<span class="nc" id="L352">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_020/case_020_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L356">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L359">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L361">	}</span>
+
+	@Test
+	@Tag(&quot;TEST021&quot;)
+	@DisplayName(&quot;TEST021&quot;)
+	public void testMBPIRBO210_021() throws Exception {
+
+<span class="nc" id="L368">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_021/case_021_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L372">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L375">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L377">	}</span>
+
+	@Test
+	@Tag(&quot;TEST022&quot;)
+	@DisplayName(&quot;TEST022&quot;)
+	public void testMBPIRBO210_022() throws Exception {
+
+<span class="nc" id="L384">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_022/case_022_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L388">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L391">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L393">	}</span>
+
+	@Test
+	@Tag(&quot;TEST023&quot;)
+	@DisplayName(&quot;TEST023&quot;)
+	public void testMBPIRBO210_023() throws Exception {
+
+<span class="nc" id="L400">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_023/case_023_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L404">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L407">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L409">	}</span>
+
+	@Test
+	@Tag(&quot;TEST024&quot;)
+	@DisplayName(&quot;TEST024&quot;)
+	public void testMBPIRBO210_024() throws Exception {
+
+<span class="nc" id="L416">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_024/case_024_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L420">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L423">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L425">	}</span>
+
+	@Test
+	@Tag(&quot;TEST025&quot;)
+	@DisplayName(&quot;TEST025&quot;)
+	public void testMBPIRBO210_025() throws Exception {
+
+<span class="nc" id="L432">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_025/case_025_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L436">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L439">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L441">	}</span>
+
+	@Test
+	@Tag(&quot;TEST026&quot;)
+	@DisplayName(&quot;TEST026&quot;)
+	public void testMBPIRBO210_026() throws Exception {
+
+<span class="nc" id="L448">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_026/case_026_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L452">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L455">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L457">	}</span>
+
+	@Test
+	@Tag(&quot;TEST027&quot;)
+	@DisplayName(&quot;TEST027&quot;)
+	public void testMBPIRBO210_027() throws Exception {
+
+<span class="nc" id="L464">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_027/case_027_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L468">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L471">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=2345,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L473">	}</span>
+
+	@Test
+	@Tag(&quot;TEST028&quot;)
+	@DisplayName(&quot;TEST028&quot;)
+	public void testMBPIRBO210_028() throws Exception {
+
+<span class="nc" id="L480">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_028/case_028_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L484">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L487">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L490">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L492">	}</span>
+
+	@Test
+	@Tag(&quot;TEST029&quot;)
+	@DisplayName(&quot;TEST029&quot;)
+	public void testMBPIRBO210_029() throws Exception {
+
+<span class="nc" id="L499">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_029/case_029_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L503">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L506">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L508">	}</span>
+
+	@Test
+	@Tag(&quot;TEST030&quot;)
+	@DisplayName(&quot;TEST030&quot;)
+	public void testMBPIRBO210_030() throws Exception {
+
+<span class="nc" id="L515">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_030/case_030_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L519">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L522">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L525">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L527">	}</span>
+
+	@Test
+	@Tag(&quot;TEST031&quot;)
+	@DisplayName(&quot;TEST031&quot;)
+	public void testMBPIRBO210_031() throws Exception {
+
+<span class="nc" id="L534">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_031/case_031_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L538">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L541">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L543">	}</span>
+
+	@Test
+	@Tag(&quot;TEST032&quot;)
+	@DisplayName(&quot;TEST032&quot;)
+	public void testMBPIRBO210_032() throws Exception {
+
+<span class="nc" id="L550">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_032/case_032_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L554">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L557">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L559">	}</span>
+
+	@Test
+	@Tag(&quot;TEST033&quot;)
+	@DisplayName(&quot;TEST033&quot;)
+	public void testMBPIRBO210_033() throws Exception {
+
+<span class="nc" id="L566">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_033/case_033_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L570">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L573">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L576">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L578">	}</span>
+
+	@Test
+	@Tag(&quot;TEST034&quot;)
+	@DisplayName(&quot;TEST034&quot;)
+	public void testMBPIRBO210_034() throws Exception {
+
+<span class="nc" id="L585">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_034/case_034_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L589">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;URL異常&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L592">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L594">	}</span>
+
+	@Test
+	@Tag(&quot;TEST035&quot;)
+	@DisplayName(&quot;TEST035&quot;)
+	public void testMBPIRBO210_035() throws Exception {
+
+<span class="nc" id="L601">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_035/case_035_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L605">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L608">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L611">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--implement-div=1,--process-type=0,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L613">	}</span>
+
+	@Test
+	@Tag(&quot;TEST036&quot;)
+	@DisplayName(&quot;TEST036&quot;)
+	public void testMBPIRBO210_036() throws Exception {
+
+<span class="nc" id="L620">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_036/case_036_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/delivery-destination/search → 納入先情報検索API */
+<span class="nc" id="L624">		rakurakuCore.operateMockApi(&quot;/internal/v1/delivery-destination/search&quot;, &quot;納入先情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/search → 置場情報検索API */
+<span class="nc" id="L627">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/search&quot;, &quot;置場情報検索API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L630">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=1,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L632">	}</span>
+
+	@Test
+	@Tag(&quot;TEST037&quot;)
+	@DisplayName(&quot;TEST037&quot;)
+	public void testMBPIRBO210_037() throws Exception {
+
+<span class="nc" id="L639">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_037/case_037_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L643">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L646">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L648">	}</span>
+
+	@Test
+	@Tag(&quot;TEST038&quot;)
+	@DisplayName(&quot;TEST038&quot;)
+	public void testMBPIRBO210_038() throws Exception {
+
+<span class="nc" id="L655">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_038/case_038_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L659">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L662">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L664">	}</span>
+
+	@Test
+	@Tag(&quot;TEST039&quot;)
+	@DisplayName(&quot;TEST039&quot;)
+	public void testMBPIRBO210_039() throws Exception {
+
+<span class="nc" id="L671">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_039/case_039_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L675">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L678">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L680">	}</span>
+
+	@Test
+	@Tag(&quot;TEST040&quot;)
+	@DisplayName(&quot;TEST040&quot;)
+	public void testMBPIRBO210_040() throws Exception {
+
+<span class="nc" id="L687">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_040/case_040_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L691">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L694">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L696">	}</span>
+
+	@Test
+	@Tag(&quot;TEST041&quot;)
+	@DisplayName(&quot;TEST041&quot;)
+	public void testMBPIRBO210_041() throws Exception {
+
+<span class="nc" id="L703">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_041/case_041_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L707">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L710">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L712">	}</span>
+
+	@Test
+	@Tag(&quot;TEST042&quot;)
+	@DisplayName(&quot;TEST042&quot;)
+	public void testMBPIRBO210_042() throws Exception {
+
+<span class="nc" id="L719">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_042/case_042_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L723">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L726">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L728">	}</span>
+
+	@Test
+	@Tag(&quot;TEST043&quot;)
+	@DisplayName(&quot;TEST043&quot;)
+	public void testMBPIRBO210_043() throws Exception {
+
+<span class="nc" id="L735">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_043/case_043_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L739">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L742">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--implement-div=2,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L744">	}</span>
+
+	@Test
+	@Tag(&quot;TEST044&quot;)
+	@DisplayName(&quot;TEST044&quot;)
+	public void testMBPIRBO210_044() throws Exception {
+
+<span class="nc" id="L751">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_044/case_044_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L755">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L758">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--subsidiary-code=JPN,--process-type=0,--ginner-code=12345678901234,--plant-code=1234,--delivery-div=1,--deli-map=1=1234,--plant-list=0001,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L760">	}</span>
+
+	@Test
+	@Tag(&quot;TEST045&quot;)
+	@DisplayName(&quot;TEST045&quot;)
+	public void testMBPIRBO210_045() throws Exception {
+
+<span class="nc" id="L767">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBPIRBO210/case_045/case_045_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/stock-setting/get → 在庫設定情報取得API */
+<span class="nc" id="L771">		rakurakuCore.operateMockApi(&quot;/internal/v1/stock-setting/get&quot;, &quot;在庫設定情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L774">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;repaintShipmentRecordPoolPlantJob,--job-execution-id=MBPIRBO210&quot;);</span>
+
+<span class="nc" id="L776">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

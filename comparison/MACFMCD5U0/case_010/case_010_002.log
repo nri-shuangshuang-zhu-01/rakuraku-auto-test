@@ -1,0 +1,14 @@
+■api名称：　共通_UL用/UL結果データダウンロード_登録更新API
+■api Request：　/internal/v1/ul-purpose-data-download/save
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=temp&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a28&&
+■api Body：　{  "controlSeqNumber": "",  "dataCode": "2",  "createTime": "2019-08-24T14:15:22Z",  "tempFileCode": "tempFileCodetest2",  "filePath": "filePathtest2",  "presignedApiPath": "presignedApiPathtest2",  "signature": "signaturetest2",  "displayFileName": "displayFileNametest2",  "statusCode": "4",  "processResultCode": "1",  "updateCount": 0}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NFMCD6D0002E",
+  "argumentList": [
+    "ステータスコード"
+  ],
+  "message": "ステータスコードに不正な値が入力されています。正しい値を入力してください"
+}

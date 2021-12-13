@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultRegistWeeklyOrderTimeExclusionUlService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultRegistWeeklyOrderTimeExclusionUlService.java</span></div><h1>DefaultRegistWeeklyOrderTimeExclusionUlService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.replenishstock.domain.client.task.RegistWeeklyOrderUlFileProducer;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderUlRequestV1;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderUlResponseResultCdV1;
+import jp.co.misumi.replenishstock.model.rest.server.internal.RegistWeeklyOrderUlResponseV1;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
+
+/**
+ * 週次発注点除外条件マスタUl非同期タスク登録.
+ *
+ * @author LKG張
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+public class DefaultRegistWeeklyOrderTimeExclusionUlService
+    implements RegistWeeklyOrderTimeExclusionUlService {
+  private final RegistWeeklyOrderUlFileProducer registWeeklyOrderUlFileProducer;
+  private final MessageSource messageSource;
+
+  @Override
+  public RegistWeeklyOrderUlResponseV1 regist(
+      RequestContext context, RegistWeeklyOrderUlRequestV1 registWeeklyOrderUlRequestV1)
+      throws Exception {
+<span class="nc" id="L32">    RegistWeeklyOrderUlResponseV1 registWeeklyOrderUlResponseV1 =</span>
+        new RegistWeeklyOrderUlResponseV1();
+<span class="nc" id="L34">    RegistWeeklyOrderUlResponseResultCdV1 responDataTmp =</span>
+        new RegistWeeklyOrderUlResponseResultCdV1();
+
+    // 非同期タスク登録部品を呼んで、非同期タスクの登録を実施する。
+    try {
+<span class="nc" id="L39">      registWeeklyOrderUlFileProducer.sendUl(</span>
+          context,
+<span class="nc" id="L41">          context.getSubsidiaryCode(),</span>
+<span class="nc" id="L42">          registWeeklyOrderUlRequestV1.getTempFileId(),</span>
+<span class="nc" id="L43">          registWeeklyOrderUlRequestV1.getSignature());</span>
+<span class="nc" id="L44">    } catch (BusinessException e) {</span>
+<span class="nc" id="L45">      throw new BusinessException(messageSource, ReplenishStockMessages.NIROP110001E, null);</span>
+<span class="nc" id="L46">    }</span>
+
+    // Responseのエラーコード設定　2：失敗　1：成功
+<span class="nc" id="L49">    responDataTmp.setResultCd(ReplenishStockConstants.RESULT_CODE_SUCCESS);</span>
+<span class="nc" id="L50">    registWeeklyOrderUlResponseV1.setResponsedata(responDataTmp);</span>
+<span class="nc" id="L51">    return registWeeklyOrderUlResponseV1;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

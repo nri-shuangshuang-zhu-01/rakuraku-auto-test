@@ -1,0 +1,31 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+決済形態::settlement_method::varchar(3)::NOT NULL(PK)
+支払手段::payment_means::varchar(2)::NOT NULL(PK)
+売掛金締め単位::ar_closing_unit::varchar(1)::NULL
+売掛金締日::ar_closing_day::numeric(2,0)::NULL
+売掛金支払月::ar_payment_month::numeric(2,0)::NULL
+売掛金支払日::ar_payment_date::numeric(2,0)::NULL
+売掛金支払サイト_最終::ar_payment_site_final::numeric(3,0)::NULL
+売掛金支払サイト_早割::ar_payment_site_early_payment_discount::numeric(3,0)::NULL
+売掛金早期入金割引率::ar_early_incoming_payment_discount_rate::numeric(5,2)::NULL
+インコタームズ::incoterms::varchar(3)::NULL
+支払条件::payment_terms::varchar(42)::NOT NULL
+置場コード::plant_code::char(4)::NOT NULL
+国コード::country_code::char(3)::NOT NULL
+検収区分::acceptance_type::char(1)::NOT NULL
+振込手数料::transfer_fee::varchar(1)::NOT NULL
+振込口座番号::transfer_account_number::varchar(30)::NULL
+仮想口座フラグ::virtual_account_flag::char(1)::NULL
+督促状送付区分::dunning_letter_send_type::char(1)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

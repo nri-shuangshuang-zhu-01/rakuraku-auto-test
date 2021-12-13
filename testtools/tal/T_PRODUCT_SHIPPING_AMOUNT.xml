@@ -1,0 +1,85 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+対象年月::year_month::char(6)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+年間出庫数::per_year_shipping_qty::numeric(20,3)::NULL
+平均出庫数（月）::average_shipping_qty_per_month::numeric(18,3)::NULL
+平均出庫数（日）::average_shipping_qty_per_date::numeric(18,3)::NULL
+発注納期販売数::po_lead_time_sales_qty::numeric(18,3)::NULL
+発売年月::release_year_month::char(6)::NULL
+開発年月::developed_year_month::char(6)::NULL
+年月区分::year_month_type::char(3)::NULL
+年月区分名::year_month_type_name::varchar(50)::NULL
+分析コード::classify_code::varchar(8)::NULL
+市場分析コード::market_classify_code::varchar(4)::NULL
+置場コード::plant_code::char(4)::NULL
+商品コード::product_code::varchar(234)::NULL
+商品所管部門コード::product_control_department_code::varchar(6)::NULL
+商品所管部門名（現地語）::product_control_department_name_native::varchar(240)::NULL
+現在庫数::current_stock_qty::numeric(7,0)::NULL
+発注点::reorder_point::numeric(7,0)::NULL
+余剰在庫数::surplus_stock_qty::numeric(7,0)::NULL
+発注数::po_qty::numeric(7,0)::NULL
+発注残::remain_po::numeric(7,0)::NULL
+引当数量::allocated_qty::numeric(7,0)::NULL
+ランク::rank::char(1)::NULL
+自動発注区分::automatic_po_type::char(1)::NULL
+発注納期::po_lead_time::numeric(3,0)::NULL
+仕入先コード::supplier_code::char(4)::NULL
+評価単価::evaluation_unit_price::numeric(14,3)::NULL
+最新入荷日::latest_receiving_date::date::NULL
+最新入荷数::latest_receiving_qty::numeric(7,0)::NULL
+総在庫数::total_stock_qty::numeric(7,0)::NULL
+年間出庫金額::year_shipping_amount::numeric(22,3)::NULL
+平均出庫金額（月）::average_shipping_amount_month::numeric(22,3)::NULL
+現在庫金額::current_stock_amount::numeric(22,3)::NULL
+発注点金額::reorder_point_amount::numeric(22,3)::NULL
+余剰在庫金額::surplus_stock_amount::numeric(22,3)::NULL
+前月出荷金額::last_month_shipment_amount::numeric(22,3)::NULL
+当月出荷金額::this_month_shipment_amount::numeric(22,3)::NULL
+総在庫金額::total_stock_amount::numeric(22,3)::NULL
+変数0::variable0::numeric(22,3)::NULL
+変数1::variable1::numeric(22,3)::NULL
+変数2::variable2::numeric(22,3)::NULL
+変数3::variable3::numeric(22,3)::NULL
+変数4::variable4::numeric(22,3)::NULL
+変数5::variable5::numeric(22,3)::NULL
+変数6::variable6::numeric(22,3)::NULL
+変数7::variable7::numeric(22,3)::NULL
+変数8::variable8::numeric(22,3)::NULL
+変数9::variable9::numeric(22,3)::NULL
+変数10::variable10::numeric(22,3)::NULL
+変数11::variable11::numeric(22,3)::NULL
+変数12::variable12::numeric(22,3)::NULL
+変数13::variable13::numeric(22,3)::NULL
+変数14::variable14::numeric(22,3)::NULL
+変数15::variable15::numeric(22,3)::NULL
+変数16::variable16::numeric(22,3)::NULL
+変数17::variable17::numeric(22,3)::NULL
+変数18::variable18::numeric(22,3)::NULL
+変数19::variable19::numeric(22,3)::NULL
+変数20::variable20::numeric(22,3)::NULL
+変数21::variable21::numeric(22,3)::NULL
+変数22::variable22::numeric(22,3)::NULL
+変数23::variable23::numeric(22,3)::NULL
+変数24::variable24::numeric(22,3)::NULL
+変数25::variable25::numeric(22,3)::NULL
+変数26::variable26::numeric(22,3)::NULL
+変数27::variable27::numeric(22,3)::NULL
+変数28::variable28::numeric(22,3)::NULL
+変数29::variable29::numeric(22,3)::NULL
+変数30::variable30::numeric(22,3)::NULL
+変数31::variable31::numeric(22,3)::NULL
+消費見込無し在庫金額::consumption_no_expected_stock_amount::numeric(22,3)::NULL
+デッドストック判断値::dead_stock_threshold::numeric(12,3)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

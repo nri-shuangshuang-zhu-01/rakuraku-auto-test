@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <C_UL_PURPOSE_UL_RESULT_DATA_DOWNLOAD_FILE control_seq_number='1' data_download_control_seq='null' subsidiary_code='CHN' data_code='2' create_date_time='2020-01-13 11:00:00' mail_address='1@linkstec.com' temp_file_code='null' file_path='file_path' presigned_api_path='null' signature='null' display_file_name='null' status_code='2' process_result_code='null' process_result_detail='null' update_count='null' delete_flag='0' register_user_type='null' register_user='null' register_date_time='2020-01-13 11:00:00' register_program='null' register_client_program='null' update_user_type='null' update_user='null' update_date_time='2020-01-13 11:00:00' update_program='null' update_client_program='null' />
+</dataset>

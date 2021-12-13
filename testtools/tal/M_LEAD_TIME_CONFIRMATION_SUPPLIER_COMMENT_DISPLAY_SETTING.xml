@@ -1,0 +1,21 @@
+調整区分::adjust_type::char(1)::NOT NULL(PK)
+既受注表示フラグ::received_ordered_display_flag::char(1)::NOT NULL(PK)
+IOエラー表示フラグ::io_error_display_flag::char(1)::NOT NULL(PK)
+未登録商品表示フラグ::unregistered_product_display_flag::char(1)::NOT NULL(PK)
+メッセージID::message_id::varchar(8)::NOT NULL(PK)
+表示順::display_order::numeric(3,0)::NULL
+表示フラグ::display_flag::char(1)::NULL
+定型コメントフラグ::fixed_form_comment_flag::char(1)::NULL
+分納可否フラグ::partial_delivery_flag::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

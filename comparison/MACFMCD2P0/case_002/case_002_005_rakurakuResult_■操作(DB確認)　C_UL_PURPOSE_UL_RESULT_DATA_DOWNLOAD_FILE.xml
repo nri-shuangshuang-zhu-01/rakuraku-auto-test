@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <C_UL_PURPOSE_UL_RESULT_DATA_DOWNLOAD_FILE control_seq_number="1" subsidiary_code="CHN" data_code="2" create_date_time="2020-01-13 11:00:00.0" mail_address="1@linkstec.com" status_code="2" process_result_code="0" delete_flag="0" update_user_type="Customer" update_user="GUEST" update_date_time="2021-10-11 11:32:36.231964" update_program="api-id" update_client_program="test"/>
+</dataset>

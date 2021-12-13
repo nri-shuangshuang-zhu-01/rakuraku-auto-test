@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_RECEIVING_ACTUAL_WORK subsidiary_code="CHN" ginner_code="12345600001501" plant_code="1501" receiving_fix_date="2020-11-10" date_receiving_qty_total="30" update_count="0" delete_flag="0" register_user_type="Batch" register_user="MBLSCSM100" register_date_time="2021-10-07 19:46:16.768326" register_client_program="MBLSCSM100" update_user_type="Batch" update_user="MBLSCSM100" update_date_time="2021-10-07 19:46:16.768326" update_client_program="MBLSCSM100"/>
+  <T_RECEIVING_ACTUAL_WORK subsidiary_code="CHN" ginner_code="12345600001502" plant_code="1502" receiving_fix_date="2020-11-15" date_receiving_qty_total="40" update_count="0" delete_flag="0" register_user_type="Batch" register_user="MBLSCSM100" register_date_time="2021-10-07 19:46:16.774325" register_client_program="MBLSCSM100" update_user_type="Batch" update_user="MBLSCSM100" update_date_time="2021-10-07 19:46:16.774325" update_client_program="MBLSCSM100"/>
+</dataset>

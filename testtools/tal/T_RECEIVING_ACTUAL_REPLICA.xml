@@ -1,0 +1,15 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+グローバル番号::global_number::char(14)::NOT NULL
+購買伝票番号::purchase_slip_number::char(10)::NOT NULL(PK)
+購買伝票明細番号::purchase_slip_line_number::integer::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL
+商品コード::product_code::varchar(234)::NULL
+分析コード::classify_code::varchar(8)::NULL
+入荷確定日::receiving_fix_date::date::NULL
+入荷数量::receiving_qty::numeric(7,0)::NULL
+調達区分::supply_type::char(2)::NULL
+データHUB更新済フラグ::data_hub_updated_flag::char(1)::NOT NULL
+登録日時(システム日時)::register_system_date_time::timestamp with time zone::NOT NULL
+更新日時(システム日時)::update_system_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL

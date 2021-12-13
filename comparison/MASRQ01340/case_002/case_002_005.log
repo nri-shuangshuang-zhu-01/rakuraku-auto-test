@@ -1,0 +1,10 @@
+■api名称：　检索
+■api Request：　/internal/v1/notification-body/create
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&Authorization=Authorization&&X-Client-Program=offset&&Prefer=/internal/v1/product/search->2&/internal/v1/mail-template/preview->1
+■api Body：　{  "templateId": "497f6eca-6276-4993-bfeb-53cbbbba6f08",  "inquiryId": 1234567890}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "body": "abcdef"
+}

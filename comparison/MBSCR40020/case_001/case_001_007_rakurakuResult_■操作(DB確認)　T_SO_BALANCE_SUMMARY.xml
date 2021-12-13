@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SO_BALANCE_SUMMARY subsidiary_code="MJP" customer_code="102   " summary_date="2021-09-10" so_balance_amount="1.000" update_count="0" delete_flag="0" register_user_type="Office" register_user="100" register_date_time="2020-01-02 15:05:07.0" register_program="2" register_client_program="LOGON_USER" update_user_type="Batch" update_user="BalanceSummary" update_date_time="2021-09-08 15:05:07.0" update_program="JOB001" update_client_program="BalanceSummary"/>
+  <T_SO_BALANCE_SUMMARY subsidiary_code="MJP" customer_code="201   " summary_date="2021-07-10" so_balance_amount="1221.000" update_count="0" delete_flag="0" register_user_type="Batch" register_user="MBSCR40020" register_date_time="2021-09-29 14:56:08.83084" register_client_program="MBSCR40020" update_user_type="Batch" update_user="MBSCR40020" update_date_time="2021-09-29 14:56:08.83084" update_client_program="MBSCR40020"/>
+</dataset>

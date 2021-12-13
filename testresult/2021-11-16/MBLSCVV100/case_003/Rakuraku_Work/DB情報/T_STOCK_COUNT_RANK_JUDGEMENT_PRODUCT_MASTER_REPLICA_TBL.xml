@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="subsidiary_code" comment="現法コード"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="ginner_code" comment="統合インナーコード"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="product_code" comment="商品コード"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="release_date" comment="発売日"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="data_hub_updated_flag" comment="データHUB更新済フラグ:データHubから登録または更新時に&quot;1&quot;をセット"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="register_system_date_time" comment="登録日時(システム日時):データHubから登録時にシステム日付をセット"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="update_system_date_time" comment="更新日時(システム日時):データHubから登録、更新時にシステム日付をセット"/>
+  <T_STOCK_COUNT_RANK_JUDGEMENT_PRODUCT_MASTER_REPLICAColName field="update_program" comment="更新プログラム:データHubから登録、更新時にプログラムをセット"/>
+</dataset>

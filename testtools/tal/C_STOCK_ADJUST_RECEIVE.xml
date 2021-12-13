@@ -1,0 +1,19 @@
+受付No::receive_number::char(10)::NOT NULL(PK)
+現法コード::subsidiary_code::char(3)::NULL
+処理モード::process_mode::char(1)::NOT NULL
+ファイル名::file_name::varchar(256)::NOT NULL
+一時ファイルコード::temp_file_code::varchar(256)::NOT NULL
+汎用DL管理SEQ::general_purpose_dl_control_seq::numeric(10,0)::NOT NULL
+更新完了ステータス::update_complete_status::char(1)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

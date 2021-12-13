@@ -1,0 +1,14 @@
+{
+  "userId": "002",
+  "shipToCode": "LKILKI",
+  "customerCode": "LKGLKG",
+  "innerCdFrom": "MDM10040007505",
+  "innerCdTo": "MDM10040007505",
+  "classifyCodeFrom": "2009",
+  "classifyCodeTo": "2009",
+  "plantCdList":[{
+    "plantCd": "1001"},{"plantCd": "1005"},{"plantCd": "1010"}],
+  "effectiveDateFrom": "2021-08-20",
+  "effectiveDateTo": "2021-09-30",
+  "delFlg": "true"
+}

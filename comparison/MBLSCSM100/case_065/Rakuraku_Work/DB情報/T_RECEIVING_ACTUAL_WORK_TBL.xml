@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_RECEIVING_ACTUAL_WORKColName field="subsidiary_code" comment="現法コード"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="ginner_code" comment="統合インナーコード"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="plant_code" comment="置場コード"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="receiving_fix_date" comment="入荷確定日"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="date_receiving_qty_total" comment="日別入荷数量合計"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="update_count" comment="更新回数"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="delete_flag" comment="削除フラグ"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="register_user_type" comment="登録者区分"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="register_user" comment="登録者"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="register_date_time" comment="登録日時"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="register_program" comment="登録プログラム"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="update_user_type" comment="更新者区分"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="update_user" comment="更新者"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="update_date_time" comment="更新日時"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="update_program" comment="更新プログラム"/>
+  <T_RECEIVING_ACTUAL_WORKColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

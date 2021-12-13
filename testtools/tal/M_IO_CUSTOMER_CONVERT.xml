@@ -1,0 +1,17 @@
+SUB1側現法コード::sub1_subsidiary_code::char(3)::NOT NULL(PK)
+SUB1側仕入先コード::sub1_supplier_code::char(4)::NOT NULL(PK)
+SUB2側現法コード::sub2_subsidiary_code::char(3)::NOT NULL
+SUB2側得意先コード::sub2_customer_code::char(6)::NOT NULL
+通貨コード::ccy_code::char(3)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

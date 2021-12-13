@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <c_email_send_group subsidiary_code='JPN' email_send_unit_code='001' email_send_unit_seq='SEQ001' email_function_code='ASVTCVA1E0' email_send_unit_name='null' email_send_unit_code_key1='JPN' email_send_unit_code_key2='00T2' email_send_unit_code_key3='null' email_send_unit_code_key4='null' email_send_unit_code_key5='null' update_count='1' delete_flag='0' register_user_type='Internal' register_user='DUMMY1' register_date_time='2021-09-15' register_program='DUMMY2' register_client_program='DUMMY3' update_user_type='Internal' update_user='DUMMY1' update_date_time='2021-09-15' update_program='DUMMY2' update_client_program='DUMMY3' />
+</dataset>

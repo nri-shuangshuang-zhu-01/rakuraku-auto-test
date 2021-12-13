@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_REPRINT reprint_id='13' report_id='4' file_id='4' report_template_name='2' user_id='CHN02' output_type='1' output_status='2' report_type='11' subsidiary_code='JPN' send_email_id='10' email_template_id='11' send_email_server_category='1' service_type='13' email_address_to='14' email_address_cc='15' email_address_bcc='16' email_address_from='17' email_address_reply_to='18' email_title='19' email_body='20' pdf_file_name='21' qt_or_so_number='22' send_fax_id='23' fax_customer_code='24' fax='25' search_keyword='4' reprint_count='27' report_create_date='2021-05-09' reprint_staff_id='28' bill_to_code='aaa' update_count='31' delete_flag='0' register_user_type='31' register_user='32' register_date_time='2021-09-09' register_program='34' register_client_program='35' update_user_type='36' update_user='37' update_date_time='2021-09-09' update_program='38' update_client_program='39' />
+</dataset>

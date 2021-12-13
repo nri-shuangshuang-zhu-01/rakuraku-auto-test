@@ -1,0 +1,61 @@
+title: SoCombineEvent
+type: object
+event:
+  type: so-combine-event
+  version: 1
+description: 受注連携イベントデータJson Schemas
+properties:
+  subsidiaryCode:
+    type: string
+    maxLength: 3
+    description: |
+      現法コード
+  globalNumber:
+    type: string
+    maxLength: 14
+    description: グローバル番号
+  soDate:
+    type: string
+    maxLength: 8
+    format: date
+    description: 受注日
+  customerCode:
+    type: string
+    maxLength: 6
+    description: 得意先コード
+  inputDiv:
+    type: string
+    maxLength: 1
+    description: 入力区分
+  bfrExcludeTaxSoAmt:
+    type: string
+    maxLength: 18
+    description: 変更前税抜き金額
+  aftExcludeTaxSoAmt:
+    type: string
+    maxLength: 18
+    description: 変更後税抜き金額
+  voucherDiv:
+    type: string
+    maxLength: 3
+    description: 伝票区分
+  settlementMethod:
+    type: string
+    maxLength: 3
+    description: 決済形態
+  soDataUpdateDate:
+    type: string
+    maxLength: 8
+    format: date
+    description: 受注データ更新日
+required:
+  - subsidiaryCode
+  - globalNumber
+  - soDate
+  - customerCode
+  - inputDiv
+  - bfrExcludeTaxSoAmt
+  - aftExcludeTaxSoAmt
+  - voucherDiv
+  - settlementMethod
+  - soDataUpdateDate

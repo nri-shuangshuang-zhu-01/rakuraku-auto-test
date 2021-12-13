@@ -1,0 +1,13 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-detail/get?subsidiaryCode=123&billToCode=123456&startIndex=1&responseCount=5&sortOrder=invoiceNumber.&invoiceNumber=016&invoiceStatus=Open
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=6a037a9e-2500-4724-a005-918a1ab13a23&&Prefer=/internal/v1/ccy/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "code": "NAR20050004E",
+  "argumentList": [
+    "通貨コード情報取得"
+  ],
+  "message": "通貨コード情報取得でエラーが発生しました。"
+}

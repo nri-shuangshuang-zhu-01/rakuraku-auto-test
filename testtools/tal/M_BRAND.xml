@@ -1,0 +1,21 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+ブランドコード::brand_code::char(4)::NOT NULL(PK)
+適用開始日::effective_start_date::date::NOT NULL
+ブランド名（英語）::brand_name_english::varchar(15)::NOT NULL
+ブランド名（現地語）::brand_name_native::varchar(50)::NULL
+商品コード用ブランド名::product_code_brand_name::varchar(15)::NULL
+スペース除去フラグ::space_erase_flag::char(1)::NULL
+値引禁止フラグ::discount_prohibit_flag::char(1)::NULL
+デイトン品フラグ::dl_flag::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

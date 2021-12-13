@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="subsidiary_code"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="inquiry_send_id"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="email_address"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="update_count"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="delete_flag"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="register_user_type"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="register_user"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="register_date_time"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="register_program"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="register_client_program"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="update_user_type"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="update_user"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="update_date_time"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="update_program"/>
+  <T_INQUIRY_SEND_TO_EMAIL_ADDRESS_CCColName field="update_client_program"/>
+</dataset>

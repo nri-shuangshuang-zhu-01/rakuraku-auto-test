@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBSAR10010Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBSAR10010Test.java</span></div><h1>MBSAR10010Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBSAR10010&quot;)
+@DisplayName(&quot;MBSAR10010&quot;)
+<span class="nc" id="L15">public class MBSAR10010Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBSAR10010&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBSAR10010&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/internal/v1/sales-order/search;;受注検索API;;1-----/v1/file/upload;;;;1*****2+++++/internal/v1/sales-order/search;;受注検索API;;2-----/v1/file/upload;;;;1*****3+++++/internal/v1/sales-order/search;;受注検索API;;3-----/v1/file/upload;;;;1*****4+++++/internal/v1/sales-order/search;;受注検索API;;4-----/v1/file/upload;;;;1*****5+++++/internal/v1/sales-order/search;;受注検索API;;5-----/v1/file/upload;;;;1*****6+++++/internal/v1/sales-order/search;;受注検索API;;6-----/v1/file/upload;;;;1*****7+++++/internal/v1/sales-order/search;;受注検索API;;7-----/v1/file/upload;;;;1*****8+++++/internal/v1/sales-order/search;;受注検索API;;8-----/v1/file/upload;;;;1*****9+++++/internal/v1/sales-order/search;;受注検索API;;9-----/v1/file/upload;;;;1&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;TEST001&quot;)
+	@DisplayName(&quot;TEST001&quot;)
+	public void testMBSAR10010_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L46">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L49">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L52">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L54">	}</span>
+
+	@Test
+	@Tag(&quot;TEST002&quot;)
+	@DisplayName(&quot;TEST002&quot;)
+	public void testMBSAR10010_002() throws Exception {
+
+<span class="nc" id="L61">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L65">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L68">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L71">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L73">	}</span>
+
+	@Test
+	@Tag(&quot;TEST003&quot;)
+	@DisplayName(&quot;TEST003&quot;)
+	public void testMBSAR10010_003() throws Exception {
+
+<span class="nc" id="L80">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L84">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L87">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L90">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L92">	}</span>
+
+	@Test
+	@Tag(&quot;TEST004&quot;)
+	@DisplayName(&quot;TEST004&quot;)
+	public void testMBSAR10010_004() throws Exception {
+
+<span class="nc" id="L99">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L103">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L106">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L109">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L111">	}</span>
+
+	@Test
+	@Tag(&quot;TEST005&quot;)
+	@DisplayName(&quot;TEST005&quot;)
+	public void testMBSAR10010_005() throws Exception {
+
+<span class="nc" id="L118">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L122">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L125">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L128">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L130">	}</span>
+
+	@Test
+	@Tag(&quot;TEST006&quot;)
+	@DisplayName(&quot;TEST006&quot;)
+	public void testMBSAR10010_006() throws Exception {
+
+<span class="nc" id="L137">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L141">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;6&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L144">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L147">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L149">	}</span>
+
+	@Test
+	@Tag(&quot;TEST007&quot;)
+	@DisplayName(&quot;TEST007&quot;)
+	public void testMBSAR10010_007() throws Exception {
+
+<span class="nc" id="L156">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L160">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;7&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L163">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L166">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L168">	}</span>
+
+	@Test
+	@Tag(&quot;TEST008&quot;)
+	@DisplayName(&quot;TEST008&quot;)
+	public void testMBSAR10010_008() throws Exception {
+
+<span class="nc" id="L175">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L179">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;8&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L182">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L185">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L187">	}</span>
+
+	@Test
+	@Tag(&quot;TEST009&quot;)
+	@DisplayName(&quot;TEST009&quot;)
+	public void testMBSAR10010_009() throws Exception {
+
+<span class="nc" id="L194">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSAR10010/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注検索API */
+<span class="nc" id="L198">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注検索API&quot;, &quot;9&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload */
+<span class="nc" id="L201">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L204">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;createRedBlackVoucherDataJob,--job-execution-id=12345,--operation-date=2021-09-11,--subsidiary-code=MJP,--job-net-id=100&quot;);</span>
+
+<span class="nc" id="L206">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

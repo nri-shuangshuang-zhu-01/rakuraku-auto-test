@@ -1,0 +1,10 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='CHN' plant_code='1001' ginner_code='12345600000001' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:01' update_system_date_time='2021-06-30 11:20:01' update_program='JOB101' />
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='CHN' plant_code='1003' ginner_code='12345600000003' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:02' update_system_date_time='2021-06-30 11:20:02' update_program='JOB102' />
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='CHN' plant_code='1004' ginner_code='12345600000004' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:03' update_system_date_time='2021-06-30 11:20:03' update_program='JOB103' />
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='CHN' plant_code='1002' ginner_code='12345600000002' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:04' update_system_date_time='2021-06-30 11:20:04' update_program='JOB104' />
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='CHN' plant_code='1002' ginner_code='12345600000001' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:05' update_system_date_time='2021-06-30 11:20:05' update_program='JOB105' />
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='CHN' plant_code='1001' ginner_code='12345600000002' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:06' update_system_date_time='2021-06-30 11:20:06' update_program='JOB106' />
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='THA' plant_code='1004' ginner_code='12345600000004' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:07' update_system_date_time='2021-06-30 11:20:07' update_program='JOB107' />
+</dataset>

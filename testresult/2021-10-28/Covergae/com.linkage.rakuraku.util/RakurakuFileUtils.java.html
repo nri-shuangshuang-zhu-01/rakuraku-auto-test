@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RakurakuFileUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util</a> &gt; <span class="el_source">RakurakuFileUtils.java</span></div><h1>RakurakuFileUtils.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.jacoco.core.data.ExecutionDataWriter;
+import org.jacoco.core.runtime.RemoteControlReader;
+import org.jacoco.core.runtime.RemoteControlWriter;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+<span class="nc" id="L19">public class RakurakuFileUtils {</span>
+
+    /**
+     * ケース実施前に、指定したフォルダーの中に、日付フォルダーを作成する
+     *
+     * @throws Exception
+     */
+    public static void createFloder() throws Exception {
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (StringUtils.isBlank(RakurakuDBUtils.getProps().getProperty(&quot;FOLDER_CREATE_BFRORE_CASE&quot;))) {</span>
+<span class="nc" id="L28">            return;</span>
+        }
+<span class="nc" id="L30">        String[] crtfolders = RakurakuDBUtils.getProps().getProperty(&quot;FOLDER_CREATE_BFRORE_CASE&quot;).split(&quot;,&quot;);</span>
+        File file;
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        for (String folderPth : crtfolders) {</span>
+<span class="nc" id="L33">            file = new File(folderPth + &quot;/&quot; + RakurakuDateUtils.getNowDateOrTime(&quot;yyyyMMdd&quot;));</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (!file.exists()) {</span>
+<span class="nc" id="L35">                file.mkdirs();</span>
+            }
+        }
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * クリアエビデンス
+     *
+     * @param
+     * @throws Exception
+     */
+    public static void delAllFile() throws Exception {
+<span class="nc" id="L47">        File file = new File(RakurakuCore.eachEviPath);</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (!file.exists()) {</span>
+<span class="nc" id="L49">            return;</span>
+        }
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (!file.isDirectory()) {</span>
+<span class="nc" id="L52">            return;</span>
+        }
+<span class="nc" id="L54">        FileUtils.forceDelete(file);</span>
+<span class="nc" id="L55">    }</span>
+
+    /**
+     * ケース毎のエビデンスパス取得
+     * 
+     * @param casePath
+     */
+    public static void getEachEviPath(String casePath) {
+<span class="nc" id="L63">        RakurakuCore.eachEviPath = getToolPath() + &quot;/testresult/&quot; + RakurakuCore.runDate + casePath;</span>
+<span class="nc" id="L64">    }</span>
+
+    /**
+     * ケース毎のエビデンスパス取得
+     * 
+     * @param
+     */
+    public static String getEachInputPath() {
+<span class="nc" id="L72">        return getToolPath() + &quot;/src/test/resources/&quot; + RakurakuDBUtils.testClassName + &quot;/inputdb/&quot;;</span>
+    }
+
+    /**
+     * ケース毎のワークパス作成
+     */
+    public static void makeEachEviDir() {
+<span class="nc" id="L79">        File file = new File(RakurakuCore.eachEviPath + &quot;/Rakuraku_Work/DB情報&quot;);</span>
+<span class="nc" id="L80">        file.mkdirs();</span>
+<span class="nc" id="L81">        file = new File(RakurakuCore.eachEviPath + &quot;/Rakuraku_Work/downloads&quot;);</span>
+<span class="nc" id="L82">        file.mkdirs();</span>
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * テストケース執行OKの場合、ログファイルに記入する
+     *
+     * @param
+     */
+    public static void logFileOK() {
+<span class="nc" id="L91">        File file = new File(RakurakuCore.eachEviPath);</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (!file.exists()) {</span>
+<span class="nc" id="L93">            file.mkdirs();</span>
+        }
+<span class="nc" id="L95">        File out = new File(RakurakuCore.eachEviPath + &quot;/rakuraku.log&quot;);</span>
+        try {
+<span class="nc" id="L97">            out.createNewFile();</span>
+<span class="nc" id="L98">            String time = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc" id="L99">            FileWriter fw = new FileWriter(out);</span>
+<span class="nc" id="L100">            fw.write(&quot;ケース番号=&quot; + RakurakuCore.resultPath.split(&quot;/&quot;)[2].replace(&quot;case_&quot;, &quot;No.&quot;));</span>
+<span class="nc" id="L101">            fw.write(&quot;;実施開始時間=&quot; + RakurakuDBUtils.runTime);</span>
+<span class="nc" id="L102">            fw.write(&quot;;実施終了時間=&quot; + time);</span>
+<span class="nc" id="L103">            fw.write(&quot;;実施結果=OK.\r\n&quot;);</span>
+<span class="nc" id="L104">            fw.write(&quot;======以下はアクション毎の確認ログ。======\r\n&quot;);</span>
+<span class="nc" id="L105">            fw.write(RakurakuCore.logBuilder.toString());</span>
+<span class="nc" id="L106">            fw.flush();</span>
+<span class="nc" id="L107">            fw.close();</span>
+<span class="nc" id="L108">            System.out.println(&quot;---------------------------------Start &quot;</span>
+<span class="nc" id="L109">                    + RakurakuCore.resultPath.split(&quot;/&quot;)[2].replace(&quot;case_&quot;, &quot;No.&quot;)</span>
+                    + &quot;---------------------------------&quot;);
+<span class="nc" id="L111">            System.out.print(RakurakuCore.logBuilder.toString());</span>
+<span class="nc" id="L112">            System.out.println(&quot;---------------------------------End &quot;</span>
+<span class="nc" id="L113">                    + RakurakuCore.resultPath.split(&quot;/&quot;)[2].replace(&quot;case_&quot;, &quot;No.&quot;)</span>
+                    + &quot;---------------------------------&quot;);
+<span class="nc" id="L115">        } catch (IOException e) {</span>
+<span class="nc" id="L116">            e.printStackTrace();</span>
+<span class="nc" id="L117">        }</span>
+<span class="nc" id="L118">    }</span>
+
+    /**
+     * テストケース執行NGの場合、ログファイルに記入する
+     *
+     * @param
+     */
+    public static void logFileNG(String message) {
+<span class="nc" id="L126">        File file = new File(RakurakuCore.eachEviPath);</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (!file.exists()) {</span>
+<span class="nc" id="L128">            file.mkdirs();</span>
+        }
+<span class="nc" id="L130">        File out = new File(RakurakuCore.eachEviPath + &quot;/rakuraku.log&quot;);</span>
+<span class="nc" id="L131">        out.delete();</span>
+        try {
+<span class="nc" id="L133">            out.createNewFile();</span>
+<span class="nc" id="L134">            String time = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc" id="L135">            OutputStreamWriter fw = new OutputStreamWriter(new FileOutputStream(out, true), &quot;UTF-8&quot;);</span>
+<span class="nc" id="L136">            fw.write(&quot;ケース番号=&quot; + RakurakuCore.resultPath.split(&quot;/&quot;)[2].replace(&quot;case_&quot;, &quot;No.&quot;));</span>
+<span class="nc" id="L137">            fw.write(&quot;;実施開始時間=&quot; + RakurakuDBUtils.runTime);</span>
+<span class="nc" id="L138">            fw.write(&quot;;実施終了時間=&quot; + time);</span>
+<span class="nc" id="L139">            fw.write(&quot;;実施結果=NG.\r\n&quot;);</span>
+<span class="nc" id="L140">            fw.write(StringUtils.trimToEmpty(message) + &quot;\r\n&quot;);</span>
+<span class="nc" id="L141">            fw.write(&quot;======以下はアクション毎の確認ログ。======\r\n&quot;);</span>
+<span class="nc" id="L142">            fw.write(RakurakuCore.logBuilder.toString());</span>
+<span class="nc" id="L143">            fw.flush();</span>
+<span class="nc" id="L144">            fw.close();</span>
+<span class="nc" id="L145">            System.out.println(&quot;---------------------------------Start &quot;</span>
+<span class="nc" id="L146">                    + RakurakuCore.resultPath.split(&quot;/&quot;)[2].replace(&quot;case_&quot;, &quot;No.&quot;)</span>
+                    + &quot;---------------------------------&quot;);
+<span class="nc" id="L148">            System.out.print(RakurakuCore.logBuilder.toString());</span>
+<span class="nc" id="L149">            System.out.println(StringUtils.trimToEmpty(message));</span>
+<span class="nc" id="L150">            System.out.println(&quot;---------------------------------End &quot;</span>
+<span class="nc" id="L151">                    + RakurakuCore.resultPath.split(&quot;/&quot;)[2].replace(&quot;case_&quot;, &quot;No.&quot;)</span>
+                    + &quot;---------------------------------&quot;);
+<span class="nc" id="L153">        } catch (IOException e) {</span>
+<span class="nc" id="L154">            e.printStackTrace();</span>
+<span class="nc" id="L155">        }</span>
+<span class="nc" id="L156">    }</span>
+
+    /**
+     * テスト工程パス取得
+     * 
+     * @return
+     */
+    public static String getToolPath() {
+<span class="nc" id="L164">        return System.getProperty(&quot;user.dir&quot;);</span>
+    }
+
+    /**
+     * ファイルから変数の置換え
+     * 
+     * @param filePath
+     */
+    public static void replaceVariableFromFile(String filePath) throws Exception {
+<span class="nc" id="L173">        File file = new File(filePath);</span>
+<span class="nc" id="L174">        String lines = FileUtils.readFileToString(file, &quot;UTF-8&quot;);</span>
+<span class="nc" id="L175">        lines = RakurakuWebUtils.getRealValueAfterReplace(lines);</span>
+<span class="nc" id="L176">        FileUtils.writeStringToFile(file, lines, &quot;UTF-8&quot;);</span>
+<span class="nc" id="L177">    }</span>
+
+    /**
+     * エビデンス作成
+     * 
+     * @throws Exception
+     */
+    public static void evidenceTool(String str) throws Exception {
+<span class="nc" id="L185">        deleteChromeLog();</span>
+<span class="nc" id="L186">        String fileName = getToolPath() + &quot;/testresult/&quot;;</span>
+<span class="nc" id="L187">        File file = new File(fileName + RakurakuCore.runDate);</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">        if (!file.exists()) {</span>
+<span class="nc" id="L189">            file.mkdirs();</span>
+        }
+
+<span class="nc" id="L192">        RakurakuJacobExcelUtils tool = new RakurakuJacobExcelUtils();</span>
+        try {
+<span class="nc" id="L194">            System.out.print(&quot;-エビデンス-　&quot;);</span>
+<span class="nc" id="L195">            String toolPath = getToolPath() + &quot;/testtools/Rakuraku-Ver4.0/Utility/02_エビデンス作成ツール/&quot;</span>
+                    + &quot;DealEvidenceTool.xlsm&quot;;
+
+<span class="nc" id="L198">            tool.OpenExcel(toolPath, true, false);</span>
+<span class="nc" id="L199">            tool.callMacro(&quot;java_Click&quot;, RakurakuCore.runDate + &quot;::&quot; + getToolPath() + &quot;\\testresult\\&quot;</span>
+                    + RakurakuCore.runDate + &quot;\\&quot; + RakurakuDBUtils.testClassName + &quot;::&quot; + str);
+<span class="nc" id="L201">            System.out.println(getToolPath() + &quot;\\testresult\\&quot; + RakurakuDBUtils.testClassName + &quot;_&quot;</span>
+                    + RakurakuCore.runDate + &quot;.xlsx&quot;);
+<span class="nc" id="L203">        } catch (Exception e) {</span>
+
+        } finally {
+<span class="nc" id="L206">            tool.CloseExcel(false, true);</span>
+        }
+<span class="nc" id="L208">        CoverageTCP(RakurakuDBUtils.testClassName);</span>
+<span class="nc" id="L209">        RakurakuDBUtils.killOldProgress();</span>
+<span class="nc" id="L210">    }</span>
+
+    /**
+     * サーバー側カバレッジ取得
+     * 
+     * @param testClassNm
+     */
+    private static void CoverageTCP(String testClassNm) {
+        try {
+<span class="nc" id="L219">            String resultPath = getToolPath() + &quot;\\testresult\\&quot; + RakurakuCore.runDate + &quot;\\&quot; + testClassNm + &quot;\\&quot;</span>
+                    + testClassNm + &quot;_&quot; + RakurakuCore.runDate + &quot;.exec&quot;;
+<span class="nc" id="L221">            final FileOutputStream localFile = new FileOutputStream(resultPath);</span>
+<span class="nc" id="L222">            final ExecutionDataWriter localWriter = new ExecutionDataWriter(localFile);</span>
+
+<span class="nc" id="L224">            final Socket socket = new Socket(InetAddress.getByName(&quot;localhost&quot;), 8395);</span>
+<span class="nc" id="L225">            final RemoteControlWriter writer = new RemoteControlWriter(socket.getOutputStream());</span>
+<span class="nc" id="L226">            final RemoteControlReader reader = new RemoteControlReader(socket.getInputStream());</span>
+
+<span class="nc" id="L228">            reader.setSessionInfoVisitor(localWriter);</span>
+<span class="nc" id="L229">            reader.setExecutionDataVisitor(localWriter);</span>
+
+<span class="nc" id="L231">            writer.visitDumpCommand(true, false);</span>
+<span class="nc" id="L232">            reader.read();</span>
+
+<span class="nc" id="L234">            socket.close();</span>
+<span class="nc" id="L235">            localFile.close();</span>
+<span class="nc" id="L236">            System.out.println(&quot;-カバレッジ-　サーバー端カバレッジ分析用ファイルが下記作成されました。&quot;);</span>
+<span class="nc" id="L237">            System.out.println(resultPath);</span>
+<span class="nc" id="L238">        } catch (Exception e) {</span>
+<span class="nc" id="L239">            System.out.println(&quot;-カバレッジ-　サーバー端カバレッジ分析用ファイルが作成されていません。&quot;);</span>
+<span class="nc" id="L240">        }</span>
+<span class="nc" id="L241">    }</span>
+
+    /**
+     * Chromeキャプチャ用ログ削除
+     */
+    private static void deleteChromeLog() {
+        try {
+<span class="nc" id="L248">            FileUtils.forceDelete(new File(getToolPath() + &quot;/chromedriver.log&quot;));</span>
+<span class="nc" id="L249">        } catch (Exception e) {</span>
+<span class="nc" id="L250">        }</span>
+<span class="nc" id="L251">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

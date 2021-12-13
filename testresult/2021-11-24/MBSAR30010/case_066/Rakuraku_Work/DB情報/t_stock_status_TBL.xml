@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_stock_statusColName field="subsidiary_code" comment="現法コード:現地法人を一意に特定するコード。"/>
+  <t_stock_statusColName field="ginner_code" comment="統合インナーコード:現法内で商品を一意に特定するコード。"/>
+  <t_stock_statusColName field="plant_code" comment="置場コード:置場を示すコード"/>
+  <t_stock_statusColName field="total_stock_qty" comment="総在庫数量:在庫の総数(現在庫数+総発注残数)"/>
+  <t_stock_statusColName field="total_allocate_qty" comment="総引当数量:引当てされた総数"/>
+  <t_stock_statusColName field="total_available_qty" comment="総利用可能数量:利用可能な在庫数(総在庫数 - 総引当数)"/>
+  <t_stock_statusColName field="current_available_qty" comment="現利用可能数量:現在利用可能な在庫数"/>
+  <t_stock_statusColName field="current_stock_qty" comment="現在庫数量:現在の在庫数"/>
+  <t_stock_statusColName field="last_day_stock_qty" comment="前日在庫数量:前日の在庫数(前日残数)"/>
+  <t_stock_statusColName field="month_begin_stock_qty" comment="月初在庫数量:月初の在庫数"/>
+  <t_stock_statusColName field="evaluation_unit_price" comment="評価単価:在庫の評価単価"/>
+  <t_stock_statusColName field="last_day_evaluation_unit_price" comment="前日評価単価:前日の評価単価"/>
+  <t_stock_statusColName field="transfered_stock_qty_plus" comment="社内移動(+):社内移動で増加した数量。月次でリセット"/>
+  <t_stock_statusColName field="transfered_stock_qty_minus" comment="社内移動(-):社内移動で減少した数量。月次でリセット"/>
+  <t_stock_statusColName field="adjusted_stock_qty_plus" comment="在庫調整(+):在庫調整で増加した数量。月次でリセット"/>
+  <t_stock_statusColName field="adjusted_stock_qty_minus" comment="在庫調整(-):在庫調整で減少した数量。月次でリセット"/>
+  <t_stock_statusColName field="returned_stock_qty_plus" comment="返品(+):返品で増加した数量。月次でリセット(0固定)"/>
+  <t_stock_statusColName field="returned_stock_qty_minus" comment="返品(-):返品で減少した数量。月次でリセット"/>
+  <t_stock_statusColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <t_stock_statusColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <t_stock_statusColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_stock_statusColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <t_stock_statusColName field="register_date_time" comment="登録日時"/>
+  <t_stock_statusColName field="register_program" comment="登録プログラム"/>
+  <t_stock_statusColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <t_stock_statusColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_stock_statusColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <t_stock_statusColName field="update_date_time" comment="更新日時"/>
+  <t_stock_statusColName field="update_program" comment="更新プログラム"/>
+  <t_stock_statusColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

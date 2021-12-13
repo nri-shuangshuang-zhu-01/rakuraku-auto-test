@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <B_STOCK_SETTINGColName field="subsidiary_code"/>
+  <B_STOCK_SETTINGColName field="plant_code"/>
+  <B_STOCK_SETTINGColName field="g_inner_code"/>
+  <B_STOCK_SETTINGColName field="inner_code"/>
+  <B_STOCK_SETTINGColName field="update_hub_flag"/>
+  <B_STOCK_SETTINGColName field="register_system_time"/>
+  <B_STOCK_SETTINGColName field="update_system_time"/>
+  <B_STOCK_SETTINGColName field="update_program"/>
+</dataset>

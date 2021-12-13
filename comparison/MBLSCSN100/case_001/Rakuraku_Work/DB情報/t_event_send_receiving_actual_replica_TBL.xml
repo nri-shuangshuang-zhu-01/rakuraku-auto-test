@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_event_send_receiving_actual_replicaColName field="subsidiary_code"/>
+  <t_event_send_receiving_actual_replicaColName field="plant_code"/>
+  <t_event_send_receiving_actual_replicaColName field="global_number"/>
+  <t_event_send_receiving_actual_replicaColName field="purchase_slip_number"/>
+  <t_event_send_receiving_actual_replicaColName field="purchase_slip_line_number"/>
+  <t_event_send_receiving_actual_replicaColName field="data_hub_updated_flag"/>
+  <t_event_send_receiving_actual_replicaColName field="register_system_date_time"/>
+  <t_event_send_receiving_actual_replicaColName field="update_system_date_time"/>
+  <t_event_send_receiving_actual_replicaColName field="update_program"/>
+</dataset>

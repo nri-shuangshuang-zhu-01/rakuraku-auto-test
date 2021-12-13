@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_quote_header subsidiary_code='MJP' lead_time_product_inquiry_id='101' customer_code='A00001' ship_to_code='' orderer_department='' order_pic_name='' customer_delivery_pic_department='' customer_delivery_pic_code='' customer_delivery_pic_name='' fax='' customer_tax_free_type='' payment_means='' lead_time_product_inquiry_fix_type='' sales_unit_price_change_reason='' bulk_partial_delivery_fix_type='' total_amount='1234567893654789325.321' total_amount_including_tax='1234567893654789325.322' update_count='0' delete_flag='0' register_user_type='LKI' register_user='LKI' register_date_time='2021-10-03 9:35:31' register_program='LKI' register_client_program='LKI' update_user_type='LKI' update_user='LKI' update_date_time='2008-12-04 23:07:44' update_program='sgrvWydgQnXFFrb' update_client_program='hSmSDhuwORrKNWW' />
+</dataset>

@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <c_screen_field_display control_seq_number='1234567890' subsidiary_code='JPN' language_code='JPN' general_purpose_key1='11111' general_purpose_key2='3000' general_purpose_key3='3001' general_purpose_key4='3002' general_purpose_key5='3003' code_value_reference1='3004' code_value_reference2='3005' code_value_reference3='3006' code_value_reference4='3007' code_value_reference5='3008' display_order='11' update_count='10' delete_flag='0' register_user_type='555' register_user='355' register_date_time='2021-09-06 00:00:00' register_program='23' register_client_program='24' update_user_type='25' update_user='26' update_time='2021-09-06 00:00:00' update_program='33' update_client_program='34' />
+</dataset>

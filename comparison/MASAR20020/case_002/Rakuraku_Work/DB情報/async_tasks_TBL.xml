@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <async_tasksColName field="id"/>
+  <async_tasksColName field="idempotency_key"/>
+  <async_tasksColName field="target_id"/>
+  <async_tasksColName field="headers"/>
+  <async_tasksColName field="payload"/>
+  <async_tasksColName field="created_at"/>
+  <async_tasksColName field="retry_count"/>
+  <async_tasksColName field="has_error"/>
+  <async_tasksColName field="error_reason"/>
+</dataset>

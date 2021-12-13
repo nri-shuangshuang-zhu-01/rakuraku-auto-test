@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AnalysisReport.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util.other</a> &gt; <span class="el_source">AnalysisReport.java</span></div><h1>AnalysisReport.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util.other;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+<span class="nc" id="L16">public class AnalysisReport {</span>
+
+    private static String JENKINS_HOME;
+    private static String JOB_NAME;
+    private static String BUILD_NUMBER;
+
+    public static void main(String[] args) {
+<span class="nc" id="L23">        JENKINS_HOME = args[0];</span>
+<span class="nc" id="L24">        JOB_NAME = args[1];</span>
+<span class="nc" id="L25">        BUILD_NUMBER = args[2];</span>
+<span class="nc" id="L26">        analysis();</span>
+
+<span class="nc" id="L28">    }</span>
+
+    private static void analysis() {
+
+<span class="nc" id="L32">        File file = null;</span>
+<span class="nc" id="L33">        BufferedReader br = null;</span>
+<span class="nc" id="L34">        BufferedWriter bw = null;</span>
+
+<span class="nc" id="L36">        String line = &quot;&quot;;</span>
+<span class="nc" id="L37">        List&lt;String&gt; outList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L38">        String spr = &quot;\&quot;&quot;;</span>
+<span class="nc" id="L39">        String tmp = &quot;&quot;;</span>
+        try {
+<span class="nc" id="L41">            file = new File(JENKINS_HOME + &quot;/jobs/&quot; + JOB_NAME + &quot;/builds/&quot; + BUILD_NUMBER + &quot;/log&quot;);</span>
+            // file = new File(&quot;C:/Users/liufen/.jenkins/jobs/MAUN/builds/11/log&quot;);
+<span class="nc" id="L43">            br = new BufferedReader(new InputStreamReader(new FileInputStream(file), &quot;MS932&quot;));</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            while ((line = br.readLine()) != null) {</span>
+                // タイトル
+<span class="nc bnc" id="L46" title="All 2 branches missed.">                if (line.contains(&quot;init:&quot;)) {</span>
+<span class="nc" id="L47">                    line = spr + RakurakuCore.runDate + &quot; AUTO UTest Result&quot; + spr + &quot;,&quot;;</span>
+<span class="nc" id="L48">                    line = line + spr + &quot;Runs&quot; + spr + &quot;,&quot;;</span>
+<span class="nc" id="L49">                    line = line + spr + &quot;Failures&quot; + spr + &quot;,&quot;;</span>
+<span class="nc" id="L50">                    line = line + spr + &quot;Errors&quot; + spr + &quot;,&quot;;</span>
+<span class="nc" id="L51">                    line = line + spr + &quot;Skipped&quot; + spr + &quot;,&quot;;</span>
+<span class="nc" id="L52">                    line = line + spr + &quot;Time&quot; + spr + &quot;,&quot;;</span>
+<span class="nc" id="L53">                    outList.add(line);</span>
+                }
+
+                // 内容
+<span class="nc bnc" id="L57" title="All 2 branches missed.">                if (line.contains(&quot;[junit] Running&quot;)) {</span>
+<span class="nc" id="L58">                    tmp = spr + line.split(&quot;\\.&quot;)[line.split(&quot;\\.&quot;).length - 1] + spr + &quot;,&quot;;</span>
+                }
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                if (line.contains(&quot;[junit] Tests run&quot;)) {</span>
+<span class="nc" id="L61">                    String[] elemtStrings = line.split(&quot;:&quot;);</span>
+<span class="nc" id="L62">                    tmp = tmp + spr + elemtStrings[1].split(&quot;,&quot;)[0].trim() + spr + &quot;,&quot;;</span>
+<span class="nc" id="L63">                    tmp = tmp + spr + elemtStrings[2].split(&quot;,&quot;)[0].trim() + spr + &quot;,&quot;;</span>
+<span class="nc" id="L64">                    tmp = tmp + spr + elemtStrings[3].split(&quot;,&quot;)[0].trim() + spr + &quot;,&quot;;</span>
+<span class="nc" id="L65">                    tmp = tmp + spr + elemtStrings[4].split(&quot;,&quot;)[0].trim() + spr + &quot;,&quot;;</span>
+<span class="nc" id="L66">                    tmp = tmp + spr + elemtStrings[5].trim() + spr;</span>
+<span class="nc" id="L67">                    outList.add(tmp);</span>
+<span class="nc" id="L68">                    tmp = &quot;&quot;;</span>
+                }
+
+                // Analysis Complete
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                if (line.contains(&quot;test.report:&quot;)) {</span>
+<span class="nc" id="L73">                    break;</span>
+                }
+            }
+<span class="nc" id="L76">            file = new File(&quot;./AnalysisReport.csv&quot;);</span>
+<span class="nc" id="L77">            file.delete();</span>
+<span class="nc" id="L78">            file.createNewFile();</span>
+<span class="nc" id="L79">            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), &quot;MS932&quot;));</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            for (String string : outList) {</span>
+<span class="nc" id="L81">                System.out.println(string);</span>
+<span class="nc" id="L82">                bw.write(string + &quot;\n&quot;);</span>
+<span class="nc" id="L83">            }</span>
+<span class="nc" id="L84">            System.out.println(&quot;OUTPUT COMPLETE!!!&quot;);</span>
+<span class="nc" id="L85">        } catch (Exception e) {</span>
+<span class="nc" id="L86">            System.out.println(line);</span>
+<span class="nc" id="L87">            System.out.println(&quot;Analysis Failed!&quot;);</span>
+        } finally {
+            try {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                if (br != null) {</span>
+<span class="nc" id="L91">                    br.close();</span>
+                }
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                if (bw != null) {</span>
+<span class="nc" id="L94">                    bw.close();</span>
+                }
+<span class="nc" id="L96">            } catch (IOException e) {</span>
+<span class="nc" id="L97">                e.printStackTrace();</span>
+<span class="nc" id="L98">            }</span>
+        }
+
+<span class="nc" id="L101">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

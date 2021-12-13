@@ -1,0 +1,26 @@
+■api名称：　登录
+■api Request：　/internal/v1/carrier-invoice/register
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&Idempotency-Key=1&&X-Client-Program=1&&Prefer=/internal/v1/sales-order/search->1&/internal/v1/closing-time/get-list->1&/internal/v1/next-business-day/search->1
+■api Body：　{    "localCorporationCode": "str",    "accessIpAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",    "sessionId": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",    "screenId": "cccccccccccccccccccc",    "processId": "ccccccccccccccccccccb",    "programType": "a",    "createDate": "20190824",    "registerMode": "0",    "detailInformationList": [        {            "detailNumber": "001",            "globalNumber": "CA000032000086",            "internalExternalType": "0",            "invoiceNoDetailInformationList": [                {                    "no": "11",                    "deleteType": "1",                    "carrierInvoiceNumber": "123456789012345001@a",                    "plantCode": "00T2",                    "vsd": "20190824",                    "packingControlNumber": "123456789012345",                    "shipmodeCode": "012",                    "qty": "1234567",                    "supplierCode": "0010"                }            ]        }    ]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "N0000000003E",
+  "message": "Constraint violation",
+  "detailList": [
+    {
+      "target": "processId",
+      "detailList": [
+        {
+          "code": "N0000003125E",
+          "argumentList": [
+            20,
+            0
+          ],
+          "message": "processId must be between 0 and 20"
+        }
+      ]
+    }
+  ]
+}

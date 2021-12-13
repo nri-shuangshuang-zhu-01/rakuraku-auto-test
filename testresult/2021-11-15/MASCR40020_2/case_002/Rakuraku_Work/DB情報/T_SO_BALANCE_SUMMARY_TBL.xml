@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SO_BALANCE_SUMMARYColName field="subsidiary_code" comment="現法コード"/>
+  <T_SO_BALANCE_SUMMARYColName field="customer_code" comment="得意先コード"/>
+  <T_SO_BALANCE_SUMMARYColName field="summary_date" comment="集計日"/>
+  <T_SO_BALANCE_SUMMARYColName field="so_balance_amount" comment="受注残高:前日に設定された入金グループ単位で受注残高を集計する。"/>
+  <T_SO_BALANCE_SUMMARYColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_SO_BALANCE_SUMMARYColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_SO_BALANCE_SUMMARYColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_SO_BALANCE_SUMMARYColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_SO_BALANCE_SUMMARYColName field="register_date_time" comment="登録日時"/>
+  <T_SO_BALANCE_SUMMARYColName field="register_program" comment="登録プログラム"/>
+  <T_SO_BALANCE_SUMMARYColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_SO_BALANCE_SUMMARYColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_SO_BALANCE_SUMMARYColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_SO_BALANCE_SUMMARYColName field="update_date_time" comment="更新日時"/>
+  <T_SO_BALANCE_SUMMARYColName field="update_program" comment="更新プログラム"/>
+  <T_SO_BALANCE_SUMMARYColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

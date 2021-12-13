@@ -1,0 +1,129 @@
+■api名称：　検索
+■api Request：　/internal/v1/shipment-info-inq/reference?shipmentCenter=qqqq&shipmentDate=2021-09-27
+■api方法：　GET
+■api Headers：　X-Client-Program=Test&&Prefer=/internal/v1/area/search->5&/internal/v1/plant/search->5
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "subsidiaryCode": "MJP",
+  "shipmentCenter": "qqqq",
+  "shipmentDate": "2021-09-27",
+  "internalShipmentAreaList": [
+    {
+      "shipToAreaCode": "7777",
+      "shipToAreaName": "japan",
+      "stockBefore": 1,
+      "mtoBefore": 2,
+      "stock1st": 3,
+      "stock2nd": 4,
+      "stock3rd": 5,
+      "stock4th": 6,
+      "urgentShipmentStock": 7,
+      "RcShipmentrecQtySubtotal": 28,
+      "rcQty": 7,
+      "storkRecQty": 8,
+      "storkRcQty": 1,
+      "recQtyTotal": 36,
+      "rcQtyTotal": 8
+    },
+    {
+      "shipToAreaCode": "8888",
+      "shipToAreaName": "japan",
+      "stockBefore": 1,
+      "mtoBefore": 2,
+      "stock1st": 3,
+      "stock2nd": 4,
+      "stock3rd": 5,
+      "stock4th": 6,
+      "urgentShipmentStock": 7,
+      "RcShipmentrecQtySubtotal": 28,
+      "rcQty": 7,
+      "storkRecQty": 8,
+      "storkRcQty": 1,
+      "recQtyTotal": 36,
+      "rcQtyTotal": 8
+    }
+  ],
+  "internalShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 2,
+    "mtoBeforeRecQtySubtotal": 4,
+    "stock1stSubtotal": 6,
+    "stock2ndSubtotal": 8,
+    "stock3rdSubtotal": 10,
+    "stock4thSubtotal": 12,
+    "urgentShipmentStockRecSubtotal": 14,
+    "recRecQtySubtotal": 56,
+    "recRcQtySubtotal": 14,
+    "storkRecQtySubtotal": 16,
+    "storkRcQtySubtotal": 2,
+    "totalRecQtySubtotal": 72,
+    "totalRcQtySubtotal": 16
+  },
+  "internalOverseasShipmentAreaList": [
+    {
+      "shipToAreaCode": "6666",
+      "shipToAreaName": "QCT",
+      "stockBefore": 1,
+      "mtoBefore": 2,
+      "stock1st": 3,
+      "stock2nd": 4,
+      "stock3rd": 5,
+      "stock4th": 6,
+      "urgentShipmentStock": 7,
+      "recQtySubtotal": 28,
+      "rcQty": 7,
+      "storkRecQty": 8,
+      "storkRcQty": 1,
+      "recQtyTotal": 36,
+      "rcQtyTotal": 8
+    },
+    {
+      "shipToAreaCode": "9999",
+      "shipToAreaName": "QCT",
+      "stockBefore": 1,
+      "mtoBefore": 2,
+      "stock1st": 3,
+      "stock2nd": 4,
+      "stock3rd": 5,
+      "stock4th": 6,
+      "urgentShipmentStock": 7,
+      "recQtySubtotal": 28,
+      "rcQty": 7,
+      "storkRecQty": 8,
+      "storkRcQty": 1,
+      "recQtyTotal": 36,
+      "rcQtyTotal": 8
+    }
+  ],
+  "internalOverseasShipmentAreaSubtotalList": {
+    "stockBeforeRecQtySubtotal": 2,
+    "mtoBeforeRecQtySubtotal": 4,
+    "stock1stSubtotal": 6,
+    "stock2ndSubtotal": 8,
+    "stock3rdSubtotal": 10,
+    "stock4thSubtotal": 12,
+    "urgentShipmentStockRecSubtotal": 14,
+    "recRecQtySubtotal": 56,
+    "recRcQtySubtotal": 14,
+    "storkRecQtySubtotal": 16,
+    "storkRcQtySubtotal": 2,
+    "totalRecQtySubtotalSubtotal": 72,
+    "totalRcQtySubtotal": 16
+  },
+  "internalOverseasAreaTotalList": {
+    "stockBeforeRecQtyTotal": 4,
+    "mtoBeforeRecQtyTotal": 8,
+    "stock1stTotal": 12,
+    "stock2ndTotal": 16,
+    "stock3rdTotal": 20,
+    "stock4thTotal": 24,
+    "urgentShipmentsStockRecQtyTotal": 28,
+    "recRecQtyTotal": 112,
+    "recRcQtyTotal": 28,
+    "storkRecQtyTotal": 32,
+    "storkRcQtyTotal": 4,
+    "totalRecQtyTotal": 144,
+    "totalRcQtyTotal": 32
+  },
+  "errorList": []
+}

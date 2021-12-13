@@ -1,0 +1,12 @@
+■api名称：　共通_データアップロード_ステータス更新API
+■api Request：　/internal/v1/data-upload/save
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=temp&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a28&&
+■api Body：　{  "controlSeqNumber": "1234567890",  "statusCode": "2",  "processResultCode": "1",  "updateCount": 10}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NFMCD5D0007E",
+  "argumentList": [],
+  "message": "既に他の処理によって更新されております。"
+}

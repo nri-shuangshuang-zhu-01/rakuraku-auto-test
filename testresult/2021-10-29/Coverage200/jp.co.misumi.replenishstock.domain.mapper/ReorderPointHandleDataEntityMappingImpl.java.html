@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReorderPointHandleDataEntityMappingImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.mapper</a> &gt; <span class="el_source">ReorderPointHandleDataEntityMappingImpl.java</span></div><h1>ReorderPointHandleDataEntityMappingImpl.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.mapper;
+
+import javax.annotation.processing.Generated;
+import jp.co.misumi.replenishstock.domain.entity.ReorderPointHandleDataEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointDemandForecastCalcEntity;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.ProductInternalV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.ProductSupplierInternalV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CheckStockInfoResponseDetailV1;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2021-10-29T10:18:14+0900&quot;,
+    comments = &quot;version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.5.jar, environment: Java 11.0.2 (Oracle Corporation)&quot;
+)
+@Component
+<span class="fc" id="L17">public class ReorderPointHandleDataEntityMappingImpl implements ReorderPointHandleDataEntityMapping {</span>
+
+    @Override
+    public ReorderPointHandleDataEntity responseToReorderPointHandleDataEntity(ProductInternalV1 productInternalV1, ProductSupplierInternalV1 productSupplierInternalV1, CheckStockInfoResponseDetailV1 checkStockInfoResponseDetailV1, WeeklyReorderPointDemandForecastCalcEntity supplyPeriodResponse) {
+<span class="nc bnc" id="L21" title="All 8 branches missed.">        if ( productInternalV1 == null &amp;&amp; productSupplierInternalV1 == null &amp;&amp; checkStockInfoResponseDetailV1 == null &amp;&amp; supplyPeriodResponse == null ) {</span>
+<span class="nc" id="L22">            return null;</span>
+        }
+
+<span class="nc" id="L25">        ReorderPointHandleDataEntity reorderPointHandleDataEntity = new ReorderPointHandleDataEntity();</span>
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if ( productInternalV1 != null ) {</span>
+<span class="nc" id="L28">            reorderPointHandleDataEntity.setSupplierSpecifyMethodType( productInternalV1.getSupplierSpecifyMethodType() );</span>
+<span class="nc" id="L29">            reorderPointHandleDataEntity.setReleaseDate( productInternalV1.getReleaseDate() );</span>
+<span class="nc" id="L30">            reorderPointHandleDataEntity.setProductExcludeFlag( productInternalV1.getMtoExcludeFlag() );</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if ( productInternalV1.getSafetyStockCoefficient() != null ) {</span>
+<span class="nc" id="L32">                reorderPointHandleDataEntity.setSafetyStockCoefficient( productInternalV1.getSafetyStockCoefficient().toString() );</span>
+            }
+<span class="nc" id="L34">            reorderPointHandleDataEntity.setProductControlDepartmentCode( productInternalV1.getProductControlDepartmentCode() );</span>
+<span class="nc" id="L35">            reorderPointHandleDataEntity.setReorderPointLogicFlag( productInternalV1.getReorderPointLogicFlag() );</span>
+        }
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if ( productSupplierInternalV1 != null ) {</span>
+<span class="nc" id="L38">            reorderPointHandleDataEntity.setSubsidiaryCode( productSupplierInternalV1.getSubsidiaryCode() );</span>
+<span class="nc" id="L39">            reorderPointHandleDataEntity.setGinnerCode( productSupplierInternalV1.getGinnerCode() );</span>
+<span class="nc" id="L40">            reorderPointHandleDataEntity.setSupplierCode( productSupplierInternalV1.getSupplierCode() );</span>
+<span class="nc" id="L41">            reorderPointHandleDataEntity.setPoLeadTime( productSupplierInternalV1.getPoLeadTime() );</span>
+<span class="nc" id="L42">            reorderPointHandleDataEntity.setIoSupplyMeansCode( productSupplierInternalV1.getIoSupplyMeansCode() );</span>
+        }
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if ( checkStockInfoResponseDetailV1 != null ) {</span>
+<span class="nc" id="L45">            reorderPointHandleDataEntity.setReorderPointRank( checkStockInfoResponseDetailV1.getRank() );</span>
+<span class="nc" id="L46">            reorderPointHandleDataEntity.setReorderPointGinnerCode( checkStockInfoResponseDetailV1.getGinnerCode() );</span>
+<span class="nc" id="L47">            reorderPointHandleDataEntity.setReorderPointPlantCode( checkStockInfoResponseDetailV1.getPlantCode() );</span>
+        }
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if ( supplyPeriodResponse != null ) {</span>
+<span class="nc" id="L50">            reorderPointHandleDataEntity.setProcurementPeriod( supplyPeriodResponse.getProcurementPeriod() );</span>
+        }
+
+<span class="nc" id="L53">        return reorderPointHandleDataEntity;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

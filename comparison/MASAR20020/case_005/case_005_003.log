@@ -1,0 +1,12 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-level/up
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=test&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a11&&
+■api Body：　{  "requestDataList":[{      "billToCode":"123456",      "level":"1",      "delayDays":"st",      "invoiceNumber":"101010",      "invoiceIssueDate":"2020-02-02",      "subsidiaryCode":"JPN",      "loginUser":"string",      "promisedPaymentDate":"2020-09-10",      "sendMedia":null,      "fax":"string",      "emailTo":"user@example.com",      "emailCc":"user@example.com"  }],  "dunningLetterOutputType":"0"	}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NAR20020001W",
+  "argumentList": [],
+  "message": "督促レベルが他者により更新されています。表示内容を更新し、督促レベルをご確認ください。"
+}

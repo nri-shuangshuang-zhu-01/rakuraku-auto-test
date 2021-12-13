@@ -1,0 +1,23 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+ブロックリスト企業コード::block_list_company_code::char(4)::NOT NULL(PK)
+企業名（現地語）::company_name_native::varchar(200)::NOT NULL
+企業名::company_name::varchar(200)::NOT NULL
+代表者名::representative_name::varchar(200)::NOT NULL
+国コード::country_code::char(3)::NOT NULL
+郵便番号::postal_code::varchar(10)::NULL
+住所（現地語）::address_native::varchar(30)::NOT NULL
+住所::address::varchar(30)::NULL
+電話番号::tel::varchar(20)::NULL
+反映日時::reflection_date_time::timestamp::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

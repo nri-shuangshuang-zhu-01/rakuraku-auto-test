@@ -1,0 +1,1819 @@
+openapi: 3.0.0
+info:
+  title: other-master-service-pub-v1
+  version: '1.0'
+  description: dummy
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost/master'
+paths:
+  /v1/io-request/search:
+    post:
+      summary: IO調達方法管理マスタ参照API
+      operationId: searchIoRequestV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIoResquestResponse'
+              examples:
+                '@Example':
+                  value:
+                    - sub1SubsidiaryCode: MJP
+                      ioRequestCode: H01
+                      sub2SubsidiaryCode: THA
+                      ioRequestName: From THA H2 to MJP Air
+                      nativeIoRequestName: From THA H2 to MJP Air
+                      defaultFlag: '1'
+                      transportMeans: A1
+                      costPlusCalculationKeyType: A
+                      shipDayAdjustFlag: '0'
+                      directShipmentType: W
+                      sub1NonDisplayFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchIoRequestRequest'
+        description: IO調達方法管理マスタ参照APIのリクエスト電文
+      description: |-
+        以下のマスタの一覧を返却します。
+          IO調達方法管理マスタ M_IO_REQUEST
+      tags:
+        - IoRequest
+    parameters: []
+  /v1/calendar/search:
+    post:
+      summary: カレンダー参照API
+      tags:
+        - Calendar
+      operationId: searchCalendarV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCalendarResponse'
+              examples:
+                '@Example':
+                  value:
+                    - calendarCode: H0A69
+                      subsidiaryCode: CHN
+                      calendarAssort: Z
+                      calendarName: H-NARITA CALENDAR
+                      globalFlag: '1'
+                      calendarDateList:
+                        - calendarDate: '2014-06-07'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          カレンダーマスタ M_CALENDAR
+          カレンダー名マスタ M_CALENDAR_NAME
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCalendarRequest'
+        description: カレンダー参照APIのリクエスト電文
+    parameters: []
+  /v1/rate/search:
+    get:
+      summary: レートマスタ参照API
+      tags:
+        - Rate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchRateResponse'
+              examples:
+                '@Example':
+                  value:
+                    - rateTypeCode: M
+                      beforeConversionCurrencyCode: VND
+                      afterConversionCurrencyCode: PLN
+                      effectiveDateFrom: '2012-02-01'
+                      rate: '0.00016'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchRateV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          レートマスタ M_RATE
+      parameters:
+        - schema:
+            type: string
+            minLength: 4
+            maxLength: 4
+            example: 'M   '
+          in: query
+          name: rate_type_code
+          description: レートタイプコード
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+            example: VND
+          in: query
+          name: before_conversion_currency_code
+          description: 変換元通貨コード
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+            example: PLN
+          in: query
+          name: after_conversion_currency_code
+          description: 変換先通貨コード
+          required: true
+        - schema:
+            type: string
+            format: date
+            example: '2012-02-01'
+          in: query
+          name: effective_date_from
+          required: true
+          description: 適用開始日
+    parameters: []
+  /v1/subsidiary/search:
+    get:
+      summary: 現法マスタ参照API
+      tags:
+        - Subsidiary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSubsidiaryResponse'
+              examples:
+                '@Example':
+                  value:
+                    - subsidiaryCode: TIW
+                      subsidiaryName: MISUMI TAIWAN CORP.
+                      nativeSubsidiaryName: 台灣三住股莉ｽ有限公司
+                      countryCode: '106'
+                      languageCode: CHI
+                      licenceNumber: '23225712'
+                      taxRegistrationNumber: 'null'
+                      address1: '9F-1, No126,Nanjing E. Rd.,4,'
+                      address2: 'Taipei 10595, Taiwan R.O.C.'
+                      address3: 'null'
+                      address4: 'null'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      postalCode: '10595'
+                      tel: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      currencyCode: TWD
+                      dateFormat: YYYYMMDD
+                      timezone: Asia/Taipei
+                      fiscalStartYear: 2006
+                      fiscalStartMonth: 4
+                      settlementMonth: 3
+                      areaGroup: ASIA
+                      packingWeight: '0'
+                      holdTermApplyCalendar: TCCCC
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchSubsidiaryV1
+      description: |-
+        以下のマスタの一覧を返却します。
+          現法マスタ M_SUBSIDIARY
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            example: KOR
+            minLength: 3
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+    parameters: []
+  /v1/bank/search:
+    get:
+      summary: 銀行マスタ参照API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchBankResponse'
+              examples:
+                '@Example':
+                  value:
+                    - subsidiaryCode: THA
+                      bankCode: DLE1
+                      countryCode: DUM
+                      bankName: DUMMY1
+                      nativeBankName: DUMMY2
+                      calendarCode: DUMMY
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchBankV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          銀行マスタ M_BANK
+      parameters:
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+            example: THA
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 4
+            example: DLE1
+          in: query
+          name: bank_code
+          description: 銀行コード
+          required: true
+      tags:
+        - Bank
+    parameters: []
+  /v1/language/search:
+    parameters: []
+    get:
+      summary: 言語マスタ参照API
+      tags:
+        - Language
+      operationId: searchLanguageV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLanguageResponse'
+              examples:
+                '@Example':
+                  value:
+                    - subsidiaryCode: MJP
+                      languageCode: JPN
+                      languageName: jpn
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          言語マスタ M_LANGUAGE
+      parameters:
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+            example: MJP
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: 言語コード
+          name: language_code
+  /v1/plant/search:
+    parameters: []
+    post:
+      summary: 置場マスタ参照API
+      tags:
+        - Plant
+      operationId: searchPlantV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPlantResponse'
+              examples:
+                '1':
+                  value:
+                    - plantCode: '11'
+                      subsidiaryCode: string
+                      plantName: string
+                      nativePlantName: string
+                      nativePlantAbbreviation: string
+                      plantNumber: string
+                      areaCode: string
+                      nativeAddress1: string
+                      nativeAddress2: string
+                      nativeAddress3: string
+                      nativeAddress4: string
+                      telNumber: string
+                      faxNumber: string
+                      postalCode: string
+                '2':
+                  value:
+                    - plantCode: '01 '
+                      subsidiaryCode: MJP
+                      plantName: QCT
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                    - plantCode: '01 '
+                      subsidiaryCode: TIW
+                      plantName: QCT
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                    - plantCode: CCC
+                      subsidiaryCode: CHN
+                      plantName: 苏州
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                    - plantCode: CCD
+                      subsidiaryCode: CHN
+                      plantName: 上海
+                      nativePlantName: ＱＣＴ　（東京MC）
+                      nativePlantAbbreviation: string
+                      plantNumber: ＱＣＴ
+                      areaCode: '52'
+                      nativeAddress1: 台北市南京東路
+                      nativeAddress2: 四段126號9樓之1
+                      nativeAddress3: 'null'
+                      nativeAddress4: 'null'
+                      telNumber: 02-2570-3767
+                      faxNumber: 02-2570-3767
+                      postalCode: '10595'
+                '3':
+                  value:
+                    - plantCode: '44444444'
+                      subsidiaryCode: string
+                      plantName: string
+                      nativePlantName: string
+                      nativePlantAbbreviation: string
+                      plantNumber: string
+                      areaCode: string
+                      nativeAddress1: string
+                      nativeAddress2: string
+                      nativeAddress3: string
+                      nativeAddress4: string
+                      telNumber: string
+                      faxNumber: string
+                      postalCode: string
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          置場マスタ M_PLANT
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPlantRequest'
+            examples:
+              example-1:
+                value:
+                  searchPlantRequestDetailList:
+                    - plantCode: string
+                      subsidiaryCode: string
+              example-2:
+                value:
+                  searchPlantRequestDetailList:
+                    - plantCode: string
+                      subsidiaryCode: string
+        description: 置場マスタ検索リクエスト電文
+  /v1/currency/search:
+    get:
+      summary: 通貨マスタ参照API
+      tags:
+        - Currency
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCurrencyResponse'
+              examples:
+                '@Example':
+                  value:
+                    - currencyCode: CAD
+                      currencyAbbreviation: Canadian Dollar
+                      decimalPointLength: 2
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchCurrencyV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          通貨マスタ M_CURRENCY
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            example: CAD
+          in: query
+          name: currency_code
+          description: 通貨コード
+          required: true
+    parameters: []
+  /v1/closing-time/search:
+    parameters: []
+    get:
+      summary: 締め時刻マスタ参照API
+      operationId: searchClosingTimeV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchClosingTimeResponse'
+              examples:
+                '@Example':
+                  value:
+                    - subsidiaryCode: CHN
+                      closingTimeAssort: BAFT
+                      typeCode: '1'
+                      closingTime1: '1000'
+                      closingTime2: '1000'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          締め時刻マスタ M_CLOSING_TIME
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            example: MJP
+            minLength: 3
+          in: query
+          description: 現法コード
+          name: subsidiary_code
+          required: true
+        - schema:
+            type: string
+            maxLength: 2
+            minLength: 1
+            example: '09'
+          in: query
+          description: 区分コード　※BAFTの場合　0～9　EODの場合　00～09
+          name: type_code
+          required: true
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          description: 締時刻種別　※BAFT：短納期用
+          name: closing_time_assort
+      tags:
+        - ClosingTime
+  /v1/voucher-type/search:
+    get:
+      summary: 伝票区分参照API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchVoucherTypeResponse'
+              examples:
+                '@Example':
+                  value:
+                    - voucherType: '130'
+                      voucherTypeName: RETURNED STOCK SENDING
+                      nativeVoucherTypeName: 返品(在庫品）  送付要
+                      halfwidthVoucherTypeName: ﾍﾝﾋﾟﾝ ｿｳﾌﾖｳ
+                      salesDcType: '0'
+                      buyingDcType: '1'
+                      dcInvoiceFlag: '1'
+                      freightReplaceType: '193'
+                      freightFlag: '0'
+                      voucherTypeDetailList:
+                        - voucherTypeDetailNumber: 1
+                          associationFunctionType: '02'
+                          voucherTradeAssortType: '01'
+                          availableFlag: '1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchVoucherTypeV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          伝票区分マスタ M_VOUCHER_TYPE
+          伝票区分明細マスタ M_VOUCHER_TYPE_DETAIL
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            example: '130'
+          in: query
+          name: voucher_type
+          description: 伝票区分
+        - schema:
+            type: string
+            maxLength: 1
+            example: '1'
+            enum:
+              - '1'
+              - '2'
+          in: query
+          name: execute_type
+          description: '処理区分　※1:赤伝（マイナス）　2:黒伝（プラス）'
+        - schema:
+            type: string
+            example: '01'
+            maxLength: 2
+          in: query
+          name: association_function_type
+          description: '関連機能区分　※01:受注関連, 02:発注関連. 03:在庫関連'
+        - schema:
+            type: string
+            example: '02'
+            maxLength: 2
+          in: query
+          name: voucher_trade_assort_type
+          description: '伝票取引種別区分　※01:標準; 02:特注; 03:有償支給; 04:返品確定; 05:赤黒; 06:クレーム; 11:入力; 12:返品; 13:単価修正; 21:在庫調整; 22:社内移動'
+      tags:
+        - VoucherType
+    parameters: []
+  /v1/shipmode/search:
+    parameters: []
+    get:
+      summary: 扱い便区分マスタ参照API
+      operationId: searchShipmodeV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchShipmodeResponse'
+              examples:
+                '@Example':
+                  value:
+                    - subsidiaryCode: CHN
+                      customerShipmode: FDX
+                      nativeShippingCarrierName: 联邦快递（中国）有限公司
+                      nativeShippingCarrierAbbreviation: 联邦快递
+                      shippingCarrierName: FEDEX EXPRESS(CHINA)COMPANY LTD
+                      shippingCarrierAbbreviation: FEDEX
+                      shippingCarrierUrl: 'http://www.fedex.com.cn/'
+                      carrierAccountNumberFlag: '0'
+                      freeShippingFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          扱い便区分マスタ M_SHIPMODE
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+            example: MJP
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: customer_shipmode
+          description: 扱い便区分
+      tags:
+        - Shipmode
+  /v1/callback-address/search:
+    parameters: []
+    post:
+      summary: 返送先マスタ参照API
+      operationId: searchCallbackAddressV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCallbackAddressResponse'
+              examples:
+                '@Example':
+                  value:
+                    - subsidiaryCode: MJP
+                      cardSendCode: '01'
+                      callbackName: 半品
+                      postalCode: '0214578'
+                      address1: 東京都
+                      address2: 上野駅
+                      address3: 庄都央町１－３
+                      address4: 庄都央町１－３
+                      telNumber: 03-8548-6548
+                      faxNumber: 03-8548-6548
+                      email: takuya@yahoo.jp
+                      addressName: 部屋
+                      marketCode: '02'
+                      teamCode: '01'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          返送先マスタ M_CALLBACK_ADDRESS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCallbackAddressRequest'
+        description: 返送先マスタ参照APIのリクエスト電文
+      tags:
+        - CallbackAddress
+  /v1/reason-code/search:
+    parameters: []
+    post:
+      summary: 理由コードマスタ参照API
+      operationId: searchReasonCodeV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchReasonCodeResponse'
+              examples:
+                '@Example':
+                  value:
+                    - businessSceneType: '01'
+                      causeType: '02'
+                      sequence: 16
+                      reasonCode: A12
+                      reasonName: 理由内容（英語）
+                      japaneseReasonName1: 理由内容（日本語）
+                      halfwidthReasonName2: 理由内容（半角カナ）
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          理由コードマスタ M_REASON_CODE
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchReasonCodeRequest'
+            examples: {}
+        description: 理由コードマスタ検索リクエスト電文
+      tags:
+        - ReasonCode
+  /v1/subsidiary-control/search:
+    parameters: []
+    get:
+      summary: 現法制御マスタ参照API
+      operationId: searchSubsidiaryControlV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSubsidiaryControlResponse'
+              examples:
+                '@Example':
+                  value:
+                    - subsidiaryCode: MJP
+                      controlCode: dummy
+                      flag: '0'
+                      type: '45'
+                      value: '3'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          現法制御マスタ M_SUBSIDIARY_CONTROL
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+            example: MJP
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 80
+          in: query
+          name: control_code
+          description: 制御コード
+          required: true
+      tags:
+        - SubsidiaryControl
+  /v1/tax-rate/search:
+    parameters: []
+    get:
+      summary: 税率マスタ参照API
+      operationId: searchTaxRateV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTaxRateResponse'
+              examples:
+                '@Example':
+                  value:
+                    taxRateList:
+                      - subsidiaryCode: MJP
+                        taxCode: '10'
+                        effectiveDateFrom: '2017-12-07'
+                        effectiveDateFromSequence: 0
+                        nativeTaxName: Japan
+                        effectiveDateTo: '2017-12-07'
+                        taxRate: '10.00'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          税率マスタ M_TAX_RATE
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+            example: MJP
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 2
+          in: query
+          name: tax_code
+          description: 税コード
+          required: true
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: effective_date_from
+          description: 適用開始日
+          required: true
+      tags:
+        - TaxRate
+  /v1/plant-priority-pattern/search:
+    get:
+      summary: 置場優先パターン参照API
+      operationId: searchPlantPriorityPatternV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPlantPriorityPatternResponse'
+              examples:
+                '2':
+                  value:
+                    plantPriorityPatternList:
+                      - subsidiaryCode: MJP
+                        plantPattern: '1'
+                        priorityRank: 2
+                        plantCode: '21'
+                        plantName: 置場
+                        nativePlantName: stock
+                        nativePlantAbbbreviation: 置場
+                '3':
+                  value:
+                    plantPriorityPatternList:
+                      - subsidiaryCode: '343434'
+                        plantPattern: string
+                        priorityRank: 0
+                        plantCode: string
+                        plantName: string
+                        nativePlantName: string
+                        nativePlantAbbreviation: string
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+            example: MJP
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: plant_pattern
+          description: 置場パターン
+          required: true
+      description: |-
+        以下のマスタの一覧を返却します。
+          置場優先パターンマスタ M_PLANT_PRIORITY_PATTERN
+          置場マスタ M_PLANT
+      tags:
+        - PlantPriorityPattern
+    parameters: []
+  /v1/area/search:
+    get:
+      summary: エリア参照API
+      tags:
+        - Area
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAreaResponse'
+              examples:
+                '1':
+                  value:
+                    subsidiaryCode: '11111'
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+                '2':
+                  value:
+                    subsidiaryCode: '22222'
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+                '3':
+                  value:
+                    subsidiaryCode: '33333'
+                    areaList:
+                      - areaCode: string
+                        ntvAreaName: string
+        '400':
+          description: Bad Request
+      operationId: searchAreaV1
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: areaType
+      description: エリアAPI
+components:
+  schemas:
+    IoRequest:
+      title: IoRequest
+      type: object
+      description: IO調達方法管理情報
+      properties:
+        sub1SubsidiaryCode:
+          type: string
+          description: SUB1側現法コード
+        ioRequestCode:
+          type: string
+          description: IOリクエストコード
+        sub2SubsidiaryCode:
+          type: string
+          description: SUB2側現法コード
+        ioRequestName:
+          type: string
+          description: IOリクエスト名
+        nativeIoRequestName:
+          type: string
+          description: IOリクエスト名（現地語）
+        defaultFlag:
+          type: string
+          description: デフォルトフラグ
+        transportMeans:
+          type: string
+          description: 輸送手段
+        costPlusCalculationKeyType:
+          type: string
+          description: コストプラス算出キー区分
+        shipDayAdjustFlag:
+          type: string
+          description: 出荷日調整フラグ
+        directShipmentType:
+          type: string
+          description: 直送区分
+        sub1NonDisplayFlag:
+          type: string
+          description: SUB1非表示フラグ
+      required:
+        - sub1SubsidiaryCode
+        - ioRequestCode
+        - sub2SubsidiaryCode
+        - ioRequestName
+        - defaultFlag
+        - transportMeans
+        - costPlusCalculationKeyType
+        - shipDayAdjustFlag
+        - directShipmentType
+        - sub1NonDisplayFlag
+    Calendar:
+      title: Calendar
+      type: object
+      description: カレンダー情報
+      properties:
+        calendarCode:
+          type: string
+          description: カレンダコード
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        calendarAssort:
+          type: string
+          description: カレンダ種別
+        calendarName:
+          type: string
+          description: カレンダ名
+        globalFlag:
+          type: string
+          description: グローバルフラグ
+        calendarDateList:
+          type: array
+          description: 年月日情報リスト
+          items:
+            type: object
+            description: 年月日情報
+            properties:
+              calendarDate:
+                type: string
+                description: 年月日
+                format: date
+      required:
+        - calendarCode
+        - subsidiaryCode
+        - calendarAssort
+        - calendarName
+        - globalFlag
+    Rate:
+      title: Rate
+      type: object
+      description: レート情報
+      properties:
+        rateTypeCode:
+          type: string
+          description: レートタイプコード
+        beforeConversionCurrencyCode:
+          type: string
+          description: 変換元通貨コード
+        afterConversionCurrencyCode:
+          type: string
+          description: 変換先通貨コード
+        effectiveDateFrom:
+          type: string
+          description: 適用開始日
+          format: date
+        rate:
+          type: string
+          description: レート
+          format: decimal
+      required:
+        - rateTypeCode
+        - beforeConversionCurrencyCode
+        - afterConversionCurrencyCode
+        - effectiveDateFrom
+        - rate
+    Subsidiary:
+      title: Subsidiary
+      type: object
+      description: 現法情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        subsidiaryName:
+          type: string
+          description: 現地法人名
+        nativeSubsidiaryName:
+          type: string
+          description: 現地法人名（現地語）
+        countryCode:
+          type: string
+          description: 国コード
+        languageCode:
+          type: string
+          description: 言語コード
+        licenceNumber:
+          type: string
+          description: ライセンス番号
+        taxRegistrationNumber:
+          type: string
+          description: 税登録番号
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        nativeAddress1:
+          type: string
+          description: 住所1（現地語）
+        nativeAddress2:
+          type: string
+          description: 住所2（現地語）
+        nativeAddress3:
+          type: string
+          description: 住所3（現地語）
+        nativeAddress4:
+          type: string
+          description: 住所4（現地語）
+        postalCode:
+          type: string
+          description: 郵便番号
+        tel:
+          type: string
+          description: 電話番号
+        faxNumber:
+          type: string
+          description: FAX番号
+        currencyCode:
+          type: string
+          description: 通貨コード
+        dateFormat:
+          type: string
+          description: 日付形式
+        timezone:
+          type: string
+          description: タイムゾーン
+        fiscalStartYear:
+          type: integer
+          description: 会計開始年度
+        fiscalStartMonth:
+          description: 会計開始月
+          type: integer
+        settlementMonth:
+          description: 決算月
+          type: integer
+        areaGroup:
+          type: string
+          description: エリアグループ
+        packingWeight:
+          type: string
+          description: 梱包重量
+          format: decimal
+        holdTermApplyCalendar:
+          type: string
+          description: 保留期間適用カレンダコード
+      required:
+        - subsidiaryCode
+        - subsidiaryName
+        - nativeSubsidiaryName
+        - countryCode
+        - languageCode
+        - address1
+        - nativeAddress1
+        - tel
+        - faxNumber
+        - currencyCode
+        - dateFormat
+        - fiscalStartYear
+        - fiscalStartMonth
+        - settlementMonth
+        - areaGroup
+        - packingWeight
+        - holdTermApplyCalendar
+    Error:
+      title: Error
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用のJSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          nullable: true
+    Bank:
+      title: Bank
+      type: object
+      description: 銀行情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        bankCode:
+          type: string
+          description: 銀行コード
+        countryCode:
+          type: string
+          description: 国コード
+        bankName:
+          type: string
+          description: 銀行名
+        nativeBankName:
+          type: string
+          description: 銀行名（現地語）
+        calendarCode:
+          type: string
+          description: カレンダコード
+      required:
+        - subsidiaryCode
+        - bankCode
+        - countryCode
+        - bankName
+    Language:
+      title: Language
+      type: object
+      description: 言語情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        languageCode:
+          type: string
+          description: 言語コード
+        languageName:
+          type: string
+          description: 言語名
+      required:
+        - subsidiaryCode
+        - languageCode
+        - languageName
+    Plant:
+      title: Plant
+      type: object
+      description: 置場情報
+      properties:
+        plantCode:
+          type: string
+          description: 置場コード
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        plantName:
+          type: string
+          description: 置場名
+        nativePlantName:
+          type: string
+          description: 置場名（現地語）
+        nativePlantAbbreviation:
+          type: string
+          description: 置場名（現地語）
+        plantNumber:
+          type: string
+          description: 置場番号
+        areaCode:
+          type: string
+          description: エリアコード
+        nativeAddress1:
+          type: string
+          description: 住所1(現地語)
+        nativeAddress2:
+          type: string
+          description: 住所2(現地語)
+        nativeAddress3:
+          type: string
+          description: 住所3(現地語)
+        nativeAddress4:
+          type: string
+          description: 住所4(現地語)
+        telNumber:
+          type: string
+          description: 電話番号
+        faxNumber:
+          type: string
+          description: FAX番号
+        postalCode:
+          type: string
+          description: 郵便番号
+      required:
+        - plantCode
+        - subsidiaryCode
+        - plantName
+    Currency:
+      title: Currency
+      type: object
+      description: 通貨情報
+      properties:
+        currencyCode:
+          type: string
+          description: 通貨コード
+        currencyAbbreviation:
+          type: string
+          description: 通貨略称
+        decimalPointLength:
+          type: integer
+          description: 小数点以下桁数
+      required:
+        - currencyCode
+        - currencyAbbreviation
+        - decimalPointLength
+    ClosingTime:
+      title: ClosingTime
+      type: object
+      description: 締め時刻情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        closingTimeAssort:
+          type: string
+          description: 締時刻種別
+        typeCode:
+          type: string
+          description: 区分コード
+        closingTime1:
+          type: string
+          description: 締時刻01
+        closingTime2:
+          type: string
+          description: 締時刻02
+      required:
+        - subsidiaryCode
+        - closingTimeAssort
+        - typeCode
+        - closingTime1
+    VoucherType:
+      title: VoucherType
+      type: object
+      description: 伝票区分情報
+      properties:
+        voucherType:
+          type: string
+          description: 伝票区分
+        voucherTypeName:
+          type: string
+          description: 伝票区分名
+        nativeVoucherTypeName:
+          type: string
+          description: 伝票区分名（現地語）
+        halfwidthVoucherTypeName:
+          type: string
+          description: 伝票区分名（半角カナ）
+        salesDcType:
+          type: string
+          description: 売上デビクレ区分
+        buyingDcType:
+          type: string
+          description: 仕入デビクレ区分
+        dcInvoiceFlag:
+          type: string
+          description: 赤黒請求書フラグ
+        freightReplaceType:
+          type: string
+          description: 運賃／雑費／保険料置換伝区
+        freightFlag:
+          type: string
+          description: 運賃／雑費／保険料フラグ
+        voucherTypeDetailList:
+          type: array
+          items:
+            type: object
+            description: 伝票区分明細情報リスト
+            properties:
+              voucherTypeDetailNumber:
+                type: integer
+                description: 伝票区分明細番号
+              associationFunctionType:
+                type: string
+                description: 関連機能区分
+              voucherTradeAssortType:
+                type: string
+                description: 伝票取引種別区分
+              availableFlag:
+                type: string
+                description: 利用可能フラグ
+      required:
+        - voucherType
+        - voucherTypeName
+        - nativeVoucherTypeName
+        - halfwidthVoucherTypeName
+        - dcInvoiceFlag
+        - freightFlag
+    Shipmode:
+      title: Shipmode
+      type: object
+      description: 扱い便区分マスタ情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        customerShipmode:
+          type: string
+          description: 扱い便区分
+        nativeShippingCarrierName:
+          type: string
+          description: 配送業者名（現地語）
+        nativeShippingCarrierAbbreviation:
+          type: string
+          description: 配送業者名略称（現地語）
+        shippingCarrierName:
+          type: string
+          description: 配送業者名
+        shippingCarrierAbbreviation:
+          type: string
+          description: 配送業者名略称
+        shippingCarrierUrl:
+          type: string
+          description: 配送業者URL
+        carrierAccountNumberFlag:
+          type: string
+          description: 配送業者顧客番号必須フラグ
+        freeShippingFlag:
+          type: string
+          description: 配送無料フラグ
+      required:
+        - subsidiaryCode
+        - customerShipmode
+        - nativeShippingCarrierName
+        - nativeShippingCarrierAbbreviation
+        - shippingCarrierName
+        - shippingCarrierAbbreviation
+        - carrierAccountNumberFlag
+    CallbackAddress:
+      title: CallbackAddress
+      type: object
+      description: 返送先情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        cardSendCode:
+          type: string
+          description: カード送付先コード
+        callbackName:
+          type: string
+          description: 返送先名
+        postalCode:
+          type: string
+          description: 郵便番号
+        address1:
+          type: string
+          description: 住所１
+        address2:
+          type: string
+          description: 住所２
+        address3:
+          type: string
+          description: 住所３
+        address4:
+          type: string
+          description: 住所４
+        telNumber:
+          type: string
+          description: 電話番号
+        faxNumber:
+          type: string
+          description: FAX番号
+        email:
+          type: string
+          description: メールアドレス
+        addressName:
+          type: string
+          description: 宛名
+        marketCode:
+          type: string
+          description: 市場コード
+        teamCode:
+          type: string
+          description: チームコード
+      required:
+        - subsidiaryCode
+        - cardSendCode
+    SearchReasonCodeRequest:
+      title: SearchReasonCodeRequest
+      type: array
+      description: 理由コードマスタ参照APIのリクエスト電文
+      x-examples: {}
+      items:
+        type: object
+        properties:
+          businessSceneType:
+            type: string
+            description: 業務シーン区分
+            maxLength: 2
+          causeType:
+            type: string
+            description: 起因区分
+            maxLength: 2
+          reasonCode:
+            type: string
+            description: 理由コード
+            maxLength: 3
+          reasonName:
+            type: string
+            description: 理由名
+            maxLength: 160
+    ReasonCode:
+      title: ReasonCode
+      type: object
+      description: 理由コード情報
+      properties:
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+        causeType:
+          type: string
+          description: 起因区分
+        sequence:
+          type: integer
+          description: 連番
+        reasonCode:
+          type: string
+          description: 理由コード
+        reasonName:
+          type: string
+          description: 理由名
+        japaneseReasonName1:
+          type: string
+          description: 理由名（日本語）
+        halfwidthReasonName2:
+          type: string
+          description: 理由名（カナ）
+      required:
+        - businessSceneType
+        - causeType
+        - sequence
+        - reasonCode
+        - reasonName
+        - japaneseReasonName1
+        - halfwidthReasonName2
+    SubsidiaryControl:
+      title: SubsidiaryControl
+      type: object
+      description: 現法制御情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        controlCode:
+          type: string
+          description: 制御コード
+        flag:
+          type: string
+          description: フラグ
+        type:
+          type: string
+          description: 区分
+        value:
+          type: string
+          description: 値
+      required:
+        - subsidiaryCode
+        - controlCode
+    TaxRate:
+      title: TaxRate
+      type: object
+      description: 税率情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        taxCode:
+          type: string
+          description: 税コード
+        effectiveDateFrom:
+          type: string
+          description: 適用開始日
+          format: date
+        effectiveDateFromSequence:
+          description: 適用開始日連番
+          type: integer
+        nativeTaxName:
+          type: string
+          description: 税名（現地語）
+        effectiveDateTo:
+          type: string
+          description: 適用終了日
+          format: date
+        taxRate:
+          type: string
+          description: 税率
+          format: decimal
+      required:
+        - subsidiaryCode
+        - taxCode
+        - effectiveDateFrom
+        - effectiveDateFromSequence
+        - nativeTaxName
+        - effectiveDateTo
+        - taxRate
+    PlantPriorityPattern:
+      title: PlantPriorityPattern
+      type: object
+      description: 置場優先パターン情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        plantPattern:
+          type: string
+          description: 置場パターン
+        priorityRank:
+          type: integer
+          description: 優先順位
+        plantCode:
+          type: string
+          description: 置場コード
+        plantName:
+          type: string
+          description: 置場名
+        nativePlantName:
+          type: string
+          description: 置場名（現地語）
+        nativePlantAbbreviation:
+          type: string
+          description: 置場略称（現地語）
+      required:
+        - subsidiaryCode
+        - plantPattern
+        - priorityRank
+        - plantCode
+    SearchBankResponse:
+      title: SearchBankResponse
+      type: array
+      items:
+        $ref: '#/components/schemas/Bank'
+      description: 銀行マスタ参照APIのレスポンス電文
+    SearchIoRequestRequest:
+      title: SearchIoRequestRequest
+      type: array
+      description: IO調達方法管理マスタ参照APIのリクエスト電文
+      items:
+        type: object
+        properties:
+          sub1SubsidiaryCode:
+            type: string
+            description: SUB1側現法コード
+            maxLength: 3
+            example: MJP
+            minLength: 3
+          sub2SubsidiaryCode:
+            type: string
+            description: SUB2側現法コード
+            maxLength: 3
+            example: THA
+            minLength: 3
+          ioRequestCode:
+            type: string
+            description: IOリクエストコード
+            maxLength: 3
+        required:
+          - sub1SubsidiaryCode
+    SearchIoResquestResponse:
+      title: SearchIoResquestResponse
+      type: array
+      description: IO調達方法管理マスタ参照APIのレスポンス電文
+      items:
+        $ref: '#/components/schemas/IoRequest'
+    SearchCurrencyResponse:
+      title: SearchCurrencyResponse
+      type: array
+      items:
+        $ref: '#/components/schemas/Currency'
+      description: 通貨マスタ参照APIのレスポンス電文
+    SearchCalendarRequest:
+      title: SearchCalendarRequest
+      type: object
+      description: カレンダー参照APIのリクエスト電文
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          minLength: 3
+          maxLength: 3
+          example: MJP
+        calendarAssortList:
+          type: array
+          description: カレンダ種別リスト
+          items:
+            type: object
+            properties:
+              calendarAssort:
+                type: string
+                description: |-
+                  カレンダ種別
+                  　A～G：１現法につき1つしか定義できない。
+                  　Z：複数定義が可能。
+                minLength: 1
+                maxLength: 1
+        baseDate:
+          type: string
+          description: 基準日
+          format: date
+      required:
+        - subsidiaryCode
+    SearchCalendarResponse:
+      title: SearchCalendarResponse
+      type: array
+      description: カレンダー参照APIのレスポンス電文
+      items:
+        $ref: '#/components/schemas/Calendar'
+    SearchClosingTimeResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ClosingTime'
+      description: 締め時刻マスタ参照APIのレスポンス電文
+      title: SearchClosingTimeResponse
+    SearchCallbackAddressRequest:
+      title: SearchCallbackAddressRequest
+      type: array
+      description: 返送先マスタ参照APIのリクエスト電文
+      items:
+        type: object
+        description: ''
+        properties:
+          subsidiaryCode:
+            type: string
+            minLength: 3
+            maxLength: 3
+            description: 現法コード
+            example: MJP
+          cardSendCode:
+            type: string
+            maxLength: 2
+            description: カード送付先コード
+        required:
+          - subsidiaryCode
+    SearchCallbackAddressResponse:
+      title: SearchCallbackAddressResponse
+      type: array
+      description: 返送先マスタ参照APIのレスポンス電文
+      items:
+        $ref: '#/components/schemas/CallbackAddress'
+    SearchLanguageResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Language'
+      title: SearchLanguageResponse
+      description: 言語マスタ参照APIのレスポンス電文
+    SearchRateResponse:
+      title: SearchRateResponse
+      description: レートマスタ参照APIのレスポンス電文
+      type: array
+      items:
+        $ref: '#/components/schemas/Rate'
+    SearchSubsidiaryResponse:
+      title: SearchSubsidiaryResponse
+      description: 現法マスタ参照APIのレスポンス電文
+      type: array
+      items:
+        $ref: '#/components/schemas/Subsidiary'
+    SearchPlantRequest:
+      title: SearchPlantRequest
+      type: object
+      description: 置場マスタ参照APIのリクエスト電文
+      x-examples: {}
+      properties:
+        searchPlantRequestDetailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchPlantRequestDetail'
+    SearchPlantResponse:
+      title: SearchPlantResponse
+      type: array
+      description: 置場マスタ参照APIのレスポンス電文
+      items:
+        $ref: '#/components/schemas/Plant'
+    SearchVoucherTypeResponse:
+      title: SearchVoucherTypeResponse
+      description: 伝票区分参照APIのレスポンス電文
+      type: array
+      items:
+        $ref: '#/components/schemas/VoucherType'
+    SearchShipmodeResponse:
+      title: SearchShipmodeResponse
+      type: array
+      description: 扱い便区分マスタ参照APIのレスポンス電文
+      items:
+        $ref: '#/components/schemas/Shipmode'
+    SearchReasonCodeResponse:
+      title: SearchReasonCodeResponse
+      type: array
+      description: 理由コードマスタ参照APIのレスポンス電文
+      items:
+        $ref: '#/components/schemas/ReasonCode'
+    SearchSubsidiaryControlResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/SubsidiaryControl'
+      description: 現法制御マスタ参照APIのレスポンス電文
+      title: SearchSubsidiaryControlResponse
+    SearchTaxRateResponse:
+      title: SearchTaxRateResponse
+      type: object
+      description: 税率マスタ参照APIのレスポンス電文
+      properties:
+        taxRateList:
+          type: array
+          description: 税率情報リスト
+          items:
+            $ref: '#/components/schemas/TaxRate'
+    SearchPlantPriorityPatternResponse:
+      title: SearchPlantPriorityPatternResponse
+      type: object
+      description: 置場優先パターン参照APIのレスポンス電文
+      properties:
+        plantPriorityPatternList:
+          type: array
+          description: 置場優先パターン情報リスト
+          items:
+            $ref: '#/components/schemas/PlantPriorityPattern'
+    SearchAreaResponse:
+      title: SearchAreaResponse
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+        areaList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Area'
+    Area:
+      title: Area
+      type: object
+      properties:
+        areaCode:
+          type: string
+        ntvAreaName:
+          type: string
+    SearchPlantRequestDetail:
+      title: SearchPlantRequestDetail
+      type: object
+      properties:
+        plantCode:
+          type: string
+        subsidiaryCode:
+          type: string
+  responses:
+    ErrorResponse:
+      description: エラーレスポンス　※標準化Tより今後提供予定
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+tags:
+  - name: Bank
+  - name: Calendar
+  - name: CallbackAddress
+  - name: ClosingTime
+  - name: Currency
+  - name: IoRequest
+  - name: Language
+  - name: Plant
+  - name: PlantPriorityPattern
+  - name: Rate
+  - name: Shipmode
+  - name: Subsidiary
+  - name: SubsidiaryControl
+  - name: TaxRate
+  - name: VoucherType
+  - name: ReasonCode
+  - name: Area

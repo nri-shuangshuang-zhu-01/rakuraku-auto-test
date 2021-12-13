@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBSCR40010Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBSCR40010Test.java</span></div><h1>MBSCR40010Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBSCR40010機能確認&quot;)
+@DisplayName(&quot;MBSCR40010機能確認&quot;)
+<span class="nc" id="L15">public class MBSCR40010Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBSCR40010&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBSCR40010&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/internal/v1/subsidiary/get;;現法情報取得API;;1*****2+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****3+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****4+++++/internal/v1/subsidiary/get;;現法情報取得API;;1*****5+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****6+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****7+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****8+++++/internal/v1/subsidiary/get;;現法情報取得API;;1*****9+++++/internal/v1/subsidiary/get;;現法情報取得API;;1*****10+++++/internal/v1/subsidiary/get;;現法情報取得API;;4*****11+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****12+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****13+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****14+++++/internal/v1/subsidiary/get;;現法情報取得API;;3*****15+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****16+++++/internal/v1/subsidiary/get;;現法情報取得API;;5*****17+++++/internal/v1/subsidiary/get;;現法情報取得API;;6*****18+++++/internal/v1/subsidiary/get;;現法情報取得API;;6*****19+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****20+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****21+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****22+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****23+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****24+++++/internal/v1/subsidiary/get;;現法情報取得API;;2*****25+++++/internal/v1/subsidiary/get;;現法情報取得API;;2&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;test001&quot;)
+	@DisplayName(&quot;test001&quot;)
+	public void testMBSCR40010_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L52">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L55">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L58">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L61">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L64">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L67">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L70">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L73">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L75">	}</span>
+
+	@Test
+	@Tag(&quot;test002&quot;)
+	@DisplayName(&quot;test002&quot;)
+	public void testMBSCR40010_002() throws Exception {
+
+<span class="nc" id="L82">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L86">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L89">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L92">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L95">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L98">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L101">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L104">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L107">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L110">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L113">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L115">	}</span>
+
+	@Test
+	@Tag(&quot;test003&quot;)
+	@DisplayName(&quot;test003&quot;)
+	public void testMBSCR40010_003() throws Exception {
+
+<span class="nc" id="L122">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L126">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L129">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L132">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L135">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L138">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L141">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L144">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L147">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L150">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L153">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L155">	}</span>
+
+	@Test
+	@Tag(&quot;test004&quot;)
+	@DisplayName(&quot;test004&quot;)
+	public void testMBSCR40010_004() throws Exception {
+
+<span class="nc" id="L162">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L166">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L169">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L172">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L175">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L178">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L181">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L184">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L187">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L190">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L193">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L195">	}</span>
+
+	@Test
+	@Tag(&quot;test005&quot;)
+	@DisplayName(&quot;test005&quot;)
+	public void testMBSCR40010_005() throws Exception {
+
+<span class="nc" id="L202">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L206">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L209">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L212">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L215">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L218">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L221">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L224">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L227">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L230">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L233">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L235">	}</span>
+
+	@Test
+	@Tag(&quot;test006&quot;)
+	@DisplayName(&quot;test006&quot;)
+	public void testMBSCR40010_006() throws Exception {
+
+<span class="nc" id="L242">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L246">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L249">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L252">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L255">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L258">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L261">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L264">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L267">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L270">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L273">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L275">	}</span>
+
+	@Test
+	@Tag(&quot;test007&quot;)
+	@DisplayName(&quot;test007&quot;)
+	public void testMBSCR40010_007() throws Exception {
+
+<span class="nc" id="L282">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L286">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L289">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L292">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L295">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L298">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L301">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L304">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L307">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L310">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L313">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L315">	}</span>
+
+	@Test
+	@Tag(&quot;test008&quot;)
+	@DisplayName(&quot;test008&quot;)
+	public void testMBSCR40010_008() throws Exception {
+
+<span class="nc" id="L322">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L326">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L329">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L332">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L335">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L338">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L341">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L344">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L347">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L350">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L352">	}</span>
+
+	@Test
+	@Tag(&quot;test009&quot;)
+	@DisplayName(&quot;test009&quot;)
+	public void testMBSCR40010_009() throws Exception {
+
+<span class="nc" id="L359">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L363">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L366">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L369">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L372">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L375">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L378">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L381">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L384">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+<span class="nc" id="L386">	}</span>
+
+	@Test
+	@Tag(&quot;test010&quot;)
+	@DisplayName(&quot;test010&quot;)
+	public void testMBSCR40010_010() throws Exception {
+
+<span class="nc" id="L393">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L397">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L400">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L403">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L406">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L409">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L412">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L415">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;4&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L418">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+<span class="nc" id="L420">	}</span>
+
+	@Test
+	@Tag(&quot;test011&quot;)
+	@DisplayName(&quot;test011&quot;)
+	public void testMBSCR40010_011() throws Exception {
+
+<span class="nc" id="L427">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L431">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L434">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L437">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L440">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L443">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L446">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L449">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L452">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L455">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L458">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L460">	}</span>
+
+	@Test
+	@Tag(&quot;test012&quot;)
+	@DisplayName(&quot;test012&quot;)
+	public void testMBSCR40010_012() throws Exception {
+
+<span class="nc" id="L467">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L471">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L474">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L477">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L480">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L483">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L486">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L489">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L492">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L495">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L498">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L500">	}</span>
+
+	@Test
+	@Tag(&quot;test013&quot;)
+	@DisplayName(&quot;test013&quot;)
+	public void testMBSCR40010_013() throws Exception {
+
+<span class="nc" id="L507">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L511">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L514">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L517">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L520">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L523">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L526">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L529">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L532">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L535">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L538">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L540">	}</span>
+
+	@Test
+	@Tag(&quot;test014&quot;)
+	@DisplayName(&quot;test014&quot;)
+	public void testMBSCR40010_014() throws Exception {
+
+<span class="nc" id="L547">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L551">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L554">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L557">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L560">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L563">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L566">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L569">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;3&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L572">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L575">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L578">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L580">	}</span>
+
+	@Test
+	@Tag(&quot;test015&quot;)
+	@DisplayName(&quot;test015&quot;)
+	public void testMBSCR40010_015() throws Exception {
+
+<span class="nc" id="L587">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L591">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;17&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L594">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;17&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L597">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;17&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L600">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L603">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L606">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L609">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L612">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L615">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L618">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L620">	}</span>
+
+	@Test
+	@Tag(&quot;test016&quot;)
+	@DisplayName(&quot;test016&quot;)
+	public void testMBSCR40010_016() throws Exception {
+
+<span class="nc" id="L627">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L631">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L634">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L637">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L640">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L643">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L646">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;18&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L649">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;5&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L652">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L655">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L658">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L660">	}</span>
+
+	@Test
+	@Tag(&quot;test017&quot;)
+	@DisplayName(&quot;test017&quot;)
+	public void testMBSCR40010_017() throws Exception {
+
+<span class="nc" id="L667">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L671">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L674">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L677">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L680">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L683">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L686">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;19&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L689">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;6&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L692">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L695">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L698">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L700">	}</span>
+
+	@Test
+	@Tag(&quot;test018&quot;)
+	@DisplayName(&quot;test018&quot;)
+	public void testMBSCR40010_018() throws Exception {
+
+<span class="nc" id="L707">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L711">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L714">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L717">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L720">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L723">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L726">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;20&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L729">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;6&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L732">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L735">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L738">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L740">	}</span>
+
+	@Test
+	@Tag(&quot;test019&quot;)
+	@DisplayName(&quot;test019&quot;)
+	public void testMBSCR40010_019() throws Exception {
+
+<span class="nc" id="L747">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_019/case_019_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L751">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;21&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L754">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;21&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L757">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;21&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L760">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L763">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L766">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L769">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L772">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L775">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L778">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L780">	}</span>
+
+	@Test
+	@Tag(&quot;test020&quot;)
+	@DisplayName(&quot;test020&quot;)
+	public void testMBSCR40010_020() throws Exception {
+
+<span class="nc" id="L787">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_020/case_020_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L791">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;22&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L794">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;22&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L797">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;22&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L800">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L803">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L806">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L809">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L812">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L815">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L818">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L820">	}</span>
+
+	@Test
+	@Tag(&quot;test021&quot;)
+	@DisplayName(&quot;test021&quot;)
+	public void testMBSCR40010_021() throws Exception {
+
+<span class="nc" id="L827">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_021/case_021_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L831">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;23&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L834">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;23&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L837">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;23&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L840">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L843">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L846">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L849">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L852">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L855">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L858">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L860">	}</span>
+
+	@Test
+	@Tag(&quot;test022&quot;)
+	@DisplayName(&quot;test022&quot;)
+	public void testMBSCR40010_022() throws Exception {
+
+<span class="nc" id="L867">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_022/case_022_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L871">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;24&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L874">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L877">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L880">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L883">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L886">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L889">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L892">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L895">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L898">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L900">	}</span>
+
+	@Test
+	@Tag(&quot;test023&quot;)
+	@DisplayName(&quot;test023&quot;)
+	public void testMBSCR40010_023() throws Exception {
+
+<span class="nc" id="L907">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_023/case_023_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L911">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;25&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L914">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L917">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L920">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L923">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L926">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L929">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L932">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L935">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L938">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L940">	}</span>
+
+	@Test
+	@Tag(&quot;test024&quot;)
+	@DisplayName(&quot;test024&quot;)
+	public void testMBSCR40010_024() throws Exception {
+
+<span class="nc" id="L947">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_024/case_024_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L951">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;26&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L954">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L957">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L960">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L963">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L966">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L969">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L972">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L975">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L978">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L980">	}</span>
+
+	@Test
+	@Tag(&quot;test025&quot;)
+	@DisplayName(&quot;test025&quot;)
+	public void testMBSCR40010_025() throws Exception {
+
+<span class="nc" id="L987">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40010/case_025/case_025_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_UNMATCH → データクリア・挿入 */
+<span class="nc" id="L991">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_UNMATCH&quot;, &quot;データクリア・挿入&quot;, &quot;27&quot;);</span>
+
+		/* 操作(DB準備) → T_NON_PAYMENT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L994">		rakurakuCore.operateDBPrepare(&quot;T_NON_PAYMENT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR → データクリア・挿入 */
+<span class="nc" id="L997">		rakurakuCore.operateDBPrepare(&quot;T_AR&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L1000">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L1003">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L1006">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法情報取得API */
+<span class="nc" id="L1009">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法情報取得API&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1012">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;arBalanceSummaryJob,--operation-date=20210811,--job-execution-id=MBSCR40010,--job-net-id=&lt;jobNetId&gt;&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1015">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1018">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1020">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

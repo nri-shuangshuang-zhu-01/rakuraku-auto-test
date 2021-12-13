@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MASCR40010Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.apiTest</a> &gt; <span class="el_source">MASCR40010Test.java</span></div><h1>MASCR40010Test.java</h1><pre class="source lang-java linenums">package com.linkage.apiTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;Example機能確認&quot;)
+@DisplayName(&quot;Example機能確認&quot;)
+<span class="nc" id="L15">public class MASCR40010Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MASCR40010&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MASCR40010&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	public void testMASCR40010_001() throws Exception {
+
+<span class="nc" id="L40">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L44">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;現法制御情報取得API&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L47">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;得意先情報取得API&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L50">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;売掛先情報取得API&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L53">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;得意先情報検索API&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L56">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L59">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L62">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L65">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L68">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L71">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L74">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH9&amp;totalAmount=100000&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L76">	}</span>
+
+	@Test
+	public void testMASCR40010_002() throws Exception {
+
+<span class="nc" id="L81">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L85">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;1&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L88">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;1&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L91">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;1&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L94">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;1&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L97">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L100">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L103">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L106">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L109">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L112">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L115">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=100000&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L117">	}</span>
+
+	@Test
+	public void testMASCR40010_003() throws Exception {
+
+<span class="nc" id="L122">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L126">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;2&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L129">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;2&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L132">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;2&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L135">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;2&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L138">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L141">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L144">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L147">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L150">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L153">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L156">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=10000&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L158">	}</span>
+
+	@Test
+	public void testMASCR40010_004() throws Exception {
+
+<span class="nc" id="L163">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L167">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;3&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L170">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;3&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L173">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;3&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L176">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;3&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L179">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L182">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L185">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L188">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L191">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L194">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L197">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=76700&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L199">	}</span>
+
+	@Test
+	public void testMASCR40010_005() throws Exception {
+
+<span class="nc" id="L204">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L208">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;4&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L211">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;4&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L214">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;4&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L217">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;4&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L220">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L223">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L226">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L229">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L232">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L235">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L238">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=76700&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L240">	}</span>
+
+	@Test
+	public void testMASCR40010_006() throws Exception {
+
+<span class="nc" id="L245">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L249">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;5&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L252">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;5&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L255">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;5&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L258">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;5&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L261">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L264">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L267">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L270">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L273">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L276">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L279">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=76700&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L281">	}</span>
+
+	@Test
+	public void testMASCR40010_007() throws Exception {
+
+<span class="nc" id="L286">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L290">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;6&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L293">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;6&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L296">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;6&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L299">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;6&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L302">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L305">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L308">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L311">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L314">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L317">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L320">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=76700&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L322">	}</span>
+
+	@Test
+	public void testMASCR40010_008() throws Exception {
+
+<span class="nc" id="L327">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L331">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;7&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L334">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;7&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L337">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;7&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L340">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;7&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L343">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L346">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L349">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L352">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L355">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L358">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L361">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=76700&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L363">	}</span>
+
+	@Test
+	public void testMASCR40010_009() throws Exception {
+
+<span class="nc" id="L368">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCR40010/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L372">		rakurakuCore.operateYamls(&quot;MASCR400102&quot; , &quot;/v1/subsidiary/get&quot; , &quot;8&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L375">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/get&quot; , &quot;8&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L378">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/bill-to/get&quot; , &quot;8&quot; , &quot;2&quot;);</span>
+
+		/* apiMock（yaml複素数） */
+<span class="nc" id="L381">		rakurakuCore.operateYamls(&quot;MASCR400101&quot; , &quot;/v1/customer/search&quot; , &quot;8&quot; , &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L384">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L387">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L390">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L393">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L396">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → M_CREDIT_LIMIT_MANAGEMENT → データクリア・挿入 */
+<span class="nc" id="L399">		rakurakuCore.operateDBPrepare(&quot;M_CREDIT_LIMIT_MANAGEMENT&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/credit-limit/check? → GET → User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456 → UserLoginInfo */
+<span class="nc" id="L402">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/credit-limit/check?subsidiaryCode=CHN&amp;customerCode=BOSCH8&amp;totalAmount=76700&amp;settlementMethod=123&quot;, &quot;GET&quot;, &quot;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-program=123456&quot;, &quot;UserLoginInfo&quot;, &quot;-&quot;);</span>
+
+<span class="nc" id="L404">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

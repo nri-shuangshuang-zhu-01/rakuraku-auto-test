@@ -1,0 +1,16 @@
+{
+  "businessSceneType": "11",
+  "stockAdjustmentInfoList": [
+    {
+      "plantCode": "1234",
+      "reasonType": "A1234",
+      "responsibilityDepartmentCode": "1",
+      "processMode": "1",
+      "ginnerCode": "MDM10040007505",
+      "productCode": "1",
+      "brandCode": "MSM12",
+      "currentStockQty": 9999919,
+      "stockDifferenceQty": 9999999
+    }
+  ]
+}

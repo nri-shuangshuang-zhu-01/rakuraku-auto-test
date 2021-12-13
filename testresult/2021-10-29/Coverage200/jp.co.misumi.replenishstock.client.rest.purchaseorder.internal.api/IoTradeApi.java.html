@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IoTradeApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.api</a> &gt; <span class="el_source">IoTradeApi.java</span></div><h1>IoTradeApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.ResponseIoTradeInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.ResponseIoTradeInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.ResponseTransitionalPeriodIoTradeInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.ResponseTransitionalPeriodIoTradeInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:20.943781+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.api.IoTradeApi&quot;)
+public class IoTradeApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L39">    public IoTradeApi(ApiClient apiClient) {</span>
+<span class="fc" id="L40">        this.apiClient = apiClient;</span>
+<span class="fc" id="L41">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L44">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L48">        this.apiClient = apiClient;</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * 現法間取引応答API
+     * 現法間取引応答API（ID:MAPPOPO020）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 現法間取引応答APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param responseIoTradeInternalRequestV1 現法間取引応答APIリクエスト (optional)
+     
+     * @return ResponseIoTradeInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseIoTradeInternalResponseV1 responseIoTradeV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ResponseIoTradeInternalRequestV1 responseIoTradeInternalRequestV1) throws RestClientException {
+<span class="nc" id="L66">        return responseIoTradeV1WithHttpInfo(context, endpoint, additionalHeaderMap, responseIoTradeInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 現法間取引応答API
+     * 現法間取引応答API（ID:MAPPOPO020）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 現法間取引応答APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param responseIoTradeInternalRequestV1 現法間取引応答APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;ResponseIoTradeInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;ResponseIoTradeInternalResponseV1&gt; responseIoTradeV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ResponseIoTradeInternalRequestV1 responseIoTradeInternalRequestV1) throws RestClientException {
+<span class="nc" id="L84">        Object postBody = responseIoTradeInternalRequestV1;</span>
+        
+<span class="nc" id="L86">        String path = apiClient.expandPath(&quot;/internal/v1/io-trade/response&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L88">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L89">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L90">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L91">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L96">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L98">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L100">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L102">            });</span>
+        }
+
+<span class="nc" id="L105">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L108">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L109">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L112">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L114">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L116">        ParameterizedTypeReference&lt;ResponseIoTradeInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;ResponseIoTradeInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L117">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 過渡期_現法間取引応答API
+     * 過渡期_現法間取引応答API（ID:MAPPOPO410）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 過渡期_現法間取引応答APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param responseTransitionalPeriodIoTradeInternalRequestV1 過渡期_現法間取引応答APIリクエスト (optional)
+     
+     * @return ResponseTransitionalPeriodIoTradeInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseTransitionalPeriodIoTradeInternalResponseV1 responseTransitionalPeriodIoTradeV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ResponseTransitionalPeriodIoTradeInternalRequestV1 responseTransitionalPeriodIoTradeInternalRequestV1) throws RestClientException {
+<span class="nc" id="L134">        return responseTransitionalPeriodIoTradeV1WithHttpInfo(context, endpoint, additionalHeaderMap, responseTransitionalPeriodIoTradeInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 過渡期_現法間取引応答API
+     * 過渡期_現法間取引応答API（ID:MAPPOPO410）
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 過渡期_現法間取引応答APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param responseTransitionalPeriodIoTradeInternalRequestV1 過渡期_現法間取引応答APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;ResponseTransitionalPeriodIoTradeInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;ResponseTransitionalPeriodIoTradeInternalResponseV1&gt; responseTransitionalPeriodIoTradeV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ResponseTransitionalPeriodIoTradeInternalRequestV1 responseTransitionalPeriodIoTradeInternalRequestV1) throws RestClientException {
+<span class="nc" id="L152">        Object postBody = responseTransitionalPeriodIoTradeInternalRequestV1;</span>
+        
+<span class="nc" id="L154">        String path = apiClient.expandPath(&quot;/internal/v1/io-trade/response-transitional-period&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L156">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L157">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L158">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L159">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L164">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L166">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L168">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L170">            });</span>
+        }
+
+<span class="nc" id="L173">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L176">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L177">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L180">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L182">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L184">        ParameterizedTypeReference&lt;ResponseTransitionalPeriodIoTradeInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;ResponseTransitionalPeriodIoTradeInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L185">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

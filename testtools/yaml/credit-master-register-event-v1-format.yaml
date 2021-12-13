@@ -1,0 +1,28 @@
+title: CreditMasterRegisterEvent
+type: object
+event:
+  type: credit-master-register-event
+  version: 1
+description: 与信管理マスタ登録イベントデータJson Schemas
+properties:
+  subsidiaryCode:
+    type: string
+    description: 現法コード
+    maxLength: 3
+  accountsReceivableCode:
+    type: string
+    description: 売掛先コード
+    maxLength: 6
+  currencyCode:
+    type: string
+    description: 通貨コード
+    maxLength: 3
+  settlementMethod:
+    type: string
+    description: 決済形態
+    maxLength: 3
+required:
+  - subsidiaryCode
+  - accountsReceivableCode
+  - currencyCode
+  - settlementMethod

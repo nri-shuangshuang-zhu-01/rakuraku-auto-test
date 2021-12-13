@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultDemandForecastDataDeleteService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultDemandForecastDataDeleteService.java</span></div><h1>DefaultDemandForecastDataDeleteService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.replenishstock.domain.entity.DemandForecastEntity;
+import jp.co.misumi.replenishstock.domain.repository.DemandForecastDataDeleteRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.MessageSource;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * DefaultDemandForecastDataDeleteService.
+ *
+ * &lt;p&gt;coding by LKG黄
+ *
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+public class DefaultDemandForecastDataDeleteService implements DemandForecastDataDeleteService {
+  private final Log log = LogFactory.getLog(DefaultDemandForecastDataDeleteService.class);
+  private final DemandForecastDataDeleteRepository dataDeleteRepository;
+<span class="fc" id="L34">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L35">      MessageLoggerFactory.getLogger(DefaultDemandForecastDataDeleteService.class);</span>
+  private final MessageSource messageSource;
+
+  @Override
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+  public Boolean delete(
+      RequestContext context, String operationDate, String subsidiaryCd, String jobId)
+      throws BusinessException {
+<span class="nc" id="L43">    log.info(&quot;需要予測不要データ削除処理が開始しました&quot;);</span>
+
+<span class="nc" id="L45">    boolean removeFlag = false;</span>
+    int removeCount;
+    int updateCount;
+
+    try {
+      // 需要予測マスタの物理削除
+<span class="nc" id="L51">      removeCount =</span>
+<span class="nc" id="L52">          dataDeleteRepository.removeDemandForecastPhysically(</span>
+              context, subsidiaryCd, operationDate, jobId);
+<span class="nc bnc" id="L54" title="All 2 branches missed.">      if (removeCount &gt; ReplenishStockConstants.INT_0) {</span>
+<span class="nc" id="L55">        removeFlag = true;</span>
+      }
+<span class="nc" id="L57">    } catch (Exception e) {</span>
+<span class="nc" id="L58">      log.info(&quot;需要予測不要データ削除処理が異常終了しました&quot;);</span>
+      // 2-2 対象データ削除結果の判定
+<span class="nc" id="L60">      messageLogger.log(messageSource, ReplenishStockMessages.BIR10000002E, e);</span>
+<span class="nc" id="L61">      throw new BusinessException(messageSource, &quot;&quot;, null);</span>
+<span class="nc" id="L62">    }</span>
+
+<span class="nc" id="L64">    DemandForecastEntity entity =</span>
+        new DemandForecastEntity(
+            subsidiaryCd,
+            &quot;&quot;,
+            &quot;&quot;,
+<span class="nc" id="L69">            LocalDate.parse(operationDate,</span>
+<span class="nc" id="L70">                DateTimeFormatter.ofPattern(ReplenishStockConstants.PURE_DATE_PATTERN)));</span>
+
+    try {
+      // 需要予測マスタの論理削除
+<span class="nc" id="L74">      updateCount = dataDeleteRepository.saveDemandForecastData(context, entity);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">      if (updateCount &gt; ReplenishStockConstants.INT_0) {</span>
+<span class="nc" id="L76">        removeFlag = true;</span>
+      }
+<span class="nc" id="L78">    } catch (Exception e) {</span>
+<span class="nc" id="L79">      log.info(&quot;需要予測不要データ更新処理が異常終了しました&quot;);</span>
+<span class="nc" id="L80">      messageLogger.log(messageSource, ReplenishStockMessages.BIR10000003E, e);</span>
+<span class="nc" id="L81">      throw new BusinessException(messageSource, &quot;&quot;, null);</span>
+<span class="nc" id="L82">    }</span>
+
+    // 終了処理 正常完了メッセージをアプリケーションログに出力する。
+<span class="nc" id="L85">    log.info(&quot;需要予測不要データ削除処理が正常終了しました。&quot;);</span>
+<span class="nc" id="L86">    return removeFlag;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

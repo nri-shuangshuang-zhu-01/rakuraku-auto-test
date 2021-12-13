@@ -1,0 +1,1391 @@
+openapi: 3.0.0
+info:
+  title: API-007
+  version: '1.0'
+  description: 別納入力用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/arranged-shipment/check-globalno:
+    post:
+      summary: 別納_グローバル番号指定チェックAPI
+      tags:
+        - ArrangedShipment
+      operationId: checkGlobalNoArrangedShipmentV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckGlobalNoArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 受注明細情報、拠点間転送情報と別納情報の取得により、各種のチェックを行い、チェック結果情報を生成する。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckGlobalNoArrangedShipmentRequestV1'
+        description: ''
+    parameters: []
+  /v1/arranged-shipment/save-globalno:
+    post:
+      summary: 別納_グローバル番号指定更新API
+      tags:
+        - ArrangedShipment
+      operationId: saveGlobalNoArrangedShipmentV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 別納更新リスト
+                items:
+                  $ref: '#/components/schemas/SaveGlobalNoArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 各種のテーブルから別納入力情報を取得し、別納データなしの場合は登録操作、別納データありの場合は更新操作を行う。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveGlobalNoArrangedShipmentRequestV1'
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/arranged-shipment/check-cust:
+    get:
+      summary: 別納_得意先範囲指定チェックAPI
+      tags:
+        - ArrangedShipment
+      operationId: checkCustArrangedShipmentV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckCustArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 仕入先マスタ参照API、受注明細参照API、別納照会API呼び出し、チェック結果情報を生成する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          required: true
+          description: 現法コード
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: supplierCode
+          required: true
+          description: 仕入先コード
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: customerCodeFrom
+          description: 得意先コード（From）
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: customerCodeTo
+          description: 得意先コード（To）
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: oldPlantCode
+          description: 旧置場コード
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: newPlantCode
+          required: true
+          description: 新置場コード
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: deliveryRouteDiv
+          required: true
+          description: 納入経路変更区分
+        - schema:
+            type: string
+            maxLength: 5
+          in: query
+          name: reasonCode
+          required: true
+          description: 理由コード
+        - schema:
+            type: string
+            maxLength: 2
+          in: query
+          name: businessSceneType
+          required: true
+          description: 業務シーン区分
+        - schema:
+            type: string
+          in: query
+          name: maxCount
+          required: true
+          description: 参照最大件数
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+    parameters: []
+  /v1/arranged-shipment/save-cust:
+    post:
+      summary: 別納_得意先範囲指定更新API
+      tags:
+        - ArrangedShipment
+      operationId: saveCustArrangedShipmentV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveCustdArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 各種のテーブルから別納入力情報を取得し、別納データなしの場合は登録操作、別納データありの場合は更新操作を行う。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveCustArrangedShipmentRequestV1'
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/arranged-shipment/remove-globalno:
+    post:
+      summary: 別納_グローバル番号指定削除API
+      tags:
+        - ArrangedShipment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoveGlobalNoArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: removeGlobalNoArrangedShipmentV1
+      description: 別納の削除をおこなうため、グローバル番号から別納情報を取得し、別納情報がある場合は削除操作を行う。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RemoveGlobalNoArrangedShipmentRequestV1'
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/arranged-shipment/check-remove-globalno:
+    post:
+      summary: 別納_グローバル番号指定削除チェックAPI
+      tags:
+        - ArrangedShipment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckRemoveGlobalNoArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: checkRemoveGlobalNoArrangedShipmentV1
+      description: 別納の削除対象データのチェックをおこなうため、グローバル番号から別納情報を取得し各種のチェックを行い、チェック結果情報を生成する。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckRemoveGlobalNoArrangedShipmentRequestV1'
+    parameters: []
+  /v1/arranged-shipment/remove-cust:
+    post:
+      summary: 別納_得意先範囲指定削除API
+      tags:
+        - ArrangedShipment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoveCustArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: removeCustArrangedShipmentV1
+      x-channel:
+        - office
+        - supplier
+      description: 別納の削除をおこなうため、リクエスト項目から別納対象データを抽出し、削除操作を行う。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveCustArrangedShipmentRequestV1'
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/arranged-shipment/check-remove-cust:
+    get:
+      summary: 別納_得意先範囲指定削除チェックAPI
+      tags:
+        - ArrangedShipment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckRemoveCustArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: checkRemoveCustArrangedShipmentV1
+      x-channel:
+        - office
+        - supplier
+      description: 別納の削除対象データのチェックをおこなうため、仕入先マスタ参照API、別納照会API呼び出し、チェック結果情報を生成する。
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: supplierCode
+          description: 仕入先コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: customerCodeFrom
+          description: 得意先コード（From）
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: customerCodeTo
+          description: 得意先コード（To）
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: oldPlantCode
+          description: 旧置場コード
+        - schema:
+            type: string
+            maxLength: 5
+          in: query
+          name: reasonCode
+          description: 理由コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 2
+          in: query
+          name: businessSceneType
+          description: 業務シーン区分
+          required: true
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+    parameters: []
+components:
+  schemas:
+    CheckGlobalNoArrangedShipmentRequestV1:
+      title: CheckGlobalNoArrangedShipmentRequestV1
+      type: object
+      properties:
+        arrnInformationList:
+          type: array
+          description: 別納情報リスト
+          items:
+            $ref: '#/components/schemas/CheckGlobalNoArrangedShipmentInfoListV1'
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+          maxLength: 2
+      required:
+        - businessSceneType
+    CheckGlobalNoArrangedShipmentInfoListV1:
+      title: CheckGlobalNoArrangedShipmentInfoListV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        confirmDeliveryTime:
+          type: string
+          description: 確定納期
+          format: date
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        newPlantCode:
+          type: string
+          maxLength: 4
+          description: 新置場コード
+        deliveryRouteDiv:
+          type: string
+          maxLength: 1
+          description: 納入経路変更区分
+        reasonCode:
+          type: string
+          maxLength: 5
+          description: 理由コード
+      required:
+        - globalNumber
+        - newPlantCode
+        - deliveryRouteDiv
+        - reasonCode
+    CheckGlobalNoArrangedShipmentResponseV1:
+      title: CheckGlobalNoArrangedShipmentResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        reasonName:
+          type: string
+          maxLength: 40
+          description: 理由名
+        arrnInputList:
+          type: array
+          description: 別納入力リスト
+          items:
+            $ref: '#/components/schemas/CheckGlobalNoArrangedShipmentInputListV1'
+      required:
+        - subsidiaryCode
+    CheckGlobalNoArrangedShipmentInputListV1:
+      title: CheckGlobalNoArrangedShipmentInputListV1
+      type: object
+      properties:
+        checkResult:
+          type: string
+          description: チェック可否
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        supplierName:
+          type: string
+          description: 仕入先名
+          maxLength: 52
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+        soQty:
+          type: integer
+          description: 受注数量
+          minimum: 0
+          maximum: 99999
+        customerCode:
+          type: string
+          description: 得意先コード
+          maxLength: 6
+        customerName:
+          type: string
+          description: 得意先名
+          maxLength: 132
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        arrnExistDiv:
+          type: string
+          description: 別納有無区分
+          maxLength: 1
+        arrnOutputDiv:
+          type: string
+          description: 別納出力区分
+          maxLength: 1
+        updateCount:
+          type: integer
+          description: 更新回数
+          minimum: 0
+          maximum: 9999
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        plantName:
+          type: string
+          maxLength: 45
+          description: 置場名
+        orderAttributes:
+          type: string
+          description: 注文属性
+          maxLength: 2
+        soDate:
+          type: string
+          description: 受注日
+          format: date
+        vsd:
+          type: string
+          description: VSD
+          format: date
+        shipToCode:
+          type: string
+          description: 直送先コード
+          maxLength: 6
+        analysisCode:
+          type: string
+          description: 分析コード
+          maxLength: 8
+        productControlDepCode:
+          type: string
+          description: 商品所轄部門コード
+          maxLength: 6
+        voucherType:
+          type: string
+          description: 伝票区分
+          maxLength: 1
+        sendSlip:
+          type: string
+          description: 伝票送付
+          maxLength: 1
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+      required:
+        - checkResult
+        - globalNumber
+        - supplierCode
+        - supplierName
+        - gInnerCode
+        - soQty
+        - customerCode
+        - customerName
+        - productCode
+        - arrnExistDiv
+        - plantCode
+        - plantName
+        - orderAttributes
+        - soDate
+        - vsd
+        - shipToCode
+        - analysisCode
+        - productControlDepCode
+        - voucherType
+        - sendSlip
+        - brandCode
+    SaveGlobalNoArrangedShipmentRequestV1:
+      title: SaveGlobalNoArrangedShipmentRequestV1
+      type: object
+      properties:
+        processType:
+          type: string
+          maxLength: 1
+          description: 処理区分
+        arrnInformationList:
+          type: array
+          description: 別納情報リスト
+          items:
+            $ref: '#/components/schemas/SaveGlobalNoArrangedShipmentInfoListV1'
+    SaveGlobalNoArrangedShipmentInfoListV1:
+      title: SaveGlobalNoArrangedShipmentInfoListV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        confirmDeliveryTime:
+          type: string
+          description: 確定納期（※現法日付）
+          format: date
+          maxLength: 8
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        reasonCode:
+          type: string
+          maxLength: 5
+          description: 理由コード
+        oldPlantCode:
+          type: string
+          maxLength: 4
+          description: 旧置場コード
+        newPlantCode:
+          type: string
+          maxLength: 4
+          description: 新置場コード
+        supplierCode:
+          type: string
+          maxLength: 4
+          description: 仕入先コード
+        gInnerCode:
+          type: string
+          maxLength: 14
+          description: 統合インナーコード
+        soQty:
+          type: integer
+          maximum: 9999999
+          description: 受注数量
+        customerCode:
+          type: string
+          maxLength: 6
+          description: 得意先コード
+        productCode:
+          type: string
+          maxLength: 234
+          description: 商品コード
+        deliveryRouteDiv:
+          type: string
+          maxLength: 1
+          description: 納入経路変更区分
+        updateCount:
+          type: integer
+          maximum: 9999
+          description: 更新回数
+        updateId:
+          type: string
+          maxLength: 6
+          description: 更新者ID
+        updateTime:
+          type: string
+          format: date-time
+          minLength: 14
+          maxLength: 14
+          description: 更新日時
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+      required:
+        - globalNumber
+        - reasonCode
+        - newPlantCode
+        - deliveryRouteDiv
+        - updateId
+        - updateTime
+        - updateProgram
+    SaveGlobalNoArrangedShipmentResponseV1:
+      title: SaveGlobalNoArrangedShipmentResponseV1
+      type: object
+      properties:
+        updateResult:
+          type: string
+          description: 更新成否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - updateResult
+        - subsidiaryCode
+        - globalNumber
+        - inputProcessDate
+    CheckCustArrangedShipmentResponseV1:
+      title: CheckCustArrangedShipmentResponseV1
+      type: object
+      properties:
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        supplierName:
+          type: string
+          description: 仕入先名称
+          maxLength: 52
+        reasonName:
+          type: string
+          maxLength: 40
+          description: 理由名称
+        arrnTargetList:
+          type: array
+          description: 別納対象リスト
+          items:
+            $ref: '#/components/schemas/CheckCustArrangedShipmentTargetListV1'
+      required:
+        - supplierCode
+        - supplierName
+        - reasonName
+    CheckCustArrangedShipmentTargetListV1:
+      title: CheckCustArrangedShipmentTargetListV1
+      type: object
+      description: ''
+      properties:
+        checkResult:
+          type: string
+          description: チェック可否
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        gInnerCode:
+          type: string
+          maxLength: 11
+          description: インナーコード
+        soQty:
+          type: integer
+          minimum: 0
+          maximum: 9999999
+          description: 受注数量
+        customerCode:
+          type: string
+          maxLength: 6
+          description: 得意先コード
+        nativeCustomerName1:
+          type: string
+          maxLength: 6
+          description: 得意先名（現地語１
+        productCode:
+          type: string
+          maxLength: 234
+          description: 商品コード
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        nativeBrandName:
+          type: string
+          description: ブランド名称(現地語)
+          maxLength: 200
+        brandName:
+          type: string
+          description: 'ブランド名称(英語) '
+          maxLength: 15
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        plantName:
+          type: string
+          maxLength: 45
+          description: 置場名
+        arrnExistDiv:
+          type: string
+          maxLength: 1
+          description: 別納有無区分
+        arrnOutputDiv:
+          type: string
+          maxLength: 1
+          description: 別納出力区分
+        excludeFlag:
+          type: string
+          maxLength: 1
+          description: 対象外フラグ
+        excludeReason:
+          type: string
+          description: 対象外理由
+        updateCount:
+          type: integer
+          minimum: 0
+          maximum: 9999
+          description: 更新回数
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - checkResult
+        - errorCode
+        - errorMessage
+        - globalNumber
+        - gInnerCode
+        - soQty
+        - customerCode
+        - nativeCustomerName1
+        - productCode
+        - brandCode
+        - nativeBrandName
+        - brandName
+        - plantCode
+        - plantName
+        - arrnExistDiv
+        - excludeFlag
+        - excludeReason
+    SaveCustArrangedShipmentRequestV1:
+      title: SaveCustArrangedShipmentRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        supplierCode:
+          type: string
+          maxLength: 4
+          description: 仕入先コード
+        reasonCode:
+          type: string
+          maxLength: 5
+          description: 理由コード
+        customerCodeFrom:
+          type: string
+          maxLength: 6
+          description: 得意先コード（From）
+        customerCodeTo:
+          type: string
+          maxLength: 6
+          description: 得意先コード（To）
+        oldPlantCode:
+          type: string
+          maxLength: 4
+          description: 旧置場コード
+        newPlantCode:
+          type: string
+          maxLength: 4
+          description: 新置場コード
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+          maxLength: 8
+        updateCount:
+          type: integer
+          maximum: 9999
+          description: 更新回数
+        deliveryRouteDiv:
+          type: string
+          description: 納入経路変更区分
+          maxLength: 1
+        updateId:
+          type: string
+          maxLength: 6
+          description: 更新者ID
+        updateTime:
+          type: string
+          format: date-time
+          minLength: 14
+          maxLength: 14
+          description: 更新日時
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+      required:
+        - supplierCode
+        - reasonCode
+        - oldPlantCode
+        - newPlantCode
+        - inputProcessDate
+        - updateCount
+        - deliveryRouteDiv
+        - updateId
+        - updateTime
+        - updateProgram
+    SaveCustdArrangedShipmentResponseV1:
+      title: SaveCustdArrangedShipmentResponseV1
+      type: object
+      properties:
+        updateResult:
+          type: string
+          description: 更新成否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - updateResult
+        - subsidiaryCode
+        - globalNumber
+        - inputProcessDate
+    RemoveGlobalNoArrangedShipmentRequestV1:
+      title: RemoveGlobalNoArrangedShipmentRequestV1
+      type: object
+      description: 別納情報リスト
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        reasonCode:
+          type: string
+          description: 理由コード
+          maxLength: 5
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        updateId:
+          type: string
+          description: 更新者ID
+          maxLength: 6
+        updateTime:
+          type: string
+          minLength: 14
+          maxLength: 14
+          format: date-time
+          description: 更新日時
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+      required:
+        - subsidiaryCode
+        - updateId
+        - reasonCode
+        - globalNumber
+        - updateProgram
+        - updateTime
+    RemoveGlobalNoArrangedShipmentResponseV1:
+      title: RemoveGlobalNoArrangedShipmentResponseV1
+      type: object
+      description: 別納情報リスト
+      properties:
+        updateResult:
+          type: string
+          description: 更新成否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - updateResult
+        - subsidiaryCode
+        - globalNumber
+        - inputProcessDate
+    CheckRemoveGlobalNoArrangedShipmentRequestV1:
+      title: CheckRemoveGlobalNoArrangedShipmentRequestV1
+      type: object
+      description: 別納情報リスト
+      properties:
+        arrnInformationList:
+          description: 別納情報リスト
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckRemoveGlobalNoArrangedShipmentInfoListV1'
+        reasonCode:
+          type: string
+          description: 理由コード
+          maxLength: 5
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+          maxLength: 2
+      required:
+        - arrnInformationList
+        - reasonCode
+        - businessSceneType
+    CheckRemoveGlobalNoArrangedShipmentResponseV1:
+      title: CheckRemoveGlobalNoArrangedShipmentResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        reasonName:
+          type: string
+          description: 理由名称
+          maxLength: 80
+        arrnInputList:
+          type: array
+          description: 別納入力リスト
+          items:
+            $ref: '#/components/schemas/CheckRemoveGlobalNoArrangedShipmentInputListV1'
+      required:
+        - subsidiaryCode
+        - reasonName
+        - arrnInputList
+    CheckRemoveCustArrangedShipmentResponseV1:
+      title: CheckRemoveCustArrangedShipmentResponseV1
+      type: object
+      properties:
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        supplierName:
+          type: string
+          description: 仕入先名称
+        reasonName:
+          type: string
+          description: 理由名称
+          maxLength: 40
+        arrnTargetList:
+          type: array
+          description: 別納対象リスト
+          items:
+            $ref: '#/components/schemas/CheckRemoveCustArrangedShipmentTargetListV1'
+      required:
+        - supplierCode
+        - supplierName
+        - reasonName
+    RemoveCustArrangedShipmentResponseV1:
+      title: RemoveCustArrangedShipmentResponseV1
+      type: object
+      description: 別納情報リスト
+      properties:
+        updateResult:
+          type: string
+          description: 更新成否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - updateResult
+        - subsidiaryCode
+        - globalNumber
+        - inputProcessDate
+    RemoveCustArrangedShipmentRequestV1:
+      title: RemoveCustArrangedShipmentRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        reasonCode:
+          type: string
+          description: 理由コード
+          maxLength: 5
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        customerCodeFrom:
+          type: string
+          description: 得意先コード（From）
+          maxLength: 6
+        customerCodeTo:
+          type: string
+          description: 得意先コード（To）
+          maxLength: 6
+        oldPlantCode:
+          type: string
+          description: 旧置場コード
+          maxLength: 4
+        updateId:
+          type: string
+          maxLength: 6
+          description: 更新者ID
+        updateTime:
+          type: string
+          format: date-time
+          minLength: 14
+          maxLength: 14
+          description: 更新日時
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+      required:
+        - subsidiaryCode
+        - reasonCode
+        - supplierCode
+        - updateProgram
+        - updateId
+        - updateTime
+    CheckRemoveGlobalNoArrangedShipmentInputListV1:
+      title: CheckRemoveGlobalNoArrangedShipmentInputListV1
+      type: object
+      description: 別納入力リスト
+      properties:
+        checkResult:
+          type: string
+          description: チェック可否
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        oldPlantCode:
+          type: string
+          description: 旧置場コード
+          maxLength: 4
+        oldPlantName:
+          type: string
+          maxLength: 45
+          description: 旧置場名
+        newPlantCode:
+          type: string
+          description: 新置場コード
+          maxLength: 4
+        deliveryRouteDiv:
+          type: string
+          description: 納入経路変更区分
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        supplierName:
+          type: string
+          description: 仕入先名称
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+        soQty:
+          type: integer
+          description: 受注数量
+        customerCode:
+          type: string
+          description: 得意先コード
+          maxLength: 6
+        customerName:
+          type: string
+          description: 得意先名称
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        arrnExistDiv:
+          type: string
+          description: 別納有無区分
+          maxLength: 1
+        arrnOutputDiv:
+          type: string
+          description: 別納出力区分
+          maxLength: 1
+        updateCount:
+          type: integer
+          description: 更新回数
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - checkResult
+        - globalNumber
+        - oldPlantCode
+        - oldPlantName
+        - newPlantCode
+        - deliveryRouteDiv
+        - supplierCode
+        - supplierName
+        - gInnerCode
+        - soQty
+        - customerCode
+        - customerName
+        - productCode
+        - arrnExistDiv
+        - arrnOutputDiv
+        - updateCount
+        - inputProcessDate
+    CheckRemoveCustArrangedShipmentTargetListV1:
+      title: CheckRemoveCustArrangedShipmentTargetListV1
+      type: object
+      properties:
+        checkResult:
+          type: string
+          description: チェック可否
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+        soQty:
+          type: integer
+          description: 受注数量
+        customerCode:
+          type: string
+          description: 得意先コード
+          maxLength: 6
+        nativeCustomerName1:
+          type: string
+          description: 得意先名（現地語１）
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        nativeBrandName:
+          type: string
+          description: ブランド名（現地語）
+          maxLength: 200
+        brandName:
+          type: string
+          description: ブランド名（英語）
+          maxLength: 15
+        oldPlantCode:
+          type: string
+          description: 旧置場コード
+          maxLength: 4
+        oldPlantName:
+          type: string
+          maxLength: 45
+          description: 旧置場名
+        newPlantCode:
+          type: string
+          description: 新置場コード
+          maxLength: 4
+        deliveryRouteDiv:
+          type: string
+          description: 納入経路変更区分
+        arrnExistDiv:
+          type: string
+          description: 別納有無区分
+          maxLength: 1
+        arrnOutputDiv:
+          type: string
+          description: 別納出力区分
+          maxLength: 1
+        excludeFlag:
+          type: string
+          description: 対象外フラグ
+          maxLength: 1
+        exludeReson:
+          type: string
+          description: 対象外理由
+        updateCount:
+          description: 更新回数
+          type: integer
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - globalNumber
+        - gInnerCode
+        - soQty
+        - customerCode
+        - nativeCustomerName1
+        - productCode
+        - brandCode
+        - nativeBrandName
+        - brandName
+        - oldPlantCode
+        - oldPlantName
+        - newPlantCode
+        - deliveryRouteDiv
+        - arrnExistDiv
+        - excludeFlag
+        - exludeReson
+        - updateCount
+        - inputProcessDate
+    CheckRemoveGlobalNoArrangedShipmentInfoListV1:
+      title: CheckRemoveGlobalNoArrangedShipmentInfoListV1
+      type: object
+      description: 別納情報リスト
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+      required:
+        - subsidiaryCode
+        - globalNumber
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順1
+tags:
+  - name: ArrangedShipment

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="subsidiary_code" comment="現法コード"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="plant_code" comment="置場コード"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="global_number" comment="グローバル番号"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="so_slip_number" comment="受注伝票番号"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="so_line_key" comment="受注明細キー"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="ginner_code" comment="統合インナーコード"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="product_code" comment="商品コード"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="classify_code" comment="分析コード"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="shipment_fix_date" comment="出荷確定日"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="shipment_qty" comment="出荷数量"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="supply_type" comment="調達区分"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="data_hub_updated_flag" comment="データHUB更新済フラグ"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="register_system_date_time" comment="登録日時(システム日時)"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="update_system_date_time" comment="更新日時(システム日時)"/>
+  <T_SHIPMENT_ACTUAL_REPLICAColName field="update_program" comment="更新プログラム"/>
+</dataset>

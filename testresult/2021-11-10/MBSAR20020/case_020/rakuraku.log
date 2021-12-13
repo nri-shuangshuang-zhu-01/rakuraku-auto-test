@@ -1,0 +1,5 @@
+ケース番号=No.020;実施開始時間=2021-11-10 17:40:36.544;実施終了時間=2021-11-10 17:40:36.615;実施結果=NG.
+【操作(DB準備)】【テーブル：T_INCOMING_PAYMENT,DB状態：20】の操作に失敗しました。
+org.dbunit.DatabaseUnitException: Exception processing table name='t_incoming_payment'
+======以下はアクション毎の確認ログ。======
+【実行結果=NG】【操作(DB準備)】【テーブル：T_INCOMING_PAYMENT,DB状態：20】:開始時間=2021-11-10 17:40:36.547;終了時間=2021-11-10 17:40:36.614

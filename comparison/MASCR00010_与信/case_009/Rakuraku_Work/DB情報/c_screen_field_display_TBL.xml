@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <c_screen_field_displayColName field="control_seq_number"/>
+  <c_screen_field_displayColName field="subsidiary_code"/>
+  <c_screen_field_displayColName field="language_code"/>
+  <c_screen_field_displayColName field="general_purpose_key1"/>
+  <c_screen_field_displayColName field="general_purpose_key2"/>
+  <c_screen_field_displayColName field="general_purpose_key3"/>
+  <c_screen_field_displayColName field="general_purpose_key4"/>
+  <c_screen_field_displayColName field="general_purpose_key5"/>
+  <c_screen_field_displayColName field="code_value_reference1"/>
+  <c_screen_field_displayColName field="code_value_reference2"/>
+  <c_screen_field_displayColName field="code_value_reference3"/>
+  <c_screen_field_displayColName field="code_value_reference4"/>
+  <c_screen_field_displayColName field="code_value_reference5"/>
+  <c_screen_field_displayColName field="display_order"/>
+  <c_screen_field_displayColName field="update_count"/>
+  <c_screen_field_displayColName field="delete_flag"/>
+  <c_screen_field_displayColName field="register_user_type"/>
+  <c_screen_field_displayColName field="register_user"/>
+  <c_screen_field_displayColName field="register_date_time"/>
+  <c_screen_field_displayColName field="register_program"/>
+  <c_screen_field_displayColName field="register_client_program"/>
+  <c_screen_field_displayColName field="update_user_type"/>
+  <c_screen_field_displayColName field="update_user"/>
+  <c_screen_field_displayColName field="update_time"/>
+  <c_screen_field_displayColName field="update_program"/>
+  <c_screen_field_displayColName field="update_client_program"/>
+</dataset>

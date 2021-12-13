@@ -1,0 +1,81 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+商品グループコード::product_group_code::varchar(7)::NULL
+ブランドコード::brand_code::char(4)::NULL
+重量式区分::weight_formula_type::char(2)::NULL
+売単価通貨コード::sales_unit_price_ccy_code::char(3)::NOT NULL
+受注メッセージコード::so_message_code::varchar(8)::NULL
+商品コード::product_code::varchar(234)::NOT NULL
+HSコード::hs_code::varchar(15)::NULL
+商品名（英語）::product_name_english::varchar(30)::NOT NULL
+商品名（現地語）::product_name_native::varchar(30)::NULL
+在庫品フラグ::stock_flag::char(1)::NOT NULL
+部材品フラグ::component_flag::char(1)::NOT NULL
+単価チェック区分::unit_price_check_type::char(1)::NOT NULL
+サプライヤ指定方法区分::supplier_specify_method_type::char(1)::NOT NULL
+規格条件区分::specification_condition_type::varchar(5)::NULL
+商品チェックマスタ有無フラグ::product_check_master_flag::char(1)::NOT NULL
+商品種別::product_assort::char(1)::NULL
+大口下限数量::big_order_min_threshold_qty::numeric(7,0)::NULL
+大口上限数量::big_order_max_threshold_qty::numeric(7,0)::NULL
+商品重量::product_weight::numeric(9,2)::NULL
+商品重量単位::product_weight_unit::varchar(1)::NULL
+発売日::release_date::date::NULL
+商品納入先区分::product_delivery_destination_type::char(1)::NULL
+納品書納入先区分::delivery_note_destination_type::char(1)::NULL
+発注フォーマット区分::po_format_type::char(2)::NULL
+重量係数::weight_coefficient::numeric(4,2)::NULL
+開発日::developed_date::date::NULL
+CSS伝送フラグ::css_send_flag::char(1)::NOT NULL
+刻印区分::stamp_type::char(1)::NOT NULL
+刻印桁数::stamp_column_length::numeric(2,0)::NULL
+メーカ直送区分::maker_direct_shipment_type::char(1)::NOT NULL
+土祝カウント方法区分::saturday_holiday_count_method_type::char(1)::NULL
+パック数量::pack_qty::numeric(7,0)::NULL
+商品廃止日::product_abolition_date::date::NULL
+発注点ロジックフラグ::reorder_point_logic_flag::char(1)::NOT NULL
+製作品扱除外フラグ::mto_exclude_flag::char(1)::NULL
+対象期間::object_period::numeric(2,0)::NULL
+安全在庫係数::safety_stock_coefficient::numeric(4,2)::NULL
+大重量フラグ::heavy_flag::char(1)::NOT NULL
+高額商品フラグ::expensive_flag::char(1)::NOT NULL
+大重量閾値::heavy_threshold::numeric(9,2)::NULL
+高額商品閾値::expensive_threshold::numeric(12,3)::NULL
+有償支給フラグ::chargeable_material_flag::char(1)::NOT NULL
+発注入り数::po_qty_per_case::numeric(5,0)::NULL
+納期計算式区分::lead_time_calculation_formula_type::char(1)::NOT NULL
+受注停止フラグ::so_stop_flag::char(1)::NOT NULL
+出荷停止フラグ::shipment_stop_flag::char(1)::NOT NULL
+廃止品メッセージ::abolition_message::varchar(250)::NULL
+バラチャージ計算方式区分::piece_charge_calculation_method_type::varchar(1)::NOT NULL
+発注用商品コード::po_product_code::varchar(234)::NULL
+注文単位数量::order_unit_qty::numeric(7,0)::NULL
+在庫優先フラグ::stock_priority_flag::char(1)::NOT NULL
+事前在庫補充フラグ::pre_stock_replenishment_flag::char(1)::NOT NULL
+注釈::remarks::varchar(60)::NULL
+非課税フラグ::tax_free_flag::char(1)::NULL
+危険品フラグ::hazardous_material_flag::char(1)::NOT NULL
+GTI対象フラグ::gti_flag::char(1)::NOT NULL
+現法間受注メッセージフラグ::io_so_message_flag::char(1)::NOT NULL
+数量単位::qty_unit::varchar(2)::NULL
+QCフラグ::qc_flag::char(1)::NOT NULL
+重長品フラグ::heavy_long_flag::char(1)::NULL
+商品区分::product_type::char(1)::NOT NULL
+流通用名（英語）::distribution_name_english::varchar(120)::NULL
+流通用名（現地語）::distribution_name_native::varchar(120)::NULL
+メーカ型番::maker_product_code::varchar(234)::NULL
+商社コード::trading_company_code::varchar(120)::NULL
+在庫連携対象商品フラグ::stock_cooperative_product_flag::char(1)::NOT NULL
+カタログ納期::catalog_lead_time::numeric(2,0)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

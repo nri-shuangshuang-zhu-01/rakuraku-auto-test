@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="sap_client"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="sap_company_code"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="execute_date"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="execute_time"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="seq"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="unmatch_key"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="incoming_payment_unmatch_line_number"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="subsidiary_code"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="accounting_document_number"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="fiscal_year"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="accounting_document_line_number"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="incoming_payment_date"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="reference_document_number"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="incoming_payment_amount_customer_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="ccy_code_customer_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="ccy_rate_customer_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="incoming_payment_amount_incoming_payment_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="ccy_code_incoming_payment_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="incoming_payment_group_code"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="advance_payment_type"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="process_flag"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="update_count"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="delete_flag"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="register_user_type"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="register_user"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="register_date_time"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="register_program"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="register_client_program"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="update_user_type"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="update_user"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="update_date_time"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="update_program"/>
+  <T_INCOMING_PAYMENT_UNMATCHColName field="update_client_program"/>
+</dataset>

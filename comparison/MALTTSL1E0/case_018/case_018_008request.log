@@ -1,0 +1,3 @@
+http://localhost:4016/internal/v1/sales-order/search?globalNumber=CA000032000086
+http://localhost:4012/internal/v1/closing-time/get-list{"getListClosingTimeInternalRequestV1DetailList":[{"type":"06","closingTimeCategory":"EOD"}]}
+http://localhost:4012/internal/v1/next-business-day/search{"date":"2021-09-30","searchNextBusinessDayInternalRequestV1DetailList":[{"calendarCategory":"A"},{"calendarCategory":"B"},{"calendarCategory":"C"},{"calendarCategory":"D"}]}

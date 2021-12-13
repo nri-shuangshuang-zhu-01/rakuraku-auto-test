@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultRegisterWeeklyOrderTimeExclusionProducer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.task</a> &gt; <span class="el_source">DefaultRegisterWeeklyOrderTimeExclusionProducer.java</span></div><h1>DefaultRegisterWeeklyOrderTimeExclusionProducer.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.task;
+
+import java.util.Map;
+import javax.inject.Named;
+import jp.co.misumi.fw.async.api.common.task.TaskHeaderConstants;
+import jp.co.misumi.fw.async.api.producer.client.TaskProducer;
+import jp.co.misumi.fw.async.api.producer.client.context.TaskHeaderMapCreator;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.replenishstock.domain.client.task.RegisterWeeklyOrderTimeExclusionProducer;
+import jp.co.misumi.replenishstock.model.task.FileRegisterProcessTaskFormat;
+import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.MessageHeaders;
+
+/**
+ * 週次発注点除外条件マスタDL非同期タスク登録⇒週次発注点除外条件マスタDLファイル作成.
+ *
+ * @author LKG　陸
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+public class DefaultRegisterWeeklyOrderTimeExclusionProducer
+    implements RegisterWeeklyOrderTimeExclusionProducer {
+  private final TaskProducer producer;
+  private final TaskHeaderMapCreator taskHeaderMapCreator;
+
+  @Override
+  public void sendRegisWeekendL(
+      String subside, String userId, String jobEldarar, RequestContext context)
+      throws BusinessException {
+<span class="nc" id="L32">    final FileRegisterProcessTaskFormat taskFormat = new FileRegisterProcessTaskFormat();</span>
+
+<span class="nc" id="L34">    taskFormat.setJobControlArea1(jobEldarar);</span>
+<span class="nc" id="L35">    taskFormat.setSubsidiaryCode(subside);</span>
+<span class="nc" id="L36">    taskFormat.setUserId(userId);</span>
+
+<span class="nc" id="L38">    final Map&lt;String, Object&gt; headerMap = taskHeaderMapCreator.createHeaderMap(context, null);</span>
+<span class="nc" id="L39">    headerMap.put(</span>
+<span class="nc" id="L40">        TaskHeaderConstants.IDEMPOTENCY_KEY, context.getIdempotencyKey().add(&quot;001&quot;).get());</span>
+<span class="nc" id="L41">    final MessageHeaders msgHeaderMap = new MessageHeaders(headerMap);</span>
+<span class="nc" id="L42">    producer.send(context, taskFormat, msgHeaderMap);</span>
+<span class="nc" id="L43">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

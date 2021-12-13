@@ -1,0 +1,23 @@
+{
+  "subsidiaryCode": "MJP",
+  "billToCodeFrom": "526465",
+  "billToCodeTo": "526467",
+  "billToClosingDate": "2",
+  "processingSection": "3",
+  "paymentDueDateFrom": "2021-12-01",
+  "paymentDueDateTo": "2021-12-03",
+  "invoiceNumberFrom": "001",
+  "invoiceNumberTo": "003",
+  "invoiceDateFrom": "2021-01-27",
+  "invoiceDateTo": "2021-06-27",
+  "InvoiceDisplayObject": "0",
+  "billToCodeList": [
+    {
+      "billToCode": "526466"
+    }
+  ],
+  "displayDataFlagInvoice": "1",
+  "displayDataFlagAdvancePayment": "1",
+  "displayDataFlagProvisionalPayment": "1",
+  "billToDirectSpecifiedFlag": "1"
+}

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="sap_client"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="sap_company_code"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="execute_date"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="execute_time"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="seq"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="unmatch_key"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="incoming_payment_unmatch_line_number"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="subsidiary_code"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="accounting_document_number"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="fiscal_year"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="accounting_document_line_number"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="incoming_payment_date"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="reference_document_number"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="incoming_payment_amount_customer_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="ccy_code_customer_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="ccy_rate_customer_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="incoming_payment_amount_incoming_payment_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="ccy_code_incoming_payment_ccy"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="incoming_payment_group_code"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="advance_payment_type"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="process_flag"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="update_count"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="delete_flag"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="register_user_type"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="register_user"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="register_date_time"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="register_program"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="register_client_program"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="update_user_type"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="update_user"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="update_date_time"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="update_program"/>
+  <T_INCOMING_PAYMENT_UNMATCH_SAPColName field="update_client_program"/>
+</dataset>

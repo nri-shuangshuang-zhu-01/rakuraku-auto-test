@@ -1,0 +1,15 @@
+■api名称：　登录
+■api Request：　/internal/v1/ul-purpose-data-download/excute
+■api方法：　Post
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a01&&Prefer=internal/v1/presigned-url/convert->example-1
+■api Body：　{  "controlSeqNumber": "1"}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "errorList": [
+    {
+      "errorCode": "NFMCD2P0002E",
+      "errorMessage": "ファイルダウンロードに失敗しました。\nしばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。"
+    }
+  ]
+}

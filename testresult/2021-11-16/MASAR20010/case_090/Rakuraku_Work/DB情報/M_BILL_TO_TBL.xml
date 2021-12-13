@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <M_BILL_TOColName field="subsidiary_code" comment="現法コード"/>
+  <M_BILL_TOColName field="bill_to_code" comment="売掛先コード"/>
+  <M_BILL_TOColName field="ar_main_department" comment="売掛主管部署:督促処理で顧客への連絡を主幹事業部から行う際に帳票に印字される部門。半角英数字4文字以内でのフリー入力とする。"/>
+  <M_BILL_TOColName field="processing_section" comment="担当セクション:帳票に印字される担当者"/>
+  <M_BILL_TOColName field="bill_to_name_native" comment="売掛先名（現地語）:現行エコール：25文字まで。現行MOSS：40文字まで　→　50文字まで。この項目を変更した場合、同一のコードを持つ「検収グループマスタ．検収グループ名」と「入金グループマスタ．入金グループ名」も連動して変更される。"/>
+  <M_BILL_TOColName field="bill_to_name" comment="売掛先名:現行MOSS：45文字まで　→　60文字まで"/>
+  <M_BILL_TOColName field="country_code" comment="国コード:同じ入金グループに入る売掛先は同じ設定である必要あり。"/>
+  <M_BILL_TOColName field="language_code" comment="言語コード:督促状の言語を決定する。（顧客向け画面の言語は得意先マスタの言語コードで決定する）"/>
+  <M_BILL_TOColName field="postal_code" comment="郵便番号:途中にスペースが含まれる場合もある。"/>
+  <M_BILL_TOColName field="address1_native" comment="住所1（現地語）:現行エコール：15文字まで。現行MOSS：30文字まで。"/>
+  <M_BILL_TOColName field="address2_native" comment="住所2（現地語）:現行エコール：15文字まで。現行MOSS：30文字まで。"/>
+  <M_BILL_TOColName field="address3_native" comment="住所3（現地語）:現行MOSS：30文字まで"/>
+  <M_BILL_TOColName field="address4_native" comment="住所4（現地語）:現行MOSS：30文字まで"/>
+  <M_BILL_TOColName field="address1" comment="住所1"/>
+  <M_BILL_TOColName field="address2" comment="住所2"/>
+  <M_BILL_TOColName field="address3" comment="住所3"/>
+  <M_BILL_TOColName field="address4" comment="住所4"/>
+  <M_BILL_TOColName field="invoice_send_destination_department_name_native" comment="請求書送付先部課名（現地語）:現行エコール：15文字まで。現行MOSS：30文字まで。"/>
+  <M_BILL_TOColName field="invoice_send_destination_pic_native" comment="請求書送付先担当者（現地語）:現行エコール：15文字まで。現行MOSS：20文字まで。"/>
+  <M_BILL_TOColName field="tel" comment="電話番号:入力は20文字まで"/>
+  <M_BILL_TOColName field="bill_to_fax" comment="売掛先FAX番号:入力は20文字まで。請求書送付媒体に【AF：自動ＦＡＸ】を設定した場合は入力必須。"/>
+  <M_BILL_TOColName field="dunning_to_fax" comment="督促先FAX番号:入力は20文字まで。督促状送付媒体に【AF：自動ＦＡＸ】を設定した場合は入力必須。"/>
+  <M_BILL_TOColName field="bill_to_email_address_to" comment="売掛先メールアドレス（TO）:請求書送付媒体に【AM：自動メール】を設定した場合は入力必須"/>
+  <M_BILL_TOColName field="bill_to_email_address_cc" comment="売掛先メールアドレス（CC）:複数CCメールアドレスが入るため桁は要検討"/>
+  <M_BILL_TOColName field="dunning_to_email_address_to" comment="督促先メールアドレス（TO）:督促状送付媒体に【AM：自動メール】を設定した場合は入力必須"/>
+  <M_BILL_TOColName field="dunning_to_email_address_cc" comment="督促先メールアドレス（CC）:複数CCメールアドレスが入るため桁は要検討"/>
+  <M_BILL_TOColName field="tax_account_statement_send_destination_email_address1" comment="税金計算書送付先メールアドレス1:韓国の場合：税金計算書の送付先メールアドレス"/>
+  <M_BILL_TOColName field="tax_account_statement_send_destination_email_address2" comment="税金計算書送付先メールアドレス2:韓国の場合：税金計算書の送付先メールアドレス"/>
+  <M_BILL_TOColName field="trade_stop_type" comment="取引停止区分:0：入金可　E：取引停止（入金不可）　※この項目にEをセットすると、売掛先．得意先受注停止区分→1　、　得意先．サービス停止区分　→E　を自動更新する。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="service_stop_type" comment="サービス停止区分:0：通常　1：受注停止　W：注意顧客　E：取引停止　　※「取引停止区分：E」と連動し、「E」に自動更新する。この売掛先コードと同一の得意先コードを持つ「得意先．サービス停止区分」と連動し、同じ値に自動更新する。"/>
+  <M_BILL_TOColName field="acceptance_type" comment="検収区分:0：非検収顧客（Non-Matching Cust）　2：検収顧客（Matching Cust）　3：指定請求書発行顧客（Special Inv. Cust）　※コード1 4 5の名称はステップ２で定義。ただしコード自体はステップ１から全て確保しておく。同じ検収グループに入る売掛先は同じ設定である必要あり。"/>
+  <M_BILL_TOColName field="acceptance_group_code" comment="検収グループコード:デフォルト値は売掛先コードと同値とする"/>
+  <M_BILL_TOColName field="incoterms" comment="インコタームズ:・ FOB　　・CIF　　・C&amp;F　　・EXW　　・FCA　　・DDU　　・DDP"/>
+  <M_BILL_TOColName field="payment_terms" comment="支払条件:別紙参照"/>
+  <M_BILL_TOColName field="settlement_method" comment="決済形態:CRD：売掛金　ADV：前金　CCD：クレジットカード　COD：代引き　ADI：前金(インド用)　COI：代引き(インド用)　同じ入金グループに入る売掛先は同じ設定である必要あり。【売掛金以外】→【売掛金】に変更することはあるが、その逆の変更はない。　この項目は、管理者権限の担当者しか変更できない。　---以下補足---決済形態によって受注時の動きが変わることがある。(例：前金顧客の場合は入金を確認するまで受注が保留される）"/>
+  <M_BILL_TOColName field="payment_means" comment="支払手段:10：振込　20：小切手　30：現金　40：手形　50：クレジット　（80：仮想口座振込　90：自動振替）等　同じ入金グループに入る売掛先は同じ設定である必要あり　この項目は、管理者権限の担当者しか変更できない。　---以下補足---　お金をどのような手段で払うかの設定。必ずしもこの方法で払わなくてはいけないわけではない。少なくともステップ１ではこの項目はシステムでの制御には使わず、備考的な意味しか持たない。"/>
+  <M_BILL_TOColName field="ar_closing_unit" comment="売掛金締め単位:別紙参照"/>
+  <M_BILL_TOColName field="ar_closing_day" comment="売掛金締日:売掛金締め単位が【M：月締/月払い】【A：都度締/月払い】の場合に必須となる。1～31の数字を設定可能。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="ar_payment_month" comment="売掛金支払月:売掛金で【月払い】の場合に必須となる。0～12を設定可能。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="ar_payment_date" comment="売掛金支払日:売掛金で【月払い】の場合に必須となる。1～31の数字を設定可能。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="ar_payment_site_final" comment="売掛金支払サイト_最終:売掛金で【E：都度締/都度払い】の場合に必須となる。売掛金顧客の支払猶予。売上日からの支払猶予期間を日数で指定。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="ar_payment_site_early_payment_discount" comment="売掛金支払サイト_早割:決済形態が「売掛金」であれば、締め単位に関わらず設定可能。必須ではない。早期入金時に割引を行う場合の日数。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="ar_early_incoming_payment_discount_rate" comment="売掛金早期入金割引率:決済形態が「売掛金」であれば、締め単位に関わらず設定可能。必須ではない。同じ入金グループに入る売掛先は同じ設定である必要あり、この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="transfer_fee" comment="振込手数料:同じ入金グループに入る売掛先は同じ設定である必要あり。　M：ミスミ負担（既存客）　0：ユーザー負担　1：ミスミ負担（2005.03以降新規顧客）"/>
+  <M_BILL_TOColName field="customer_account_bank_code" comment="顧客口座銀行コード"/>
+  <M_BILL_TOColName field="customer_account_type" comment="顧客口座区分:0：指定なし　1：普通　　2：当座　　顧客口座銀行コードが入力された場合は本項目も必須"/>
+  <M_BILL_TOColName field="customer_account_number" comment="顧客口座番号:顧客口座銀行コードが入力された場合は本項目も必須"/>
+  <M_BILL_TOColName field="customer_account_name_native_allowed" comment="顧客口座人名（現地語可）:顧客口座銀行コードが入力された場合は本項目も必須"/>
+  <M_BILL_TOColName field="transfer_account_bank_code" comment="振込口座銀行コード:督促状等に振込先の銀行情報として表示される"/>
+  <M_BILL_TOColName field="transfer_account_type" comment="振込口座区分:0：指定なし　1：普通　　2：当座　　振込口座銀行コードが入力された場合は本項目も必須"/>
+  <M_BILL_TOColName field="transfer_account_number" comment="振込口座番号:振込口座銀行コードが入力された場合は本項目も必須。同じ入金グループに入る売掛先は同じ設定である必要あり。"/>
+  <M_BILL_TOColName field="transfer_account_name" comment="振込口座人名:振込口座銀行コードが入力された場合は本項目も必須"/>
+  <M_BILL_TOColName field="virtual_account_flag" comment="仮想口座フラグ:0：通常口座　　1：仮想口座　　振込口座銀行コードが入力された場合は本項目も必須"/>
+  <M_BILL_TOColName field="note_payable_condition_amount" comment="手形条件（金額）:請求額が設定した金額以上の場合、手形入金を許可する。ただし、システム制御はしていない。目安。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="note_payable_condition_payment_month" comment="手形条件（支払月）:顧客設定のミスミへの手形発行予定月。0～12を設定可能。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="note_payable_condition_payment_date" comment="手形条件（支払日）:顧客設定のミスミへの手形発行予定日。1～31の数字を設定可能。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="payment_site" comment="支払サイト:顧客手形発行日から満期までの日数。同じ入金グループに入る売掛先は同じ設定である必要あり。この項目は、管理者権限の担当者しか変更できない。"/>
+  <M_BILL_TOColName field="invoice_send_type" comment="請求書送付区分:出荷字に印刷するインボイスとは別の、ロジとは異なる施設で作成する請求書の作成有無の設定。　0：請求書作成しない（送付しない）　1：売掛先請求書作成、送付する　2：売掛先請求書＋請求明細書作成、送付する　3：得意別に請求書作成、送付する"/>
+  <M_BILL_TOColName field="invoice_via_type" comment="請求書経由区分:0：ユーザーに送付　1：常時ＭＣ経由で送付"/>
+  <M_BILL_TOColName field="invoice_via_type_child" comment="請求書経由区分_子:1：請求書MC経由（今回のみＳＣ経由　但し手動ＯＮ，ＯＦＦ必要）"/>
+  <M_BILL_TOColName field="invoice_send_media" comment="請求書送付媒体:IN：商品同梱　AM：自動メール　AF：自動ＦＡＸ　PO：郵送　EX：速達郵送　MF：手動ＦＡＸ　MM：手動メール　PR：その他プリント"/>
+  <M_BILL_TOColName field="dunning_letter_send_type" comment="督促状送付区分:0：督促状作成しない（送付しない）　1：売掛先督促状作成、送付する"/>
+  <M_BILL_TOColName field="dunning_letter_send_media" comment="督促状送付媒体:AM：自動メール　AF：自動ＦＡＸ　PO：郵送　EX：速達郵送　MF：手動ＦＡＸ　MM：手動メール　PR：その他プリント"/>
+  <M_BILL_TOColName field="product_name_print_flag" comment="商品名印字フラグ:0：商品名称印字なし　1：商品名称印字あり"/>
+  <M_BILL_TOColName field="consumption_tax_mention_type" comment="消費税記載区分:0：明細ごと　（英語の場合は「each detail」）（↑売掛金締め単位の設定値に関わらず選択可）　1：締日合計　（英語の場合は「use prohibition」）（↑売掛金締め単位が【M：月締/月払い】の場合のみ選択可。日本以外ではこのコードは使用不可。）　2：出荷伝票ごと　（英語の場合は「each shipping ticket」）（↑売掛金締め単位が【E：都度締/都度払い】or【A：都度締/月払い】の場合のみ選択可）　同じ検収グループに入る売掛先は同じ設定である必要あり。"/>
+  <M_BILL_TOColName field="in_ex_tax_type" comment="内税外税区分:E:外税表記（↑消費税記載登録の設定値に関わらず選択可）　I:内税表記（↑消費税記載登録が【0：明細ごと】の場合のみ選択可）　同じ検収グループに入る売掛先は同じ設定である必要あり。"/>
+  <M_BILL_TOColName field="ccy_code" comment="通貨コード:初期登録時に設定し、後から変更不可能な項目。同じ入金グループに入る売掛先は同じ設定である必要あり。"/>
+  <M_BILL_TOColName field="rate_type_code" comment="レートタイプコード:同じ入金グループに入る売掛先は同じ設定である必要あり。"/>
+  <M_BILL_TOColName field="ar_difficulty" comment="売掛難易度"/>
+  <M_BILL_TOColName field="government_uniform_invoice_type" comment="統一発票区分:2：２連式　　3：３連式"/>
+  <M_BILL_TOColName field="company_representative_name_native" comment="会社代表者名（現地語）:韓国の税金計算書に印字される代表者名"/>
+  <M_BILL_TOColName field="ar_remarks1" comment="売掛注釈1:INVOICE帳票のREMARKSにセットされる。現行MOSS：30文字まで（現地語可）　ASCIIコードで0x7F未満の文字のみで構成される場合は最大60文字。それ以外の文字が１文字でも入れば最大30文字。"/>
+  <M_BILL_TOColName field="ar_remarks2" comment="売掛注釈2:INVOICE帳票のREMARKSにセットされる。現行MOSS：30文字まで（現地語可）　ASCIIコードで0x7F未満の文字のみで構成される場合は最大60文字。それ以外の文字が１文字でも入れば最大30文字。"/>
+  <M_BILL_TOColName field="ar_remarks3" comment="売掛注釈3:帳票等には印字されない。ＣＳ・ＡＲの備考項目として使用。現行MOSS：30文字まで（現地語可）ASCIIコードで0x7F未満の文字のみで構成される場合は最大60文字。それ以外の文字が１文字でも入れば最大30文字。"/>
+  <M_BILL_TOColName field="ar_remarks4" comment="売掛注釈4:帳票等には印字されない。ＣＳ・ＡＲの備考項目として使用。現行MOSS：30文字まで（現地語可）　ASCIIコードで0x7F未満の文字のみで構成される場合は最大60文字。それ以外の文字が１文字でも入れば最大30文字。"/>
+  <M_BILL_TOColName field="ar_remarks5" comment="売掛注釈5:帳票等には印字されない。ＣＳ・ＡＲの備考項目として使用。現行MOSS：30文字まで（現地語可）　ASCIIコードで0x7F未満の文字のみで構成される場合は最大60文字。それ以外の文字が１文字でも入れば最大30文字。"/>
+  <M_BILL_TOColName field="invoice_remarks1" comment="INVOICE注釈1:現行MOSS：30文字まで（現地語不可）。ＵＳＡの場合：GST/HST番号を設定、インドの場合：ここにCST番号を設定。"/>
+  <M_BILL_TOColName field="invoice_remarks2" comment="INVOICE注釈2:現行MOSS：30文字まで（現地語不可）。ＵＳＡの場合：GST/QST番号を設定、インドの場合：ここにＥＣＣ番号を設定。"/>
+  <M_BILL_TOColName field="invoice_remarks3" comment="INVOICE注釈3:現行MOSS：30文字まで（現地語不可）。インドの場合：ここにPermanent Income Taxを設定。"/>
+  <M_BILL_TOColName field="invoice_remarks4" comment="INVOICE注釈4:インドの場合：ここに支払条件の注釈を設定"/>
+  <M_BILL_TOColName field="gst_payment_place" comment="物品税管理地:インド用"/>
+  <M_BILL_TOColName field="department_name" comment="部署名:インド用"/>
+  <M_BILL_TOColName field="commissionerate" comment="物品税管理区:インド用"/>
+  <M_BILL_TOColName field="stop_reason_code" comment="停止理由コード:「サービス停止区分」が【0：通常】以外の場合必須"/>
+  <M_BILL_TOColName field="settlement_month" comment="決算月:【ステップ２用項目】　「決算設定」「決算締切日」と連動して、顧客指定の決算月で決算用請求書を作成"/>
+  <M_BILL_TOColName field="settlement_closing_day" comment="決算締切日:【ステップ２用項目】　「決算設定」「決算締月」と連動して、顧客指定の決算月で決算用請求書を作成"/>
+  <M_BILL_TOColName field="settlement_setting" comment="決算設定:【ステップ２用項目】　0：発行しない　1：決算月（月またぎ分）2回発行"/>
+  <M_BILL_TOColName field="city_code" comment="市町村コード:【ステップ２用項目】"/>
+  <M_BILL_TOColName field="invoice_output_order" comment="請求書出力順:【ステップ２用項目】　0：売上日順　１：注文番号・売上日順"/>
+  <M_BILL_TOColName field="zengin_code" comment="全銀コード:【ステップ２用項目】　銀行振込顧客の取引銀行支店を特定"/>
+  <M_BILL_TOColName field="automatic_transfer_flag" comment="自動振替フラグ:【ステップ２用項目】　0：振替しない　1：みずほ振替"/>
+  <M_BILL_TOColName field="deposit_type" comment="預金種類:【ステップ２用項目】　自動振替用　1：普通　2：当座"/>
+  <M_BILL_TOColName field="account_number" comment="口座番号:【ステップ２用項目】　自動振替用"/>
+  <M_BILL_TOColName field="depositor_name_kana" comment="預金者名（カナ）:【ステップ２用項目】　自動振替用"/>
+  <M_BILL_TOColName field="new_code" comment="新規コード:【ステップ２用項目】　自動振替用　0：継続ユーザー　1：新規ユーザー（今回初めて）　※ステータスをシステムにて自動更新"/>
+  <M_BILL_TOColName field="automatic_transfer_register_date" comment="自動振替登録日:【ステップ２用項目】　自動振替用"/>
+  <M_BILL_TOColName field="user_transfer_bank" comment="ユーザー振込銀行:【ステップ２用項目】　自動振替となる場合の顧客の取引銀行"/>
+  <M_BILL_TOColName field="user_transfer_branch" comment="ユーザー振込支店:【ステップ２用項目】　自動振替となる場合の顧客の取引銀行支店"/>
+  <M_BILL_TOColName field="ar_qct_base_code" comment="売掛QCT拠点コード:【ステップ２用項目】"/>
+  <M_BILL_TOColName field="closing_day_front_loading_setting_type" comment="締日前倒し設定区分:【ステップ２用項目】　0：ミスミ売上日基準（↑売掛金締め単位の設定値に関わらず選択可）　1：売上日-1日（↑売掛金締め単位が【M：月締/月払い】の場合のみ選択可）　2：売上日-2日（↑売掛金締め単位が【M：月締/月払い】の場合のみ選択可）"/>
+  <M_BILL_TOColName field="industry_type" comment="業種区分:【ステップ２用項目】　0：自動車、08：造船、16：建設　02：電気、09：その他製造、17：水産・鉱業　03：精密機器、10：石油・ゴム・ガラス、20：通信　04：印刷・事務機器、11：薬品・化学、21：電力・ガス　05：機械、13：紙・パルプ、30：商社　06：鉄鋼、14：繊維、40：学校・官公庁　07：非鉄金属、15：食品、50：金融"/>
+  <M_BILL_TOColName field="channel_type" comment="経路区分:【ステップ２用項目】　10：直販（最終ユーザー）　20：商社　50：子会社（関係会社）"/>
+  <M_BILL_TOColName field="each_bill_register" comment="都度請求登録"/>
+  <M_BILL_TOColName field="invoice_slip_output_report_code" comment="請求書伝発帳票コード:WOS→AIに集約したため追加"/>
+  <M_BILL_TOColName field="invoice_summary_flag" comment="請求書まとめフラグ:WOS→AIに集約したため追加"/>
+  <M_BILL_TOColName field="customer_statement_send_flag" comment="カスタマーステートメント送付対象フラグ:0:送付しない　1:送付する"/>
+  <M_BILL_TOColName field="customer_statement_send_media_type" comment="カスタマーステートメント送付媒体区分:1:商品同梱　2:メール_自動　3:メール_手動　4:FAX_自動　5:FAX_手動　6:郵送_通常　7:郵送_速達　8:その他プリント ※カスタマーステートメントセルフダウンロードは、媒体に関わらず、すべての売掛先で可能とする"/>
+  <M_BILL_TOColName field="swift_code" comment="SWIFTコード:SWIFTがネットワーク加盟各行に割り当てた銀行・支店識別用コード。&#xD;&#xA;海外顧客からの入金の際に利用する。"/>
+  <M_BILL_TOColName field="withdrawal_matching_allow_flag" comment="取崩し照合許可フラグ:ソフテスで行う検収/入金照合処理において取崩し照合を許容するか否かを売掛先毎に制御する。メンテナンスはMSマスタ側で行い、その内容をソフテスへ連携する。"/>
+  <M_BILL_TOColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <M_BILL_TOColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <M_BILL_TOColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <M_BILL_TOColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <M_BILL_TOColName field="register_date_time" comment="登録日時"/>
+  <M_BILL_TOColName field="register_program" comment="登録プログラム"/>
+  <M_BILL_TOColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <M_BILL_TOColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <M_BILL_TOColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <M_BILL_TOColName field="update_date_time" comment="更新日時"/>
+  <M_BILL_TOColName field="update_program" comment="更新プログラム"/>
+  <M_BILL_TOColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

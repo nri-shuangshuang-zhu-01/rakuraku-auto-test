@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry_detail subsidiary_code='JPN' inquiry_id='1234567890' inquiry_line_number='1' lead_time_product_inquiry_id='3' remind_flag='1' customer_item_reference='customer_item_reference01' brand_code='MSM1' brand_name='BRNM' product_code='GLS10-22-1.6-WF40' shipment_method_code='A0' stork_code='A1' bulk_partial_delivery_type='1' sales_unit_price='5000.123' send_type='1' qty='100' inquiry_content='問合せ内容' sales_unit_price_including_tax='4000.123' sales_unit_price_ccy_code='S01' update_count='0' delete_flag='0' register_user_type='Customer' register_user='XSH' register_date_time='2021-09-28' register_program='MSM' register_client_program='MSM' update_user_type='Customer' update_user='XSH' update_date_time='2021-09-28' update_program='MSM' update_client_program='MSM' />
+</dataset>

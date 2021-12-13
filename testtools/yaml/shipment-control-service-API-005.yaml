@@ -1,0 +1,383 @@
+openapi: 3.0.0
+info:
+  title: API-005
+  version: '1.0'
+  description: 社内移動入荷入力用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/transfer-arrival/search:
+    get:
+      summary: 社内移動_入荷参照API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTransferArrivalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchTransferArrivalV1
+      description: 社内移動の登録内容を参照する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: transferVoucherNumber
+          description: 社内移動伝票番号
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: maxCount
+          description: 参照最大件数
+          required: true
+      tags:
+        - TransferArrival
+    parameters: []
+  /v1/transfer-arrival/save:
+    post:
+      summary: 社内移動_入荷更新API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 更新可否結果リスト
+                items:
+                  $ref: '#/components/schemas/SaveTransferArrivalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: saveTransferArrivalV1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveTransferArrivalRequestV1'
+        description: ''
+      description: 社内移動の登録内容を更新し、および入荷を新規作成する
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      tags:
+        - TransferArrival
+    parameters: []
+components:
+  schemas:
+    SearchTransferArrivalResponseV1:
+      title: SearchTransferArrivalResponseV1
+      type: object
+      description: ''
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        transferVoucherNumber:
+          type: string
+          description: 社内移動伝票番号
+          maxLength: 6
+        voucherType:
+          type: string
+          description: 伝票区分
+          maxLength: 3
+        sendSlip:
+          type: string
+          description: 伝票送付
+          maxLength: 1
+        shipmentPlantCode:
+          type: string
+          description: 出荷置場コード
+          maxLength: 4
+        shipmentPlantName:
+          type: string
+          description: 出荷置場名称
+        shipmentStorageLocationCode:
+          type: string
+          maxLength: 4
+          description: 出荷保管場所コード
+        shipmentStorageLocationName:
+          type: string
+          description: 出荷保管場所名称
+        arrivalPlantCode:
+          type: string
+          description: 入荷置場コード
+          maxLength: 4
+        arrivalPlantName:
+          type: string
+          description: 入荷置場名称
+        arrivalStorageLocationCode:
+          type: string
+          description: 入荷保管場所コード
+          maxLength: 4
+        arrivalStorageLocationName:
+          type: string
+          description: 入荷保管場所名称
+        shipmentDate:
+          type: string
+          description: 出荷日付
+          format: date
+        arrivalDate:
+          type: string
+          description: 入荷日付
+          format: date
+        transferList:
+          description: 社内移動リスト
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTransferArrivalTransferListV1'
+      required:
+        - subsidiaryCode
+        - transferVoucherNumber
+        - voucherType
+        - sendSlip
+        - shipmentPlantCode
+        - shipmentPlantName
+        - shipmentStorageLocationCode
+        - shipmentStorageLocationName
+        - arrivalPlantCode
+        - arrivalPlantName
+        - arrivalStorageLocationCode
+        - arrivalStorageLocationName
+        - shipmentDate
+        - arrivalDate
+        - transferList
+    SearchTransferArrivalTransferListV1:
+      title: SearchTransferArrivalTransferListV1
+      type: object
+      description: ''
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        nativeBrandName:
+          type: string
+          description: ブランド名称(現地語)
+          maxLength: 200
+        brandName:
+          type: string
+          description: 'ブランド名称(英語) '
+          maxLength: 15
+        estArrivalQty:
+          type: integer
+          description: 入荷予定数
+        arrivalPerformance:
+          type: integer
+          description: 入荷実績
+        evaluationUnitPrice:
+          type: integer
+          description: 単価
+        transferAmount:
+          type: integer
+          description: 金額
+        arrivalMark:
+          type: string
+          description: 到着マーク
+          maxLength: 1
+        registerTime:
+          type: string
+          description: 登録日時
+          format: date-time
+        updateCount:
+          type: integer
+          description: 更新回数
+        updateSystemTime:
+          type: string
+          description: 更新日時(システム日時)
+          format: date-time
+        updateSubsidiaryTime:
+          type: string
+          description: 更新日時(現法日時)
+          format: date-time
+        updateLocaleTime:
+          type: string
+          description: 更新日時(ロケール日時)
+          format: date-time
+        deleteFlag:
+          type: string
+          maxLength: 1
+          description: 削除フラグ
+        statusName:
+          type: string
+      required:
+        - globalNumber
+        - gInnerCode
+        - productCode
+        - brandCode
+        - nativeBrandName
+        - brandName
+        - estArrivalQty
+        - arrivalPerformance
+        - evaluationUnitPrice
+        - transferAmount
+        - arrivalMark
+        - registerTime
+        - updateCount
+        - updateSystemTime
+        - updateSubsidiaryTime
+        - updateLocaleTime
+        - deleteFlag
+        - statusName
+    SaveTransferArrivalRequestV1:
+      title: SaveTransferArrivalRequestV1
+      type: object
+      description: ''
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        transferVoucherNumber:
+          type: string
+          description: 社内移動伝票番号
+          maxLength: 6
+          minLength: 6
+        shipmentDate:
+          type: string
+          description: 出荷日付
+          format: date
+        arrivalDate:
+          type: string
+          description: 入荷日付
+          format: date
+        arrivalPlantCode:
+          type: string
+          description: 入荷置場
+          maxLength: 4
+        updateId:
+          type: string
+          description: 更新者ID
+          maxLength: 6
+        updateTime:
+          type: string
+          description: 更新日時
+          maxLength: 14
+          format: date-time
+          minLength: 14
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+        transferList:
+          type: array
+          description: 社内移動リスト
+          items:
+            $ref: '#/components/schemas/SaveTransferArrivalStockTransferListV1'
+      required:
+        - subsidiaryCode
+        - transferVoucherNumber
+        - shipmentDate
+        - arrivalDate
+        - arrivalPlantCode
+        - updateId
+        - updateTime
+    SaveTransferArrivalStockTransferListV1:
+      title: SaveTransferArrivalStockTransferListV1
+      type: object
+      description: 社内移動リスト
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        evaluationUnitPrice:
+          type: integer
+          description: 単価
+          maximum: 999999999999
+        transferAmount:
+          type: integer
+          description: 金額
+          maximum: 99999999999
+        shipmentQty:
+          type: integer
+          description: 出荷数
+          maximum: 9999999
+      required:
+        - globalNumber
+        - gInnerCode
+        - productCode
+        - evaluationUnitPrice
+        - transferAmount
+        - shipmentQty
+    SaveTransferArrivalResponseV1:
+      title: SaveTransferArrivalResponseV1
+      type: object
+      description: 更新可否結果リスト
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        transferVoucherNumber:
+          type: string
+          maxLength: 6
+          description: 社内移動伝票番号
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        resultStatus:
+          type: string
+          description: 結果ステータス
+        errorCode:
+          type: string
+          description: エラーコード
+      required:
+        - subsidiaryCode
+        - transferVoucherNumber
+        - globalNumber
+        - resultStatus
+  parameters: {}
+tags:
+  - name: TransferArrival

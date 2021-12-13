@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_event_send_receiving_actual_replica subsidiary_code='JPN' plant_code='JSS' global_number='12345678901234' purchase_slip_number='1234567890' purchase_slip_line_number='10' data_hub_updated_flag='0' register_system_date_time='2020-09-11 01:01:01' update_system_date_time='2021-09-11 01:01:01' update_program='4545' />
+</dataset>

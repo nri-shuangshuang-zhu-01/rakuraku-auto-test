@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry_detail subsidiary_code='MJP' inquiry_id='12345678' inquiry_line_number='1' lead_time_product_inquiry_id='null' remind_flag='null' customer_item_reference='null' brand_code='null' brand_name='null' product_code='null' shipment_method_code='null' stork_code='null' bulk_partial_delivery_type='null' sales_unit_price='null' send_type='null' qty='null' inquiry_content='null' sales_unit_price_including_tax='null' sales_unit_price_ccy_code='null' update_count='0' delete_flag='0' register_user_type='Office' register_user='user' register_date_time='2021-11-26 0:00:00' register_program='MASRQ01031' register_client_program='MASRQ01031' update_user_type='Office' update_user='user' update_date_time='2021-11-27 0:00:00' update_program='MASRQ01031' update_client_program='MASRQ01031' />
+</dataset>

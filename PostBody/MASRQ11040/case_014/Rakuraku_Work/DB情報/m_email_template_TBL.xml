@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <m_email_templateColName field="subsidiary_code"/>
+  <m_email_templateColName field="email_template_key"/>
+  <m_email_templateColName field="email_template_id"/>
+  <m_email_templateColName field="update_count"/>
+  <m_email_templateColName field="delete_flag"/>
+  <m_email_templateColName field="register_user_type"/>
+  <m_email_templateColName field="register_user"/>
+  <m_email_templateColName field="register_date_time"/>
+  <m_email_templateColName field="register_program"/>
+  <m_email_templateColName field="register_client_program"/>
+  <m_email_templateColName field="update_user_type"/>
+  <m_email_templateColName field="update_user"/>
+  <m_email_templateColName field="update_date_time"/>
+  <m_email_templateColName field="update_program"/>
+  <m_email_templateColName field="update_client_program"/>
+</dataset>

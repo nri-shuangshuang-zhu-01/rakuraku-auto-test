@@ -1,0 +1,42 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+会計伝票番号::accounting_document_number::char(10)::NOT NULL(PK)
+会計年度::fiscal_year::char(4)::NOT NULL(PK)
+会計伝票明細番号::accounting_document_line_number::numeric(3,0)::NOT NULL(PK)
+売掛先コード::bill_to_code::char(6)::NULL
+インボイス番号::invoice_number::varchar(16)::NULL
+インボイス日付::invoice_date::date::NULL
+グローバル番号::global_number::char(14)::NULL
+反対仕訳フラグ::reversal_posting_flag::char(1)::NULL
+得意先コード::customer_code::char(6)::NULL
+請求年月::bill_year_month::char(6)::NULL
+請求済フラグ::billed_flag::char(1)::NULL
+支払期日::payment_due_date::date::NULL
+受注伝票番号::so_slip_number::char(10)::NULL
+顧客ヘッダー注文番号::customer_po_reference::varchar(25)::NULL
+顧客注文番号(親番)::customer_item_reference::varchar(35)::NULL
+顧客注文番号(枝番)::customer_item_sub_reference::varchar(54)::NULL
+売掛金額（顧客通貨）::ar_amount_customer_ccy::numeric(18,3)::NULL
+税額（顧客通貨）::tax_amount_customer_ccy::numeric(18,3)::NULL
+売掛金額（顧客通貨）（税込）::ar_amount_customer_ccy_including_tax::numeric(18,3)::NULL
+通貨コード（顧客通貨）::ccy_code_customer_ccy::char(3)::NULL
+売掛金額（現法通貨）::ar_amount_subsidiary_ccy::numeric(18,3)::NULL
+税額（現法通貨）::tax_amount_subsidiary_ccy::numeric(18,3)::NULL
+売掛金額（現法通貨）（税込）::ar_amount_subsidiary_ccy_including_tax::numeric(18,3)::NULL
+通貨コード（現法通貨）::ccy_code_subsidiary_ccy::char(3)::NULL
+通貨レート（現法通貨）::ccy_rate_subsidiary_ccy::numeric(9,5)::NULL
+支払条件::payment_terms::varchar(42)::NULL
+決済形態::settlement_method::varchar(3)::NULL
+支払手段::payment_means::varchar(2)::NULL
+処理フラグ::process_flag::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

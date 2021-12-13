@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: common-spec
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Error1:
+      title: Error1
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の最上位JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error2'
+    Error2:
+      title: Error2
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の2階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error3'
+    Error3:
+      title: Error3
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の3階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error4'
+    Error4:
+      title: Error4
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の4階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error5'
+    Error5:
+      title: Error5
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の5階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+  parameters:
+    Idempotency-Key:
+      name: Idempotency-Key
+      in: header
+      schema:
+        type: string
+      description: 更新系でリトライを行うための冪等性キー
+      required: true
+    X-User-Type:
+      name: X-User-Type
+      in: header
+      schema:
+        type: string
+        enum:
+          - Internal
+          - Customer
+          - Supplier
+          - System
+      description: 権限の種別を区別するための値。MS層から別のMS層にリクエストを送信する場合はヘッダー付与必須。
+      required: false
+    X-Auth-Id:
+      name: X-Auth-Id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: アクセス元を表すID文字列。MS層から別のMS層にリクエストを送信する場合はヘッダー付与必須。
+    x-datadog-trace-id:
+      name: x-datadog-trace-id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Datadogでトレースをするためのヘッダ。
+    Authorization:
+      name: Authorization
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 認証トークンを含むヘッダ。OutSystemsからリクエストをする場合はヘッダー付与必須。
+    Cache-Control:
+      name: Cache-Control
+      in: header
+      required: false
+      schema:
+        type: string
+      description: HTTPキャッシュのディレクティブを格納するヘッダ

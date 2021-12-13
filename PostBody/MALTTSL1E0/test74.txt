@@ -1,0 +1,11 @@
+{
+  "localCorporationCode": "str",
+  "accessIpAddress": "string",
+  "sessionId": "string",
+  "screenId": "string",
+  "processId": "string",
+  "programType": "a",
+  "createDate": "20190824",
+  "registerMode": "0",
+  "detailInformationList": null
+}

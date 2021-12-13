@@ -1,0 +1,524 @@
+openapi: 3.0.0
+info:
+  title: API-003
+  version: '1.0'
+  description: 社内移動出荷指示入力用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/transfer-shipment/search:
+    get:
+      summary: 社内移動_出荷参照API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTransferShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchTransferShipmentV1
+      description: 社内移動データの社内移動情報、出荷不可情報を参照する
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: transferVoucherNumber
+          description: 社内移動伝票番号
+          required: true
+      tags:
+        - TransferShipment
+    parameters: []
+  /v1/transfer-shipment/save:
+    post:
+      summary: 社内移動_出荷更新API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveTransferShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: saveTransferShipmentV1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveTransferShipmentRequestV1'
+      description: 社内移動出荷データ及び在庫データを更新する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      tags:
+        - TransferShipment
+    parameters: []
+  /v1/transfer-shipment/check:
+    post:
+      summary: 社内移動_出荷チェックAPI
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 社内移動出荷リスト
+                items:
+                  $ref: '#/components/schemas/CheckTransferShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: checkTransferShipmentV1
+      description: 社内移動の登録内容をチェックする
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              description: 社内移動出荷リスト
+              items:
+                $ref: '#/components/schemas/CheckTransferShipmentRequestV1'
+      tags:
+        - TransferShipment
+    parameters: []
+components:
+  schemas:
+    SearchTransferShipmentListV1:
+      title: SearchTransferShipmentListV1
+      type: object
+      description: 社内移動出荷リスト
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        transferVoucherNumber:
+          type: string
+          description: 社内移動伝票番号
+          maxLength: 6
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        shipmentPlantCode:
+          type: string
+          description: 出荷置場コード
+          maxLength: 4
+        shipmentStorageLocationCode:
+          type: string
+          description: 出荷保管場所コード
+          maxLength: 4
+        arrivalPlantCode:
+          type: string
+          description: 入荷置場コード
+          maxLength: 4
+        arrivalStorageLocationCode:
+          type: string
+          description: 入荷保管場所コード
+          maxLength: 4
+        shipmentScheduledDate:
+          type: string
+          description: 出荷予定日
+          format: date
+        arrivalScheduledDate:
+          type: string
+          description: 入荷予定日
+          format: date
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        ntvBrandName:
+          type: string
+          description: ブランド名称（現地語）
+          maxLength: 200
+        brandName:
+          type: string
+          description: ブランド名称(英語)
+          maxLength: 15
+        quantity:
+          type: integer
+          description: 数量
+          multipleOf: 9999999
+        arrivalMark:
+          type: string
+          description: 到着マーク
+          maxLength: 1
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+        deleteFlag:
+          type: string
+          description: 削除フラグ
+          maxLength: 1
+        excludeFlag:
+          type: string
+          description: 除外フラグ
+          maxLength: 1
+        stopShipmentFlag:
+          type: string
+          description: 出荷不可フラグ
+          maxLength: 1
+      required:
+        - subsidiaryCode
+        - transferVoucherNumber
+        - globalNumber
+        - shipmentPlantCode
+        - shipmentStorageLocationCode
+        - arrivalPlantCode
+        - arrivalStorageLocationCode
+        - shipmentScheduledDate
+        - arrivalScheduledDate
+        - productCode
+        - gInnerCode
+        - brandCode
+        - ntvBrandName
+        - brandName
+        - quantity
+        - arrivalMark
+        - updateCount
+        - deleteFlag
+        - excludeFlag
+        - stopShipmentFlag
+    SaveTransferShipmentRequestV1:
+      title: SaveTransferShipmentRequestV1
+      type: object
+      properties:
+        processType:
+          type: string
+          description: 処理区分
+          maxLength: 1
+        updateId:
+          type: string
+          maxLength: 6
+          description: 更新者ID
+        updateTime:
+          type: string
+          maxLength: 14
+          description: 更新日時
+          format: date-time
+          minLength: 14
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+        transferInformationList:
+          type: array
+          description: 社内移動情報リスト
+          items:
+            $ref: '#/components/schemas/SaveTransferShipmentTransferInfoListV1'
+      required:
+        - processType
+        - updateId
+        - updateTime
+        - updateProgram
+    SaveTransferShipmentTransferInfoListV1:
+      title: SaveTransferShipmentTransferInfoListV1
+      type: object
+      description: 社内移動情報リスト
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        transferVoucherNumber:
+          type: string
+          description: 社内移動伝票番号
+          maxLength: 6
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        shipmentPlantCode:
+          type: string
+          description: 出荷置場コード
+          maxLength: 4
+        shipmentStorageLocationCode:
+          type: string
+          description: 出荷保管場所コード
+          maxLength: 4
+        arrivalPlantCode:
+          type: string
+          description: 入荷置場コード
+          maxLength: 4
+        arrivalStorageLocationCode:
+          type: string
+          description: 入荷保管場所コード
+          maxLength: 4
+        shipmentDate:
+          type: string
+          description: 出荷日付
+          format: date
+        arrivalDate:
+          type: string
+          description: 入荷日付
+          format: date
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        brandCode:
+          type: string
+          description: ブランド
+          maxLength: 4
+        quantity:
+          type: integer
+          description: 数量
+          maximum: 9999999
+        evaluationUnitPrice:
+          type: string
+          description: 評価単価
+          maxLength: 12
+        productWeight:
+          type: string
+          description: 商品重量
+          maxLength: 9
+        analysisCode:
+          type: string
+          description: 分析コード
+          maxLength: 8
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+        excludeFlag:
+          type: string
+          description: 除外フラグ
+          maxLength: 1
+      required:
+        - subsidiaryCode
+        - shipmentPlantCode
+        - shipmentStorageLocationCode
+        - arrivalPlantCode
+        - arrivalStorageLocationCode
+        - shipmentDate
+        - arrivalDate
+        - productCode
+        - gInnerCode
+        - brandCode
+        - quantity
+        - evaluationUnitPrice
+        - productWeight
+        - analysisCode
+        - excludeFlag
+    SaveTransferShipmentResponseV1:
+      title: SaveTransferShipmentResponseV1
+      type: object
+      description: 更新可否結果リスト
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        transferVoucherNumber:
+          type: string
+          maxLength: 6
+          description: 社内移動伝票番号
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        gInnerCode:
+          type: string
+          maxLength: 14
+          description: 統合インナーコード
+        shipmentPlantCode:
+          type: string
+          maxLength: 4
+          description: 出荷置場コード
+        arrivalPlantCode:
+          type: string
+          description: 入荷置場コード
+          maxLength: 4
+        resultStatus:
+          type: string
+          description: 結果ステータス
+          maxLength: 1
+        errorCode:
+          type: string
+          description: エラーコード
+      required:
+        - subsidiaryCode
+        - transferVoucherNumber
+        - globalNumber
+        - gInnerCode
+        - shipmentPlantCode
+        - arrivalPlantCode
+        - resultStatus
+    CheckTransferShipmentRequestV1:
+      title: CheckTransferShipmentRequestV1
+      type: object
+      description: 社内移動出荷リスト
+      properties:
+        subsidrayCd:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        shipmentPlant:
+          type: string
+          description: 出荷置場
+          maxLength: 4
+        arrivalPlant:
+          type: string
+          description: 入荷置場
+          maxLength: 4
+        innerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        qty:
+          type: integer
+          description: 数量
+          maximum: 9999999
+        shipmentDate:
+          type: string
+          description: 出荷日付
+          format: date
+      required:
+        - subsidrayCd
+        - shipmentPlant
+        - arrivalPlant
+        - qty
+        - shipmentDate
+    CheckTransferShipmentResponseV1:
+      title: CheckTransferShipmentResponseV1
+      type: object
+      description: 社内移動出荷リスト
+      properties:
+        checkResult:
+          type: string
+          description: チェック可否
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        arrivalDate:
+          type: string
+          format: date
+          description: 入荷日付
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        ntvBrandName:
+          type: string
+          description: ブランド名称（現地語）
+          maxLength: 200
+        brandName:
+          type: string
+          description: ブランド名称(英語)
+          maxLength: 15
+        productWeight:
+          type: string
+          description: 商品重量
+          maxLength: 9
+        analysisCode:
+          type: string
+          description: 分析コード
+          maxLength: 8
+        evaluationUnitPrice:
+          type: string
+          description: 評価単価
+          maxLength: 12
+      required:
+        - checkResult
+        - subsidiaryCode
+        - arrivalDate
+        - gInnerCode
+        - productCode
+        - brandCode
+        - ntvBrandName
+        - brandName
+        - productWeight
+        - analysisCode
+        - evaluationUnitPrice
+    SearchTransferShipmentResponseV1:
+      title: SearchTransferShipmentResponseV1
+      type: object
+      properties:
+        count:
+          type: integer
+          description: 件数
+        transferShipmentList:
+          type: array
+          description: 社内移動出荷リスト
+          items:
+            $ref: '#/components/schemas/SearchTransferShipmentListV1'
+      required:
+        - count
+  parameters: {}
+tags:
+  - name: TransferShipment

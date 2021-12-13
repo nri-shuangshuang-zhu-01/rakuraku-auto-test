@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_HOLDING_LIST_CREATE_SHIPMENT_ACTUAL_REPLICA subsidiary_code='JPN' plant_code='P001' global_number='CA000032000081' so_slip_number='0' so_line_key='1' shipment_fix_date='2021-12-01' shipment_qty='3000' supply_type='05' data_hub_updated_flag='1' register_system_date_time='2021-09-07' update_system_date_time='2021-09-07' update_program='MBLSCVH200' />
+</dataset>

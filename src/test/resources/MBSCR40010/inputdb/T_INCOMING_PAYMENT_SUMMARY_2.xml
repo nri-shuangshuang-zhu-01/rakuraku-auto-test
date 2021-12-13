@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_INCOMING_PAYMENT_SUMMARY subsidiary_code='JPN' incoming_payment_group_code='100001' summary_date='2021-08-12' suspense_receipt_amount='300.00' update_count='1' delete_flag='0' register_user_type='Office' register_user='MBSCR40010' register_date_time='2021-08-12 00:00:00.0' register_program='MBSCR40010' register_client_program='MBSCR40010' update_user_type='Office' update_user='XSH' update_date_time='2021-08-11 00:00:00.0' update_program='MBSCR40010' update_client_program='MBSCR40010' />
+</dataset>

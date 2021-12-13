@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_data_upload_exclusive_controlColName field="control_seq_number" comment="管理SEQ番号:非同期処理に処理対象を指示するための単項目キー"/>
+  <t_data_upload_exclusive_controlColName field="data_upload_exclusive_control_seq" comment="データアップロード排他SEQ"/>
+  <t_data_upload_exclusive_controlColName field="subsidiary_code" comment="現法コード:データの現法を一意に特定するコード"/>
+  <t_data_upload_exclusive_controlColName field="data_code" comment="データコード:対象データを認識するコード"/>
+  <t_data_upload_exclusive_controlColName field="mail_address" comment="メールアドレス:ファイル登録者のメールアドレス"/>
+  <t_data_upload_exclusive_controlColName field="temp_file_code" comment="一時ファイルコード:アップロード時に生成する一時ファイルコード"/>
+  <t_data_upload_exclusive_controlColName field="file_path" comment="ファイルパス:アップロード後に移動したファイルパス"/>
+  <t_data_upload_exclusive_controlColName field="signature" comment="署名:アップロード時生成するファイル署名（S3検証用）"/>
+  <t_data_upload_exclusive_controlColName field="input_file_name" comment="入力ファイル名:アップロード時のファイル名"/>
+  <t_data_upload_exclusive_controlColName field="status_code" comment="ステータスコード:０：受付中　１：処理中　２：処理済"/>
+  <t_data_upload_exclusive_controlColName field="process_result_code" comment="処理結果コード:処理結果　　0：未処理 　1：OK　2：NG　 3：一部NG"/>
+  <t_data_upload_exclusive_controlColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <t_data_upload_exclusive_controlColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <t_data_upload_exclusive_controlColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_data_upload_exclusive_controlColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <t_data_upload_exclusive_controlColName field="register_date_time" comment="登録日時"/>
+  <t_data_upload_exclusive_controlColName field="register_program" comment="登録プログラム"/>
+  <t_data_upload_exclusive_controlColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <t_data_upload_exclusive_controlColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <t_data_upload_exclusive_controlColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <t_data_upload_exclusive_controlColName field="update_date_time" comment="更新日時"/>
+  <t_data_upload_exclusive_controlColName field="update_program" comment="更新プログラム"/>
+  <t_data_upload_exclusive_controlColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

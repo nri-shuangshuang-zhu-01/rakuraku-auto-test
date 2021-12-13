@@ -1,0 +1,5 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA subsidiary_code='JPN' ginner_code='12345678910001' effective_start_date='2020-01-01' product_control_department_code='JP0001' data_hub_updated_flag='0' register_system_date_time='2021-01-01' update_system_date_time='2021-01-01' update_program='1' delete_flag='0' />
+    <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA subsidiary_code='JPN' ginner_code='12345678910002' effective_start_date='2019-01-01' product_control_department_code='JP0001' data_hub_updated_flag='0' register_system_date_time='2021-01-01' update_system_date_time='2021-01-01' update_program='1' delete_flag='0' />
+</dataset>

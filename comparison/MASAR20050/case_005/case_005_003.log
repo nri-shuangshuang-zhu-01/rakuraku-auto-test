@@ -1,0 +1,105 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-detail/get?subsidiaryCode=456&billToCode=222333&startIndex=1&responseCount=6&sortOrder=Due Date&invoiceStatus=Close
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=6a037a9e-2500-4724-a005-998a1ab13a77&&Prefer=/internal/v1/ccy/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "billToData": {
+    "billToName": "60",
+    "telNumber": "20",
+    "fax": "20",
+    "emailTo": "256",
+    "emailCc": "256",
+    "sendMedia": "2",
+    "paymentTerms": "042",
+    "tradeCurrency": "123",
+    "mainBusinessUnitCode": "6666",
+    "acceptanceExist": "0",
+    "notePayableamount": 20.301,
+    "dunningLetterSendType": "1"
+  },
+  "noPaymentInfo": [
+    {
+      "invoiceNumber": "997",
+      "invoiceDate": "2021-05-09",
+      "paymentMeans": "2",
+      "dunningLevel": "1",
+      "paymentDueDate": "2021-09-12",
+      "delayDays": "-2",
+      "nonPaymentAmount": 29.8,
+      "billedAmount": 523.1,
+      "incomingPaymentAmount": 23.3,
+      "paymentCompleteDate": "2021-09-10",
+      "delayReasonType": "3  ",
+      "paymentTermss": "42",
+      "dunningLetterSendMedia": "2",
+      "updateTime": "2021-09-10T01:00:00+09:00",
+      "updateUser": "256",
+      "tradeStatus": "2 ",
+      "reDate": "2021-09-10",
+      "clearFlag": "1"
+    },
+    {
+      "invoiceNumber": "996",
+      "invoiceDate": "2021-07-09",
+      "paymentMeans": "2",
+      "dunningLevel": "1",
+      "paymentDueDate": "2021-09-17",
+      "delayDays": "-7",
+      "nonPaymentAmount": 29.8,
+      "billedAmount": 523.1,
+      "incomingPaymentAmount": 23.3,
+      "paymentCompleteDate": "2021-09-10",
+      "delayReasonType": "3  ",
+      "paymentTermss": "42",
+      "dunningLetterSendMedia": "2",
+      "updateTime": "2021-09-10T01:00:00+09:00",
+      "updateUser": "256",
+      "tradeStatus": "2 ",
+      "reDate": "2021-09-10",
+      "clearFlag": "1"
+    },
+    {
+      "invoiceNumber": "992",
+      "invoiceDate": "2021-11-09",
+      "paymentMeans": "2",
+      "dunningLevel": "1",
+      "paymentDueDate": "2021-09-17",
+      "delayDays": "-7",
+      "nonPaymentAmount": 29.8,
+      "billedAmount": 523.1,
+      "incomingPaymentAmount": 23.3,
+      "paymentCompleteDate": "2021-09-10",
+      "delayReasonType": "3  ",
+      "paymentTermss": "42",
+      "dunningLetterSendMedia": "2",
+      "updateTime": "2021-09-10T01:00:00+09:00",
+      "updateUser": "256",
+      "tradeStatus": "2 ",
+      "reDate": "2021-09-10",
+      "clearFlag": "1"
+    },
+    {
+      "invoiceNumber": "993",
+      "invoiceDate": "2021-11-09",
+      "paymentMeans": "2",
+      "dunningLevel": "1",
+      "paymentDueDate": "2021-09-17",
+      "delayDays": "-7",
+      "nonPaymentAmount": 29.8,
+      "billedAmount": 523.1,
+      "incomingPaymentAmount": 23.3,
+      "paymentCompleteDate": "2021-09-10",
+      "delayReasonType": "3  ",
+      "paymentTermss": "42",
+      "dunningLetterSendMedia": "2",
+      "updateTime": "2021-09-10T01:00:00+09:00",
+      "updateUser": "256",
+      "tradeStatus": "2 ",
+      "reDate": "2021-09-10",
+      "clearFlag": "1"
+    }
+  ],
+  "errorList": []
+}

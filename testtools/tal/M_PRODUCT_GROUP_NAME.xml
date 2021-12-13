@@ -1,0 +1,17 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+商品グループコード::product_group_code::varchar(7)::NOT NULL(PK)
+商品グループ名（英字）::product_group_name_english::varchar(30)::NOT NULL
+商品グループ名（カナ）::product_group_name_kana::varchar(30)::NOT NULL
+ブランドフラグ::brand_flag::char(1)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

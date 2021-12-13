@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_CARRIER_INVOICEColName field="subsidiary_code" comment="現法コード"/>
+  <T_CARRIER_INVOICEColName field="global_number" comment="グローバル番号"/>
+  <T_CARRIER_INVOICEColName field="create_date" comment="作成日"/>
+  <T_CARRIER_INVOICEColName field="carrier_invoice_number" comment="送り状番号"/>
+  <T_CARRIER_INVOICEColName field="program_type" comment="プログラム区分:1:GMAGI連携2:全銀伝送メーカー連携3:日本MIND連携4:GMIND連携5:TR入力画面6:業務連絡→案件管理　※廃止予定7:GMIND(Webサービス)8:CHNローカルシステム"/>
+  <T_CARRIER_INVOICEColName field="internal_external_type" comment="社内・社外向け区分:0:メーカー→顧客　1:メーカー→ミスミ倉庫　2：ミスミ倉庫→顧客"/>
+  <T_CARRIER_INVOICEColName field="plant_code" comment="置場コード"/>
+  <T_CARRIER_INVOICEColName field="vsd" comment="VSD"/>
+  <T_CARRIER_INVOICEColName field="packing_control_number" comment="梱包管理番号"/>
+  <T_CARRIER_INVOICEColName field="shipmode_code" comment="扱い便コード:001    ヤマト宅急便&#xD;&#xA;002    ヤマト簡易便&#xD;&#xA;003    ヤマト運輸（航空便）&#xD;&#xA;004    ヤマト運輸（代引き）&#xD;&#xA;005    ヤマト運輸（タイムサービス）&#xD;&#xA;006    佐川急便&#xD;&#xA;007    佐川急便簡易梱包&#xD;&#xA;008    日本通運（陸便）&#xD;&#xA;009    日本通運（航空便）&#xD;&#xA;010    プラスカーゴサービス"/>
+  <T_CARRIER_INVOICEColName field="qty" comment="個数"/>
+  <T_CARRIER_INVOICEColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_CARRIER_INVOICEColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_CARRIER_INVOICEColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_CARRIER_INVOICEColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_CARRIER_INVOICEColName field="register_date_time" comment="登録日時"/>
+  <T_CARRIER_INVOICEColName field="register_program" comment="登録プログラム"/>
+  <T_CARRIER_INVOICEColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_CARRIER_INVOICEColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_CARRIER_INVOICEColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_CARRIER_INVOICEColName field="update_date_time" comment="更新日時"/>
+  <T_CARRIER_INVOICEColName field="update_program" comment="更新プログラム"/>
+  <T_CARRIER_INVOICEColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultProductInternalClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client</a> &gt; <span class="el_source">DefaultProductInternalClient.java</span></div><h1>DefaultProductInternalClient.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client;
+
+import java.util.Map;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.rest.api.client.context.HttpHeaderMapCreator;
+import jp.co.misumi.replenishstock.client.rest.product.internal.api.ProductInternalApi;
+import jp.co.misumi.replenishstock.client.value.ClientEndpoint;
+import jp.co.misumi.replenishstock.domain.client.ProductInternalClient;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.SearchProductInternalResponseV1;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.client.RestClientException;
+
+@RequiredArgsConstructor
+@Named
+public class DefaultProductInternalClient implements ProductInternalClient {
+  private final HttpHeaderMapCreator httpHeaderMapCreator;
+  private final ProductInternalApi productInternalApi;
+
+  @Override
+  public GetListProductInternalResponseV1 getListProductrInternalV1(
+      RequestContext context, GetListProductInternalRequestV1 getListProductInternalRequestV1)
+      throws RestClientException {
+<span class="fc" id="L27">    Map&lt;String, Object&gt; headerMap = httpHeaderMapCreator.createHeaderMap(context, null);</span>
+<span class="fc" id="L28">    return productInternalApi.getListProductrInternalV1(</span>
+        context,
+<span class="fc" id="L30">        ClientEndpoint.CLIENT_ENDPOINT_GET_LIST_PRODUCT.getValue(),</span>
+        headerMap,
+        getListProductInternalRequestV1);
+  }
+
+  @Override
+  public GetProductInternalResponseV1 getProductInternalV1(
+      RequestContext context, String ginnerCode) throws RestClientException {
+<span class="nc" id="L38">    Map&lt;String, Object&gt; headerMap = httpHeaderMapCreator.createHeaderMap(context, null);</span>
+<span class="nc" id="L39">    return productInternalApi.getProductInternalV1(</span>
+<span class="nc" id="L40">        context, ClientEndpoint.CLIENT_ENDPOINT_GET_PRODUCT.getValue(), headerMap, ginnerCode);</span>
+  }
+
+  @Override
+  public SearchProductInternalResponseV1 searchProductInternalV1(
+      RequestContext context,
+      String ginnerCode,
+      String productCode,
+      String brandCode,
+      String releasedFlag,
+      String stockFlag,
+      String componentFlag,
+      String reorderPointLogicFlag,
+      String soStopFlag,
+      String abolishedFlag)
+      throws RestClientException {
+<span class="nc" id="L56">    Map&lt;String, Object&gt; headerMap = httpHeaderMapCreator.createHeaderMap(context, null);</span>
+<span class="nc" id="L57">    return productInternalApi.searchProductInternalV1(</span>
+        context,
+<span class="nc" id="L59">        ClientEndpoint.CLIENT_ENDPOINT_SEARCH_PRODUCT.getValue(),</span>
+        headerMap,
+        ginnerCode,
+        productCode,
+        brandCode,
+        releasedFlag,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null);
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

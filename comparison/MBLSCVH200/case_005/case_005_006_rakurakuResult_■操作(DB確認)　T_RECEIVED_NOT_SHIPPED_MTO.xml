@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_RECEIVED_NOT_SHIPPED_MTO subsidiary_code="JP " so_voucher_no="S00010000101" so_line_key="1" global_number="CA000032000081" supply_type="02" receiving_qty="3000" shipment_qty="4000" receiving_fix_date="2021-09-07" receiving_fix_process_date="2021-09-07" receiving_purchase_amount="500.000" receiving_supplier_subsidiary_rate="10.000000000" receiving_freight_supplier_rate="20.000000000" receiving_supplier_subsidiary_supplier_rate="30.000000000" receiving_freight_supplier_subsidiary_rate="40.000000000" receiving_product_supplier_rate="50.000000000" update_count="1" delete_flag="0" register_user_type="Batch" register_user="MBLSCVH200" register_date_time="2021-09-07 15:20:08.0" register_program="Batch" register_client_program="MBLSCVH200" update_user_type="Batch" update_user="MBLSCVH200" update_date_time="2021-09-07 15:20:08.0" update_program="Batch" update_client_program="MBLSCVH200"/>
+</dataset>

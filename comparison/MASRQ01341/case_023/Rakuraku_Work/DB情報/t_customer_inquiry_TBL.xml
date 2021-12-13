@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_customer_inquiryColName field="subsidiary_code"/>
+  <t_customer_inquiryColName field="inquiry_id"/>
+  <t_customer_inquiryColName field="urgent_flag"/>
+  <t_customer_inquiryColName field="customer_code"/>
+  <t_customer_inquiryColName field="customer_name"/>
+  <t_customer_inquiryColName field="ship_to_code"/>
+  <t_customer_inquiryColName field="ship_to_name"/>
+  <t_customer_inquiryColName field="department_name"/>
+  <t_customer_inquiryColName field="pic_name"/>
+  <t_customer_inquiryColName field="send_media_type"/>
+  <t_customer_inquiryColName field="fax_send_to_number"/>
+  <t_customer_inquiryColName field="email_address_to"/>
+  <t_customer_inquiryColName field="email_address_cc"/>
+  <t_customer_inquiryColName field="inquiry_reply_limit"/>
+  <t_customer_inquiryColName field="qt_expiration_date_time"/>
+  <t_customer_inquiryColName field="contact_id"/>
+  <t_customer_inquiryColName field="update_count"/>
+  <t_customer_inquiryColName field="delete_flag"/>
+  <t_customer_inquiryColName field="register_user_type"/>
+  <t_customer_inquiryColName field="register_user"/>
+  <t_customer_inquiryColName field="register_date_time"/>
+  <t_customer_inquiryColName field="register_program"/>
+  <t_customer_inquiryColName field="register_client_program"/>
+  <t_customer_inquiryColName field="update_user_type"/>
+  <t_customer_inquiryColName field="update_user"/>
+  <t_customer_inquiryColName field="update_date_time"/>
+  <t_customer_inquiryColName field="update_program"/>
+  <t_customer_inquiryColName field="update_client_program"/>
+</dataset>

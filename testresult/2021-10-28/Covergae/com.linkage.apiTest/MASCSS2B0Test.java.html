@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MASCSS2B0Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.apiTest</a> &gt; <span class="el_source">MASCSS2B0Test.java</span></div><h1>MASCSS2B0Test.java</h1><pre class="source lang-java linenums">package com.linkage.apiTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;Example機能確認&quot;)
+@DisplayName(&quot;Example機能確認&quot;)
+<span class="nc" id="L15">public class MASCSS2B0Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MASCSS2B0&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MASCSS2B0&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/internal/v1/data-upload/register;;データアップロード登録API;;1-----/internal/v1/ul-purpose-data-download/save;;UL用/UL結果データダウンロード登録・更新API;;1-----/internal/v1/data-upload/save;;データアップロード_ステータス更新API;;1-----/v1/gw-stop-shipment/reference;;出荷・出荷不可参照API;;1-----/v1/gw-stop-shipment/save;;出荷不可_入力更新API;;1-----/v1/file/upload;;汎用ファイルアップロードAPI（DL用ファイル）;;1-----/v1/subsidiary/get;;現法マスタ参照API;;1&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	public void testMASCSS2B0_001() throws Exception {
+
+<span class="nc" id="L40">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MASCSS2B0/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_PROCESS_PARAMETER → データクリア・挿入 */
+<span class="nc" id="L44">		rakurakuCore.operateDBPrepare(&quot;C_PROCESS_PARAMETER&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → temporary_files → データクリア・挿入 */
+<span class="nc" id="L47">		rakurakuCore.operateDBPrepare(&quot;temporary_files&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/data-upload/register → データアップロード登録API */
+<span class="nc" id="L50">		rakurakuCore.operateMockApi(&quot;/internal/v1/data-upload/register&quot;, &quot;データアップロード登録API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ul-purpose-data-download/save → UL用/UL結果データダウンロード登録・更新API */
+<span class="nc" id="L53">		rakurakuCore.operateMockApi(&quot;/internal/v1/ul-purpose-data-download/save&quot;, &quot;UL用/UL結果データダウンロード登録・更新API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/data-upload/save → データアップロード_ステータス更新API */
+<span class="nc" id="L56">		rakurakuCore.operateMockApi(&quot;/internal/v1/data-upload/save&quot;, &quot;データアップロード_ステータス更新API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷・出荷不可参照API */
+<span class="nc" id="L59">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷・出荷不可参照API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可_入力更新API */
+<span class="nc" id="L62">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可_入力更新API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/file/upload → 汎用ファイルアップロードAPI（DL用ファイル） */
+<span class="nc" id="L65">		rakurakuCore.operateMockApi(&quot;/v1/file/upload&quot;, &quot;汎用ファイルアップロードAPI（DL用ファイル）&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L68">		rakurakuCore.operateMockApi(&quot;/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/stop-shipment/upload → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-client-program=12345&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a56&amp;&amp;language_code=JPN&amp;&amp;subsidiary_code=JPN → UserLoginInfo */
+<span class="nc" id="L71">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/stop-shipment/upload&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-client-program=12345&amp;&amp;Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a56&amp;&amp;language_code=JPN&amp;&amp;subsidiary_code=JPN&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS2B0\\MALSCSS2B0.json&quot;);</span>
+
+		/* 操作(DB確認) → C_PROCESS_PARAMETER → NOT_ASSERT_COLUMN */
+<span class="nc" id="L74">		rakurakuCore.operateDBConfirm(&quot;C_PROCESS_PARAMETER&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → temporary_files → NOT_ASSERT_COLUMN */
+<span class="nc" id="L77">		rakurakuCore.operateDBConfirm(&quot;temporary_files&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L79">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

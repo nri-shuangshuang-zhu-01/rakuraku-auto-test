@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_COUNTColName field="subsidiary_code"/>
+  <T_SHIPMENT_COUNTColName field="ginner_code"/>
+  <T_SHIPMENT_COUNTColName field="plant_code"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count1"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count2"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count3"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count4"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count5"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count6"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count7"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count8"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count9"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count10"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count11"/>
+  <T_SHIPMENT_COUNTColName field="shipment_count12"/>
+  <T_SHIPMENT_COUNTColName field="update_count"/>
+  <T_SHIPMENT_COUNTColName field="delete_flag"/>
+  <T_SHIPMENT_COUNTColName field="register_user_type"/>
+  <T_SHIPMENT_COUNTColName field="register_user"/>
+  <T_SHIPMENT_COUNTColName field="register_date_time"/>
+  <T_SHIPMENT_COUNTColName field="register_program"/>
+  <T_SHIPMENT_COUNTColName field="register_client_program"/>
+  <T_SHIPMENT_COUNTColName field="update_user_type"/>
+  <T_SHIPMENT_COUNTColName field="update_user"/>
+  <T_SHIPMENT_COUNTColName field="update_date_time"/>
+  <T_SHIPMENT_COUNTColName field="update_program"/>
+  <T_SHIPMENT_COUNTColName field="update_client_program"/>
+</dataset>

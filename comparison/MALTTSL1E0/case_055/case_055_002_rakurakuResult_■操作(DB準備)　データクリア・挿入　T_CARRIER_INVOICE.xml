@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_CARRIER_INVOICE subsidiary_code='JPN' global_number='CA000032000086' create_date='2021-09-09' carrier_invoice_number='001@a' program_type='c' internal_external_type='0' PLANT_CODE='0   ' vsd='2021-09-09' PACKING_CONTROL_NUMBER='0              ' SHIPMODE_CODE='0' QTY='4' UPDATE_COUNT='0' DELETE_FLAG='0' REGISTER_USER_TYPE='0' REGISTER_USER='0' REGISTER_DATE_TIME='2021-09-09' REGISTER_PROGRAM='0' REGISTER_CLIENT_PROGRAM='0' UPDATE_USER_TYPE='0' UPDATE_USER='0' UPDATE_DATE_TIME='2021-09-09' UPDATE_PROGRAM='0' UPDATE_CLIENT_PROGRAM='0' />
+</dataset>

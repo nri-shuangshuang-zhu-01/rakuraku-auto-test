@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultRepaintShipmentRecordPoolPlantService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultRepaintShipmentRecordPoolPlantService.java</span></div><h1>DefaultRepaintShipmentRecordPoolPlantService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.fw.core.util.StringUtil;
+import jp.co.misumi.replenishstock.domain.client.DeliveryDestinationInternalClient;
+import jp.co.misumi.replenishstock.domain.client.PlantInternalClient;
+import jp.co.misumi.replenishstock.domain.client.StockSettingInternalClient;
+import jp.co.misumi.replenishstock.domain.entity.RepaintPlantResponseEntity;
+import jp.co.misumi.replenishstock.domain.entity.RepaintShipmentRecordPoolPlantEntity;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.PlantInternalV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.SearchPlantInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.DeliveryDestinationInternalV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.SearchDeliveryDestinationInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.GetStockSettingInternalResponseV1;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.MessageSource;
+import org.springframework.util.CollectionUtils;
+
+/**
+ * DefaultDeleteWeeklyReorderPointDemandForecastDataService.
+ *
+ * &lt;p&gt;coding by LKG欧
+ *
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+public class DefaultRepaintShipmentRecordPoolPlantService
+    implements RepaintShipmentRecordPoolPlantService {
+  private final Log log = LogFactory.getLog(DefaultRepaintShipmentRecordPoolPlantService.class);
+  private final DeliveryDestinationInternalClient deliveryDestinationInternalClient;
+  private final PlantInternalClient plantInternalClient;
+  private final StockSettingInternalClient stockSettingInternalClient;
+<span class="fc" id="L47">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L48">      MessageLoggerFactory.getLogger(DefaultRepaintShipmentRecordPoolPlantService.class);</span>
+  private final MessageSource messageSource;
+
+  /**
+   * 呼び出し元のPOOLデータ論理置場塗替え・集計処理で設定されたパラメータをもとに、各種マスタを検索して論理置場コードを設定し、その値を呼び出し元の処理へ返却する.
+   *
+   * @param repaintPoolPlantEntity 出荷実績POOL置場塗り替え
+   * @return 処理結果
+   */
+  @Override
+  public RepaintPlantResponseEntity repaintShipmentRecordPoolPlant(
+      RequestContext context, RepaintShipmentRecordPoolPlantEntity repaintPoolPlantEntity)
+      throws BusinessException {
+<span class="fc" id="L61">    log.info(&quot;出荷実績POOL置場塗り替えバッチが開始しました&quot;);</span>
+<span class="fc" id="L62">    RepaintPlantResponseEntity responseEntity = new RepaintPlantResponseEntity();</span>
+<span class="fc" id="L63">    String resultPlant = null;</span>
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    if (repaintPoolPlantEntity.getImplementDiv().equals(ReplenishStockConstants.STRING_1)) {</span>
+      // 実施区分が「&quot;1&quot;:処理内容1を実施」の場合
+<span class="fc" id="L67">      RepaintShipmentRecordPoolPlantEntity responsePoolPlantEntity =</span>
+<span class="fc" id="L68">          implementDivOfFirst(context, repaintPoolPlantEntity);</span>
+<span class="fc" id="L69">      responseEntity.setDeliMap(responsePoolPlantEntity.getDeliMap());</span>
+<span class="fc" id="L70">      responseEntity.setPlantList(responsePoolPlantEntity.getPlantList());</span>
+<span class="fc" id="L71">      responseEntity.setRepaintAfterPlant(null);</span>
+
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">    } else if (repaintPoolPlantEntity.getImplementDiv().equals(ReplenishStockConstants.STRING_2)) {</span>
+      // 実施区分が「&quot;2&quot;:処理内容2を実施」の場合
+<span class="fc" id="L75">      resultPlant = implementDivOfSecond(context, repaintPoolPlantEntity);</span>
+<span class="fc" id="L76">      responseEntity.setDeliMap(null);</span>
+<span class="fc" id="L77">      responseEntity.setPlantList(null);</span>
+<span class="fc" id="L78">      responseEntity.setRepaintAfterPlant(resultPlant);</span>
+    }
+
+<span class="fc" id="L81">    log.info(&quot;出荷実績POOL置場塗り替えバッチ処理が正常終了しました&quot;);</span>
+
+<span class="fc" id="L83">    return responseEntity;</span>
+  }
+
+  /**
+   * 実施区分が「&quot;1&quot;:処理内容1を実施」の場合.
+   *
+   * @param repaintPoolPlantEntity 出荷実績POOL置場塗り替え
+   * @return 処理結果
+   */
+  private RepaintShipmentRecordPoolPlantEntity implementDivOfFirst(
+      RequestContext context, RepaintShipmentRecordPoolPlantEntity repaintPoolPlantEntity)
+      throws BusinessException {
+    // 2-1. 納入先マスタを検索する。
+<span class="fc" id="L96">    SearchDeliveryDestinationInternalResponseV1 searchDeliveryResponse = null;</span>
+    try {
+<span class="fc" id="L98">      searchDeliveryResponse =</span>
+<span class="fc" id="L99">          deliveryDestinationInternalClient.searchDeliveryDestinationInternalV1(context);</span>
+<span class="fc" id="L100">    } catch (Exception e) {</span>
+<span class="fc" id="L101">      log.info(&quot;出荷実績POOL置場塗り替えバッチの納入先マスタを検索が異常に終了しました&quot;);</span>
+<span class="fc" id="L102">      messageLogger.log(messageSource, ReplenishStockMessages.BIRB0210002E, e);</span>
+<span class="fc" id="L103">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRB0210002E, null);</span>
+<span class="fc" id="L104">    }</span>
+
+    // 2-2.現法コード、納入先区分で 集計し、件数が1件となるレコードのみを取得対象とする。
+<span class="fc" id="L107">    List&lt;DeliveryDestinationInternalV1&gt; repaintPoolPlantDetails = null;</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">    if (!CollectionUtils.isEmpty(searchDeliveryResponse.getDeliveryDestinationInternalV1List())) {</span>
+<span class="fc" id="L109">      repaintPoolPlantDetails = searchDeliveryResponse.getDeliveryDestinationInternalV1List();</span>
+<span class="fc" id="L110">      repaintPoolPlantDetails = sortProcessing(repaintPoolPlantDetails);</span>
+    }
+
+<span class="fc" id="L113">    Map&lt;String, String&gt; tempMap = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">    if (repaintPoolPlantDetails != null) {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">      for (DeliveryDestinationInternalV1 repaintPoolPlantDetail : repaintPoolPlantDetails) {</span>
+<span class="fc" id="L116">        tempMap.put(</span>
+<span class="fc" id="L117">            repaintPoolPlantDetail.getDeliveryDestinationType(),</span>
+<span class="fc" id="L118">            repaintPoolPlantDetail.getPlantCode());</span>
+<span class="fc" id="L119">      }</span>
+      // 2-3.取得された納入先マスタのマップを呼び出し元機能へ返却用変数にセットする。
+<span class="fc" id="L121">      repaintPoolPlantEntity.setDeliMap(tempMap);</span>
+    }
+    // 3-1.置場マスタを検索する。
+<span class="fc" id="L124">    SearchPlantInternalResponseV1 searchPlantResponseV1 = null;</span>
+    try {
+<span class="fc" id="L126">      searchPlantResponseV1 = plantInternalClient.searchPlantInternalV1(context);</span>
+<span class="fc" id="L127">    } catch (Exception e) {</span>
+<span class="fc" id="L128">      log.info(&quot;出荷実績POOL置場塗り替えバッチの置場マスタを検索が異常に終了しました&quot;);</span>
+<span class="fc" id="L129">      messageLogger.log(messageSource, ReplenishStockMessages.BIRB0210003E, e);</span>
+<span class="fc" id="L130">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRB0210003E, null);</span>
+<span class="fc" id="L131">    }</span>
+<span class="fc" id="L132">    List&lt;PlantInternalV1&gt; listPlantDetails = null;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">    if (!CollectionUtils.isEmpty(searchPlantResponseV1.getPlantInternalV1List())) {</span>
+<span class="fc" id="L134">      listPlantDetails = searchPlantResponseV1.getPlantInternalV1List();</span>
+    }
+<span class="fc" id="L136">    List&lt;String&gt; tempList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (listPlantDetails != null) {</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">      for (PlantInternalV1 listPlantDetail : listPlantDetails) {</span>
+<span class="fc" id="L139">        tempList.add(listPlantDetail.getPlantCode());</span>
+<span class="fc" id="L140">      }</span>
+    }
+    // 3-2.取得された置場マスタのリストを呼び出し元機能へ返却する。
+<span class="fc" id="L143">    repaintPoolPlantEntity.setPlantList(tempList);</span>
+
+<span class="fc" id="L145">    return repaintPoolPlantEntity;</span>
+  }
+
+  /**
+   * 実施区分が「&quot;2&quot;:処理内容2を実施」の場合.
+   *
+   * @param repaintPoolPlantEntity 出荷実績POOL置場塗り替え
+   * @return 処理結果
+   */
+  private String implementDivOfSecond(
+      RequestContext context, RepaintShipmentRecordPoolPlantEntity repaintPoolPlantEntity)
+      throws BusinessException {
+    // 5-2　処理起動パラメータ．商品納入先区分が入力されていない場合
+<span class="fc bfc" id="L158" title="All 2 branches covered.">    if (StringUtil.isEmpty(repaintPoolPlantEntity.getDeliveryDiv())) {</span>
+<span class="fc" id="L159">      return null;</span>
+    }
+    // 5-1　処理起動パラメータ．商品納入先区分が入力されている場合
+<span class="fc" id="L162">    GetStockSettingInternalResponseV1 getStockSettingInternalResponseV1 = null;</span>
+    try {
+<span class="fc" id="L164">      getStockSettingInternalResponseV1 =</span>
+<span class="fc" id="L165">          stockSettingInternalClient.getStockSettingInternalV1(</span>
+              context,
+<span class="fc" id="L167">              repaintPoolPlantEntity.getGinnerCode(),</span>
+<span class="fc" id="L168">              repaintPoolPlantEntity.getPlantCode());</span>
+<span class="fc" id="L169">    } catch (Exception e) {</span>
+<span class="fc" id="L170">      log.info(&quot;出荷実績POOL置場塗り替えバッチの在庫設定マスタを検索が異常に終了しました&quot;);</span>
+<span class="fc" id="L171">      messageLogger.log(messageSource, ReplenishStockMessages.BIRB0210004E, e);</span>
+<span class="fc" id="L172">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRB0210004E, null);</span>
+<span class="fc" id="L173">    }</span>
+    // 6.在庫設定マスタ検索
+    // 6-1　在庫設定マスタを検索する。
+<span class="fc bfc" id="L176" title="All 2 branches covered.">    if (getStockSettingInternalResponseV1.getStockSettingInternalV1() == null) {</span>
+      // 6-1-2　在庫設定マスタに検索結果が存在しない場合
+<span class="fc" id="L178">      return null;</span>
+    } else {
+      // 6-1-1　在庫設定マスタに検索結果が存在する場合 「納入先区分チェック」をおこなう。
+<span class="fc" id="L181">      return checkDeliveryDdestinationType(</span>
+          repaintPoolPlantEntity, getStockSettingInternalResponseV1);
+    }
+  }
+
+  /**
+   * 納入先区分チェック.
+   *
+   * @param repaintPoolPlantEntity 出荷実績POOL置場塗り替え
+   * @param getStockSettingInternalResponseV1 在庫設定情報取得APIのレスポンス電文
+   * @return 処理結果
+   */
+  private String checkDeliveryDdestinationType(
+      RepaintShipmentRecordPoolPlantEntity repaintPoolPlantEntity,
+      GetStockSettingInternalResponseV1 getStockSettingInternalResponseV1) {
+<span class="fc" id="L196">    String repaintAfterPlant = null;</span>
+    String afterPlant;
+    // 7.納入先区分チェック
+<span class="fc bfc" id="L199" title="All 2 branches covered.">    if (repaintPoolPlantEntity.getDeliMap().containsKey(repaintPoolPlantEntity.getDeliveryDiv())) {</span>
+      // 7-1　処理起動パラメータ．商品納入先区分　＝　納入先リスト処理起動パラメータ.納入先マップ．納入先区分となる処理起動パラメータ.納入先リストマップのレコードが存在する場合
+<span class="fc" id="L201">      if (getStockSettingInternalResponseV1</span>
+<span class="fc" id="L202">          .getStockSettingInternalV1()</span>
+<span class="fc" id="L203">          .getPlantCode()</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">          .equals(</span>
+<span class="fc" id="L205">              repaintPoolPlantEntity.getDeliMap().get(repaintPoolPlantEntity.getDeliveryDiv()))) {</span>
+        // 7-1-1　在庫設定マスタ．置場コード　＝　該当した納入先マップ．置場コード　となるレコードが存在する場合
+        // 7-1-1-1　内部変数．塗り替え後置場　＝　該当した納入先マップ．置場コード　とする。
+<span class="fc" id="L208">        repaintAfterPlant = repaintPoolPlantEntity.getDeliveryDiv();</span>
+        // 7-1-1-2　「10.終了処理」をおこなう。
+<span class="fc" id="L210">        return repaintAfterPlant;</span>
+      } else {
+        // 7-1-2　在庫設定マスタ．MC/置場コード　＝　該当した.納入先リストマップ．MC/置場コード　となるレコードが存在しない場合
+        // 7-1-2-1　内部変数．塗り替え後置場　＝　NULL　とする。
+<span class="fc" id="L214">        return null;</span>
+      }
+    } else {
+      // 7-2　7-1以外の場合
+<span class="fc bfc" id="L218" title="All 2 branches covered.">      if (repaintPoolPlantEntity.getProcessType().equals(&quot;0&quot;)) {</span>
+        // 7-2-1　月次POOLデータ論理置場塗替え・集計処理以外から呼び出し または 対象現法 ≠ &quot;MJP&quot; の場合（処理起動パラメータ.処理区分＝0:共通）
+        // 7-2-1-1　内部変数．仮置場　＝　処理起動パラメータ．論理置場　とする。
+<span class="fc" id="L221">        afterPlant = repaintPoolPlantEntity.getPlantCode();</span>
+        // 7-2-1-2　「9.置場コードチェック」をおこなう。
+<span class="fc" id="L223">        return checkPlantCode(</span>
+            repaintPoolPlantEntity, getStockSettingInternalResponseV1, afterPlant);
+      }
+    }
+<span class="fc" id="L227">    return null;</span>
+  }
+
+  /**
+   * 置場コードチェック.
+   *
+   * @param repaintPoolPlantEntity 出荷実績POOL置場塗り替え
+   * @param getStockSettingInternalResponseV1 在庫設定情報取得APIのレスポンス電文
+   * @param afterPlant 内部変数．仮置場
+   * @return 処理結果
+   */
+  private String checkPlantCode(
+      RepaintShipmentRecordPoolPlantEntity repaintPoolPlantEntity,
+      GetStockSettingInternalResponseV1 getStockSettingInternalResponseV1,
+      String afterPlant) {
+<span class="fc" id="L242">    String repaintAfterPlant = null;</span>
+    // 9.置場コードチェック
+<span class="fc" id="L244">    if (getStockSettingInternalResponseV1</span>
+<span class="fc" id="L245">        .getStockSettingInternalV1()</span>
+<span class="fc" id="L246">        .getPlantCode()</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        .equals(afterPlant)) {</span>
+      // 9-1　在庫設定マスタ．置場コード　＝　内部変数．仮置場　となるレコードが存在する場合
+      // 9-1-1　内部変数．塗り替え後置場　＝　内部変数．仮置場　とする。
+<span class="fc" id="L250">      repaintAfterPlant = afterPlant;</span>
+<span class="fc" id="L251">      return repaintAfterPlant;</span>
+    }
+    // 9-2　起動パラメータ．置場リストの全レコードに対し、以下の処理をリストの先頭から順番に実行する。
+    // 9-2-1　置場リスト．置場コード　＝　在庫設定マスタ．置場コード　となるレコードが存在する場合
+<span class="fc" id="L255">    List&lt;String&gt; plantList = repaintPoolPlantEntity.getPlantList();</span>
+<span class="fc bfc" id="L256" title="All 2 branches covered.">    for (String plantCd : plantList) {</span>
+<span class="fc" id="L257">      if (getStockSettingInternalResponseV1</span>
+<span class="fc" id="L258">          .getStockSettingInternalV1()</span>
+<span class="fc" id="L259">          .getPlantCode()</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">          .equals(plantCd)) {</span>
+        // 9-2-1-1　内部変数．塗り替え後置場　＝　置場リスト．置場コード　とする。
+<span class="fc" id="L262">        repaintAfterPlant = plantCd;</span>
+<span class="fc" id="L263">        return repaintAfterPlant;</span>
+      }
+<span class="fc" id="L265">    }</span>
+    // 　9-3　内部変数．塗り替え後置場　＝　NULL　とする。
+<span class="fc" id="L267">    return null;</span>
+  }
+
+  /**
+   * 2-2処理部分.
+   *
+   * @param list 並ぶLIST
+   * @return sortProcessing.
+   */
+  public List&lt;DeliveryDestinationInternalV1&gt; sortProcessing(
+      List&lt;DeliveryDestinationInternalV1&gt; list) {
+<span class="fc" id="L278">    Map&lt;DeliveryDestinationInternalV1, Integer&gt; ddInternalMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L279">    Map&lt;String, DeliveryDestinationInternalV1&gt; map = new LinkedHashMap&lt;&gt;();</span>
+
+    // 並ぶLISTをMAPに設定する
+<span class="fc bfc" id="L282" title="All 2 branches covered.">    for (DeliveryDestinationInternalV1 delivery : list) {</span>
+<span class="fc" id="L283">      String typeKey = delivery.getDeliveryDestinationType() + delivery.getSubsidiaryCode();</span>
+<span class="fc" id="L284">      DeliveryDestinationInternalV1 deliverDestination = map.get(typeKey);</span>
+<span class="fc bfc" id="L285" title="All 2 branches covered.">      if (deliverDestination == null) {</span>
+        // 　MAPになければ、設定する
+<span class="fc" id="L287">        deliverDestination = new DeliveryDestinationInternalV1();</span>
+<span class="fc" id="L288">        deliverDestination.setDeliveryDestinationType(delivery.getDeliveryDestinationType());</span>
+<span class="fc" id="L289">        deliverDestination.setDeliveryDestinationTypeName(</span>
+<span class="fc" id="L290">            delivery.getDeliveryDestinationTypeName());</span>
+<span class="fc" id="L291">        deliverDestination.setPlantCode(delivery.getPlantCode());</span>
+<span class="fc" id="L292">        deliverDestination.setSubsidiaryCode(delivery.getSubsidiaryCode());</span>
+<span class="fc" id="L293">        map.put(typeKey, deliverDestination);</span>
+<span class="fc" id="L294">        ddInternalMap.put(deliverDestination, ReplenishStockConstants.INT_1);</span>
+      } else {
+        // 　もしMAPに存在したら　+１
+        for (Map.Entry&lt;DeliveryDestinationInternalV1, Integer&gt; ddInternalV1 :
+<span class="fc bfc" id="L298" title="All 2 branches covered.">            ddInternalMap.entrySet()) {</span>
+<span class="fc" id="L299">          if (delivery</span>
+<span class="fc" id="L300">                  .getDeliveryDestinationType()</span>
+<span class="pc bpc" id="L301" title="1 of 2 branches missed.">                  .equals(ddInternalV1.getKey().getDeliveryDestinationType())</span>
+<span class="pc bpc" id="L302" title="1 of 2 branches missed.">              &amp;&amp; delivery.getSubsidiaryCode().equals(ddInternalV1.getKey().getSubsidiaryCode())) {</span>
+<span class="fc" id="L303">            ddInternalV1.setValue(ddInternalV1.getValue() + ReplenishStockConstants.INT_1);</span>
+          }
+<span class="fc" id="L305">        }</span>
+      }
+<span class="fc" id="L307">    }</span>
+<span class="fc" id="L308">    List&lt;DeliveryDestinationInternalV1&gt; deliveryDestinationInternalV1 = new ArrayList&lt;&gt;();</span>
+
+    // 件数は１件の場合（getDeliveryDestinationTypeCount）、deliveryDestinationInternalV1に設定する
+<span class="fc bfc" id="L311" title="All 2 branches covered.">    for (Map.Entry&lt;DeliveryDestinationInternalV1, Integer&gt; delivery : ddInternalMap.entrySet()) {</span>
+<span class="fc bfc" id="L312" title="All 2 branches covered.">      if (ReplenishStockConstants.INT_1.equals(delivery.getValue())) {</span>
+<span class="fc" id="L313">        deliveryDestinationInternalV1.add(delivery.getKey());</span>
+      }
+<span class="fc" id="L315">    }</span>
+
+<span class="fc" id="L317">    return deliveryDestinationInternalV1;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

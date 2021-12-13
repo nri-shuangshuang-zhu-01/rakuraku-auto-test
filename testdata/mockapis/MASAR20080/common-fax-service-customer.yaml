@@ -1,0 +1,580 @@
+openapi: 3.0.0
+info:
+  title: システム管理 FAX API
+  description: |-
+    システム管理として、システムが行うFAX送信を本APIを介して現法FAXサーバーに連携する。
+    また、FAX送受信の記録を保存し、情報の参照を行う。
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:3000/common-fax'
+    description: ApigeeでのAPI公開URL
+security: []
+tags:
+  - name: Fax
+paths:
+  /v1/fax/search:
+    post:
+      summary: A1 検索(受信/送信)
+      tags:
+        - Fax
+      x-subsidiary: TIW
+      x-channel: customer
+      operationId: searchFaxV1
+      description: |-
+        指定された条件に該当する受信/送信FAX情報を検索する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NFX00000008E：送受信種別／状況 書式チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchFaxRequestV1'
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchFaxResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /v1/fax/find:
+    get:
+      summary: A2 詳細情報取得(受信/送信)
+      tags:
+        - Fax
+      x-subsidiary: TIW
+      x-channel: customer
+      operationId: findFaxV1
+      description: |-
+        指定されたFAX IDに該当する受信/送信FAXの詳細情報を取得する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NFX00000008E：送受信種別 書式チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: '#/components/parameters/sendReceiveType'
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: FAX ID
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/FindFaxResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /v1/fax/receive:
+    post:
+      summary: A3 FAX情報登録(受信)
+      tags:
+        - Fax
+      x-subsidiary: TIW
+      x-channel: customer
+      operationId: receiveFaxV1
+      description: |-
+        連携された受信FAX情報・FAXファイルを登録する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+        - N0000000004E：構文構造エラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReceiveFaxRequestV1'
+        description: ''
+      responses:
+        '200':
+          $ref: '#/components/responses/ReceiveFaxResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /v1/fax/send:
+    post:
+      summary: A4 FAX送信
+      tags:
+        - Fax
+      x-subsidiary: TIW
+      x-channel: customer
+      operationId: sendFaxV1
+      description: |-
+        連携されたFAX送信情報・FAXファイルを登録する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NFX00000007E：冪等性キー 必須チェックエラー
+        - NFX00000008E：FAX送信種別／送信情報 書式チェックエラー
+        - NFX00500001E：冪等性キー 整合性チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendFaxRequestV1'
+            examples:
+              example-1:
+                value:
+                  faxSendType: string
+                  fileId: string
+                  sendInfo: string
+      responses:
+        '200':
+          $ref: '#/components/responses/SendFaxResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /v1/fax/download:
+    get:
+      summary: A5 ファイル取得(受信/送信)
+      tags:
+        - Fax
+      x-subsidiary: TIW
+      x-channel: customer
+      operationId: downloadFaxV1
+      description: |-
+        指定された条件に該当する受信/送信FAXファイルを取得する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NFX00000017E：ファイルID 存在チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - in: query
+          name: fileId
+          schema:
+            type: string
+          required: true
+          description: ファイルID
+      responses:
+        '200':
+          $ref: '#/components/responses/DownloadFaxResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /v1/fax/remove:
+    post:
+      summary: A6 FAX情報削除(送信/受信)
+      tags:
+        - Fax
+      x-subsidiary: TIW
+      x-channel: customer
+      operationId: removeFaxV1
+      description: |-
+        指定された条件に該当する送信FAX情報・FAXファイルを削除する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NFX00000008E：送受信種別 書式チェックエラー
+        - NFX00000017E：FAXID 存在チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveFaxRequestV1'
+        description: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /v1/fax/upload:
+    post:
+      summary: A8 ファイルアップロード(送信)
+      tags:
+        - Fax
+      x-subsidiary: TIW
+      x-channel: customer
+      operationId: uploadFaxV1
+      description: |
+        指定されたFAX送信用ファイルをアップロードする。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+        - N0000000004E：構文構造エラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              format: binary
+              description: ''
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 送信ファイル
+              required:
+                - file
+        description: ''
+      responses:
+        '200':
+          $ref: '#/components/responses/UploadFaxResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    SearchFaxRequestV1:
+      description: FAX「A1 検索API」リクエストボディ
+      type: object
+      title: SearchFaxRequestV1
+      properties:
+        sendReceiveType:
+          type: integer
+          description: |-
+            送受信種別。 
+            * 0 - 受信 
+            * 1 - 送信
+          minimum: 0
+          maximum: 1
+        faxNumber:
+          type: string
+          description: |-
+            FAX番号
+            ※受信の場合は送信元、送信の場合は送信先の電話番号
+        createDateTimeFrom:
+          type: string
+          description: '作成日時(FROM)[YYYY-mm-DDTHH:MM:SS]'
+          format: date-time
+        createDateTimeTo:
+          type: string
+          description: '作成日時(TO)[YYYY-mm-DDTHH:MM:SS]'
+          format: date-time
+        asyncStartTime:
+          type: string
+          description: |-
+            非同期処理開始時間[YYYY-mm-DDTHH:MM:SS]
+            ※FAX送信検索のみ有効
+          format: date-time
+        asyncEndTime:
+          type: string
+          description: |-
+            非同期処理終了時間[YYYY-mm-DDTHH:MM:SS]
+            ※FAX送信検索のみ有効
+          format: date-time
+        status:
+          type: integer
+          description: |-
+            FAX送信の処理状況。※FAX送信の検索のみ有効。
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 9 - 異常終了
+      required:
+        - sendReceiveType
+    ReceiveFaxRequestV1:
+      title: ReceiveFaxRequestV1
+      type: object
+      description: FAX「A3 情報登録API」リクエストボディ
+      properties:
+        file:
+          type: string
+          description: |-
+            受信ファイル
+            ※TIFFファイル
+          format: binary
+      required:
+        - file
+    SendFaxRequestV1:
+      title: SendFaxRequestV1
+      type: object
+      description: FAX「A4 送信API」リクエストボディ
+      properties:
+        faxSendType:
+          type: string
+          description: |-
+            FAX送信種別
+             * 0 - G標準
+          pattern: '^[a-zA-Z0-9]+$'
+        fileId:
+          type: string
+          description: ファイルID
+        sendInfo:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: |-
+            送信情報
+            帳票種類 + '_' + 現法コード + '_' + QT/SO番号 + '_' + 顧客コード + '_' + FAX番号 + '$' + YYYYMMDD + '.' + HH24MISS + '.' + 登録ユーザID
+            ※QT/SO番号がない場合は '99999999999' を設定する。
+            ※拡張子「.pdf」は付けない
+            ※例. QT_SH2_CQ1234567810_C00001_0532-85635957$20121019.10511801.JP1234
+      required:
+        - faxSendType
+        - fileId
+        - sendInfo
+    RemoveFaxRequestV1:
+      description: FAX「A6 FAX情報削除API」リクエストボディ
+      type: object
+      title: RemoveFaxRequestV1
+      properties:
+        id:
+          type: string
+          description: FAX ID
+        sendReceiveType:
+          type: integer
+          minimum: 0
+          maximum: 1
+          description: |
+            送受信種別
+             * 0 - 受信
+             * 1 - 送信
+      required:
+        - id
+        - sendReceiveType
+    SearchFaxResponseV1:
+      title: SearchFaxResponseV1
+      type: object
+      description: FAX「A1 検索API」レスポンスボディ
+      properties:
+        id:
+          type: array
+          description: FAX Id
+          items:
+            type: string
+    FindFaxResponseV1:
+      description: FAX「A2 詳細情報取得API」レスポンスボディ
+      type: object
+      title: FindFaxResponseV1
+      properties:
+        createDateTime:
+          type: string
+          description: '作成日時[YYYY-MM-DDTHH:MM:SS̟±HH:MM]'
+          format: zoned-date-time
+        faxNumber:
+          type: string
+          description: FAX番号
+        fileName:
+          type: string
+          maxLength: 200
+          minLength: 1
+          description: ファイル名
+        asyncStartTime:
+          type: string
+          description: |-
+            非同期処理開始時間[YYYY-MM-DDTHH:MM:SS̟±HH:MM]
+            ※FAX送信の詳細情報取得のみ有効。
+          format: zoned-date-time
+        asyncEndTime:
+          type: string
+          description: |-
+            非同期処理終了時間[YYYY-mm-ddTHH:MM:SS±HH:MM]
+            ※FAX送信の詳細情報取得のみ有効。
+          format: zoned-date-time
+        status:
+          type: integer
+          description: |-
+            FAX送信の処理状況
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 9 - 異常終了
+            ※FAX送信の詳細情報取得のみ有効。
+        originalFileId:
+          type: string
+          description: ファイルID（TIFF/PDF形式）
+        fileId:
+          type: array
+          description: |-
+            ファイルID（PNG形式）
+            ※ページ順に先頭からファイルIDが設定されます。
+          items:
+            type: string
+      required:
+        - createDateTime
+        - faxNumber
+        - fileName
+    ReceiveFaxResponseV1:
+      title: ReceiveFaxResponseV1
+      type: object
+      description: FAX「A3 情報登録API」レスポンスボディ
+      properties:
+        id:
+          type: string
+          description: FAX ID
+      required:
+        - id
+    SendFaxResponseV1:
+      title: SendFaxResponseV1
+      type: object
+      description: FAX「A4 FAX送信API」レスポンスボディ
+      properties:
+        id:
+          type: string
+          description: 送信FAXID
+      required:
+        - id
+    UploadFaxResponseV1:
+      title: UploadFaxResponseV1
+      type: object
+      description: FAX「A8 ファイルアップロードAPI」レスポンスボディ
+      properties:
+        fileId:
+          type: string
+          description: ファイルID
+  parameters:
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 10
+        format: int32
+      description: 一度の検索で取得する最大件数
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 0
+        format: int32
+      description: 検索結果の取得開始位置
+    sendReceiveType:
+      name: sendReceiveType
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 1
+      description: 送受信種別。 * 0 - 受信 * 1 - 送信
+  responses:
+    SearchFaxResponseV1:
+      description: FAX「A1 検索API」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/SearchFaxResponseV1'
+    FindFaxResponseV1:
+      description: FAX「A2 詳細情報取得API」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/FindFaxResponseV1'
+    ReceiveFaxResponseV1:
+      description: FAX「A3 情報登録API」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/ReceiveFaxResponseV1'
+    DownloadFaxResponseV1:
+      description: FAX「A5 ファイル取得」レスポンス
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+            description: FAXファイル
+      headers:
+        Content-Disposition:
+          schema:
+            type: string
+          description: attachment; filename="*"
+    UploadFaxResponseV1:
+      description: FAX「A8 ファイルアップロードAPI」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/UploadFaxResponseV1'
+    SendFaxResponseV1:
+      description: Example response
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/SendFaxResponseV1'
+          examples:
+            '1':
+              id: string
+    ErrorResponse:
+      description: エラーレスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: ../../common-spec/common-spec.yaml#/components/schemas/Error1

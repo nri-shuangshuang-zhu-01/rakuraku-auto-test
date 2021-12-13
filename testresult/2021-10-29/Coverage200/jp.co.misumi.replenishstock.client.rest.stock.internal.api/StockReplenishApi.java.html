@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StockReplenishApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.stock.internal.api</a> &gt; <span class="el_source">StockReplenishApi.java</span></div><h1>StockReplenishApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.stock.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.stock.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CancelStockReplenishRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CancelStockReplenishResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.ChangeStockReplenishRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.ChangeStockReplenishResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CompleteStockReplenishRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CompleteStockReplenishResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.Error1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:22.851771600+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.stock.internal.api.StockReplenishApi&quot;)
+public class StockReplenishApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L41">    public StockReplenishApi(ApiClient apiClient) {</span>
+<span class="fc" id="L42">        this.apiClient = apiClient;</span>
+<span class="fc" id="L43">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L46">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L50">        this.apiClient = apiClient;</span>
+<span class="nc" id="L51">    }</span>
+
+    /**
+     * 在庫補充取消API
+     * 在庫補充取消API（ID:MAMIV00032） 在庫の補充情報の取消を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫補充取消APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param cancelStockReplenishRequestV1 在庫補充取消APIリクエスト (optional)
+     
+     * @return CancelStockReplenishResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CancelStockReplenishResponseV1 cancelStockReplenishV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CancelStockReplenishRequestV1 cancelStockReplenishRequestV1) throws RestClientException {
+<span class="nc" id="L74">        return cancelStockReplenishV1WithHttpInfo(context, endpoint, additionalHeaderMap, fields, cancelStockReplenishRequestV1).getBody();</span>
+    }
+
+    /**
+     * 在庫補充取消API
+     * 在庫補充取消API（ID:MAMIV00032） 在庫の補充情報の取消を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫補充取消APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param cancelStockReplenishRequestV1 在庫補充取消APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CancelStockReplenishResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CancelStockReplenishResponseV1&gt; cancelStockReplenishV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CancelStockReplenishRequestV1 cancelStockReplenishRequestV1) throws RestClientException {
+<span class="nc" id="L98">        Object postBody = cancelStockReplenishRequestV1;</span>
+        
+<span class="nc" id="L100">        String path = apiClient.expandPath(&quot;/internal/v1/stock-replenish/cancel&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L102">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L103">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L104">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L105">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L107">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;fields&quot;, fields));</span>
+
+        
+
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L112">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L114">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L116">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L118">            });</span>
+        }
+
+<span class="nc" id="L121">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L124">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L125">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L128">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L130">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L132">        ParameterizedTypeReference&lt;CancelStockReplenishResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CancelStockReplenishResponseV1&gt;() {};</span>
+<span class="nc" id="L133">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 在庫補充変更API
+     * 在庫補充変更API（ID:MAMIV00031） 在庫の補充情報の変更を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫補充変更APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param changeStockReplenishRequestV1 在庫補充変更APIリクエスト (optional)
+     
+     * @return ChangeStockReplenishResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ChangeStockReplenishResponseV1 changeStockReplenishV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, ChangeStockReplenishRequestV1 changeStockReplenishRequestV1) throws RestClientException {
+<span class="nc" id="L156">        return changeStockReplenishV1WithHttpInfo(context, endpoint, additionalHeaderMap, fields, changeStockReplenishRequestV1).getBody();</span>
+    }
+
+    /**
+     * 在庫補充変更API
+     * 在庫補充変更API（ID:MAMIV00031） 在庫の補充情報の変更を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫補充変更APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param changeStockReplenishRequestV1 在庫補充変更APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;ChangeStockReplenishResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;ChangeStockReplenishResponseV1&gt; changeStockReplenishV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, ChangeStockReplenishRequestV1 changeStockReplenishRequestV1) throws RestClientException {
+<span class="nc" id="L180">        Object postBody = changeStockReplenishRequestV1;</span>
+        
+<span class="nc" id="L182">        String path = apiClient.expandPath(&quot;/internal/v1/stock-replenish/change&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L184">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L185">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L186">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L187">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L189">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;fields&quot;, fields));</span>
+
+        
+
+<span class="nc bnc" id="L193" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L194">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L196">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L198">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L200">            });</span>
+        }
+
+<span class="nc" id="L203">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L206">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L207">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L210">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L212">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L214">        ParameterizedTypeReference&lt;ChangeStockReplenishResponseV1&gt; returnType = new ParameterizedTypeReference&lt;ChangeStockReplenishResponseV1&gt;() {};</span>
+<span class="nc" id="L215">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 在庫補充API
+     * 在庫補充API（ID:MAMIV00030） 在庫の補充処理を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫補充APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param completeStockReplenishRequestV1 在庫補充APIリクエスト (optional)
+     
+     * @return CompleteStockReplenishResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CompleteStockReplenishResponseV1 completeStockReplenishV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CompleteStockReplenishRequestV1 completeStockReplenishRequestV1) throws RestClientException {
+<span class="nc" id="L238">        return completeStockReplenishV1WithHttpInfo(context, endpoint, additionalHeaderMap, fields, completeStockReplenishRequestV1).getBody();</span>
+    }
+
+    /**
+     * 在庫補充API
+     * 在庫補充API（ID:MAMIV00030） 在庫の補充処理を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫補充APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param completeStockReplenishRequestV1 在庫補充APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CompleteStockReplenishResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CompleteStockReplenishResponseV1&gt; completeStockReplenishV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CompleteStockReplenishRequestV1 completeStockReplenishRequestV1) throws RestClientException {
+<span class="nc" id="L262">        Object postBody = completeStockReplenishRequestV1;</span>
+        
+<span class="nc" id="L264">        String path = apiClient.expandPath(&quot;/internal/v1/stock-replenish/complete&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L266">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L267">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L268">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L269">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L271">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;fields&quot;, fields));</span>
+
+        
+
+<span class="nc bnc" id="L275" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L276">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L278">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L280">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L282">            });</span>
+        }
+
+<span class="nc" id="L285">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L288">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L289">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L292">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L294">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L296">        ParameterizedTypeReference&lt;CompleteStockReplenishResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CompleteStockReplenishResponseV1&gt;() {};</span>
+<span class="nc" id="L297">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,5 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SO_BALANCE_SUMMARY subsidiary_code='CHN' customer_code='1001  ' summary_date='2021-10-05' so_balance_amount='10000.000' update_count='0' delete_flag='0' register_user_type='Office' register_user='SMTP' register_date_time='2021-08-19 12:11:12.0' register_program='reg' register_client_program='rClient' update_user_type='Office' update_user='SMTP' update_date_time='2021-08-19 12:11:12.0' update_program='pro' update_client_program='cPro' />
+    <T_SO_BALANCE_SUMMARY subsidiary_code='JPN' customer_code='1002  ' summary_date='2021-10-06' so_balance_amount='10001.003' update_count='0' delete_flag='0' register_user_type='Office' register_user='SMTP' register_date_time='2021-08-21 14:11:11.0' register_program='reg' register_client_program='rClient' update_user_type='Office' update_user='SMTP' update_date_time='2021-08-21 14:11:11.0' update_program='pro' update_client_program='cPro' />
+</dataset>

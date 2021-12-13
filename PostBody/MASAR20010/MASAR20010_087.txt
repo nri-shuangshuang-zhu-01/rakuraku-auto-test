@@ -1,0 +1,31 @@
+{
+  "billToCode": "BILLTO",
+  "date": "Due",
+  "dateFrom": "20210607",
+  "dateTo": "20211010",
+  "incomingPaymentStatus": "1",
+  "level": "Dunning",
+  "dunningTitleLevel": "D",
+  "processingSection": "0",
+  "mainDepartmentCode": "ardp",
+  "tradeStatus": "TR",
+  "nonPaymentAmountExtractFrom": "800",
+  "nonPaymentAmountExtractTo": "30000",
+  "settlementMethodList": [
+    {
+      "settlementMethod": "SET"
+    }
+  ],
+  "paymentMeansList": [
+    {
+      "paymentMeans": "YM"
+    }
+  ],
+  "subsidiaryCode": "MJP",
+  "systemDate": "2021-09-16",
+  "sortField": "Bill to Code",
+  "sortOrder": "0",
+  "pageNumber": "2",
+  "displayCount": 1,
+  "responseType": "0"
+}

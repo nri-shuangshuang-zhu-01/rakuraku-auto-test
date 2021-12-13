@@ -1,0 +1,3682 @@
+openapi: 3.0.0
+info:
+  title: customer-service-internal
+  version: '1.0'
+  description: 顧客サービス用の Public API です。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000/customer'
+paths:
+  /v1/acceptance-group/search:
+    parameters: []
+    post:
+      summary: 検収グループ情報検索API
+      operationId: searchAcceptanceGroupInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAcceptanceGroupInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    acceptanceGroupInternalV1List:
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '860583'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          検収グループマスタ M_ACCEPTANCE_GROUP
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1'
+        description: 検収グループ情報検索APIのリクエスト電文
+      tags:
+        - AcceptanceGroupInternal
+      x-channel:
+        - Internal
+  /v1/acceptance-group/get:
+    get:
+      summary: 検収グループ情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAcceptanceGroupInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    acceptanceGroupInternalV1:
+                      subsidiaryCode: JKT
+                      acceptanceGroupCode: '860583'
+                      incomingPaymentGroupCode: '860582'
+                      acceptanceGroupNameNative: 精密
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getAcceptanceGroupInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          検収グループマスタ M_ACCEPTANCE_GROUP
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 6
+          in: query
+          name: acceptance_group_code
+          description: 検収グループコード
+          required: true
+      tags:
+        - AcceptanceGroupInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/bill-to/search:
+    post:
+      summary: 売掛先情報検索API
+      operationId: searchBillToInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchBillToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    billToInternalV1List:
+                      - subsidiaryCode: KOR
+                        billToCode: '558814'
+                        oldBillToCode: 'null'
+                        arMainDepartment: KA
+                        misumiPicCode: VO00
+                        billToNameNative: 심보선
+                        billToNameAbbreviationNative: 심보선
+                        billToNameNativeForSearchIndex: 심보선
+                        billToName: SHIM BO SEON
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '558814'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: KRW
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        fbStopType: '1'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalCollationAllowFlag: string
+                        fax: 'null'
+                        emailAddress: 'null'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchBillToInternalRequestV1'
+        description: 売掛先情報検索APIのリクエスト電文
+      tags:
+        - BillToInternal
+      x-channel:
+        - Internal
+  /v1/bill-to/get:
+    get:
+      summary: 売掛先情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBillToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    billToInternalV1:
+                      subsidiaryCode: KOR
+                      billToCode: '558814'
+                      oldBillToCode: 'null'
+                      arMainDepartment: KA
+                      misumiPicCode: VO00
+                      billToNameNative: 심보선
+                      billToNameAbbreviationNative: 심보선
+                      billToNameNativeForSearchIndex: 심보선
+                      billToName: SHIM BO SEON
+                      countryCode: '103'
+                      languageCode: KOR
+                      postalCode: 446-901
+                      address1Native: 경기도 용인시 기흥구 원고매로 12
+                      address2Native: (고매동) 리더스타워 6층
+                      address3Native: 엠케이에스코리아
+                      address4Native: 'null'
+                      address1: GYEONGGI YONGINSI GIHEUNGGU
+                      address2: WONGOMAERO12
+                      address3: 'null'
+                      address4: 'null'
+                      invoiceSendDestinationDepartmentNameNative: 'null'
+                      invoiceSendDestinationPicNative: 'null'
+                      tel: 031-8021-1344
+                      billToFax: 031-8005-9324
+                      dunningToFax: 031-8005-9324
+                      billToEmailAddressTo: bsshim@mksinst.com
+                      billToEmailAddressCc: dummy1
+                      dunningToEmailAddressTo: bsshim@mksinst.com
+                      dunningToEmailAddressCc: dummy2
+                      taxAccountStatementSendDestinationEmailAddress1: 'null'
+                      taxAccountStatementSendDestinationEmailAddress2: '0'
+                      tradeStopType: '0'
+                      serviceStopType: '0'
+                      acceptanceType: '0'
+                      acceptanceGroupCode: '558814'
+                      incoterms: DDP
+                      paymentTerms: Credit Card
+                      settlementMethod: CCD
+                      paymentMeans: '50'
+                      arClosingUnit: E
+                      arClosingDay: 31
+                      arPaymentMonth: 0
+                      arPaymentDate: 1
+                      arPaymentSiteFinal: 14
+                      arPaymentSiteEarlyPaymentDiscount: 0
+                      arEarlyIncomingPaymentDiscountRate: '0'
+                      transferFee: '0'
+                      customerAccountBankCode: 'null'
+                      customerAccountType: '0'
+                      customerAccountNumber: 'null'
+                      customerAccountNameNativeAllowed: 'null'
+                      transferAccountBankCode: 24106K
+                      transferAccountType: '1'
+                      transferAccountNumber: 140-003-465017
+                      transferAccountName: (주)한국미스미
+                      virtualAccountFlag: '0'
+                      notePayableConditionAmount: '0'
+                      notePayableConditionPaymentMonth: 0
+                      notePayableConditionPaymentDate: 1
+                      paymentSite: 0
+                      invoiceSendType: '0'
+                      invoiceViaType: '0'
+                      invoiceViaTypeChild: 'null'
+                      invoiceSendMedia: 'null'
+                      dunningLetterSendType: '1'
+                      dunningLetterSendMedia: AF
+                      productNamePrintFlag: '0'
+                      consumptionTaxMentionType: '0'
+                      inExTaxType: '0'
+                      ccyCode: KRW
+                      rateTypeCode: KKRM
+                      arDifficulty: 'null'
+                      governmentUniformInvoiceType: '0'
+                      companyRepresentativeNameNative: 'null'
+                      arRemarks1: 'null'
+                      arRemarks2: 'null'
+                      arRemarks3: 'null'
+                      arRemarks4: 'null'
+                      arRemarks5: 'null'
+                      invoiceRemarks1: 'null'
+                      invoiceRemarks2: 'null'
+                      invoiceRemarks3: 'null'
+                      invoiceRemarks4: 'null'
+                      gstPaymentPlace: 'null'
+                      departmentName: 'null'
+                      commissionerate: 'null'
+                      stopReasonCode: 'null'
+                      settlementMonth: 0
+                      settlementClosingDay: 0
+                      settlementSetting: '0'
+                      cityCode: 'null'
+                      invoiceOutputOrder: '0'
+                      zenginCode: '0'
+                      automaticTransferFlag: '0'
+                      depositType: '1'
+                      accountNumber: '1'
+                      depositorNameKana: '1'
+                      newCode: '1'
+                      automaticTransferRegisterDate: '2019-08-24'
+                      fbStopType: '1'
+                      userTransferBank: 'null'
+                      userTransferBranch: 'null'
+                      arQctBaseCode: 'null'
+                      closingDayFrontLoadingSettingType: '0'
+                      industryType: '0'
+                      channelType: '10'
+                      eachBillRegister: 'null'
+                      invoiceSlipOutputReportCode: 'null'
+                      invoiceSummaryFlag: 'null'
+                      customerStatementSendFlag: '1'
+                      customerStatementSendMediaType: '3'
+                      swiftCode: 'null'
+                      withdrawalCollationAllowFlag: string
+                      fax: 'null'
+                      emailAddress: 'null'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getBillToInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 6
+            example: '860583'
+            minLength: 6
+          in: query
+          name: bill_to_code
+          description: 売掛先コード
+          required: true
+      tags:
+        - BillToInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/user/search:
+    parameters: []
+    get:
+      summary: 会員情報検索API
+      operationId: searchUserInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchUserInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    userInternalV1List:
+                      - subsidiaryCode: CHN
+                        userCode: '1030684'
+                        customerCode: BOSCH9
+                        department: DEPTNAME
+                        departmentNative: NTVDEPTNAME
+                        userName: USERNAME
+                        userNameNative: NTVUSERNAME
+                        telNumber: 031-8021-1344
+                        fax: 031-8005-9324
+                        email: test@localhost.localdomain
+                        orderConfirmationEmailReceivableFlag: '0'
+                        emailMagazineReceivableFlag: '0'
+                        advanceShipmentNoticeEmailReceivableFlag: '0'
+                        basicInfoShipToCode: 'null'
+                        customerId: 12345678
+                        customerDbLoginId: WOS@1030684
+                        customerProductCodeAddFlag: '0'
+                        ccEmailAddress2: test@localhost.localdomain
+                        ccFlag2: '0'
+                        ccEmailAddress3: test@localhost.localdomain
+                        ccFlag3: '0'
+                        ccEmailRegisterExpiration: '2019-08-24T14:15:22Z'
+                        employeeCode: 'null'
+                        paymentMethodFlag: B
+                        shippingServiceCode: 'null'
+                        freightPaymentMethodType: 'null'
+                        shippingCompanyAccountNumber: 'null'
+                        registerCompleteFlag: '1'
+                        registerCompleteDate: '2019-08-24'
+                        languageCode: CHN
+                        passwordExpiration: '2019-08-24T14:15:22Z'
+                        productCodeCandidateDisplaySetting: '1'
+                        selectEnqueteAnswer1: '1'
+                        selectEnqueteAnswer2: '1'
+                        selectEnqueteAnswer3: '1'
+                        selectEnqueteAnswer4: '1'
+                        selectEnqueteAnswer5: '1'
+                        selectEnqueteAnswer6: '1'
+                        selectEnqueteAnswer7: '1'
+                        selectEnqueteAnswer8: '1'
+                        inputEnqueteAnswer1: 'null'
+                        inputEnqueteAnswer2: 'null'
+                        inputEnqueteAnswer3: 'null'
+                        creditLimitInfo: 'null'
+                        reflectionDateTime: '2019-08-24T14:15:22Z'
+                        customerCodeCustomerSystem: Waa
+                        errorDetailPdfDownloadFlag: '0'
+                        urlTransmissionFlag: '0'
+                        soQtSaveEnableFlag: '1'
+                        soQtSaveNoticeEmailFlag: '1'
+                        productCodeCorrectCandidateDisplaySettingFlag: '1'
+                        emailSendFormatType: '1'
+                        qtConfirmationEmailReceivableFlag: '1'
+                        wosTopPageFlag: '1'
+                        productImageHideFlag: '1'
+                        unitPriceDifferenceNoticeEmailReceivableFlag: '1'
+                        basicInfoShipmodeCode: abc
+                        basicInfoShippingMethodName: BASICSHIPPINGCARRIERNAME
+                        basicInfoPaymentMethodName: BASICPAYMENTMETHODNAME
+                        provisoHideFlag: '1'
+                        optInEmail: '0'
+                        optInTel: '0'
+                        optInSms: '0'
+                        optInFax: '0'
+                        optInVisit: '0'
+                        optInPdm: '0'
+                        optInReserve1: '0'
+                        optInReserve2: '0'
+                        optInReserve3: '0'
+                        optInReserve4: '0'
+                        optInConfirmationDate: '2019-08-24'
+                        lastLoginDate: '2019-08-24T14:15:22Z'
+                        enableBankTransferFlag: '1'
+                        enableCashOnDeliveryFlag: '1'
+                        enableCreditCardFlag: '1'
+                        enableOnlineSettlementFlag: '1'
+                        enablePaypalFlag: '1'
+                        mobilePhoneNumber: 'null'
+                        countryCode: '103'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          会員マスタ M_USER
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 8
+            minLength: 1
+          in: query
+          description: 会員コード
+          name: user_code
+        - schema:
+            type: string
+            maxLength: 120
+            minLength: 1
+          in: query
+          description: 部門
+          name: department
+        - schema:
+            type: string
+            maxLength: 120
+            minLength: 1
+          in: query
+          description: 部門（現地語）
+          name: department_native
+        - schema:
+            type: string
+            maxLength: 120
+            minLength: 1
+          in: query
+          description: 会員氏名
+          name: user_name
+        - schema:
+            type: string
+            maxLength: 120
+            minLength: 1
+          in: query
+          description: 会員氏名（現地語）
+          name: user_name_native
+        - schema:
+            type: string
+            maxLength: 50
+            minLength: 1
+          in: query
+          description: 顧客DB_ログインID
+          name: customer_db_login_id
+        - schema:
+            type: string
+            maxLength: 256
+            minLength: 1
+          in: query
+          description: EMAIL
+          name: email
+        - schema:
+            type: string
+            maxLength: 6
+            minLength: 6
+          in: query
+          description: 得意先コード
+          name: customer_code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - UserInternal
+      x-channel:
+        - Internal
+  /v1/user/get:
+    parameters: []
+    get:
+      summary: 会員情報取得API
+      operationId: getUserInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    userInternalV1:
+                      subsidiaryCode: CHN
+                      userCode: '1030684'
+                      customerCode: BOSCH9
+                      department: DEPTNAME
+                      departmentNative: NTVDEPTNAME
+                      userName: USERNAME
+                      userNameNative: NTVUSERNAME
+                      telNumber: 031-8021-1344
+                      fax: 031-8005-9324
+                      email: test@localhost.localdomain
+                      orderConfirmationEmailReceivableFlag: '0'
+                      emailMagazineReceivableFlag: '0'
+                      advanceShipmentNoticeEmailReceivableFlag: '0'
+                      basicInfoShipToCode: 'null'
+                      customerId: 12345678
+                      customerDbLoginId: WOS@1030684
+                      customerProductCodeAddFlag: '0'
+                      ccEmailAddress2: test@localhost.localdomain
+                      ccFlag2: '0'
+                      ccEmailAddress3: test@localhost.localdomain
+                      ccFlag3: '0'
+                      ccEmailRegisterExpiration: '2019-08-24T14:15:22Z'
+                      employeeCode: 'null'
+                      paymentMethodFlag: B
+                      shippingServiceCode: 'null'
+                      freightPaymentMethodType: 'null'
+                      shippingCompanyAccountNumber: 'null'
+                      registerCompleteFlag: '1'
+                      registerCompleteDate: '2019-08-24'
+                      languageCode: CHN
+                      passwordExpiration: '2019-08-24T14:15:22Z'
+                      productCodeCandidateDisplaySetting: '1'
+                      selectEnqueteAnswer1: '1'
+                      selectEnqueteAnswer2: '1'
+                      selectEnqueteAnswer3: '1'
+                      selectEnqueteAnswer4: '1'
+                      selectEnqueteAnswer5: '1'
+                      selectEnqueteAnswer6: '1'
+                      selectEnqueteAnswer7: '1'
+                      selectEnqueteAnswer8: '1'
+                      inputEnqueteAnswer1: 'null'
+                      inputEnqueteAnswer2: 'null'
+                      inputEnqueteAnswer3: 'null'
+                      creditLimitInfo: 'null'
+                      reflectionDateTime: '2019-08-24T14:15:22Z'
+                      customerCodeCustomerSystem: Waa
+                      errorDetailPdfDownloadFlag: '0'
+                      urlTransmissionFlag: '0'
+                      soQtSaveEnableFlag: '1'
+                      soQtSaveNoticeEmailFlag: '1'
+                      productCodeCorrectCandidateDisplaySettingFlag: '1'
+                      emailSendFormatType: '1'
+                      qtConfirmationEmailReceivableFlag: '1'
+                      wosTopPageFlag: '1'
+                      productImageHideFlag: '1'
+                      unitPriceDifferenceNoticeEmailReceivableFlag: '1'
+                      basicInfoShipmodeCode: abc
+                      basicInfoShippingMethodName: BASICSHIPPINGCARRIERNAME
+                      basicInfoPaymentMethodName: BASICPAYMENTMETHODNAME
+                      provisoHideFlag: '1'
+                      optInEmail: '0'
+                      optInTel: '0'
+                      optInSms: '0'
+                      optInFax: '0'
+                      optInVisit: '0'
+                      optInPdm: '0'
+                      optInReserve1: '0'
+                      optInReserve2: '0'
+                      optInReserve3: '0'
+                      optInReserve4: '0'
+                      optInConfirmationDate: '2019-08-24'
+                      lastLoginDate: '2019-08-24T14:15:22Z'
+                      enableBankTransferFlag: '1'
+                      enableCashOnDeliveryFlag: '1'
+                      enableCreditCardFlag: '1'
+                      enableOnlineSettlementFlag: '1'
+                      enablePaypalFlag: '1'
+                      mobilePhoneNumber: 'null'
+                      countryCode: '103'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却します。
+          会員マスタ M_USER
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 8
+            minLength: 1
+          in: query
+          description: 会員コード
+          name: user_code
+          required: true
+      tags:
+        - UserInternal
+      x-channel:
+        - Internal
+  /v1/industry/search:
+    parameters: []
+    get:
+      summary: 業種情報検索API
+      operationId: searchIndustryInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIndustryInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    industryInternalV1List:
+                      - subsidiaryCode: MJP
+                        languageCode: JPN
+                        id: '0123'
+                        largeClassification: A
+                        middleClassification: B
+                        smallClassification: C
+                        sortOrder01: 1
+                        sortOrder02: 2
+                        sortOrder03: 3
+                        otherFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          業種マスタ M_INDUSTRY
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+          in: query
+          name: language_code
+          description: 言語コード
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 182
+          in: query
+          name: id
+          description: ID
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - IndustryInternal
+      x-channel:
+        - Internal
+  /v1/ship-to/get-list:
+    parameters: []
+    post:
+      summary: 配送先情報取得API（List）
+      operationId: getListShipToInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListShipToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListShipToInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        shipToInternalV1:
+                          subsidiaryCode: MJP
+                          customerCode: '123456'
+                          shipToCode: '000001'
+                          oldShipToCode: '000001'
+                          shipToNameNative: （ＡＩＲ）ミスミ成田国際流通センター
+                          shipToNameNativeForSearch: MISUMINARITACENTER(AIR)
+                          shipToName: MISUMI NARITA CENTER
+                          countryCode: '192'
+                          postalCode: 286-0826
+                          address1Native: 成田市東和泉字境前４４３－５０
+                          address2Native: 日通成田空港物流センター
+                          address3Native: 一般棟２Ｆ
+                          address4Native: 一般棟２Ｆ
+                          address1: ﾅﾘﾀｼﾋｶﾞｼｲｽﾞﾐｱｻﾞｻｶｲﾏｴ443-50
+                          address2: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                          address3: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                          address4: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                          cityName: 東京
+                          defaultCustomerDeliveryPicDepartmentNative: string
+                          defaultCustomerDeliveryPicDepartment: string
+                          defaultCustomerDeliveryPicNameNative: string
+                          defaultCustomerDeliveryPicName: string
+                          tel: string
+                          fax: string
+                          calendarCode: '01'
+                          taxAreaCode: '01'
+                          freightAreaCode: '01'
+                          freightDiscountFlag: '0'
+                          taxFreeFlag: '0'
+                          plantPattern: '0'
+                          specialCustomerBoxGroup: AX
+                          specialCustomerBoxNumber: '3807'
+                          vatNumber: TAX ID.0105506002610
+                          roadPermissionsNeedFlag: '0'
+                          businessInstruction1: ミスミグループ本社
+                          businessInstruction1DisplayFlag: '0'
+                          businessInstruction2: ミスミグループ本社
+                          businessInstruction2DisplayFlag: '0'
+                          packingInstruction1: ミスミグループ本社
+                          packingInstruction1DisplayFlag: '0'
+                          packingInstruction2: ミスミグループ本社
+                          packingInstruction2DisplayFlag: '0'
+                          companyEntityType: '1'
+                          cityCode: '01'
+                          shipmodeCode: '00'
+                          provisionedSlipType: '1'
+                          shippingFreeAmount: '0'
+                          ioSupplyMeansCode: '502'
+                          sameDayArrivalPossibleFlag: '0'
+                          hubDepotTransferFlag: '0'
+                          shippingServiceFlag: '0'
+                          shippingServicePaymentType: '0'
+                          salesOfficeCode: aa
+                          shippingServiceClosingTimeType: '0'
+                          mainShipToFlag: '0'
+                          shippingDaysAreaCode: '52'
+                          supplierChoiceAreaCode: '53'
+                          shipmentClassificationAreaCode: '40'
+                          defaultShippingMethodPaymentMethodType: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          配送先マスタ M_SHIP_TO
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListShipToInternalRequestV1'
+        description: 配送先情報取得API（List）のリクエスト電文
+      tags:
+        - ShipToInternal
+      x-channel:
+        - Internal
+  /v1/ship-to/get:
+    get:
+      summary: 配送先情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetShipToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    shipToInternalV1:
+                      subsidiaryCode: MJP
+                      customerCode: '123456'
+                      shipToCode: '000001'
+                      oldShipToCode: '000001'
+                      shipToNameNative: （ＡＩＲ）ミスミ成田国際流通センター
+                      shipToNameNativeForSearch: MISUMINARITACENTER(AIR)
+                      shipToName: MISUMI NARITA CENTER
+                      countryCode: '192'
+                      postalCode: 286-0826
+                      address1Native: 成田市東和泉字境前４４３－５０
+                      address2Native: 日通成田空港物流センター
+                      address3Native: 一般棟２Ｆ
+                      address4Native: 一般棟２Ｆ
+                      address1: ﾅﾘﾀｼﾋｶﾞｼｲｽﾞﾐｱｻﾞｻｶｲﾏｴ443-50
+                      address2: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                      address3: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                      address4: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                      cityName: 東京
+                      defaultCustomerDeliveryPicDepartmentNative: string
+                      defaultCustomerDeliveryPicDepartment: string
+                      defaultCustomerDeliveryPicNameNative: string
+                      defaultCustomerDeliveryPicName: string
+                      tel: string
+                      fax: string
+                      calendarCode: '01'
+                      taxAreaCode: '01'
+                      freightAreaCode: '01'
+                      freightDiscountFlag: '0'
+                      taxFreeFlag: '0'
+                      plantPattern: '0'
+                      specialCustomerBoxGroup: AX
+                      specialCustomerBoxNumber: '3807'
+                      vatNumber: TAX ID.0105506002610
+                      roadPermissionsNeedFlag: '0'
+                      businessInstruction1: ミスミグループ本社
+                      businessInstruction1DisplayFlag: '0'
+                      businessInstruction2: ミスミグループ本社
+                      businessInstruction2DisplayFlag: '0'
+                      packingInstruction1: ミスミグループ本社
+                      packingInstruction1DisplayFlag: '0'
+                      packingInstruction2: ミスミグループ本社
+                      packingInstruction2DisplayFlag: '0'
+                      companyEntityType: '1'
+                      cityCode: '01'
+                      shipmodeCode: '00'
+                      provisionedSlipType: '1'
+                      shippingFreeAmount: '0'
+                      ioSupplyMeansCode: '502'
+                      sameDayArrivalPossibleFlag: '0'
+                      hubDepotTransferFlag: '0'
+                      shippingServiceFlag: '0'
+                      shippingServicePaymentType: '0'
+                      salesOfficeCode: aa
+                      shippingServiceClosingTimeType: '0'
+                      mainShipToFlag: '0'
+                      shippingDaysAreaCode: '52'
+                      supplierChoiceAreaCode: '53'
+                      shipmentClassificationAreaCode: '40'
+                      defaultShippingMethodPaymentMethodType: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getShipToInternalV1
+      description: |-
+        以下のマスタの情報を返却します。
+          配送先マスタ M_SHIP_TO
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          description: 得意先コード
+          name: customer_code
+          required: true
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          description: 配送先コード
+          name: ship_to_code
+          required: true
+      tags:
+        - ShipToInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/ship-to/search:
+    get:
+      summary: 配送先情報検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchShipToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    shipToInternalV1List:
+                      - subsidiaryCode: MJP
+                        customerCode: '123456'
+                        shipToCode: '000001'
+                        oldShipToCode: '000001'
+                        shipToNameNative: （ＡＩＲ）ミスミ成田国際流通センター
+                        shipToNameNativeForSearch: MISUMINARITACENTER(AIR)
+                        shipToName: MISUMI NARITA CENTER
+                        countryCode: '192'
+                        postalCode: 286-0826
+                        address1Native: 成田市東和泉字境前４４３－５０
+                        address2Native: 日通成田空港物流センター
+                        address3Native: 一般棟２Ｆ
+                        address4Native: 一般棟２Ｆ
+                        address1: ﾅﾘﾀｼﾋｶﾞｼｲｽﾞﾐｱｻﾞｻｶｲﾏｴ443-50
+                        address2: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                        address3: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                        address4: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                        cityName: 東京
+                        defaultCustomerDeliveryPicDepartmentNative: string
+                        defaultCustomerDeliveryPicDepartment: string
+                        defaultCustomerDeliveryPicNameNative: string
+                        defaultCustomerDeliveryPicName: string
+                        tel: string
+                        fax: string
+                        calendarCode: '01'
+                        taxAreaCode: '01'
+                        freightAreaCode: '01'
+                        freightDiscountFlag: '0'
+                        taxFreeFlag: '0'
+                        plantPattern: '0'
+                        specialCustomerBoxGroup: AX
+                        specialCustomerBoxNumber: '3807'
+                        vatNumber: TAX ID.0105506002610
+                        roadPermissionsNeedFlag: '0'
+                        businessInstruction1: ミスミグループ本社
+                        businessInstruction1DisplayFlag: '0'
+                        businessInstruction2: ミスミグループ本社
+                        businessInstruction2DisplayFlag: '0'
+                        packingInstruction1: ミスミグループ本社
+                        packingInstruction1DisplayFlag: '0'
+                        packingInstruction2: ミスミグループ本社
+                        packingInstruction2DisplayFlag: '0'
+                        companyEntityType: '1'
+                        cityCode: '01'
+                        shipmodeCode: '00'
+                        provisionedSlipType: '1'
+                        shippingFreeAmount: '0'
+                        ioSupplyMeansCode: '502'
+                        sameDayArrivalPossibleFlag: '0'
+                        hubDepotTransferFlag: '0'
+                        shippingServiceFlag: '0'
+                        shippingServicePaymentType: '0'
+                        salesOfficeCode: aa
+                        shippingServiceClosingTimeType: '0'
+                        mainShipToFlag: '0'
+                        shippingDaysAreaCode: '52'
+                        supplierChoiceAreaCode: '53'
+                        shipmentClassificationAreaCode: '40'
+                        defaultShippingMethodPaymentMethodType: '0'
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchShipToInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          配送先マスタ M_SHIP_TO
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 6
+            minLength: 6
+          in: query
+          name: customer_code
+          description: 得意先コード
+        - schema:
+            type: string
+            maxLength: 6
+            minLength: 6
+          in: query
+          name: ship_to_code
+          description: 配送先コード
+        - schema:
+            type: string
+            maxLength: 200
+            minLength: 1
+          in: query
+          name: ship_to_name_native
+          description: 配送先名（現地語）
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 60
+          in: query
+          description: 配送先名
+          name: ship_to_name
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 10
+          in: query
+          description: 郵便番号
+          name: postal_code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - ShipToInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/customer-manual/search:
+    get:
+      summary: 得意先マニュアル情報検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCustomerManualInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    customerManualInternalV1List:
+                      - customerManualInternalV1:
+                          subsidiaryCode: MJP
+                          customerCode: '123456'
+                          mainCategoryCode: '01'
+                          subCategoryCode: '01'
+                          manualContentsNative: NTV_MANUAL_CONTENT
+                        customerManualSubCategoryInternalV1List:
+                          - subCategoryNameNative: CATEGORY_NAME
+                            subCategoryEditFlag: '1'
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchCustomerManualInternalV1
+      description: |-
+        得意先マニュアル情報を検索するAPIです。
+        リクエストされた情報に紐づく得意先マニュアル情報、得意先マニュアルサブカテゴリ情報を検索する。
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 6
+            minLength: 6
+          in: query
+          name: customer_code
+          description: 得意先コード
+        - schema:
+            type: string
+            maxLength: 2
+            minLength: 1
+          in: query
+          name: main_category_code
+          description: メインカテゴリコード ※01：基本情報　02：仕分　03：見積入力　04：受注入力　05：アンフィット　06：見積　07：受注　08：変キャン　09：クレーム　10：出荷変更
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 2
+          in: query
+          name: sub_category_code
+          description: サブカテゴリコード
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - CustomerManualInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/customer/search:
+    get:
+      summary: 得意先情報検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCustomerInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    customerInternalV1List:
+                      - subsidiaryCode: JKT
+                        customerCode: BOSCH9
+                        oldCustomerCode: '0'
+                        mainBusinessUnit: abc
+                        soType: def
+                        billToCode: '558814'
+                        customerNameNative1: NTV_CUST_NAME1
+                        customerNameNativeForSearch: JANLINPLASTICS
+                        customerNameEnglish: JANLIN PLASTICS
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 成田市東和泉字境前４４３－５０
+                        address2Native: 日通成田空港物流センター
+                        address3Native: 一般棟２Ｆ
+                        address4Native: 一般棟２Ｆ
+                        addressNativeForSearch: ＵＳＡ＊
+                        address1: ﾅﾘﾀｼﾋｶﾞｼｲｽﾞﾐｱｻﾞｻｶｲﾏｴ443-50
+                        address2: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                        address3: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                        address4: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                        cityName: 東京
+                        defaultOrderPicDepartmentNative: 'null'
+                        defaultOrderPicDepartment: 'null'
+                        defaultOrderPicNameNative: 'null'
+                        defaultOrderPicName: 'null'
+                        tel: 'null'
+                        fax: 'null'
+                        emailAddress: 'null'
+                        serviceStopType: '1'
+                        calendarCode: '01'
+                        customerSubsidiaryCode: '01'
+                        customerSegmentCode: '01'
+                        taxFreeFlag: '1'
+                        packingRankType: A
+                        ioSupplyMeansCode: string
+                        officeLicenseNumber: string
+                        vatNumber: TAX ID.0105506002610
+                        carrierAccountNumber: '518100'
+                        customerRemarks1: 1BL/1PO
+                        customerRemarks2: 2BL/1PO
+                        customerRemarks3: 3BL/1PO
+                        customerRemarks4: 4BL/1PO
+                        customerRemarks5: 5BL/1PO
+                        stopReasonCode: '184'
+                        customerNameNative2: NTV_CUST_NAME2
+                        cityCode: '45206'
+                        companyEntityType: '1'
+                        chargeableMaterialFlag: '0'
+                        shippingDaysAreaCode: '52'
+                        supplierChoiceAreaCode: '53'
+                        shipmentClassificationAreaCode: '52'
+                        misumiSubsidiaryFlag: '0'
+                        groupCompanyFlag: '0'
+                        outsideRegionFlag: '0'
+                        customerControlInternalV1List:
+                          - subsidiaryCode: MJP
+                            customerCode: '123456'
+                            controlCode: ss
+                            flag: '1'
+                            type: '1'
+                            value: '1'
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchCustomerInternalV1
+      description: |-
+        得意先データを取得するAPIです。
+        リクエストされた情報に紐づく得意先マスタに関する情報を取得する。
+        得意先マスタ M_CUSTOMER
+        得意先制御マスタ M_CUSTOMER_CONTROL
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 6
+            minLength: 6
+          in: query
+          name: customer_code
+          description: 得意先コード
+        - schema:
+            type: string
+            maxLength: 132
+            minLength: 1
+          in: query
+          name: customer_name_native
+          description: 得意先名（現地語）
+        - schema:
+            type: string
+            maxLength: 60
+            minLength: 1
+          in: query
+          name: customer_name_english
+          description: 得意先名（英字）
+        - schema:
+            type: string
+            maxLength: 10
+            minLength: 1
+          in: query
+          name: postal_code
+          description: 郵便番号
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - CustomerInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/customer/get:
+    get:
+      summary: 得意先情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCustomerInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    customerInternalV1:
+                      subsidiaryCode: JKT
+                      customerCode: BOSCH9
+                      oldCustomerCode: '0'
+                      mainBusinessUnit: abc
+                      soType: def
+                      billToCode: '558814'
+                      customerNameNative1: NTV_CUST_NAME1
+                      customerNameNativeForSearch: JANLINPLASTICS
+                      customerNameEnglish: JANLIN PLASTICS
+                      countryCode: '103'
+                      languageCode: KOR
+                      postalCode: 446-901
+                      address1Native: 成田市東和泉字境前４４３－５０
+                      address2Native: 日通成田空港物流センター
+                      address3Native: 一般棟２Ｆ
+                      address4Native: 一般棟２Ｆ
+                      addressNativeForSearch: ＵＳＡ＊
+                      address1: ﾅﾘﾀｼﾋｶﾞｼｲｽﾞﾐｱｻﾞｻｶｲﾏｴ443-50
+                      address2: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                      address3: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                      address4: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                      cityName: 東京
+                      defaultOrderPicDepartmentNative: 'null'
+                      defaultOrderPicDepartment: 'null'
+                      defaultOrderPicNameNative: 'null'
+                      defaultOrderPicName: 'null'
+                      tel: 'null'
+                      fax: 'null'
+                      emailAddress: 'null'
+                      serviceStopType: '1'
+                      calendarCode: '01'
+                      customerSubsidiaryCode: '01'
+                      customerSegmentCode: '01'
+                      taxFreeFlag: '1'
+                      packingRankType: A
+                      ioSupplyMeansCode: string
+                      officeLicenseNumber: string
+                      vatNumber: TAX ID.0105506002610
+                      carrierAccountNumber: '518100'
+                      customerRemarks1: 1BL/1PO
+                      customerRemarks2: 2BL/1PO
+                      customerRemarks3: 3BL/1PO
+                      customerRemarks4: 4BL/1PO
+                      customerRemarks5: 5BL/1PO
+                      stopReasonCode: '184'
+                      customerNameNative2: NTV_CUST_NAME2
+                      cityCode: '45206'
+                      companyEntityType: '1'
+                      chargeableMaterialFlag: '0'
+                      shippingDaysAreaCode: '52'
+                      supplierChoiceAreaCode: '53'
+                      shipmentClassificationAreaCode: '52'
+                      misumiSubsidiaryFlag: '0'
+                      groupCompanyFlag: '0'
+                      outsideRegionFlag: '0'
+                      customerControlInternalV1List:
+                        - subsidiaryCode: MJP
+                          customerCode: '123456'
+                          controlCode: ss
+                          flag: '1'
+                          type: '1'
+                          value: '1'
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getCustomerInternalV1
+      description: |-
+        得意先データを取得するAPIです。
+        リクエストされた情報に紐づく得意先情報を取得する。
+        得意先マスタ M_CUSTOMER
+        得意先制御マスタ M_CUSTOMER_CONTROL
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 6
+            minLength: 6
+          in: query
+          name: customer_code
+          description: 得意先コード
+          required: true
+      tags:
+        - CustomerInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/customer/get-list:
+    parameters: []
+    post:
+      summary: 得意先情報取得API（List）
+      operationId: getListCustomerInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListCustomerInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListCustomerInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        customerInternalV1:
+                          subsidiaryCode: JKT
+                          customerCode: BOSCH9
+                          oldCustomerCode: '0'
+                          mainBusinessUnit: abc
+                          soType: def
+                          billToCode: '558814'
+                          customerNameNative1: NTV_CUST_NAME1
+                          customerNameNativeForSearch: JANLINPLASTICS
+                          customerNameEnglish: JANLIN PLASTICS
+                          countryCode: '103'
+                          languageCode: KOR
+                          postalCode: 446-901
+                          address1Native: 成田市東和泉字境前４４３－５０
+                          address2Native: 日通成田空港物流センター
+                          address3Native: 一般棟２Ｆ
+                          address4Native: 一般棟２Ｆ
+                          addressNativeForSearch: ＵＳＡ＊
+                          address1: ﾅﾘﾀｼﾋｶﾞｼｲｽﾞﾐｱｻﾞｻｶｲﾏｴ443-50
+                          address2: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                          address3: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                          address4: ﾆｯﾂｳﾅﾘﾀｸｳｺｳﾌﾞﾂﾘｭｳｾﾝﾀｰｲｯﾊﾟﾝﾄｳ2F
+                          cityName: 東京
+                          defaultOrderPicDepartmentNative: 'null'
+                          defaultOrderPicDepartment: 'null'
+                          defaultOrderPicNameNative: 'null'
+                          defaultOrderPicName: 'null'
+                          tel: 'null'
+                          fax: 'null'
+                          emailAddress: 'null'
+                          serviceStopType: '1'
+                          calendarCode: '01'
+                          customerSubsidiaryCode: '01'
+                          customerSegmentCode: '01'
+                          taxFreeFlag: '1'
+                          packingRankType: A
+                          ioSupplyMeansCode: string
+                          officeLicenseNumber: string
+                          vatNumber: TAX ID.0105506002610
+                          carrierAccountNumber: '518100'
+                          customerRemarks1: 1BL/1PO
+                          customerRemarks2: 2BL/1PO
+                          customerRemarks3: 3BL/1PO
+                          customerRemarks4: 4BL/1PO
+                          customerRemarks5: 5BL/1PO
+                          stopReasonCode: '184'
+                          customerNameNative2: NTV_CUST_NAME2
+                          cityCode: '45206'
+                          companyEntityType: '1'
+                          chargeableMaterialFlag: '0'
+                          shippingDaysAreaCode: '52'
+                          supplierChoiceAreaCode: '53'
+                          shipmentClassificationAreaCode: '52'
+                          misumiSubsidiaryFlag: '0'
+                          groupCompanyFlag: '0'
+                          outsideRegionFlag: '0'
+                          customerControlInternalV1List:
+                            - subsidiaryCode: MJP
+                              customerCode: '123456'
+                              controlCode: ss
+                              flag: '1'
+                              type: '1'
+                              value: '1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+        得意先マスタ M_CUSTOMER
+        得意先制御マスタ M_CUSTOMER_CONTROL
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListCustomerInternalRequestV1'
+        description: 得意先情報取得API（List）のリクエスト電文
+      tags:
+        - CustomerInternal
+      x-channel:
+        - Internal
+  /v1/delivery-destination/search:
+    get:
+      summary: 納入先情報検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchDeliveryDestinationInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    deliveryDestinationInternalV1List:
+                      - subsidiaryCode: THA
+                        deliveryDestinationType: '1'
+                        plantCode: MU
+                        deliveryDestinationTypeName: 納入先
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchDeliveryDestinationInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          納入先マスタ M_DELIVERY_DESTINATION
+          納入先名マスタ M_DELIVERY_DESTINATION_NAME
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            maxLength: 1
+            minLength: 1
+          in: query
+          name: delivery_destination_type
+          description: 納入先区分
+        - schema:
+            type: string
+            maxLength: 4
+            minLength: 4
+          in: query
+          name: plant_code
+          description: 置場コード
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - DeliveryDestinationInternal
+      x-channel:
+        - Internal
+    parameters: []
+  /v1/delivery-destination/get-list:
+    post:
+      summary: 納入先情報取得API（List）
+      operationId: getListDeliveryDestinationInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListDeliveryDestinationInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListDeliveryDestinationInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        deliveryDestinationList:
+                          subsidiaryCode: THA
+                          deliveryDestinationType: '1'
+                          plantCode: MU
+                          deliveryDestinationTypeName: 納入先
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          納入先マスタ M_DELIVERY_DESTINATION
+          納入先名マスタ M_DELIVERY_DESTINATION_NAME
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListDeliveryDestinationInternalRequestV1'
+        description: 納入先情報取得API（List）のリクエスト電文
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+      tags:
+        - DeliveryDestinationInternal
+      x-channel:
+        - Internal
+  /v1/ti-ship-to-convert/search:
+    parameters: []
+    get:
+      summary: TI配送先変換情報検索API
+      operationId: searchTiShipToConvertInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTiShipToConvertInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    tiShipToConvertInternalV1List:
+                      - subsidiaryCodeFrom: MJP
+                        subsidiaryCodeTo: MJP
+                        beforeConvertShipToCode: '999991'
+                        convertedShipToCode: '999999'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          TI配送先変換マスタ M_TI_SHIP_TO_CONVERT
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: 現法コードFROM
+          name: subsidiary_code_from
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: 現法コードTO
+          name: subsidiary_code_to
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          description: 変換前配送先コード
+          name: before_convert_ship_to_code
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          description: 変換後配送先コード
+          name: converted_ship_to_code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - TiShipToConvertInternal
+      x-channel:
+        - Internal
+  /v1/io-customer-convert/search:
+    get:
+      summary: IO用得意先変換検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIoCustomerConvertInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    ioCustomerConvertInternalV1List:
+                      - sub1SubsidiaryCode: JPN
+                        sub1SupplierCode: abcd
+                        sub2SubsidiaryCode: JPN
+                        sub2CustomerCode: dummy1
+                        ccyCode: KRW
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchIoCustomerConvertInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          IO用得意先変換マスタ M_IO_CUSTOMER_CONVERT
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: SUB1側現法コード
+          name: sub1_subsidiary_code
+        - schema:
+            type: string
+            minLength: 4
+            maxLength: 4
+          in: query
+          description: SUB1側仕入先コード
+          name: sub1_supplier_code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - IoCustomerConvertInternal
+      x-channel:
+        - Internal
+  /v1/user-authority/get:
+    get:
+      summary: 会員権限情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserAuthorityInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    userAuthorityInternalV1:
+                      userCode: '1030684'
+                      adminAuthorityFlag: '0'
+                      qtAuthorityFlag: '0'
+                      orderAuthorityFlag: '0'
+                      invoiceIssueAuthorityFlag: '0'
+                      deliveryNoteReissueAuthorityFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getUserAuthorityInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          会員権限マスタ M_USER_AUTHORITY
+      parameters:
+        - $ref: '#/components/parameters/X-User-Type'
+        - $ref: '#/components/parameters/X-Auth-Id'
+        - $ref: '#/components/parameters/x-datadog-trace-id'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Cache-Control'
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 8
+          in: query
+          description: ユーザコード
+          name: user_code
+          required: true
+      tags:
+        - UserAuthorityInternal
+      x-channel:
+        - Internal
+components:
+  schemas:
+    AcceptanceGroupInternalV1:
+      title: AcceptanceGroupInternalV1
+      type: object
+      x-examples: {}
+      description: 検収グループ情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+        incomingPaymentGroupCode:
+          type: string
+          description: 入金グループコード
+        acceptanceGroupNameNative:
+          type: string
+          description: 検収グループ名（現地語）
+      required:
+        - subsidiaryCode
+        - acceptanceGroupCode
+        - incomingPaymentGroupCode
+        - acceptanceGroupNameNative
+    UserInternalV1:
+      title: UserInternalV1
+      type: object
+      description: 会員情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        userCode:
+          type: string
+          description: 会員コード
+        customerCode:
+          type: string
+          description: 得意先コード
+        department:
+          type: string
+          description: 部門
+        departmentNative:
+          type: string
+          description: 部門（現地語）
+        userName:
+          type: string
+          description: 会員氏名
+        userNameNative:
+          type: string
+          description: 会員氏名（現地語）
+        telNumber:
+          type: string
+          description: TEL番号
+        fax:
+          type: string
+          description: FAX番号
+        email:
+          type: string
+          description: EMAIL
+        orderConfirmationEmailReceivableFlag:
+          type: string
+          description: 注文請けメール受信可否フラグ
+        emailMagazineReceivableFlag:
+          type: string
+          description: メルマガ受信可否フラグ
+        advanceShipmentNoticeEmailReceivableFlag:
+          type: string
+          description: 出荷完了メール受信可否フラグ
+        basicInfoShipToCode:
+          type: string
+          description: 基本情報_配送先コード
+        customerId:
+          type: integer
+          description: 顧客ID
+        customerDbLoginId:
+          type: string
+          description: 顧客DBログインID
+        customerProductCodeAddFlag:
+          type: string
+          description: 顧客型番付与フラグ
+        ccEmailAddress2:
+          type: string
+          description: CCメールアドレス2
+        ccFlag2:
+          type: string
+          description: CCフラグ2
+        ccEmailAddress3:
+          type: string
+          description: CCメールアドレス3
+        ccFlag3:
+          type: string
+          description: CCフラグ3
+        ccEmailRegisterExpiration:
+          type: string
+          description: CCメール登録有効期限
+          format: date-time
+        employeeCode:
+          type: string
+          description: 従業員コード
+        paymentMethodFlag:
+          type: string
+          description: 支払方法フラグ
+        shippingServiceCode:
+          type: string
+          description: 配送サービスコード
+        freightPaymentMethodType:
+          type: string
+          description: 配送料支払い方法区分
+        shippingCompanyAccountNumber:
+          type: string
+          description: 配送会社アカウント番号
+        registerCompleteFlag:
+          type: string
+          description: 本登録完了フラグ
+        registerCompleteDate:
+          type: string
+          description: 登録完了日付
+          format: date
+        languageCode:
+          type: string
+          description: 言語コード
+        passwordExpiration:
+          type: string
+          description: パスワード再発行有効期限
+          format: date-time
+        productCodeCandidateDisplaySetting:
+          type: string
+          description: 型番候補表示設定
+        selectEnqueteAnswer1:
+          type: string
+          description: 選択式アンケート回答1
+        selectEnqueteAnswer2:
+          type: string
+          description: 選択式アンケート回答2
+        selectEnqueteAnswer3:
+          type: string
+          description: 選択式アンケート回答3
+        selectEnqueteAnswer4:
+          type: string
+          description: 選択式アンケート回答4
+        selectEnqueteAnswer5:
+          type: string
+          description: 選択式アンケート回答5
+        selectEnqueteAnswer6:
+          type: string
+          description: 選択式アンケート回答6
+        selectEnqueteAnswer7:
+          type: string
+          description: 選択式アンケート回答7
+        selectEnqueteAnswer8:
+          type: string
+          description: 選択式アンケート回答8
+        inputEnqueteAnswer1:
+          type: string
+          description: 入力式アンケート回答1
+        inputEnqueteAnswer2:
+          type: string
+          description: 入力式アンケート回答2
+        inputEnqueteAnswer3:
+          type: string
+          description: 入力式アンケート回答3
+        creditLimitInfo:
+          type: string
+          description: 与信情報
+        reflectionDateTime:
+          type: string
+          description: 反映日時
+          format: date-time
+        customerCodeCustomerSystem:
+          type: string
+          description: 顧客コード（顧客システム）
+        errorDetailPdfDownloadFlag:
+          type: string
+          description: エラー明細PDFダウンロードフラグ
+        urlTransmissionFlag:
+          type: string
+          description: URL伝達利用フラグ
+        soQtSaveEnableFlag:
+          type: string
+          description: 一時保存機能利用フラグ
+        soQtSaveNoticeEmailFlag:
+          type: string
+          description: 一時保存通知メール利用フラグ
+        productCodeCorrectCandidateDisplaySettingFlag:
+          type: string
+          description: 正解候補表示フラグ
+        emailSendFormatType:
+          type: string
+          description: メール送信形式区分
+        qtConfirmationEmailReceivableFlag:
+          type: string
+          description: 見積請けメール受信可否フラグ
+        wosTopPageFlag:
+          type: string
+          description: WOSトップページ利用フラグ
+        productImageHideFlag:
+          type: string
+          description: 商品画像非表示フラグ
+        unitPriceDifferenceNoticeEmailReceivableFlag:
+          type: string
+          description: 単価差異通知メール受信可否フラグ
+        basicInfoShipmodeCode:
+          type: string
+          description: 基本情報扱い便コード
+        basicInfoShippingMethodName:
+          type: string
+          description: 基本情報配送方法名
+        basicInfoPaymentMethodName:
+          type: string
+          description: 基本情報支払方法名
+        provisoHideFlag:
+          type: string
+          description: クレカ領収書非表示フラグ
+        optInEmail:
+          type: string
+          description: 配信許諾チャネル区分_EMAIL
+        optInTel:
+          type: string
+          description: 配信許諾チャネル区分_TEL
+        optInSms:
+          type: string
+          description: 配信許諾チャネル区分_SMS
+        optInFax:
+          type: string
+          description: 配信許諾チャネル区分_FAX番号
+        optInVisit:
+          type: string
+          description: 配信許諾チャネル区分_VISIT
+        optInPdm:
+          type: string
+          description: 配信許諾チャネル区分_PDM
+        optInReserve1:
+          type: string
+          description: 配信許諾チャネル区分予備1
+        optInReserve2:
+          type: string
+          description: 配信許諾チャネル区分予備2
+        optInReserve3:
+          type: string
+          description: 配信許諾チャネル区分予備3
+        optInReserve4:
+          type: string
+          description: 配信許諾チャネル区分予備4
+        optInConfirmationDate:
+          type: string
+          description: 配信許諾確認日付
+          format: date
+        lastLoginDate:
+          type: string
+          description: 最終ログイン日付
+          format: date-time
+        enableBankTransferFlag:
+          type: string
+          description: 銀行振込フラグ
+        enableCashOnDeliveryFlag:
+          type: string
+          description: 代引きフラグ
+        enableCreditCardFlag:
+          type: string
+          description: クレジットカードフラグ
+        enableOnlineSettlementFlag:
+          type: string
+          description: オンライン決済フラグ
+        enablePaypalFlag:
+          type: string
+          description: PayPalフラグ
+        mobilePhoneNumber:
+          type: string
+          description: 携帯番号
+        countryCode:
+          type: string
+          description: 国コード
+      required:
+        - subsidiaryCode
+        - userCode
+        - userNameNative
+    BillToInternalV1:
+      title: BillToInternalV1
+      type: object
+      description: 売掛先情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        billToCode:
+          type: string
+          description: 売掛先コード
+        oldBillToCode:
+          type: string
+          description: 旧売掛先コード
+        arMainDepartment:
+          type: string
+          description: 売掛主管部署
+        misumiPicCode:
+          type: string
+          description: ミスミ担当者コード
+        billToNameNative:
+          type: string
+          description: 売掛先名（現地語）
+        billToNameAbbreviationNative:
+          type: string
+          description: 売掛先名略称（現地語）
+        billToNameNativeForSearchIndex:
+          type: string
+          description: 売掛先名（現地語検索用インデックス）
+        billToName:
+          type: string
+          description: 売掛先名
+        countryCode:
+          type: string
+          description: 国コード
+        languageCode:
+          type: string
+          description: 言語コード
+        postalCode:
+          type: string
+          description: 郵便番号
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        invoiceSendDestinationDepartmentNameNative:
+          type: string
+          description: 請求書送付先部課名（現地語）
+        invoiceSendDestinationPicNative:
+          type: string
+          description: 請求書送付先担当者（現地語）
+        tel:
+          type: string
+          description: 電話番号
+        billToFax:
+          type: string
+          description: 売掛先FAX番号
+        dunningToFax:
+          type: string
+          description: 督促先FAX番号
+        billToEmailAddressTo:
+          type: string
+          description: 売掛先メールアドレス（TO）
+        billToEmailAddressCc:
+          type: string
+          description: 売掛先メールアドレス（CC）
+        dunningToEmailAddressTo:
+          type: string
+          description: 督促先メールアドレス（TO）
+        dunningToEmailAddressCc:
+          type: string
+          description: 督促先メールアドレス（CC）
+        taxAccountStatementSendDestinationEmailAddress1:
+          type: string
+          description: 税金計算書送付先メールアドレス1
+        taxAccountStatementSendDestinationEmailAddress2:
+          type: string
+          description: 税金計算書送付先メールアドレス2
+        tradeStopType:
+          type: string
+          description: 取引停止区分
+        serviceStopType:
+          type: string
+          description: サービス停止区分
+        acceptanceType:
+          type: string
+          description: 検収区分
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+        incoterms:
+          type: string
+          description: インコタームズ
+        paymentTerms:
+          type: string
+          description: 支払条件
+        settlementMethod:
+          type: string
+          description: 決済形態
+        paymentMeans:
+          type: string
+          description: 支払手段
+        arClosingUnit:
+          type: string
+          description: 売掛金締め単位
+        arClosingDay:
+          description: 売掛金締日
+          type: integer
+        arPaymentMonth:
+          description: 売掛金支払月
+          type: integer
+        arPaymentDate:
+          description: 売掛金支払日
+          type: integer
+        arPaymentSiteFinal:
+          description: 売掛金支払サイト_最終
+          type: integer
+        arPaymentSiteEarlyPaymentDiscount:
+          description: 売掛金支払サイト_早割
+          type: integer
+        arEarlyIncomingPaymentDiscountRate:
+          type: string
+          description: 売掛金早期入金割引率
+          format: decimal
+        transferFee:
+          type: string
+          description: 振込手数料
+        customerAccountBankCode:
+          type: string
+          description: 顧客口座銀行コード
+        customerAccountType:
+          type: string
+          description: 顧客口座区分
+        customerAccountNumber:
+          type: string
+          description: 顧客口座番号
+        customerAccountNameNativeAllowed:
+          type: string
+          description: 顧客口座人名（現地語可）
+        transferAccountBankCode:
+          type: string
+          description: 振込口座銀行コード
+        transferAccountType:
+          type: string
+          description: 振込口座区分
+        transferAccountNumber:
+          type: string
+          description: 振込口座番号
+        transferAccountName:
+          type: string
+          description: 振込口座人名
+        virtualAccountFlag:
+          type: string
+          description: 仮想口座フラグ
+        notePayableConditionAmount:
+          type: string
+          description: 手形条件（金額）
+          format: decimal
+        notePayableConditionPaymentMonth:
+          description: 手形条件（支払月）
+          type: integer
+        notePayableConditionPaymentDate:
+          type: integer
+          description: 手形条件（支払日）
+        paymentSite:
+          type: integer
+          description: 支払サイト
+        invoiceSendType:
+          type: string
+          description: 請求書送付区分
+        invoiceViaType:
+          type: string
+          description: 請求書経由区分
+        invoiceViaTypeChild:
+          type: string
+          description: 請求書経由区分_子
+        invoiceSendMedia:
+          type: string
+          description: 請求書送付媒体
+        dunningLetterSendType:
+          type: string
+          description: 督促状送付区分
+        dunningLetterSendMedia:
+          type: string
+          description: 督促状送付媒体
+        productNamePrintFlag:
+          type: string
+          description: 商品名印字フラグ
+        consumptionTaxMentionType:
+          type: string
+          description: 消費税記載区分
+        inExTaxType:
+          type: string
+          description: 内税外税区分
+        ccyCode:
+          type: string
+          description: 通貨コード
+        rateTypeCode:
+          type: string
+          description: レートタイプコード
+        arDifficulty:
+          type: string
+          description: 売掛難易度
+        governmentUniformInvoiceType:
+          type: string
+          description: 統一発票区分
+        companyRepresentativeNameNative:
+          type: string
+          description: 会社代表者名（現地語）
+        arRemarks1:
+          type: string
+          description: 売掛注釈1
+        arRemarks2:
+          type: string
+          description: 売掛注釈2
+        arRemarks3:
+          type: string
+          description: 売掛注釈3
+        arRemarks4:
+          type: string
+          description: 売掛注釈4
+        arRemarks5:
+          type: string
+          description: 売掛注釈5
+        invoiceRemarks1:
+          type: string
+          description: INVOICE注釈1
+        invoiceRemarks2:
+          type: string
+          description: INVOICE注釈2
+        invoiceRemarks3:
+          type: string
+          description: INVOICE注釈3
+        invoiceRemarks4:
+          type: string
+          description: INVOICE注釈4
+        gstPaymentPlace:
+          type: string
+          description: 物品税管理地
+        departmentName:
+          type: string
+          description: 部署名
+        commissionerate:
+          type: string
+          description: 物品税管理区
+        stopReasonCode:
+          type: string
+          description: 停止理由コード
+        settlementMonth:
+          description: 決算月
+          type: integer
+        settlementClosingDay:
+          description: 決算締切日
+          type: integer
+        settlementSetting:
+          type: string
+          description: 決算設定
+        cityCode:
+          type: string
+          description: 市町村コード
+        invoiceOutputOrder:
+          type: string
+          description: 請求書出力順
+        zenginCode:
+          type: string
+          description: 全銀コード
+        automaticTransferFlag:
+          type: string
+          description: 自動振替フラグ
+        depositType:
+          type: string
+          description: 預金種類
+        accountNumber:
+          type: string
+          description: 口座番号
+        depositorNameKana:
+          type: string
+          description: 預金者名（カナ）
+        newCode:
+          type: string
+          description: 新規コード
+        automaticTransferRegisterDate:
+          type: string
+          description: 自動振替登録日
+          format: date
+        fbStopType:
+          type: string
+          description: FB停止区分
+        userTransferBank:
+          type: string
+          description: ユーザー振込銀行
+        userTransferBranch:
+          type: string
+          description: ユーザー振込支店
+        arQctBaseCode:
+          type: string
+          description: 売掛QCT拠点コード
+        closingDayFrontLoadingSettingType:
+          type: string
+          description: 締日前倒し設定区分
+        industryType:
+          type: string
+          description: 業種区分
+        channelType:
+          type: string
+          description: 経路区分
+        eachBillRegister:
+          type: string
+          description: 都度請求登録
+        invoiceSlipOutputReportCode:
+          type: string
+          description: 請求書伝発帳票コード
+        invoiceSummaryFlag:
+          type: string
+          description: 請求書まとめフラグ
+        customerStatementSendFlag:
+          type: string
+          description: カスタマーステートメント送付対象フラグ
+        customerStatementSendMediaType:
+          type: string
+          description: カスタマーステートメント送付媒体区分
+        swiftCode:
+          type: string
+          description: SWIFTコード
+        withdrawalCollationAllowFlag:
+          type: string
+          description: 取崩し照合許可フラグ
+        fax:
+          type: string
+          description: FAX番号
+        emailAddress:
+          type: string
+          description: メールアドレス
+      required:
+        - subsidiaryCode
+        - billToCode
+        - billToName
+        - countryCode
+        - languageCode
+        - address1Native
+        - tradeStopType
+        - serviceStopType
+        - acceptanceType
+        - acceptanceGroupCode
+        - paymentTerms
+        - settlementMethod
+        - paymentMeans
+        - transferFee
+        - invoiceSendType
+        - dunningLetterSendType
+        - productNamePrintFlag
+        - consumptionTaxMentionType
+        - inExTaxType
+        - ccyCode
+        - rateTypeCode
+        - settlementSetting
+        - invoiceOutputOrder
+        - automaticTransferFlag
+        - fbStopType
+        - closingDayFrontLoadingSettingType
+    IndustryInternalV1:
+      title: IndustryInternalV1
+      type: object
+      description: 業種情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        languageCode:
+          type: string
+          description: 言語コード
+        id:
+          type: string
+          description: ID
+        largeClassification:
+          type: string
+          description: 大分類
+        middleClassification:
+          type: string
+          description: 中分類
+        smallClassification:
+          type: string
+          description: 小分類
+        sortOrder01:
+          type: integer
+          description: ソート順01
+        sortOrder02:
+          type: integer
+          description: ソート順02
+        sortOrder03:
+          type: integer
+          description: ソート順03
+        otherFlag:
+          type: string
+          description: その他フラグ
+      required:
+        - subsidiaryCode
+        - languageCode
+        - id
+    CustomerControlInternalV1:
+      title: CustomerControlInternalV1
+      type: object
+      description: 得意先制御情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        customerCode:
+          type: string
+          description: 得意先コード
+        controlCode:
+          type: string
+          description: 制御コード
+        flag:
+          type: string
+          description: フラグ
+        type:
+          type: string
+          description: 区分
+        value:
+          type: string
+          description: 値
+      required:
+        - subsidiaryCode
+        - customerCode
+        - controlCode
+    DeliveryDestinationInternalV1:
+      title: DeliveryDestinationInternalV1
+      type: object
+      description: 納入先情報
+      x-examples: {}
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        deliveryDestinationType:
+          type: string
+          description: 納入先区分
+        plantCode:
+          type: string
+          description: 置場コード
+        deliveryDestinationTypeName:
+          type: string
+          description: 納入先区分名
+      required:
+        - subsidiaryCode
+        - deliveryDestinationType
+        - plantCode
+    TiShipToConvertInternalV1:
+      title: TiShipToConvertInternalV1
+      type: object
+      description: TI配送先変換情報
+      x-examples: {}
+      properties:
+        subsidiaryCodeFrom:
+          type: string
+          description: 現法コードFROM
+        subsidiaryCodeTo:
+          type: string
+          description: 現法コードTO
+        beforeConvertShipToCode:
+          type: string
+          description: 変換前配送先コード
+        convertedShipToCode:
+          type: string
+          description: 変換後配送先コード
+      required:
+        - subsidiaryCodeFrom
+        - subsidiaryCodeTo
+        - beforeConvertShipToCode
+        - convertedShipToCode
+    CustomerManualInternalV1:
+      title: CustomerManualInternalV1
+      type: object
+      description: 得意先マニュアル情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        customerCode:
+          type: string
+          description: 得意先コード
+        mainCategoryCode:
+          type: string
+          description: メインカテゴリコード
+        subCategoryCode:
+          type: string
+          description: サブカテゴリコード
+        manualContentsNative:
+          type: string
+          description: マニュアル内容（現地語）
+      required:
+        - subsidiaryCode
+        - customerCode
+        - mainCategoryCode
+        - subCategoryCode
+    CustomerManualSubCategoryInternalV1:
+      title: CustomerManualSubCategoryInternalV1
+      type: object
+      description: 得意先マニュアルサブカテゴリ情報
+      properties:
+        subCategoryNameNative:
+          type: string
+          description: サブカテゴリ名（現地語）
+        subCategoryEditFlag:
+          type: string
+          description: サブカテゴリ編集可能フラグ
+    CustomerInternalV1:
+      title: CustomerInternalV1
+      type: object
+      description: 得意先情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        customerCode:
+          type: string
+          description: 得意先コード
+        oldCustomerCode:
+          type: string
+          description: 旧得意先コード
+        mainBusinessUnit:
+          type: string
+          description: 主管事業部
+        soType:
+          type: string
+          description: 受注タイプ
+        billToCode:
+          type: string
+          description: 売掛先コード
+        customerNameNative1:
+          type: string
+          description: 得意先名（現地語1）
+        customerNameNativeForSearch:
+          type: string
+          description: 得意先名（現地語検索用）
+        customerNameEnglish:
+          type: string
+          description: 得意先名（英字）
+        countryCode:
+          type: string
+          description: 国コード
+        languageCode:
+          type: string
+          description: 言語コード
+        postalCode:
+          type: string
+          description: 郵便番号
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        addressNativeForSearch:
+          type: string
+          description: 住所（現地語検索用）
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        cityName:
+          type: string
+          description: 都市名
+        defaultOrderPicDepartmentNative:
+          type: string
+          description: デフォルト注文担当者部課（現地語）
+        defaultOrderPicDepartment:
+          type: string
+          description: デフォルト注文担当者部課
+        defaultOrderPicNameNative:
+          type: string
+          description: デフォルト注文担当者名（現地語）
+        defaultOrderPicName:
+          type: string
+          description: デフォルト注文担当者名
+        tel:
+          type: string
+          description: 電話番号
+        fax:
+          type: string
+          description: FAX番号
+        emailAddress:
+          type: string
+          description: メールアドレス
+        serviceStopType:
+          type: string
+          description: サービス停止区分
+        calendarCode:
+          type: string
+          description: カレンダコード
+        customerSubsidiaryCode:
+          type: string
+          description: 得意先の現法コード
+        customerSegmentCode:
+          type: string
+          description: 得意先セグメントコード
+        taxFreeFlag:
+          type: string
+          description: 非課税フラグ
+        packingRankType:
+          type: string
+          description: 梱包ランク区分
+        ioSupplyMeansCode:
+          type: string
+          description: IO調達方法コード
+        officeLicenseNumber:
+          type: string
+          description: 事業所ライセンス番号
+        vatNumber:
+          type: string
+          description: VAT番号
+        carrierAccountNumber:
+          type: string
+          description: 配送業者顧客番号
+        customerRemarks1:
+          type: string
+          description: 顧客注釈1
+        customerRemarks2:
+          type: string
+          description: 顧客注釈2
+        customerRemarks3:
+          type: string
+          description: 顧客注釈3
+        customerRemarks4:
+          type: string
+          description: 顧客注釈4
+        customerRemarks5:
+          type: string
+          description: 顧客注釈5
+        stopReasonCode:
+          type: string
+          description: 停止理由コード
+        customerNameNative2:
+          type: string
+          description: 得意先名（現地語2）
+        cityCode:
+          type: string
+          description: 市町村コード
+        companyEntityType:
+          type: string
+          description: 資本形態
+        chargeableMaterialFlag:
+          type: string
+          description: 有償支給フラグ
+        shippingDaysAreaCode:
+          type: string
+          description: 配送日数用エリアコード
+        supplierChoiceAreaCode:
+          type: string
+          description: 調達先選定用エリアコード
+        shipmentClassificationAreaCode:
+          type: string
+          description: 出荷仕分用エリアコード
+        misumiSubsidiaryFlag:
+          type: string
+          description: ミスミ現法フラグ
+        groupCompanyFlag:
+          type: string
+          description: グループ会社フラグ
+        outsideRegionFlag:
+          type: string
+          description: 域外フラグ
+        customerControlInternalV1List:
+          type: array
+          description: 得意先制御情報リスト
+          items:
+            $ref: '#/components/schemas/CustomerControlInternalV1'
+      required:
+        - subsidiaryCode
+        - customerCode
+        - billToCode
+        - customerNameEnglish
+        - countryCode
+        - languageCode
+        - address1Native
+        - addressNativeForSearch
+        - serviceStopType
+        - taxFreeFlag
+        - packingRankType
+    Error1:
+      title: Error1
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の最上位JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error2'
+    Error2:
+      title: Error2
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の2階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error3'
+    Error3:
+      title: Error3
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の3階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error4'
+    Error4:
+      title: Error4
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の4階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error5'
+    Error5:
+      title: Error5
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の5階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+    ShipToInternalV1:
+      title: ShipToInternalV1
+      type: object
+      description: 配送先情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        customerCode:
+          type: string
+          description: 得意先コード
+        shipToCode:
+          type: string
+          description: 配送先コード
+        oldShipToCode:
+          type: string
+          description: 旧配送先コード
+        shipToNameNative:
+          type: string
+          description: 配送先名（現地語）
+        shipToNameNativeForSearch:
+          type: string
+          description: 配送先名（現地語検索用）
+        shipToName:
+          type: string
+          description: 配送先名
+        countryCode:
+          type: string
+          description: 国コード
+        postalCode:
+          type: string
+          description: 郵便番号
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        cityName:
+          type: string
+          description: 都市名
+        defaultCustomerDeliveryPicDepartmentNative:
+          type: string
+          description: デフォルト納入担当者部課（現地語）
+        defaultCustomerDeliveryPicDepartment:
+          type: string
+          description: デフォルト納入担当者部課
+        defaultCustomerDeliveryPicNameNative:
+          type: string
+          description: デフォルト納入担当者氏名（現地語）
+        defaultCustomerDeliveryPicName:
+          type: string
+          description: デフォルト納入担当者氏名
+        tel:
+          type: string
+          description: 電話番号
+        fax:
+          type: string
+          description: FAX番号
+        calendarCode:
+          type: string
+          description: カレンダコード
+        taxAreaCode:
+          type: string
+          description: 税金エリアコード
+        freightAreaCode:
+          type: string
+          description: 運賃エリアコード
+        freightDiscountFlag:
+          type: string
+          description: 運賃値引フラグ
+        taxFreeFlag:
+          type: string
+          description: 非課税フラグ
+        plantPattern:
+          type: string
+          description: 置場パターン
+        specialCustomerBoxGroup:
+          type: string
+          description: 特別カスタマーBOXグループ
+        specialCustomerBoxNumber:
+          type: string
+          description: 特別カスタマーBOX番号
+        vatNumber:
+          type: string
+          description: VAT番号
+        roadPermissionsNeedFlag:
+          type: string
+          description: ロードパーミッション必要フラグ
+        businessInstruction1:
+          type: string
+          description: 事務指示1
+        businessInstruction1DisplayFlag:
+          type: string
+          description: 事務指示1表示フラグ
+        businessInstruction2:
+          type: string
+          description: 事務指示2
+        businessInstruction2DisplayFlag:
+          type: string
+          description: 事務指示2表示フラグ
+        packingInstruction1:
+          type: string
+          description: 梱包指示1
+        packingInstruction1DisplayFlag:
+          type: string
+          description: 梱包指示1表示フラグ
+        packingInstruction2:
+          type: string
+          description: 梱包指示2
+        packingInstruction2DisplayFlag:
+          type: string
+          description: 梱包指示2表示フラグ
+        companyEntityType:
+          type: string
+          description: 資本形態
+        cityCode:
+          type: string
+          description: 市町村コード
+        shipmodeCode:
+          type: string
+          description: 扱い便コード
+        provisionedSlipType:
+          type: string
+          description: 仮伝区分
+        shippingFreeAmount:
+          type: string
+          description: 配送無料対象金額
+          format: decimal
+        ioSupplyMeansCode:
+          type: string
+          description: IO調達方法コード
+        sameDayArrivalPossibleFlag:
+          type: string
+          description: 当日着荷可能フラグ
+        hubDepotTransferFlag:
+          type: string
+          description: ハブ・デポ転送フラグ
+        shippingServiceFlag:
+          type: string
+          description: 配送サービスフラグ
+        shippingServicePaymentType:
+          type: string
+          description: 配送サービス課金区分
+        salesOfficeCode:
+          type: string
+          description: 営業所コード
+        shippingServiceClosingTimeType:
+          type: string
+          description: 配送サービス締め時間区分
+        mainShipToFlag:
+          type: string
+          description: 主配送先フラグ
+        shippingDaysAreaCode:
+          type: string
+          description: 配送日数用エリアコード
+        supplierChoiceAreaCode:
+          type: string
+          description: 調達先選定用エリアコード
+        shipmentClassificationAreaCode:
+          type: string
+          description: 出荷仕分用エリアコード
+        defaultShippingMethodPaymentMethodType:
+          type: string
+          description: デフォルト配送方法・支払い方法区分
+      required:
+        - subsidiaryCode
+        - customerCode
+        - shipToCode
+        - shipToName
+        - countryCode
+        - address1Native
+        - taxAreaCode
+        - freightDiscountFlag
+        - taxFreeFlag
+        - plantPattern
+        - roadPermissionsNeedFlag
+        - businessInstruction1DisplayFlag
+        - businessInstruction2DisplayFlag
+        - packingInstruction1DisplayFlag
+        - packingInstruction2DisplayFlag
+        - shipmodeCode
+        - provisionedSlipType
+    SearchAcceptanceGroupInternalResponseV1:
+      title: SearchAcceptanceGroupInternalResponseV1
+      type: object
+      description: 検収グループ情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        acceptanceGroupInternalV1List:
+          type: array
+          description: 検収グループ情報リスト
+          items:
+            $ref: '#/components/schemas/AcceptanceGroupInternalV1'
+      required:
+        - recordCount
+    GetAcceptanceGroupInternalResponseV1:
+      title: GetAcceptanceGroupInternalResponseV1
+      type: object
+      description: 検収グループ情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        acceptanceGroupInternalV1:
+          $ref: '#/components/schemas/AcceptanceGroupInternalV1'
+      required:
+        - recordCount
+    SearchUserInternalResponseV1:
+      title: SearchUserInternalResponseV1
+      type: object
+      description: 会員情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        userInternalV1List:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserInternalV1'
+      required:
+        - recordCount
+    GetUserInternalResponseV1:
+      title: GetUserInternalResponseV1
+      type: object
+      description: 会員情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        userInternalV1:
+          $ref: '#/components/schemas/UserInternalV1'
+      required:
+        - recordCount
+    SearchBillToInternalResponseV1:
+      title: SearchBillToInternalResponseV1
+      type: object
+      description: 売掛先情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1List:
+          type: array
+          description: 売掛先情報リスト
+          items:
+            $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - recordCount
+    GetBillToInternalResponseV1:
+      title: GetBillToInternalResponseV1
+      type: object
+      description: 売掛先情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1:
+          $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - recordCount
+    GetListCustomerInternalRequestV1:
+      title: GetListCustomerInternalRequestV1
+      description: 得意先情報取得API（List）のリクエスト電文
+      type: object
+      properties:
+        getListCustomerInternalRequestV1DetailList:
+          type: array
+          description: 得意先情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListCustomerInternalRequestV1Detail'
+      required:
+        - getListCustomerInternalRequestV1DetailList
+    GetListCustomerInternalRequestV1Detail:
+      title: GetListCustomerInternalRequestV1Detail
+      type: object
+      description: 得意先情報取得API（List）のリクエスト電文詳細
+      properties:
+        customerCode:
+          type: string
+          description: 得意先コード
+          minLength: 6
+          maxLength: 6
+          example: '123456'
+      required:
+        - customerCode
+    GetListShipToInternalRequestV1:
+      title: GetListShipToInternalRequestV1
+      description: 配送先情報取得API（List）のリクエスト電文
+      type: object
+      properties:
+        getListShipToInternalRequestV1DetailList:
+          type: array
+          description: 配送先情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListShipToInternalRequestV1Detail'
+      required:
+        - getListShipToInternalRequestV1DetailList
+    GetListShipToInternalRequestV1Detail:
+      title: GetListShipToInternalRequestV1Detail
+      type: object
+      description: 配送先情報取得API（List）のリクエスト電文詳細
+      properties:
+        customerCode:
+          type: string
+          description: 得意先コード
+          minLength: 6
+          maxLength: 6
+          example: '123456'
+        shipToCode:
+          type: string
+          description: 配送先コード
+          minLength: 6
+          maxLength: 6
+          example: '123456'
+      required:
+        - customerCode
+        - shipToCode
+    GetCustomerInternalResponseV1:
+      title: GetCustomerInternalResponseV1
+      type: object
+      description: 得意先情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        customerInternalV1:
+          $ref: '#/components/schemas/CustomerInternalV1'
+      required:
+        - recordCount
+    GetListCustomerInternalResponseV1:
+      title: GetListCustomerInternalResponseV1
+      type: object
+      description: 得意先情報取得API（List）のレスポンス電文
+      properties:
+        getListCustomerInternalResponseV1DetailList:
+          type: array
+          description: 得意先情報リスト
+          items:
+            $ref: '#/components/schemas/GetListCustomerInternalResponseV1Detail'
+    GetListCustomerInternalResponseV1Detail:
+      title: GetListCustomerInternalResponseV1Detail
+      type: object
+      description: 得意先情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        customerInternalV1:
+          $ref: '#/components/schemas/CustomerInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    GetListShipToInternalResponseV1:
+      title: GetListShipToInternalResponseV1
+      type: object
+      description: 配送先情報取得API（List）のレスポンス電文
+      properties:
+        getListShipToInternalResponseV1DetailList:
+          type: array
+          description: 配送先情報リスト
+          items:
+            $ref: '#/components/schemas/GetListShipToInternalResponseV1Detail'
+    GetListShipToInternalResponseV1Detail:
+      title: GetListShipToInternalResponseV1Detail
+      type: object
+      description: 配送先情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        shipToInternalV1:
+          $ref: '#/components/schemas/ShipToInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    SearchCustomerInternalResponseV1:
+      title: SearchCustomerInternalResponseV1
+      type: object
+      description: 得意先情報検索APIののレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        customerInternalV1List:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerInternalV1'
+      required:
+        - recordCount
+    SearchIndustryInternalResponseV1:
+      title: SearchIndustryInternalResponseV1
+      type: object
+      description: 業種情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        industryInternalV1List:
+          type: array
+          description: 業種情報リスト
+          items:
+            $ref: '#/components/schemas/IndustryInternalV1'
+      required:
+        - recordCount
+    SearchDeliveryDestinationInternalResponseV1:
+      title: SearchDeliveryDestinationInternalResponseV1
+      type: object
+      description: 納入先情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        deliveryDestinationInternalV1List:
+          type: array
+          description: 納入先情報リスト
+          items:
+            $ref: '#/components/schemas/DeliveryDestinationInternalV1'
+      required:
+        - recordCount
+    SearchShipToInternalResponseV1:
+      title: SearchShipToInternalResponseV1
+      type: object
+      description: 配送先情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        shipToInternalV1List:
+          type: array
+          description: 配送先情報リスト
+          items:
+            $ref: '#/components/schemas/ShipToInternalV1'
+      required:
+        - recordCount
+    SearchCustomerManualInternalResponseV1:
+      title: SearchCustomerManualInternalResponseV1
+      type: object
+      description: 得意先マニュアル情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        customerManualInternalV1List:
+          type: array
+          description: 得意先マニュアル情報リスト
+          items:
+            $ref: '#/components/schemas/SearchCustomerManualInternalResponseV1Detail'
+      required:
+        - recordCount
+    SearchCustomerManualInternalResponseV1Detail:
+      title: SearchCustomerManualInternalResponseV1Detail
+      type: object
+      description: 得意先マニュアル情報検索APIのレスポンス電文詳細情報
+      properties:
+        customerManualInternalV1:
+          $ref: '#/components/schemas/CustomerManualInternalV1'
+        customerManualSubCategoryInternalV1List:
+          type: array
+          description: 得意先マニュアルサブカテゴリ情報リスト
+          items:
+            $ref: '#/components/schemas/CustomerManualSubCategoryInternalV1'
+    GetListDeliveryDestinationInternalRequestV1:
+      title: GetListDeliveryDestinationInternalRequestV1
+      type: object
+      description: 納入先情報取得API（List）のリクエスト電文
+      properties:
+        getListDeliveryDestinationInternalRequestV1DetailList:
+          type: array
+          description: 納入先情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListDeliveryDestinationInternalRequestV1Detail'
+      required:
+        - getListDeliveryDestinationInternalRequestV1DetailList
+    GetListDeliveryDestinationInternalRequestV1Detail:
+      title: GetListDeliveryDestinationInternalRequestV1Detail
+      type: object
+      description: 納入先情報取得API（List）のリクエスト電文詳細
+      properties:
+        deliveryDestinationType:
+          type: string
+          description: 納入先区分
+          minLength: 1
+          maxLength: 1
+        plantCode:
+          type: string
+          description: 置場コード
+          minLength: 4
+          maxLength: 4
+      required:
+        - deliveryDestinationType
+        - plantCode
+    GetListDeliveryDestinationInternalResponseV1:
+      title: GetListDeliveryDestinationInternalResponseV1
+      type: object
+      description: 納入先情報取得API（List）のレスポンス電文
+      properties:
+        getListDeliveryDestinationInternalResponseV1DetailList:
+          type: array
+          description: 納入先情報リスト
+          items:
+            $ref: '#/components/schemas/GetListDeliveryDestinationInternalResponseV1Detail'
+    GetListDeliveryDestinationInternalResponseV1Detail:
+      title: GetListDeliveryDestinationInternalResponseV1Detail
+      type: object
+      description: 納入先情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        deliveryDestinationInternalV1:
+          $ref: '#/components/schemas/DeliveryDestinationInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    GetShipToInternalResponseV1:
+      title: GetShipToInternalResponseV1
+      type: object
+      description: 配送先情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        shipToInternalV1:
+          $ref: '#/components/schemas/ShipToInternalV1'
+      required:
+        - recordCount
+    SearchBillToInternalRequestV1:
+      title: SearchBillToInternalRequestV1
+      type: object
+      description: 売掛先情報検索APIのリクエスト項目電文
+      properties:
+        billToCodeList:
+          type: array
+          maxLength: 6
+          minLength: 6
+          description: 売掛先コードリスト
+          items:
+            type: object
+            description: 売掛先コード
+            properties:
+              billToCode:
+                type: string
+                description: 売掛先コード
+                maxLength: 6
+                minLength: 6
+                example: '860583'
+        billToCodeFrom:
+          type: string
+          description: 売掛先コード（From）
+          minLength: 6
+          maxLength: 6
+        billToCodeTo:
+          type: string
+          description: 売掛先コード（To）
+          minLength: 6
+          maxLength: 6
+        billToNameNative:
+          type: string
+          description: 売掛先名（現地語）
+          minLength: 1
+          maxLength: 200
+        billToName:
+          type: string
+          description: 売掛先名
+          minLength: 1
+          maxLength: 60
+        acceptanceGroupCodeList:
+          type: array
+          description: 検収グループコードリスト
+          items:
+            type: object
+            description: 検収グループコード情報
+            properties:
+              acceptanceGroupCode:
+                type: string
+                description: 検収グループコード
+                maxLength: 6
+                minLength: 1
+    SearchAcceptanceGroupInternalRequestV1:
+      title: SearchAcceptanceGroupInternalRequestV1
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文
+      properties:
+        acceptanceGroupCodeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCodeList'
+        incomingPaymentGroupCodeList:
+          type: array
+          description: 入金グループコードリスト
+          items:
+            type: object
+            description: 入金グループコード情報
+            properties:
+              incomingPaymentGroupCode:
+                type: string
+                description: 入金グループコード
+                minLength: 1
+                maxLength: 6
+        incomingPaymentGroupCodeFrom:
+          type: string
+          description: 入金グループコード（From）
+          minLength: 1
+          maxLength: 6
+        incomingPaymentGroupCodeTo:
+          type: string
+          description: 入金グループコード（To）
+          minLength: 1
+          maxLength: 6
+    SearchTiShipToConvertInternalResponseV1:
+      type: object
+      title: SearchTiShipToConvertInternalResponseV1
+      description: TI配送先変換情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        tiShipToConvertInternalV1List:
+          type: array
+          description: TI配送先変換情報リスト
+          items:
+            $ref: '#/components/schemas/TiShipToConvertInternalV1'
+      required:
+        - recordCount
+    SearchIoCustomerConvertInternalResponseV1:
+      title: SearchIoCustomerConvertInternalResponseV1
+      type: object
+      description: IO用得意先変換検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        ioCustomerConvertInternalV1List:
+          type: array
+          description: IO用得意先変換情報リスト
+          items:
+            $ref: '#/components/schemas/IoCustomerConvertInternalV1'
+      required:
+        - recordCount
+    IoCustomerConvertInternalV1:
+      title: IoCustomerConvertInternalV1
+      type: object
+      description: IO用得意先変換情報
+      properties:
+        sub1SubsidiaryCode:
+          type: string
+          description: SUB1側現法コード
+        sub1SupplierCode:
+          type: string
+          description: SUB1側仕入先コード
+        sub2SubsidiaryCode:
+          type: string
+          description: SUB2側現法コード
+        sub2CustomerCode:
+          type: string
+          description: SUB2側得意先コード
+        ccyCode:
+          type: string
+          description: 通貨コード
+      required:
+        - sub1SubsidiaryCode
+        - sub1SupplierCode
+        - sub2SubsidiaryCode
+        - sub2CustomerCode
+        - ccyCode
+    GetUserAuthorityInternalResponseV1:
+      title: GetUserAuthorityInternalResponseV1
+      type: object
+      description: 会員権限情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        userAuthorityInternalV1:
+          $ref: '#/components/schemas/UserAuthorityInternalV1'
+      required:
+        - recordCount
+    UserAuthorityInternalV1:
+      title: UserAuthorityInternalV1
+      type: object
+      description: 会員権限情報
+      properties:
+        userCode:
+          type: string
+          description: ユーザコード
+        adminAuthorityFlag:
+          type: string
+          description: 管理者権限フラグ
+        qtAuthorityFlag:
+          type: string
+          description: 見積権限フラグ
+        orderAuthorityFlag:
+          type: string
+          description: 注文権限フラグ
+        invoiceIssueAuthorityFlag:
+          type: string
+          description: 請求書発行権限フラグ
+        deliveryNoteReissueAuthorityFlag:
+          type: string
+          description: 納品書再発行権限フラグ
+      required:
+        - userCode
+    SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCodeList:
+      title: SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCodeList
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文詳細
+      properties:
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+          maxLength: 6
+          minLength: 1
+      required:
+        - acceptanceGroupCode
+  responses:
+    ErrorResponse:
+      description: エラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error1'
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 1
+      description: ソート順
+    X-User-Type:
+      name: X-User-Type
+      in: header
+      schema:
+        type: string
+        enum:
+          - Internal
+          - Customer
+          - Supplier
+          - System
+      description: 権限の種別を区別するための値。MS層から別のMS層にリクエストを送信する場合はヘッダー付与必須。
+      required: false
+    X-Auth-Id:
+      name: X-Auth-Id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: アクセス元を表すID文字列。MS層から別のMS層にリクエストを送信する場合はヘッダー付与必須。
+    x-datadog-trace-id:
+      name: x-datadog-trace-id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Datadogでトレースをするためのヘッダ。
+    Authorization:
+      name: Authorization
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 認証トークンを含むヘッダ。OutSystemsからリクエストをする場合はヘッダー付与必須。
+    Cache-Control:
+      name: Cache-Control
+      in: header
+      required: false
+      schema:
+        type: string
+      description: HTTPキャッシュのディレクティブを格納するヘッダ
+tags:
+  - name: AcceptanceGroupInternal
+  - name: BillToInternal
+  - name: CustomerInternal
+  - name: CustomerManualInternal
+  - name: DeliveryDestinationInternal
+  - name: IndustryInternal
+  - name: IoCustomerConvertInternal
+  - name: ShipToInternal
+  - name: TiShipToConvertInternal
+  - name: UserAuthorityInternal
+  - name: UserInternal

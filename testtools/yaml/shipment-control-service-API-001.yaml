@@ -1,0 +1,422 @@
+openapi: 3.0.0
+info:
+  title: API-001
+  version: '1.0'
+  description: 入荷入力用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/arrival-data-input/search:
+    get:
+      summary: 入荷_入力参照API
+      operationId: searchArrivalDataInputV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchArrivalDataInputResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 仕入先マスタ、発注基盤エンティティ、入荷エンティティから入荷情報を参照する
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: plantCode
+          description: 置場コード
+          required: true
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: arrivalScheduledDateFrom
+          description: 入荷予定日From
+          required: true
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: arrivalScheduledDateTo
+          description: 入荷予定日To
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: supplierCode
+          description: 仕入先コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 25
+          in: query
+          name: supplierInvNo
+          description: SupplierI/V No
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: processType
+          description: 処理区分
+        - schema:
+            type: string
+          in: query
+          name: maxCount
+          description: 参照最大件数
+          required: true
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: '#/components/parameters/sortby2'
+      tags:
+        - ArrivalDataInput
+    parameters: []
+  /v1//arrival-data-input/save:
+    post:
+      summary: 入荷_入力更新API
+      operationId: saveArrivalDataInputV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 更新可否結果リスト
+                items:
+                  $ref: '#/components/schemas/SaveArrivalDataInputResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveArrivalDataInputRequestV1'
+        description: ''
+      description: 処理区分に応じて入荷エンティティに情報を登録、または登録内容を更新する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      tags:
+        - ArrivalDataInput
+    parameters: []
+components:
+  schemas:
+    SearchArrivalDataInputResponseV1:
+      title: SearchArrivalDataInputResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        supplierName:
+          type: string
+          description: 仕入先名
+          maxLength: 200
+        resultCount:
+          type: integer
+          description: 取得件数
+        researchList:
+          type: array
+          description: 参照リスト
+          items:
+            $ref: '#/components/schemas/SearchArrivalDataInputResearchListV1'
+      required:
+        - subsidiaryCode
+        - supplierName
+        - resultCount
+        - researchList
+    SearchArrivalDataInputResearchListV1:
+      title: SearchArrivalDataInputResearchListV1
+      type: object
+      properties:
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        voucherType:
+          type: string
+          description: 伝票区分
+          maxLength: 3
+        vsd:
+          description: VSD
+          format: date
+          type: string
+        poDate:
+          type: string
+          description: 発注日
+          format: date-time
+        brandCode:
+          type: string
+          description: ブランド
+          maxLength: 4
+        brandName:
+          type: string
+          description: ブランド名称（英語）
+          maxLength: 15
+        nativeBrandName:
+          type: string
+          description: ブランド名称（現地語）
+          maxLength: 200
+        arrivalScheduledDate:
+          type: string
+          description: 入荷予定日
+          format: date
+        arrivalFixDate:
+          type: string
+          description: 入荷確定日
+          format: date
+        poQty:
+          type: integer
+          description: 発注数量
+          maximum: 9999999
+        arrivalQty:
+          type: integer
+          description: 入荷数量
+          maximum: 9999999
+        purchaseUnitPrice:
+          type: string
+          description: 仕入単価
+          maxLength: 14
+        supplierInvNo:
+          type: string
+          description: SupplierI/V No
+          maxLength: 25
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+        orderAttributes:
+          type: string
+          description: 注文属性
+          maxLength: 2
+        sendSlip:
+          type: string
+          description: 伝票送付
+          maxLength: 1
+        status:
+          type: string
+          description: 状態
+          maxLength: 1
+        statusName:
+          type: string
+          description: 状態名
+      required:
+        - globalNumber
+        - productCode
+        - gInnerCode
+        - voucherType
+        - vsd
+        - poDate
+        - brandCode
+        - brandName
+        - nativeBrandName
+        - arrivalScheduledDate
+        - arrivalFixDate
+        - poQty
+        - arrivalQty
+        - purchaseUnitPrice
+        - supplierInvNo
+        - updateCount
+        - orderAttributes
+        - sendSlip
+        - status
+        - statusName
+    SaveArrivalDataInputRequestV1:
+      title: SaveArrivalDataInputRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        updateId:
+          type: string
+          description: 更新者ID
+          maxLength: 6
+        updateTime:
+          type: string
+          description: 更新日時
+          maxLength: 14
+          format: date-time
+          minLength: 14
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+        processType:
+          type: string
+          description: 処理区分
+          maxLength: 1
+        updateList:
+          type: array
+          description: 更新リスト
+          items:
+            $ref: '#/components/schemas/SaveArrivalDataInputUpdateListV1'
+      required:
+        - subsidiaryCode
+        - plantCode
+        - supplierCode
+        - updateId
+        - updateTime
+        - updateProgram
+    SaveArrivalDataInputUpdateListV1:
+      title: SaveArrivalDataInputUpdateListV1
+      type: object
+      description: ''
+      properties:
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        gInnerCode:
+          type: string
+          maxLength: 14
+          description: 統合インナーコード
+        productCode:
+          type: string
+          maxLength: 234
+          description: 商品コード
+        voucherType:
+          type: string
+          maxLength: 3
+          description: 伝票区分
+        vsd:
+          type: string
+          description: VSD
+          format: date
+          minLength: 8
+          maxLength: 8
+        poQty:
+          type: integer
+          description: 発注数量
+          maximum: 9999999
+        purchaseUnitPrice:
+          type: string
+          maxLength: 14
+          description: 仕入単価
+        poDate:
+          type: string
+          description: 発注日
+          format: date-time
+          maxLength: 8
+          minLength: 8
+        arrivalQty:
+          type: integer
+          description: 入荷数量
+          maximum: 9999999
+        arrivalFixDate:
+          type: string
+          description: 入荷確定日
+          format: date
+          minLength: 8
+          maxLength: 8
+        supplierInvNo:
+          type: string
+          maxLength: 25
+          description: Supplier Invoice No
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+        orderAttributes:
+          type: string
+          description: 注文属性
+          maxLength: 2
+        sendSlip:
+          type: string
+          description: 伝票送付
+          maxLength: 1
+      required:
+        - globalNumber
+    SaveArrivalDataInputResponseV1:
+      title: SaveArrivalDataInputResponseV1
+      type: object
+      properties:
+        updateResult:
+          type: string
+          description: 更新可否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - updateResult
+  parameters:
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: 返却件数
+      required: true
+    offset:
+      name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 取得開始位置
+    sortby:
+      name: sortby
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順1
+    sortby2:
+      name: sortby2
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順2
+tags:
+  - name: ArrivalDataInput

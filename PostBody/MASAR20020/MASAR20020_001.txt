@@ -1,0 +1,4 @@
+{
+  "requestDataList":[],
+  "dunningLetterOutputType":"1"	
+}

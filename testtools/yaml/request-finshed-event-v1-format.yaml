@@ -1,0 +1,23 @@
+title: request-finshed-event-v1-format
+type: object
+event:
+  type: request-finshed-event
+  version: 1
+description: 請求済イベントJson Schemas
+properties:
+  subsidiaryCode:
+    type: string
+    maxLength: 3
+    description: 現法コード
+  globalNo:
+    type: string
+    maxLength: 14
+    description: グローバル番号
+  recStatus:
+    type: string
+    maxLength: 2
+    description: 明細状況
+required:
+  - subsidiaryCode
+  - globalNo
+  - recStatus

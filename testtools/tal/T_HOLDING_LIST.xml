@@ -1,0 +1,51 @@
+対象年月::year_month::char(6)::NOT NULL(PK)
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+グローバル番号::global_number::char(14)::NOT NULL
+受注伝票番号::so_voucher_no::varchar(12)::NOT NULL(PK)
+受注明細キー::so_line_key::integer::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NULL
+商品コード::product_code::varchar(234)::NULL
+分析コード::classify_code::varchar(8)::NULL
+商品所管部門コード::product_control_department_code::varchar(6)::NULL
+SSD::ssd::date::NULL
+VRD::vrd::date::NULL
+VSD::vsd::date::NULL
+入荷確定日::receiving_fix_date::date::NULL
+得意先コード::customer_code::char(6)::NULL
+得意先名（英字）::customer_name_english::varchar(60)::NULL
+配送先コード::ship_to_code::char(6)::NULL
+配送先名（英字）::ship_to_name_english::varchar(60)::NULL
+仕入先コード::supplier_code::char(4)::NULL
+入荷数量::receiving_qty::numeric(7,0)::NULL
+受注数量::so_qty::integer::NULL
+基準日::base_date::date::NULL
+入荷仕入金額::receiving_purchase_amount::numeric(18,3)::NULL
+仕入単価通貨コード::purchase_unit_price_ccy_code::char(3)::NULL
+通貨コード::ccy_code::char(3)::NULL
+IO用仕入先現法レート::io_supplier_subsidiary_rate::numeric(23,9)::NULL
+入荷仕入先現法レート::receiving_supplier_subsidiary_rate::numeric(23,9)::NULL
+在庫区分::stock_type::char(1)::NULL
+受注日::so_date::date::NULL
+CRD::crd::date::NULL
+輸送手段::transport_means::varchar(2)::NULL
+仕入価格通貨::purchase_price_ccy::char(3)::NULL
+販管費::sales_management_expenses::numeric(14,3)::NULL
+マージン::margin::numeric(14,3)::NULL
+輸出元現地通貨::exporter_local_ccy::char(3)::NULL
+発注先現法仕入先レート::supplier_subsidiary_supplier_rate::numeric(23,9)::NULL
+入荷運賃仕入先レート::receiving_freight_supplier_rate::numeric(23,9)::NULL
+運賃発注先現法レート::freight_supplier_subsidiary_rate::numeric(23,9)::NULL
+取引通貨為替レート::trade_ccy_exchange_rate::numeric(23,9)::NULL
+商品仕入先レート::product_supplier_rate::numeric(23,9)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

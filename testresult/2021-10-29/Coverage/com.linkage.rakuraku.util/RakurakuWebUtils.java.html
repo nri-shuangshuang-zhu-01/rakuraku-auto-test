@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RakurakuWebUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util</a> &gt; <span class="el_source">RakurakuWebUtils.java</span></div><h1>RakurakuWebUtils.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util;
+
+import java.awt.AWTException;
+import java.awt.GraphicsEnvironment;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.dom4j.Document;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
+import org.junit.Assert;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
+import com.linkage.rakuraku.core.RakurakuCore;
+import com.linkage.rakuraku.exp.RakurakuException;
+import com.linkage.rakuraku.util.other.JunitAssert;
+
+<span class="nc" id="L80">public class RakurakuWebUtils {</span>
+
+    public static RakurakuCaptureUtils guiCamera;
+
+<span class="nc" id="L84">    private static Map&lt;String, Integer&gt; handleList = new HashMap&lt;String, Integer&gt;();</span>
+
+<span class="nc" id="L86">    public static Map&lt;String, String&gt; apiMap = new HashMap&lt;String, String&gt;();</span>
+
+    public static String mockHeaders;
+    /**
+     * IEDriverのインスタンス化
+     *
+     * @return WebDriver
+     * @throws Exception
+     */
+    public static WebDriver getIEDriver() throws Exception {
+<span class="nc" id="L96">        RakurakuFileUtils.createFloder();</span>
+<span class="nc" id="L97">        File file = new File(RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_IE&quot;)); // メニューからエビデンス取得不要</span>
+<span class="nc" id="L98">        System.setProperty(&quot;webdriver.ie.driver&quot;, file.getAbsolutePath());</span>
+<span class="nc" id="L99">        DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();</span>
+<span class="nc" id="L100">        ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);</span>
+<span class="nc" id="L101">        ieCapabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);</span>
+<span class="nc" id="L102">        WebDriver driver = new InternetExplorerDriver(ieCapabilities);</span>
+        /* IE Driverタイムアウト時間 */
+<span class="nc" id="L104">        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);</span>
+        /* IEウインドのサイズ設定 */
+<span class="nc" id="L106">        driver = setWindowSize(driver);</span>
+<span class="nc" id="L107">        RakurakuDBUtils.getProps().setProperty(&quot;DEVICE_TYPE&quot;, &quot;Powered by IE.&quot;);</span>
+<span class="nc" id="L108">        return driver;</span>
+    }
+
+    /**
+     * FireFoxDriverのインスタンス化
+     *
+     * @return WebDriver
+     * @throws Exception
+     * @throws NumberFormatException
+     */
+    public static WebDriver getFireFoxDriver() throws NumberFormatException, Exception {
+<span class="nc" id="L119">        RakurakuFileUtils.createFloder();</span>
+<span class="nc" id="L120">        WebDriver driver = new FirefoxDriver();</span>
+        /* FireFoxタイムアウト時間 */
+<span class="nc" id="L122">        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);</span>
+        /* FireFoxウインドのサイズ設定 */
+<span class="nc" id="L124">        driver = setWindowSize(driver);</span>
+<span class="nc" id="L125">        RakurakuDBUtils.getProps().setProperty(&quot;DEVICE_TYPE&quot;, &quot;Powered by FireFox.&quot;);</span>
+<span class="nc" id="L126">        return driver;</span>
+    }
+
+    /**
+     * ChromeDriverのインスタンス化
+     *
+     * @return WebDriver
+     * @throws Exception
+     */
+    public static WebDriver getChromeDriver() throws Exception {
+<span class="nc" id="L136">        RakurakuFileUtils.createFloder();</span>
+<span class="nc" id="L137">        String key = &quot;webdriver.chrome.driver&quot;;</span>
+<span class="nc" id="L138">        String value = RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_CHROME&quot;);</span>
+<span class="nc" id="L139">        RakurakuDBUtils.getProps().setProperty(&quot;IS_CHROME&quot;, &quot;YES&quot;);</span>
+<span class="nc" id="L140">        System.setProperty(key, value);</span>
+<span class="nc" id="L141">        DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();</span>
+<span class="nc" id="L142">        String downloadFilepath = RakurakuCore.eachEviPath.replace(&quot;/&quot;, &quot;\\&quot;) + &quot;\\Rakuraku_Work\\downloads&quot;;</span>
+<span class="nc" id="L143">        HashMap&lt;String, Object&gt; chromePrefs = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L144">        chromePrefs.put(&quot;profile.default_content_settings.popups&quot;, 0);</span>
+<span class="nc" id="L145">        chromePrefs.put(&quot;credentials_enable_service&quot;, true);</span>
+<span class="nc" id="L146">        chromePrefs.put(&quot;profile.password_manager_enabled&quot;, false);</span>
+<span class="nc" id="L147">        chromePrefs.put(&quot;download.default_directory&quot;, downloadFilepath);</span>
+<span class="nc" id="L148">        ChromeOptions options = new ChromeOptions();</span>
+<span class="nc" id="L149">        options.setExperimentalOption(&quot;prefs&quot;, chromePrefs);</span>
+<span class="nc" id="L150">        options.addArguments(&quot;--test-type&quot;);</span>
+<span class="nc" id="L151">        options.addArguments(&quot;disable-infobars&quot;);</span>
+        // options.addArguments(&quot;start-maximized&quot;);
+
+<span class="nc" id="L154">        chromeCapabilities.setCapability(&quot;ignoreProtectedModeSettings&quot;, true);</span>
+<span class="nc" id="L155">        chromeCapabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);</span>
+<span class="nc" id="L156">        chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, options);</span>
+<span class="nc" id="L157">        System.setProperty(ChromeDriverService.CHROME_DRIVER_LOG_PROPERTY,</span>
+<span class="nc" id="L158">                System.getProperty(&quot;user.dir&quot;) + File.separator + &quot;/chromedriver.log&quot;);</span>
+<span class="nc" id="L159">        ChromeDriverService chromeDriverService = new ChromeDriverService.Builder().usingAnyFreePort().withVerbose(true)</span>
+<span class="nc" id="L160">                .build();</span>
+<span class="nc" id="L161">        Thread.sleep(200);</span>
+<span class="nc" id="L162">        chromeDriverService.start();</span>
+<span class="nc" id="L163">        WebDriver driver = new ChromeDriver(chromeDriverService, chromeCapabilities);</span>
+        /* Chrome Driverタイムアウト時間 */
+<span class="nc" id="L165">        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);</span>
+        /* Chromeウインドのサイズ設定 */
+<span class="nc" id="L167">        driver = setWindowSize(driver);</span>
+<span class="nc" id="L168">        RakurakuDBUtils.getProps().setProperty(&quot;DEVICE_TYPE&quot;, &quot;Powered by Chrome.&quot;);</span>
+<span class="nc" id="L169">        return driver;</span>
+    }
+
+    /**
+     * SPDriverのインスタンス化
+     *
+     * @return WebDriver
+     * @throws Exception
+     */
+    public static WebDriver getSPDriver(String phoneType) throws Exception {
+<span class="nc" id="L179">        RakurakuFileUtils.createFloder();</span>
+<span class="nc" id="L180">        String key = &quot;webdriver.chrome.driver&quot;;</span>
+<span class="nc" id="L181">        String value = RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_CHROME&quot;);</span>
+<span class="nc" id="L182">        RakurakuDBUtils.getProps().setProperty(&quot;IS_CHROME&quot;, &quot;YES&quot;);</span>
+<span class="nc" id="L183">        System.setProperty(key, value);</span>
+<span class="nc" id="L184">        Map&lt;String, String&gt; mobileEmulation = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L185">        mobileEmulation.put(&quot;deviceName&quot;, phoneType);</span>
+<span class="nc" id="L186">        ChromeOptions options = new ChromeOptions();</span>
+<span class="nc" id="L187">        options.setExperimentalOption(&quot;mobileEmulation&quot;, mobileEmulation);</span>
+<span class="nc" id="L188">        options.addArguments(&quot;disable-infobars&quot;);</span>
+<span class="nc" id="L189">        Map&lt;String, String&gt; chromePrefs = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L190">        String downloadFilepath = RakurakuCore.eachEviPath.replace(&quot;/&quot;, &quot;\\&quot;) + &quot;\\Rakuraku_Work\\downloads&quot;;</span>
+<span class="nc" id="L191">        chromePrefs.put(&quot;download.default_directory&quot;, downloadFilepath);</span>
+<span class="nc" id="L192">        options.setExperimentalOption(&quot;prefs&quot;, chromePrefs);</span>
+<span class="nc" id="L193">        DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();</span>
+<span class="nc" id="L194">        chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, options);</span>
+<span class="nc" id="L195">        System.setProperty(ChromeDriverService.CHROME_DRIVER_LOG_PROPERTY,</span>
+<span class="nc" id="L196">                System.getProperty(&quot;user.dir&quot;) + File.separator + &quot;/chromedriver.log&quot;);</span>
+<span class="nc" id="L197">        ChromeDriverService chromeDriverService = new ChromeDriverService.Builder().usingAnyFreePort().withVerbose(true)</span>
+<span class="nc" id="L198">                .build();</span>
+<span class="nc" id="L199">        Thread.sleep(200);</span>
+<span class="nc" id="L200">        chromeDriverService.start();</span>
+<span class="nc" id="L201">        WebDriver driver = new ChromeDriver(chromeDriverService, chromeCapabilities);</span>
+        /* Chrome Driverタイムアウト時間 */
+<span class="nc" id="L203">        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);</span>
+        /* Chromeウインドのサイズ設定 */
+<span class="nc" id="L205">        driver = setWindowSize(driver);</span>
+<span class="nc" id="L206">        RakurakuDBUtils.getProps().setProperty(&quot;DEVICE_TYPE&quot;, phoneType + &quot; Powered by Chrome.&quot;);</span>
+<span class="nc" id="L207">        return driver;</span>
+    }
+
+    /**
+     * SafariDriverのインスタンス化
+     *
+     * @return WebDriver
+     * @throws Exception
+     * @throws NumberFormatException
+     */
+    public static WebDriver getSafariDriver() throws Exception {
+<span class="nc" id="L218">        WebDriver driver = new SafariDriver();</span>
+<span class="nc" id="L219">        driver = setWindowSize(driver);</span>
+<span class="nc" id="L220">        RakurakuDBUtils.getProps().setProperty(&quot;DEVICE_TYPE&quot;, &quot;Powered by Safari.&quot;);</span>
+<span class="nc" id="L221">        return driver;</span>
+    }
+
+    /**
+     * 画面ロードを待つ
+     *
+     * @param driver
+     */
+    public static void waitForLoad(WebDriver driver) {
+        try {
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (isAlertPerform(driver)) {</span>
+<span class="nc" id="L232">                return;</span>
+            }
+<span class="nc" id="L234">            driver = webBeforeOperate(driver);</span>
+<span class="nc" id="L235">            ExpectedCondition&lt;Boolean&gt; pageLoad = new ExpectedCondition&lt;Boolean&gt;() {</span>
+                public Boolean apply(WebDriver driver) {
+<span class="nc" id="L237">                    return ((JavascriptExecutor) driver).executeScript(&quot;return document.readyState&quot;).equals(&quot;complete&quot;);</span>
+                }
+            };
+<span class="nc" id="L240">            WebDriverWait wait = new WebDriverWait(driver, 60);</span>
+<span class="nc" id="L241">            wait.until(pageLoad);</span>
+<span class="nc" id="L242">            Thread.sleep(500);</span>
+<span class="nc" id="L243">        } catch (Exception e) {</span>
+            try {
+<span class="nc" id="L245">                Thread.sleep(500);</span>
+<span class="nc" id="L246">            } catch (InterruptedException e1) {</span>
+
+<span class="nc" id="L248">            }</span>
+<span class="nc" id="L249">        }</span>
+<span class="nc" id="L250">    }</span>
+
+    /**
+     * テスト画面を遷移
+     *
+     * @param driver
+     * IE Driver
+     * @throws Exception
+     */
+    public static WebDriver jumpToView(WebDriver driver, String viewID) throws Exception {
+<span class="nc bnc" id="L260" title="All 2 branches missed.">        if (driver.getWindowHandles().size() &lt;= 1</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">                || driver.getCurrentUrl().toLowerCase().contains(viewID.toLowerCase())) {</span>
+            try {
+<span class="nc" id="L263">                driver.getWindowHandle();</span>
+<span class="nc" id="L264">            } catch (Exception e) {</span>
+<span class="nc" id="L265">                driver = webBeforeOperate(driver);</span>
+<span class="nc" id="L266">            }</span>
+<span class="nc" id="L267">            return driver;</span>
+        }
+<span class="nc" id="L269">        String oriHandle = &quot;&quot;;</span>
+        long timeStart, timeEnd;
+<span class="nc" id="L271">        int timeInterval = 0;</span>
+        try {
+<span class="nc" id="L273">            oriHandle = driver.getWindowHandle();</span>
+<span class="nc" id="L274">        } catch (Exception e) {</span>
+<span class="nc" id="L275">            throw new RakurakuException(&quot;元ウインドが既に閉まりました。&quot;);</span>
+<span class="nc" id="L276">        }</span>
+<span class="nc" id="L277">        timeStart = new Date().getTime();</span>
+        while (true) {
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            for (String handle : driver.getWindowHandles()) {</span>
+<span class="nc" id="L280">                driver.switchTo().window(handle);</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">                if (driver.getCurrentUrl().toLowerCase().contains(viewID.toLowerCase())) {</span>
+<span class="nc" id="L282">                    return driver;</span>
+                }
+<span class="nc" id="L284">            }</span>
+<span class="nc" id="L285">            timeEnd = new Date().getTime();</span>
+<span class="nc" id="L286">            timeInterval = (int) ((timeEnd - timeStart) / 1000);</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">            if (timeInterval &gt; 15) {</span>
+<span class="nc" id="L288">                break;</span>
+            }
+        }
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        if (StringUtils.isNotBlank(oriHandle)) {</span>
+<span class="nc" id="L292">            driver.switchTo().window(oriHandle);</span>
+        }
+<span class="nc" id="L294">        return driver;</span>
+    }
+
+    /**
+     * バッチ実行
+     *
+     * @param
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    public static void runBat(String flg, String params) throws Exception {
+<span class="nc bnc" id="L306" title="All 2 branches missed.">        if (&quot;×&quot;.equals(params)) {</span>
+<span class="nc" id="L307">            return;</span>
+        }
+<span class="nc" id="L309">        String cmd = &quot;&quot;;</span>
+        //String url = &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\test.bat&quot;;
+<span class="nc" id="L311">        String url = guiCamera.getSeqNoPath() + &quot;.bat&quot;;</span>
+<span class="nc" id="L312">        FileWriter fw = null;</span>
+<span class="nc" id="L313">        fw = new FileWriter(url);</span>
+<span class="nc" id="L314">        Process process = null;</span>
+<span class="nc" id="L315">        String jobId = &quot;\&quot;&quot; + getRealValueAfterReplace(RakurakuDBUtils.getProps().getProperty(&quot;BATCH_PATH&quot;)) + &quot;\&quot;&quot;;</span>
+<span class="nc" id="L316">        String parameter = &quot;&quot;;</span>
+<span class="nc bnc" id="L317" title="All 4 branches missed.">        if (!&quot;〇&quot;.equals(params) &amp;&amp; !&quot;○&quot;.equals(params)) {</span>
+<span class="nc" id="L318">            String[] paramArr = params.split(&quot;,&quot;);</span>
+<span class="nc bnc" id="L319" title="All 2 branches missed.">            for (String eachParam : paramArr) {</span>
+<span class="nc" id="L320">                parameter = parameter + &quot; \&quot;&quot; + getRealValueAfterReplace(eachParam) + &quot;\&quot;&quot;;</span>
+            }
+        }
+//        Process pro;
+<span class="nc" id="L324">        BufferedWriter bw = null;</span>
+//        BufferedWriter bw = new BufferedWriter(
+//                new OutputStreamWriter(new FileOutputStream(new File(guiCamera.getSeqNoPath() + &quot;.log&quot;)), &quot;UTF-8&quot;));
+        // JAVA反射としてバッチを実施する
+<span class="nc bnc" id="L328" title="All 2 branches missed.">        if (&quot;1&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;BATCH_RUN_TYPE&quot;))) {</span>
+<span class="nc" id="L329">            Class&lt;?&gt; batCls = Class.forName(&quot;shipment-control-batch.src.test.java.jp.co.misumi.shipment.control.batch.ArrivalShipmentTotalJobTest&quot;);</span>
+<span class="nc" id="L330">            Method batMod = batCls.getMethod(&quot;testApplicaiton&quot;, String[].class);</span>
+<span class="nc" id="L331">            String[] args = {&quot;arrivalShipmentTotalJob&quot;, &quot;--job-id=12345&quot;, &quot;--operation-date=20210709&quot;,</span>
+                &quot;--subsidiary-code=MJP&quot;, &quot;--job-net-id=100&quot;};
+<span class="nc" id="L333">            params = Arrays.toString(args);</span>
+<span class="nc" id="L334">            batMod.invoke(null, (Object) params);</span>
+<span class="nc" id="L335">        }</span>
+
+
+        // ウインドウズコマンドとしてバッチを実施する
+<span class="nc bnc" id="L339" title="All 2 branches missed.">        else if (&quot;2&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;BATCH_RUN_TYPE&quot;))) {</span>
+<span class="nc" id="L340">            String[] s1=RakurakuCore.eachEviPath.split(&quot;case_&quot;);</span>
+<span class="nc bnc" id="L341" title="All 4 branches missed.">            if (&quot;〇&quot;.equals(flg) || &quot;○&quot;.equals(flg)) {</span>
+<span class="nc bnc" id="L342" title="All 2 branches missed.">                if (StringUtils.isNotBlank(parameter)) {</span>
+<span class="nc" id="L343">                    cmd = &quot;set JAVA_HOME=D:\\pleiades\\jdk11.0.3_7\nset PATH=%JAVA_HOME%;%JAVA_HOME%\\bin;\njava -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &quot; + parameter + &quot; &gt; &quot; +</span>
+<span class="nc" id="L344">                    guiCamera.getSeqNoPath() + &quot;.log 2&gt;&amp;1&quot;;</span>
+<span class="nc" id="L345">                    fw.write(cmd);</span>
+<span class="nc" id="L346">                    fw.close();</span>
+<span class="nc" id="L347">                    process = Runtime.getRuntime().exec(&quot;cmd /c &quot; + url);</span>
+<span class="nc" id="L348">                    InputStream in = process.getInputStream();</span>
+<span class="nc" id="L349">                    BufferedReader br = new BufferedReader(new InputStreamReader(in));</span>
+<span class="nc" id="L350">                    in.close();</span>
+//                    pro = Runtime.getRuntime().exec(
+//                        &quot;cmd /c java -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &quot; + parameter + &quot; &gt; &quot; +
+//                            guiCamera.getSeqNoPath() + &quot;.log&quot;);
+<span class="nc" id="L354">                } else {</span>
+<span class="nc" id="L355">                    cmd = &quot;set JAVA_HOME=D:\\pleiades\\jdk11.0.3_7\nset PATH=%JAVA_HOME%;%JAVA_HOME%\\bin;\njava -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &gt; &quot; +</span>
+<span class="nc" id="L356">                        guiCamera.getSeqNoPath() + &quot;.log 2&gt;&amp;1&quot;;</span>
+<span class="nc" id="L357">                    fw.write(cmd);</span>
+<span class="nc" id="L358">                    fw.close();</span>
+<span class="nc" id="L359">                    process = Runtime.getRuntime().exec(url);</span>
+<span class="nc" id="L360">                    InputStream in = process.getInputStream();</span>
+<span class="nc" id="L361">                    BufferedReader br = new BufferedReader(new InputStreamReader(in));</span>
+<span class="nc" id="L362">                    in.close();</span>
+//                    pro = Runtime.getRuntime().exec(
+//                        &quot;cmd /c java -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &gt; &quot; + guiCamera.getSeqNoPath() + &quot;.log&quot;);
+<span class="nc" id="L365">                }</span>
+
+            }else{
+<span class="nc bnc" id="L368" title="All 2 branches missed.">                if (StringUtils.isNotBlank(parameter)) {</span>
+<span class="nc" id="L369">                    cmd = &quot;set JAVA_HOME=D:\\pleiades\\jdk11.0.3_7\nset PATH=%JAVA_HOME%;%JAVA_HOME%\\bin;\njava -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &quot; + parameter + &quot; &gt; &quot; +</span>
+                        &quot;E:\\case&quot; + &quot;.log 2&gt;&amp;1&quot;;
+<span class="nc" id="L371">                    fw.write(cmd);</span>
+<span class="nc" id="L372">                    fw.close();</span>
+<span class="nc" id="L373">                    process = Runtime.getRuntime().exec(url);</span>
+<span class="nc" id="L374">                    InputStream in = process.getInputStream();</span>
+<span class="nc" id="L375">                    BufferedReader br = new BufferedReader(new InputStreamReader(in));</span>
+<span class="nc" id="L376">                    in.close();</span>
+//                    pro = Runtime.getRuntime().exec(
+//                        &quot;cmd /c java -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &quot; + parameter + &quot; &gt; &quot; +
+//                            &quot;E:\\case&quot; + &quot;.log&quot;);
+<span class="nc" id="L380">                } else {</span>
+<span class="nc" id="L381">                    cmd = &quot;set JAVA_HOME=D:\\pleiades\\jdk11.0.3_7\nset PATH=%JAVA_HOME%;%JAVA_HOME%\\bin;\njava -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &gt; &quot; +</span>
+                        &quot;E:\\case&quot; + &quot;.log 2&gt;&amp;1&quot;;
+<span class="nc" id="L383">                    fw.write(cmd);</span>
+<span class="nc" id="L384">                    fw.close();</span>
+<span class="nc" id="L385">                    process = Runtime.getRuntime().exec(url);</span>
+<span class="nc" id="L386">                    InputStream in = process.getInputStream();</span>
+<span class="nc" id="L387">                    BufferedReader br = new BufferedReader(new InputStreamReader(in));</span>
+<span class="nc" id="L388">                    in.close();</span>
+//                    pro = Runtime.getRuntime().exec(
+//                        &quot;cmd /c java -javaagent:D:\\pleiades\\workspace\\rakuraku-core\\src\\test\\resources\\selenium-2\\lib\\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=&quot; + s1[0] +&quot;jacoco.exec,append=true -jar &quot; + jobId + &quot; &gt; &quot; + &quot;E:\\case&quot; + &quot;.log&quot;);
+                }
+            }
+<span class="nc bnc" id="L393" title="All 2 branches missed.">            while(process.getInputStream() == null){</span>
+<span class="nc" id="L394">                new DealProcessSream(process.getInputStream()).start();</span>
+            }
+<span class="nc" id="L396">            new DealProcessSream(process.getErrorStream()).start();</span>
+<span class="nc" id="L397">            process.waitFor(50,TimeUnit.SECONDS);</span>
+<span class="nc" id="L398">            process.destroy();</span>
+<span class="nc" id="L399">            Thread.sleep(3000);</span>
+//            pro.waitFor();
+//            if (pro.exitValue() == 0) {
+//
+//                if (bw != null) {
+//                    bw.close();
+//                }
+//                pro.destroy();
+//                pro = null;
+//            } else {
+//
+//                bw.close();
+//                pro.destroy();
+//                pro = null;
+                //throw new RakurakuException(&quot;バッチ実行コマンドが正しくない。&quot;);
+//            }
+<span class="nc" id="L415">        }</span>
+
+        // Linuxバッチサーバーへ接続して、ユニックスコマンドとしてバッチを実施する
+<span class="nc bnc" id="L418" title="All 2 branches missed.">        else if (&quot;3&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;BATCH_RUN_TYPE&quot;))) {</span>
+<span class="nc" id="L419">            JSch jsch = new JSch();</span>
+<span class="nc" id="L420">            Session sessionBL = jsch.getSession(RakurakuDBUtils.getProps().getProperty(&quot;SERVER_USERNAME&quot;),</span>
+<span class="nc" id="L421">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_HOST&quot;), 22);</span>
+<span class="nc" id="L422">            sessionBL.setPassword(RakurakuDBUtils.getProps().getProperty(&quot;SERVER_PASSWORD&quot;));</span>
+<span class="nc" id="L423">            Properties config = new Properties();</span>
+<span class="nc" id="L424">            config.put(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);</span>
+<span class="nc" id="L425">            sessionBL.setConfig(config);</span>
+<span class="nc" id="L426">            sessionBL.setTimeout(30000);</span>
+<span class="nc" id="L427">            sessionBL.connect();</span>
+<span class="nc" id="L428">            ChannelExec ChannelExecBL = (ChannelExec) sessionBL.openChannel(&quot;exec&quot;);</span>
+<span class="nc" id="L429">            ChannelExecBL.setCommand(</span>
+<span class="nc" id="L430">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_COMMAND_PREFIX&quot;) + jobId + &quot; &quot; + parameter);</span>
+<span class="nc" id="L431">            ChannelExecBL.connect();</span>
+<span class="nc" id="L432">            ChannelExecBL.setInputStream(null);</span>
+<span class="nc" id="L433">            ChannelExecBL.setErrStream(System.err);</span>
+<span class="nc" id="L434">            BufferedReader reader = null;</span>
+<span class="nc" id="L435">            reader = new BufferedReader(new InputStreamReader(ChannelExecBL.getInputStream(),</span>
+<span class="nc" id="L436">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_CHARSET&quot;)));</span>
+            String line;
+<span class="nc bnc" id="L438" title="All 2 branches missed.">            while ((line = reader.readLine()) != null) {</span>
+<span class="nc" id="L439">                bw.write(line + &quot;\r\n&quot;);</span>
+            }
+<span class="nc" id="L441">            ChannelExecBL.disconnect();</span>
+<span class="nc" id="L442">            sessionBL.disconnect();</span>
+<span class="nc" id="L443">        }</span>
+
+        // PowerShellでバッチサーバーへ接続して、ユニックスコマンドとしてバッチを実施する
+<span class="nc bnc" id="L446" title="All 2 branches missed.">        else if (&quot;4&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;BATCH_RUN_TYPE&quot;))) {</span>
+<span class="nc" id="L447">            String command = &quot;powershell.exe $Username = 'SERVER_USERNAME';&quot; + &quot;$Password = 'SERVER_PASSWORD';&quot;</span>
+                    + &quot;$pass = ConvertTo-SecureString -AsPlainText $Password -Force;&quot;
+                    + &quot;$Cred = New-Object System.Management.Automation.PSCredential -ArgumentList $Username,$pass;&quot;
+                    + &quot;Invoke-Command -ComputerName SERVER_HOST -ScriptBlock {cd SERVER_WORKFLDR;./RUN_BAT_COMMAND} -Credential $Cred;&quot;;
+<span class="nc" id="L451">            command = command.replaceAll(&quot;SERVER_HOST&quot;, RakurakuDBUtils.getProps().getProperty(&quot;SERVER_HOST&quot;));</span>
+<span class="nc" id="L452">            command = command.replaceAll(&quot;SERVER_USERNAME&quot;, RakurakuDBUtils.getProps().getProperty(&quot;SERVER_USERNAME&quot;));</span>
+<span class="nc" id="L453">            command = command.replaceAll(&quot;SERVER_PASSWORD&quot;, RakurakuDBUtils.getProps().getProperty(&quot;SERVER_PASSWORD&quot;));</span>
+<span class="nc" id="L454">            command = command.replaceAll(&quot;SERVER_WORKFLDR&quot;, RakurakuDBUtils.getProps().getProperty(&quot;SERVER_WORKFLDR&quot;));</span>
+<span class="nc" id="L455">            command = command.replaceAll(&quot;RUN_BAT_COMMAND&quot;, jobId + parameter);</span>
+<span class="nc" id="L456">            Process powerShellProcess = Runtime.getRuntime().exec(command);</span>
+<span class="nc" id="L457">            powerShellProcess.getOutputStream().close();</span>
+
+            String line;
+<span class="nc" id="L460">            bw.write(&quot;■バッチ実行ログ&quot; + &quot;\r\n&quot;);</span>
+<span class="nc" id="L461">            BufferedReader stdout = new BufferedReader(new InputStreamReader(powerShellProcess.getInputStream(),</span>
+<span class="nc" id="L462">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_CHARSET&quot;)));</span>
+<span class="nc bnc" id="L463" title="All 2 branches missed.">            while ((line = stdout.readLine()) != null) {</span>
+<span class="nc" id="L464">                bw.write(line + &quot;\r\n&quot;);</span>
+            }
+<span class="nc" id="L466">            stdout.close();</span>
+<span class="nc" id="L467">            BufferedReader stderr = new BufferedReader(new InputStreamReader(powerShellProcess.getErrorStream(),</span>
+<span class="nc" id="L468">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_CHARSET&quot;)));</span>
+<span class="nc bnc" id="L469" title="All 2 branches missed.">            while ((line = stderr.readLine()) != null) {</span>
+<span class="nc" id="L470">                bw.write(line + &quot;\r\n&quot;);</span>
+            }
+<span class="nc" id="L472">            bw.close();</span>
+<span class="nc" id="L473">            stderr.close();</span>
+        }
+<span class="nc" id="L475">    }</span>
+
+    /**
+     * ログ出力
+     *
+     * @param logPath
+     * @param guiCamera
+     * @return
+     * @throws Exception
+     */
+    public static boolean checkLog(String logPath, RakurakuCaptureUtils guiCamera) throws Exception {
+<span class="nc" id="L486">        boolean retFlg = true;</span>
+<span class="nc bnc" id="L487" title="All 2 branches missed.">        if ((&quot;3&quot;).equals(RakurakuDBUtils.getProps().getProperty(&quot;BATCH_RUN_TYPE&quot;))) {</span>
+<span class="nc" id="L488">            JSch jsch = new JSch();</span>
+<span class="nc" id="L489">            Session session = jsch.getSession(RakurakuDBUtils.getProps().getProperty(&quot;SERVER_USERNAME&quot;),</span>
+<span class="nc" id="L490">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_HOST&quot;), 22);</span>
+<span class="nc" id="L491">            session.setPassword(RakurakuDBUtils.getProps().getProperty(&quot;SERVER_PASSWORD&quot;));</span>
+<span class="nc" id="L492">            Properties config = new Properties();</span>
+<span class="nc" id="L493">            config.put(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);</span>
+<span class="nc" id="L494">            session.setConfig(config);</span>
+<span class="nc" id="L495">            session.connect(30000);</span>
+<span class="nc bnc" id="L496" title="All 2 branches missed.">            if (!&quot;ON&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_DL&quot;))) {</span>
+<span class="nc" id="L497">                String fileName = logPath.split(&quot;//&quot;)[logPath.split(&quot;//&quot;).length];</span>
+<span class="nc" id="L498">                ChannelExec channelExec = (ChannelExec) session.openChannel(&quot;exec&quot;);</span>
+<span class="nc" id="L499">                channelExec.setCommand(</span>
+<span class="nc" id="L500">                        &quot;tail -n &quot; + RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_MAXROW&quot;) + &quot; &quot; + fileName);</span>
+<span class="nc" id="L501">                channelExec.connect();</span>
+<span class="nc" id="L502">                channelExec.setInputStream(null);</span>
+<span class="nc" id="L503">                channelExec.setErrStream(System.err);</span>
+<span class="nc" id="L504">                BufferedReader reader = null;</span>
+<span class="nc" id="L505">                reader = new BufferedReader(new InputStreamReader(channelExec.getInputStream(),</span>
+<span class="nc" id="L506">                        RakurakuDBUtils.getProps().getProperty(&quot;SERVER_CHARSET&quot;)));</span>
+                String line;
+<span class="nc" id="L508">                File file = new File(RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_TMPPATH&quot;));</span>
+<span class="nc bnc" id="L509" title="All 2 branches missed.">                if (!file.exists()) {</span>
+<span class="nc" id="L510">                    File dir = new File(file.getParent());</span>
+<span class="nc" id="L511">                    dir.mkdirs();</span>
+<span class="nc" id="L512">                    file.createNewFile();</span>
+                }
+<span class="nc" id="L514">                FileOutputStream outStream = new FileOutputStream(file);</span>
+<span class="nc bnc" id="L515" title="All 2 branches missed.">                while ((line = reader.readLine()) != null) {</span>
+<span class="nc" id="L516">                    outStream.write(line.getBytes());</span>
+                }
+<span class="nc" id="L518">                outStream.close();</span>
+<span class="nc" id="L519">                channelExec.disconnect();</span>
+<span class="nc" id="L520">            } else {</span>
+<span class="nc" id="L521">                Channel channel = (Channel) session.openChannel(&quot;sftp&quot;);</span>
+<span class="nc" id="L522">                channel.connect(1000);</span>
+<span class="nc" id="L523">                ChannelSftp sftp = (ChannelSftp) channel;</span>
+<span class="nc" id="L524">                sftp.cd(&quot;//&quot;);</span>
+<span class="nc" id="L525">                sftp.get(logPath, RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_TMPPATH&quot;));</span>
+<span class="nc" id="L526">                sftp.disconnect();</span>
+<span class="nc" id="L527">                channel.disconnect();</span>
+            }
+<span class="nc" id="L529">            session.disconnect();</span>
+<span class="nc" id="L530">            logPath = RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_TMPPATH&quot;);</span>
+<span class="nc" id="L531">        }</span>
+
+        // PowerShellでバッチサーバーへ接続して、ユニックスコマンドとしてバッチを実施する
+<span class="nc bnc" id="L534" title="All 2 branches missed.">        else if (&quot;4&quot;.equals(RakurakuDBUtils.getProps().getProperty(&quot;BATCH_RUN_TYPE&quot;))) {</span>
+<span class="nc" id="L535">            String command = &quot;powershell.exe $Username = 'SERVER_LOG_USERNAME';&quot; + &quot;$Password = 'SERVER_LOG_PASSWORD';&quot;</span>
+                    + &quot;$pass = ConvertTo-SecureString -AsPlainText $Password -Force;&quot;
+                    + &quot;$Cred = New-Object System.Management.Automation.PSCredential -ArgumentList $Username,$pass;&quot;
+                    + &quot;Invoke-Command -ComputerName SERVER_LOG_HOST -ScriptBlock {get-content SERVER_LOG_TMPPATH/RUN_BAT_COMMAND -tail SERVER_LOG_MAXROW -encoding SERVER_LOG_CHARSET} -Credential $Cred;&quot;;
+<span class="nc" id="L539">            command = command.replaceAll(&quot;SERVER_LOG_HOST&quot;, RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_HOST&quot;));</span>
+<span class="nc" id="L540">            command = command.replaceAll(&quot;SERVER_LOG_USERNAME&quot;,</span>
+<span class="nc" id="L541">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_USERNAME&quot;));</span>
+<span class="nc" id="L542">            command = command.replaceAll(&quot;SERVER_LOG_PASSWORD&quot;,</span>
+<span class="nc" id="L543">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_PASSWORD&quot;));</span>
+<span class="nc" id="L544">            command = command.replaceAll(&quot;SERVER_LOG_MAXROW&quot;,</span>
+<span class="nc" id="L545">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_MAXROW&quot;));</span>
+<span class="nc" id="L546">            command = command.replaceAll(&quot;SERVER_LOG_CHARSET&quot;,</span>
+<span class="nc" id="L547">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_CHARSET&quot;));</span>
+<span class="nc" id="L548">            command = command.replaceAll(&quot;SERVER_LOG_TMPPATH&quot;,</span>
+<span class="nc" id="L549">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_LOG_TMPPATH&quot;));</span>
+<span class="nc" id="L550">            command = command.replaceAll(&quot;RUN_BAT_COMMAND&quot;, logPath);</span>
+<span class="nc" id="L551">            Process powerShellProcess = Runtime.getRuntime().exec(command);</span>
+<span class="nc" id="L552">            powerShellProcess.getOutputStream().close();</span>
+<span class="nc" id="L553">            BufferedReader stdout = new BufferedReader(new InputStreamReader(powerShellProcess.getInputStream(),</span>
+<span class="nc" id="L554">                    RakurakuDBUtils.getProps().getProperty(&quot;SERVER_CHARSET&quot;)));</span>
+<span class="nc" id="L555">            BufferedWriter bw = new BufferedWriter(</span>
+<span class="nc" id="L556">                    new OutputStreamWriter(new FileOutputStream(guiCamera.getSeqNoPath() + &quot;.log&quot;), &quot;UTF-8&quot;));</span>
+<span class="nc" id="L557">            String line = null;</span>
+<span class="nc" id="L558">            boolean outFlag = false;</span>
+<span class="nc" id="L559">            Date runT = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;).parse(RakurakuDBUtils.runTime);</span>
+<span class="nc" id="L560">            bw.write(&quot;■ログ出力　&quot; + logPath + &quot;\r\n&quot;);</span>
+<span class="nc bnc" id="L561" title="All 2 branches missed.">            while ((line = stdout.readLine()) != null) {</span>
+<span class="nc bnc" id="L562" title="All 2 branches missed.">                if (outFlag) {</span>
+<span class="nc bnc" id="L563" title="All 2 branches missed.">                    if (line.contains(&quot; ERROR &quot;)) {</span>
+<span class="nc" id="L564">                        retFlg = false;</span>
+                    }
+<span class="nc" id="L566">                    bw.write(line + &quot;\r\n&quot;);</span>
+<span class="nc" id="L567">                    continue;</span>
+                }
+<span class="nc" id="L569">                String[] lineArr = line.split(&quot;,&quot;);</span>
+<span class="nc" id="L570">                String logTime = &quot;&quot;;</span>
+<span class="nc bnc" id="L571" title="All 2 branches missed.">                if (lineArr.length &gt;= 2) {</span>
+<span class="nc" id="L572">                    logTime = lineArr[0] + &quot;.&quot;;</span>
+<span class="nc bnc" id="L573" title="All 2 branches missed.">                    if (lineArr[1].length() &gt;= 3) {</span>
+<span class="nc" id="L574">                        logTime = logTime + lineArr[1].substring(0, 3);</span>
+                    }
+                }
+<span class="nc" id="L577">                Date logT = null;</span>
+                try {
+<span class="nc" id="L579">                    logT = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;).parse(logTime);</span>
+<span class="nc" id="L580">                } catch (Exception e) {</span>
+<span class="nc" id="L581">                    continue;</span>
+<span class="nc" id="L582">                }</span>
+<span class="nc bnc" id="L583" title="All 2 branches missed.">                if (logT.compareTo(runT) &gt;= 0) {</span>
+<span class="nc bnc" id="L584" title="All 2 branches missed.">                    if (line.contains(&quot; ERROR &quot;)) {</span>
+<span class="nc" id="L585">                        retFlg = false;</span>
+                    }
+<span class="nc" id="L587">                    bw.write(line + &quot;\r\n&quot;);</span>
+<span class="nc" id="L588">                    outFlag = true;</span>
+                }
+<span class="nc" id="L590">            }</span>
+<span class="nc" id="L591">            stdout.close();</span>
+<span class="nc" id="L592">            bw.close();</span>
+<span class="nc" id="L593">            return retFlg;</span>
+        }
+<span class="nc" id="L595">        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(logPath), &quot;UTF-8&quot;));</span>
+<span class="nc" id="L596">        BufferedWriter bw = new BufferedWriter(</span>
+<span class="nc" id="L597">                new OutputStreamWriter(new FileOutputStream(guiCamera.getSeqNoPath() + &quot;.log&quot;), &quot;UTF-8&quot;));</span>
+<span class="nc" id="L598">        String line = null;</span>
+<span class="nc" id="L599">        boolean outFlag = false;</span>
+<span class="nc" id="L600">        Date runT = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;).parse(RakurakuDBUtils.runTime);</span>
+<span class="nc" id="L601">        bw.write(&quot;■ログ出力　&quot; + logPath + &quot;\r\n&quot;);</span>
+<span class="nc bnc" id="L602" title="All 2 branches missed.">        while ((line = br.readLine()) != null) {</span>
+<span class="nc bnc" id="L603" title="All 2 branches missed.">            if (outFlag) {</span>
+<span class="nc bnc" id="L604" title="All 2 branches missed.">                if (line.contains(&quot; ERROR &quot;)) {</span>
+<span class="nc" id="L605">                    retFlg = false;</span>
+                }
+<span class="nc" id="L607">                bw.write(line + &quot;\r\n&quot;);</span>
+<span class="nc" id="L608">                continue;</span>
+            }
+<span class="nc" id="L610">            String[] lineArr = line.split(&quot;\\,&quot;);</span>
+<span class="nc" id="L611">            String logTime = &quot;&quot;;</span>
+<span class="nc bnc" id="L612" title="All 2 branches missed.">            if (lineArr.length &gt;= 2) {</span>
+<span class="nc" id="L613">                logTime = lineArr[0] + &quot;.&quot;;</span>
+<span class="nc bnc" id="L614" title="All 2 branches missed.">                if (lineArr[1].length() &gt;= 3) {</span>
+<span class="nc" id="L615">                    logTime = logTime + lineArr[1].substring(0, 3);</span>
+                }
+            }
+<span class="nc" id="L618">            Date logT = null;</span>
+            try {
+<span class="nc" id="L620">                logT = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;).parse(logTime);</span>
+<span class="nc" id="L621">            } catch (Exception e) {</span>
+<span class="nc" id="L622">                continue;</span>
+<span class="nc" id="L623">            }</span>
+<span class="nc bnc" id="L624" title="All 2 branches missed.">            if (logT.compareTo(runT) &gt;= 0) {</span>
+<span class="nc bnc" id="L625" title="All 2 branches missed.">                if (line.contains(&quot; ERROR &quot;)) {</span>
+<span class="nc" id="L626">                    retFlg = false;</span>
+                }
+<span class="nc" id="L628">                bw.write(line + &quot;\r\n&quot;);</span>
+<span class="nc" id="L629">                outFlag = true;</span>
+            }
+<span class="nc" id="L631">        }</span>
+<span class="nc bnc" id="L632" title="All 2 branches missed.">        if (br != null) {</span>
+<span class="nc" id="L633">            br.close();</span>
+        }
+<span class="nc bnc" id="L635" title="All 2 branches missed.">        if (bw != null) {</span>
+<span class="nc" id="L636">            bw.close();</span>
+        }
+<span class="nc" id="L638">        return retFlg;</span>
+    }
+
+    /**
+     * CSV検証
+     *
+     * @param
+     * @param guiCamera
+     * @return
+     * @throws Exception
+     */
+    public static void checkCSV(String csvName, String notAssertColumns, String opeVal, RakurakuCaptureUtils guiCamera)
+            throws Exception {
+<span class="nc" id="L651">        String csvPath = RakurakuCore.eachEviPath + &quot;/Rakuraku_Work/downloads&quot;;</span>
+<span class="nc" id="L652">        long modifiedTemp = 0;</span>
+<span class="nc" id="L653">        String lastTimeCsvPath = &quot;&quot;;</span>
+<span class="nc" id="L654">        File file = new File(csvPath);</span>
+<span class="nc bnc" id="L655" title="All 2 branches missed.">        if (file.isDirectory()) {</span>
+<span class="nc" id="L656">            String[] fileList = file.list();</span>
+<span class="nc bnc" id="L657" title="All 2 branches missed.">            for (int i = 0; i &lt; fileList.length; i++) {</span>
+<span class="nc" id="L658">                File fileCSV = new File(csvPath + &quot;//&quot; + fileList[i]);</span>
+<span class="nc bnc" id="L659" title="All 2 branches missed.">                if (fileCSV.isFile()) {</span>
+<span class="nc" id="L660">                    long modifiedTime = fileCSV.lastModified();</span>
+<span class="nc bnc" id="L661" title="All 2 branches missed.">                    if (modifiedTime &gt; modifiedTemp) {</span>
+<span class="nc" id="L662">                        modifiedTemp = modifiedTime;</span>
+<span class="nc" id="L663">                        lastTimeCsvPath = csvPath + &quot;//&quot; + fileList[i];</span>
+                    }
+                }
+            }
+        }
+
+<span class="nc" id="L669">        File file1 = new File(lastTimeCsvPath);</span>
+<span class="nc" id="L670">        String Path = guiCamera.getSeqNoPath() + &quot;-&quot; + lastTimeCsvPath.split(&quot;//&quot;)[1];</span>
+<span class="nc" id="L671">        FileUtils.copyFile(file1, new File(Path));</span>
+<span class="nc bnc" id="L672" title="All 4 branches missed.">        if (&quot;○&quot;.contentEquals(opeVal) || &quot;〇&quot;.contentEquals(opeVal)) {</span>
+<span class="nc" id="L673">            return;</span>
+        }
+<span class="nc" id="L675">        csvPath = lastTimeCsvPath;</span>
+
+        // BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(csvPath),
+        // RakurakuDBUtils.getProps().getProperty(&quot;DL_FILE_CHARSET&quot;)));
+        //
+        // Assert.assertEquals(&quot;CSV[&quot; + csvPath + &quot;]のレコード数&quot;, exptCsv.size(), br.lines().count());
+        // if (br != null) {
+        // br.close();
+        // }
+        //
+        // List&lt;Integer&gt; notAssertIndes = new ArrayList&lt;Integer&gt;();
+        // String[] exptTitles = exptCsv.get(0).replace(&quot;\&quot;&quot;, &quot;&quot;).split(&quot;,&quot;);
+        // for (int j = 0; j &lt; notAssertColumns.length; j++) {
+        // for (int n = 0; n &lt; exptTitles.length; n++) {
+        // if (exptTitles[n].equals(notAssertColumns[j])) {
+        // notAssertIndes.add(n);
+        // }
+        // }
+        // }
+        // br = new BufferedReader(new InputStreamReader(new FileInputStream(csvPath),
+        // RakurakuDBUtils.getProps().getProperty(&quot;DL_FILE_CHARSET&quot;)));
+        // String line = null;
+        // int index = 0;
+        // while ((line = br.readLine()) != null) {
+        // String exptLine = exptCsv.get(index);
+        // String[] lineStrs = line.replace(&quot;\&quot;&quot;, &quot;&quot;).split(&quot;,&quot;, -1);
+        // String[] exptLineStrs = exptLine.replace(&quot;\&quot;&quot;, &quot;&quot;).split(&quot;,&quot;, -1);
+        // for (int m = 0; m &lt; lineStrs.length; m++) {
+        // if (notAssertIndes.contains(m)) {
+        // continue;
+        // } else {
+        // String errinfo = &quot;value (CSV=&quot; + csvPath + &quot;, row=&quot; + index + &quot;, title=&quot; + exptTitles[m] + &quot;):&quot;;
+        // Assert.assertEquals(errinfo, exptLineStrs[m], lineStrs[m]);
+        // }
+        // }
+        // // String errinfo = &quot;value (CSV=&quot; + csvPath + &quot;, row=&quot; + index +
+        // // &quot;):&quot;;
+        // // Assert.assertEquals(errinfo, exptLine.replace(&quot;\&quot;&quot;, &quot;&quot;),
+        // // line.replace(&quot;\&quot;&quot;, &quot;&quot;));
+        // index++;
+        // }
+        // if (br != null) {
+        // br.close();
+        // }
+<span class="nc" id="L719">    }</span>
+
+    @SuppressWarnings(&quot;rawtypes&quot;)
+    public static void checkCSVZIP(String csvPath, List&lt;List&lt;String&gt;&gt; exptCsv, RakurakuCaptureUtils guiCamera,
+            String... notAssertColumns) throws Exception {
+<span class="nc" id="L724">        String unZipAddress = &quot;D:\\csv\\&quot;;</span>
+<span class="nc" id="L725">        File file = new File(csvPath);</span>
+<span class="nc" id="L726">        long modifiedTemp = 0;</span>
+<span class="nc" id="L727">        String lastTimeCsvPath = &quot;&quot;;</span>
+<span class="nc bnc" id="L728" title="All 2 branches missed.">        if (file.isDirectory()) {</span>
+<span class="nc" id="L729">            String[] fileList = file.list();</span>
+<span class="nc bnc" id="L730" title="All 2 branches missed.">            for (int i = 0; i &lt; fileList.length; i++) {</span>
+<span class="nc" id="L731">                File fileCSV = new File(csvPath + &quot;//&quot; + fileList[i]);</span>
+<span class="nc" id="L732">                long modifiedTime = fileCSV.lastModified();</span>
+<span class="nc bnc" id="L733" title="All 2 branches missed.">                if (modifiedTime &gt; modifiedTemp) {</span>
+<span class="nc" id="L734">                    modifiedTemp = modifiedTime;</span>
+<span class="nc" id="L735">                    lastTimeCsvPath = csvPath + &quot;//&quot; + fileList[i];</span>
+                }
+            }
+        }
+<span class="nc" id="L739">        File file1 = new File(lastTimeCsvPath);</span>
+<span class="nc" id="L740">        long zipModifiedTime = file1.lastModified();</span>
+<span class="nc" id="L741">        ZipFile zipFile = null;</span>
+<span class="nc" id="L742">        zipFile = new ZipFile(file1);</span>
+<span class="nc" id="L743">        Enumeration e = zipFile.entries();</span>
+<span class="nc bnc" id="L744" title="All 2 branches missed.">        while (e.hasMoreElements()) {</span>
+<span class="nc" id="L745">            ZipEntry zipEntry = (ZipEntry) e.nextElement();</span>
+<span class="nc bnc" id="L746" title="All 2 branches missed.">            if (zipEntry.isDirectory()) {</span>
+<span class="nc" id="L747">                String name = zipEntry.getName();</span>
+<span class="nc" id="L748">                name = name.substring(0, name.length() - 1);</span>
+<span class="nc" id="L749">                File f = new File(unZipAddress + name);</span>
+<span class="nc" id="L750">                f.mkdirs();</span>
+<span class="nc" id="L751">            } else {</span>
+<span class="nc" id="L752">                File f = new File(unZipAddress + zipEntry.getName());</span>
+<span class="nc" id="L753">                f.getParentFile().mkdirs();</span>
+<span class="nc" id="L754">                f.createNewFile();</span>
+<span class="nc" id="L755">                InputStream is = zipFile.getInputStream(zipEntry);</span>
+<span class="nc" id="L756">                FileOutputStream fos = new FileOutputStream(f);</span>
+<span class="nc" id="L757">                int length = 0;</span>
+<span class="nc" id="L758">                byte[] b = new byte[1024];</span>
+<span class="nc bnc" id="L759" title="All 2 branches missed.">                while ((length = is.read(b, 0, 1024)) != -1) {</span>
+<span class="nc" id="L760">                    fos.write(b, 0, length);</span>
+                }
+<span class="nc" id="L762">                is.close();</span>
+<span class="nc" id="L763">                fos.close();</span>
+            }
+<span class="nc" id="L765">        }</span>
+<span class="nc bnc" id="L766" title="All 2 branches missed.">        if (zipFile != null) {</span>
+<span class="nc" id="L767">            zipFile.close();</span>
+        }
+<span class="nc" id="L769">        int temp = 0;</span>
+<span class="nc" id="L770">        List&lt;String&gt; tempList = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L771" title="All 2 branches missed.">        if (file.isDirectory()) {</span>
+<span class="nc" id="L772">            String[] fileList = file.list();</span>
+<span class="nc bnc" id="L773" title="All 2 branches missed.">            for (int i = 0; i &lt; fileList.length; i++) {</span>
+<span class="nc" id="L774">                File fileCSV = new File(csvPath + &quot;//&quot; + fileList[i]);</span>
+<span class="nc" id="L775">                long modifiedTime = fileCSV.lastModified();</span>
+<span class="nc bnc" id="L776" title="All 2 branches missed.">                if (modifiedTime &gt; zipModifiedTime) {</span>
+<span class="nc" id="L777">                    lastTimeCsvPath = csvPath + &quot;//&quot; + fileList[i];</span>
+
+<span class="nc" id="L779">                    File copyFile = new File(lastTimeCsvPath);</span>
+<span class="nc" id="L780">                    String Path = guiCamera.getSeqNoPath() + &quot;-&quot; + fileList[i];</span>
+<span class="nc" id="L781">                    FileUtils.copyFile(copyFile, new File(Path));</span>
+
+<span class="nc" id="L783">                    BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(lastTimeCsvPath),</span>
+<span class="nc" id="L784">                            RakurakuDBUtils.getProps().getProperty(&quot;DL_FILE_CHARSET&quot;)));</span>
+
+<span class="nc bnc" id="L786" title="All 2 branches missed.">                    if (br != null) {</span>
+<span class="nc" id="L787">                        br.close();</span>
+                    }
+
+<span class="nc" id="L790">                    br = new BufferedReader(new InputStreamReader(new FileInputStream(lastTimeCsvPath),</span>
+<span class="nc" id="L791">                            RakurakuDBUtils.getProps().getProperty(&quot;DL_FILE_CHARSET&quot;)));</span>
+<span class="nc" id="L792">                    String line = null;</span>
+<span class="nc" id="L793">                    int index = 0;</span>
+<span class="nc" id="L794">                    tempList = exptCsv.get(temp);</span>
+<span class="nc" id="L795">                    List&lt;Integer&gt; notAssertIndes = new ArrayList&lt;Integer&gt;();</span>
+<span class="nc" id="L796">                    String[] exptTitles = tempList.get(0).replace(&quot;\&quot;&quot;, &quot;&quot;).split(&quot;,&quot;);</span>
+<span class="nc bnc" id="L797" title="All 2 branches missed.">                    for (int j = 0; j &lt; notAssertColumns.length; j++) {</span>
+<span class="nc bnc" id="L798" title="All 2 branches missed.">                        for (int n = 0; n &lt; exptTitles.length; n++) {</span>
+<span class="nc bnc" id="L799" title="All 2 branches missed.">                            if (exptTitles[n].equals(notAssertColumns[j])) {</span>
+<span class="nc" id="L800">                                notAssertIndes.add(n);</span>
+                            }
+                        }
+                    }
+<span class="nc bnc" id="L804" title="All 2 branches missed.">                    while ((line = br.readLine()) != null) {</span>
+<span class="nc" id="L805">                        String exptLine = tempList.get(index);</span>
+<span class="nc" id="L806">                        String[] lineStrs = line.replace(&quot;\&quot;&quot;, &quot;&quot;).split(&quot;,&quot;, -1);</span>
+<span class="nc" id="L807">                        String[] exptLineStrs = exptLine.replace(&quot;\&quot;&quot;, &quot;&quot;).split(&quot;,&quot;, -1);</span>
+<span class="nc bnc" id="L808" title="All 2 branches missed.">                        for (int m = 0; m &lt; lineStrs.length; m++) {</span>
+<span class="nc bnc" id="L809" title="All 2 branches missed.">                            if (notAssertIndes.contains(m)) {</span>
+<span class="nc" id="L810">                                continue;</span>
+                            } else {
+<span class="nc" id="L812">                                String errinfo = &quot;value (CSV=&quot; + csvPath + &quot;, row=&quot; + index + &quot;, title=&quot; + exptTitles[m]</span>
+                                        + &quot;):&quot;;
+<span class="nc" id="L814">                                Assert.assertEquals(errinfo, lineStrs[m], exptLineStrs[m]);</span>
+                            }
+                        }
+<span class="nc" id="L817">                        index++;</span>
+<span class="nc" id="L818">                    }</span>
+<span class="nc bnc" id="L819" title="All 2 branches missed.">                    if (br != null) {</span>
+<span class="nc" id="L820">                        br.close();</span>
+                    }
+<span class="nc" id="L822">                    temp++;</span>
+                }
+            }
+        }
+<span class="nc" id="L826">    }</span>
+
+    /**
+     * API呼出
+     *
+     * @param
+     *
+     * @param
+     *
+     * @param apiKind
+     * 呼出すAPI対象
+     * @param callMeth
+     * 呼出方式
+     * @param guiCamera
+     * ログキャプチャ
+     * @throws Exception
+     */
+//    public static void callApi(String authKey, String requestStr, String apiKind, String callMeth,
+//            RakurakuCaptureUtils guiCamera) throws Exception {
+//        RestAssured.baseURI = RakurakuDBUtils.getProps().getProperty(&quot;REST_HOST&quot;);
+//        RestAssured.port = Integer.parseInt(RakurakuDBUtils.getProps().getProperty(&quot;REST_PORT&quot;));
+//        BufferedWriter bw = null;
+//        try {
+//            bw = new BufferedWriter(
+//                    new OutputStreamWriter(new FileOutputStream(guiCamera.getSeqNoPath() + &quot;.log&quot;), &quot;UTF-8&quot;));
+//            if (&quot;GET&quot;.equals(callMeth)) {
+//                bw.write(&quot;■API呼出：　&quot; + callMeth + &quot;\r\n&quot; + RestAssured.baseURI + &quot;/&quot; + apiKind + requestStr + &quot;\r\n&quot;);
+//                // API呼び出し設定
+//                RequestSpecification reqSpec = RestAssured.given();
+//                String[] headers = RakurakuDBUtils.getProps().getProperty(&quot;REST_GET_HEADER&quot;).split(&quot;,&quot;);
+//                for (String header : headers) {
+//                    reqSpec.header(header.split(&quot;=&quot;)[0], header.split(&quot;=&quot;)[1]);
+//                }
+//                reqSpec.header(RakurakuDBUtils.getProps().getProperty(&quot;REST_AUTH&quot;), authKey);
+//                reqSpec.when();
+//                // API呼び出し実行
+//                Response r = reqSpec.get(&quot;/&quot; + apiKind + requestStr).andReturn();
+//                bw.write(&quot;■APIレスポンス：&quot;);
+//                bw.write(xmlFormat(r.asString()).replace(&quot;\n&quot;, &quot;\r\n&quot;));
+//            } else {
+//                bw.write(&quot;■API呼出：　&quot; + callMeth + &quot;　&quot; + RestAssured.baseURI + &quot;/&quot; + apiKind + &quot;\r\n&quot;);
+//                bw.write(&quot;■APIリクエスト：&quot;);
+//                bw.write(xmlFormat(requestStr).replace(&quot;\n&quot;, &quot;\r\n&quot;) + &quot;\r\n&quot;);
+//                // API呼び出し設定
+//                RequestSpecification reqSpec = RestAssured.given();
+//                String[] headers = RakurakuDBUtils.getProps().getProperty(&quot;REST_POST_HEADER&quot;).split(&quot;,&quot;);
+//                for (String header : headers) {
+//                    reqSpec.header(header.split(&quot;=&quot;)[0], header.split(&quot;=&quot;)[1]);
+//                }
+//                reqSpec.header(RakurakuDBUtils.getProps().getProperty(&quot;REST_AUTH&quot;), authKey);
+//                reqSpec.when();
+//                // API呼び出し実行
+//                Response r = reqSpec.post(&quot;/&quot; + apiKind).andReturn();
+//                bw.write(&quot;■APIレスポンス：&quot;);
+//                bw.write(xmlFormat(r.asString()).replace(&quot;\n&quot;, &quot;\r\n&quot;));
+//            }
+//        } catch (Exception e) {
+//            bw.write(e.toString() + &quot;\r\n&quot;);
+//            throw e;
+//        } finally {
+//            bw.close();
+//        }
+//    }
+
+    public static void callApi(String apiNm, String apiKind, String callMeth, String requestHeaders, String requestBody,
+            String loginUser, RakurakuCaptureUtils guiCamera) throws Exception {
+<span class="nc" id="L892">        RestAssured.baseURI = RakurakuDBUtils.getProps().getProperty(&quot;REST_HOST&quot;);</span>
+<span class="nc" id="L893">        RestAssured.port = Integer.parseInt(RakurakuDBUtils.getProps().getProperty(&quot;REST_PORT&quot;));</span>
+<span class="nc" id="L894">        BufferedWriter bw = null;</span>
+//        String authKey = null;
+<span class="nc bnc" id="L896" title="All 2 branches missed.">        if(StringUtils.isNotBlank(requestHeaders)) {</span>
+<span class="nc" id="L897">        	requestHeaders = requestHeaders + &quot;&amp;&amp;&quot; + mockHeaders;</span>
+        }else {
+<span class="nc" id="L899">        	requestHeaders = mockHeaders;</span>
+        }
+
+<span class="nc bnc" id="L902" title="All 2 branches missed.">        if (callMeth != &quot;GET&quot;) {</span>
+<span class="nc bnc" id="L903" title="All 2 branches missed.">            if (requestBody.contains(&quot;{&quot;)) {</span>
+
+            } else {
+<span class="nc" id="L906">                File file = new File(requestBody);</span>
+<span class="nc" id="L907">                BufferedReader reader = null;</span>
+<span class="nc" id="L908">                StringBuffer sbf = new StringBuffer();</span>
+<span class="nc" id="L909">                reader = new BufferedReader(new FileReader(file));</span>
+                String tempStr;
+<span class="nc bnc" id="L911" title="All 2 branches missed.">                while ((tempStr = reader.readLine()) != null) {</span>
+<span class="nc" id="L912">                    sbf.append(tempStr);</span>
+                }
+<span class="nc" id="L914">                reader.close();</span>
+<span class="nc" id="L915">                requestBody = sbf.toString();</span>
+            }
+        }
+
+        try {
+<span class="nc" id="L920">            bw = new BufferedWriter(</span>
+<span class="nc" id="L921">                    new OutputStreamWriter(new FileOutputStream(guiCamera.getSeqNoPath() + &quot;.log&quot;), &quot;UTF-8&quot;));</span>
+<span class="nc" id="L922">            bw.write(&quot;■api名称：　&quot;</span>
+                    + apiNm + &quot;\r\n&quot;);
+<span class="nc" id="L924">            bw.write(&quot;■api Request：　&quot;</span>
+                    + &quot;/&quot; + apiKind + &quot;\r\n&quot;);
+<span class="nc" id="L926">            bw.write(&quot;■api方法：　&quot;</span>
+                    + callMeth + &quot;\r\n&quot;);
+<span class="nc" id="L928">            bw.write(&quot;■api Headers：　&quot;</span>
+                    + requestHeaders + &quot;\r\n&quot;);
+<span class="nc" id="L930">            bw.write(&quot;■api Body：　&quot;</span>
+                    + requestBody + &quot;\r\n&quot;);
+<span class="nc" id="L932">            bw.write(&quot;■&quot; + &quot;loginUser：　&quot; + loginUser + &quot;\r\n&quot;);</span>
+<span class="nc bnc" id="L933" title="All 2 branches missed.">            if (&quot;GET&quot;.equals(callMeth)) {</span>
+//                if (!apiKind.contains(&quot;login&quot;)) {
+//                    authKey = getLoginToken(loginUser, requestHeaders);
+//                }
+<span class="nc" id="L937">                RequestSpecification reqSpec = RestAssured.given();</span>
+<span class="nc" id="L938">                String[] headers = requestHeaders.split(&quot;&amp;&amp;&quot;);</span>
+<span class="nc bnc" id="L939" title="All 2 branches missed.">                for (String header : headers) {</span>
+<span class="nc" id="L940">                    reqSpec.header(header.split(&quot;=&quot;)[0], header.split(&quot;=&quot;)[1]);</span>
+                }
+//                if (!apiKind.contains(&quot;login&quot;)) {
+//                    reqSpec.header(RakurakuDBUtils.getProps().getProperty(&quot;REST_AUTH&quot;), authKey);
+//                }
+<span class="nc" id="L945">                reqSpec.when();</span>
+<span class="nc" id="L946">                Response r = reqSpec.get(&quot;/&quot; + apiKind).andReturn();</span>
+<span class="nc" id="L947">                bw.write(&quot;■api Response：&quot;);</span>
+<span class="nc" id="L948">                String respStr = jsonFormat(r.asString()).replace(&quot;\n&quot;, &quot;\r\n&quot;);</span>
+<span class="nc" id="L949">                bw.write(respStr);</span>
+<span class="nc" id="L950">                System.out.println(r.asString());</span>
+<span class="nc" id="L951">                apiMap.put(apiKind, r.asString());</span>
+<span class="nc" id="L952">            } else {</span>
+//                if (!apiKind.contains(&quot;login&quot;)) {
+//                    authKey = getLoginToken(loginUser, requestHeaders);
+//                }
+<span class="nc" id="L956">                RequestSpecification reqSpec = RestAssured.given();</span>
+<span class="nc" id="L957">                String[] headers = requestHeaders.split(&quot;&amp;&amp;&quot;);</span>
+<span class="nc bnc" id="L958" title="All 2 branches missed.">                for (String header : headers) {</span>
+<span class="nc" id="L959">                    reqSpec.header(header.split(&quot;=&quot;)[0], header.split(&quot;=&quot;)[1]);</span>
+                }
+//                if (!apiKind.contains(&quot;login&quot;)) {
+//                    reqSpec.header(RakurakuDBUtils.getProps().getProperty(&quot;REST_AUTH&quot;), authKey);
+//                }
+<span class="nc bnc" id="L964" title="All 4 branches missed.">                if(StringUtils.isNotBlank(requestBody)&amp;&amp;!&quot;-&quot;.equals(requestBody)) {</span>
+<span class="nc" id="L965">                	reqSpec.body(requestBody);</span>
+                }
+<span class="nc" id="L967">                reqSpec.when();</span>
+<span class="nc" id="L968">                Response r = reqSpec.post(&quot;/&quot; + apiKind).andReturn();</span>
+<span class="nc" id="L969">                String respStr = jsonFormat(r.asString()).replace(&quot;\n&quot;, &quot;\r\n&quot;);</span>
+<span class="nc" id="L970">                bw.write(&quot;■Response：：\r\n&quot;);</span>
+<span class="nc" id="L971">                bw.write(respStr);</span>
+<span class="nc" id="L972">                System.out.println(r.asString());</span>
+<span class="nc" id="L973">                apiMap.put(apiKind, r.asString());</span>
+            }
+<span class="nc" id="L975">        } catch (Exception e) {</span>
+<span class="nc" id="L976">            bw.write(e.toString() + &quot;\r\n&quot;);</span>
+<span class="nc" id="L977">            throw e;</span>
+        } finally {
+<span class="nc" id="L979">            bw.close();</span>
+        }
+<span class="nc" id="L981">    }</span>
+
+    private static String getLoginToken(String loginUser, String requestHeaders) throws Exception {
+<span class="nc" id="L984">        RequestSpecification reqSpec = RestAssured.given();</span>
+<span class="nc" id="L985">        String[] headers = requestHeaders.split(&quot;,&quot;);</span>
+<span class="nc bnc" id="L986" title="All 2 branches missed.">        for (String header : headers) {</span>
+<span class="nc" id="L987">            reqSpec.header(header.split(&quot;=&quot;)[0], header.split(&quot;=&quot;)[1]);</span>
+        }
+<span class="nc" id="L989">        reqSpec.body(loginUser);</span>
+<span class="nc" id="L990">        reqSpec.when();</span>
+<span class="nc" id="L991">        Response r = reqSpec.post(&quot;/raku0000/login&quot;).andReturn();</span>
+
+<span class="nc" id="L993">        JSONObject jsonObject = JSON.parseObject(r.asString());</span>
+//        ResponseResult responseResult = JSONObject.toJavaObject(jsonObject, ResponseResult.class);
+//        @SuppressWarnings(&quot;unchecked&quot;)
+//        Map&lt;String, String&gt; maps = (Map&lt;String, String&gt;) JSON.parse(responseResult.getData());
+//        String authKey = maps.get(&quot;token&quot;);
+<span class="nc" id="L998">        return null;</span>
+    }
+
+    public static void apiConfirm(String apiKind, String expected, String[] notAssertColumns,
+            RakurakuCaptureUtils guiCamera) throws Exception {
+<span class="nc" id="L1003">        JunitAssert.assertJsonStr(expected, apiMap.get(apiKind), notAssertColumns);</span>
+<span class="nc" id="L1004">    }</span>
+
+    /**
+     * 要素情報クリア
+     *
+     * @param e
+     * @param d
+     */
+    public static void webClearElementValue(WebElement e, WebDriver d) {
+<span class="nc" id="L1013">        JavascriptExecutor js = (JavascriptExecutor) d;</span>
+<span class="nc" id="L1014">        js.executeScript(&quot;arguments[0].value=''&quot;, e);</span>
+<span class="nc" id="L1015">    }</span>
+
+    /**
+     * アップロード用ファイルパスをインプットボックスへコピー(IE)
+     *
+     * @param path
+     */
+    public static void webUploadFileInputForIE(String path) {
+<span class="nc" id="L1023">        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();</span>
+<span class="nc" id="L1024">        Transferable tText = new StringSelection(path);</span>
+<span class="nc" id="L1025">        clip.setContents(tText, null);</span>
+        try {
+<span class="nc" id="L1027">            Thread.sleep(2000);</span>
+<span class="nc" id="L1028">            Robot robot = new Robot();</span>
+<span class="nc" id="L1029">            robot.keyPress(KeyEvent.VK_CONTROL);</span>
+<span class="nc" id="L1030">            robot.keyPress(KeyEvent.VK_V);</span>
+<span class="nc" id="L1031">            robot.keyRelease(KeyEvent.VK_V);</span>
+<span class="nc" id="L1032">            robot.keyRelease(KeyEvent.VK_CONTROL);</span>
+<span class="nc" id="L1033">            robot.delay(100);</span>
+<span class="nc" id="L1034">            robot.keyPress(KeyEvent.VK_ENTER);</span>
+<span class="nc" id="L1035">            robot.keyRelease(KeyEvent.VK_ENTER);</span>
+<span class="nc" id="L1036">            robot.delay(100);</span>
+<span class="nc" id="L1037">        } catch (AWTException e) {</span>
+<span class="nc" id="L1038">            e.printStackTrace();</span>
+<span class="nc" id="L1039">        } catch (InterruptedException e) {</span>
+<span class="nc" id="L1040">            e.printStackTrace();</span>
+<span class="nc" id="L1041">        }</span>
+<span class="nc" id="L1042">    }</span>
+
+    /**
+     * 操作前のウインド整理
+     *
+     * @param driver
+     * @return
+     */
+    public static WebDriver webBeforeOperate(WebDriver driver) {
+<span class="nc bnc" id="L1051" title="All 2 branches missed.">        if (isAlertPerform(driver)) {</span>
+<span class="nc" id="L1052">            return driver;</span>
+        }
+<span class="nc" id="L1054">        Map&lt;String, Integer&gt; tempMap = new HashMap&lt;String, Integer&gt;();</span>
+<span class="nc" id="L1055">        int i = 0;</span>
+<span class="nc" id="L1056">        String finalHandle = &quot;&quot;;</span>
+        try {
+<span class="nc" id="L1058">            finalHandle = driver.getWindowHandle();</span>
+<span class="nc" id="L1059">        } catch (Exception e) {</span>
+<span class="nc" id="L1060">            finalHandle = &quot;&quot;;</span>
+<span class="nc" id="L1061">        }</span>
+<span class="nc bnc" id="L1062" title="All 2 branches missed.">        for (String nowHandle : driver.getWindowHandles()) {</span>
+<span class="nc bnc" id="L1063" title="All 2 branches missed.">            if (handleList.containsKey(nowHandle)) {</span>
+<span class="nc bnc" id="L1064" title="All 2 branches missed.">                if (handleList.get(nowHandle) &gt; i) {</span>
+<span class="nc" id="L1065">                    i = handleList.get(nowHandle);</span>
+<span class="nc" id="L1066">                    finalHandle = nowHandle;</span>
+                }
+<span class="nc" id="L1068">                tempMap.put(nowHandle, handleList.get(nowHandle));</span>
+            }
+<span class="nc" id="L1070">        }</span>
+<span class="nc bnc" id="L1071" title="All 2 branches missed.">        for (String nowHandle : driver.getWindowHandles()) {</span>
+<span class="nc bnc" id="L1072" title="All 2 branches missed.">            if (!handleList.containsKey(nowHandle)) {</span>
+<span class="nc" id="L1073">                i++;</span>
+<span class="nc" id="L1074">                tempMap.put(nowHandle, i);</span>
+<span class="nc" id="L1075">                finalHandle = nowHandle;</span>
+            }
+<span class="nc" id="L1077">        }</span>
+<span class="nc" id="L1078">        handleList = new HashMap&lt;String, Integer&gt;();</span>
+<span class="nc" id="L1079">        handleList.putAll(tempMap);</span>
+<span class="nc" id="L1080">        driver.switchTo().window(finalHandle);</span>
+<span class="nc bnc" id="L1081" title="All 2 branches missed.">        if (i &gt; 1) {</span>
+<span class="nc" id="L1082">            if (driver.manage().window().getSize()</span>
+<span class="nc" id="L1083">                    .getHeight() &gt; (GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height</span>
+<span class="nc bnc" id="L1084" title="All 2 branches missed.">                            - driver.manage().window().getPosition().y)) {</span>
+<span class="nc" id="L1085">                Dimension dimension = new Dimension(driver.manage().window().getSize().width,</span>
+<span class="nc" id="L1086">                        GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height</span>
+<span class="nc" id="L1087">                                - driver.manage().window().getPosition().y);</span>
+<span class="nc" id="L1088">                driver.manage().window().setSize(dimension);</span>
+            }
+<span class="nc" id="L1090">            if (driver.manage().window().getSize()</span>
+<span class="nc" id="L1091">                    .getWidth() &gt; (GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width</span>
+<span class="nc bnc" id="L1092" title="All 2 branches missed.">                            - driver.manage().window().getPosition().x)) {</span>
+<span class="nc" id="L1093">                Dimension dimension = new Dimension(</span>
+<span class="nc" id="L1094">                        GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width</span>
+<span class="nc" id="L1095">                                - driver.manage().window().getPosition().x,</span>
+<span class="nc" id="L1096">                        driver.manage().window().getSize().height);</span>
+<span class="nc" id="L1097">                driver.manage().window().setSize(dimension);</span>
+            }
+        }
+<span class="nc" id="L1100">        return driver;</span>
+    }
+
+    /**
+     * ページを閉じる
+     *
+     * @param driver
+     * @return
+     * @throws Exception
+     */
+    public static WebDriver webPageClose(WebDriver driver) throws Exception {
+<span class="nc" id="L1111">        driver.close();</span>
+<span class="nc" id="L1112">        Thread.sleep(1000);</span>
+<span class="nc" id="L1113">        driver = webBeforeOperate(driver);</span>
+<span class="nc" id="L1114">        return driver;</span>
+    }
+
+    /**
+     * ページを戻る
+     *
+     * @param driver
+     * @return
+     * @throws Exception
+     */
+    public static WebDriver webPageBack(WebDriver driver) throws Exception {
+<span class="nc" id="L1125">        driver.navigate().back();</span>
+<span class="nc" id="L1126">        Thread.sleep(1000);</span>
+<span class="nc" id="L1127">        driver = webBeforeOperate(driver);</span>
+<span class="nc" id="L1128">        return driver;</span>
+    }
+
+    /**
+     * ページを進む
+     *
+     * @param driver
+     * @return
+     * @throws Exception
+     */
+    public static WebDriver webPageForward(WebDriver driver) throws Exception {
+<span class="nc" id="L1139">        driver.navigate().forward();</span>
+<span class="nc" id="L1140">        Thread.sleep(1000);</span>
+<span class="nc" id="L1141">        driver = webBeforeOperate(driver);</span>
+<span class="nc" id="L1142">        return driver;</span>
+    }
+
+    /**
+     * 変数値の置換え
+     *
+     * @param input
+     * @return
+     * @throws Exception
+     */
+    public static String getRealValueAfterReplace(String input) throws Exception {
+<span class="nc" id="L1153">        Matcher matcher = Pattern.compile(&quot;[$][{].*?[}]&quot;).matcher(input);</span>
+<span class="nc bnc" id="L1154" title="All 2 branches missed.">        while (matcher.find()) {</span>
+<span class="nc" id="L1155">            String variableNm = matcher.group();</span>
+<span class="nc" id="L1156">            String realValue = getVariableValue(variableNm);</span>
+<span class="nc" id="L1157">            input = input.replace(variableNm, realValue);</span>
+<span class="nc" id="L1158">        }</span>
+<span class="nc" id="L1159">        return input;</span>
+    }
+
+    /**
+     * 変数値取得
+     *
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    private static String getVariableValue(String key) throws Exception {
+<span class="nc bnc" id="L1170" title="All 2 branches missed.">        if (key.startsWith(&quot;${SYS_&quot;)) {</span>
+<span class="nc" id="L1171">            return getSystemVariableValue(key);</span>
+        }
+<span class="nc bnc" id="L1173" title="All 2 branches missed.">        if (!RakurakuCore.variablesMap.containsKey(key)) {</span>
+<span class="nc" id="L1174">            throw new RakurakuException(&quot;変数【&quot; + key + &quot;】の値は取得されていません。&quot;);</span>
+        }
+<span class="nc" id="L1176">        return RakurakuCore.variablesMap.get(key);</span>
+    }
+
+    /**
+     * システム変数値取得
+     *
+     * @param variableNm
+     * @return
+     */
+    private static String getSystemVariableValue(String variableNm) {
+
+<span class="nc" id="L1187">        return &quot;&quot;;</span>
+    }
+
+    /**
+     * ブラウザのウインドサイズ設定
+     *
+     * @param driver
+     * @return
+     * @throws Exception
+     */
+    private static WebDriver setWindowSize(WebDriver driver) throws Exception {
+<span class="nc" id="L1198">        String windowSize = RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_SIZE&quot;);</span>
+<span class="nc" id="L1199">        Dimension dimension = null;</span>
+<span class="nc bnc" id="L1200" title="All 2 branches missed.">        if (StringUtils.isNotBlank(windowSize)) {</span>
+<span class="nc" id="L1201">            String[] windows = windowSize.split(&quot;,&quot;);</span>
+<span class="nc bnc" id="L1202" title="All 2 branches missed.">            if (windows.length == 1) {</span>
+<span class="nc" id="L1203">                dimension = new Dimension(Integer.parseInt(windows[0]),</span>
+<span class="nc" id="L1204">                        GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height - 50);</span>
+<span class="nc bnc" id="L1205" title="All 2 branches missed.">            } else if (windows.length == 2) {</span>
+<span class="nc bnc" id="L1206" title="All 2 branches missed.">                if (StringUtils.isNotBlank(windows[0])) {</span>
+<span class="nc" id="L1207">                    dimension = new Dimension(Integer.parseInt(windows[0]), Integer.parseInt(windows[1]) - 50);</span>
+                } else {
+<span class="nc" id="L1209">                    dimension = new Dimension(</span>
+<span class="nc" id="L1210">                            GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width,</span>
+<span class="nc" id="L1211">                            Integer.parseInt(windows[1]) - 50);</span>
+                }
+            }
+        }
+<span class="nc bnc" id="L1215" title="All 2 branches missed.">        if (dimension != null) {</span>
+<span class="nc" id="L1216">            driver.manage().window().setSize(dimension);</span>
+<span class="nc" id="L1217">            driver.manage().window().setPosition(new Point(-8, 0));</span>
+        } else {
+<span class="nc" id="L1219">            driver.manage().window().maximize();</span>
+        }
+<span class="nc" id="L1221">        return driver;</span>
+    }
+
+    /**
+     * Alertが表現されたかどうか判定
+     *
+     * @return
+     */
+    private static boolean isAlertPerform(WebDriver driver) {
+        try {
+<span class="nc" id="L1231">            driver.switchTo().alert();</span>
+<span class="nc" id="L1232">            return true;</span>
+<span class="nc" id="L1233">        } catch (Exception e) {</span>
+<span class="nc" id="L1234">            return false;</span>
+        }
+    }
+
+    /**
+     *
+     * @param target
+     * @return
+     * @throws Exception
+     */
+    private static String xmlFormat(String target) throws Exception {
+<span class="nc" id="L1245">        SAXReader reader = new SAXReader();</span>
+<span class="nc" id="L1246">        StringReader in = new StringReader(target);</span>
+<span class="nc" id="L1247">        Document doc = reader.read(in);</span>
+<span class="nc" id="L1248">        OutputFormat formater = OutputFormat.createPrettyPrint();</span>
+<span class="nc" id="L1249">        formater.setSuppressDeclaration(true);</span>
+<span class="nc" id="L1250">        StringWriter out = new StringWriter();</span>
+<span class="nc" id="L1251">        XMLWriter writer = new XMLWriter(out, formater);</span>
+<span class="nc" id="L1252">        writer.write(doc);</span>
+<span class="nc" id="L1253">        writer.close();</span>
+<span class="nc" id="L1254">        return out.toString();</span>
+    }
+
+
+    private static String jsonFormat(String target) throws Exception {
+        try {
+<span class="nc" id="L1260">            JsonParser jsonparser = new JsonParser();</span>
+<span class="nc" id="L1261">            JsonObject jsonObj = jsonparser.parse(target).getAsJsonObject();</span>
+<span class="nc" id="L1262">            Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();</span>
+<span class="nc" id="L1263">            return gson.toJson(jsonObj);</span>
+<span class="nc" id="L1264">        } catch (Exception e) {</span>
+<span class="nc" id="L1265">            return target;</span>
+        }
+    }
+
+    public static void main(String args[]) throws Exception {
+<span class="nc" id="L1270">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

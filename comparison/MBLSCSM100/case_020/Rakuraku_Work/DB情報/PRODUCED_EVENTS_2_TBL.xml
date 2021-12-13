@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <PRODUCED_EVENTS_2ColName field="id"/>
+  <PRODUCED_EVENTS_2ColName field="idempotency_key"/>
+  <PRODUCED_EVENTS_2ColName field="target_id"/>
+  <PRODUCED_EVENTS_2ColName field="destination"/>
+  <PRODUCED_EVENTS_2ColName field="partition_key"/>
+  <PRODUCED_EVENTS_2ColName field="payload"/>
+  <PRODUCED_EVENTS_2ColName field="created_at"/>
+  <PRODUCED_EVENTS_2ColName field="retry_count"/>
+  <PRODUCED_EVENTS_2ColName field="has_error"/>
+  <PRODUCED_EVENTS_2ColName field="error_reason"/>
+</dataset>

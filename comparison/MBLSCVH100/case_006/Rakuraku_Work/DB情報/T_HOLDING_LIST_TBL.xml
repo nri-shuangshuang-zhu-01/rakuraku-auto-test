@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_HOLDING_LISTColName field="year_month" comment="対象年月:バッチ稼働日（運用日）の年月：YYYYMM"/>
+  <T_HOLDING_LISTColName field="subsidiary_code" comment="現法コード"/>
+  <T_HOLDING_LISTColName field="global_number" comment="グローバル番号"/>
+  <T_HOLDING_LISTColName field="so_voucher_no" comment="受注伝票番号"/>
+  <T_HOLDING_LISTColName field="so_line_key" comment="受注明細キー"/>
+  <T_HOLDING_LISTColName field="ginner_code" comment="統合インナーコード"/>
+  <T_HOLDING_LISTColName field="product_code" comment="商品コード"/>
+  <T_HOLDING_LISTColName field="classify_code" comment="分析コード"/>
+  <T_HOLDING_LISTColName field="product_control_department_code" comment="商品所管部門コード"/>
+  <T_HOLDING_LISTColName field="ssd" comment="SSD"/>
+  <T_HOLDING_LISTColName field="vrd" comment="VRD"/>
+  <T_HOLDING_LISTColName field="vsd" comment="VSD"/>
+  <T_HOLDING_LISTColName field="receiving_fix_date" comment="入荷確定日"/>
+  <T_HOLDING_LISTColName field="customer_code" comment="得意先コード"/>
+  <T_HOLDING_LISTColName field="customer_name_english" comment="得意先名（英字）"/>
+  <T_HOLDING_LISTColName field="ship_to_code" comment="配送先コード"/>
+  <T_HOLDING_LISTColName field="ship_to_name_english" comment="配送先名（英字）"/>
+  <T_HOLDING_LISTColName field="supplier_code" comment="仕入先コード"/>
+  <T_HOLDING_LISTColName field="receiving_qty" comment="入荷数量"/>
+  <T_HOLDING_LISTColName field="so_qty" comment="受注数量"/>
+  <T_HOLDING_LISTColName field="base_date" comment="基準日:バッチ稼働日（実行日付）の年月の作成日"/>
+  <T_HOLDING_LISTColName field="receiving_purchase_amount" comment="入荷仕入金額"/>
+  <T_HOLDING_LISTColName field="purchase_unit_price_ccy_code" comment="仕入単価通貨コード"/>
+  <T_HOLDING_LISTColName field="ccy_code" comment="通貨コード"/>
+  <T_HOLDING_LISTColName field="io_supplier_subsidiary_rate" comment="IO用仕入先現法レート"/>
+  <T_HOLDING_LISTColName field="receiving_supplier_subsidiary_rate" comment="入荷仕入先現法レート"/>
+  <T_HOLDING_LISTColName field="stock_type" comment="在庫区分:01→0、02,03,04→1"/>
+  <T_HOLDING_LISTColName field="so_date" comment="受注日"/>
+  <T_HOLDING_LISTColName field="crd" comment="CRD"/>
+  <T_HOLDING_LISTColName field="transport_means" comment="輸送手段"/>
+  <T_HOLDING_LISTColName field="purchase_price_ccy" comment="仕入価格通貨:仕入価格が既に取引通貨に変換されているので、「仕入先通貨」と同じ"/>
+  <T_HOLDING_LISTColName field="sales_management_expenses" comment="販管費"/>
+  <T_HOLDING_LISTColName field="margin" comment="マージン"/>
+  <T_HOLDING_LISTColName field="exporter_local_ccy" comment="輸出元現地通貨"/>
+  <T_HOLDING_LISTColName field="supplier_subsidiary_supplier_rate" comment="発注先現法仕入先レート"/>
+  <T_HOLDING_LISTColName field="receiving_freight_supplier_rate" comment="入荷運賃仕入先レート"/>
+  <T_HOLDING_LISTColName field="freight_supplier_subsidiary_rate" comment="運賃発注先現法レート"/>
+  <T_HOLDING_LISTColName field="trade_ccy_exchange_rate" comment="取引通貨為替レート"/>
+  <T_HOLDING_LISTColName field="product_supplier_rate" comment="商品仕入先レート"/>
+  <T_HOLDING_LISTColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_HOLDING_LISTColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_HOLDING_LISTColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_HOLDING_LISTColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_HOLDING_LISTColName field="register_date_time" comment="登録日時"/>
+  <T_HOLDING_LISTColName field="register_program" comment="登録プログラム"/>
+  <T_HOLDING_LISTColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_HOLDING_LISTColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_HOLDING_LISTColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_HOLDING_LISTColName field="update_date_time" comment="更新日時"/>
+  <T_HOLDING_LISTColName field="update_program" comment="更新プログラム"/>
+  <T_HOLDING_LISTColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

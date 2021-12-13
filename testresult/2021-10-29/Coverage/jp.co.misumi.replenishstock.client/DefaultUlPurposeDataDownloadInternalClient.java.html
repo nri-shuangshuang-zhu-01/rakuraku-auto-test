@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultUlPurposeDataDownloadInternalClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client</a> &gt; <span class="el_source">DefaultUlPurposeDataDownloadInternalClient.java</span></div><h1>DefaultUlPurposeDataDownloadInternalClient.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client;
+
+import java.time.ZonedDateTime;
+import java.util.Map;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.time.DefaultTimeProvider;
+import jp.co.misumi.fw.core.time.TimeProvider;
+import jp.co.misumi.fw.rest.api.client.context.HttpHeaderMapCreator;
+import jp.co.misumi.replenishstock.client.rest.generaldownload.internal.api.UlPurposeDataDownloadInternalApi;
+import jp.co.misumi.replenishstock.client.value.ClientEndpoint;
+import jp.co.misumi.replenishstock.domain.client.UlPurposeDataDownloadInternalClient;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalResponseV1;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.client.RestClientException;
+
+@RequiredArgsConstructor
+@Named
+public class DefaultUlPurposeDataDownloadInternalClient
+    implements UlPurposeDataDownloadInternalClient {
+  private final UlPurposeDataDownloadInternalApi ulPurposeDataDownloadInternalApi;
+  private final HttpHeaderMapCreator httpHeaderMapCreator;
+
+  /**
+   * 共通_UL用/UL結果データダウンロード_登録更新API UL用/UL結果データダウンロード制御に対し、ダウンロードファイルの情報を登録またはステータスの更新を行う.
+   *
+   * @param context The RequestContext of this request
+   * @param saveUlPurposeDataDownloadInternalRequestV1 (optional)
+   * @return SaveUlPurposeDataDownloadInternalResponseV1
+   * @throws RestClientException if an error occurs while attempting to invoke the API
+   */
+  @Override
+  public SaveUlPurposeDataDownloadInternalResponseV1 saveUlPurposeDataDownloadInternalV1(
+      RequestContext context,
+      SaveUlPurposeDataDownloadInternalRequestV1 saveUlPurposeDataDownloadInternalRequestV1)
+      throws RestClientException {
+    // 現在日時の取得
+<span class="nc" id="L39">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L40">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+<span class="nc" id="L41">    saveUlPurposeDataDownloadInternalRequestV1.setCreateTime(dateTime);</span>
+<span class="nc" id="L42">    saveUlPurposeDataDownloadInternalRequestV1.setDataCode(&quot;&quot;);</span>
+<span class="nc" id="L43">    saveUlPurposeDataDownloadInternalRequestV1.setControlSeqNumber(&quot;&quot;);</span>
+<span class="nc" id="L44">    saveUlPurposeDataDownloadInternalRequestV1.setFilePath(&quot;&quot;);</span>
+<span class="nc" id="L45">    saveUlPurposeDataDownloadInternalRequestV1.setPresignedApiPath(&quot;&quot;);</span>
+<span class="nc" id="L46">    saveUlPurposeDataDownloadInternalRequestV1.setDisplayFileName(&quot;&quot;);</span>
+<span class="nc" id="L47">    saveUlPurposeDataDownloadInternalRequestV1.setStatusCode(&quot;&quot;);</span>
+<span class="nc" id="L48">    saveUlPurposeDataDownloadInternalRequestV1.setProcessResultCode(&quot;&quot;);</span>
+<span class="nc" id="L49">    saveUlPurposeDataDownloadInternalRequestV1.setUpdateCount(0);</span>
+<span class="nc" id="L50">    Map&lt;String, Object&gt; headerMap = httpHeaderMapCreator.createHeaderMap(context, null);</span>
+<span class="nc" id="L51">    return ulPurposeDataDownloadInternalApi.saveUlPurposeDataDownloadInternalV1(</span>
+        context,
+<span class="nc" id="L53">        ClientEndpoint.CLIENT_ENDPOINT_SAVE_UL_PURPOSE_DATA_DOWNLOAD_INTERNAL_V1.getValue(),</span>
+        headerMap,
+        saveUlPurposeDataDownloadInternalRequestV1);
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

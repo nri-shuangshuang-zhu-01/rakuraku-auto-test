@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_customer_inquiryColName field="subsidiary_code" comment="現法コード"/>
+  <t_customer_inquiryColName field="inquiry_id" comment="問合せID"/>
+  <t_customer_inquiryColName field="urgent_flag" comment="緊急フラグ"/>
+  <t_customer_inquiryColName field="customer_code" comment="得意先コード"/>
+  <t_customer_inquiryColName field="customer_name" comment="得意先名"/>
+  <t_customer_inquiryColName field="ship_to_code" comment="配送先コード"/>
+  <t_customer_inquiryColName field="ship_to_name" comment="配送先名"/>
+  <t_customer_inquiryColName field="department_name" comment="部課名"/>
+  <t_customer_inquiryColName field="pic_name" comment="担当者名"/>
+  <t_customer_inquiryColName field="send_media_type" comment="送信媒体区分"/>
+  <t_customer_inquiryColName field="fax_send_to_number" comment="FAX送信先番号"/>
+  <t_customer_inquiryColName field="email_address_to" comment="メールアドレス（TO）"/>
+  <t_customer_inquiryColName field="email_address_cc" comment="メールアドレス（CC）"/>
+  <t_customer_inquiryColName field="inquiry_reply_limit" comment="ユーザ回答期限"/>
+  <t_customer_inquiryColName field="qt_expiration_date_time" comment="見積有効期限日時"/>
+  <t_customer_inquiryColName field="contact_id" comment="コンタクトID"/>
+  <t_customer_inquiryColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <t_customer_inquiryColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <t_customer_inquiryColName field="register_user_type" comment="登録者区分:Office：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ"/>
+  <t_customer_inquiryColName field="register_user" comment="登録者"/>
+  <t_customer_inquiryColName field="register_date_time" comment="登録日時"/>
+  <t_customer_inquiryColName field="register_program" comment="登録プログラム"/>
+  <t_customer_inquiryColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <t_customer_inquiryColName field="update_user_type" comment="更新者区分:Office：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ"/>
+  <t_customer_inquiryColName field="update_user" comment="更新者"/>
+  <t_customer_inquiryColName field="update_date_time" comment="更新日時"/>
+  <t_customer_inquiryColName field="update_program" comment="更新プログラム"/>
+  <t_customer_inquiryColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

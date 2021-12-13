@@ -1,0 +1,6 @@
+http://localhost:4017/v1/gw-stop-shipment/reference{"shipmentFailList":[{"subsidiaryCd":"JPN","globalNo":"CA000032000086","inputProcessDate":"2019-08-24","soDate":"2021-10-20","delFlg":"0"}],"limit":9999,"sort":"1"}
+http://localhost:4015/internal/v1/product-classification/get-list{"getListProductClassificationInternalRequestV1DetailList":[{"classifyCode":"22024201"}]}
+http://localhost:4010/internal/v1/reason-type/get-list{"getListReasonTypeInternalRequestV1DetailList":[{"businessSceneType":"st","reasonType":"A1234"}]}
+http://localhost:4012/internal/v1/customer/get-list{"getListCustomerInternalRequestV1DetailList":[{"customerCode":"BOSCH9"}]}
+http://localhost:4015/internal/v1/supplier/get-list{"getListSupplierInternalRequestV1DetailList":[{"supplierCode":"stri"}]}
+http://localhost:4010/internal/v1/plant/get-list{"getListPlantInternalRequestV1DetailList":[{"plantCode":"0001"}]}

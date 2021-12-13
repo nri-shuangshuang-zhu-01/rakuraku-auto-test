@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_CARRIER_INVOICE subsidiary_code="JPN" global_number="CA000032000086" create_date="9999-12-31" carrier_invoice_number="99999999999999999999" program_type="a" internal_external_type="0" plant_code="9999" vsd="9999-12-31" packing_control_number="999999999999999" shipmode_code="999" qty="9999999" update_count="0" delete_flag="0" register_user_type="0" register_user="0" register_date_time="9999-12-31 00:00:00.0" register_program="0" register_client_program="0" update_user_type="0" update_user="0" update_date_time="9999-12-31 00:00:00.0" update_program="0" update_client_program="0"/>
+</dataset>

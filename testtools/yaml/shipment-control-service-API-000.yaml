@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: RAS-service-pri-v1-API-000
+  version: '1.0'
+  description: 当日着荷参照API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/vstork-emergency-order/search:
+    post:
+      summary: API-000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchVstorkEmergencyOrderResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchVstorkEmergencyOrderV1
+      description: 当日着荷(Vストーク)緊急締めの登録内容を参照する。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchVstorkEmergencyOrderRequestV1'
+      tags:
+        - VstorkEmergencyOrder
+    parameters: []
+components:
+  schemas:
+    SearchVstorkEmergencyOrderRequestV1:
+      title: SearchVstorkEmergencyOrderRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        maxCount:
+          type: integer
+          description: 参照最大件数
+        plantCode:
+          type: array
+          description: 置場コード
+          items:
+            type: string
+            maxLength: 4
+      required:
+        - subsidiaryCode
+        - maxCount
+        - plantCode
+    SearchVstorkEmergencyOrderResponseV1:
+      title: SearchVstorkEmergencyOrderResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        resultCount:
+          description: 取得件数
+          type: integer
+        informationList:
+          description: 情報一覧リスト
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchVstorkEmergencyOrderInfoListV1'
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - resultCount
+    SearchVstorkEmergencyOrderInfoListV1:
+      title: SearchVstorkEmergencyOrderInfoListV1
+      type: object
+      properties:
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        deliveryServiceStatus:
+          type: string
+          description: 即納配送状態
+          maxLength: 1
+        updateDate:
+          type: string
+          description: 更新日
+          format: date
+        updateId:
+          type: string
+          description: 更新者ID
+          maxLength: 6
+        updCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+tags:
+  - name: VstorkEmergencyOrder

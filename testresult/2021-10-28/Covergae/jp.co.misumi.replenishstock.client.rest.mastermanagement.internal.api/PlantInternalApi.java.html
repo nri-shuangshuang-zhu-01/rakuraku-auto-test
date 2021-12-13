@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlantInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api</a> &gt; <span class="el_source">PlantInternalApi.java</span></div><h1>PlantInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListPlantInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListPlantInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetPlantInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.SearchPlantInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:18.711785900+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api.PlantInternalApi&quot;)
+public class PlantInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L39">    public PlantInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L40">        this.apiClient = apiClient;</span>
+<span class="fc" id="L41">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L44">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L48">        this.apiClient = apiClient;</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * 置場情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。   置場マスタ M_PLANT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListPlantInternalRequestV1 置場情報取得API（List）のリクエスト電文 (required)
+     
+     * @return GetListPlantInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetListPlantInternalResponseV1 getListPlantInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListPlantInternalRequestV1 getListPlantInternalRequestV1) throws RestClientException {
+<span class="nc" id="L66">        return getListPlantInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, getListPlantInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 置場情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。   置場マスタ M_PLANT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListPlantInternalRequestV1 置場情報取得API（List）のリクエスト電文 (required)
+     
+     * @return ResponseEntity&amp;lt;GetListPlantInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetListPlantInternalResponseV1&gt; getListPlantInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListPlantInternalRequestV1 getListPlantInternalRequestV1) throws RestClientException {
+<span class="nc" id="L84">        Object postBody = getListPlantInternalRequestV1;</span>
+        
+        // verify the required parameter 'getListPlantInternalRequestV1' is set
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (getListPlantInternalRequestV1 == null) {</span>
+<span class="nc" id="L88">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'getListPlantInternalRequestV1' when calling getListPlantInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L91">        String path = apiClient.expandPath(&quot;/internal/v1/plant/get-list&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L93">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L94">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L95">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L96">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L101">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L103">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L105">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L107">            });</span>
+        }
+
+<span class="nc" id="L110">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L113">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L114">        final String[] contentTypes = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L117">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L119">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L121">        ParameterizedTypeReference&lt;GetListPlantInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetListPlantInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L122">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 置場情報取得API
+     * 以下のマスタの情報を返却するAPIです。   置場マスタ M_PLANT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param plantCode 置場コード (required)
+     
+     * @return GetPlantInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetPlantInternalResponseV1 getPlantInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String plantCode) throws RestClientException {
+<span class="nc" id="L139">        return getPlantInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, plantCode).getBody();</span>
+    }
+
+    /**
+     * 置場情報取得API
+     * 以下のマスタの情報を返却するAPIです。   置場マスタ M_PLANT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param plantCode 置場コード (required)
+     
+     * @return ResponseEntity&amp;lt;GetPlantInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetPlantInternalResponseV1&gt; getPlantInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String plantCode) throws RestClientException {
+<span class="nc" id="L157">        Object postBody = null;</span>
+        
+        // verify the required parameter 'plantCode' is set
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        if (plantCode == null) {</span>
+<span class="nc" id="L161">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'plantCode' when calling getPlantInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L164">        String path = apiClient.expandPath(&quot;/internal/v1/plant/get&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L166">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L167">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L168">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L169">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L171">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;plant_code&quot;, plantCode));</span>
+
+        
+
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L176">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L178">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L180">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L182">            });</span>
+        }
+
+<span class="nc" id="L185">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L188">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L189">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L190">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L192">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L194">        ParameterizedTypeReference&lt;GetPlantInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetPlantInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L195">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 置場情報検索API
+     * 以下のマスタの情報を返却するAPIです。   置場マスタ M_PLANT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param plantCode 置場コード (optional)
+     
+     * @param subsidiaryCode 現法コード (optional)
+     
+     * @param supplierChoiceAreaCode 調達先選定用エリアコード (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return SearchPlantInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchPlantInternalResponseV1 searchPlantInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String plantCode, String subsidiaryCode, String supplierChoiceAreaCode, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="fc" id="L222">        return searchPlantInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, plantCode, subsidiaryCode, supplierChoiceAreaCode, offset, limit, sortby).getBody();</span>
+    }
+
+    /**
+     * 置場情報検索API
+     * 以下のマスタの情報を返却するAPIです。   置場マスタ M_PLANT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param plantCode 置場コード (optional)
+     
+     * @param subsidiaryCode 現法コード (optional)
+     
+     * @param supplierChoiceAreaCode 調達先選定用エリアコード (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchPlantInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchPlantInternalResponseV1&gt; searchPlantInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String plantCode, String subsidiaryCode, String supplierChoiceAreaCode, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="fc" id="L250">        Object postBody = null;</span>
+        
+<span class="fc" id="L252">        String path = apiClient.expandPath(&quot;/internal/v1/plant/search&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="fc" id="L254">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="fc" id="L255">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="fc" id="L256">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="fc" id="L257">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="fc" id="L259">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;plant_code&quot;, plantCode));</span>
+<span class="fc" id="L260">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;subsidiary_code&quot;, subsidiaryCode));</span>
+<span class="fc" id="L261">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;supplier_choice_area_code&quot;, supplierChoiceAreaCode));</span>
+<span class="fc" id="L262">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;offset&quot;, offset));</span>
+<span class="fc" id="L263">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;limit&quot;, limit));</span>
+<span class="fc" id="L264">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;sortby&quot;, sortby));</span>
+
+        
+
+<span class="pc bpc" id="L268" title="1 of 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="fc" id="L269">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="pc bpc" id="L270" title="1 of 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L271">                    headerParams.add(k, null);</span>
+<span class="fc bfc" id="L272" title="All 2 branches covered.">                } else if (v instanceof String) {</span>
+<span class="fc" id="L273">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="fc" id="L275">            });</span>
+        }
+
+<span class="fc" id="L278">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="fc" id="L281">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="fc" id="L282">        final String[] contentTypes = {  };</span>
+<span class="fc" id="L283">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="fc" id="L285">        String[] authNames = new String[] {  };</span>
+
+<span class="fc" id="L287">        ParameterizedTypeReference&lt;SearchPlantInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchPlantInternalResponseV1&gt;() {};</span>
+<span class="fc" id="L288">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

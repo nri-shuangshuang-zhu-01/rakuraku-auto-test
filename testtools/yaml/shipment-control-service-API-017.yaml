@@ -1,0 +1,362 @@
+openapi: 3.0.0
+info:
+  title: API-017
+  version: '1.0'
+  description: 転送キャンセル仮受用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/transfer-between-bases/search:
+    get:
+      summary: 出荷_転送キャンセル仮受_参照API
+      tags:
+        - TransferBetweenBases
+      operationId: searchTransferBetweenBasesV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTransferBetweenBasesResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 受注明細情報と拠点間転送情報から転送キャンセル情報を参照する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          required: true
+          description: 現法コード
+        - schema:
+            type: string
+            maxLength: 14
+          in: query
+          name: globalNumber
+          description: グローバル番号
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: basePlantCode
+          description: 基置場
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: plantCode
+          description: 置場
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: vsd
+          description: 出荷日
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: stockType
+          description: 在庫種別
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: status
+          description: 状況
+        - schema:
+            type: string
+          in: query
+          name: maxCount
+          required: true
+          description: 参照最大件数
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: '#/components/parameters/sortby2'
+    parameters: []
+  /v1/transfer-between-bases/save:
+    post:
+      summary: 出荷_転送キャンセル仮受_更新API
+      tags:
+        - TransferBetweenBases
+      operationId: saveTransferBetweenBasesV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveTransferBetweenBasesResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 転送キャンセル情報をロジGWの拠点間転送に更新する。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveTransferBetweenBasesRequestV1'
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+components:
+  schemas:
+    SearchTransferBetweenBasesResponseV1:
+      title: SearchTransferBetweenBasesResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        canceledTransferList:
+          type: array
+          description: 転送キャンセルリスト
+          items:
+            $ref: '#/components/schemas/SearchTransferBetweenBasesCanceledListV1'
+      required:
+        - subsidiaryCode
+    SearchTransferBetweenBasesCanceledListV1:
+      title: SearchTransferBetweenBasesCanceledListV1
+      type: object
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        soVoucherNumber:
+          type: string
+          description: 受注伝票番号
+          maxLength: 12
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+        basePlantCode:
+          type: string
+          description: 基置場コード
+          maxLength: 4
+        basePlantName:
+          type: string
+          maxLength: 45
+          description: 基置場名
+        baseStorageLocation:
+          type: string
+          description: 基保管場所コード
+          maxLength: 4
+        baseStorageLocationName:
+          type: string
+          maxLength: 45
+          description: 基保管場所名
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        storageLocationCode:
+          type: string
+          description: 保管場所コード
+          maxLength: 4
+        orderAttributes:
+          type: string
+          description: 注文属性
+          maxLength: 2
+        soQty:
+          type: integer
+          description: 受注数量
+          minimum: 0
+          maximum: 9999999
+        status:
+          type: string
+          description: 状況
+          maxLength: 1
+        soDate:
+          type: string
+          description: 受注日
+          format: date
+        vsd:
+          type: string
+          description: 出荷日
+          format: date
+        shelfBackTime:
+          type: string
+          description: 棚戻登録日時
+          format: date-time
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+          minimum: 0
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+        plantName:
+          type: string
+          maxLength: 45
+          description: 置場名
+        storageLocationName:
+          type: string
+          maxLength: 45
+          description: 保管場所名
+        orderAttributesName:
+          type: string
+          description: 注文属性名
+        statusName:
+          type: string
+          description: 状況名
+      required:
+        - globalNumber
+        - soVoucherNumber
+        - productCode
+        - gInnerCode
+        - basePlantCode
+        - basePlantName
+        - baseStorageLocation
+        - baseStorageLocationName
+        - plantCode
+        - storageLocationCode
+        - orderAttributes
+        - soQty
+        - status
+        - soDate
+        - vsd
+        - shelfBackTime
+        - updateCount
+        - plantName
+        - storageLocationName
+        - orderAttributesName
+        - statusName
+    SaveTransferBetweenBasesRequestV1:
+      title: SaveTransferBetweenBasesRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        updateId:
+          type: string
+          description: 更新者ID
+          maxLength: 6
+        updateTime:
+          type: string
+          format: date-time
+          minLength: 14
+          maxLength: 14
+          description: 更新日時
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+        cancelTargetList:
+          type: array
+          description: キャンセル対象リスト
+          items:
+            $ref: '#/components/schemas/SaveTransferBetweenBasesCancelTargetListV1'
+      required:
+        - subsidiaryCode
+        - updateId
+        - updateProgram
+        - updateTime
+    SaveTransferBetweenBasesCancelTargetListV1:
+      title: SaveTransferBetweenBasesCancelTargetListV1
+      type: object
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        soDate:
+          type: string
+          description: 受注日
+          format: date
+          maxLength: 8
+        basePlantCode:
+          type: string
+          description: 基置場
+          maxLength: 4
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+      required:
+        - globalNumber
+        - soDate
+        - updateCount
+    SaveTransferBetweenBasesResponseV1:
+      title: SaveTransferBetweenBasesResponseV1
+      type: object
+      properties:
+        updateResult:
+          type: string
+          description: 更新成否結果
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - updateResult
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順1
+    sortby2:
+      name: sortby2
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順2
+tags:
+  - name: TransferBetweenBases

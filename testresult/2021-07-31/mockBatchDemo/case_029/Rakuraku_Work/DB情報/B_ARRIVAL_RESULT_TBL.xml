@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <B_ARRIVAL_RESULTColName field="subsidiary_code"/>
+  <B_ARRIVAL_RESULTColName field="global_number"/>
+  <B_ARRIVAL_RESULTColName field="plant_code"/>
+  <B_ARRIVAL_RESULTColName field="g_inner_code"/>
+  <B_ARRIVAL_RESULTColName field="inner_code"/>
+  <B_ARRIVAL_RESULTColName field="product_code"/>
+  <B_ARRIVAL_RESULTColName field="classify_code"/>
+  <B_ARRIVAL_RESULTColName field="arrival_fix_date"/>
+  <B_ARRIVAL_RESULTColName field="arrival_quantity"/>
+  <B_ARRIVAL_RESULTColName field="order_attribution"/>
+  <B_ARRIVAL_RESULTColName field="update_hub_flag"/>
+  <B_ARRIVAL_RESULTColName field="register_system_time"/>
+  <B_ARRIVAL_RESULTColName field="update_system_time"/>
+  <B_ARRIVAL_RESULTColName field="update_program"/>
+</dataset>

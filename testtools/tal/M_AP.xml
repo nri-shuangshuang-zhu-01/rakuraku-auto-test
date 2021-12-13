@@ -1,0 +1,46 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+買掛先コード::ap_code::char(4)::NOT NULL(PK)
+通貨コード::ccy_code::char(3)::NULL
+市町村コード::city_code::varchar(5)::NULL
+住所1::address1::varchar(30)::NULL
+住所2::address2::varchar(30)::NULL
+住所3::address3::varchar(30)::NULL
+住所1（現地語1）::address1_native1::varchar(30)::NULL
+住所2（現地語1）::address2_native1::varchar(30)::NULL
+住所3（現地語1）::address3_native1::varchar(30)::NULL
+住所1（現地語2）::address1_native2::varchar(30)::NULL
+住所2（現地語2）::address2_native2::varchar(30)::NULL
+住所3（現地語2）::address3_native2::varchar(30)::NULL
+資本形態::company_entity_type::varchar(6)::NULL
+企業名::company_name::varchar(50)::NULL
+企業名（現地語）::company_name_native::varchar(50)::NULL
+企業名（カナ）::company_name_kana::varchar(50)::NULL
+企業名（検索用カナ名インデックス）::company_name_for_search_kana_index::varchar(50)::NULL
+買掛先担当部課::ap_processing_department::varchar(30)::NULL
+買掛先担当部課（現地語）::ap_processing_department_native::varchar(30)::NULL
+買掛先担当部課（カナ）::ap_processing_department_kana::varchar(30)::NULL
+買掛先担当者名::ap_pic_name::varchar(20)::NULL
+買掛先担当者名（現地語）::ap_pic_name_native::varchar(20)::NULL
+買掛先担当者名（カナ）::ap_pic_name_kana::varchar(20)::NULL
+電話番号::tel::varchar(20)::NULL
+FAX番号::fax::varchar(20)::NULL
+仕入計上データ伝送区分::purchase_appropriate_data_send_type::char(1)::NULL
+担当課コード::processing_section_code::numeric(2,0)::NULL
+発注伝送区分::po_send_type::char(1)::NULL
+自動FAX用メーカNO::automatic_fax_maker_number::varchar(7)::NULL
+海外通貨使用フラグ::local_ccy_flag::char(1)::NULL
+郵便番号::postal_code::varchar(10)::NULL
+買掛先主管部門コード::ap_main_department_code::varchar(6)::NULL
+国コード::country_code::char(3)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

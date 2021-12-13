@@ -1,0 +1,37 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+仕入先コード::supplier_code::char(4)::NOT NULL(PK)
+納入先置場コード::delivery_destination_plant_code::char(4)::NOT NULL(PK)
+輸送手段::transport_means::varchar(2)::NOT NULL(PK)
+出荷場所コード::shipment_place_code::char(4)::NOT NULL(PK)
+輸送経路名1::transport_channel_name1::varchar(4)::NOT NULL
+輸送日数1::transport_days1::numeric(3,0)::NOT NULL
+輸送経路カレンダコード1::transport_channel_calendar_code1::char(5)::NOT NULL
+途中休日考慮フラグ1::interposed_day_off_flag1::char(1)::NOT NULL
+輸送経路名2::transport_channel_name2::varchar(4)::NULL
+輸送日数2::transport_days2::numeric(3,0)::NULL
+輸送経路カレンダコード2::transport_channel_calendar_code2::char(5)::NULL
+途中休日考慮フラグ2::interposed_day_off_flag2::char(1)::NULL
+輸送経路名3::transport_channel_name3::varchar(4)::NULL
+輸送日数3::transport_days3::numeric(3,0)::NULL
+輸送経路カレンダコード3::transport_channel_calendar_code3::char(5)::NULL
+途中休日考慮フラグ3::interposed_day_off_flag3::char(1)::NULL
+輸送経路名4::transport_channel_name4::varchar(4)::NULL
+輸送日数4::transport_days4::numeric(3,0)::NULL
+輸送経路カレンダコード4::transport_channel_calendar_code4::char(5)::NULL
+途中休日考慮フラグ4::interposed_day_off_flag4::char(1)::NULL
+輸送経路名5::transport_channel_name5::varchar(4)::NULL
+輸送日数5::transport_days5::numeric(3,0)::NULL
+輸送経路カレンダコード5::transport_channel_calendar_code5::char(5)::NULL
+途中休日考慮フラグ5::interposed_day_off_flag5::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

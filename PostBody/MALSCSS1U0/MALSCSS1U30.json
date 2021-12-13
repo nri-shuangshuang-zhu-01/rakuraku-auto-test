@@ -1,0 +1,26 @@
+{
+  "stopShipmentList": [
+    {
+      "globalNumber": "CA000032000086",
+      "processType": "1",
+      "bussinessSceneType": "st",
+      "reasonType": "A1234",
+      "commentNote": "string",
+      "plantCode": "stri",
+      "storageLocationCode": "stri",
+      "soQty": 9,
+      "supplierCode": "strin",
+      "supplierName": "string",
+      "ginnerCode": "string",
+      "productCode": "STRING",
+      "brandCode": "stri",
+      "brandName": "string",
+      "customerCode": "string",
+      "customerName": "string",
+      "stockFlag": "s",
+      "componentFlag": "s",
+      "inputProcessDate": "2019-08-24",
+      "updateCount": 1
+    }
+  ]
+}

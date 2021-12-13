@@ -1,0 +1,45 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-detail/get?subsidiaryCode=748&billToCode=777889&startIndex=1&responseCount=2&sortOrder=Due Date&invoiceNumber=16&invoiceStatus=
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=6a037a9e-2500-4724-a005-998a1ab13a46&&Prefer=/internal/v1/ccy/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "billToData": {
+    "billToName": "060",
+    "telNumber": "",
+    "fax": "",
+    "emailTo": "",
+    "emailCc": "",
+    "sendMedia": "",
+    "paymentTerms": "042",
+    "tradeCurrency": "123",
+    "mainBusinessUnitCode": "",
+    "acceptanceExist": "0",
+    "notePayableamount": 0.000,
+    "dunningLetterSendType": "1"
+  },
+  "noPaymentInfo": [
+    {
+      "invoiceNumber": "16",
+      "invoiceDate": "2021-03-13",
+      "paymentMeans": "",
+      "dunningLevel": " ",
+      "paymentDueDate": "2021-09-10",
+      "delayDays": "0",
+      "nonPaymentAmount": 0,
+      "billedAmount": 0,
+      "incomingPaymentAmount": 0,
+      "paymentCompleteDate": "2021-09-10",
+      "delayReasonType": "   ",
+      "paymentTermss": "",
+      "dunningLetterSendMedia": "",
+      "updateTime": "2021-09-10T01:00:00+09:00",
+      "updateUser": "256",
+      "tradeStatus": "  ",
+      "reDate": "2021-09-10",
+      "clearFlag": " "
+    }
+  ],
+  "errorList": []
+}

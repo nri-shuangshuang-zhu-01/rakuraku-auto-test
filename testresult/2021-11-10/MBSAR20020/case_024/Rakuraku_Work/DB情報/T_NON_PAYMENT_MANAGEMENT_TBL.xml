@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_NON_PAYMENT_MANAGEMENTColName field="subsidiary_code" comment="現法コード"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="bill_to_code" comment="売掛先コード"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="invoice_number" comment="インボイス番号"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="invoice_date" comment="インボイス日付"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="bill_year_month" comment="請求年月"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="fiscal_year" comment="年度"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="ccy_code_customer_ccy" comment="通貨コード（顧客通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="billed_amount_customer_ccy" comment="請求金額（顧客通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="non_payment_amount_customer_ccy" comment="未入金額（顧客通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="incoming_payment_amount_customer_ccy" comment="入金額（顧客通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="ccy_code_subsidiary_ccy" comment="通貨コード（現法通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="ccy_rate_subsidiary_ccy" comment="通貨レート（現法通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="billed_amount_subsidiary_ccy" comment="請求金額（現法通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="non_payment_amount_subsidiary_ccy" comment="未入金額（現法通貨）"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="payment_due_date" comment="支払期日"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="promised_payment_date" comment="支払約束日"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="incoming_payment_complete_date" comment="入金完了日"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="dunning_letter_send_media" comment="督促状送付媒体"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="dunning_letter_send_user_id" comment="督促状送信者ID"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="dunning_letter_send_request_date" comment="督促状送信依頼日"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="dunning_level" comment="督促レベル"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="title_level" comment="タイトルレベル"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="acceptance_type" comment="検収区分"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="payment_terms" comment="支払条件"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="settlement_method" comment="決済形態"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="trade_status_type" comment="取引状態区分"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="delay_reason_type" comment="遅延理由区分"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="customer_po_reference" comment="顧客ヘッダー注文番号"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="customer_item_reference" comment="顧客注文番号(親番)"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="customer_item_sub_reference" comment="顧客注文番号(枝番)"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="clear_flag" comment="消込フラグ"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="payment_means" comment="支払手段"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="delivery_note_number" comment="納品書番号"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="register_date_time" comment="登録日時"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="register_program" comment="登録プログラム"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="update_date_time" comment="更新日時"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="update_program" comment="更新プログラム"/>
+  <T_NON_PAYMENT_MANAGEMENTColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

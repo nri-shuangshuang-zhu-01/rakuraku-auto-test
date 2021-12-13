@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_inquiry_send_to_email_address_cc subsidiary_code='' inquiry_send_id='' email_address='' update_count='' delete_flag='' register_user_type='' register_user='' register_date_time='' register_program='' register_client_program='' update_user_type='' update_user='' update_date_time='' update_program='' update_client_program='' />
+</dataset>

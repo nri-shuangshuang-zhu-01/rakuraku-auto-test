@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="subsidiary_code"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="ginner_code"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="plant_code"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="demand_forecast_qty"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_count"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="delete_flag"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_user_type"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_user"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_date_time"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_program"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_client_program"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_user_type"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_user"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_date_time"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_program"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_client_program"/>
+</dataset>

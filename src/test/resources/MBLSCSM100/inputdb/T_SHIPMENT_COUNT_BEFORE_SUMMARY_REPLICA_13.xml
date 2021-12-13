@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SHIPMENT_COUNT_BEFORE_SUMMARY_REPLICA subsidiary_code='JPN' global_number='GN001234567890' so_slip_number='SSN123456789' so_line_key='1' vsd='2020-08-24' plant_code='PC01' supply_type='01' shipment_classification_area_code='SC1' customer_subsidiary_plant_code='' customer_subsidiary_customer_code='CSCC01' customer_subsidiary_ship_to_code='CSSTC1' batch_type='4' stork_code='' shipment_method_code='00' slip_type='110' arrn_ship_div='' shipment_type='' delete_flag='0' data_hub_updated_flag='1' register_system_date_time='2020-08-24' update_system_date_time='2020-08-24' update_program='bath' />
+</dataset>

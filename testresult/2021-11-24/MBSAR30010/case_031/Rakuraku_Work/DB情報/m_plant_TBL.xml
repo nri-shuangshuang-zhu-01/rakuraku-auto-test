@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <m_plantColName field="plant_code" comment="置場コード:置場を一意に特定するコード。日本以外は先頭１文字が現法毎に割り当てられたアルファベットとなる。"/>
+  <m_plantColName field="subsidiary_code" comment="現法コード:現地法人を一意に特定するコード。"/>
+  <m_plantColName field="plant_name" comment="置場名"/>
+  <m_plantColName field="plant_name_native" comment="置場名（現地語）"/>
+  <m_plantColName field="plant_abbreviation_native" comment="置場略称（現地語）"/>
+  <m_plantColName field="plant_number" comment="置場番号:1～5の数字を設定し、商品マスタ、商品別仕入先マスタの置場１～置場5との紐付けを行う。"/>
+  <m_plantColName field="shipping_days_area_code" comment="配送日数用エリアコード"/>
+  <m_plantColName field="supplier_choice_area_code" comment="調達先選定用エリアコード"/>
+  <m_plantColName field="address1_native" comment="住所1（現地語）"/>
+  <m_plantColName field="address2_native" comment="住所2（現地語）"/>
+  <m_plantColName field="address3_native" comment="住所3（現地語）"/>
+  <m_plantColName field="address4_native" comment="住所4（現地語）"/>
+  <m_plantColName field="tel" comment="電話番号"/>
+  <m_plantColName field="fax" comment="FAX番号"/>
+  <m_plantColName field="postal_code" comment="郵便番号"/>
+  <m_plantColName field="other_plant_reference_priority" comment="他置場参照優先順位"/>
+  <m_plantColName field="so_stop_flag" comment="受注停止フラグ:稼働はしているが、受注は受け付けていないという状態。新規置場追加などのときに利用。受注での在庫引当を行わないが、補充発注などは可能。"/>
+  <m_plantColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <m_plantColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <m_plantColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_plantColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <m_plantColName field="register_date_time" comment="登録日時"/>
+  <m_plantColName field="register_program" comment="登録プログラム"/>
+  <m_plantColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <m_plantColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_plantColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <m_plantColName field="update_date_time" comment="更新日時"/>
+  <m_plantColName field="update_program" comment="更新プログラム"/>
+  <m_plantColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

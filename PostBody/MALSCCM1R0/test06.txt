@@ -1,0 +1,11 @@
+{
+"generalKeyList":[{
+    "screenDisplayFieldIdentifier":"AB",
+    "generalKey1":"001",
+    "generalKey2":"",
+    "generalKey3":"003",
+    "generalKey4":"004",
+    "generalKey5":"005"
+}
+]
+}

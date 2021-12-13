@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_data_upload_exclusive_control control_seq_number='1234567890' data_upload_exclusive_control_seq='null' subsidiary_code='mjp' data_code='sss' mail_address='ssssss' temp_file_code='' file_path='null' signature='null' input_file_name='sssss' status_code='0' process_result_code='1' update_count='1' delete_flag='null' register_user_type='null' register_user='null' register_date_time='null' register_program='null' register_client_program='null' update_user_type='Customer11' update_user='GUEST11' update_date_time='2021-9-24 15:21:05' update_program='api-id11' update_client_program='tempppp' />
+</dataset>

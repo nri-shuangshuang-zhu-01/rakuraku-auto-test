@@ -1,0 +1,26 @@
+管理SEQ番号::control_seq_number::numeric(10,0)::NOT NULL(PK)
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+言語コード::language_code::char(3)::NOT NULL(PK)
+汎用キー1::general_purpose_key1::varchar(5)::NOT NULL
+汎用キー2::general_purpose_key2::varchar(20)::NULL
+汎用キー3::general_purpose_key3::varchar(20)::NULL
+汎用キー4::general_purpose_key4::varchar(20)::NULL
+汎用キー5::general_purpose_key5::varchar(20)::NULL
+コード値リファレンス1::code_value_reference1::varchar(600)::NOT NULL
+コード値リファレンス2::code_value_reference2::varchar(600)::NULL
+コード値リファレンス3::code_value_reference3::varchar(600)::NULL
+コード値リファレンス4::code_value_reference4::varchar(600)::NULL
+コード値リファレンス5::code_value_reference5::varchar(600)::NULL
+表示順::display_order::numeric(2,0)::NOT NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

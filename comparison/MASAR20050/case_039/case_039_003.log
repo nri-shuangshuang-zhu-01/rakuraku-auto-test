@@ -1,0 +1,11 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-detail/get?subsidiaryCode=1&billToCode=2&startIndex=1&responseCount=5&sortOrder=invoiceNumber.&invoiceNumber=6&invoiceStatus=Open
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=6a037a9e-2500-4724-a005-998a1ab13a46&&Prefer=/internal/v1/ccy/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "code": "NAR20050002E",
+  "argumentList": [],
+  "message": "最大検索件数を超えています。"
+}

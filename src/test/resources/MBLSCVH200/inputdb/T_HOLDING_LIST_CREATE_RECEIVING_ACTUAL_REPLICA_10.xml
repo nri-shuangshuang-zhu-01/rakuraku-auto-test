@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICA subsidiary_code='JPN' plant_code='P001' global_number='CA000032000081' purchase_slip_number='0' po_line_number='2' receiving_fix_date='2021-09-07' receiving_qty='1000' supply_type='02' receiving_fix_process_date='2021-09-07' receiving_purchase_amount='500' receiving_supplier_subsidiary_rate='10' receiving_freight_supplier_rate='20' receiving_supplier_subsidiary_supplier_rate='30' receiving_freight_supplier_subsidiary_rate='40' receiving_product_supplier_rate='50' delete_flag='0' data_hub_updated_flag='2' register_system_date_time='2021-09-07' update_system_date_time='2021-09-07' update_program='MBLSCVH200' />
+</dataset>

@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <m_email_template subsidiary_code='JPN' email_template_key='MNSRQ00090' email_template_id='1234QW23342DASDW211111111E1111111111' update_count='0' delete_flag='0' register_user_type='Supplier' register_user='dsa' register_date_time='2021-08-21 11:11:12.4' register_program='regdsa1' register_client_program='dsa1' update_user_type='Customer' update_user='12acdc' update_date_time='2021-08-21 14:11:11.0' update_program='update1' update_client_program='dsa' />
+</dataset>

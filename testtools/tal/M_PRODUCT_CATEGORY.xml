@@ -1,0 +1,29 @@
+商品カテゴリコード ::product_category_code::varchar(11)::NOT NULL(PK)
+表示順 ::display_order::integer::NULL
+デフォルト表示形式 ::default_display_format::varchar(1)::NULL
+スペック検索対象フラグ ::specification_search_flag::varchar(1)::NULL
+メーカー絞込上位表示カテゴリフラグ ::maker_narrow_down_upper_display_category_flag::varchar(1)::NULL
+出荷日絞込非表示フラグ ::shipping_date_narrow_down_hide_flag::varchar(1)::NULL
+ソート非表示カテゴリフラグ::sort_hide_category_flag::varchar(1)::NULL
+直接カート追加フラグ ::direct_cart_add_flag::varchar(1)::NULL
+価格チェックレスフラグ ::price_checkless_flag::varchar(1)::NULL
+リダイレクト先カテゴリコード::redirect_destination_category_code::varchar(11)::NULL
+事業部コード::business_unit_code::varchar(8)::NULL
+適用開始日::effective_start_date::timestamp::NULL
+旧統合サイト12カテゴリコード ::old_unified_site12_category_code::varchar(16)::NULL
+画面テンプレートタイプ ::screen_template_type::varchar(2)::NULL
+関連情報更新日::info_update_date::timestamp::NULL
+関連情報更新者ID::info_update_user_id::varchar(256)::NULL
+更新制御ID ::update_control_id::varchar(20)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

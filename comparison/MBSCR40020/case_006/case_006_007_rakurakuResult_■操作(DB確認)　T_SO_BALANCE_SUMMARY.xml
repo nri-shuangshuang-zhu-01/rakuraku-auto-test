@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SO_BALANCE_SUMMARY subsidiary_code="JPN" customer_code="103   " summary_date="2021-07-10" so_balance_amount="2.000" update_count="0" delete_flag="0" register_user_type="Office" register_user="200" register_date_time="2020-01-02 15:05:07.0" register_program="3" register_client_program="LOGON_USER" update_user_type="Office" update_user="100" update_date_time="2021-09-08 15:05:07.0" update_program="JOB002" update_client_program="UPDATE_USER"/>
+</dataset>

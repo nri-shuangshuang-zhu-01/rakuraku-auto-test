@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HeaderInterceptor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.batch.Interceptor</a> &gt; <span class="el_source">HeaderInterceptor.java</span></div><h1>HeaderInterceptor.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.batch.Interceptor;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.client.ClientHttpRequestExecution;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="fc" id="L20">public class HeaderInterceptor implements ClientHttpRequestInterceptor {</span>
+
+  @Override
+  public ClientHttpResponse intercept(
+      HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
+<span class="fc" id="L25">    String url = &quot;E:\\request.log&quot;;</span>
+<span class="fc" id="L26">    FileWriter fw = null;</span>
+<span class="fc" id="L27">    fw = new FileWriter(url, true);</span>
+<span class="fc" id="L28">    String cmd = request.getURI().toString();</span>
+<span class="fc" id="L29">    request.getHeaders().toString();</span>
+<span class="fc" id="L30">    fw.write(cmd);</span>
+<span class="fc" id="L31">    String fromStream = IOUtils.toString(body, &quot;UTF-8&quot;);</span>
+<span class="fc" id="L32">    fw.write(fromStream);</span>
+<span class="fc" id="L33">    fw.write(&quot;\r\n&quot;);</span>
+<span class="fc" id="L34">    fw.close();</span>
+    //    HttpServletRequest mainReq =
+    // ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+    //    String mainHeader = mainReq.getHeader(&quot;Prefer&quot;);
+<span class="fc" id="L38">    String str = &quot;&quot;;</span>
+<span class="fc" id="L39">    HttpHeaders headers = request.getHeaders();</span>
+<span class="fc" id="L40">    String fileName = &quot;E:\\ApiBatch.log&quot;;</span>
+<span class="fc" id="L41">    File file = new File(fileName);</span>
+<span class="fc" id="L42">    BufferedReader reader = null;</span>
+    try {
+<span class="fc" id="L44">      reader = new BufferedReader(new FileReader(file));</span>
+<span class="fc" id="L45">      String tempString = null;</span>
+<span class="fc" id="L46">      int line = 1;</span>
+      // 一次读入一行，直到读入null为文件结束
+<span class="fc bfc" id="L48" title="All 2 branches covered.">      while ((tempString = reader.readLine()) != null) {</span>
+<span class="fc" id="L49">        String[] headerArray = tempString.split(&quot;::&quot;);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (request.getURI().getPath().equals(headerArray[0])) {</span>
+<span class="fc" id="L51">          str = headerArray[1];</span>
+        }
+<span class="fc" id="L53">      }</span>
+<span class="fc" id="L54">      reader.close();</span>
+<span class="fc" id="L55">    } catch (IOException e) {</span>
+<span class="fc" id="L56">      e.printStackTrace();</span>
+    } finally {
+<span class="fc bfc" id="L58" title="All 2 branches covered.">      if (reader != null) {</span>
+        try {
+<span class="fc" id="L60">          reader.close();</span>
+<span class="nc" id="L61">        } catch (IOException e1) {</span>
+<span class="fc" id="L62">        }</span>
+      }
+    }
+<span class="fc" id="L65">    headers.add(&quot;Prefer&quot;, &quot;example=&quot; + str);</span>
+<span class="fc" id="L66">    str = &quot;&quot;;</span>
+    //    if(mainHeader!=null &amp;&amp; mainHeader.length()&gt;0){
+    //      if(mainHeader.contains(&quot;&amp;&quot;)){
+    //        String[] headerArray = mainHeader.split(&quot;&amp;&quot;);
+    //        for(int i=0;i&lt;headerArray.length;i++){
+    //          if(request.getURI().toString().contains(headerArray[i].split(&quot;-&gt;&quot;)[0])){
+    //            headers.add(&quot;Prefer&quot;,&quot;example=&quot;+ headerArray[i].split(&quot;-&gt;&quot;)[1]);
+    //            break;
+    //          }
+    //        }
+    //      }else{
+    //        if(request.getURI().toString().contains(mainHeader.split(&quot;-&gt;&quot;)[0])){
+    //          headers.add(&quot;Prefer&quot;,&quot;example=&quot;+ mainHeader.split(&quot;-&gt;&quot;)[1]);
+    //        }
+    //      }
+    //    }
+<span class="fc" id="L82">    BufferedOutputStream fop = null;</span>
+    try {
+<span class="fc" id="L84">      fop = new BufferedOutputStream(new FileOutputStream(&quot;E:\\intercept.log&quot;, true));</span>
+<span class="fc" id="L85">      ClientHttpResponse response = execution.execute(request, body);</span>
+<span class="fc" id="L86">      StringBuilder sb = new StringBuilder();</span>
+      String line;
+<span class="fc" id="L88">      BufferedReader br = new BufferedReader(new InputStreamReader(response.getBody()));</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">      while ((line = br.readLine()) != null) {</span>
+<span class="fc" id="L90">        sb.append(line);</span>
+      }
+<span class="fc" id="L92">      byte[] contentInBytes = sb.toString().getBytes();</span>
+<span class="fc" id="L93">      fop.write(contentInBytes);</span>
+<span class="fc" id="L94">      fop.write(&quot;\r\n&quot;.getBytes());</span>
+<span class="fc" id="L95">      fop.write(&quot;\r\n&quot;.getBytes());</span>
+<span class="fc" id="L96">      fop.flush();</span>
+<span class="fc" id="L97">      fop.close();</span>
+<span class="nc" id="L98">    } catch (IOException e) {</span>
+<span class="nc" id="L99">      e.printStackTrace();</span>
+    } finally {
+      try {
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">        if (fop != null) {</span>
+<span class="fc" id="L103">          fop.close();</span>
+        }
+<span class="nc" id="L105">      } catch (IOException e) {</span>
+<span class="nc" id="L106">        e.printStackTrace();</span>
+<span class="fc" id="L107">      }</span>
+    }
+<span class="fc" id="L109">    return execution.execute(request, body);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

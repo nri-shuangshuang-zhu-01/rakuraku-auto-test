@@ -1,0 +1,21 @@
+{
+  "subsidiaryCode": "JPN",
+  "billToCodeFrom": "1",
+  "billToCodeTo": "5",
+  "billToClosingDate": 19,
+  "processingSection": 0,
+  "paymentDueDateFrom": "2021-07-01",
+  "paymentDueDateTo": "2021-07-25",
+  "invoiceNumberFrom": "1",
+  "invoiceNumberTo": "5",
+  "invoiceDateFrom": "2020-01-01",
+  "invoiceDateTo": "2021-01-03",
+  "InvoiceDisplayObject": "0",
+  "billToCodeList": [
+    {
+      "billToCode": "3"
+    }
+  ],
+  "displayDataFlagInvoice": "1",
+  "billToDirectSpecifiedFlag": "0"
+}

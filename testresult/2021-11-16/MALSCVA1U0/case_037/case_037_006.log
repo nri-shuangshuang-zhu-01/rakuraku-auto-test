@@ -1,0 +1,12 @@
+■api名称：　登录
+■api Request：　/internal/v1/stock-adjustment/save
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=tes24S3242qgj327525&&X-Language-Code=JPN&&X-Subsidiary-Code=JPN&&
+■api Body：　{"stockAdjustment":[	{	"slipDate":"2020-09-15",	"operationDate":"2020-09-15",	"stockType":"s",	"registrationDate":"2020-09-15",	"registrationTime":"16:00:00",	"plantCode":"1234",	"plantName":"ABCDEFG1234",	"storageLocationCode":"4567",	"storageLocationName":"EFRTGHTYF",	"reasonType":"CVB",	"reasonTypeName":"DSFSDGTR",	"processMode":"2",	"processModeName":"123456789012345678901234567",	"responsibilityDepartmentCode":"00T2",	"responsibilityDepartmentName":"SAHDUASGBF456",	"productCode":"789754542",	"ginnerCode":"UIOSAH78954",	"brandCode":"YUIP",	"brandName":"ASDZCFDVWR",	"currentStockQty":12,	"stockDifferenceQty":34,	"ccy":"CAD",	"productControlDepartmentCode":"00T2",	"productControlDepartmentName":"CTRLB",	"currentStockQtyBeforeAdjust":9991,	"currentStockQtyAfterAdjust":9992,	"evaluationUnitPrice":"1.1",	"marketCode":"16",	"updateDateTime":"2000-10-31T01:30:00.000-05:00"	}]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NSCVA1U0007E",
+  "argumentList": [],
+  "message": "在庫調整登録が成功しました。在庫調整入力チェックリストのメール送信に失敗しました。帳票ファイルIDが取得できません。しばらくしてから再実行してもエラーとなる場合は、システム管理者にご連絡ください。"
+}

@@ -1,0 +1,1067 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultWeeklyReorderPointCalculationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultWeeklyReorderPointCalculationService.java</span></div><h1>DefaultWeeklyReorderPointCalculationService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.fw.core.util.DateUtil;
+import jp.co.misumi.fw.core.util.NumberUtil;
+import jp.co.misumi.replenishstock.domain.client.PlantInternalClient;
+import jp.co.misumi.replenishstock.domain.client.ProductInternalClient;
+import jp.co.misumi.replenishstock.domain.client.ProductSupplierInternalClient;
+import jp.co.misumi.replenishstock.domain.client.StockInfoClient;
+import jp.co.misumi.replenishstock.domain.entity.ExProductEntity;
+import jp.co.misumi.replenishstock.domain.entity.ReorderPointHandleDataEntity;
+import jp.co.misumi.replenishstock.domain.entity.ReorderPointWeeklyMonthlyEntity;
+import jp.co.misumi.replenishstock.domain.entity.SafetyCoefficientEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointDemandForecastCalcEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointDemandForecastEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointPoolDataMonthlyEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointPoolDataWeeklyEntity;
+import jp.co.misumi.replenishstock.domain.mapper.ReorderPointHandleDataEntityMapping;
+import jp.co.misumi.replenishstock.domain.mapper.ReorderPointWeeklyMonthlyEntityMapping;
+import jp.co.misumi.replenishstock.domain.repository.SafetyCoefficientRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointDemandForecastRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointPoolDataMonthlyRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointPoolDataWeeklyRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListPlantInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListPlantInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListPlantInternalResponseV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductSupplierInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductSupplierInternalRequestV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductSupplierInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductSupplierInternalResponseV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.ProductInternalV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.ProductSupplierInternalV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CheckStockInfoRequestDetailV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CheckStockInfoRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CheckStockInfoResponseDetailV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CheckStockInfoResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.UpdateStockInfoRequestDetailV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.UpdateStockInfoRequestV1;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.MessageSource;
+import org.springframework.util.CollectionUtils;
+
+/** 週次発注点計算. */
+@RequiredArgsConstructor
+@Named(&quot;weeklyReorderPointCalculationService&quot;)
+public class DefaultWeeklyReorderPointCalculationService
+    implements WeeklyReorderPointCalculationService {
+
+  // 在庫情報参照APIと在庫情報更新API
+  private final StockInfoClient stockInfoClient;
+
+  // 商品情報取得API（List）
+  private final ProductInternalClient productClient;
+
+  // 商品別仕入先情報取得API（List）
+  private final ProductSupplierInternalClient productSupplierClient;
+
+  // 【共通】調達期間算出ロジック
+  private final Mb0000Service mb0000Service;
+
+  // 置場情報取得API（List）
+  private final PlantInternalClient plantInternalClient;
+
+  // 処理対象データマッピング
+  private final ReorderPointHandleDataEntityMapping handleDataEntityMapping;
+
+  // 週次発注点用POOLデータ（週次）(月次）マッピング
+  private final ReorderPointWeeklyMonthlyEntityMapping weeklyMonthlyEntityMapping;
+
+  // 安全係数
+  private final SafetyCoefficientRepository safetyCoefficientRepository;
+
+  // 週次発注点用POOLデータ(月次)
+  private final WeeklyReorderPointPoolDataMonthlyRepository reorderPointMonthlyRepository;
+
+  // 週次発注点用需要予測
+  private final WeeklyReorderPointDemandForecastRepository reorderPointForecastRepository;
+
+  // 週次発注点用POOLデータ(週次)
+  private final WeeklyReorderPointPoolDataWeeklyRepository reorderPointWeeklyRepository;
+<span class="fc" id="L103">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L104">      MessageLoggerFactory.getLogger(DefaultWeeklyReorderPointCalculationService.class);</span>
+  private final MessageSource messageSource;
+  private final Log log = LogFactory.getLog(DefaultWeeklyReorderPointCalculationService.class);
+
+  @Override
+  public boolean calculation(
+      RequestContext context, String operationDate, String subsidiaryCode, String jobNetId)
+      throws BusinessException {
+
+<span class="nc" id="L113">    log.info(&quot;週次発注点計算処理が開始しました。&quot;);</span>
+
+    // 処理対象データ取得
+<span class="nc" id="L116">    final List&lt;ReorderPointHandleDataEntity&gt; handleDataList = getHandleData(context, operationDate);</span>
+
+    // 更新データ件数 = 在庫マスタの取得データ件数 - 未更新次数
+<span class="nc" id="L119">    int saveCount = handleDataList.size();</span>
+
+    // 取得件数 = 在庫マスタの取得データ件数(在庫参照APIの取得件数)
+<span class="nc" id="L122">    int getCount = handleDataList.size();</span>
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(handleDataList)) {</span>
+<span class="nc" id="L125">      outLog(getCount, saveCount);</span>
+<span class="nc" id="L126">      return false;</span>
+    }
+
+    // 処理対象を繰り返す
+<span class="nc bnc" id="L130" title="All 2 branches missed.">    for (ReorderPointHandleDataEntity handleDataEntity : handleDataList) {</span>
+
+      // マスタ検索処理
+      // 検索パラメータ.ランク　＝　&quot;Z&quot;　の場合
+<span class="nc bnc" id="L134" title="All 2 branches missed.">      if (ReplenishStockConstants.SEARCH_PARAM_RANK.equals(</span>
+<span class="nc" id="L135">          handleDataEntity.getReorderPointRank())) {</span>
+
+        // Zランク発注点計算処理」を行う
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (Boolean.FALSE.equals(handleFlagReorderPointCalculation(handleDataEntity, context))) {</span>
+
+          // 在庫情報更新API異常の場合、更新次数マイナス1
+<span class="nc" id="L141">          saveCount--;</span>
+        }
+
+      } else {
+
+        // マスタ検索処理、検索パラメータ.ランク != &quot;Z&quot;　の場合.
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        if (!searchMasterHandleRankNormal(handleDataEntity, context)) {</span>
+
+          // 対象安全係数において、取得された汎用マスタ安全係数の検索結果が数値でない場合、対象データの処理を終了する。
+          // 更新次数マイナス1
+<span class="nc" id="L151">          saveCount--;</span>
+<span class="nc" id="L152">          continue;</span>
+        }
+
+        // 平均出荷数、標準偏差算出処理
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        if (Boolean.FALSE.equals(</span>
+<span class="nc" id="L157">            calculateAvgShipmentsAndStandardDeviation(operationDate, handleDataEntity, context))) {</span>
+
+          // 在庫情報更新API異常の場合、更新次数マイナス1
+<span class="nc" id="L160">          saveCount--;</span>
+        }
+      }
+<span class="nc" id="L163">    }</span>
+
+    // 終了処理
+<span class="nc" id="L166">    outLog(getCount, saveCount);</span>
+
+<span class="nc" id="L168">    return true;</span>
+  }
+
+  /**
+   * 終了ログ、処理件数、更新件数を出力する。.
+   *
+   * @param getCount 在庫マスタの取得データ件数
+   * @param saveCount 更新データ件数
+   */
+  private void outLog(int getCount, int saveCount) {
+
+    // 終了メッセージ：「週次発注点計算処理が終了しました。
+<span class="nc" id="L180">    messageLogger.log(messageSource, ReplenishStockMessages.BIR17000011I, null);</span>
+
+    // 「取得件数：{0}件、更新件数:{1}件」、{0} : 在庫マスタの取得データ件数、{1} : 更新データ件数
+<span class="nc" id="L183">    messageLogger.log(</span>
+<span class="nc" id="L184">        messageSource, ReplenishStockMessages.BIR17000012I, null, getCount, saveCount);</span>
+<span class="nc" id="L185">  }</span>
+
+  /**
+   * 平均出荷数、標準偏差の算出処理.
+   *
+   * @param operationDate 運用日付
+   * @param handleDataEntity 処理データ
+   * @param context 共通
+   */
+  private Boolean calculateAvgShipmentsAndStandardDeviation(
+      String operationDate, ReorderPointHandleDataEntity handleDataEntity, RequestContext context) {
+    // 1.※対象期間(週数)の算出
+<span class="nc" id="L197">    BigDecimal weekNumber = null;</span>
+
+    // 商品マスタ．発売年月日
+<span class="nc" id="L200">    final LocalDate releaseDate = handleDataEntity.getReleaseDate();</span>
+
+    // 運用日
+<span class="nc" id="L203">    final LocalDate operationDateLocalDate =</span>
+<span class="nc" id="L204">        LocalDate.parse(operationDate, DateTimeFormatter.ofPattern(DateUtil.SHORT_DATE_FORMAT));</span>
+
+    // 週数(小数第1位で切り上げ)　＝　(　運用日　－　商品マスタ．発売年月日　)　/　7
+<span class="nc" id="L207">    weekNumber =</span>
+<span class="nc" id="L208">        NumberUtil.toBigDecimal(</span>
+<span class="nc" id="L209">            ((double) operationDateLocalDate.toEpochDay() - releaseDate.toEpochDay()) / 7);</span>
+<span class="nc" id="L210">    final BigDecimal weekNumberAdjust = NumberUtil.adjust(weekNumber, 0);</span>
+
+    // 週数　＜　52　の場合、内部変数．対象期間 = 週数
+<span class="nc bnc" id="L213" title="All 2 branches missed.">    if (NumberUtil.lt(weekNumber, new BigDecimal(52))) {</span>
+<span class="nc" id="L214">      handleDataEntity.setTargetPeriodVar(weekNumberAdjust);</span>
+    } else {
+      // 上記以外の場合、内部変数．対象期間 = 52
+<span class="nc" id="L217">      handleDataEntity.setTargetPeriodVar(new BigDecimal(52));</span>
+    }
+
+    // 「週次発注点用POOLデータ(週次)」テーブルを検索する。
+<span class="nc" id="L221">    final Optional&lt;WeeklyReorderPointPoolDataWeeklyEntity&gt; reorderPointDataWeeklyEntity =</span>
+<span class="nc" id="L222">        reorderPointWeeklyRepository.findOne(</span>
+            context,
+<span class="nc" id="L224">            handleDataEntity.getReorderPointSubsidiaryCode(),</span>
+<span class="nc" id="L225">            handleDataEntity.getReorderPointGinnerCode(),</span>
+<span class="nc" id="L226">            handleDataEntity.getReorderPointPlantCode());</span>
+
+    // 週次発注点用POOLデータ(週次)判断用エンテイテイ
+<span class="nc" id="L229">    WeeklyReorderPointPoolDataWeeklyEntity judgeEntity = null;</span>
+
+<span class="nc" id="L231">    ReorderPointWeeklyMonthlyEntity reorderPointWeeklyMonthlyEntity = null;</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">    if (reorderPointDataWeeklyEntity.isPresent()) {</span>
+<span class="nc" id="L233">      judgeEntity = reorderPointDataWeeklyEntity.get();</span>
+
+<span class="nc" id="L235">      reorderPointWeeklyMonthlyEntity =</span>
+<span class="nc" id="L236">          weeklyMonthlyEntityMapping.databaseToReorderPointEntity(judgeEntity, null);</span>
+    }
+
+    // 「週次発注点用POOLデータ(週次)」テーブルに検索結果が存在の場合
+<span class="nc bnc" id="L240" title="All 2 branches missed.">    if (judgeEntity != null) {</span>
+
+      // 2.※対象期間内出荷数の算出
+<span class="nc" id="L243">      handleDataEntity.setShipmentNumberVar(</span>
+<span class="nc" id="L244">          getShipmentNumberVar(reorderPointWeeklyMonthlyEntity, handleDataEntity));</span>
+
+      // 3.※平均出荷数の算出
+      // 内部変数．平均出荷数(小数第5位で四捨五入)　＝　内部変数．対象期間内出荷数　/　内部変数．対象期間
+<span class="nc" id="L248">      BigDecimal avgShipment =</span>
+<span class="nc" id="L249">          NumberUtil.divide(</span>
+<span class="nc" id="L250">              handleDataEntity.getShipmentNumberVar(), handleDataEntity.getTargetPeriodVar(), 4);</span>
+<span class="nc" id="L251">      handleDataEntity.setAvgShipmentVar(avgShipment);</span>
+
+      // 4.※分散集計の算出
+<span class="nc" id="L254">      handleDataEntity.setDistributedAggregationVar(</span>
+<span class="nc" id="L255">          getDistributedAggregation(reorderPointWeeklyMonthlyEntity, handleDataEntity));</span>
+
+      // 5.※標本分散の算出
+      // 内部変数．標本分散(小数第5位で四捨五入)　＝　内部変数．分散集計　/　(　内部変数．対象期間　－　1　)
+<span class="nc" id="L259">      final BigDecimal sampleVariance =</span>
+<span class="nc" id="L260">          NumberUtil.divide(</span>
+<span class="nc" id="L261">              handleDataEntity.getDistributedAggregationVar(),</span>
+<span class="nc" id="L262">              (handleDataEntity.getTargetPeriodVar().subtract(BigDecimal.ONE)),</span>
+              4);
+<span class="nc" id="L264">      handleDataEntity.setSampleVarianceVar(sampleVariance);</span>
+
+      // 6.※標準偏差の算出
+      // 内部変数．標準偏差(小数第6位で四捨五入)　＝　√内部変数．標本分散
+<span class="nc" id="L268">      final BigDecimal standardDeviation =</span>
+<span class="nc" id="L269">          NumberUtil.adjust(NumberUtil.sqrt(handleDataEntity.getSampleVarianceVar()), 5);</span>
+<span class="nc" id="L270">      handleDataEntity.setStandardDeviationVar(standardDeviation);</span>
+
+      // 発注点計算処理(発注点)
+<span class="nc bnc" id="L273" title="All 2 branches missed.">      if (Boolean.FALSE.equals(handleReorderPointCalculation(handleDataEntity, context))) {</span>
+<span class="nc" id="L274">        return false;</span>
+      }
+<span class="nc" id="L276">    } else {</span>
+
+      // 出庫累積データ不在データ処理」を行う
+      // 内部変数.発注点 = 0　とする
+<span class="nc" id="L280">      handleDataEntity.setReorderPointVar(ReplenishStockConstants.REORDER_POINT_ZERO);</span>
+
+      // 発注点更新処理を行う
+<span class="nc bnc" id="L283" title="All 2 branches missed.">      if (Boolean.FALSE.equals(saveStockInfo(context, handleDataEntity))) {</span>
+<span class="nc" id="L284">        return false;</span>
+      }
+    }
+<span class="nc" id="L287">    return true;</span>
+  }
+
+  /**
+   * 分散集計の算出.
+   *
+   * @param reorderPointWeeklyMonthlyEntity 週次発注点用POOLデータ（週次）(月次)
+   * @return 取得結果
+   */
+  private BigDecimal getDistributedAggregation(
+      ReorderPointWeeklyMonthlyEntity reorderPointWeeklyMonthlyEntity,
+      ReorderPointHandleDataEntity handleDataEntity) {
+    // 内部変数.分散集計　＝　(　週次発注点計算用POOLデータ(週次)．在庫品出荷数(1)　－　内部変数.平均出荷数　)^2　～　(
+    // 週次発注点計算用POOLデータ(週次)．在庫品出荷数(T)　－　内部変数平均出荷数　)^2　の集計値
+
+<span class="nc" id="L302">    double distributedAggregation = 0;</span>
+
+    // 内部変数．対象期間をTとして計算
+
+    // 在庫出荷数リスト
+<span class="nc" id="L307">    final List&lt;BigDecimal&gt; stockShipmentQtyList =</span>
+<span class="nc" id="L308">        reorderPointWeeklyMonthlyEntity.getStockShipmentQtyList();</span>
+
+    // 製作品扱い出荷数リスト
+<span class="nc" id="L311">    final List&lt;BigDecimal&gt; mtoModeShipmentQtyList =</span>
+<span class="nc" id="L312">        reorderPointWeeklyMonthlyEntity.getMtoModeShipmentQtyList();</span>
+
+    // 内部変数.対象期間をTとして計算
+<span class="nc" id="L315">    for (int i = 0;</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">        i &lt; NumberUtil.toInteger(handleDataEntity.getTargetPeriodVar().toString());</span>
+<span class="nc" id="L317">        i++) {</span>
+
+      // 内部変数．製作品扱除外フラグ＝&quot;1&quot;の場合
+<span class="nc bnc" id="L320" title="All 2 branches missed.">      if (ReplenishStockConstants.PRODUCT_EXCLUDE_FLAG_ONE.equals(</span>
+<span class="nc" id="L321">          handleDataEntity.getProductExcludeFlag())) {</span>
+
+        // 内部変数.分散集計　＝　(　週次発注点計算用POOLデータ(週次)．在庫品出荷数(1)　－　内部変数.平均出荷数　)^2　～　(
+        // 週次発注点計算用POOLデータ(週次)．在庫品出荷数(T)　－　内部変数平均出荷数　)^2　の集計値
+<span class="nc" id="L325">        distributedAggregation +=</span>
+<span class="nc" id="L326">            Math.pow(</span>
+<span class="nc" id="L327">                NumberUtil.toDouble(</span>
+<span class="nc" id="L328">                    stockShipmentQtyList.get(i).subtract(handleDataEntity.getAvgShipmentVar())),</span>
+                2);
+      } else {
+        // 上記以外の場合
+        // 内部変数．分散集計　＝　(　週次発注点計算用POOLデータ(週次)．在庫品出荷数(1)　＋　週次発注点計算用POOLデータ(週次)．製作品扱出荷数(1)　－
+        // 　内部変数．平均出荷数
+        // 　)^2　～　(　週次発注点計算用POOLデータ(週次)．在庫品出荷数(T)　＋　週次発注点計算用POOLデータ(週次)．製作品扱出荷数(T)　－　内部変数.平均出荷数
+        // 　)^2
+        // 　の集計値
+
+<span class="nc" id="L338">        distributedAggregation +=</span>
+<span class="nc" id="L339">            Math.pow(</span>
+<span class="nc" id="L340">                NumberUtil.toDouble(</span>
+                    stockShipmentQtyList
+<span class="nc" id="L342">                        .get(i)</span>
+<span class="nc" id="L343">                        .add(mtoModeShipmentQtyList.get(i))</span>
+<span class="nc" id="L344">                        .subtract(handleDataEntity.getAvgShipmentVar())),</span>
+                2);
+      }
+    }
+<span class="nc" id="L348">    return NumberUtil.toBigDecimal(distributedAggregation);</span>
+  }
+
+  /**
+   * 発注点計算処理(発注点).
+   *
+   * @param handleDataEntity 処理結果
+   */
+  private Boolean handleReorderPointCalculation(
+      ReorderPointHandleDataEntity handleDataEntity, RequestContext context) {
+    // 1.安全在庫の算出
+    // 内部変数．安全在庫(小数第3位で四捨五入)　＝　内部変数．標準偏差　＊　内部係数．安全係数　＊　√(　内部変数．調達期間1　/　5　)
+    // 平方根計算は小数第6位で四捨五入する。
+<span class="nc" id="L361">    final BigDecimal safetyInventory =</span>
+<span class="nc" id="L362">        NumberUtil.adjust(</span>
+            handleDataEntity
+<span class="nc" id="L364">                .getStandardDeviationVar()</span>
+<span class="nc" id="L365">                .multiply(handleDataEntity.getSafetyCoefficientVar())</span>
+<span class="nc" id="L366">                .multiply(</span>
+<span class="nc" id="L367">                    NumberUtil.adjust(</span>
+<span class="nc" id="L368">                        NumberUtil.sqrt(</span>
+<span class="nc" id="L369">                            handleDataEntity.getProcurementPeriod().divide(new BigDecimal(5))),</span>
+                        5)),
+            2);
+<span class="nc" id="L372">    handleDataEntity.setSafetyInventoryVar(safetyInventory);</span>
+
+    // 2.調達期間中出荷数1の算出、内部変数．調達期間中出荷数(小数第3位で四捨五入)　＝　内部変数．需要予測数量　＊　内部変数．調達期間　/　22
+<span class="nc" id="L375">    BigDecimal duringShipmentPeriod =</span>
+<span class="nc" id="L376">        NumberUtil.divide(</span>
+            handleDataEntity
+<span class="nc" id="L378">                .getDemandForecastQtyVar()</span>
+<span class="nc" id="L379">                .multiply(handleDataEntity.getProcurementPeriod()),</span>
+            new BigDecimal(22),
+            2);
+
+<span class="nc" id="L383">    handleDataEntity.setDuringShipmentPeriodVar(duringShipmentPeriod);</span>
+
+    // 3.発注点の算出: 内部変数.発注点(整数に切り上げ)　＝　内部変数.調達期間中出荷数　＋　内部変数.安全在庫
+<span class="nc" id="L386">    final double reorderPointVarDouble =</span>
+<span class="nc" id="L387">        Math.ceil(</span>
+<span class="nc" id="L388">            NumberUtil.toDouble(</span>
+                handleDataEntity
+<span class="nc" id="L390">                    .getDuringShipmentPeriodVar()</span>
+<span class="nc" id="L391">                    .add(handleDataEntity.getSafetyInventoryVar())));</span>
+<span class="nc" id="L392">    handleDataEntity.setReorderPointVar((int) reorderPointVarDouble);</span>
+
+    // 発注点更新処理を行う。
+<span class="nc" id="L395">    return saveStockInfo(context, handleDataEntity);</span>
+  }
+
+  /**
+   * 対象期間内出荷数の算出.
+   *
+   * @param entity 週次発注点用POOLデータ(週次)(月次)
+   * @param handleDataEntity 処理データ
+   * @return 算出結果
+   */
+  private BigDecimal getShipmentNumberVar(
+      ReorderPointWeeklyMonthlyEntity entity, ReorderPointHandleDataEntity handleDataEntity) {
+<span class="nc" id="L407">    BigDecimal shipmentNumberVar = BigDecimal.ZERO;</span>
+
+    // 在庫出荷数リスト
+<span class="nc" id="L410">    final List&lt;BigDecimal&gt; stockShipmentQtyList = entity.getStockShipmentQtyList();</span>
+
+    // 製作品扱い出荷数リスト
+<span class="nc" id="L413">    final List&lt;BigDecimal&gt; mtoModeShipmentQtyList = entity.getMtoModeShipmentQtyList();</span>
+
+    // 内部変数．対象期間をTとして計算
+<span class="nc" id="L416">    for (int i = 0;</span>
+<span class="nc bnc" id="L417" title="All 2 branches missed.">        i &lt; NumberUtil.toInteger(handleDataEntity.getTargetPeriodVar().toString());</span>
+<span class="nc" id="L418">        i++) {</span>
+
+      // 「週次発注点用POOLデータ(週次)」テーブルに検索結果が存在し、内部変数．製作品扱除外フラグ＝&quot;0&quot;の場合
+<span class="nc bnc" id="L421" title="All 2 branches missed.">      if (ReplenishStockConstants.PRODUCT_EXCLUDE_FLAG_ZERO.equals(</span>
+<span class="nc" id="L422">          handleDataEntity.getProductExcludeFlag())) {</span>
+
+        // 内部変数．対象期間内出荷数　＝　(　週次発注点計算用POOLデータ(週次).在庫品出荷数(1)　＋　週次発注点計算用POOLデータ(週次).製作品扱出荷数(1)　)　～　(
+        // 週次発注点計算用POOLデータ(週次).在庫品出荷数(T)　＋　週次発注点計算用POOLデータ(週次).製作品扱出荷数(T)　)　の集計値
+<span class="nc" id="L426">        shipmentNumberVar =</span>
+<span class="nc" id="L427">            shipmentNumberVar.add(stockShipmentQtyList.get(i).add(mtoModeShipmentQtyList.get(i)));</span>
+      } else {
+
+        // 上記以外の場合
+        // 内部変数．対象期間内出荷数　＝　週次発注点計算用POOLデータ(週次)．在庫品出荷数(1)　～　週次発注点計算用POOLデータ(週次)．在庫品出荷数(T)　の集計値
+<span class="nc" id="L432">        shipmentNumberVar = shipmentNumberVar.add(stockShipmentQtyList.get(i));</span>
+      }
+    }
+<span class="nc" id="L435">    return shipmentNumberVar;</span>
+  }
+
+  /**
+   * マスタ検索処理、検索パラメータ.ランク != &quot;Z&quot;　の場合.
+   *
+   * @param handleDataEntity 処理対象データ
+   * @param context 共通
+   */
+  private boolean searchMasterHandleRankNormal(
+      ReorderPointHandleDataEntity handleDataEntity, RequestContext context) {
+
+    // 安全係数テーブルから対象安全係数を取得する。
+    // 検索条件.現法コード = 発注点.現法コード、商品所管部門コード = 商品マスタ.商品所管部門コード
+<span class="nc" id="L449">    final Optional&lt;SafetyCoefficientEntity&gt; safetyCoefficientEntity =</span>
+<span class="nc" id="L450">        safetyCoefficientRepository.findOne(</span>
+            context,
+<span class="nc" id="L452">            handleDataEntity.getReorderPointSubsidiaryCode(),</span>
+<span class="nc" id="L453">            handleDataEntity.getProductControlDepartmentCode());</span>
+
+    // 対象安全係数に存在する場合
+<span class="nc bnc" id="L456" title="All 2 branches missed.">    if (safetyCoefficientEntity.isPresent()) {</span>
+
+<span class="nc bnc" id="L458" title="All 2 branches missed.">      if (Boolean.FALSE.equals(</span>
+<span class="nc" id="L459">          setSafetyCoefficient(safetyCoefficientEntity.get(), handleDataEntity))) {</span>
+<span class="nc" id="L460">        return false;</span>
+      }
+    } else {
+      // 対象安全係数に存在しない場合、内部変数．安全係数 = 3
+<span class="nc" id="L464">      handleDataEntity.setSafetyCoefficientVar(ReplenishStockConstants.SAFETY_COEFFICIENT);</span>
+    }
+
+    // 週次発注点用需要予測データを取得する
+<span class="nc" id="L468">    final Optional&lt;WeeklyReorderPointDemandForecastEntity&gt; reorderPointForecastEntity =</span>
+<span class="nc" id="L469">        reorderPointForecastRepository.findOne(</span>
+            context,
+<span class="nc" id="L471">            handleDataEntity.getReorderPointSubsidiaryCode(),</span>
+<span class="nc" id="L472">            handleDataEntity.getReorderPointGinnerCode(),</span>
+<span class="nc" id="L473">            handleDataEntity.getReorderPointPlantCode());</span>
+
+    // 週次発注点用需要予測データに検索結果が存在の場合: 内部変数.需要予測数量 = 週次発注点用需要予測.需要予測数量
+<span class="nc bnc" id="L476" title="All 2 branches missed.">    if (reorderPointForecastEntity.isPresent()) {</span>
+
+      // 対象データの処理を終了する。
+<span class="nc" id="L479">      handleDataEntity.setDemandForecastQtyVar(</span>
+<span class="nc" id="L480">          reorderPointForecastEntity.get().getDemandForecastQty());</span>
+    } else {
+
+      // 週次発注点用需要予測データに検索結果が存在しない場合、内部変数.需要予測数量 = 0
+<span class="nc" id="L484">      handleDataEntity.setDemandForecastQtyVar(ReplenishStockConstants.DEMAND_FORECAST_QTY);</span>
+    }
+
+<span class="nc" id="L487">    return true;</span>
+  }
+
+  /**
+   * 次発注点用需要予測データに検索結果が存在の場合、このメソッドを呼び出し、内部変数.安全係数を設定する.
+   *
+   * @param safetyCoefficientEntity 安全係数エンテイテイ
+   * @param handleDataEntity 処理対象データ
+   * @return 数値外チェック結果
+   */
+  private Boolean setSafetyCoefficient(
+      SafetyCoefficientEntity safetyCoefficientEntity,
+      ReorderPointHandleDataEntity handleDataEntity) {
+
+    // 安全係数１
+<span class="nc" id="L502">    final BigDecimal safetyCoefficient1 = safetyCoefficientEntity.getSafetyCoefficient1();</span>
+
+    // 安全係数2
+<span class="nc" id="L505">    final BigDecimal safetyCoefficient2 = safetyCoefficientEntity.getSafetyCoefficient2();</span>
+
+    // 「安全係数１」、「安全係数２」がNULLのレコードは存在できますので、NULLチェック（数値外チェック）
+<span class="nc bnc" id="L508" title="All 2 branches missed.">    if ((safetyCoefficient1 == null</span>
+<span class="nc bnc" id="L509" title="All 4 branches missed.">            &amp;&amp; ReplenishStockConstants.RANK_X.equals(handleDataEntity.getReorderPointRank()))</span>
+        || (safetyCoefficient2 == null
+<span class="nc bnc" id="L511" title="All 2 branches missed.">            &amp;&amp; ReplenishStockConstants.RANK_Y.equals(handleDataEntity.getReorderPointRank()))) {</span>
+
+      // 取得された汎用マスタ安全係数の検索結果が数値でない場合、警告メッセージをログ出力する。
+      // a) 警告メッセージをログ出力する。
+<span class="nc" id="L515">      messageLogger.log(</span>
+          messageSource,
+          ReplenishStockMessages.BIR17000006W,
+          null,
+<span class="nc" id="L519">          handleDataEntity.getReorderPointSubsidiaryCode(),</span>
+<span class="nc" id="L520">          handleDataEntity.getProductControlDepartmentCode());</span>
+
+      // 対象データの処理を終了する。
+<span class="nc" id="L523">      return false;</span>
+    } else {
+      // 検索パラメータ．ランク　＝　&quot;X&quot;　の場合、内部変数．安全係数 = 安全係数１
+<span class="nc bnc" id="L526" title="All 2 branches missed.">      if (ReplenishStockConstants.RANK_X.equals(handleDataEntity.getReorderPointRank())) {</span>
+<span class="nc" id="L527">        handleDataEntity.setSafetyCoefficientVar(safetyCoefficient1);</span>
+      }
+
+      // 検索パラメータ．ランク　＝　&quot;Y&quot;　の場合、内部変数．安全係数 = 安全係数2
+<span class="nc bnc" id="L531" title="All 2 branches missed.">      if (ReplenishStockConstants.RANK_Y.equals(handleDataEntity.getReorderPointRank())) {</span>
+<span class="nc" id="L532">        handleDataEntity.setSafetyCoefficientVar(safetyCoefficient2);</span>
+      }
+    }
+
+<span class="nc" id="L536">    return true;</span>
+  }
+
+  /**
+   * Zランク発注点計算処理」を行う.
+   *
+   * @param handleDataEntity 処理データエンテイテイ
+   */
+  private Boolean handleFlagReorderPointCalculation(
+      ReorderPointHandleDataEntity handleDataEntity, RequestContext context) {
+
+    // 「週次発注点用POOLデータ(月次)」テーブルを検索する。
+<span class="nc" id="L548">    final Optional&lt;WeeklyReorderPointPoolDataMonthlyEntity&gt; reorderPointMonthlyEntity =</span>
+<span class="nc" id="L549">        reorderPointMonthlyRepository.findOne(</span>
+            context,
+<span class="nc" id="L551">            handleDataEntity.getReorderPointSubsidiaryCode(),</span>
+<span class="nc" id="L552">            handleDataEntity.getReorderPointGinnerCode(),</span>
+<span class="nc" id="L553">            handleDataEntity.getReorderPointPlantCode());</span>
+
+    // 週次発注点計算用POOLデータ(月次)」判断用エンテイテイ
+<span class="nc" id="L556">    WeeklyReorderPointPoolDataMonthlyEntity judgeEntity = null;</span>
+
+<span class="nc bnc" id="L558" title="All 2 branches missed.">    if (reorderPointMonthlyEntity.isPresent()) {</span>
+<span class="nc" id="L559">      judgeEntity = reorderPointMonthlyEntity.get();</span>
+    }
+
+    // 「週次発注点計算用POOLデータ(月次)」テーブルに検索結果が存在し
+<span class="nc bnc" id="L563" title="All 2 branches missed.">    if (judgeEntity != null) {</span>
+
+<span class="nc" id="L565">      final ReorderPointWeeklyMonthlyEntity reorderPointWeeklyMonthlyEntity =</span>
+<span class="nc" id="L566">          weeklyMonthlyEntityMapping.databaseToReorderPointEntity(null, judgeEntity);</span>
+
+<span class="nc" id="L568">      handleDataEntity.setMaximumMonthlyShipmentVar(</span>
+<span class="nc" id="L569">          getMaximumMonthlyShipment(</span>
+<span class="nc" id="L570">              reorderPointWeeklyMonthlyEntity, handleDataEntity.getProductExcludeFlag()));</span>
+<span class="nc" id="L571">    } else {</span>
+      // 「週次発注点計算用POOLデータ(月次)」テーブルに検索結果が存在しない場合、内部変数.最大月間出荷数 = 0、外部qa:No.329
+<span class="nc" id="L573">      handleDataEntity.setMaximumMonthlyShipmentVar(</span>
+          ReplenishStockConstants.MAXIMUM_MONTHLY_SHIPMENT);
+    }
+
+    // 発注点設定処理: 内部変数.発注点 = 内部変.最大月間出荷数とする。
+<span class="nc" id="L578">    handleDataEntity.setReorderPointVar(</span>
+<span class="nc" id="L579">        NumberUtil.toInteger(handleDataEntity.getMaximumMonthlyShipmentVar().toString()));</span>
+
+    // 発注点更新処理
+<span class="nc" id="L582">    return saveStockInfo(context, handleDataEntity);</span>
+  }
+
+  /**
+   * 発注点更新処理.
+   *
+   * @param context 共通
+   * @param handleDataEntity 処理で-た
+   * @throws BusinessException 異常
+   */
+  private Boolean saveStockInfo(
+      RequestContext context, ReorderPointHandleDataEntity handleDataEntity) {
+
+    // 在庫情報更新APIリクエスト、一件更新
+<span class="nc" id="L596">    final UpdateStockInfoRequestV1 updateStockInfoRequest = new UpdateStockInfoRequestV1();</span>
+<span class="nc" id="L597">    UpdateStockInfoRequestDetailV1 updateStockInfoRequestDetail =</span>
+        new UpdateStockInfoRequestDetailV1();
+
+    // 統合インナーコード = 検索パラメータ.統合インナーコード
+<span class="nc" id="L601">    updateStockInfoRequestDetail.setGinnerCode(handleDataEntity.getReorderPointGinnerCode());</span>
+    // 置場コード = 検索パラメータ.置場コード
+<span class="nc" id="L603">    updateStockInfoRequestDetail.setPlantCode(handleDataEntity.getReorderPointPlantCode());</span>
+    // 発注点 = 内部変数．発注点
+<span class="nc" id="L605">    updateStockInfoRequestDetail.setReorderPoint(</span>
+<span class="nc" id="L606">        NumberUtil.toInteger(handleDataEntity.getReorderPointVar().toString()));</span>
+
+    // todo 仮定値　在庫情報更新APIリクエストに上記以外のパラメターが設定しない場合、異常がある
+<span class="nc" id="L609">    updateStockInfoRequestDetail.setMinWarningPoint(99999);</span>
+<span class="nc" id="L610">    updateStockInfoRequestDetail.setRank(&quot;X&quot;);</span>
+<span class="nc" id="L611">    updateStockInfoRequestDetail.setWarningPoint(99999);</span>
+<span class="nc" id="L612">    updateStockInfoRequestDetail.setCoefficientOfVariation(BigDecimal.ZERO);</span>
+<span class="nc" id="L613">    updateStockInfoRequest.getDetailList().add(updateStockInfoRequestDetail);</span>
+
+    try {
+      // 在庫情報更新APIを呼び出す
+<span class="nc" id="L617">      stockInfoClient.updateStockInfoV1(context, updateStockInfoRequest);</span>
+<span class="nc" id="L618">    } catch (Exception e) {</span>
+<span class="nc" id="L619">      e.printStackTrace();</span>
+
+      // 外部qaNo.357:「トランザクションをロールバック」は不要です
+      // 処理中に異常が発生した場合は、エラー情報をログに出力する。
+<span class="nc" id="L623">      messageLogger.log(messageSource, ReplenishStockMessages.BIR17000004E, e);</span>
+
+      // 対象データの処理を完了する(返しオフ) : 更新次数 - 1
+<span class="nc" id="L626">      return false;</span>
+<span class="nc" id="L627">    }</span>
+
+<span class="nc" id="L629">    return true;</span>
+  }
+
+  /**
+   * 最大月間出荷数を取得するメソッド.
+   *
+   * @param reorderPointWeeklyMonthlyEntity 週次発注点用POOLデータ(月次)(週次)
+   * @return 取得結果
+   */
+  private BigDecimal getMaximumMonthlyShipment(
+      ReorderPointWeeklyMonthlyEntity reorderPointWeeklyMonthlyEntity, String productExcludeFlag) {
+
+<span class="nc" id="L641">    List&lt;BigDecimal&gt; maximumMonthlyShipmentList = new ArrayList&lt;&gt;();</span>
+
+    // 在庫出荷数リスト
+<span class="nc" id="L644">    final List&lt;BigDecimal&gt; stockShipmentQtyList =</span>
+<span class="nc" id="L645">        reorderPointWeeklyMonthlyEntity.getStockShipmentQtyList();</span>
+
+    // 製作品扱い出荷数リスト
+<span class="nc" id="L648">    final List&lt;BigDecimal&gt; mtoModeShipmentQtyList =</span>
+<span class="nc" id="L649">        reorderPointWeeklyMonthlyEntity.getMtoModeShipmentQtyList();</span>
+
+<span class="nc bnc" id="L651" title="All 2 branches missed.">    for (int i = 0; i &lt; 7; i++) {</span>
+<span class="nc bnc" id="L652" title="All 2 branches missed.">      if (ReplenishStockConstants.PRODUCT_EXCLUDE_FLAG_ZERO.equals(productExcludeFlag)) {</span>
+        // 「週次発注点計算用POOLデータ(月次)」テーブルに検索結果が存在し、内部変数.製作品扱除外フラグ＝&quot;0&quot;の場合
+        // 内部変数．最大月間出荷数　＝　(　週次発注点計算用POOLデータ(月次)．在庫品出荷数(1)　＋
+        // 週次発注点計算用POOLデータ(月次)．製作品扱出荷数(1)　)～　(　週次発注点計算用POOLデータ(月次)．
+        // 在庫品出荷数(7)　＋　週次発注点計算用POOLデータ(月次)．製作品扱出荷数(7)　)　の最大値
+
+<span class="nc" id="L658">        maximumMonthlyShipmentList.add(</span>
+<span class="nc" id="L659">            stockShipmentQtyList.get(i).add(mtoModeShipmentQtyList.get(i)));</span>
+      } else {
+
+        // 「週次発注点計算用POOLデータ(月次)」テーブルに検索結果が存在し、内部変数.製作品扱除外フラグ＝&quot;0&quot;以外の場合
+        // 内部変数.最大月間出荷数　＝　週次発注点計算用POOLデータ(月次).在庫品出荷数(1)　～　週次発注点計算用POOLデータ(月次).在庫品出荷数(7)の最大値
+<span class="nc" id="L664">        maximumMonthlyShipmentList.add(stockShipmentQtyList.get(i));</span>
+      }
+    }
+<span class="nc" id="L667">    Collections.sort(maximumMonthlyShipmentList);</span>
+
+<span class="nc" id="L669">    return maximumMonthlyShipmentList.get(maximumMonthlyShipmentList.size() - 1);</span>
+  }
+
+  /**
+   * 処理対象データ取得メソッド.
+   *
+   * @param context 共通
+   * @return 取得結果
+   */
+  private List&lt;ReorderPointHandleDataEntity&gt; getHandleData(
+      RequestContext context, String operationDate) throws BusinessException {
+
+    // 処理結果マッピング、キ-:在庫情報参照API.統合インナーコード、バリュー：処理対象データエンテイテイ
+<span class="nc" id="L682">    HashMap&lt;String, ReorderPointHandleDataEntity&gt; handleDataEntityMap = new HashMap&lt;&gt;();</span>
+
+    // 在庫情報参照APIマッピング
+<span class="nc" id="L685">    final HashMap&lt;String, CheckStockInfoResponseDetailV1&gt; stockInfoRespDetailMap =</span>
+<span class="nc" id="L686">        getStockInfoRespDetailMap(context);</span>
+
+<span class="nc bnc" id="L688" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(stockInfoRespDetailMap)) {</span>
+<span class="nc" id="L689">      return new ArrayList&lt;&gt;();</span>
+    }
+
+    // 商品情報取得API（List）マッピング
+<span class="nc" id="L693">    final HashMap&lt;String, ProductInternalV1&gt; productMap =</span>
+<span class="nc" id="L694">        getProductMap(context, stockInfoRespDetailMap, operationDate);</span>
+
+<span class="nc bnc" id="L696" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(productMap)) {</span>
+<span class="nc" id="L697">      return new ArrayList&lt;&gt;();</span>
+    }
+
+    // 商品別仕入先情報取得API（List）マッピング
+<span class="nc" id="L701">    final HashMap&lt;String, ProductSupplierInternalV1&gt; productSupplierMap =</span>
+<span class="nc" id="L702">        getProductSupplierMap(context, productMap);</span>
+
+<span class="nc bnc" id="L704" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(productSupplierMap)) {</span>
+<span class="nc" id="L705">      return new ArrayList&lt;&gt;();</span>
+    }
+
+    // 在庫情報参照APIの想定抽出条件のチェックが正常で、商品情報取得API（List）の想定抽出条件が不一致の場合、このメソッドを呼び出し
+<span class="nc" id="L709">    final HashMap&lt;String, CheckStockInfoResponseDetailV1&gt; stockInfoMap =</span>
+<span class="nc" id="L710">        extractConditionCheck(stockInfoRespDetailMap, productMap);</span>
+
+    // 【共通】調達期間算出ロジック
+<span class="nc" id="L713">    final HashMap&lt;String, WeeklyReorderPointDemandForecastCalcEntity&gt; supplyPeriodMap =</span>
+<span class="nc" id="L714">        getSupplyPeriodMap(stockInfoMap, productSupplierMap, productMap, context);</span>
+
+<span class="nc" id="L716">    final Collection&lt;CheckStockInfoResponseDetailV1&gt; productInternalCollection =</span>
+<span class="nc" id="L717">        stockInfoMap.values();</span>
+
+<span class="nc bnc" id="L719" title="All 2 branches missed.">    for (CheckStockInfoResponseDetailV1 item : productInternalCollection) {</span>
+
+<span class="nc" id="L721">      final String ginnerCode = item.getGinnerCode();</span>
+
+<span class="nc" id="L723">      final ReorderPointHandleDataEntity reorderPointHandleDataEntity =</span>
+<span class="nc" id="L724">          handleDataEntityMapping.responseToReorderPointHandleDataEntity(</span>
+<span class="nc" id="L725">              productMap.get(ginnerCode),</span>
+<span class="nc" id="L726">              productSupplierMap.get(ginnerCode),</span>
+<span class="nc" id="L727">              stockInfoMap.get(ginnerCode),</span>
+<span class="nc" id="L728">              supplyPeriodMap.get(ginnerCode));</span>
+
+      // 在庫情報参照APIのレスポンス項目に現法コードがないので、共通項目「context」から「発注点.現法コード」を取得する
+<span class="nc" id="L731">      reorderPointHandleDataEntity.setReorderPointSubsidiaryCode(context.getSubsidiaryCode());</span>
+
+<span class="nc" id="L733">      handleDataEntityMap.put(ginnerCode, reorderPointHandleDataEntity);</span>
+<span class="nc" id="L734">    }</span>
+
+<span class="nc" id="L736">    return new ArrayList&lt;&gt;(handleDataEntityMap.values());</span>
+  }
+
+  /**
+   * 在庫情報参照APIの想定抽出条件のチェックが正常で、商品情報取得API（List）の想定抽出条件が不一致の場合、このメソッドを呼び出し.
+   *
+   * @param stockInfoRespDetailMap 在庫情報参照APIマッピング
+   * @param productMap 商品情報取得API（List）マッピング
+   */
+  private HashMap&lt;String, CheckStockInfoResponseDetailV1&gt; extractConditionCheck(
+      HashMap&lt;String, CheckStockInfoResponseDetailV1&gt; stockInfoRespDetailMap,
+      HashMap&lt;String, ProductInternalV1&gt; productMap) {
+
+<span class="nc bnc" id="L749" title="All 2 branches missed.">    for (String ginnerCode : stockInfoRespDetailMap.keySet()) {</span>
+<span class="nc bnc" id="L750" title="All 2 branches missed.">      if (productMap.get(ginnerCode) == null) {</span>
+<span class="nc" id="L751">        stockInfoRespDetailMap.remove(ginnerCode);</span>
+      }
+<span class="nc" id="L753">    }</span>
+
+<span class="nc" id="L755">    return stockInfoRespDetailMap;</span>
+  }
+
+  /**
+   * 【共通】調達期間算出ロジック.
+   *
+   * @param stockInfoRespDetailMap 在庫情報参照APIマッピング
+   * @param productSupplierMap 商品別仕入先情報取得API（List）マッピング
+   * @param productMap 商品情報取得API（List）マッピング
+   * @param context 共通
+   */
+  private HashMap&lt;String, WeeklyReorderPointDemandForecastCalcEntity&gt; getSupplyPeriodMap(
+      HashMap&lt;String, CheckStockInfoResponseDetailV1&gt; stockInfoRespDetailMap,
+      HashMap&lt;String, ProductSupplierInternalV1&gt; productSupplierMap,
+      HashMap&lt;String, ProductInternalV1&gt; productMap,
+      RequestContext context)
+      throws BusinessException {
+
+    // 調達期間算出ロジックリクエスト
+<span class="nc" id="L774">    List&lt;ExProductEntity&gt; exProductEntityList = new ArrayList&lt;&gt;();</span>
+
+    // todo 共通】調達期間算出ロジックレスポンス項目が無し、提供をまつ、ただしいyaml決めたら、対応予定です
+<span class="nc" id="L777">    HashMap&lt;String, WeeklyReorderPointDemandForecastCalcEntity&gt; supplyPeriodMap = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L779">    final Collection&lt;CheckStockInfoResponseDetailV1&gt; productInternalCollection =</span>
+<span class="nc" id="L780">        stockInfoRespDetailMap.values();</span>
+
+<span class="nc bnc" id="L782" title="All 2 branches missed.">    for (CheckStockInfoResponseDetailV1 item : productInternalCollection) {</span>
+
+<span class="nc" id="L784">      ExProductEntity exProductEntity = new ExProductEntity();</span>
+
+      // 現法コード = 在庫情報参照API.現法コード
+<span class="nc" id="L787">      exProductEntity.setSubsidiaryCode(context.getSubsidiaryCode());</span>
+      // インナーコード = 在庫情報参照API.インナーコード
+<span class="nc" id="L789">      exProductEntity.setGinnerCode(item.getGinnerCode());</span>
+      // 置場コード = 在庫情報参照API.置場コード
+<span class="nc" id="L791">      exProductEntity.setPlantCode(item.getPlantCode());</span>
+      // 発注納期 = 商品別仕入先情報取得API（List）.発注納期
+<span class="nc" id="L793">      exProductEntity.setPoLeadTime(productSupplierMap.get(item.getGinnerCode()).getPoLeadTime());</span>
+      // サプライヤ指定方法区分 = 商品情報取得API（List）.サプライヤ指定方法区分
+<span class="nc" id="L795">      exProductEntity.setSupplierSpecifyMethodType(</span>
+<span class="nc" id="L796">          productMap.get(item.getGinnerCode()).getSupplierSpecifyMethodType());</span>
+
+<span class="nc" id="L798">      exProductEntityList.add(exProductEntity);</span>
+<span class="nc" id="L799">    }</span>
+
+    try {
+<span class="nc" id="L802">      mb0000Service.executeMainLogic(context, exProductEntityList);</span>
+<span class="nc" id="L803">    } catch (Exception e) {</span>
+<span class="nc" id="L804">      throw new BusinessException(messageSource, ReplenishStockMessages.BIR17000008E, e);</span>
+<span class="nc" id="L805">    }</span>
+
+    // todo [共通] 調達期間算出ロジックレスポンス項目が無し、自分定義のレスポンス項目：WeeklyReorderPointDemandForecastCalcEntity
+<span class="nc bnc" id="L808" title="All 2 branches missed.">    for (CheckStockInfoResponseDetailV1 item : productInternalCollection) {</span>
+
+<span class="nc" id="L810">      final WeeklyReorderPointDemandForecastCalcEntity supplyPeriodResponse =</span>
+          new WeeklyReorderPointDemandForecastCalcEntity();
+
+      // todo 仮定値…
+<span class="nc" id="L814">      supplyPeriodResponse.setProcurementPeriod(new BigDecimal(12));</span>
+
+      // キ-：調達期間算出ロジックレスポンス項目.インナーコード
+<span class="nc" id="L817">      supplyPeriodMap.put(item.getGinnerCode(), supplyPeriodResponse);</span>
+<span class="nc" id="L818">    }</span>
+
+<span class="nc" id="L820">    return supplyPeriodMap;</span>
+  }
+
+  /**
+   * 在庫情報参照APIマッピング取得.
+   *
+   * @param context 共通
+   * @return 在庫情報参照APIマッピング
+   */
+  private HashMap&lt;String, CheckStockInfoResponseDetailV1&gt; getStockInfoRespDetailMap(
+      RequestContext context) throws BusinessException {
+
+    // 在庫情報参照APIマッピング
+<span class="nc" id="L833">    HashMap&lt;String, CheckStockInfoResponseDetailV1&gt; stockInfoRespDetailMap = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L834">    CheckStockInfoResponseV1 checkStockInfoResponse = null;</span>
+
+    // 在庫情報参照APIを呼び出す
+    try {
+
+      // 置場情報取得API（List）からリクエスト項目を取得すること
+<span class="nc" id="L840">      final CheckStockInfoRequestV1 checkStockInfoRequest = setStockInfoRequest(context);</span>
+
+<span class="nc" id="L842">      checkStockInfoResponse = stockInfoClient.checkStockInfoV1(context, checkStockInfoRequest);</span>
+<span class="nc" id="L843">    } catch (Exception e) {</span>
+<span class="nc" id="L844">      messageLogger.log(messageSource, ReplenishStockMessages.BIR17000002E, e);</span>
+
+      // 在庫情報参照API異常の時、エラーメッセージを出力する
+<span class="nc" id="L847">      throw new BusinessException(messageSource, ReplenishStockMessages.BIR17000002E, e);</span>
+<span class="nc" id="L848">    }</span>
+
+    // 取得結果 0件
+<span class="nc bnc" id="L851" title="All 2 branches missed.">    if (checkStockInfoResponse == null</span>
+<span class="nc bnc" id="L852" title="All 2 branches missed.">        || CollectionUtils.isEmpty(checkStockInfoResponse.getDetailList())) {</span>
+<span class="nc" id="L853">      messageLogger.log(messageSource, ReplenishStockMessages.BIR17000008E, null);</span>
+<span class="nc" id="L854">      return new HashMap&lt;&gt;();</span>
+    }
+
+<span class="nc bnc" id="L857" title="All 2 branches missed.">    for (CheckStockInfoResponseDetailV1 item : checkStockInfoResponse.getDetailList()) {</span>
+
+      // 在庫情報参照API--&gt;想定抽出条件 : ランク　＝　&quot;X&quot; or &quot;Y&quot; or &quot;Z&quot;
+      // 上記の条件がチェック失敗の場合、該当データを削除する
+<span class="nc bnc" id="L861" title="All 2 branches missed.">      if ((ReplenishStockConstants.STOCK_EXTRACT_X.equals(item.getRank())</span>
+<span class="nc bnc" id="L862" title="All 2 branches missed.">          || ReplenishStockConstants.STOCK_EXTRACT_Y.equals(item.getRank())</span>
+<span class="nc bnc" id="L863" title="All 2 branches missed.">          || ReplenishStockConstants.STOCK_EXTRACT_Z.equals(item.getRank()))) {</span>
+
+        // キ-：在庫情報参照APIレスポンス項目.統合インナーコード
+<span class="nc" id="L866">        stockInfoRespDetailMap.put(item.getGinnerCode(), item);</span>
+      }
+<span class="nc" id="L868">    }</span>
+
+<span class="nc" id="L870">    return stockInfoRespDetailMap;</span>
+  }
+
+  /**
+   * 置場情報取得API（List）から置場コードリストを取得し、在庫情報参照APIリクエスト項目設定する、在庫情報参照API.置場コード = 置場情報取得API.置場コード.
+   *
+   * @param context 共通
+   * @return 在庫情報参照APIリクエスト
+   * @throws BusinessException 異常
+   */
+  private CheckStockInfoRequestV1 setStockInfoRequest(RequestContext context)
+      throws BusinessException {
+
+<span class="nc" id="L883">    CheckStockInfoRequestV1 checkStockInfoRequest = new CheckStockInfoRequestV1();</span>
+
+<span class="nc" id="L885">    final GetListPlantInternalRequestV1 listPlantRequest = new GetListPlantInternalRequestV1();</span>
+
+<span class="nc" id="L887">    GetListPlantInternalResponseV1 listPlantResponse = null;</span>
+
+    try {
+<span class="nc" id="L890">      listPlantResponse = plantInternalClient.getListPlantInternalV1(context, listPlantRequest);</span>
+<span class="nc" id="L891">    } catch (Exception e) {</span>
+      // todo 異常設定
+<span class="nc" id="L893">      throw new BusinessException(messageSource, &quot;&quot;, e);</span>
+<span class="nc" id="L894">    }</span>
+
+<span class="nc" id="L896">    List&lt;CheckStockInfoRequestDetailV1&gt; detailList = new ArrayList&lt;&gt;();</span>
+
+    for (GetListPlantInternalResponseV1Detail item :
+<span class="nc bnc" id="L899" title="All 2 branches missed.">        listPlantResponse.getGetListPlantInternalResponseV1DetailList()) {</span>
+<span class="nc" id="L900">      final CheckStockInfoRequestDetailV1 stockInfoRequest = new CheckStockInfoRequestDetailV1();</span>
+<span class="nc" id="L901">      stockInfoRequest.setPlantCode(item.getPlantInternalV1().getPlantCode());</span>
+<span class="nc" id="L902">      detailList.add(stockInfoRequest);</span>
+<span class="nc" id="L903">    }</span>
+<span class="nc" id="L904">    checkStockInfoRequest.setDetailList(detailList);</span>
+
+<span class="nc" id="L906">    return checkStockInfoRequest;</span>
+  }
+
+  /**
+   * 商品情報取得API（List）マッピング取得.
+   *
+   * @param context 共通
+   * @param stockInfoRespDetailMap 在庫情報参照APIマッピング
+   * @return 商品情報取得API（List）マッピング
+   */
+  private HashMap&lt;String, ProductInternalV1&gt; getProductMap(
+      RequestContext context,
+      Map&lt;String, CheckStockInfoResponseDetailV1&gt; stockInfoRespDetailMap,
+      String operationDate)
+      throws BusinessException {
+    // 商品情報取得API（List）マッピング
+<span class="nc" id="L922">    HashMap&lt;String, ProductInternalV1&gt; productMap = new HashMap&lt;&gt;();</span>
+
+    // 商品情報取得API（List）リクエスト
+<span class="nc" id="L925">    final GetListProductInternalRequestV1 listProductRequest =</span>
+        new GetListProductInternalRequestV1();
+
+<span class="nc" id="L928">    final Collection&lt;CheckStockInfoResponseDetailV1&gt; stockInfoResponseCollection =</span>
+<span class="nc" id="L929">        stockInfoRespDetailMap.values();</span>
+
+<span class="nc" id="L931">    List&lt;GetListProductInternalRequestV1Detail&gt; listProductRequestDetailList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L933" title="All 2 branches missed.">    for (CheckStockInfoResponseDetailV1 item : stockInfoResponseCollection) {</span>
+<span class="nc" id="L934">      final GetListProductInternalRequestV1Detail listProductRequestDetail =</span>
+          new GetListProductInternalRequestV1Detail();
+
+      // リクエスト項目設定、「統合インナーコード = 在庫情報参照API.統合インナーコード」
+<span class="nc" id="L938">      listProductRequestDetail.setGinnerCode(item.getGinnerCode());</span>
+<span class="nc" id="L939">      listProductRequestDetailList.add(listProductRequestDetail);</span>
+<span class="nc" id="L940">    }</span>
+<span class="nc" id="L941">    listProductRequest.setGetListProductInternalRequestV1DetailList(listProductRequestDetailList);</span>
+
+<span class="nc" id="L943">    GetListProductInternalResponseV1 listProductrResponse = null;</span>
+
+    // 商品情報取得API（List）を呼び出し
+    try {
+<span class="nc" id="L947">      listProductrResponse = productClient.getListProductrInternalV1(context, listProductRequest);</span>
+<span class="nc" id="L948">    } catch (Exception e) {</span>
+<span class="nc" id="L949">      messageLogger.log(messageSource, ReplenishStockMessages.BIR17000003E, e);</span>
+
+      // 商品情報取得API（List）異常の時、エラーメッセージを出力する
+<span class="nc" id="L952">      throw new BusinessException(messageSource, ReplenishStockMessages.BIR17000003E, e);</span>
+<span class="nc" id="L953">    }</span>
+
+    // 取得結果 0件
+<span class="nc bnc" id="L956" title="All 2 branches missed.">    if (listProductrResponse == null</span>
+<span class="nc bnc" id="L957" title="All 2 branches missed.">        || CollectionUtils.isEmpty(</span>
+<span class="nc" id="L958">            listProductrResponse.getGetListProductInternalResponseV1DetailList())) {</span>
+<span class="nc" id="L959">      messageLogger.log(messageSource, ReplenishStockMessages.BIR17000009E, null);</span>
+<span class="nc" id="L960">      return new HashMap&lt;&gt;();</span>
+    }
+
+    // 商品情報取得API（List）レスポンスを取得する
+    for (GetListProductInternalResponseV1Detail item :
+<span class="nc bnc" id="L965" title="All 2 branches missed.">        listProductrResponse.getGetListProductInternalResponseV1DetailList()) {</span>
+
+<span class="nc" id="L967">      final ProductInternalV1 productInternalV1 = item.getProductInternalV1();</span>
+
+      // 商品マスタ.発売年月
+<span class="nc" id="L970">      final LocalDate releaseDate = productInternalV1.getReleaseDate();</span>
+
+      // 運用日
+<span class="nc" id="L973">      final LocalDate operationDateLocalDate =</span>
+<span class="nc" id="L974">          LocalDate.parse(operationDate, DateTimeFormatter.ofPattern(DateUtil.SHORT_DATE_FORMAT));</span>
+
+      // 備考:商品マスタ．発売年月≦運用日付7ヶ月前年月が対象データとする。
+      // 商品情報取得API（List）--&gt; 想定抽出条件: 発注点ロジックフラグ = &quot;2&quot;(週次発注点計算対象)
+      // 上記の条件がチェック失敗の場合、該当データを削除する
+<span class="nc bnc" id="L979" title="All 2 branches missed.">      if (ReplenishStockConstants.REORDER_POINT_LOGIC_RANK.equals(</span>
+<span class="nc" id="L980">              productInternalV1.getReorderPointLogicFlag())</span>
+<span class="nc bnc" id="L981" title="All 2 branches missed.">          &amp;&amp; releaseDate.toEpochDay() &lt;= operationDateLocalDate.plusMonths(-7).toEpochDay()) {</span>
+<span class="nc" id="L982">        productMap.put(productInternalV1.getGinnerCode(), productInternalV1);</span>
+      }
+
+<span class="nc" id="L985">      productMap.put(productInternalV1.getGinnerCode(), productInternalV1);</span>
+<span class="nc" id="L986">    }</span>
+
+<span class="nc" id="L988">    return productMap;</span>
+  }
+
+  /**
+   * 商品別仕入先情報取得API（List）マッピング取得.
+   *
+   * @param context 共通
+   * @param productMap 商品情報取得API（List）マッピング
+   * @return 商品別仕入先情報取得API（List）マッピング
+   * @throws BusinessException 異常
+   */
+  private HashMap&lt;String, ProductSupplierInternalV1&gt; getProductSupplierMap(
+      RequestContext context, HashMap&lt;String, ProductInternalV1&gt; productMap)
+      throws BusinessException {
+    // 商品別仕入先情報取得API（List）マッピング
+<span class="nc" id="L1003">    HashMap&lt;String, ProductSupplierInternalV1&gt; productSupplierMap = new HashMap&lt;&gt;();</span>
+
+    // 商品別仕入先情報取得API（List）リクエスト
+<span class="nc" id="L1006">    final GetListProductSupplierInternalRequestV1 listProductSupplierRequest =</span>
+        new GetListProductSupplierInternalRequestV1();
+
+<span class="nc" id="L1009">    final Collection&lt;ProductInternalV1&gt; productInternalV1Collection = productMap.values();</span>
+
+<span class="nc" id="L1011">    List&lt;GetListProductSupplierInternalRequestV1Detail&gt; listProductSupplierRequestDetailList =</span>
+        new ArrayList&lt;&gt;();
+<span class="nc bnc" id="L1013" title="All 2 branches missed.">    for (ProductInternalV1 item : productInternalV1Collection) {</span>
+<span class="nc" id="L1014">      GetListProductSupplierInternalRequestV1Detail listProductSupplierRequestDetail =</span>
+          new GetListProductSupplierInternalRequestV1Detail();
+
+      // リクエスト項目設定、「統合インナーコード = 在庫情報参照API.統合インナーコード」
+<span class="nc" id="L1018">      listProductSupplierRequestDetail.setGinnerCode(item.getGinnerCode());</span>
+
+      // リクエスト項目設定、「調達先選定用エリアコード = &quot;999&quot;」
+<span class="nc" id="L1021">      listProductSupplierRequestDetail.setSupplierChoiceAreaCode(</span>
+          ReplenishStockConstants.SUPPLIER_CHOICE_AREA_CODE);
+
+      // todo 仮定値　リクエスト項目にsupplierCodeとproductSupplierTypeを設定しない場合、異常がある、フレームワークが更新した後で、対応予定
+<span class="nc" id="L1025">      listProductSupplierRequestDetail.setSupplierCode(&quot;9572&quot;);</span>
+<span class="nc" id="L1026">      listProductSupplierRequestDetail.setProductSupplierType(&quot;1&quot;);</span>
+
+<span class="nc" id="L1028">      listProductSupplierRequestDetailList.add(listProductSupplierRequestDetail);</span>
+<span class="nc" id="L1029">    }</span>
+<span class="nc" id="L1030">    listProductSupplierRequest.setGetListProductSupplierInternalRequestV1DetailList(</span>
+        listProductSupplierRequestDetailList);
+
+<span class="nc" id="L1033">    GetListProductSupplierInternalResponseV1 listProductSupplierResponse = null;</span>
+
+    // 商品別仕入先情報取得API（List）を呼び出す
+    try {
+<span class="nc" id="L1037">      listProductSupplierResponse =</span>
+<span class="nc" id="L1038">          productSupplierClient.getLProductSInternalV1(context, listProductSupplierRequest);</span>
+<span class="nc" id="L1039">    } catch (Exception e) {</span>
+<span class="nc" id="L1040">      messageLogger.log(messageSource, ReplenishStockMessages.BIR17000004E, e);</span>
+
+      // 商品別仕入先情報取得API（List）異常の時、エラーメッセージを出力する
+<span class="nc" id="L1043">      throw new BusinessException(messageSource, ReplenishStockMessages.BIR17000004E, e);</span>
+<span class="nc" id="L1044">    }</span>
+
+    // 取得結果 0件
+<span class="nc bnc" id="L1047" title="All 2 branches missed.">    if (listProductSupplierResponse == null</span>
+<span class="nc bnc" id="L1048" title="All 2 branches missed.">        || CollectionUtils.isEmpty(</span>
+<span class="nc" id="L1049">            listProductSupplierResponse.getGetListProductSupplierInternalResponseV1DetailList())) {</span>
+<span class="nc" id="L1050">      messageLogger.log(messageSource, ReplenishStockMessages.BIR17000010E, null);</span>
+<span class="nc" id="L1051">      return new HashMap&lt;&gt;();</span>
+    }
+
+    // 商品別仕入先情報取得API（List）レスポンスを取得する
+    for (GetListProductSupplierInternalResponseV1Detail item :
+<span class="nc bnc" id="L1056" title="All 2 branches missed.">        listProductSupplierResponse.getGetListProductSupplierInternalResponseV1DetailList()) {</span>
+<span class="nc" id="L1057">      final ProductSupplierInternalV1 productSupplierInternalV1 =</span>
+<span class="nc" id="L1058">          item.getProductSupplierInternalV1();</span>
+
+      // キ-：商品別仕入先情報取得API（List）.統合インナーコード
+<span class="nc" id="L1061">      productSupplierMap.put(productSupplierInternalV1.getGinnerCode(), productSupplierInternalV1);</span>
+<span class="nc" id="L1062">    }</span>
+
+<span class="nc" id="L1064">    return productSupplierMap;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

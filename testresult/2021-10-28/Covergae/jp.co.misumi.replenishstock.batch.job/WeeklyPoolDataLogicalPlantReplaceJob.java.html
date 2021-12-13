@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WeeklyPoolDataLogicalPlantReplaceJob.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.batch.job</a> &gt; <span class="el_source">WeeklyPoolDataLogicalPlantReplaceJob.java</span></div><h1>WeeklyPoolDataLogicalPlantReplaceJob.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.batch.job;
+
+import java.util.HashMap;
+import jp.co.misumi.fw.batch.job.AbstractJob;
+import jp.co.misumi.fw.batch.job.annotation.Job;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.fw.core.util.StringUtil;
+import jp.co.misumi.replenishstock.domain.service.WeeklyPoolDataLogicalPlantReplaceService;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionException;
+import org.springframework.transaction.support.TransactionTemplate;
+import picocli.CommandLine;
+
+/**
+ * WeeklyPoolDataLogicalPlantReplaceJob.
+ *
+ * &lt;p&gt;coding by LKG欧
+ *
+ * @since 1.0.0
+ */
+@Job(id = &quot;MBPIRBO140&quot;, name = &quot;weeklyPoolDataLogicalPlantReplaceJob&quot;)
+@RequiredArgsConstructor
+public class WeeklyPoolDataLogicalPlantReplaceJob extends AbstractJob {
+  private final WeeklyPoolDataLogicalPlantReplaceService
+      defaultWeeklyPoolDataLogicalPlantReplaceService;
+<span class="fc" id="L32">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L33">      MessageLoggerFactory.getLogger(WeeklyPoolDataLogicalPlantReplaceJob.class);</span>
+  private final MessageSource messageSource;
+  private final PlatformTransactionManager tm;
+
+  @CommandLine.Option(
+      names = {&quot;--operation-date&quot;},
+      description = &quot;operation-date&quot;,
+      required = false)
+  private String operationDate;
+
+  @CommandLine.Option(
+      names = {&quot;--subsidiary-code&quot;},
+      description = &quot;subsidiary code&quot;,
+      required = false)
+  private String subsidiaryCode;
+
+  @CommandLine.Option(
+      names = {&quot;--job-net-id&quot;},
+      description = &quot;job net id&quot;,
+      required = false)
+  private String jobNetId;
+
+  @CommandLine.Spec CommandLine.Model.CommandSpec spec;
+
+  @Override
+  protected Integer execute(RequestContext requestContext) throws Exception {
+
+    // 起動パラメータチェック
+    Integer resultStatusCode;
+<span class="nc bnc" id="L62" title="All 2 branches missed.">    if (checkPrama().equals(ReplenishStockConstants.INT_1)) {</span>
+<span class="nc" id="L63">      return ReplenishStockConstants.INT_1;</span>
+    }
+    try {
+<span class="nc" id="L66">      final TransactionTemplate tt = new TransactionTemplate(tm);</span>
+<span class="nc" id="L67">      resultStatusCode =</span>
+<span class="nc" id="L68">          tt.execute(</span>
+              tx -&gt; {
+<span class="nc" id="L70">                boolean processResult = false;</span>
+                try {
+<span class="nc" id="L72">                  processResult =</span>
+                      defaultWeeklyPoolDataLogicalPlantReplaceService
+<span class="nc" id="L74">                          .weeklyPoolDataLogicalPlantReplace(requestContext, subsidiaryCode);</span>
+<span class="nc" id="L75">                } catch (Exception e) {</span>
+<span class="nc" id="L76">                  return CommandLine.ExitCode.SOFTWARE;</span>
+<span class="nc" id="L77">                }</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">                return processResult ? CommandLine.ExitCode.OK : CommandLine.ExitCode.SOFTWARE;</span>
+              });
+<span class="nc" id="L80">    } catch (TransactionException e) {</span>
+      // messageSource.
+<span class="nc" id="L82">      return CommandLine.ExitCode.SOFTWARE;</span>
+<span class="nc" id="L83">    }</span>
+<span class="nc" id="L84">    return resultStatusCode;</span>
+  }
+
+  /**
+   * 入力パラメータのチェック.
+   *
+   * @return チェック結果
+   */
+  private Integer checkPrama() {
+<span class="nc" id="L93">    HashMap&lt;String, String&gt; parameterMap = new HashMap&lt;&gt;();</span>
+    // 1-2起動パラメータチェック結果の判定
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    if (StringUtil.isEmpty(this.operationDate)) {</span>
+<span class="nc" id="L96">      parameterMap.put(&quot;operationDate&quot;, &quot;運用日付&quot;);</span>
+    }
+<span class="nc bnc" id="L98" title="All 2 branches missed.">    if (StringUtil.isEmpty(this.subsidiaryCode)) {</span>
+<span class="nc" id="L99">      parameterMap.put(&quot;subsidiaryCode&quot;, &quot;現法コード&quot;);</span>
+    }
+<span class="nc bnc" id="L101" title="All 2 branches missed.">    if (StringUtil.isEmpty(this.jobNetId)) {</span>
+<span class="nc" id="L102">      parameterMap.put(&quot;jobNetId&quot;, &quot;ジョブネットID&quot;);</span>
+    }
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">    if (!parameterMap.isEmpty()) {</span>
+<span class="nc" id="L106">      StringBuilder errorParameters = new StringBuilder();</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">      for (String errorValue : parameterMap.values()) {</span>
+<span class="nc" id="L108">        errorParameters.append(errorValue);</span>
+<span class="nc" id="L109">        errorParameters.append(ReplenishStockConstants.CHAR_COMMA);</span>
+<span class="nc" id="L110">      }</span>
+<span class="nc" id="L111">      String errorString =</span>
+<span class="nc" id="L112">          errorParameters.substring(</span>
+<span class="nc" id="L113">              ReplenishStockConstants.INT_0,</span>
+<span class="nc" id="L114">              errorParameters.length() - ReplenishStockConstants.INT_1);</span>
+      // エラーの場合、以下のログを出力し、処理を終了する。
+<span class="nc" id="L116">      messageLogger.log(messageSource, ReplenishStockMessages.BIRB0140002E, null, errorString);</span>
+<span class="nc" id="L117">      return ReplenishStockConstants.INT_1;</span>
+    }
+<span class="nc" id="L119">    return ReplenishStockConstants.INT_0;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

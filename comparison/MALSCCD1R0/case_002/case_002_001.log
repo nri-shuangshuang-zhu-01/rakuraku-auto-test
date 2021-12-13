@@ -1,0 +1,11 @@
+■api名称：　Presigned URL変換API
+■api Request：　/internal/v1/presigned-url/convert?filePath=
+■api方法：　GET
+■api Headers：　X-client-program=test&&Idempotency-Key=25523&&
+■api Body：　-
+■loginUser：　Presigned URL
+■api Response：{
+  "code": "NSCCD1R0002E",
+  "argumentList": [],
+  "message": "Presigned URLの作成に失敗しました。\\n\" + \"しばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。"
+}

@@ -1,0 +1,125 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.1)
+
+2021-11-10 17:54:15 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.6.Final
+2021-11-10 17:54:15 [main] INFO  j.c.misumi.billing.batch.Application - Starting Application using Java 11.0.3 on SZ-GADZ051006 with PID 16796 (E:\pleiades\workspace\billing-service\billing-batch\build\libs\billing-batch-1.0.0-SNAPSHOT.jar started by zhuss in D:\pleiades\workspace\rakuraku-auto-test)
+2021-11-10 17:54:15 [main] INFO  j.c.misumi.billing.batch.Application - No active profile set, falling back to default profiles: default
+2021-11-10 17:54:17 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'producedEventPartitionResolver' and 'jp.co.misumi.fw.event.api.producer.client.database.store.mybatis.ProducedEventPartitionResolver' mapperInterface. Bean already defined with the same name!
+2021-11-10 17:54:17 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'producedEventTableNameResolver' and 'jp.co.misumi.fw.event.api.producer.client.database.store.mybatis.ProducedEventTableNameResolver' mapperInterface. Bean already defined with the same name!
+2021-11-10 17:54:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-11-10 17:54:19 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-11-10 17:54:19 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2021-11-10 17:54:19 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-11-10 17:54:19 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-11-10 17:54:19 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3576 ms
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+Registered type handler: 'class java.time.ZonedDateTime'
+Property 'mapperLocations' was not specified.
+2021-11-10 17:54:22 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-11-10 17:54:23 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 4262ab2c-e72b-4b0d-8476-9318ee5dc4fb
+
+2021-11-10 17:54:23 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@778c23de, org.springframework.security.web.context.SecurityContextPersistenceFilter@48d4910d, org.springframework.security.web.header.HeaderWriterFilter@2ec1ca1e, org.springframework.security.web.csrf.CsrfFilter@34e017c5, org.springframework.security.web.authentication.logout.LogoutFilter@3d1b5fff, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@ef39393, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2a42b533, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@64fb61b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@65d1b5a6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5986de06, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@499eb113, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@39e33cb0, org.springframework.security.web.session.SessionManagementFilter@5fc156d9, org.springframework.security.web.access.ExceptionTranslationFilter@7fc9903b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@522026d1]
+2021-11-10 17:54:23 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-11-10 17:54:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-10 17:54:23 [main] INFO  j.c.misumi.billing.batch.Application - Started Application in 9.808 seconds (JVM running for 10.99)
+2021-11-10 17:54:23 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-11-10 17:54:24 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+JDBC Connection [HikariProxyConnection@1967651051 wrapping org.postgresql.jdbc.PgConnection@6db18ce7] will be managed by Spring
+==>  Preparing: SELECT DISTINCT t1.subsidiary_code as subsidiaryCode ,t1.bill_to_code as billToCode ,t1.invoice_number as invoiceNumber ,TO_CHAR(t1.bill_closing_day,'YYYYMM') as billClosingDay FROM t_incoming_payment t1 WHERE t1.subsidiary_code = ? and t1.process_flag = '0' and t1.advance_payment_flag = '0' and t1.delete_flag = '0' and TO_CHAR(t1.incoming_payment_date,'YYYYMMDD') <= ? and exists (select subsidiary_code , bill_to_code ,invoice_number ,invoice_date from t_non_payment_management t2 where t1.subsidiary_code = t2.subsidiary_code and t1.bill_to_code = t2.bill_to_code and t1.invoice_number = t2.invoice_number and to_char(t1.bill_closing_day,'YYYYMM') = to_char(t2.invoice_date,'YYYYMM') and t2.delete_flag = '0' and t2.non_payment_amount_customer_ccy > 0 )
+==> Parameters: TIW(String), 20220905(String)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+<==    Columns: subsidiarycode, billtocode, invoicenumber, billclosingday
+<==        Row: TIW, 0T4643, 202110-3438, 202009
+<==        Row: TIW, 0T4643, 202110-3439, 202009
+<==        Row: TIW, 0T4643, 202110-3440, 202009
+<==      Total: 3
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: SELECT subsidiary_code as subsidiaryCode ,bill_to_code as billToCode ,invoice_number as invoiceNumber ,bill_closing_day as billClosingDay ,COALESCE(incoming_payment_amount_customer_ccy ,0) as incomingPaymentAmountCustomerCcy,incoming_payment_date as incomingPaymentDate, acceptance_group_code as acceptanceGroupCode, matching_control_number as matchingControlNumber, incoming_payment_scheduled_line_number as incomingPaymentScheduledLineNumber FROM t_incoming_payment WHERE subsidiary_code = ? and bill_to_code = ? and invoice_number = ? and to_char(bill_closing_day,'YYYYMM') = ? and advance_payment_flag = '0' and delete_flag = '0' and to_char(incoming_payment_date,'YYYYMMDD') <= ? and process_flag = '0' FOR UPDATE
+==> Parameters: TIW(String), 0T4643(String), 202110-3438(String), 202009(String), 20220905(String)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+<==    Columns: subsidiarycode, billtocode, invoicenumber, billclosingday, incomingpaymentamountcustomerccy, incomingpaymentdate, acceptancegroupcode, matchingcontrolnumber, incomingpaymentscheduledlinenumber
+<==        Row: TIW, 0T4643, 202110-3438, 2020-09-05, 671.000, 2020-09-05, 0T4643, 2           , 1     
+<==      Total: 1
+2021-11-10 17:54:24 [main] INFO  HttpClientRequestLogger - Request Data Trace
+2021-11-10 17:54:24 [main] INFO  HttpClientResponseLogger - Response Data Trace
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: SELECT COALESCE(incoming.incomingPaymentAmountCustomerCcy,0) as incomingPaymentAmountCustomerCcy ,nonpayment.ccy_code_customer_ccy as ccyCodeCustomerCcy ,nonpayment.ccy_code_subsidiary_ccy as ccyCodeSubsidiaryCcy ,COALESCE(nonpayment.ccy_rate_subsidiary_ccy,0) as ccyRateSubsidiaryCcy ,COALESCE(nonpayment.billed_amount_subsidiary_ccy,0) as billedAmountSubsidiaryCcy ,COALESCE(nonpayment.billed_amount_customer_ccy,0) as billedAmountCustomerCcy ,nonpayment.subsidiary_code as subsidiaryCode ,nonpayment.bill_to_code as billToCode ,nonpayment.invoice_number as invoiceNumber ,nonpayment.invoice_date as invoiceDate FROM t_non_payment_management nonpayment LEFT JOIN ( select SUM(incoming_payment_amount_customer_ccy) as incomingPaymentAmountCustomerCcy ,subsidiary_code ,bill_to_code ,invoice_number ,to_char(bill_closing_day,'YYYYMM') as billClosingDay FROM t_incoming_payment WHERE process_flag != '0' and advance_payment_flag = '0' and delete_flag = '0' GROUP BY subsidiary_code ,bill_to_code ,invoice_number ,billClosingDay ) incoming ON nonpayment.subsidiary_code = incoming.subsidiary_code and nonpayment.bill_to_code = incoming.bill_to_code and nonpayment.invoice_number = incoming.invoice_number and to_char(nonpayment.invoice_date,'YYYYMM') = billClosingDay WHERE nonpayment.subsidiary_code = ? and nonpayment.bill_to_code = ? and nonpayment.invoice_number = ? and to_char(nonpayment.invoice_date, 'YYYYMM') = to_char(?, 'YYYYMM') and nonpayment.delete_flag = '0'
+==> Parameters: TIW(String), 0T4643(String), 202110-3438(String), 2020-09-05(LocalDate)
+<==    Columns: incomingpaymentamountcustomerccy, ccycodecustomerccy, ccycodesubsidiaryccy, ccyratesubsidiaryccy, billedamountsubsidiaryccy, billedamountcustomerccy, subsidiarycode, billtocode, invoicenumber, invoicedate
+<==        Row: 0, TWD, TWD, 1.00000, 672.000, 672.000, TIW, 0T4643, 202110-3438, 2020-09-05
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: UPDATE T_NON_PAYMENT_MANAGEMENT SET non_payment_amount_customer_ccy = ? , incoming_payment_amount_customer_ccy = ? , non_payment_amount_subsidiary_ccy = ? , incoming_payment_complete_date = case when trade_status_type ='04' then to_date(null, 'YYYYMMDD') else incoming_payment_complete_date end , trade_status_type = case when trade_status_type ='04' then '03' else trade_status_type end , clear_flag = case when clear_flag ='1' then '0' else clear_flag end , update_user = ? , update_date_time = ? , update_program = ? , update_count = update_count + 1 WHERE subsidiary_code = ? AND bill_to_code = ? AND invoice_number = ? AND invoice_date = ? AND delete_flag = '0'
+==> Parameters: 1.000(BigDecimal), 671.000(BigDecimal), 1(BigDecimal), MBSAR20020(String), 2021-11-10T18:54:24.399503800+09:00(OffsetDateTime), MBSAR20020(String), TIW(String), 0T4643(String), 202110-3438(String), 2020-09-05(LocalDate)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: UPDATE T_INCOMING_PAYMENT SET bill_to_code = ? , bill_closing_day = ? , invoice_number = ? , incoming_payment_amount_customer_ccy = ? , incoming_payment_date = ? , process_flag = ? , update_user_type = ? , update_user = ? , update_date_time = ? , update_program = ? , update_client_program = ? , update_count = update_count + 1 WHERE subsidiary_code = ? AND acceptance_group_code = ? AND matching_control_number = ? AND incoming_payment_scheduled_line_number = ? AND delete_flag = '0'
+==> Parameters: 0T4643(String), 2020-09-05(LocalDate), 202110-3438(String), 671.000(BigDecimal), 2020-09-05(LocalDate), 1(String), Batch(String), MBSAR20020(String), 2021-11-10T18:54:24.453502200+09:00(OffsetDateTime), MBSAR20020(String), MBSAR20020(String), TIW(String), 0T4643(String), 2           (String), 1     (String)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: SELECT subsidiary_code as subsidiaryCode ,bill_to_code as billToCode ,invoice_number as invoiceNumber ,bill_closing_day as billClosingDay ,COALESCE(incoming_payment_amount_customer_ccy ,0) as incomingPaymentAmountCustomerCcy,incoming_payment_date as incomingPaymentDate, acceptance_group_code as acceptanceGroupCode, matching_control_number as matchingControlNumber, incoming_payment_scheduled_line_number as incomingPaymentScheduledLineNumber FROM t_incoming_payment WHERE subsidiary_code = ? and bill_to_code = ? and invoice_number = ? and to_char(bill_closing_day,'YYYYMM') = ? and advance_payment_flag = '0' and delete_flag = '0' and to_char(incoming_payment_date,'YYYYMMDD') <= ? and process_flag = '0' FOR UPDATE
+==> Parameters: TIW(String), 0T4643(String), 202110-3439(String), 202009(String), 20220905(String)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+<==    Columns: subsidiarycode, billtocode, invoicenumber, billclosingday, incomingpaymentamountcustomerccy, incomingpaymentdate, acceptancegroupcode, matchingcontrolnumber, incomingpaymentscheduledlinenumber
+<==        Row: TIW, 0T4643, 202110-3439, 2020-09-05, 224.000, 2020-09-05, 0T4643, 3           , 1     
+<==      Total: 1
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: SELECT COALESCE(incoming.incomingPaymentAmountCustomerCcy,0) as incomingPaymentAmountCustomerCcy ,nonpayment.ccy_code_customer_ccy as ccyCodeCustomerCcy ,nonpayment.ccy_code_subsidiary_ccy as ccyCodeSubsidiaryCcy ,COALESCE(nonpayment.ccy_rate_subsidiary_ccy,0) as ccyRateSubsidiaryCcy ,COALESCE(nonpayment.billed_amount_subsidiary_ccy,0) as billedAmountSubsidiaryCcy ,COALESCE(nonpayment.billed_amount_customer_ccy,0) as billedAmountCustomerCcy ,nonpayment.subsidiary_code as subsidiaryCode ,nonpayment.bill_to_code as billToCode ,nonpayment.invoice_number as invoiceNumber ,nonpayment.invoice_date as invoiceDate FROM t_non_payment_management nonpayment LEFT JOIN ( select SUM(incoming_payment_amount_customer_ccy) as incomingPaymentAmountCustomerCcy ,subsidiary_code ,bill_to_code ,invoice_number ,to_char(bill_closing_day,'YYYYMM') as billClosingDay FROM t_incoming_payment WHERE process_flag != '0' and advance_payment_flag = '0' and delete_flag = '0' GROUP BY subsidiary_code ,bill_to_code ,invoice_number ,billClosingDay ) incoming ON nonpayment.subsidiary_code = incoming.subsidiary_code and nonpayment.bill_to_code = incoming.bill_to_code and nonpayment.invoice_number = incoming.invoice_number and to_char(nonpayment.invoice_date,'YYYYMM') = billClosingDay WHERE nonpayment.subsidiary_code = ? and nonpayment.bill_to_code = ? and nonpayment.invoice_number = ? and to_char(nonpayment.invoice_date, 'YYYYMM') = to_char(?, 'YYYYMM') and nonpayment.delete_flag = '0'
+==> Parameters: TIW(String), 0T4643(String), 202110-3439(String), 2020-09-05(LocalDate)
+<==    Columns: incomingpaymentamountcustomerccy, ccycodecustomerccy, ccycodesubsidiaryccy, ccyratesubsidiaryccy, billedamountsubsidiaryccy, billedamountcustomerccy, subsidiarycode, billtocode, invoicenumber, invoicedate
+<==        Row: 0, TWD, TWD, 1.00000, 224.000, 224.000, TIW, 0T4643, 202110-3439, 2020-09-05
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: UPDATE T_NON_PAYMENT_MANAGEMENT SET non_payment_amount_customer_ccy = ? , incoming_payment_amount_customer_ccy = ? , non_payment_amount_subsidiary_ccy = ? , incoming_payment_complete_date = ? , trade_status_type = '04' , clear_flag = '1' , update_user = ? , update_date_time = ? , update_program = ? , update_count = update_count + 1 WHERE subsidiary_code = ? AND bill_to_code = ? AND invoice_number = ? AND invoice_date = ? AND delete_flag = '0'
+==> Parameters: 0.000(BigDecimal), 224.000(BigDecimal), 0(BigDecimal), 2020-09-05(LocalDate), MBSAR20020(String), 2021-11-10T18:54:24.476504300+09:00(OffsetDateTime), MBSAR20020(String), TIW(String), 0T4643(String), 202110-3439(String), 2020-09-05(LocalDate)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: UPDATE T_INCOMING_PAYMENT SET bill_to_code = ? , bill_closing_day = ? , invoice_number = ? , incoming_payment_amount_customer_ccy = ? , incoming_payment_date = ? , process_flag = ? , update_user_type = ? , update_user = ? , update_date_time = ? , update_program = ? , update_client_program = ? , update_count = update_count + 1 WHERE subsidiary_code = ? AND acceptance_group_code = ? AND matching_control_number = ? AND incoming_payment_scheduled_line_number = ? AND delete_flag = '0'
+==> Parameters: 0T4643(String), 2020-09-05(LocalDate), 202110-3439(String), 224.000(BigDecimal), 2020-09-05(LocalDate), 1(String), Batch(String), MBSAR20020(String), 2021-11-10T18:54:24.479503700+09:00(OffsetDateTime), MBSAR20020(String), MBSAR20020(String), TIW(String), 0T4643(String), 3           (String), 1     (String)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: SELECT subsidiary_code as subsidiaryCode ,bill_to_code as billToCode ,invoice_number as invoiceNumber ,bill_closing_day as billClosingDay ,COALESCE(incoming_payment_amount_customer_ccy ,0) as incomingPaymentAmountCustomerCcy,incoming_payment_date as incomingPaymentDate, acceptance_group_code as acceptanceGroupCode, matching_control_number as matchingControlNumber, incoming_payment_scheduled_line_number as incomingPaymentScheduledLineNumber FROM t_incoming_payment WHERE subsidiary_code = ? and bill_to_code = ? and invoice_number = ? and to_char(bill_closing_day,'YYYYMM') = ? and advance_payment_flag = '0' and delete_flag = '0' and to_char(incoming_payment_date,'YYYYMMDD') <= ? and process_flag = '0' FOR UPDATE
+==> Parameters: TIW(String), 0T4643(String), 202110-3440(String), 202009(String), 20220905(String)
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+<==    Columns: subsidiarycode, billtocode, invoicenumber, billclosingday, incomingpaymentamountcustomerccy, incomingpaymentdate, acceptancegroupcode, matchingcontrolnumber, incomingpaymentscheduledlinenumber
+<==        Row: TIW, 0T4643, 202110-3440, 2020-09-05, 672.000, 2020-09-05, 0T4643, 4           , 1     
+<==      Total: 1
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: SELECT COALESCE(incoming.incomingPaymentAmountCustomerCcy,0) as incomingPaymentAmountCustomerCcy ,nonpayment.ccy_code_customer_ccy as ccyCodeCustomerCcy ,nonpayment.ccy_code_subsidiary_ccy as ccyCodeSubsidiaryCcy ,COALESCE(nonpayment.ccy_rate_subsidiary_ccy,0) as ccyRateSubsidiaryCcy ,COALESCE(nonpayment.billed_amount_subsidiary_ccy,0) as billedAmountSubsidiaryCcy ,COALESCE(nonpayment.billed_amount_customer_ccy,0) as billedAmountCustomerCcy ,nonpayment.subsidiary_code as subsidiaryCode ,nonpayment.bill_to_code as billToCode ,nonpayment.invoice_number as invoiceNumber ,nonpayment.invoice_date as invoiceDate FROM t_non_payment_management nonpayment LEFT JOIN ( select SUM(incoming_payment_amount_customer_ccy) as incomingPaymentAmountCustomerCcy ,subsidiary_code ,bill_to_code ,invoice_number ,to_char(bill_closing_day,'YYYYMM') as billClosingDay FROM t_incoming_payment WHERE process_flag != '0' and advance_payment_flag = '0' and delete_flag = '0' GROUP BY subsidiary_code ,bill_to_code ,invoice_number ,billClosingDay ) incoming ON nonpayment.subsidiary_code = incoming.subsidiary_code and nonpayment.bill_to_code = incoming.bill_to_code and nonpayment.invoice_number = incoming.invoice_number and to_char(nonpayment.invoice_date,'YYYYMM') = billClosingDay WHERE nonpayment.subsidiary_code = ? and nonpayment.bill_to_code = ? and nonpayment.invoice_number = ? and to_char(nonpayment.invoice_date, 'YYYYMM') = to_char(?, 'YYYYMM') and nonpayment.delete_flag = '0'
+==> Parameters: TIW(String), 0T4643(String), 202110-3440(String), 2020-09-05(LocalDate)
+<==    Columns: incomingpaymentamountcustomerccy, ccycodecustomerccy, ccycodesubsidiaryccy, ccyratesubsidiaryccy, billedamountsubsidiaryccy, billedamountcustomerccy, subsidiarycode, billtocode, invoicenumber, invoicedate
+<==        Row: 0, TWD, TWD, 1.00000, 672.000, 672.000, TIW, 0T4643, 202110-3440, 2020-09-05
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: UPDATE T_NON_PAYMENT_MANAGEMENT SET non_payment_amount_customer_ccy = ? , incoming_payment_amount_customer_ccy = ? , non_payment_amount_subsidiary_ccy = ? , incoming_payment_complete_date = ? , trade_status_type = '04' , clear_flag = '1' , update_user = ? , update_date_time = ? , update_program = ? , update_count = update_count + 1 WHERE subsidiary_code = ? AND bill_to_code = ? AND invoice_number = ? AND invoice_date = ? AND delete_flag = '0'
+==> Parameters: 0.000(BigDecimal), 672.000(BigDecimal), 0(BigDecimal), 2020-09-05(LocalDate), MBSAR20020(String), 2021-11-10T18:54:24.489509+09:00(OffsetDateTime), MBSAR20020(String), TIW(String), 0T4643(String), 202110-3440(String), 2020-09-05(LocalDate)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07] from current transaction
+==>  Preparing: UPDATE T_INCOMING_PAYMENT SET bill_to_code = ? , bill_closing_day = ? , invoice_number = ? , incoming_payment_amount_customer_ccy = ? , incoming_payment_date = ? , process_flag = ? , update_user_type = ? , update_user = ? , update_date_time = ? , update_program = ? , update_client_program = ? , update_count = update_count + 1 WHERE subsidiary_code = ? AND acceptance_group_code = ? AND matching_control_number = ? AND incoming_payment_scheduled_line_number = ? AND delete_flag = '0'
+==> Parameters: 0T4643(String), 2020-09-05(LocalDate), 202110-3440(String), 672.000(BigDecimal), 2020-09-05(LocalDate), 1(String), Batch(String), MBSAR20020(String), 2021-11-10T18:54:24.493506100+09:00(OffsetDateTime), MBSAR20020(String), MBSAR20020(String), TIW(String), 0T4643(String), 4           (String), 1     (String)
+<==    Updates: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7eab4e07]
+2021-11-10 17:54:24 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-11-10 17:54:24 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2021-11-10 17:54:24 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

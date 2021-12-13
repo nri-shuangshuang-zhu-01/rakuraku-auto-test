@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomerRegistrationInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.customer.internal.api</a> &gt; <span class="el_source">CustomerRegistrationInternalApi.java</span></div><h1>CustomerRegistrationInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.customer.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.customer.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.ApproveCustomerRegistInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.ApproveCustomerRegistInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.DisapproveCustomerRegistInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.customer.internal.SearchCustomerRegistInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:17.527774500+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.customer.internal.api.CustomerRegistrationInternalApi&quot;)
+public class CustomerRegistrationInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L39">    public CustomerRegistrationInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L40">        this.apiClient = apiClient;</span>
+<span class="fc" id="L41">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L44">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L48">        this.apiClient = apiClient;</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * 得意先申請未登録承認API
+     * 会員新規申請処理について、得意先申請未登録承認処理を行う。 得意先登録申請テーブルの支払方法が自動登録可の場合、下記情報の登録更新処理を行う。 　　得意先情報     売掛先関連情報 　　入金グループ・検収グループマスタ 　　仮想口座関連情報 　　直送先関連情報 　　会員権限マスタ（購入可権限付与） 　　得意先登録申請テーブル
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param approveCustomerRegistInternalRequestV1 得意先手動登録承認情報 (optional)
+     
+     * @return ApproveCustomerRegistInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ApproveCustomerRegistInternalResponseV1 approveCustomerRegistInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ApproveCustomerRegistInternalRequestV1 approveCustomerRegistInternalRequestV1) throws RestClientException {
+<span class="nc" id="L68">        return approveCustomerRegistInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, approveCustomerRegistInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 得意先申請未登録承認API
+     * 会員新規申請処理について、得意先申請未登録承認処理を行う。 得意先登録申請テーブルの支払方法が自動登録可の場合、下記情報の登録更新処理を行う。 　　得意先情報     売掛先関連情報 　　入金グループ・検収グループマスタ 　　仮想口座関連情報 　　直送先関連情報 　　会員権限マスタ（購入可権限付与） 　　得意先登録申請テーブル
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param approveCustomerRegistInternalRequestV1 得意先手動登録承認情報 (optional)
+     
+     * @return ResponseEntity&amp;lt;ApproveCustomerRegistInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;ApproveCustomerRegistInternalResponseV1&gt; approveCustomerRegistInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ApproveCustomerRegistInternalRequestV1 approveCustomerRegistInternalRequestV1) throws RestClientException {
+<span class="nc" id="L88">        Object postBody = approveCustomerRegistInternalRequestV1;</span>
+        
+<span class="nc" id="L90">        String path = apiClient.expandPath(&quot;/internal/v1/customer-registration/approve&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L92">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L93">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L94">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L95">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L100">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L102">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L104">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L106">            });</span>
+        }
+
+<span class="nc" id="L109">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L112">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L113">        final String[] contentTypes = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L116">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L118">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L120">        ParameterizedTypeReference&lt;ApproveCustomerRegistInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;ApproveCustomerRegistInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L121">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 得意先申請未登録否認API
+     * 得意先申請未登録否認処理を行うAPIです。 得意先申請情報更新（ステータスを却下へ変更）を行う。 
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param disapproveCustomerRegistInternalRequestV1 得意先申請未登録否認情報 (optional)
+     
+     * @return Object
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public Object disapproveCustomerRegistInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, DisapproveCustomerRegistInternalRequestV1 disapproveCustomerRegistInternalRequestV1) throws RestClientException {
+<span class="nc" id="L140">        return disapproveCustomerRegistInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, disapproveCustomerRegistInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 得意先申請未登録否認API
+     * 得意先申請未登録否認処理を行うAPIです。 得意先申請情報更新（ステータスを却下へ変更）を行う。 
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param disapproveCustomerRegistInternalRequestV1 得意先申請未登録否認情報 (optional)
+     
+     * @return ResponseEntity&amp;lt;Object&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;Object&gt; disapproveCustomerRegistInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, DisapproveCustomerRegistInternalRequestV1 disapproveCustomerRegistInternalRequestV1) throws RestClientException {
+<span class="nc" id="L160">        Object postBody = disapproveCustomerRegistInternalRequestV1;</span>
+        
+<span class="nc" id="L162">        String path = apiClient.expandPath(&quot;/internal/v1/customer-registration/disapprove&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L164">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L165">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L166">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L167">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L172">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L174">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L176">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L178">            });</span>
+        }
+
+<span class="nc" id="L181">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L184">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L185">        final String[] contentTypes = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L188">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L190">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L192">        ParameterizedTypeReference&lt;Object&gt; returnType = new ParameterizedTypeReference&lt;Object&gt;() {};</span>
+<span class="nc" id="L193">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 得意先申請未登録情報検索API
+     * 新規得意先申請時、CSの承認待ちになっている未登録の得意先を指定の条件で取得する APIリクエスト元で設定する情報を基に、得意先申請未登録一覧情報を取得する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;201&lt;/b&gt; - Created
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param applicationNumber 申請番号 (optional)
+     
+     * @param ntvUserName 担当者名（現地語） (optional)
+     
+     * @param ntvCompanyName 会社名（現地語） (optional)
+     
+     * @param status ステータス (optional)
+     
+     * @param registrationDateFrom 申請日from (optional)
+     
+     * @param registrationDateTo 申請日to (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @return SearchCustomerRegistInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchCustomerRegistInternalResponseV1 searchCustomerRegistInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String applicationNumber, String ntvUserName, String ntvCompanyName, String status, String registrationDateFrom, String registrationDateTo, Integer offset, Integer limit) throws RestClientException {
+<span class="nc" id="L227">        return searchCustomerRegistInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, applicationNumber, ntvUserName, ntvCompanyName, status, registrationDateFrom, registrationDateTo, offset, limit).getBody();</span>
+    }
+
+    /**
+     * 得意先申請未登録情報検索API
+     * 新規得意先申請時、CSの承認待ちになっている未登録の得意先を指定の条件で取得する APIリクエスト元で設定する情報を基に、得意先申請未登録一覧情報を取得する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;201&lt;/b&gt; - Created
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - エラーレスポンス
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - エラーレスポンス
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param applicationNumber 申請番号 (optional)
+     
+     * @param ntvUserName 担当者名（現地語） (optional)
+     
+     * @param ntvCompanyName 会社名（現地語） (optional)
+     
+     * @param status ステータス (optional)
+     
+     * @param registrationDateFrom 申請日from (optional)
+     
+     * @param registrationDateTo 申請日to (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchCustomerRegistInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchCustomerRegistInternalResponseV1&gt; searchCustomerRegistInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String applicationNumber, String ntvUserName, String ntvCompanyName, String status, String registrationDateFrom, String registrationDateTo, Integer offset, Integer limit) throws RestClientException {
+<span class="nc" id="L262">        Object postBody = null;</span>
+        
+<span class="nc" id="L264">        String path = apiClient.expandPath(&quot;/internal/v1/customer-application/search&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L266">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L267">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L268">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L269">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L271">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;applicationNumber&quot;, applicationNumber));</span>
+<span class="nc" id="L272">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;ntvUserName&quot;, ntvUserName));</span>
+<span class="nc" id="L273">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;ntvCompanyName&quot;, ntvCompanyName));</span>
+<span class="nc" id="L274">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;status&quot;, status));</span>
+<span class="nc" id="L275">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;registrationDateFrom&quot;, registrationDateFrom));</span>
+<span class="nc" id="L276">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;registrationDateTo&quot;, registrationDateTo));</span>
+<span class="nc" id="L277">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;offset&quot;, offset));</span>
+<span class="nc" id="L278">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;limit&quot;, limit));</span>
+
+        
+
+<span class="nc bnc" id="L282" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L283">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L285">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L287">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L289">            });</span>
+        }
+
+<span class="nc" id="L292">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L295">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L296">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L297">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L299">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L301">        ParameterizedTypeReference&lt;SearchCustomerRegistInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchCustomerRegistInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L302">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

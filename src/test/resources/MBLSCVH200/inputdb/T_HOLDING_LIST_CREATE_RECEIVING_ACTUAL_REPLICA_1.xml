@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICA subsidiary_code='' plant_code='' global_number='' purchase_slip_number='' po_line_number='' receiving_fix_date='' receiving_qty='' supply_type='' receiving_fix_process_date='' receiving_purchase_amount='' receiving_supplier_subsidiary_rate='' receiving_freight_supplier_rate='' receiving_supplier_subsidiary_supplier_rate='' receiving_freight_supplier_subsidiary_rate='' receiving_product_supplier_rate='' delete_flag='' data_hub_updated_flag='' register_system_date_time='' update_system_date_time='' update_program='' />
+</dataset>

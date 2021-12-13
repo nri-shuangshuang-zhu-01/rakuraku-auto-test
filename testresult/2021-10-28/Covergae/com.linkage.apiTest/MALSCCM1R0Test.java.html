@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MALSCCM1R0Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.apiTest</a> &gt; <span class="el_source">MALSCCM1R0Test.java</span></div><h1>MALSCCM1R0Test.java</h1><pre class="source lang-java linenums">package com.linkage.apiTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;Example機能確認&quot;)
+@DisplayName(&quot;Example機能確認&quot;)
+<span class="nc" id="L15">public class MALSCCM1R0Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MALSCCM1R0&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MALSCCM1R0&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;一件確認&quot;)
+	@DisplayName(&quot;一件確認&quot;)
+	public void testMALSCCM1R0_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCCM1R0/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_SCREEN_FIELD_DISPLAY → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;C_SCREEN_FIELD_DISPLAY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/screen-field-display/get → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=test → UserLoginInfo */
+<span class="nc" id="L49">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/screen-field-display/get&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=test&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCCM1R0\\test01.txt&quot;);</span>
+
+		/* 操作(DB確認) → C_SCREEN_FIELD_DISPLAY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L52">		rakurakuCore.operateDBConfirm(&quot;C_SCREEN_FIELD_DISPLAY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L54">	}</span>
+
+	@Test
+	@Tag(&quot;複数件確認&quot;)
+	@DisplayName(&quot;複数件確認&quot;)
+	public void testMALSCCM1R0_002() throws Exception {
+
+<span class="nc" id="L61">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCCM1R0/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_SCREEN_FIELD_DISPLAY → データクリア・挿入 */
+<span class="nc" id="L65">		rakurakuCore.operateDBPrepare(&quot;C_SCREEN_FIELD_DISPLAY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(api) → 登录 → internal/v1/screen-field-display/get → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=test → UserLoginInfo */
+<span class="nc" id="L68">		rakurakuCore.operateApi(&quot;登录&quot;, &quot;internal/v1/screen-field-display/get&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=test&quot;, &quot;UserLoginInfo&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCCM1R0\\test02.txt&quot;);</span>
+
+		/* 操作(DB確認) → C_SCREEN_FIELD_DISPLAY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L71">		rakurakuCore.operateDBConfirm(&quot;C_SCREEN_FIELD_DISPLAY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L73">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

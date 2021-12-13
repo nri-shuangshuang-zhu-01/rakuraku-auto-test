@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="subsidiary_code" comment="現法コード:現地法人を一意に特定するコード。"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="customer_code" comment="得意先コード:客先を一意に特定するコード"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="ship_to_code" comment="配送先コード"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="ginner_code" comment="統合インナーコード:MDMによって新規導入された、現法間をまたいでグローバルで一意に商品を特定するためのキー項目。先頭3桁が&apos;MDM&apos;固定、後続の11桁が桁に意味なし（自動発番）の数字で構成される。"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="classify_code" comment="分析コード"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="plant_code" comment="置場コード"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="supply_type" comment="調達区分:1:在庫品 2:在庫品(受注製作扱い) 3:MTO品 4:非在庫品"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="effective_start_date" comment="適用開始日"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="register_date_time" comment="登録日時"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="register_program" comment="登録プログラム"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="update_date_time" comment="更新日時"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="update_program" comment="更新プログラム"/>
+  <M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITIONColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

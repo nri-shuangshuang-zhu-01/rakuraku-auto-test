@@ -1,0 +1,23 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+グローバル番号::global_number::char(14)::NOT NULL(PK)
+作成日::create_date::date::NOT NULL(PK)
+送り状番号::carrier_invoice_number::varchar(20)::NOT NULL(PK)
+プログラム区分::program_type::char(1)::NOT NULL(PK)
+社内・社外向け区分::internal_external_type::char(1)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NULL
+VSD::vsd::date::NULL
+梱包管理番号::packing_control_number::char(15)::NULL
+扱い便コード::shipmode_code::varchar(3)::NULL
+個数::qty::numeric(7,0)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

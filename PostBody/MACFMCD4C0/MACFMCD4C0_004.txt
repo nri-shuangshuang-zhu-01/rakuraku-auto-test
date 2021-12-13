@@ -1,0 +1,8 @@
+{
+  "dataCode": "12351",
+  "mailAddress": "1007",
+  "tempFileCode": "1008",
+  "filePath": "1009",
+  "signature": "1010",
+  "inputFileName": "1011"
+}

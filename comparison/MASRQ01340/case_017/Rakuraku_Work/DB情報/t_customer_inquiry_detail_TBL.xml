@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_customer_inquiry_detailColName field="subsidiary_code" comment="現法コード"/>
+  <t_customer_inquiry_detailColName field="inquiry_id" comment="問合せID"/>
+  <t_customer_inquiry_detailColName field="inquiry_line_number" comment="問合せ明細番号"/>
+  <t_customer_inquiry_detailColName field="lead_time_product_inquiry_id" comment="納期型番確認ID"/>
+  <t_customer_inquiry_detailColName field="remind_flag" comment="督促フラグ"/>
+  <t_customer_inquiry_detailColName field="customer_item_reference" comment="顧客注文番号"/>
+  <t_customer_inquiry_detailColName field="brand_code" comment="ブランドコード"/>
+  <t_customer_inquiry_detailColName field="brand_name" comment="ブランド名"/>
+  <t_customer_inquiry_detailColName field="product_code" comment="商品コード"/>
+  <t_customer_inquiry_detailColName field="shipment_method_code" comment="出荷方法コード"/>
+  <t_customer_inquiry_detailColName field="stork_code" comment="ストークコード"/>
+  <t_customer_inquiry_detailColName field="bulk_partial_delivery_type" comment="一括分納タイプ"/>
+  <t_customer_inquiry_detailColName field="sales_unit_price" comment="売単価"/>
+  <t_customer_inquiry_detailColName field="send_type" comment="送信タイプ"/>
+  <t_customer_inquiry_detailColName field="qty" comment="数量"/>
+  <t_customer_inquiry_detailColName field="inquiry_content" comment="問合せ内容"/>
+  <t_customer_inquiry_detailColName field="sales_unit_price_including_tax" comment="売単価（税込）"/>
+  <t_customer_inquiry_detailColName field="sales_unit_price_ccy_code" comment="売単価通貨コード"/>
+  <t_customer_inquiry_detailColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <t_customer_inquiry_detailColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <t_customer_inquiry_detailColName field="register_user_type" comment="登録者区分:Office：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ"/>
+  <t_customer_inquiry_detailColName field="register_user" comment="登録者"/>
+  <t_customer_inquiry_detailColName field="register_date_time" comment="登録日時"/>
+  <t_customer_inquiry_detailColName field="register_program" comment="登録プログラム"/>
+  <t_customer_inquiry_detailColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <t_customer_inquiry_detailColName field="update_user_type" comment="更新者区分:Office：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ"/>
+  <t_customer_inquiry_detailColName field="update_user" comment="更新者"/>
+  <t_customer_inquiry_detailColName field="update_date_time" comment="更新日時"/>
+  <t_customer_inquiry_detailColName field="update_program" comment="更新プログラム"/>
+  <t_customer_inquiry_detailColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

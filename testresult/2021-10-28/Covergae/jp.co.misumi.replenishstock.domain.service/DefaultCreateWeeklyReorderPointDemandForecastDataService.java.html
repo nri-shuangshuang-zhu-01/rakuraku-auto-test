@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultCreateWeeklyReorderPointDemandForecastDataService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultCreateWeeklyReorderPointDemandForecastDataService.java</span></div><h1>DefaultCreateWeeklyReorderPointDemandForecastDataService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.DEFAULT_CREATE_FORECAST_DATA_ERROR;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.DEFAULT_CREATE_FORECAST_DATA_START;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.DEFAULT_CREATE_FORECAST_DATA_SUCCESS;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.INT_0;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.INT_1;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.INT_2;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.PRODUCT_EXCLUDE_FLAG_ZERO;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.PURE_DATE_PATTERN;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.STRING_0;
+import static jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants.STRING_1;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.replenishstock.domain.client.ProductInternalClient;
+import jp.co.misumi.replenishstock.domain.entity.DemandForecastWeeklyPoolEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointDemandForecastEntity;
+import jp.co.misumi.replenishstock.domain.repository.DemandForecastWeeklyPoolRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1Detail;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.kafka.common.utils.Utils;
+import org.springframework.context.MessageSource;
+import org.springframework.util.CollectionUtils;
+
+/**
+ * 週次発注点用需要予測データ作成.
+ *
+ * @author yo.tairin
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+public class DefaultCreateWeeklyReorderPointDemandForecastDataService
+    implements CreateWeeklyReorderPointDemandForecastDataService {
+
+  private final Log log =
+      LogFactory.getLog(DefaultCreateWeeklyReorderPointDemandForecastDataService.class);
+
+  private final DemandForecastWeeklyPoolRepository demandPoolRepository;
+
+  private final ProductInternalClient productInternalClient;
+
+<span class="fc" id="L61">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L62">      MessageLoggerFactory.getLogger(</span>
+          DefaultCreateWeeklyReorderPointDemandForecastDataService.class);
+
+  private final MessageSource messageSource;
+
+  /**
+   * 「需要予測マスタ」、「週次発注点用POOLデータ（月次）」から「週次発注点用需要予測」を作成する.
+   *
+   * @param context リクエスト共通
+   * @param operationDate 運用日付
+   * @param subsidiaryCode 現法コード
+   * @return 処理結果
+   * @throws BusinessException 異常
+   */
+  @Override
+  public boolean create(RequestContext context, String operationDate, String subsidiaryCode)
+      throws BusinessException {
+<span class="nc" id="L79">    log.info(DEFAULT_CREATE_FORECAST_DATA_START);</span>
+    // 入力需要予測マスタカウント
+<span class="nc" id="L81">    int inputDemandCount = INT_0;</span>
+    // 入力POOLデータカウント
+<span class="nc" id="L83">    int inputPoolCount = INT_0;</span>
+    // 出力週次発注点用需要予測データカウント
+<span class="nc" id="L85">    int outputWeeklyDemandCount = INT_0;</span>
+    // エラーメッセージ
+    ReplenishStockMessages errMsg;
+    // カウントフラッグ
+<span class="nc" id="L89">    String countFlg = STRING_0;</span>
+
+    // 需要予測マスタ、週次発注点計算用POOLデータ（月次）の取得
+<span class="nc" id="L92">    List&lt;DemandForecastWeeklyPoolEntity&gt; demandPoolList =</span>
+<span class="nc" id="L93">        Utils.toList(</span>
+            demandPoolRepository
+<span class="nc" id="L95">                .searchDemandForecastInfo(</span>
+                    context,
+                    subsidiaryCode,
+<span class="nc" id="L98">                    LocalDate.parse(operationDate, DateTimeFormatter.ofPattern(PURE_DATE_PATTERN)))</span>
+<span class="nc" id="L99">                .iterator());</span>
+
+<span class="nc bnc" id="L101" title="All 2 branches missed.">    if (!CollectionUtils.isEmpty(demandPoolList)) {</span>
+      // 商品情報取得API（List）を呼出、商品マスタ取得を行う。
+<span class="nc" id="L103">      List&lt;GetListProductInternalResponseV1Detail&gt; productResponseList =</span>
+<span class="nc" id="L104">          getProductInternalInfo(context, demandPoolList);</span>
+
+<span class="nc" id="L106">      Map&lt;String, String&gt; productInternalMap = new HashMap&lt;&gt;();</span>
+
+<span class="nc bnc" id="L108" title="All 2 branches missed.">      for (GetListProductInternalResponseV1Detail productInternal : productResponseList) {</span>
+<span class="nc" id="L109">        productInternalMap.put(</span>
+<span class="nc" id="L110">            productInternal.getProductInternalV1().getSubsidiaryCode()</span>
+<span class="nc" id="L111">                + productInternal.getProductInternalV1().getGinnerCode(),</span>
+<span class="nc" id="L112">            productInternal.getProductInternalV1().getMtoExcludeFlag());</span>
+<span class="nc" id="L113">      }</span>
+
+<span class="nc bnc" id="L115" title="All 2 branches missed.">      for (DemandForecastWeeklyPoolEntity entity : demandPoolList) {</span>
+        // 取得した商品マスタリストの製作品扱除外フラグを需要予測データリストに設定する。
+<span class="nc" id="L117">        entity.setProductExcludeFlag(</span>
+<span class="nc" id="L118">            productInternalMap.get(entity.getSubsidiaryCode() + entity.getGinnerCode()));</span>
+
+<span class="nc" id="L120">        WeeklyReorderPointDemandForecastEntity demandForecastEntity =</span>
+            new WeeklyReorderPointDemandForecastEntity(
+<span class="nc" id="L122">                subsidiaryCode, entity.getGinnerCode(), entity.getPlantCode());</span>
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if (entity.getDemandForecastQty() == null) {</span>
+<span class="nc" id="L125">          demandForecastEntity.setDemandForecastQty(sumProductNum(entity));</span>
+<span class="nc" id="L126">          errMsg = ReplenishStockMessages.BIRBO190002E;</span>
+        } else {
+<span class="nc" id="L128">          demandForecastEntity.setDemandForecastQty(entity.getDemandForecastQty());</span>
+<span class="nc" id="L129">          countFlg = STRING_1;</span>
+<span class="nc" id="L130">          errMsg = ReplenishStockMessages.BIRBO190003E;</span>
+        }
+
+        try {
+          // 週次発注点用需要予測データへ登録する。
+<span class="nc" id="L135">          demandPoolRepository.createDemandForecastInfo(context, demandForecastEntity);</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">          if (STRING_0.equals(countFlg)) {</span>
+<span class="nc" id="L137">            inputPoolCount += INT_1;</span>
+          } else {
+<span class="nc" id="L139">            inputDemandCount += INT_1;</span>
+          }
+<span class="nc" id="L141">          outputWeeklyDemandCount += INT_1;</span>
+<span class="nc" id="L142">        } catch (Exception e) {</span>
+          // エラー情報をログに出力する。
+<span class="nc" id="L144">          log.info(DEFAULT_CREATE_FORECAST_DATA_ERROR);</span>
+<span class="nc" id="L145">          messageLogger.log(</span>
+              messageSource,
+              errMsg,
+              e,
+<span class="nc" id="L149">              demandForecastEntity.getSubsidiaryCode(),</span>
+<span class="nc" id="L150">              demandForecastEntity.getGinnerCode(),</span>
+<span class="nc" id="L151">              demandForecastEntity.getPlantCode(),</span>
+<span class="nc" id="L152">              demandForecastEntity.getDemandForecastQty());</span>
+<span class="nc" id="L153">          throw new BusinessException(</span>
+              messageSource,
+              errMsg,
+              e,
+<span class="nc" id="L157">              demandForecastEntity.getSubsidiaryCode(),</span>
+<span class="nc" id="L158">              demandForecastEntity.getGinnerCode(),</span>
+<span class="nc" id="L159">              demandForecastEntity.getPlantCode(),</span>
+<span class="nc" id="L160">              demandForecastEntity.getDemandForecastQty());</span>
+<span class="nc" id="L161">        }</span>
+<span class="nc" id="L162">      }</span>
+    }
+    // 終了メッセージと入出力件数を表示する。
+<span class="nc" id="L165">    log.info(DEFAULT_CREATE_FORECAST_DATA_SUCCESS);</span>
+<span class="nc" id="L166">    messageLogger.log(</span>
+        messageSource,
+        ReplenishStockMessages.BIRBO190001I,
+        null,
+<span class="nc" id="L170">        inputDemandCount,</span>
+<span class="nc" id="L171">        inputPoolCount,</span>
+<span class="nc" id="L172">        outputWeeklyDemandCount);</span>
+
+<span class="nc" id="L174">    return true;</span>
+  }
+
+  /**
+   * 需要予測値算出.
+   *
+   * @param entity 需要データ
+   * @return 処理結果
+   */
+  public BigDecimal sumProductNum(DemandForecastWeeklyPoolEntity entity) {
+<span class="nc" id="L184">    BigDecimal sumNum = BigDecimal.valueOf(INT_0);</span>
+<span class="nc" id="L185">    BigDecimal count = BigDecimal.valueOf(INT_0);</span>
+    BigDecimal demandVal;
+
+    BigDecimal[] sumNumCount;
+
+<span class="nc bnc" id="L190" title="All 2 branches missed.">    if (PRODUCT_EXCLUDE_FLAG_ZERO.equals(entity.getProductExcludeFlag())) {</span>
+<span class="nc" id="L191">      sumNumCount =</span>
+<span class="nc" id="L192">          calProductNum(</span>
+<span class="nc" id="L193">              entity.getStockShipmentQty2(), entity.getMtoModeShipmentQty2(), sumNum, count);</span>
+<span class="nc" id="L194">      sumNumCount =</span>
+<span class="nc" id="L195">          calProductNum(</span>
+<span class="nc" id="L196">              entity.getStockShipmentQty3(),</span>
+<span class="nc" id="L197">              entity.getMtoModeShipmentQty3(),</span>
+<span class="nc" id="L198">              sumNumCount[INT_0],</span>
+<span class="nc" id="L199">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L200">      sumNumCount =</span>
+<span class="nc" id="L201">          calProductNum(</span>
+<span class="nc" id="L202">              entity.getStockShipmentQty4(),</span>
+<span class="nc" id="L203">              entity.getMtoModeShipmentQty4(),</span>
+<span class="nc" id="L204">              sumNumCount[INT_0],</span>
+<span class="nc" id="L205">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L206">      sumNumCount =</span>
+<span class="nc" id="L207">          calProductNum(</span>
+<span class="nc" id="L208">              entity.getStockShipmentQty5(),</span>
+<span class="nc" id="L209">              entity.getMtoModeShipmentQty5(),</span>
+<span class="nc" id="L210">              sumNumCount[INT_0],</span>
+<span class="nc" id="L211">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L212">      sumNumCount =</span>
+<span class="nc" id="L213">          calProductNum(</span>
+<span class="nc" id="L214">              entity.getStockShipmentQty6(),</span>
+<span class="nc" id="L215">              entity.getMtoModeShipmentQty6(),</span>
+<span class="nc" id="L216">              sumNumCount[INT_0],</span>
+<span class="nc" id="L217">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L218">      sumNumCount =</span>
+<span class="nc" id="L219">          calProductNum(</span>
+<span class="nc" id="L220">              entity.getStockShipmentQty7(),</span>
+<span class="nc" id="L221">              entity.getMtoModeShipmentQty7(),</span>
+<span class="nc" id="L222">              sumNumCount[INT_0],</span>
+<span class="nc" id="L223">              sumNumCount[INT_1]);</span>
+
+    } else {
+<span class="nc" id="L226">      sumNumCount =</span>
+<span class="nc" id="L227">          calProductNum(entity.getStockShipmentQty2(), BigDecimal.valueOf(INT_0), sumNum, count);</span>
+<span class="nc" id="L228">      sumNumCount =</span>
+<span class="nc" id="L229">          calProductNum(</span>
+<span class="nc" id="L230">              entity.getStockShipmentQty3(),</span>
+<span class="nc" id="L231">              BigDecimal.valueOf(INT_0),</span>
+<span class="nc" id="L232">              sumNumCount[INT_0],</span>
+<span class="nc" id="L233">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L234">      sumNumCount =</span>
+<span class="nc" id="L235">          calProductNum(</span>
+<span class="nc" id="L236">              entity.getStockShipmentQty4(),</span>
+<span class="nc" id="L237">              BigDecimal.valueOf(INT_0),</span>
+<span class="nc" id="L238">              sumNumCount[INT_0],</span>
+<span class="nc" id="L239">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L240">      sumNumCount =</span>
+<span class="nc" id="L241">          calProductNum(</span>
+<span class="nc" id="L242">              entity.getStockShipmentQty5(),</span>
+<span class="nc" id="L243">              BigDecimal.valueOf(INT_0),</span>
+<span class="nc" id="L244">              sumNumCount[INT_0],</span>
+<span class="nc" id="L245">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L246">      sumNumCount =</span>
+<span class="nc" id="L247">          calProductNum(</span>
+<span class="nc" id="L248">              entity.getStockShipmentQty6(),</span>
+<span class="nc" id="L249">              BigDecimal.valueOf(INT_0),</span>
+<span class="nc" id="L250">              sumNumCount[INT_0],</span>
+<span class="nc" id="L251">              sumNumCount[INT_1]);</span>
+<span class="nc" id="L252">      sumNumCount =</span>
+<span class="nc" id="L253">          calProductNum(</span>
+<span class="nc" id="L254">              entity.getStockShipmentQty7(),</span>
+<span class="nc" id="L255">              BigDecimal.valueOf(INT_0),</span>
+<span class="nc" id="L256">              sumNumCount[INT_0],</span>
+<span class="nc" id="L257">              sumNumCount[INT_1]);</span>
+    }
+<span class="nc bnc" id="L259" title="All 2 branches missed.">    if (sumNumCount[1].equals(BigDecimal.valueOf(INT_0))) {</span>
+<span class="nc" id="L260">      demandVal = BigDecimal.valueOf(INT_0);</span>
+    } else {
+<span class="nc" id="L262">      demandVal = sumNumCount[INT_0].divide(sumNumCount[INT_1], INT_2, RoundingMode.HALF_UP);</span>
+    }
+<span class="nc" id="L264">    return demandVal;</span>
+  }
+
+  /**
+   * 中間値算出.
+   *
+   * @param bd1 在庫出荷数１
+   * @param bd2 在庫出荷数２
+   * @param sumNum 集計数量
+   * @param count カウント
+   * @return 処理結果
+   */
+  public BigDecimal[] calProductNum(
+      BigDecimal bd1, BigDecimal bd2, BigDecimal sumNum, BigDecimal count) {
+
+    BigDecimal num;
+<span class="nc" id="L280">    num = bd1.add(bd2);</span>
+<span class="nc" id="L281">    BigDecimal[] sumNumCount = new BigDecimal[INT_2];</span>
+
+<span class="nc" id="L283">    sumNum = sumNum.add(num);</span>
+
+<span class="nc bnc" id="L285" title="All 2 branches missed.">    if (!num.equals(BigDecimal.valueOf(INT_0))) {</span>
+<span class="nc" id="L286">      count = count.add(BigDecimal.valueOf(INT_1));</span>
+    }
+
+<span class="nc" id="L289">    sumNumCount[INT_0] = sumNum;</span>
+<span class="nc" id="L290">    sumNumCount[INT_1] = count;</span>
+
+<span class="nc" id="L292">    return sumNumCount;</span>
+  }
+
+  /**
+   * 商品情報取得API（List）を呼出、商品マスタ取得を行う.
+   *
+   * @param context リクエスト共通
+   * @param demandPoolEntityList 需要予測リスト
+   * @return 処理結果
+   */
+  private List&lt;GetListProductInternalResponseV1Detail&gt; getProductInternalInfo(
+      RequestContext context, List&lt;DemandForecastWeeklyPoolEntity&gt; demandPoolEntityList)
+      throws BusinessException {
+
+    // リクエストの初期化
+<span class="nc" id="L307">    GetListProductInternalRequestV1 productRequest = new GetListProductInternalRequestV1();</span>
+<span class="nc" id="L308">    List&lt;GetListProductInternalRequestV1Detail&gt; productDetailList = new ArrayList&lt;&gt;();</span>
+    GetListProductInternalRequestV1Detail productRequestDetail;
+
+<span class="nc bnc" id="L311" title="All 2 branches missed.">    for (DemandForecastWeeklyPoolEntity demandPoolEntity : demandPoolEntityList) {</span>
+<span class="nc" id="L312">      productRequestDetail = new GetListProductInternalRequestV1Detail();</span>
+<span class="nc" id="L313">      productRequestDetail.setGinnerCode(demandPoolEntity.getGinnerCode());</span>
+<span class="nc" id="L314">      productDetailList.add(productRequestDetail);</span>
+<span class="nc" id="L315">    }</span>
+
+    // Request取得
+<span class="nc" id="L318">    productRequest.setGetListProductInternalRequestV1DetailList(productDetailList);</span>
+
+    // Response取得
+    GetListProductInternalResponseV1 productResponse;
+    try {
+      // 商品情報取得API（List）を呼出、商品マスタ取得を行う。
+<span class="nc" id="L324">      productResponse = productInternalClient.getListProductrInternalV1(context, productRequest);</span>
+<span class="nc" id="L325">    } catch (Exception e) {</span>
+<span class="nc" id="L326">      log.info(DEFAULT_CREATE_FORECAST_DATA_ERROR);</span>
+<span class="nc" id="L327">      messageLogger.log(messageSource, ReplenishStockMessages.BIRBO190004E, e);</span>
+<span class="nc" id="L328">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO190004E, e);</span>
+<span class="nc" id="L329">    }</span>
+
+<span class="nc bnc" id="L331" title="All 2 branches missed.">    if (CollectionUtils.isEmpty(productResponse.getGetListProductInternalResponseV1DetailList())) {</span>
+<span class="nc" id="L332">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO190004E, null);</span>
+    }
+
+<span class="nc" id="L335">    return productResponse.getGetListProductInternalResponseV1DetailList();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

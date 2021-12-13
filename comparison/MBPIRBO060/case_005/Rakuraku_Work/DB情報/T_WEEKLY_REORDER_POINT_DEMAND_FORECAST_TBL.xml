@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="subsidiary_code" comment="現法コード"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="ginner_code" comment="統合インナーコード"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="plant_code" comment="置場コード"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="demand_forecast_qty" comment="需要予測数量"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_date_time" comment="登録日時"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_program" comment="登録プログラム"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_date_time" comment="更新日時"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_program" comment="更新プログラム"/>
+  <T_WEEKLY_REORDER_POINT_DEMAND_FORECASTColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

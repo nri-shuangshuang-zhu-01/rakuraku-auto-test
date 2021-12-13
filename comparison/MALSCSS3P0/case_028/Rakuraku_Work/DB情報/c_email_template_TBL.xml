@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <c_email_templateColName field="subsidiary_code" comment="現法コード"/>
+  <c_email_templateColName field="email_send_unit_code" comment="メール送信単位コード"/>
+  <c_email_templateColName field="email_function_code" comment="メール機能コード"/>
+  <c_email_templateColName field="language_code" comment="言語コード:言語マスタに登録されている言語コード"/>
+  <c_email_templateColName field="email_template_code" comment="メールテンプレートコード"/>
+  <c_email_templateColName field="report_template_name" comment="帳票テンプレート名"/>
+  <c_email_templateColName field="email_from" comment="メールFROM"/>
+  <c_email_templateColName field="attachment_flag" comment="添付フラグ:0：添付不要　１：添付要"/>
+  <c_email_templateColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <c_email_templateColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <c_email_templateColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_email_templateColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <c_email_templateColName field="register_date_time" comment="登録日時"/>
+  <c_email_templateColName field="register_program" comment="登録プログラム"/>
+  <c_email_templateColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <c_email_templateColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_email_templateColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <c_email_templateColName field="update_date_time" comment="更新日時"/>
+  <c_email_templateColName field="update_program" comment="更新プログラム"/>
+  <c_email_templateColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="subsidiary_code" comment="現法コード"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="ginner_code" comment="統合インナーコード"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="plant_code" comment="置場コード"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty1" comment="在庫出荷数（１）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty1" comment="製作品扱い出荷数（１）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty2" comment="在庫出荷数（２）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty2" comment="製作品扱い出荷数（２）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty3" comment="在庫出荷数（３）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty3" comment="製作品扱い出荷数（３）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty4" comment="在庫出荷数（４）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty4" comment="製作品扱い出荷数（４）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty5" comment="在庫出荷数（５）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty5" comment="製作品扱い出荷数（５）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty6" comment="在庫出荷数（６）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty6" comment="製作品扱い出荷数（６）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty7" comment="在庫出荷数（７）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty7" comment="製作品扱い出荷数（７）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty8" comment="在庫出荷数（８）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty8" comment="製作品扱い出荷数（８）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty9" comment="在庫出荷数（９）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty9" comment="製作品扱い出荷数（９）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty10" comment="在庫出荷数（１０）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty10" comment="製作品扱い出荷数（１０）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty11" comment="在庫出荷数（１１）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty11" comment="製作品扱い出荷数（１１）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="stock_shipment_qty12" comment="在庫出荷数（１２）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="mto_mode_shipment_qty12" comment="製作品扱い出荷数（１２）"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="register_date_time" comment="登録日時"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="register_program" comment="登録プログラム"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="update_date_time" comment="更新日時"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="update_program" comment="更新プログラム"/>
+  <T_SHIPMENT_ACTUAL_POOL_DATA_FOR_12MONTHSColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

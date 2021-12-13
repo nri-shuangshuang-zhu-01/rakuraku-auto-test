@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry_detail subsidiary_code='JPN' inquiry_id='2' inquiry_line_number='1' lead_time_product_inquiry_id='999999' remind_flag='1' customer_item_reference='tLctqLtUwKnhbiHgocNNasadafafasasass' brand_code='1234' brand_name='5678' product_code='NyIIybKVFBhtMpuNkURX' shipment_method_code='12' stork_code='34' bulk_partial_delivery_type='1' sales_unit_price='12345678901.000' send_type='1' qty='1234567' inquiry_content='問合せ内容' sales_unit_price_including_tax='12345678901.000' sales_unit_price_ccy_code='123' update_count='0' delete_flag='0' register_user_type='Office' register_user='user' register_date_time='2021-08-28 08:00:00' register_program='MASRQ01310' register_client_program='MASRQ01310' update_user_type='Office' update_user='user' update_date_time='2021-08-28 08:00:00' update_program='MASRQ01310' update_client_program='MASRQ01310' />
+</dataset>

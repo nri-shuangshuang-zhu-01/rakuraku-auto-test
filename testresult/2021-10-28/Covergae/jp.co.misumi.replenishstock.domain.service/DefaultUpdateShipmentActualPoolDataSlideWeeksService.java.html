@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultUpdateShipmentActualPoolDataSlideWeeksService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultUpdateShipmentActualPoolDataSlideWeeksService.java</span></div><h1>DefaultUpdateShipmentActualPoolDataSlideWeeksService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualPoolDataForFifTwoWeeksRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.MessageSource;
+
+@RequiredArgsConstructor
+@Named
+public class DefaultUpdateShipmentActualPoolDataSlideWeeksService
+    implements UpdateShipmentActualPoolDataSlideWeeksService {
+
+  private final ShipmentActualPoolDataForFifTwoWeeksRepository shipmentFifTwoWeeksRepository;
+
+<span class="fc" id="L22">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L23">      MessageLoggerFactory.getLogger(DefaultUpdateShipmentActualPoolDataSlideWeeksService.class);</span>
+
+  private final MessageSource messageSource;
+
+  private final Log log =
+      LogFactory.getLog(DefaultUpdateShipmentActualPoolDataSlideWeeksService.class);
+
+  /**
+   * 週次発注点計算での「出荷実績POOLデータ（52週分）」の在庫出荷数、製作品出荷数をスライド更新する.
+   *
+   * @param context リクエスト共通
+   * @param operationDate 運用日付
+   * @param subsidiaryCode 現法コード
+   * @return 処理結果
+   */
+  @Override
+  public boolean slide(RequestContext context, String operationDate, String subsidiaryCode)
+      throws BusinessException {
+
+<span class="nc" id="L42">    log.info(&quot;週次・週次POOLデータ実績スライド処理が開始しました&quot;);</span>
+
+    Integer updateResult;
+    try {
+      // 出荷実績ＰＯＯＬデータ（52週分）のスライド更新
+<span class="nc" id="L47">      updateResult = shipmentFifTwoWeeksRepository.saveBySubsidiaryCode(context, subsidiaryCode);</span>
+<span class="nc" id="L48">    } catch (Exception e) {</span>
+      // エラーログ出力
+<span class="nc" id="L50">      messageLogger.log(messageSource, ReplenishStockMessages.BIRBO130002E, null);</span>
+<span class="nc" id="L51">      log.info(&quot;週次・週次POOLデータ実績スライド処理が異常終了しました&quot;);</span>
+<span class="nc" id="L52">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO130002E, e);</span>
+<span class="nc" id="L53">    }</span>
+    // 終了ログ出力
+<span class="nc" id="L55">    messageLogger.log(messageSource, ReplenishStockMessages.BIRBO130003I, null, updateResult);</span>
+<span class="nc" id="L56">    log.info(&quot;週次・週次POOLデータ実績スライド処理が正常終了しました&quot;);</span>
+<span class="nc" id="L57">    return true;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

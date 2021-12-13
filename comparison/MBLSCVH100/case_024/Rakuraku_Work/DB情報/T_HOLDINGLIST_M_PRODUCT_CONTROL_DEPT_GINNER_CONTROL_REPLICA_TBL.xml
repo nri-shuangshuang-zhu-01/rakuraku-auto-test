@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="subsidiary_code"/>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="ginner_code"/>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="effective_start_date"/>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="product_control_department_code"/>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="data_hub_updated_flag"/>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="register_system_date_time"/>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="update_system_date_time"/>
+  <T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICAColName field="update_program"/>
+</dataset>

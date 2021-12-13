@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: file-upload-container
+  version: '1.0'
+  description: 'misumi-fwの[ファイルアップロードコンテナ](https://github.com/misumi-org/misumi-fw/tree/develop/misumi-fw-rest-api-file-upload-server)が提供するファイルアップロードAPIの定義'
+  contact: {}
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /v1/file/upload:
+    post:
+      tags:
+        - file
+      summary: ''
+      operationId: uploadFileV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUploadResponseV1'
+              examples:
+                'MBSAR10010_1':
+                  value:
+                    temporaryFileId: dfa1af91nba8+++a548e026095fde68fddf44d361367a87
+          headers: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: common-spec.yaml#/components/schemas/Error1
+              examples:
+                N0000034001E:
+                  value:
+                    $ref: examples/N0000034001E.json
+                N0000034002E:
+                  value:
+                    $ref: examples/N0000034002E.json
+                N0000000004E:
+                  value:
+                    $ref: examples/N0000000004E.json
+                N0000000006E:
+                  value:
+                    $ref: examples/N0000000006E.json
+                N0000000007E:
+                  value:
+                    $ref: examples/N0000000007E.json
+                N0000000008E:
+                  value:
+                    $ref: examples/N0000000008E.json
+                N00000S0009E:
+                  value:
+                    $ref: examples/N0000000009E.json
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+              format: binary
+            examples:
+              '1':
+                value: string
+      description: |-
+        【標準化提供】ファイルアップロードコンテナのアップロードパスの定義
+        ファイルアップロードは`multipart/form-data`形式で受け付ける。
+
+        misumi-fwの[ファイルアップロードコンテナ](https://github.com/misumi-org/misumi-fw/tree/develop/misumi-fw-rest-api-file-upload-server)から返却されるエラーコードとメッセージは各Path定義の`example`に記載
+      parameters:
+        - $ref: common-spec.yaml#/components/parameters/x-datadog-trace-id
+components:
+  schemas:
+    FileUploadResponseV1:
+      title: FileUploadResponseV1
+      type: object
+      description: ファイルアップロード時のレスポンス
+      x-examples:
+        example:
+          temporaryFileId: dfa1af91nba8+++a548e026095fde68fddf44d361367a87
+      properties:
+        temporaryFileId:
+          type: string
+          description: 一時ファイルID
+  examples: {}
+  parameters: {}
+tags:
+  - name: file

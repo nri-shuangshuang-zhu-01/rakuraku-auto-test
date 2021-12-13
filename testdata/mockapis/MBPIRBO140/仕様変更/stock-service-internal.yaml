@@ -1,0 +1,300 @@
+openapi: 3.0.0
+info:
+  title: stock-service-internal
+  version: '1.0'
+  description: 在庫状況サービス用の Public API です。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000/stock'
+paths:
+  /internal/v1/stock-setting/get:
+    get:
+      summary: 在庫設定情報取得API
+      tags:
+        - StockSettingInternal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/GetStockSettingInternalResponseV1'
+              examples:
+                example-1:
+                  value:
+                    recordCount: 1
+                    stockSettingInternalV1:
+                      subsidiaryCode: JPN
+                      ginnerCode: '18824080010'
+                      plantCode: '1234'
+                      poQty: 2
+                      idealPoQty: 2
+                      automaticPoType: '1'
+                      contractPoQty: 2
+                      rank: '0'
+                      reorderPoint: 0
+                      previousReorderPoint: 0
+                      warningQty: 0
+                      minWarningQty: 0
+                      variationCoefficient: 1234
+                example-2:
+                  value:
+                    recordCount: 1
+                    stockSettingInternalV1:
+                      subsidiaryCode: JPN
+                      ginnerCode: '18824080010'
+                      plantCode: '1111'
+                      poQty: 2
+                      idealPoQty: 2
+                      automaticPoType: '1'
+                      contractPoQty: 2
+                      rank: '0'
+                      reorderPoint: 0
+                      previousReorderPoint: 0
+                      warningQty: 0
+                      minWarningQty: 0
+                      variationCoefficient: 1234
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getStockSettingInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          在庫設定マスタ M_STOCK_SETTING
+      parameters:
+        - schema:
+            type: string
+            minLength: 14
+            maxLength: 14
+          in: query
+          name: ginner_code
+          description: 統合インナーコード
+          required: true
+        - schema:
+            type: string
+            maxLength: 4
+            minLength: 4
+          in: query
+          name: plant_code
+          description: 置場コード
+          required: true
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/stock-setting/search:
+    parameters: []
+    get:
+      summary: 在庫設定情報検索API
+      operationId: searchStockSettingInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchStockSettingInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    stockSettingInternalV1List:
+                      - subsidiaryCode: JPN
+                        ginnerCode: '18824080010'
+                        plantCode: '1234'
+                        poQty: 2
+                        IdealPoQty: 2
+                        automaticPoType: '1'
+                        contractPoQty: 2
+                        rank: '1'
+                        reorderPoint: 3
+                        previousReorderPoint: 4
+                        warningQty: 5
+                        minWarningQty: 6
+                        variationCoefficient: '7.1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          在庫設定マスタ M_STOCK_SETTING
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 14
+            minLength: 14
+          in: query
+          name: ginner_code
+          description: 統合インナーコード
+        - schema:
+            type: string
+            maxLength: 4
+            minLength: 4
+          in: query
+          name: plant_code
+          description: 置場コード
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - StockSettingInternal
+      x-channel:
+        - internal
+components:
+  schemas:
+    GetStockSettingInternalResponseV1:
+      title: GetStockSettingInternalResponseV1
+      type: object
+      description: 在庫設定情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        stockSettingInternalV1:
+          $ref: '#/components/schemas/StockSettingInternalV1'
+      required:
+        - recordCount
+    StockSettingInternalV1:
+      title: StockSettingInternalV1
+      type: object
+      description: 在庫設定情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        ginnerCode:
+          type: string
+          description: 統合インナーコード
+        plantCode:
+          type: string
+          description: 置場コード
+        poQty:
+          description: 発注数
+          type: integer
+        idealPoQty:
+          type: integer
+          description: 最適発注数
+        automaticPoType:
+          type: string
+          description: 自動発注区分
+        contractPoQty:
+          type: integer
+          description: 契約発注数量
+        rank:
+          type: string
+          description: ランク
+        reorderPoint:
+          type: integer
+          description: 発注点
+        previousReorderPoint:
+          type: integer
+          description: 前回発注点
+        warningQty:
+          type: integer
+          description: 警告数
+        minWarningQty:
+          type: integer
+          description: 最低警告数
+        variationCoefficient:
+          type: string
+          description: 変動係数
+          format: number
+      required:
+        - subsidiaryCode
+        - ginnerCode
+        - plantCode
+    SearchStockSettingInternalResponseV1:
+      title: SearchStockSettingInternalResponseV1
+      type: object
+      description: 在庫設定情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        stockSettingInternalV1List:
+          type: array
+          description: 在庫設定情報リスト
+          items:
+            $ref: '#/components/schemas/StockSettingInternalV1'
+      required:
+        - recordCount
+  responses:
+    ErrorResponse:
+      description: Bad Request
+      content:
+        application/json;charset=utf-8:
+          schema:
+            $ref: ../../common-spec/common-spec.yaml#/components/schemas/Error1
+          examples:
+            '@Example':
+              value:
+                target: ''
+                code: SYS00003
+                argumentList: []
+                message: Constraint violation
+                detailList:
+                  - target: supplierCode
+                    code: SYS03113
+                    argumentList: []
+                    message: supplierCodemust be between 4 and 4
+                    detailList: []
+                  - target: companyName
+                    code: SYS03113
+                    argumentList: []
+                    message: companyName must be between 1 and 50
+                    detailList: []
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 1
+      description: ソート順
+tags:
+  - name: StockSettingInternal

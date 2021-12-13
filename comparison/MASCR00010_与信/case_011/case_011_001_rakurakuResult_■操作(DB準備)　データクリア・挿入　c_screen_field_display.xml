@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <c_screen_field_display control_seq_number='1123456710' subsidiary_code='JPN' language_code='JPN' general_purpose_key1='001' general_purpose_key2='002' general_purpose_key3='003' general_purpose_key4='004' general_purpose_key5='555' code_value_reference1='ハハハハハハハハハ' code_value_reference2='ありがとうございます' code_value_reference3='エンジニアリング' code_value_reference4='打ち合わせ' code_value_reference5='お願いいたします' display_order='10' update_count='0' delete_flag='0' register_user_type='Internal' register_user='SHICHANGYUAN' register_date_time='2021-09-06' register_program='MALSCCM1R0' register_client_program='MALSCCM1R0' update_user_type='Internal' update_user='shichangyuan' update_time='2021-09-06' update_program='MALSCCM1R0' update_client_program='MALSCCM1R0' />
+</dataset>

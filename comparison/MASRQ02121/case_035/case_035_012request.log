@@ -1,0 +1,10 @@
+http://localhost:4014/supplier/v1/supplier-user/search?supplier_user_id=GUEST
+http://localhost:4010/internal/v1/supplier/get?supplier_code=A001
+http://localhost:4013/internal/v1/customer/get?customer_code=awer57
+http://localhost:4013/internal/v1/ship-to/get?customer_code=awer57&ship_to_code=tyrt68
+http://localhost:4010/internal/v1/brand/get?brand_code=2214
+http://localhost:4012/internal/v1/plant/get?plant_code=1005
+http://localhost:4010/internal/v1/supplier/get?supplier_code=A005
+http://localhost:4010/internal/v1/supplier/get?supplier_code=a003
+http://localhost:4010/internal/v1/supplier/get?supplier_code=a003
+http://localhost:4010/internal/v1/supplier/get?supplier_code=asd2

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AsyncConsumerTestConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.async</a> &gt; <span class="el_source">AsyncConsumerTestConfiguration.java</span></div><h1>AsyncConsumerTestConfiguration.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.async;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jp.co.misumi.fw.async.api.consumer.exceptionhandler.ExceptionHandler;
+import jp.co.misumi.fw.async.api.consumer.listener.domain.TaskListenerRepository;
+import jp.co.misumi.fw.async.api.consumer.testing.consumer.JmsMockAsyncConsumer;
+import jp.co.misumi.fw.async.api.consumer.testing.consumer.MockAsyncConsumer;
+import jp.co.misumi.fw.common.security.auth.misumi.MisumiPreAuthenticatedUserDetailsService;
+import jp.co.misumi.fw.core.locale.LocaleAdapter;
+import jp.co.misumi.fw.core.logging.ExceptionLogger;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
+import org.springframework.security.access.AccessDecisionManager;
+
+@TestConfiguration
+<span class="nc" id="L19">public class AsyncConsumerTestConfiguration {</span>
+  @Bean
+  MockAsyncConsumer mockAsyncConsumer(
+      MessageSource messageSource,
+      ObjectMapper objectMapper,
+      TaskListenerRepository taskListenerRepository,
+      @Qualifier(&quot;taskHandlerMethodFactory&quot;)
+          MessageHandlerMethodFactory messageHandlerMethodFactory,
+      ExceptionHandler exceptionHandler,
+      ExceptionLogger exceptionLogger,
+      LocaleAdapter localeAdapter,
+      MisumiPreAuthenticatedUserDetailsService misumiPreAuthenticatedUserDetailsService,
+      AccessDecisionManager accessDecisionManager) {
+<span class="nc" id="L32">    return new JmsMockAsyncConsumer(</span>
+        messageSource,
+        objectMapper,
+        taskListenerRepository,
+        messageHandlerMethodFactory,
+        exceptionHandler,
+        exceptionLogger,
+        localeAdapter,
+        misumiPreAuthenticatedUserDetailsService,
+        accessDecisionManager);
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

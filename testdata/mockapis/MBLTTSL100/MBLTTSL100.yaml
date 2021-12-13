@@ -1,0 +1,430 @@
+openapi: 3.0.0
+info:
+  title: API-088
+  version: '1.0'
+  description: 社内移動照会用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/transfer/search-and-download:
+    post:
+      summary: 社内移動_参照ダウンロードAPI
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchandDownloadTransferInfoListV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchAndDownloadTransferV1
+      description: 社内移動データの各マスタ情報(商品マスタ、ＭＣ置場マスタ、仕入先マスタ、商品別仕入先マスタ)および、出荷不可、社内移動情報を参照とＤＬする
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchandDownloadTransferRequestV1'
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      tags:
+        - Transfer
+    parameters: []
+components:
+  schemas:
+    SearchandDownloadTransferRequestV1:
+      title: SearchandDownloadTransferRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        downloadFlag:
+          type: string
+          description: ダウンロードフラグ
+          maxLength: 1
+        marketCode:
+          type: string
+          description: 市場コード
+          maxLength: 2
+        shipmentPlantCode:
+          type: string
+          description: 出荷置場コード
+          maxLength: 4
+        arrivalPlantCode:
+          type: string
+          description: 入荷置場コード
+          maxLength: 4
+        maxCount:
+          description: 参照最大件数
+          type: integer
+        globalNumberList:
+          type: array
+          description: グローバル番号リスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferGlobalNumberListV1'
+        transferVoucherNumberList:
+          type: array
+          description: 社内移動伝票番号リスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferVoucherNumberListV1'
+        registerTimeFrom:
+          type: string
+          description: 登録日(From)
+          format: date
+        registerTimeTo:
+          type: string
+          description: 登録日(To)
+          format: date
+        productCodeList:
+          type: array
+          description: 商品コードリスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferProductCodeListV1'
+        brandCodeList:
+          type: array
+          description: ブランドコードリスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferBrandCodeListV1'
+        vsdFrom:
+          type: string
+          description: 出荷予定日(VSD)(From)
+          format: date
+        vsdTo:
+          type: string
+          description: 出荷予定日(VSD)(To)
+          format: date
+        vrdFrom:
+          type: string
+          description: 入荷予定日(VRD)(From)
+          format: date
+        vrdTo:
+          type: string
+          description: 入荷予定日(VRD)(To)
+          format: date
+        status:
+          type: string
+          description: 状態
+        gInnerCodeList:
+          type: array
+          description: 統合インナーコードリスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferInnerCodeListV1'
+        analysisCodeList:
+          type: array
+          description: 分析コードリスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferAnalysisCodeListV1'
+        arrivalPerformanceDateFrom:
+          type: string
+          description: 入荷実績日(FROM)
+          format: date
+        arrivalPerformanceDateTo:
+          type: string
+          description: 入荷実績日(TO)
+          format: date
+        productControlDepartmentCodeList:
+          type: array
+          description: 商品所管部門コードリスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferProductControlDepartmentCodeListV1'
+        reorderCalculateTarget:
+          type: string
+          description: 発注点計算対象
+          maxLength: 7
+        registerUserIdList:
+          type: array
+          description: 登録者リスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferRegisterUserListV1'
+        updateUserIdList:
+          type: array
+          description: 更新者リスト
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferUpdateUserListV1'
+      required:
+        - subsidiaryCode
+        - marketCode
+    SearchandDownloadTransferGlobalNumberListV1:
+      title: SearchandDownloadTransferGlobalNumberListV1
+      type: object
+      description: グローバル番号リスト
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+    SearchandDownloadTransferVoucherNumberListV1:
+      title: SearchandDownloadTransferVoucherNumberListV1
+      type: object
+      description: 社内移動伝票番号リスト
+      properties:
+        transferVoucherNumber:
+          type: string
+          description: 社内移動伝票番号
+          maxLength: 6
+    SearchandDownloadTransferProductCodeListV1:
+      title: SearchandDownloadTransferProductCodeListV1
+      type: object
+      description: 商品コードリスト
+      properties:
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+    SearchandDownloadTransferBrandCodeListV1:
+      title: SearchandDownloadTransferBrandCodeListV1
+      type: object
+      description: ブランドコードリスト
+      properties:
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+    SearchandDownloadTransferInnerCodeListV1:
+      title: SearchandDownloadTransferInnerCodeListV1
+      type: object
+      description: インナーコードリスト
+      properties:
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+    SearchandDownloadTransferAnalysisCodeListV1:
+      title: SearchandDownloadTransferAnalysisCodeListV1
+      type: object
+      description: 分析コードリスト
+      properties:
+        analysisCode:
+          type: string
+          description: 分析コード
+          maxLength: 8
+    SearchandDownloadTransferProductControlDepartmentCodeListV1:
+      title: SearchandDownloadTransferProductControlDepartmentCodeListV1
+      type: object
+      description: 商品所管部門コードリスト
+      properties:
+        productControlDepartmentCode:
+          type: string
+          description: 商品管轄部門コード
+          maxLength: 6
+    SearchandDownloadTransferRegisterUserListV1:
+      title: SearchandDownloadTransferRegisterUserListV1
+      type: object
+      description: 登録者リスト
+      properties:
+        registerUser:
+          type: string
+          description: 登録者
+          maxLength: 6
+    SearchandDownloadTransferUpdateUserListV1:
+      title: SearchandDownloadTransferUpdateUserListV1
+      type: object
+      description: 更新者リスト
+      properties:
+        updateName:
+          type: string
+          description: 更新者
+          maxLength: 6
+    SearchandDownloadTransferResponseV1:
+      title: SearchandDownloadTransferResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        transferVoucherNumber:
+          type: string
+          description: 社内移動伝票番号
+          maxLength: 6
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        shipmentPlantCode:
+          type: string
+          description: 出荷置場コード
+          maxLength: 4
+        shipmentStorageLocationCode:
+          type: string
+          maxLength: 4
+          description: 出荷保管場所コード
+        arrivalPlantCode:
+          type: string
+          description: 入荷置場コード
+          maxLength: 4
+        arrivalStorageLocationCode:
+          type: string
+          maxLength: 4
+          description: 入荷保管場所コード
+        marketCode:
+          type: string
+          description: 市場コード
+          maxLength: 2
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 11
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        nativeBrandName:
+          type: string
+          description: ブランド名称(現地語)
+          maxLength: 200
+        brandName:
+          type: string
+          description: 'ブランド名称(英語) '
+          maxLength: 15
+        quantity:
+          type: integer
+          description: 数量
+        registerDate:
+          type: string
+          description: 登録日
+          format: date
+        shipmentScheduledDate:
+          type: string
+          description: 出荷予定日
+          format: date
+        arrivalScheduledDate:
+          type: string
+          description: 入荷予定日
+          format: date
+        arrivalPerformanceDate:
+          type: string
+          description: 入荷実績日
+          format: date
+        status:
+          type: string
+          description: 状態
+          maxLength: 1
+        reorderCalculateTarget:
+          type: string
+          description: 発注点計算対象
+          maxLength: 1
+        analysisCode:
+          type: string
+          description: 分析コード
+          maxLength: 8
+        productControlDepartmentCode:
+          type: string
+          description: 商品所管部門コード
+          maxLength: 6
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        supplierName:
+          type: string
+          description: 仕入先名称
+        registerUser:
+          type: string
+          description: 登録者
+          maxLength: 6
+        updateDate:
+          type: string
+          description: 更新日
+          format: date
+        updateName:
+          type: string
+          description: 更新者
+          maxLength: 6
+        shipmentPlantName:
+          type: string
+          maxLength: 45
+          description: 出荷置場名
+        shipmentStorageLocationName:
+          type: string
+          maxLength: 45
+          description: 出荷保管場所名
+        arrivalPlantName:
+          type: string
+          maxLength: 45
+          description: 入荷置場名
+        arrivalStorageLocationName:
+          type: string
+          maxLength: 45
+          description: 入荷保管場所名
+        marketName:
+          type: string
+          description: 市場名
+        statusName:
+          type: string
+          description: 状態名
+      required:
+        - subsidiaryCode
+        - transferVoucherNumber
+        - globalNumber
+        - shipmentPlantCode
+        - shipmentStorageLocationCode
+        - arrivalPlantCode
+        - arrivalStorageLocationCode
+        - marketCode
+        - gInnerCode
+        - productCode
+        - brandCode
+        - nativeBrandName
+        - brandName
+        - quantity
+        - registerDate
+        - shipmentScheduledDate
+        - arrivalScheduledDate
+        - arrivalPerformanceDate
+        - status
+        - reorderCalculateTarget
+        - analysisCode
+        - productControlDepartmentCode
+        - supplierCode
+        - supplierName
+        - registerUser
+        - updateDate
+        - updateName
+        - shipmentPlantName
+        - shipmentStorageLocationName
+        - arrivalPlantName
+        - arrivalStorageLocationName
+        - marketName
+        - statusName
+    SearchandDownloadTransferInfoListV1:
+      title: SearchandDownloadTransferInfoListV1
+      type: object
+      properties:
+        resultCount:
+          type: integer
+          description: 取得件数
+        transferInformationList:
+          type: array
+          description: 社内移動情報リスト
+          items:
+            $ref: '#/components/schemas/SearchandDownloadTransferResponseV1'
+      required:
+        - resultCount
+        - transferInformationList
+  parameters: {}
+tags:
+  - name: Transfer

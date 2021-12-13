@@ -1,0 +1,10 @@
+{
+  "reprintList": [
+    {
+      "reprintId": "1234567890",
+      "outputType": "1",
+      "outputStatus": "1",
+      "reprintCount": "1"
+    }
+  ]
+}

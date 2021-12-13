@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="CHN" plant_code="1001" ginner_code="12345600000001" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:01.0" update_system_date_time="2021-06-30 11:20:01.0" update_program="JOB101"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="CHN" plant_code="1003" ginner_code="12345600000003" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:02.0" update_system_date_time="2021-06-30 11:20:02.0" update_program="JOB102"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="CHN" plant_code="1004" ginner_code="12345600000004" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:03.0" update_system_date_time="2021-06-30 11:20:03.0" update_program="JOB103"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="CHN" plant_code="1002" ginner_code="12345600000002" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:04.0" update_system_date_time="2021-06-30 11:20:04.0" update_program="JOB104"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="CHN" plant_code="1002" ginner_code="12345600000001" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:05.0" update_system_date_time="2021-06-30 11:20:05.0" update_program="JOB105"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="CHN" plant_code="1001" ginner_code="12345600000002" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:06.0" update_system_date_time="2021-06-30 11:20:06.0" update_program="JOB106"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="THA" plant_code="1004" ginner_code="12345600000004" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:07.0" update_system_date_time="2021-06-30 11:20:07.0" update_program="JOB107"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="TIW" plant_code="1005" ginner_code="12345600000005" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:08.0" update_system_date_time="2021-06-30 11:20:08.0" update_program="JOB108"/>
+  <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code="TIW" plant_code="1001" ginner_code="12345600000001" data_hub_updated_flag="1" register_system_date_time="2021-06-20 11:20:09.0" update_system_date_time="2021-06-30 11:20:09.0" update_program="JOB109"/>
+</dataset>

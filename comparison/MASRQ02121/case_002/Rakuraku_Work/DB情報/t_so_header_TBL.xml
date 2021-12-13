@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_so_headerColName field="subsidiary_code"/>
+  <t_so_headerColName field="lead_time_product_inquiry_id"/>
+  <t_so_headerColName field="customer_code"/>
+  <t_so_headerColName field="ship_to_code"/>
+  <t_so_headerColName field="orderer_department"/>
+  <t_so_headerColName field="order_pic_name"/>
+  <t_so_headerColName field="customer_delivery_pic_department"/>
+  <t_so_headerColName field="customer_delivery_pic_code"/>
+  <t_so_headerColName field="customer_delivery_pic_name"/>
+  <t_so_headerColName field="fax"/>
+  <t_so_headerColName field="customer_tax_free_type"/>
+  <t_so_headerColName field="payment_means"/>
+  <t_so_headerColName field="lead_time_complete_type"/>
+  <t_so_headerColName field="sales_unit_price_change_reason"/>
+  <t_so_headerColName field="bulk_partial_delivery_fix_type"/>
+  <t_so_headerColName field="total_amount"/>
+  <t_so_headerColName field="total_amount_including_tax"/>
+  <t_so_headerColName field="update_count"/>
+  <t_so_headerColName field="delete_flag"/>
+  <t_so_headerColName field="register_user_type"/>
+  <t_so_headerColName field="register_user"/>
+  <t_so_headerColName field="register_date_time"/>
+  <t_so_headerColName field="register_program"/>
+  <t_so_headerColName field="register_client_program"/>
+  <t_so_headerColName field="update_user_type"/>
+  <t_so_headerColName field="update_user"/>
+  <t_so_headerColName field="update_date_time"/>
+  <t_so_headerColName field="update_program"/>
+  <t_so_headerColName field="update_client_program"/>
+</dataset>

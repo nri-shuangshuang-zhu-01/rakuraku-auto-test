@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.product.internal.api</a> &gt; <span class="el_source">ProductInternalApi.java</span></div><h1>ProductInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.product.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.product.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.SearchProductInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:19.954741600+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.product.internal.api.ProductInternalApi&quot;)
+public class ProductInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L39">    public ProductInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L40">        this.apiClient = apiClient;</span>
+<span class="fc" id="L41">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L44">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L48">        this.apiClient = apiClient;</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * 商品情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。 商品マスタ M_PRODUCT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListProductInternalRequestV1 商品情報取得API（List）リクエスト電文 (required)
+     
+     * @return GetListProductInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetListProductInternalResponseV1 getListProductrInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListProductInternalRequestV1 getListProductInternalRequestV1) throws RestClientException {
+<span class="fc" id="L66">        return getListProductrInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, getListProductInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 商品情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。 商品マスタ M_PRODUCT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListProductInternalRequestV1 商品情報取得API（List）リクエスト電文 (required)
+     
+     * @return ResponseEntity&amp;lt;GetListProductInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetListProductInternalResponseV1&gt; getListProductrInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListProductInternalRequestV1 getListProductInternalRequestV1) throws RestClientException {
+<span class="fc" id="L84">        Object postBody = getListProductInternalRequestV1;</span>
+        
+        // verify the required parameter 'getListProductInternalRequestV1' is set
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        if (getListProductInternalRequestV1 == null) {</span>
+<span class="nc" id="L88">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'getListProductInternalRequestV1' when calling getListProductrInternalV1&quot;);</span>
+        }
+        
+<span class="fc" id="L91">        String path = apiClient.expandPath(&quot;/internal/v1/product/get-list&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="fc" id="L93">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="fc" id="L94">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="fc" id="L95">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="fc" id="L96">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="fc" id="L101">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L103">                    headerParams.add(k, null);</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">                } else if (v instanceof String) {</span>
+<span class="fc" id="L105">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="fc" id="L107">            });</span>
+        }
+
+<span class="fc" id="L110">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="fc" id="L113">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="fc" id="L114">        final String[] contentTypes = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="fc" id="L117">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="fc" id="L119">        String[] authNames = new String[] {  };</span>
+
+<span class="fc" id="L121">        ParameterizedTypeReference&lt;GetListProductInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetListProductInternalResponseV1&gt;() {};</span>
+<span class="fc" id="L122">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 商品情報取得API
+     * 商品データを取得するAPIです。 リクエストされた情報に商品情報を取得する。 商品マスタ M_PRODUCT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ginnerCode 統合インナーコード (required)
+     
+     * @return GetProductInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetProductInternalResponseV1 getProductInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ginnerCode) throws RestClientException {
+<span class="nc" id="L139">        return getProductInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, ginnerCode).getBody();</span>
+    }
+
+    /**
+     * 商品情報取得API
+     * 商品データを取得するAPIです。 リクエストされた情報に商品情報を取得する。 商品マスタ M_PRODUCT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ginnerCode 統合インナーコード (required)
+     
+     * @return ResponseEntity&amp;lt;GetProductInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetProductInternalResponseV1&gt; getProductInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ginnerCode) throws RestClientException {
+<span class="nc" id="L157">        Object postBody = null;</span>
+        
+        // verify the required parameter 'ginnerCode' is set
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        if (ginnerCode == null) {</span>
+<span class="nc" id="L161">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'ginnerCode' when calling getProductInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L164">        String path = apiClient.expandPath(&quot;/internal/v1/product/get&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L166">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L167">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L168">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L169">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L171">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;ginner_code&quot;, ginnerCode));</span>
+
+        
+
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L176">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L178">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L180">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L182">            });</span>
+        }
+
+<span class="nc" id="L185">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;, &quot;application/xml&quot;
+         };
+<span class="nc" id="L188">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L189">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L190">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L192">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L194">        ParameterizedTypeReference&lt;GetProductInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetProductInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L195">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 商品情報検索API
+     * 商品データを検索するAPIです。 リクエストされた情報に商品情報を検索する。 商品マスタ M_PRODUCT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ginnerCode 統合インナーコード (optional)
+     
+     * @param productCode 商品コード (optional)
+     
+     * @param brandCode ブランドコード (optional)
+     
+     * @param releasedFlag 発売済フラグ　※0：未発売　１：発売済　 (optional)
+     
+     * @param stockFlag 在庫品フラグ　※0：在庫しない  1：在庫品 (optional)
+     
+     * @param componentFlag 部材品フラグ　※0：部材親商品ではない、1：部材親商品 (optional)
+     
+     * @param reorderPointLogicFlag 発注点ロジックフラグ　※0：通常ロジック、1：新ロジック (optional)
+     
+     * @param soStopFlag 受注停止フラグ　※0：受注可能、　1：受注停止 (optional)
+     
+     * @param abolishedFlag 廃止済フラグ　※０：未廃止　１：廃止済 (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return SearchProductInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchProductInternalResponseV1 searchProductInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ginnerCode, String productCode, String brandCode, String releasedFlag, String stockFlag, String componentFlag, String reorderPointLogicFlag, String soStopFlag, String abolishedFlag, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="nc" id="L234">        return searchProductInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, ginnerCode, productCode, brandCode, releasedFlag, stockFlag, componentFlag, reorderPointLogicFlag, soStopFlag, abolishedFlag, offset, limit, sortby).getBody();</span>
+    }
+
+    /**
+     * 商品情報検索API
+     * 商品データを検索するAPIです。 リクエストされた情報に商品情報を検索する。 商品マスタ M_PRODUCT
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ginnerCode 統合インナーコード (optional)
+     
+     * @param productCode 商品コード (optional)
+     
+     * @param brandCode ブランドコード (optional)
+     
+     * @param releasedFlag 発売済フラグ　※0：未発売　１：発売済　 (optional)
+     
+     * @param stockFlag 在庫品フラグ　※0：在庫しない  1：在庫品 (optional)
+     
+     * @param componentFlag 部材品フラグ　※0：部材親商品ではない、1：部材親商品 (optional)
+     
+     * @param reorderPointLogicFlag 発注点ロジックフラグ　※0：通常ロジック、1：新ロジック (optional)
+     
+     * @param soStopFlag 受注停止フラグ　※0：受注可能、　1：受注停止 (optional)
+     
+     * @param abolishedFlag 廃止済フラグ　※０：未廃止　１：廃止済 (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchProductInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchProductInternalResponseV1&gt; searchProductInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ginnerCode, String productCode, String brandCode, String releasedFlag, String stockFlag, String componentFlag, String reorderPointLogicFlag, String soStopFlag, String abolishedFlag, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="nc" id="L274">        Object postBody = null;</span>
+        
+<span class="nc" id="L276">        String path = apiClient.expandPath(&quot;/internal/v1/product/search&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L278">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L279">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L280">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L281">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L283">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;ginner_code&quot;, ginnerCode));</span>
+<span class="nc" id="L284">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;product_code&quot;, productCode));</span>
+<span class="nc" id="L285">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;brand_code&quot;, brandCode));</span>
+<span class="nc" id="L286">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;released_flag&quot;, releasedFlag));</span>
+<span class="nc" id="L287">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;stock_flag&quot;, stockFlag));</span>
+<span class="nc" id="L288">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;component_flag&quot;, componentFlag));</span>
+<span class="nc" id="L289">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;reorder_point_logic_flag&quot;, reorderPointLogicFlag));</span>
+<span class="nc" id="L290">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;so_stop_flag&quot;, soStopFlag));</span>
+<span class="nc" id="L291">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;abolished_flag&quot;, abolishedFlag));</span>
+<span class="nc" id="L292">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;offset&quot;, offset));</span>
+<span class="nc" id="L293">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;limit&quot;, limit));</span>
+<span class="nc" id="L294">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;sortby&quot;, sortby));</span>
+
+        
+
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L299">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L301">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L303">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L305">            });</span>
+        }
+
+<span class="nc" id="L308">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;, &quot;application/xml&quot;
+         };
+<span class="nc" id="L311">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L312">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L313">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L315">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L317">        ParameterizedTypeReference&lt;SearchProductInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchProductInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L318">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RakurakuDBUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util</a> &gt; <span class="el_source">RakurakuDBUtils.java</span></div><h1>RakurakuDBUtils.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+import com.linkage.rakuraku.util.other.SortedTableExt;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
+import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseConfig;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.database.QueryDataSet;
+import org.dbunit.dataset.Column;
+import org.dbunit.dataset.DataSetException;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.ReplacementDataSet;
+import org.dbunit.dataset.filter.DefaultColumnFilter;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.ext.mssql.MsSqlConnection;
+import org.dbunit.ext.mysql.MySqlConnection;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+<span class="nc" id="L41">public class RakurakuDBUtils {</span>
+
+    private static Properties COMMON_PROPS;
+
+<span class="nc" id="L45">    protected static String testClassName = &quot;&quot;;</span>
+
+<span class="nc" id="L47">    public static String runTime = &quot;&quot;;</span>
+
+<span class="nc" id="L49">    public static String runUser = &quot;&quot;;</span>
+
+<span class="nc" id="L51">    public static Map&lt;String, Connection&gt; dbConnectionsMap = new HashMap&lt;String, Connection&gt;();</span>
+
+    /**
+     * ケースクラス初期化
+     *
+     * @param packageName
+     * @param testClassName
+     * @throws Exception
+     */
+    public static void initialize(String packageName, String testClassName) throws Exception {
+<span class="nc" id="L61">        RakurakuDBUtils.testClassName = testClassName;</span>
+<span class="nc" id="L62">        killOldProgress();</span>
+<span class="nc" id="L63">        runTime = RakurakuDateUtils.getNowDateOrTime(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (!&quot;ON&quot;.equals(COMMON_PROPS.get(&quot;DB_SWITCH&quot;))) {</span>
+<span class="nc" id="L65">            return;</span>
+        }
+
+        // **********************************************************
+        // initDbConn(&quot;&quot;);
+        // String getTimeSql = &quot;&quot;;
+        // if (&quot;ORACLE&quot;.equals(COMMON_PROPS.get(&quot;DB_TYPE&quot;))) {
+        // getTimeSql = &quot;SELECT SYSDATE NOWTIME FROM DUAL&quot;;
+        // } else if (&quot;MYSQL&quot;.equals(COMMON_PROPS.get(&quot;DB_TYPE&quot;))) {
+        // getTimeSql = &quot;SELECT NOW() NOWTIME&quot;;
+        // } else if (&quot;SQLSERVER&quot;.equals(COMMON_PROPS.get(&quot;DB_TYPE&quot;))) {
+        // getTimeSql = &quot;select GETDATE() NOWTIME&quot;;
+        // }
+        // Statement stmt = dbConnectionsMap.get(&quot;&quot;).createStatement();
+        // ResultSet rs = stmt.executeQuery(getTimeSql);
+        // rs.next();
+        // Date nowDt = rs.getTimestamp(&quot;NOWTIME&quot;);
+        // **********************************************************
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * Transactionコミット
+     */
+    public static void commit() {
+        try {
+<span class="nc" id="L90">            Set&lt;Entry&lt;String, Connection&gt;&gt; dbConnectionsSet = dbConnectionsMap.entrySet();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            for (Entry&lt;String, Connection&gt; dbConnection : dbConnectionsSet) {</span>
+<span class="nc" id="L92">                dbConnection.getValue().commit();</span>
+<span class="nc" id="L93">            }</span>
+<span class="nc" id="L94">        } catch (SQLException e) {</span>
+<span class="nc" id="L95">        }</span>
+<span class="nc" id="L96">    }</span>
+
+    /**
+     * Transaction閉じる
+     */
+    public static void release() {
+        try {
+<span class="nc" id="L103">            Set&lt;Entry&lt;String, Connection&gt;&gt; dbConnectionsSet = dbConnectionsMap.entrySet();</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            for (Entry&lt;String, Connection&gt; dbConnection : dbConnectionsSet) {</span>
+<span class="nc" id="L105">                dbConnection.getValue().close();</span>
+<span class="nc" id="L106">            }</span>
+<span class="nc" id="L107">        } catch (Exception e) {</span>
+<span class="nc" id="L108">        }</span>
+<span class="nc" id="L109">    }</span>
+
+    /**
+     * 操作(DB準備) CUD
+     *
+     * @param tableName
+     * @param opeType
+     * @param tableNo
+     * @throws Exception
+     */
+    @SuppressWarnings(&quot;deprecation&quot;)
+    public static void operateTable(String tableName, String opeType, String tableNo, RakurakuCaptureUtils guiCamera)
+            throws Exception {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (!&quot;ON&quot;.equals(COMMON_PROPS.get(&quot;DB_SWITCH&quot;))) {</span>
+<span class="nc" id="L123">            return;</span>
+        }
+        try {
+<span class="nc" id="L126">            String DBNum = StringUtils.substringBefore(StringUtils.substringAfter(tableName, &quot;[&quot;), &quot;]&quot;);</span>
+<span class="nc" id="L127">            String tName = StringUtils.substringBefore(tableName, &quot;[&quot;);</span>
+<span class="nc" id="L128">            IDatabaseConnection connection = getOperateFlatXmlConn(DBNum);</span>
+
+<span class="nc" id="L130">            String initDbFile = RakurakuFileUtils.getEachInputPath() + tableName + &quot;_&quot; + tableNo + &quot;.xml&quot;;</span>
+<span class="nc" id="L131">            outputTableDefineXml(connection, tName, DBNum);</span>
+<span class="nc" id="L132">            String outxmlName = &quot;■操作(DB準備)　&quot; + opeType + &quot;　&quot; + tName + &quot;.xml&quot;;</span>
+<span class="nc" id="L133">            String outXmlPath = guiCamera.getSeqNoPath() + &quot;_rakurakuResult_&quot; + outxmlName;</span>
+<span class="nc" id="L134">            FileUtils.copyFile(new File(initDbFile), new File(outXmlPath));</span>
+
+<span class="nc" id="L136">            RakurakuFileUtils.replaceVariableFromFile(outXmlPath);// XML変数変換</span>
+
+<span class="nc" id="L138">            IDataSet dataSet = new FlatXmlDataSet(new FileInputStream(outXmlPath));</span>
+<span class="nc" id="L139">            ReplacementDataSet rds = new ReplacementDataSet(dataSet);</span>
+<span class="nc" id="L140">            rds.addReplacementObject(&quot;null&quot;, null);</span>
+<span class="nc" id="L141">            connection.getConfig().setProperty(DatabaseConfig.FEATURE_ALLOW_EMPTY_FIELDS, true);</span>
+<span class="nc" id="L142">            connection.getConfig().setProperty(DatabaseConfig.FEATURE_CASE_SENSITIVE_TABLE_NAMES, false);</span>
+<span class="nc bnc" id="L143" title="All 8 branches missed.">            switch (opeType) {</span>
+                case &quot;データクリア・挿入&quot;:
+<span class="nc" id="L145">                    DatabaseOperation.CLEAN_INSERT.execute(connection, rds);</span>
+<span class="nc" id="L146">                    break;</span>
+                case &quot;データ挿入&quot;:
+<span class="nc" id="L148">                    DatabaseOperation.INSERT.execute(connection, rds);</span>
+<span class="nc" id="L149">                    break;</span>
+                case &quot;データ削除&quot;:
+<span class="nc" id="L151">                    DatabaseOperation.DELETE.execute(connection, rds);</span>
+<span class="nc" id="L152">                    break;</span>
+                case &quot;データ削除・挿入&quot;:
+<span class="nc" id="L154">                    DatabaseOperation.DELETE.execute(connection, rds);</span>
+<span class="nc" id="L155">                    DatabaseOperation.INSERT.execute(connection, rds);</span>
+<span class="nc" id="L156">                    break;</span>
+                case &quot;カスタマイズSQL&quot;:
+<span class="nc" id="L158">                    DatabaseOperation.DELETE_ALL.execute(connection, rds);</span>
+<span class="nc" id="L159">                    break;</span>
+                case &quot;DELETE_ALL&quot;:
+<span class="nc" id="L161">                  DatabaseOperation.DELETE_ALL.execute(connection, rds);</span>
+<span class="nc" id="L162">                    break;</span>
+                case &quot;シーケンス設定&quot;:
+<span class="nc" id="L164">                    resetSeq(tName, tableNo, DBNum);</span>
+                    break;
+            }
+<span class="nc" id="L167">        } catch (Exception e) {</span>
+<span class="nc" id="L168">            throw new DatabaseUnitException(e.getMessage(), e);</span>
+<span class="nc" id="L169">        }</span>
+<span class="nc" id="L170">    }</span>
+
+    /**
+     * 操作(DB確認) R
+     *
+     * @param tableName
+     * @param
+     * @param tableNo
+     * @param guiCamera
+     * @throws Exception
+     */
+    @SuppressWarnings(&quot;deprecation&quot;)
+    public static void confirmTable(String tableName, String sql, String tableNo,
+            RakurakuCaptureUtils guiCamera) throws Exception {
+//        String[] notAssertColumns = notAssertColumnsStr.split(&quot;,&quot;);
+<span class="nc" id="L185">    	String[] notAssertColumns = {};</span>
+
+<span class="nc" id="L187">        String DBNum = StringUtils.substringBefore(StringUtils.substringAfter(tableName, &quot;[&quot;), &quot;]&quot;);</span>
+<span class="nc" id="L188">        String tName = StringUtils.substringBefore(tableName, &quot;[&quot;);</span>
+
+<span class="nc" id="L190">        IDatabaseConnection connection = getOperateFlatXmlConn(DBNum);</span>
+<span class="nc" id="L191">        sql = &quot;SELECT * FROM &quot; + tName.toLowerCase();</span>
+<span class="nc" id="L192">        String outxmlName = &quot;■操作(DB確認)　&quot; + tName + &quot;.xml&quot;;</span>
+<span class="nc" id="L193">        String outXmlPath = guiCamera.getSeqNoPath() + &quot;_rakurakuResult_&quot; + outxmlName;</span>
+<span class="nc" id="L194">        QueryDataSet queryDataSet = outputTableDataXml(connection, tName, sql, outXmlPath);</span>
+<span class="nc" id="L195">        outputTableDefineXml(connection, tName, DBNum);</span>
+
+<span class="nc bnc" id="L197" title="All 4 branches missed.">        if (&quot;○&quot;.equals(tableNo) || &quot;〇&quot;.equals(tableNo)) {</span>
+<span class="nc" id="L198">            return;</span>
+        }
+
+        /* 実際テーブル */
+<span class="nc" id="L202">        ITable filtertable1 = DefaultColumnFilter.excludedColumnsTable(queryDataSet.getTable(tName), notAssertColumns);</span>
+
+        /* 予想テーブル */
+<span class="nc" id="L205">        String srcFile = RakurakuFileUtils.getEachInputPath() + tableName + &quot;_&quot; + tableNo + &quot;.xml&quot;;</span>
+<span class="nc" id="L206">        String tempXmlPath = RakurakuCore.eachEviPath + &quot;/Rakuraku_Work/DB情報/&quot; + tableName + &quot;_&quot; + tableNo + &quot;.xml&quot;;</span>
+<span class="nc" id="L207">        File file = new File(tempXmlPath);</span>
+<span class="nc" id="L208">        FileUtils.copyFile(new File(srcFile), file);</span>
+<span class="nc" id="L209">        RakurakuFileUtils.replaceVariableFromFile(tempXmlPath);</span>
+<span class="nc" id="L210">        IDataSet expectedDataSet = new FlatXmlDataSet(file);</span>
+<span class="nc" id="L211">        FileUtils.forceDelete(file);</span>
+<span class="nc" id="L212">        ITable expectedTable = expectedDataSet.getTable(tName);</span>
+<span class="nc" id="L213">        ITable filtertable2 = DefaultColumnFilter.excludedColumnsTable(expectedTable, notAssertColumns);</span>
+
+<span class="nc" id="L215">        Assert.assertEquals(&quot;テープル[&quot; + tName.toUpperCase() + &quot;]のレコード数&quot;, filtertable2.getRowCount(),</span>
+<span class="nc" id="L216">                filtertable1.getRowCount());</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (filtertable2.getRowCount() == 0) {</span>
+<span class="nc" id="L218">            return;</span>
+        }
+
+<span class="nc" id="L221">        Column[] primaryKeys = connection.createDataSet().getTableMetaData(tName).getPrimaryKeys();</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">        if (primaryKeys == null || primaryKeys.length == 0) {</span>
+<span class="nc" id="L223">            primaryKeys = filtertable2.getTableMetaData().getColumns();</span>
+        }
+
+<span class="nc" id="L226">        SortedTableExt tableActl = new SortedTableExt(queryDataSet.getTable(tName), primaryKeys);</span>
+<span class="nc" id="L227">        SortedTableExt tableExpt = new SortedTableExt(expectedTable, primaryKeys);</span>
+
+<span class="nc" id="L229">        int rowCount = filtertable1.getRowCount();</span>
+<span class="nc" id="L230">        Column[] column = filtertable1.getTableMetaData().getColumns();</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">        for (int irow = 0; irow &lt; rowCount; irow++) {</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            for (int icolumn = 0; icolumn &lt; column.length; icolumn++) {</span>
+                String columnValActl;
+<span class="nc" id="L234">                Object objValActl = tableActl.getValue(irow, column[icolumn].getColumnName());</span>
+<span class="nc bnc" id="L235" title="All 4 branches missed.">                if (objValActl != null &amp;&amp; objValActl.getClass().getName().equals(BigDecimal.class.getName())) {</span>
+<span class="nc" id="L236">                    columnValActl = ((BigDecimal) objValActl).toPlainString();</span>
+                } else {
+<span class="nc" id="L238">                    columnValActl = String.valueOf(objValActl);</span>
+                }
+<span class="nc" id="L240">                String columnValExpt = getFieldValue(tableExpt, irow, column[icolumn].getColumnName());</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">                if (columnValActl == null) {</span>
+<span class="nc" id="L242">                    columnValActl = &quot;null&quot;;</span>
+                }
+<span class="nc bnc" id="L244" title="All 2 branches missed.">                if (columnValExpt == null) {</span>
+<span class="nc" id="L245">                    columnValExpt = &quot;null&quot;;</span>
+                }
+<span class="nc" id="L247">                String errinfo = &quot;value (table=&quot; + tName + &quot;, row=&quot; + irow + &quot;, col=&quot; + column[icolumn].getColumnName()</span>
+                        + &quot;):&quot;;
+<span class="nc" id="L249">                Assert.assertEquals(errinfo, columnValExpt.replace(&quot;\r\n&quot;, &quot;&quot;), columnValActl.replace(&quot;\r\n&quot;, &quot;&quot;));</span>
+            }
+        }
+<span class="nc" id="L252">    }</span>
+
+    private static String getFieldValue(ITable filtertable, int rowNum, String columnName) {
+<span class="nc" id="L255">        String val = null;</span>
+        try {
+<span class="nc bnc" id="L257" title="All 2 branches missed.">            val = &quot;&quot;.equals(String.valueOf(filtertable.getValue(rowNum, columnName))) ? &quot;&quot;</span>
+<span class="nc" id="L258">                    : String.valueOf(filtertable.getValue(rowNum, columnName));</span>
+<span class="nc" id="L259">        } catch (DataSetException e) {</span>
+            // val = &quot;&quot;;
+<span class="nc" id="L261">        } catch (Exception e) {</span>
+            // val = &quot;&quot;;
+<span class="nc" id="L263">        }</span>
+<span class="nc" id="L264">        return val;</span>
+    }
+
+    /**
+     * FlatXML操作用connection取得
+     *
+     * @param DBNum
+     * @return
+     * @throws Exception
+     */
+    private static IDatabaseConnection getOperateFlatXmlConn(String DBNum) throws Exception {
+<span class="nc" id="L275">        IDatabaseConnection connection = null;</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if (&quot;ORACLE&quot;.equals(getProps().getProperty(&quot;DB_TYPE&quot; + DBNum))) {</span>
+<span class="nc" id="L277">            connection = new DatabaseConnection(getDbConn(DBNum), COMMON_PROPS.getProperty(&quot;DB_SCHEMA&quot; + DBNum));</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">        } else if (&quot;MYSQL&quot;.equals(getProps().getProperty(&quot;DB_TYPE&quot; + DBNum))) {</span>
+<span class="nc" id="L279">            connection = new MySqlConnection(getDbConn(DBNum), COMMON_PROPS.getProperty(&quot;DB_SCHEMA&quot; + DBNum));</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">        } else if (&quot;SQLSERVER&quot;.equals(getProps().getProperty(&quot;DB_TYPE&quot; + DBNum))) {</span>
+<span class="nc" id="L281">            connection = new MsSqlConnection(getDbConn(DBNum), COMMON_PROPS.getProperty(&quot;DB_SCHEMA&quot; + DBNum));</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">        }else if (&quot;postgresql&quot;.equals(getProps().getProperty(&quot;DB_TYPE&quot; + DBNum))) {</span>
+<span class="nc" id="L283">            connection = new MySqlConnection(getDbConn(DBNum), COMMON_PROPS.getProperty(&quot;DB_SCHEMA&quot; + DBNum));</span>
+        }
+<span class="nc" id="L285">        return connection;</span>
+    }
+
+    /**
+     * テーブル定義XML出力
+     *
+     * @param connection
+     * @param tName
+     * @param DBNum
+     * @throws Exception
+     */
+    private static void outputTableDefineXml(IDatabaseConnection connection, String tName, String DBNum)
+            throws Exception {
+<span class="nc" id="L298">        String TBLPath = RakurakuCore.eachEviPath + &quot;/Rakuraku_Work/DB情報/&quot;;</span>
+<span class="nc" id="L299">        File outFile = new File(TBLPath);</span>
+<span class="nc" id="L300">        outFile.mkdirs();</span>
+<span class="nc" id="L301">        QueryDataSet queryDataSet = new QueryDataSet(connection);</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        if (&quot;ORACLE&quot;.equals(COMMON_PROPS.get(&quot;DB_TYPE&quot;))) {</span>
+<span class="nc" id="L303">            queryDataSet.addTable(tName + DBNum + &quot;ColName&quot;,</span>
+                    &quot;SELECT COLUMN_NAME FIELD FROM USER_TAB_COLUMNS WHERE TABLE_NAME = '&quot; + tName + &quot;'&quot;);
+<span class="nc bnc" id="L305" title="All 2 branches missed.">        } else if (&quot;MYSQL&quot;.equals(COMMON_PROPS.get(&quot;DB_TYPE&quot;))) {</span>
+<span class="nc" id="L306">            queryDataSet.addTable(tName + DBNum + &quot;ColName&quot;,</span>
+                    &quot;select column_name as Field ,column_comment as Comment from information_schema.columns where table_name='&quot;
+                            + tName + &quot;' order by ordinal_position&quot;);
+<span class="nc bnc" id="L309" title="All 2 branches missed.">        } else if (&quot;SQLSERVER&quot;.equals(COMMON_PROPS.get(&quot;DB_TYPE&quot;))) {</span>
+<span class="nc" id="L310">            queryDataSet.addTable(tName + DBNum + &quot;ColName&quot;,</span>
+                    &quot;select a.name FIELD,b.value COMMENT,c.value TBLNM&quot; + &quot; from syscolumns a&quot;
+                            + &quot; left join sys.extended_properties b on a.id = b.major_id and a.colid= b.minor_id&quot;
+                            + &quot; left join sys.extended_properties c on a.id = c.major_id and '0'= c.minor_id&quot;
+                            + &quot; where a.id = object_id('&quot; + tName + &quot;') order by colorder&quot;);
+<span class="nc bnc" id="L315" title="All 2 branches missed.">        }else if (&quot;postgresql&quot;.equals(COMMON_PROPS.get(&quot;DB_TYPE&quot;))) {</span>
+<span class="nc" id="L316">            queryDataSet.addTable(tName + DBNum + &quot;ColName&quot;,</span>
+<span class="nc" id="L317">                    &quot;SELECT a.attname as FIELD,col_description(a.attrelid,a.attnum) as COMMENT FROM pg_attribute as a,pg_class as c WHERE c.relname = '&quot;+ tName.toLowerCase() +&quot;' AND a.attrelid = c.oid And a.attnum&gt; 0&quot;);</span>
+        }
+<span class="nc" id="L319">        outFile = new File(TBLPath + tName + &quot;_TBL.xml&quot;);</span>
+<span class="nc" id="L320">        FlatXmlDataSet.write(queryDataSet, new FileOutputStream(outFile));</span>
+<span class="nc" id="L321">    }</span>
+
+    /**
+     * テーブルデータを出力
+     *
+     * @param connection
+     * @param tName
+     * @param sql
+     * @param outPath
+     * @return
+     * @throws Exception
+     */
+    private static QueryDataSet outputTableDataXml(IDatabaseConnection connection, String tName, String sql,
+            String outPath) throws Exception {
+<span class="nc" id="L335">        connection.getConfig().setProperty(DatabaseConfig.FEATURE_ALLOW_EMPTY_FIELDS, true);</span>
+<span class="nc" id="L336">        connection.getConfig().setProperty(DatabaseConfig.FEATURE_CASE_SENSITIVE_TABLE_NAMES, false);</span>
+<span class="nc" id="L337">        QueryDataSet queryDataSet = new QueryDataSet(connection);</span>
+<span class="nc" id="L338">        queryDataSet.addTable(tName, sql);</span>
+<span class="nc" id="L339">        File outFile = new File(outPath);</span>
+<span class="nc" id="L340">        FlatXmlDataSet.write(queryDataSet, new FileOutputStream(outFile));</span>
+<span class="nc" id="L341">        return queryDataSet;</span>
+    }
+
+    /**
+     * Sequenceリセット
+     *
+     * @param
+     */
+    private static void resetSeq(String seqName, String resetNo, String DBNum) throws Exception {
+<span class="nc" id="L350">        String sql1 = &quot;ALTER SEQUENCE &quot; + seqName + &quot; RESTART WITH &quot; + resetNo;</span>
+<span class="nc" id="L351">        String sql2 = &quot;SELECT NEXT VALUE FOR &quot; + seqName;</span>
+<span class="nc" id="L352">        Statement stmt = dbConnectionsMap.get(DBNum).createStatement();</span>
+<span class="nc" id="L353">        stmt.execute(sql1);</span>
+<span class="nc" id="L354">        stmt.execute(sql2);</span>
+<span class="nc" id="L355">    }</span>
+
+    /**
+     * DB Connection取得
+     *
+     * @param DBNum
+     * @return
+     * @throws Exception
+     */
+    private static Connection getDbConn(String DBNum) throws Exception {
+<span class="nc" id="L365">        initDbConn(DBNum);</span>
+<span class="nc" id="L366">        return dbConnectionsMap.get(DBNum);</span>
+    }
+
+    /**
+     * rakurakuプロパティ取得
+     *
+     * @return
+     * @throws Exception
+     */
+    public static Properties getProps() throws Exception {
+<span class="nc bnc" id="L376" title="All 2 branches missed.">        if (COMMON_PROPS == null) {</span>
+<span class="nc" id="L377">            COMMON_PROPS = new Properties();</span>
+<span class="nc" id="L378">            InputStreamReader in = new InputStreamReader(</span>
+                    new FileInputStream(&quot;./testtools/confs/rakuraku_common.properties&quot;), &quot;UTF-8&quot;);
+<span class="nc" id="L380">            COMMON_PROPS.load(in);</span>
+        }
+<span class="nc" id="L382">        return COMMON_PROPS;</span>
+    }
+
+    /**
+     * プロパティ設定
+     *
+     * @param key
+     * @param value
+     * @return
+     * @throws Exception
+     */
+    public static Properties setProps(String key, String value) throws Exception {
+<span class="nc" id="L394">        COMMON_PROPS = getProps();</span>
+<span class="nc" id="L395">        COMMON_PROPS.setProperty(key, value);</span>
+<span class="nc" id="L396">        return COMMON_PROPS;</span>
+    }
+
+    /**
+     * DB接続初期化
+     *
+     * @param DBNum
+     * @throws Exception
+     */
+    private static void initDbConn(String DBNum) throws Exception {
+<span class="nc bnc" id="L406" title="All 2 branches missed.">        if (!dbConnectionsMap.containsKey(DBNum)) {</span>
+<span class="nc bnc" id="L407" title="All 2 branches missed.">            if (StringUtils.isNotBlank(COMMON_PROPS.getProperty(&quot;DB_DRIVERNAME&quot; + DBNum))) {</span>
+<span class="nc" id="L408">                Class.forName(COMMON_PROPS.getProperty(&quot;DB_DRIVERNAME&quot; + DBNum));</span>
+            }
+<span class="nc" id="L410">            Connection eachConn = DriverManager.getConnection(</span>
+<span class="nc" id="L411">                    COMMON_PROPS.getProperty(&quot;DB_CONNECTIONURL&quot; + DBNum)</span>
+<span class="nc" id="L412">                            + COMMON_PROPS.getProperty(&quot;DB_SUFFIX&quot; + DBNum),</span>
+<span class="nc" id="L413">                    COMMON_PROPS.getProperty(&quot;DB_USERNAME&quot; + DBNum), COMMON_PROPS.getProperty(&quot;DB_PASSWORD&quot; + DBNum));</span>
+<span class="nc" id="L414">            dbConnectionsMap.put(DBNum, eachConn);</span>
+        }
+<span class="nc" id="L416">    }</span>
+
+    /**
+     * ツールに関するプログレス閉じる
+     */
+    public static void killOldProgress() {
+        try {
+<span class="nc" id="L423">            Process pro = Runtime.getRuntime()</span>
+<span class="nc" id="L424">                    .exec(&quot;taskkill /im &quot;</span>
+<span class="nc" id="L425">                            + RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_IE&quot;).split(</span>
+<span class="nc" id="L426">                                    &quot;/&quot;)[RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_IE&quot;).split(&quot;/&quot;).length - 1]</span>
+                            + &quot; /f&quot;);
+<span class="nc" id="L428">            pro.waitFor();</span>
+<span class="nc" id="L429">            pro = Runtime.getRuntime()</span>
+<span class="nc" id="L430">                    .exec(&quot;taskkill /im &quot;</span>
+<span class="nc" id="L431">                            + RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_CHROME&quot;).split(</span>
+<span class="nc" id="L432">                                    &quot;/&quot;)[RakurakuDBUtils.getProps().getProperty(&quot;DRIVER_CHROME&quot;).split(&quot;/&quot;).length - 1]</span>
+                            + &quot; /f&quot;);
+<span class="nc" id="L434">            pro.waitFor();</span>
+<span class="nc" id="L435">            pro = Runtime.getRuntime().exec(&quot;taskkill /fi \&quot;WINDOWTITLE eq DealEvidenceTool.xlsm - Excel\&quot; /f&quot;);</span>
+<span class="nc" id="L436">            pro.waitFor();</span>
+<span class="nc" id="L437">            pro = Runtime.getRuntime()</span>
+<span class="nc" id="L438">                    .exec(&quot;taskkill /fi \&quot;WINDOWTITLE eq DealEvidenceTool.xlsm  [読み取り専用] - Excel\&quot; /f&quot;);</span>
+<span class="nc" id="L439">            pro.waitFor();</span>
+<span class="nc" id="L440">        } catch (Exception e) {</span>
+<span class="nc" id="L441">        }</span>
+<span class="nc" id="L442">    }</span>
+
+    /**
+     * DB接続テスト用
+     *
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String args[]) throws Exception {
+<span class="nc" id="L451">        int i = 0;</span>
+<span class="nc" id="L452">        String indexString = &quot;&quot;;</span>
+<span class="nc" id="L453">        getProps();</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">        while (StringUtils.isNotBlank(COMMON_PROPS.getProperty(&quot;DB_TYPE&quot; + indexString))) {</span>
+            try {
+<span class="nc" id="L456">                initDbConn(indexString);</span>
+<span class="nc" id="L457">                System.out.println(&quot;DB_TYPE&quot; + indexString + &quot;:&quot; + COMMON_PROPS.getProperty(&quot;DB_TYPE&quot; + indexString)</span>
+                        + &quot;へ接続成功しました&quot;);
+<span class="nc" id="L459">            } catch (Exception e) {</span>
+<span class="nc" id="L460">                System.out.println(&quot;DB_TYPE&quot; + indexString + &quot;:&quot; + COMMON_PROPS.getProperty(&quot;DB_TYPE&quot; + indexString)</span>
+                        + &quot;へ接続失敗しました&quot;);
+<span class="nc" id="L462">            }</span>
+<span class="nc" id="L463">            i++;</span>
+<span class="nc" id="L464">            indexString = String.valueOf(i);</span>
+        }
+<span class="nc" id="L466">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,26 @@
+管理SEQ番号::control_seq_number::numeric(10,0)::NOT NULL(PK)
+データダウンロード制御SEQ::data_download_control_seq::numeric(10,0)::NULL
+現法コード::subsidiary_code::char(3)::NOT NULL
+データコード::data_code::varchar(5)::NOT NULL
+作成日時::create_date_time::timestamp with time zone::NOT NULL
+メールアドレス::mail_address::varchar(256)::NOT NULL
+一時ファイルコード::temp_file_code::varchar(256)::NULL
+ファイルパス::file_path::varchar(256)::NULL
+PresignedURL変換APIパス::presigned_api_path::varchar(256)::NULL
+署名::signature::varchar(256)::NULL
+表示用ファイル名::display_file_name::varchar(432)::NULL
+ステータスコード::status_code::char(1)::NOT NULL
+処理結果コード::process_result_code::char(1)::NULL
+処理結果詳細::process_result_detail::varchar(90)::NULL
+更新回数::update_count::integer::NULL
+削除フラグ::delete_flag::char(1)::NULL
+登録者区分::register_user_type::varchar(15)::NULL
+登録者::register_user::varchar(256)::NULL
+登録日時::register_date_time::timestamp with time zone::NULL
+登録プログラム::register_program::varchar(15)::NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NULL
+更新者区分::update_user_type::varchar(15)::NULL
+更新者::update_user::varchar(256)::NULL
+更新日時::update_date_time::timestamp with time zone::NULL
+更新プログラム::update_program::varchar(15)::NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NULL

@@ -1,0 +1,67 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+得意先コード::customer_code::char(6)::NOT NULL(PK)
+旧得意先コード::old_customer_code::varchar(9)::NULL
+主管事業部::main_business_unit::varchar(30)::NULL
+受注タイプ::so_type::varchar(20)::NULL
+売掛先コード::bill_to_code::char(6)::NOT NULL
+得意先名（現地語1）::customer_name_native1::varchar(60)::NULL
+得意先名（現地語検索用）::customer_name_native_for_search::varchar(132)::NULL
+得意先名（英字）::customer_name_english::varchar(60)::NOT NULL
+国コード::country_code::char(3)::NOT NULL
+言語コード::language_code::char(3)::NOT NULL
+郵便番号::postal_code::varchar(10)::NULL
+住所1（現地語）::address1_native::varchar(30)::NOT NULL
+住所2（現地語）::address2_native::varchar(30)::NULL
+住所3（現地語）::address3_native::varchar(30)::NULL
+住所4（現地語）::address4_native::varchar(30)::NULL
+住所（現地語検索用）::address_native_for_search::varchar(30)::NOT NULL
+住所1::address1::varchar(30)::NULL
+住所2::address2::varchar(30)::NULL
+住所3::address3::varchar(30)::NULL
+住所4::address4::varchar(30)::NULL
+都市名::city_name::varchar(30)::NULL
+カレンダコード::calendar_code::char(5)::NULL
+得意先現法コード::customer_subsidiary_code::char(3)::NULL
+得意先セグメントコード::customer_segment_code::varchar(6)::NULL
+梱包ランク区分::packing_rank_type::char(1)::NOT NULL
+事業所ライセンス番号::office_license_number::varchar(20)::NULL
+VAT番号::vat_number::varchar(20)::NULL
+配送業者顧客番号::carrier_account_number::varchar(15)::NULL
+顧客注釈1::customer_remarks1::varchar(60)::NULL
+顧客注釈2::customer_remarks2::varchar(60)::NULL
+顧客注釈3::customer_remarks3::varchar(60)::NULL
+顧客注釈4::customer_remarks4::varchar(60)::NULL
+顧客注釈5::customer_remarks5::varchar(60)::NULL
+停止理由コード::stop_reason_code::varchar(3)::NULL
+得意先名（現地語2）::customer_name_native2::varchar(60)::NULL
+市町村コード::city_code::varchar(5)::NULL
+資本形態::company_entity_type::varchar(6)::NULL
+IO調達方法コード::io_supply_means_code::char(3)::NULL
+有償支給フラグ::chargeable_material_flag::char(1)::NULL
+配送日数用エリアコード::shipping_days_area_code::char(3)::NULL
+調達先選定用エリアコード::supplier_choice_area_code::char(3)::NULL
+出荷仕分用エリアコード::shipment_classification_area_code::char(3)::NULL
+サービス停止区分::service_stop_type::char(1)::NOT NULL
+非課税フラグ::tax_free_flag::char(1)::NOT NULL
+ミスミ現法フラグ::misumi_subsidiary_flag::char(1)::NULL
+グループ会社フラグ::group_company_flag::char(1)::NULL
+域外フラグ::outside_region_flag::char(1)::NULL
+電話番号::tel::varchar(20)::NULL
+FAX番号::fax::varchar(20)::NULL
+メールアドレス::email_address::varchar(256)::NULL
+デフォルト注文担当者部課（現地語）::default_order_pic_department_native::varchar(30)::NULL
+デフォルト注文担当者部課::default_order_pic_department::varchar(30)::NULL
+デフォルト注文担当者名（現地語）::default_order_pic_name_native::varchar(20)::NULL
+デフォルト注文担当者名::default_order_pic_name::varchar(20)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

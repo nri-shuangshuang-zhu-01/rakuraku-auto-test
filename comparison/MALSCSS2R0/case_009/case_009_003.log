@@ -1,0 +1,12 @@
+■api名称：　登录
+■api Request：　/internal/v1/stop-shipment/bulk-reference?offset=12&limit=22&sortby=sort1&sortby2=sort2
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=test&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a48&&Prefer=/v1/gw-stop-shipment/search->4
+■api Body：　{  "businessSceneType": 11,  "plantCode": "stri",  "supplierCode": "95",  "stopShipmentArrivalDateFrom": "2019-01-01",  "stopShipmentArrivalDateTo": "2019-02-02",  "globalNumber": "CA000032000086",  "stopShipmentDateFrom": "2019-03-03",  "stopShipmentDateTo": "2019-04-04",  "customerCode": "BOSCH9",  "slipType": "1",  "slipSendType": "1",  "stopShipmentFlag": "1",  "supplierInvoiceNo": "swring",  "marketCode": "at",  "contactList": "1",  "registerUserId": "string",  "soStatusType": "1",  "inquiryObjectType": "s",  "storkCode": "st",  "shipmentMeansCode": "1",  "stockType": "",  "referenceMaxCount": 1}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NSCSS2R0004E",
+  "argumentList": [],
+  "message": "出荷不可・受注情報の照会に失敗しました。\nしばらくしてから再実行してもエラーとなる場合には、××にご連絡ください。"
+}

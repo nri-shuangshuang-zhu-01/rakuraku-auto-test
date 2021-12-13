@@ -1,0 +1,3460 @@
+openapi: 3.0.0
+info:
+  title: billing-service-internal
+  version: '1.0'
+  description: 請求サービス用の Public API です。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000/billing'
+paths:
+  /internal/v1/acceptance-group/search:
+    parameters: []
+    post:
+      summary: 検収グループ情報検索API
+      operationId: searchAcceptanceGroupInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchAcceptanceGroupInternalResponseV1'
+              examples:
+                '@MASCR40020_555':
+                  value:
+                    recordCount: 5
+                    acceptanceGroupInternalV1List:
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760001'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860583
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760002'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860584
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760003'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860585
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760004'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860585
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760005'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860585
+                '@Example':
+                  value:
+                    recordCount: 0
+                    acceptanceGroupInternalV1List:
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '860583'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密
+                '@MASCR40020_SSS':
+                  value:
+                    recordCount: 3
+                    acceptanceGroupInternalV1List:
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760001'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860583
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760002'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860584
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '760003'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密860585
+                MASCR40020_064:
+                  value:
+                    recordCount: 1
+                    acceptanceGroupInternalV1List:
+                      - subsidiaryCode: JKT
+                        acceptanceGroupCode: '860584'
+                        incomingPaymentGroupCode: '860582'
+                        acceptanceGroupNameNative: 精密
+                MASCR40020_046:
+                  value:
+                    recordCount: 0
+                    acceptanceGroupInternalV1List: null
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          検収グループマスタ M_ACCEPTANCE_GROUP
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1'
+        description: 検収グループ情報検索APIのリクエスト電文
+      tags:
+        - AcceptanceGroupInternal
+      x-channel:
+        - internal
+  /internal/v1/acceptance-group/get:
+    get:
+      summary: 検収グループ情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/GetAcceptanceGroupInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    acceptanceGroupInternalV1:
+                      subsidiaryCode: JKT
+                      acceptanceGroupCode: '860583'
+                      incomingPaymentGroupCode: '860582'
+                      acceptanceGroupNameNative: 精密
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getAcceptanceGroupInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          検収グループマスタ M_ACCEPTANCE_GROUP
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          name: acceptance_group_code
+          description: 検収グループコード
+          required: true
+      tags:
+        - AcceptanceGroupInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/bill-to/search:
+    post:
+      summary: 売掛先情報検索API
+      operationId: searchBillToInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchBillToInternalResponseV1'
+              examples:
+                '@MASCR40020_555':
+                  value:
+                    recordCount: 5
+                    billToInternalV1List:
+                      - subsidiaryCode: KOR
+                        billToCode: '860001'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM 860001 BO SEON
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760001'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860002'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: '860002 SHIM BO SEON '
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760002'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860003'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM BO SEON 860003
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760003'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860004'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM BO SEON 860004
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760004'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860005'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM BO SEON 860005
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760005'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                '@MASCR40020_SSS':
+                  value:
+                    recordCount: 3
+                    billToInternalV1List:
+                      - subsidiaryCode: KOR
+                        billToCode: '860001'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM 860001 BO SEON
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760001'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860002'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: '860002 SHIM BO SEON '
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760002'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860003'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM BO SEON 860003
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760003'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                '@Example':
+                  value:
+                    recordCount: 1
+                    billToInternalV1List:
+                      - subsidiaryCode: KOR
+                        billToCode: '860583'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM 860583 BO SEON
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '860583'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                MASCR40020_048:
+                  value: {}
+                MASCR40020_064:
+                  value:
+                    recordCount: 1
+                    billToInternalV1List:
+                      - subsidiaryCode: KOR
+                        billToCode: '860583'
+                        arMainDepartment: KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM 860583 BO SEON
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '860584'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                '@MASCR40020_BU':
+                  value:
+                    recordCount: 3
+                    billToInternalV1List:
+                      - subsidiaryCode: KOR
+                        billToCode: '860001'
+                        arMainDepartment: 456BKA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM 860001 BO SEON
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760001'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860002'
+                        arMainDepartment: CA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: '860002 SHIM BO SEON '
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760002'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+                      - subsidiaryCode: KOR
+                        billToCode: '860003'
+                        arMainDepartment: 2KA
+                        processingSection: VO00
+                        billToNameNative: 심보선
+                        billToName: SHIM BO SEON 860003
+                        countryCode: '103'
+                        languageCode: KOR
+                        postalCode: 446-901
+                        address1Native: 경기도 용인시 기흥구 원고매로 12
+                        address2Native: (고매동) 리더스타워 6층
+                        address3Native: 엠케이에스코리아
+                        address4Native: 'null'
+                        address1: GYEONGGI YONGINSI GIHEUNGGU
+                        address2: WONGOMAERO12
+                        address3: 'null'
+                        address4: 'null'
+                        invoiceSendDestinationDepartmentNameNative: 'null'
+                        invoiceSendDestinationPicNative: 'null'
+                        tel: 031-8021-1344
+                        billToFax: 031-8005-9324
+                        dunningToFax: 031-8005-9324
+                        billToEmailAddressTo: bsshim@mksinst.com
+                        billToEmailAddressCc: dummy1
+                        dunningToEmailAddressTo: bsshim@mksinst.com
+                        dunningToEmailAddressCc: dummy2
+                        taxAccountStatementSendDestinationEmailAddress1: 'null'
+                        taxAccountStatementSendDestinationEmailAddress2: '0'
+                        tradeStopType: '0'
+                        serviceStopType: '0'
+                        acceptanceType: '0'
+                        acceptanceGroupCode: '760003'
+                        incoterms: DDP
+                        paymentTerms: Credit Card
+                        settlementMethod: CCD
+                        paymentMeans: '50'
+                        arClosingUnit: E
+                        arClosingDay: 31
+                        arPaymentMonth: 0
+                        arPaymentDate: 1
+                        arPaymentSiteFinal: 14
+                        arPaymentSiteEarlyPaymentDiscount: 0
+                        arEarlyIncomingPaymentDiscountRate: '0'
+                        transferFee: '0'
+                        customerAccountBankCode: 'null'
+                        customerAccountType: '0'
+                        customerAccountNumber: 'null'
+                        customerAccountNameNativeAllowed: 'null'
+                        transferAccountBankCode: 24106K
+                        transferAccountType: '1'
+                        transferAccountNumber: 140-003-465017
+                        transferAccountName: (주)한국미스미
+                        virtualAccountFlag: '0'
+                        notePayableConditionAmount: '0'
+                        notePayableConditionPaymentMonth: 0
+                        notePayableConditionPaymentDate: 1
+                        paymentSite: 0
+                        invoiceSendType: '0'
+                        invoiceViaType: '0'
+                        invoiceViaTypeChild: 'null'
+                        invoiceSendMedia: 'null'
+                        dunningLetterSendType: '1'
+                        dunningLetterSendMedia: AF
+                        productNamePrintFlag: '0'
+                        consumptionTaxMentionType: '0'
+                        inExTaxType: '0'
+                        ccyCode: CAD
+                        rateTypeCode: KKRM
+                        arDifficulty: 'null'
+                        governmentUniformInvoiceType: '0'
+                        companyRepresentativeNameNative: 'null'
+                        arRemarks1: 'null'
+                        arRemarks2: 'null'
+                        arRemarks3: 'null'
+                        arRemarks4: 'null'
+                        arRemarks5: 'null'
+                        invoiceRemarks1: 'null'
+                        invoiceRemarks2: 'null'
+                        invoiceRemarks3: 'null'
+                        invoiceRemarks4: 'null'
+                        gstPaymentPlace: 'null'
+                        departmentName: 'null'
+                        commissionerate: 'null'
+                        stopReasonCode: 'null'
+                        settlementMonth: 0
+                        settlementClosingDay: 0
+                        settlementSetting: '0'
+                        cityCode: 'null'
+                        invoiceOutputOrder: '0'
+                        zenginCode: '0'
+                        automaticTransferFlag: '0'
+                        depositType: '1'
+                        accountNumber: '1'
+                        depositorNameKana: '1'
+                        newCode: '1'
+                        automaticTransferRegisterDate: '2019-08-24'
+                        userTransferBank: 'null'
+                        userTransferBranch: 'null'
+                        arQctBaseCode: 'null'
+                        closingDayFrontLoadingSettingType: '0'
+                        industryType: '0'
+                        channelType: '10'
+                        eachBillRegister: 'null'
+                        invoiceSlipOutputReportCode: 'null'
+                        invoiceSummaryFlag: 'null'
+                        customerStatementSendFlag: '1'
+                        customerStatementSendMediaType: '3'
+                        swiftCode: 'null'
+                        withdrawalMatchingAllowFlag: string
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/SearchBillToInternalRequestV1'
+        description: 売掛先情報検索APIのリクエスト電文
+      tags:
+        - BillToInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/bill-to/get:
+    get:
+      summary: 売掛先情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/GetBillToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    billToInternalV1:
+                      subsidiaryCode: KOR
+                      billToCode: '558814'
+                      arMainDepartment: KA
+                      processingSection: VO00
+                      billToNameNative: 심보선
+                      billToName: SHIM BO SEON
+                      countryCode: '103'
+                      languageCode: KOR
+                      postalCode: 446-901
+                      address1Native: 경기도 용인시 기흥구 원고매로 12
+                      address2Native: (고매동) 리더스타워 6층
+                      address3Native: 엠케이에스코리아
+                      address4Native: 'null'
+                      address1: GYEONGGI YONGINSI GIHEUNGGU
+                      address2: WONGOMAERO12
+                      address3: 'null'
+                      address4: 'null'
+                      invoiceSendDestinationDepartmentNameNative: 'null'
+                      invoiceSendDestinationPicNative: 'null'
+                      tel: 031-8021-1344
+                      billToFax: 031-8005-9324
+                      dunningToFax: 031-8005-9324
+                      billToEmailAddressTo: bsshim@mksinst.com
+                      billToEmailAddressCc: dummy1
+                      dunningToEmailAddressTo: bsshim@mksinst.com
+                      dunningToEmailAddressCc: dummy2
+                      taxAccountStatementSendDestinationEmailAddress1: 'null'
+                      taxAccountStatementSendDestinationEmailAddress2: '0'
+                      tradeStopType: '0'
+                      serviceStopType: '0'
+                      acceptanceType: '0'
+                      acceptanceGroupCode: '558814'
+                      incoterms: DDP
+                      paymentTerms: Credit Card
+                      settlementMethod: CCD
+                      paymentMeans: '50'
+                      arClosingUnit: E
+                      arClosingDay: 31
+                      arPaymentMonth: 0
+                      arPaymentDate: 1
+                      arPaymentSiteFinal: 14
+                      arPaymentSiteEarlyPaymentDiscount: 0
+                      arEarlyIncomingPaymentDiscountRate: '0'
+                      transferFee: '0'
+                      customerAccountBankCode: 'null'
+                      customerAccountType: '0'
+                      customerAccountNumber: 'null'
+                      customerAccountNameNativeAllowed: 'null'
+                      transferAccountBankCode: 24106K
+                      transferAccountType: '1'
+                      transferAccountNumber: 140-003-465017
+                      transferAccountName: (주)한국미스미
+                      virtualAccountFlag: '0'
+                      notePayableConditionAmount: '0'
+                      notePayableConditionPaymentMonth: 0
+                      notePayableConditionPaymentDate: 1
+                      paymentSite: 0
+                      invoiceSendType: '0'
+                      invoiceViaType: '0'
+                      invoiceViaTypeChild: 'null'
+                      invoiceSendMedia: 'null'
+                      dunningLetterSendType: '1'
+                      dunningLetterSendMedia: AF
+                      productNamePrintFlag: '0'
+                      consumptionTaxMentionType: '0'
+                      inExTaxType: '0'
+                      ccyCode: KRW
+                      rateTypeCode: KKRM
+                      arDifficulty: 'null'
+                      governmentUniformInvoiceType: '0'
+                      companyRepresentativeNameNative: 'null'
+                      arRemarks1: 'null'
+                      arRemarks2: 'null'
+                      arRemarks3: 'null'
+                      arRemarks4: 'null'
+                      arRemarks5: 'null'
+                      invoiceRemarks1: 'null'
+                      invoiceRemarks2: 'null'
+                      invoiceRemarks3: 'null'
+                      invoiceRemarks4: 'null'
+                      gstPaymentPlace: 'null'
+                      departmentName: 'null'
+                      commissionerate: 'null'
+                      stopReasonCode: 'null'
+                      settlementMonth: 0
+                      settlementClosingDay: 0
+                      settlementSetting: '0'
+                      cityCode: 'null'
+                      invoiceOutputOrder: '0'
+                      zenginCode: '0'
+                      automaticTransferFlag: '0'
+                      depositType: '1'
+                      accountNumber: '1'
+                      depositorNameKana: '1'
+                      newCode: '1'
+                      automaticTransferRegisterDate: '2019-08-24'
+                      userTransferBank: 'null'
+                      userTransferBranch: 'null'
+                      arQctBaseCode: 'null'
+                      closingDayFrontLoadingSettingType: '0'
+                      industryType: '0'
+                      channelType: '10'
+                      eachBillRegister: 'null'
+                      invoiceSlipOutputReportCode: 'null'
+                      invoiceSummaryFlag: 'null'
+                      customerStatementSendFlag: '1'
+                      customerStatementSendMediaType: '3'
+                      swiftCode: 'null'
+                      withdrawalMatchingAllowFlag: string
+                MASCR40010_1:
+                  value:
+                    recordCount: 1
+                    billToInternalV1:
+                      subsidiaryCode: KOR
+                      billToCode: '558814'
+                      arMainDepartment: KA
+                      processingSection: VO00
+                      billToNameNative: 심보선
+                      billToName: SHIM BO SEON
+                      countryCode: '103'
+                      languageCode: KOR
+                      postalCode: 446-901
+                      address1Native: 경기도 용인시 기흥구 원고매로 12
+                      address2Native: (고매동) 리더스타워 6층
+                      address3Native: 엠케이에스코리아
+                      address4Native: 'null'
+                      address1: GYEONGGI YONGINSI GIHEUNGGU
+                      address2: WONGOMAERO12
+                      address3: 'null'
+                      address4: 'null'
+                      invoiceSendDestinationDepartmentNameNative: 'null'
+                      invoiceSendDestinationPicNative: 'null'
+                      tel: 031-8021-1344
+                      billToFax: 031-8005-9324
+                      dunningToFax: 031-8005-9324
+                      billToEmailAddressTo: bsshim@mksinst.com
+                      billToEmailAddressCc: dummy1
+                      dunningToEmailAddressTo: bsshim@mksinst.com
+                      dunningToEmailAddressCc: dummy2
+                      taxAccountStatementSendDestinationEmailAddress1: 'null'
+                      taxAccountStatementSendDestinationEmailAddress2: '0'
+                      tradeStopType: '0'
+                      serviceStopType: '0'
+                      acceptanceType: '0'
+                      acceptanceGroupCode: '558814'
+                      incoterms: DDP
+                      paymentTerms: Credit Card
+                      settlementMethod: CCD
+                      paymentMeans: '50'
+                      arClosingUnit: E
+                      arClosingDay: 31
+                      arPaymentMonth: 0
+                      arPaymentDate: 1
+                      arPaymentSiteFinal: 14
+                      arPaymentSiteEarlyPaymentDiscount: 0
+                      arEarlyIncomingPaymentDiscountRate: '0'
+                      transferFee: '0'
+                      customerAccountBankCode: 'null'
+                      customerAccountType: '0'
+                      customerAccountNumber: 'null'
+                      customerAccountNameNativeAllowed: 'null'
+                      transferAccountBankCode: 24106K
+                      transferAccountType: '1'
+                      transferAccountNumber: 140-003-465017
+                      transferAccountName: (주)한국미스미
+                      virtualAccountFlag: '0'
+                      notePayableConditionAmount: '0'
+                      notePayableConditionPaymentMonth: 0
+                      notePayableConditionPaymentDate: 1
+                      paymentSite: 0
+                      invoiceSendType: '0'
+                      invoiceViaType: '0'
+                      invoiceViaTypeChild: 'null'
+                      invoiceSendMedia: 'null'
+                      dunningLetterSendType: '1'
+                      dunningLetterSendMedia: AF
+                      productNamePrintFlag: '0'
+                      consumptionTaxMentionType: '0'
+                      inExTaxType: '0'
+                      ccyCode: KRW
+                      rateTypeCode: KKRM
+                      arDifficulty: 'null'
+                      governmentUniformInvoiceType: '0'
+                      companyRepresentativeNameNative: 'null'
+                      arRemarks1: 'null'
+                      arRemarks2: 'null'
+                      arRemarks3: 'null'
+                      arRemarks4: 'null'
+                      arRemarks5: 'null'
+                      invoiceRemarks1: 'null'
+                      invoiceRemarks2: 'null'
+                      invoiceRemarks3: 'null'
+                      invoiceRemarks4: 'null'
+                      gstPaymentPlace: 'null'
+                      departmentName: 'null'
+                      commissionerate: 'null'
+                      stopReasonCode: 'null'
+                      settlementMonth: 0
+                      settlementClosingDay: 0
+                      settlementSetting: '0'
+                      cityCode: 'null'
+                      invoiceOutputOrder: '0'
+                      zenginCode: '0'
+                      automaticTransferFlag: '0'
+                      depositType: '1'
+                      accountNumber: '1'
+                      depositorNameKana: '1'
+                      newCode: '1'
+                      automaticTransferRegisterDate: '2019-08-24'
+                      userTransferBank: 'null'
+                      userTransferBranch: 'null'
+                      arQctBaseCode: 'null'
+                      closingDayFrontLoadingSettingType: '0'
+                      industryType: '0'
+                      channelType: '10'
+                      eachBillRegister: 'null'
+                      invoiceSlipOutputReportCode: 'null'
+                      invoiceSummaryFlag: 'null'
+                      customerStatementSendFlag: '1'
+                      customerStatementSendMediaType: '3'
+                      swiftCode: 'null'
+                      withdrawalMatchingAllowFlag: string
+                MASCR40010_2:
+                  value:
+                    recordCount: 1
+                    billToInternalV1:
+                      subsidiaryCode: KOR
+                      billToCode: '558815'
+                      arMainDepartment: KA
+                      processingSection: VO00
+                      billToNameNative: 심보선
+                      billToName: SHIM BO SEON
+                      countryCode: '103'
+                      languageCode: KOR
+                      postalCode: 446-901
+                      address1Native: 경기도 용인시 기흥구 원고매로 12
+                      address2Native: (고매동) 리더스타워 6층
+                      address3Native: 엠케이에스코리아
+                      address4Native: 'null'
+                      address1: GYEONGGI YONGINSI GIHEUNGGU
+                      address2: WONGOMAERO12
+                      address3: 'null'
+                      address4: 'null'
+                      invoiceSendDestinationDepartmentNameNative: 'null'
+                      invoiceSendDestinationPicNative: 'null'
+                      tel: 031-8021-1344
+                      billToFax: 031-8005-9324
+                      dunningToFax: 031-8005-9324
+                      billToEmailAddressTo: bsshim@mksinst.com
+                      billToEmailAddressCc: dummy1
+                      dunningToEmailAddressTo: bsshim@mksinst.com
+                      dunningToEmailAddressCc: dummy2
+                      taxAccountStatementSendDestinationEmailAddress1: 'null'
+                      taxAccountStatementSendDestinationEmailAddress2: '0'
+                      tradeStopType: '0'
+                      serviceStopType: '0'
+                      acceptanceType: '0'
+                      acceptanceGroupCode: '558814'
+                      incoterms: DDP
+                      paymentTerms: Credit Card
+                      settlementMethod: CCD
+                      paymentMeans: '50'
+                      arClosingUnit: E
+                      arClosingDay: 31
+                      arPaymentMonth: 0
+                      arPaymentDate: 1
+                      arPaymentSiteFinal: 14
+                      arPaymentSiteEarlyPaymentDiscount: 0
+                      arEarlyIncomingPaymentDiscountRate: '0'
+                      transferFee: '0'
+                      customerAccountBankCode: 'null'
+                      customerAccountType: '0'
+                      customerAccountNumber: 'null'
+                      customerAccountNameNativeAllowed: 'null'
+                      transferAccountBankCode: 24106K
+                      transferAccountType: '1'
+                      transferAccountNumber: 140-003-465017
+                      transferAccountName: (주)한국미스미
+                      virtualAccountFlag: '0'
+                      notePayableConditionAmount: '0'
+                      notePayableConditionPaymentMonth: 0
+                      notePayableConditionPaymentDate: 1
+                      paymentSite: 0
+                      invoiceSendType: '0'
+                      invoiceViaType: '0'
+                      invoiceViaTypeChild: 'null'
+                      invoiceSendMedia: 'null'
+                      dunningLetterSendType: '1'
+                      dunningLetterSendMedia: AF
+                      productNamePrintFlag: '0'
+                      consumptionTaxMentionType: '0'
+                      inExTaxType: '0'
+                      ccyCode: KRW
+                      rateTypeCode: KKRM
+                      arDifficulty: 'null'
+                      governmentUniformInvoiceType: '0'
+                      companyRepresentativeNameNative: 'null'
+                      arRemarks1: 'null'
+                      arRemarks2: 'null'
+                      arRemarks3: 'null'
+                      arRemarks4: 'null'
+                      arRemarks5: 'null'
+                      invoiceRemarks1: 'null'
+                      invoiceRemarks2: 'null'
+                      invoiceRemarks3: 'null'
+                      invoiceRemarks4: 'null'
+                      gstPaymentPlace: 'null'
+                      departmentName: 'null'
+                      commissionerate: 'null'
+                      stopReasonCode: 'null'
+                      settlementMonth: 0
+                      settlementClosingDay: 0
+                      settlementSetting: '0'
+                      cityCode: 'null'
+                      invoiceOutputOrder: '0'
+                      zenginCode: '0'
+                      automaticTransferFlag: '0'
+                      depositType: '1'
+                      accountNumber: '1'
+                      depositorNameKana: '1'
+                      newCode: '1'
+                      automaticTransferRegisterDate: '2019-08-24'
+                      userTransferBank: 'null'
+                      userTransferBranch: 'null'
+                      arQctBaseCode: 'null'
+                      closingDayFrontLoadingSettingType: '0'
+                      industryType: '0'
+                      channelType: '10'
+                      eachBillRegister: 'null'
+                      invoiceSlipOutputReportCode: 'null'
+                      invoiceSummaryFlag: 'null'
+                      customerStatementSendFlag: '1'
+                      customerStatementSendMediaType: '3'
+                      swiftCode: 'null'
+                      withdrawalMatchingAllowFlag: string
+                MASCR40010_8:
+                  value:
+                    recordCount: 1
+                    billToInternalV1: null
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getBillToInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 6
+            example: '860583'
+            minLength: 6
+          in: query
+          name: bill_to_code
+          description: 売掛先コード
+          required: true
+      tags:
+        - BillToInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/bill-to/get-list:
+    post:
+      summary: 売掛先情報取得API（List）
+      operationId: getListBillToInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/GetListBillToInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListBillToInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        billToInternalV1:
+                          subsidiaryCode: KOR
+                          billToCode: '558814'
+                          arMainDepartment: KA
+                          processingSection: VO00
+                          billToNameNative: 심보선
+                          billToName: SHIM BO SEON
+                          countryCode: '103'
+                          languageCode: KOR
+                          postalCode: 446-901
+                          address1Native: 경기도 용인시 기흥구 원고매로 12
+                          address2Native: (고매동) 리더스타워 6층
+                          address3Native: 엠케이에스코리아
+                          address4Native: 'null'
+                          address1: GYEONGGI YONGINSI GIHEUNGGU
+                          address2: WONGOMAERO12
+                          address3: 'null'
+                          address4: 'null'
+                          invoiceSendDestinationDepartmentNameNative: 'null'
+                          invoiceSendDestinationPicNative: 'null'
+                          tel: 031-8021-1344
+                          billToFax: 031-8005-9324
+                          dunningToFax: 031-8005-9324
+                          billToEmailAddressTo: bsshim@mksinst.com
+                          billToEmailAddressCc: dummy1
+                          dunningToEmailAddressTo: bsshim@mksinst.com
+                          dunningToEmailAddressCc: dummy2
+                          taxAccountStatementSendDestinationEmailAddress1: 'null'
+                          taxAccountStatementSendDestinationEmailAddress2: '0'
+                          tradeStopType: '0'
+                          serviceStopType: '0'
+                          acceptanceType: '0'
+                          acceptanceGroupCode: '558814'
+                          incoterms: DDP
+                          paymentTerms: Credit Card
+                          settlementMethod: CCD
+                          paymentMeans: '50'
+                          arClosingUnit: E
+                          arClosingDay: 31
+                          arPaymentMonth: 0
+                          arPaymentDate: 1
+                          arPaymentSiteFinal: 14
+                          arPaymentSiteEarlyPaymentDiscount: 0
+                          arEarlyIncomingPaymentDiscountRate: '0'
+                          transferFee: '0'
+                          customerAccountBankCode: 'null'
+                          customerAccountType: '0'
+                          customerAccountNumber: 'null'
+                          customerAccountNameNativeAllowed: 'null'
+                          transferAccountBankCode: 24106K
+                          transferAccountType: '1'
+                          transferAccountNumber: 140-003-465017
+                          transferAccountName: (주)한국미스미
+                          virtualAccountFlag: '0'
+                          notePayableConditionAmount: '0'
+                          notePayableConditionPaymentMonth: 0
+                          notePayableConditionPaymentDate: 1
+                          paymentSite: 0
+                          invoiceSendType: '0'
+                          invoiceViaType: '0'
+                          invoiceViaTypeChild: 'null'
+                          invoiceSendMedia: 'null'
+                          dunningLetterSendType: '1'
+                          dunningLetterSendMedia: AF
+                          productNamePrintFlag: '0'
+                          consumptionTaxMentionType: '0'
+                          inExTaxType: '0'
+                          ccyCode: KRW
+                          rateTypeCode: KKRM
+                          arDifficulty: 'null'
+                          governmentUniformInvoiceType: '0'
+                          companyRepresentativeNameNative: 'null'
+                          arRemarks1: 'null'
+                          arRemarks2: 'null'
+                          arRemarks3: 'null'
+                          arRemarks4: 'null'
+                          arRemarks5: 'null'
+                          invoiceRemarks1: 'null'
+                          invoiceRemarks2: 'null'
+                          invoiceRemarks3: 'null'
+                          invoiceRemarks4: 'null'
+                          gstPaymentPlace: 'null'
+                          departmentName: 'null'
+                          commissionerate: 'null'
+                          stopReasonCode: 'null'
+                          settlementMonth: 0
+                          settlementClosingDay: 0
+                          settlementSetting: '0'
+                          cityCode: 'null'
+                          invoiceOutputOrder: '0'
+                          zenginCode: '0'
+                          automaticTransferFlag: '0'
+                          depositType: '1'
+                          accountNumber: '1'
+                          depositorNameKana: '1'
+                          newCode: '1'
+                          automaticTransferRegisterDate: '2019-08-24'
+                          userTransferBank: 'null'
+                          userTransferBranch: 'null'
+                          arQctBaseCode: 'null'
+                          closingDayFrontLoadingSettingType: '0'
+                          industryType: '0'
+                          channelType: '10'
+                          eachBillRegister: 'null'
+                          invoiceSlipOutputReportCode: 'null'
+                          invoiceSummaryFlag: 'null'
+                          customerStatementSendFlag: '1'
+                          customerStatementSendMediaType: '3'
+                          swiftCode: 'null'
+                          withdrawalMatchingAllowFlag: string
+                MBSCR40040_1:
+                  value:
+                    getListBillToInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        billToInternalV1:
+                          subsidiaryCode: MJP
+                          billToCode: '558814'
+                          arMainDepartment: KA
+                          processingSection: ASD
+                          billToNameNative: AAA
+                          billToName: SHIM BO SEON
+                          countryCode: '103'
+                          languageCode: KOR
+                          postalCode: 446-901
+                          address1Native: BBB12
+                          address2Native: CCC
+                          address3Native: DDD
+                          address4Native: 'null'
+                          address1: GYEONGGI YONGINSI GIHEUNGGU
+                          address2: WONGOMAERO12
+                          address3: 'null'
+                          address4: 'null'
+                          invoiceSendDestinationDepartmentNameNative: 'null'
+                          invoiceSendDestinationPicNative: 'null'
+                          tel: 031-8021-1344
+                          billToFax: 031-8005-9324
+                          dunningToFax: 031-8005-9324
+                          billToEmailAddressTo: bsshim@mksinst.com
+                          billToEmailAddressCc: dummy1
+                          dunningToEmailAddressTo: bsshim@mksinst.com
+                          dunningToEmailAddressCc: dummy2
+                          taxAccountStatementSendDestinationEmailAddress1: 'null'
+                          taxAccountStatementSendDestinationEmailAddress2: '0'
+                          tradeStopType: '0'
+                          serviceStopType: '0'
+                          acceptanceType: '0'
+                          acceptanceGroupCode: '558814'
+                          incoterms: DDP
+                          paymentTerms: Credit Card
+                          settlementMethod: CCD
+                          paymentMeans: '50'
+                          arClosingUnit: E
+                          arClosingDay: 31
+                          arPaymentMonth: 0
+                          arPaymentDate: 1
+                          arPaymentSiteFinal: 14
+                          arPaymentSiteEarlyPaymentDiscount: 0
+                          arEarlyIncomingPaymentDiscountRate: '0'
+                          transferFee: '0'
+                          customerAccountBankCode: 'null'
+                          customerAccountType: '0'
+                          customerAccountNumber: 'null'
+                          customerAccountNameNativeAllowed: 'null'
+                          transferAccountBankCode: 24106K
+                          transferAccountType: '1'
+                          transferAccountNumber: 140-003-465017
+                          transferAccountName: EEE
+                          virtualAccountFlag: '0'
+                          notePayableConditionAmount: '0'
+                          notePayableConditionPaymentMonth: 0
+                          notePayableConditionPaymentDate: 1
+                          paymentSite: 0
+                          invoiceSendType: '0'
+                          invoiceViaType: '0'
+                          invoiceViaTypeChild: 'null'
+                          invoiceSendMedia: 'null'
+                          dunningLetterSendType: '1'
+                          dunningLetterSendMedia: AF
+                          productNamePrintFlag: '0'
+                          consumptionTaxMentionType: '0'
+                          inExTaxType: '0'
+                          ccyCode: CAD
+                          rateTypeCode: KKRM
+                          arDifficulty: 'null'
+                          governmentUniformInvoiceType: '0'
+                          companyRepresentativeNameNative: 'null'
+                          arRemarks1: 'null'
+                          arRemarks2: 'null'
+                          arRemarks3: 'null'
+                          arRemarks4: 'null'
+                          arRemarks5: 'null'
+                          invoiceRemarks1: 'null'
+                          invoiceRemarks2: 'null'
+                          invoiceRemarks3: 'null'
+                          invoiceRemarks4: 'null'
+                          gstPaymentPlace: 'null'
+                          departmentName: 'null'
+                          commissionerate: 'null'
+                          stopReasonCode: 'null'
+                          settlementMonth: 0
+                          settlementClosingDay: 0
+                          settlementSetting: '0'
+                          cityCode: 'null'
+                          invoiceOutputOrder: '0'
+                          zenginCode: '0'
+                          automaticTransferFlag: '0'
+                          depositType: '1'
+                          accountNumber: '1'
+                          depositorNameKana: '1'
+                          newCode: '1'
+                          automaticTransferRegisterDate: '2019-08-24'
+                          userTransferBank: 'null'
+                          userTransferBranch: 'null'
+                          arQctBaseCode: 'null'
+                          closingDayFrontLoadingSettingType: '0'
+                          industryType: '0'
+                          channelType: '10'
+                          eachBillRegister: 'null'
+                          invoiceSlipOutputReportCode: 'null'
+                          invoiceSummaryFlag: 'null'
+                          customerStatementSendFlag: '1'
+                          customerStatementSendMediaType: '3'
+                          swiftCode: 'null'
+                          withdrawalMatchingAllowFlag: string
+                MBSCR40040_2:
+                  value:
+                    getListBillToInternalResponseV1DetailList: null
+                MBSCR40040_4:
+                  value: {}
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      tags:
+        - BillToInternal
+      x-channel:
+        - internal
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          売掛先マスタ M_BILL_TO
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/GetListBillToInternalRequestV1'
+        description: 売掛先情報取得API（List）のリクエスト電文
+  /internal/v1/master/incoming-payment-group/search:
+    get:
+      summary: 入金グループマスタ_一覧検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SearchIncomingPaymentGroupMasterInternalResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchIncomingPaymentGroupMasterInternalV1
+      description: リクエスト項目の検索条件により、入金グループマスタを検索し結果を返却する
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          name: bill_to_code
+          description: 売掛先コード
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          name: incoming_payment_group_code
+          description: 入金グループコード
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          name: acceptance_group_code
+          description: 検収グループコード
+        - $ref: '#/components/parameters/max_count'
+        - $ref: '#/components/parameters/start_index'
+        - $ref: '#/components/parameters/display_count'
+      x-channel:
+        - internal
+      tags:
+        - IncomingPaymentGroupMasterInternal
+    parameters: []
+  /internal/v1/master/incoming-payment-group/update:
+    post:
+      summary: 入金グループマスタ_DB登録API
+      operationId: updateIncomingPaymentGroupMasterInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/UpdateIncomingPaymentGroupMasterInternalResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: リクエスト項目により、入金グループマスタ（編集）に反映する。
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIncomingPaymentGroupMasterInternalRequestV1'
+        description: ''
+      x-channel:
+        - internal
+      tags:
+        - IncomingPaymentGroupMasterInternal
+    parameters: []
+  /internal/v1/master/incoming-payment-group/check:
+    post:
+      summary: 入金グループマスタ_業務チェックAPI
+      operationId: checkIncomingPaymentGroupMasterInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/CheckIncomingPaymentGroupMasterInternalResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: リクエスト項目により、業務チェックを行い、データとともにチェック結果を返却する
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckIncomingPaymentGroupMasterInternalRequestV1'
+      tags:
+        - IncomingPaymentGroupMasterInternal
+      x-channel:
+        - internal
+    parameters: []
+components:
+  schemas:
+    AcceptanceGroupInternalV1:
+      title: AcceptanceGroupInternalV1
+      type: object
+      x-examples: {}
+      description: 検収グループ情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+        incomingPaymentGroupCode:
+          type: string
+          description: 入金グループコード
+        acceptanceGroupNameNative:
+          type: string
+          description: 検収グループ名（現地語）
+      required:
+        - subsidiaryCode
+        - acceptanceGroupCode
+        - incomingPaymentGroupCode
+        - acceptanceGroupNameNative
+    BillToInternalV1:
+      title: BillToInternalV1
+      type: object
+      description: 売掛先情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        billToCode:
+          type: string
+          description: 売掛先コード
+        arMainDepartment:
+          type: string
+          description: 売掛主管部署
+        processingSection:
+          type: string
+          description: 担当セクション
+        billToNameNative:
+          type: string
+          description: 売掛先名（現地語）
+        billToName:
+          type: string
+          description: 売掛先名
+        countryCode:
+          type: string
+          description: 国コード
+        languageCode:
+          type: string
+          description: 言語コード
+        postalCode:
+          type: string
+          description: 郵便番号
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        invoiceSendDestinationDepartmentNameNative:
+          type: string
+          description: 請求書送付先部課名（現地語）
+        invoiceSendDestinationPicNative:
+          type: string
+          description: 請求書送付先担当者（現地語）
+        tel:
+          type: string
+          description: 電話番号
+        billToFax:
+          type: string
+          description: 売掛先FAX番号
+        dunningToFax:
+          type: string
+          description: 督促先FAX番号
+        billToEmailAddressTo:
+          type: string
+          description: 売掛先メールアドレス（TO）
+        billToEmailAddressCc:
+          type: string
+          description: 売掛先メールアドレス（CC）
+        dunningToEmailAddressTo:
+          type: string
+          description: 督促先メールアドレス（TO）
+        dunningToEmailAddressCc:
+          type: string
+          description: 督促先メールアドレス（CC）
+        taxAccountStatementSendDestinationEmailAddress1:
+          type: string
+          description: 税金計算書送付先メールアドレス1
+        taxAccountStatementSendDestinationEmailAddress2:
+          type: string
+          description: 税金計算書送付先メールアドレス2
+        tradeStopType:
+          type: string
+          description: 取引停止区分
+        serviceStopType:
+          type: string
+          description: サービス停止区分
+        acceptanceType:
+          type: string
+          description: 検収区分
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+        incoterms:
+          type: string
+          description: インコタームズ
+        paymentTerms:
+          type: string
+          description: 支払条件
+        settlementMethod:
+          type: string
+          description: 決済形態
+        paymentMeans:
+          type: string
+          description: 支払手段
+        arClosingUnit:
+          type: string
+          description: 売掛金締め単位
+        arClosingDay:
+          description: 売掛金締日
+          type: integer
+        arPaymentMonth:
+          description: 売掛金支払月
+          type: integer
+        arPaymentDate:
+          description: 売掛金支払日
+          type: integer
+        arPaymentSiteFinal:
+          description: 売掛金支払サイト_最終
+          type: integer
+        arPaymentSiteEarlyPaymentDiscount:
+          description: 売掛金支払サイト_早割
+          type: integer
+        arEarlyIncomingPaymentDiscountRate:
+          type: string
+          description: 売掛金早期入金割引率
+          format: number
+        transferFee:
+          type: string
+          description: 振込手数料
+        customerAccountBankCode:
+          type: string
+          description: 顧客口座銀行コード
+        customerAccountType:
+          type: string
+          description: 顧客口座区分
+        customerAccountNumber:
+          type: string
+          description: 顧客口座番号
+        customerAccountNameNativeAllowed:
+          type: string
+          description: 顧客口座人名（現地語可）
+        transferAccountBankCode:
+          type: string
+          description: 振込口座銀行コード
+        transferAccountType:
+          type: string
+          description: 振込口座区分
+        transferAccountNumber:
+          type: string
+          description: 振込口座番号
+        transferAccountName:
+          type: string
+          description: 振込口座人名
+        virtualAccountFlag:
+          type: string
+          description: 仮想口座フラグ
+        notePayableConditionAmount:
+          type: string
+          description: 手形条件（金額）
+          format: number
+        notePayableConditionPaymentMonth:
+          description: 手形条件（支払月）
+          type: integer
+        notePayableConditionPaymentDate:
+          type: integer
+          description: 手形条件（支払日）
+        paymentSite:
+          type: integer
+          description: 支払サイト
+        invoiceSendType:
+          type: string
+          description: 請求書送付区分
+        invoiceViaType:
+          type: string
+          description: 請求書経由区分
+        invoiceViaTypeChild:
+          type: string
+          description: 請求書経由区分_子
+        invoiceSendMedia:
+          type: string
+          description: 請求書送付媒体
+        dunningLetterSendType:
+          type: string
+          description: 督促状送付区分
+        dunningLetterSendMedia:
+          type: string
+          description: 督促状送付媒体
+        productNamePrintFlag:
+          type: string
+          description: 商品名印字フラグ
+        consumptionTaxMentionType:
+          type: string
+          description: 消費税記載区分
+        inExTaxType:
+          type: string
+          description: 内税外税区分
+        ccyCode:
+          type: string
+          description: 通貨コード
+        rateTypeCode:
+          type: string
+          description: レートタイプコード
+        arDifficulty:
+          type: string
+          description: 売掛難易度
+        governmentUniformInvoiceType:
+          type: string
+          description: 統一発票区分
+        companyRepresentativeNameNative:
+          type: string
+          description: 会社代表者名（現地語）
+        arRemarks1:
+          type: string
+          description: 売掛注釈1
+        arRemarks2:
+          type: string
+          description: 売掛注釈2
+        arRemarks3:
+          type: string
+          description: 売掛注釈3
+        arRemarks4:
+          type: string
+          description: 売掛注釈4
+        arRemarks5:
+          type: string
+          description: 売掛注釈5
+        invoiceRemarks1:
+          type: string
+          description: INVOICE注釈1
+        invoiceRemarks2:
+          type: string
+          description: INVOICE注釈2
+        invoiceRemarks3:
+          type: string
+          description: INVOICE注釈3
+        invoiceRemarks4:
+          type: string
+          description: INVOICE注釈4
+        gstPaymentPlace:
+          type: string
+          description: 物品税管理地
+        departmentName:
+          type: string
+          description: 部署名
+        commissionerate:
+          type: string
+          description: 物品税管理区
+        stopReasonCode:
+          type: string
+          description: 停止理由コード
+        settlementMonth:
+          description: 決算月
+          type: integer
+        settlementClosingDay:
+          description: 決算締切日
+          type: integer
+        settlementSetting:
+          type: string
+          description: 決算設定
+        cityCode:
+          type: string
+          description: 市町村コード
+        invoiceOutputOrder:
+          type: string
+          description: 請求書出力順
+        zenginCode:
+          type: string
+          description: 全銀コード
+        automaticTransferFlag:
+          type: string
+          description: 自動振替フラグ
+        depositType:
+          type: string
+          description: 預金種類
+        accountNumber:
+          type: string
+          description: 口座番号
+        depositorNameKana:
+          type: string
+          description: 預金者名（カナ）
+        newCode:
+          type: string
+          description: 新規コード
+        automaticTransferRegisterDate:
+          type: string
+          description: 自動振替登録日
+          format: date
+        userTransferBank:
+          type: string
+          description: ユーザー振込銀行
+        userTransferBranch:
+          type: string
+          description: ユーザー振込支店
+        arQctBaseCode:
+          type: string
+          description: 売掛QCT拠点コード
+        closingDayFrontLoadingSettingType:
+          type: string
+          description: 締日前倒し設定区分
+        industryType:
+          type: string
+          description: 業種区分
+        channelType:
+          type: string
+          description: 経路区分
+        eachBillRegister:
+          type: string
+          description: 都度請求登録
+        invoiceSlipOutputReportCode:
+          type: string
+          description: 請求書伝発帳票コード
+        invoiceSummaryFlag:
+          type: string
+          description: 請求書まとめフラグ
+        customerStatementSendFlag:
+          type: string
+          description: カスタマーステートメント送付対象フラグ
+        customerStatementSendMediaType:
+          type: string
+          description: カスタマーステートメント送付媒体区分
+        swiftCode:
+          type: string
+          description: SWIFTコード
+        withdrawalMatchingAllowFlag:
+          type: string
+          description: 取崩し照合許可フラグ
+      required:
+        - subsidiaryCode
+        - billToCode
+        - billToName
+        - countryCode
+        - languageCode
+        - address1Native
+        - tradeStopType
+        - serviceStopType
+        - acceptanceType
+        - acceptanceGroupCode
+        - paymentTerms
+        - settlementMethod
+        - paymentMeans
+        - transferFee
+        - invoiceSendType
+        - dunningLetterSendType
+        - productNamePrintFlag
+        - consumptionTaxMentionType
+        - inExTaxType
+        - ccyCode
+        - rateTypeCode
+        - settlementSetting
+        - invoiceOutputOrder
+        - automaticTransferFlag
+        - closingDayFrontLoadingSettingType
+    SearchAcceptanceGroupInternalResponseV1:
+      title: SearchAcceptanceGroupInternalResponseV1
+      type: object
+      description: 検収グループ情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        acceptanceGroupInternalV1List:
+          type: array
+          description: 検収グループ情報リスト
+          items:
+            $ref: '#/components/schemas/AcceptanceGroupInternalV1'
+      required:
+        - recordCount
+    GetAcceptanceGroupInternalResponseV1:
+      title: GetAcceptanceGroupInternalResponseV1
+      type: object
+      description: 検収グループ情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        acceptanceGroupInternalV1:
+          $ref: '#/components/schemas/AcceptanceGroupInternalV1'
+      required:
+        - recordCount
+    SearchBillToInternalResponseV1:
+      title: SearchBillToInternalResponseV1
+      type: object
+      description: 売掛先情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1List:
+          type: array
+          description: 売掛先情報リスト
+          items:
+            $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - recordCount
+    GetBillToInternalResponseV1:
+      title: GetBillToInternalResponseV1
+      type: object
+      description: 売掛先情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1:
+          $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - recordCount
+    SearchBillToInternalRequestV1:
+      title: SearchBillToInternalRequestV1
+      type: object
+      description: 売掛先情報検索APIのリクエスト項目電文
+      properties:
+        billToCodeList:
+          type: array
+          maxLength: 6
+          minLength: 6
+          description: 売掛先情報検索APIのリクエスト項目電文詳細の売掛先コード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchBillToInternalRequestV1BillToCode'
+        billToCodeFrom:
+          type: string
+          description: 売掛先コード（From）
+          minLength: 6
+          maxLength: 6
+        billToCodeTo:
+          type: string
+          description: 売掛先コード（To）
+          minLength: 6
+          maxLength: 6
+        billToNameNative:
+          type: string
+          description: 売掛先名（現地語）
+          minLength: 1
+          maxLength: 60
+        billToName:
+          type: string
+          description: 売掛先名
+          minLength: 1
+          maxLength: 60
+        settlementMethod:
+          type: string
+          description: 決済形態
+          minLength: 1
+          maxLength: 3
+        arMainDepartment:
+          type: string
+          description: 売掛主管部署
+          minLength: 1
+          maxLength: 4
+        acceptanceGroupCodeList:
+          type: array
+          maxLength: 6
+          minLength: 6
+          description: 売掛先情報検索APIのリクエスト項目電文詳細の検収グループコード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchBillToInternalRequestV1AcceptanceGroupCode'
+    SearchAcceptanceGroupInternalRequestV1:
+      title: SearchAcceptanceGroupInternalRequestV1
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文
+      properties:
+        acceptanceGroupCodeList:
+          type: array
+          description: 検収グループ情報検索APIのリクエスト項目電文詳細の検収グループコード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCode'
+        incomingPaymentGroupCodeList:
+          type: array
+          description: 検収グループ情報検索APIのリクエスト項目電文詳細の入金グループコード情報リスト
+          items:
+            $ref: '#/components/schemas/SearchAcceptanceGroupInternalRequestV1IncomingPaymentGroupCode'
+        incomingPaymentGroupCodeFrom:
+          type: string
+          description: 入金グループコード（From）
+          minLength: 6
+          maxLength: 6
+        incomingPaymentGroupCodeTo:
+          type: string
+          description: 入金グループコード（To）
+          minLength: 6
+          maxLength: 6
+    SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCode:
+      title: SearchAcceptanceGroupInternalRequestV1AcceptanceGroupCode
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文詳細の検収グループコード情報
+      properties:
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+          maxLength: 6
+          minLength: 6
+      required:
+        - acceptanceGroupCode
+    SearchAcceptanceGroupInternalRequestV1IncomingPaymentGroupCode:
+      title: SearchAcceptanceGroupInternalRequestV1IncomingPaymentGroupCode
+      type: object
+      description: 検収グループ情報検索APIのリクエスト項目電文詳細の入金グループコード情報
+      properties:
+        incomingPaymentGroupCode:
+          type: string
+          description: 入金グループコード
+          maxLength: 6
+          minLength: 6
+      required:
+        - incomingPaymentGroupCode
+    SearchBillToInternalRequestV1BillToCode:
+      title: SearchBillToInternalRequestV1BillToCode
+      type: object
+      description: 売掛先情報検索APIのリクエスト項目電文詳細の売掛先コード情報
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+          minLength: 6
+          example: '860583'
+      required:
+        - billToCode
+    SearchBillToInternalRequestV1AcceptanceGroupCode:
+      title: SearchBillToInternalRequestV1AcceptanceGroupCode
+      type: object
+      description: 売掛先情報検索APIのリクエスト項目電文詳細の検収グループコード情報
+      properties:
+        acceptanceGroupCode:
+          type: string
+          description: 検収グループコード
+          maxLength: 6
+          minLength: 6
+      required:
+        - acceptanceGroupCode
+    GetListBillToInternalRequestV1:
+      title: GetListBillToInternalRequestV1
+      type: object
+      description: 売掛先情報取得API（List）のリクエスト電文
+      properties:
+        getListBillToInternalRequestV1DetailList:
+          type: array
+          description: 売掛先情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListBillToInternalRequestV1Detail'
+      required:
+        - getListBillToInternalRequestV1DetailList
+    GetListBillToInternalRequestV1Detail:
+      title: GetListBillToInternalRequestV1Detail
+      type: object
+      description: 売掛先情報取得API（List）のリクエスト電文詳細
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          minLength: 6
+          maxLength: 6
+      required:
+        - billToCode
+    GetListBillToInternalResponseV1:
+      title: GetListBillToInternalResponseV1
+      type: object
+      description: 売掛先情報取得API（List）のレスポンス電文
+      properties:
+        getListBillToInternalResponseV1DetailList:
+          type: array
+          description: 売掛先情報リスト
+          items:
+            $ref: '#/components/schemas/GetListBillToInternalResponseV1Detail'
+    GetListBillToInternalResponseV1Detail:
+      title: GetListBillToInternalResponseV1Detail
+      type: object
+      description: 売掛先情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        billToInternalV1:
+          $ref: '#/components/schemas/BillToInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    SearchIncomingPaymentGroupMasterInternalResponseV1:
+      title: SearchIncomingPaymentGroupMasterInternalResponseV1
+      type: object
+      properties:
+        count:
+          type: integer
+        inPaymentGroupList:
+          type: array
+          items:
+            $ref: '#/components/schemas/InPaymentGroupList'
+        messageList:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageList'
+    InPaymentGroupList:
+      title: InPaymentGroupList
+      type: object
+      description: 入金グループマスタ情報リスト
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        incomingPaymentGroupCode:
+          type: string
+          description: 入金グループコード
+        incomingPaymentGroupNameNative:
+          type: string
+          description: 入金グループ名（現地語）
+        billToCode:
+          type: string
+          description: 売掛先コード
+        transferFee:
+          type: string
+          description: 振込手数料
+        swiftCode:
+          type: string
+          description: SWIFTコード
+        transferAccountBankCode:
+          type: string
+          description: 振込口座銀行コード
+        transferAccountType:
+          type: string
+          description: 振込口座区分
+        transferAccountNumber:
+          type: string
+          description: 振込口座番号
+        transferAccountName:
+          type: string
+          description: 振込口座人名
+        virtualAccountFlag:
+          type: string
+          description: 仮想口座フラグ
+        customerAccountBankCode:
+          type: string
+          description: 顧客口座銀行コード
+        customerAccountType:
+          type: string
+          description: 顧客口座区分
+        customerAccountNumber:
+          type: string
+          description: 顧客口座番号
+        customerAccountNameNativeAllowed:
+          type: string
+          description: 顧客口座人名（現地語可）
+        notePayableConditionAmount:
+          type: string
+          description: 手形条件（金額）
+        paymentSite:
+          type: string
+          description: 支払サイト
+        notePayableConditionPaymentMonth:
+          type: string
+          description: 手形条件（支払月）
+        notePayableConditionPaymentDate:
+          type: string
+          description: 手形条件（支払日）
+        updateCount:
+          type: integer
+          description: 更新回数
+        deleteFlag:
+          type: string
+          description: 削除フラグ
+        registerDateTime:
+          type: string
+          description: 登録日時
+        registerUser:
+          type: string
+          description: 登録者
+        updateDateTime:
+          type: string
+          description: 更新日時
+        updateUser:
+          type: string
+          description: 更新者
+    IncomingPaymentGroupList:
+      title: IncomingPaymentGroupList
+      type: object
+      description: 入金グループマスタ情報リスト
+      properties:
+        lineNumber:
+          description: 行目
+          type: integer
+        processType:
+          type: string
+          description: 処理区分
+          minLength: 1
+          maxLength: 1
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          minLength: 3
+          maxLength: 3
+        incomingPaymentGroupCode:
+          type: string
+          description: 入金グループコード
+          minLength: 6
+          maxLength: 6
+        incomingPaymentGroupNameNative:
+          type: string
+          description: 入金グループ名（現地語）
+          minLength: 1
+          maxLength: 50
+        transferFee:
+          type: string
+          description: 振込手数料
+          minLength: 1
+          maxLength: 1
+        swiftCode:
+          type: string
+          description: SWIFTコード
+          minLength: 1
+          maxLength: 11
+        transferAccountBankCode:
+          type: string
+          description: 振込口座銀行コード
+          maxLength: 15
+          minLength: 2
+        transferAccountType:
+          type: string
+          description: 振込口座区分
+          minLength: 1
+          maxLength: 1
+        transferAccountNumber:
+          type: string
+          description: 振込口座番号
+          minLength: 1
+          maxLength: 30
+        transferAccountName:
+          type: string
+          description: 振込口座人名
+          minLength: 1
+          maxLength: 80
+        virtualAccountFlag:
+          type: string
+          description: 仮想口座フラグ
+          minLength: 1
+          maxLength: 1
+        customerAccountBankCode:
+          type: string
+          description: 顧客口座銀行コード
+          minLength: 2
+          maxLength: 15
+        customerAccountType:
+          type: string
+          description: 顧客口座区分
+          minLength: 1
+          maxLength: 1
+        customerAccountNumber:
+          type: string
+          description: 顧客口座番号
+          minLength: 1
+          maxLength: 30
+        customerAccountNameNativeAllowed:
+          type: string
+          description: 顧客口座人名（現地語可）
+          minLength: 1
+          maxLength: 20
+        notePayableConditionAmount:
+          type: string
+          description: 手形条件（金額）
+          minLength: 1
+          maxLength: 9
+        paymentSite:
+          type: string
+          description: 支払サイト
+          minLength: 1
+          maxLength: 4
+        notePayableConditionPaymentMonth:
+          type: string
+          description: 手形条件（支払月）
+          minLength: 1
+          maxLength: 2
+        notePayableConditionPaymentDate:
+          type: string
+          description: 手形条件（支払日）
+          minLength: 1
+          maxLength: 2
+        updateCount:
+          description: 更新回数
+          type: integer
+      required:
+        - lineNumber
+        - processType
+        - subsidiaryCode
+        - incomingPaymentGroupNameNative
+        - transferFee
+        - updateCount
+    UpdateIncomingPaymentGroupMasterInternalRequestV1:
+      title: UpdateIncomingPaymentGroupMasterInternalRequestV1
+      type: object
+      description: 入金グループマスタ_DB登録リクエスト
+      properties:
+        frameType:
+          type: string
+          description: 画面区分
+          minLength: 1
+          maxLength: 1
+        incomingPaymentGroupList:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomingPaymentGroupList'
+      required:
+        - frameType
+    UpdateIncomingPaymentGroupMasterInternalResponseV1:
+      title: UpdateIncomingPaymentGroupMasterInternalResponseV1
+      type: object
+      description: 入金グループマスタ_DB登録レスポンス
+      properties:
+        messageList1:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageList1'
+    CheckIncomingPaymentGroupMasterInternalRequestV1:
+      title: CheckIncomingPaymentGroupMasterInternalRequestV1
+      type: object
+      description: 入金グループマスタ_業務チェックリクエスト
+      properties:
+        frameType:
+          type: string
+          minLength: 1
+          maxLength: 1
+        incomingPaymentGroupList:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomingPaymentGroupList'
+      required:
+        - frameType
+    CheckIncomingPaymentGroupMasterInternalResponseV1:
+      title: CheckIncomingPaymentGroupMasterInternalResponseV1
+      type: object
+      properties:
+        messageList:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageList1'
+      description: 入金グループマスタ_業務チェックレスポンス
+    MessageList:
+      title: MessageList
+      type: object
+      properties:
+        messageCode:
+          type: string
+        messageLevel:
+          type: string
+    MessageList1:
+      title: MessageList1
+      type: object
+      description: メッセージ情報リスト
+      properties:
+        messageCode:
+          type: string
+          description: メッセージコード
+        messageLevel:
+          type: string
+          description: メッセージレベル
+        messageList2:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageList2'
+    MessageList2:
+      title: MessageList2
+      type: object
+      description: メッセージ情報リスト
+      properties:
+        target:
+          type: string
+          description: ターゲット
+        messageList3:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageList3'
+    MessageList3:
+      title: MessageList3
+      type: object
+      description: メッセージ情報リスト
+      properties:
+        target:
+          type: string
+          description: ターゲット
+        messageCode:
+          type: string
+          description: メッセージコード
+        messageLevel:
+          type: string
+          description: メッセージレベル
+  responses:
+    ErrorResponse:
+      description: エラーレスポンス
+      content:
+        application/json;charset=utf-8:
+          schema:
+            $ref: ../../common-spec/common-spec.yaml#/components/schemas/Error1
+          examples:
+            '@Example':
+              value:
+                target: ''
+                code: SYS00003
+                argumentList: []
+                message: Constraint violation
+                detailList:
+                  - target: 'acceptanceGroupCodeList[0].acceptanceGroupCode'
+                    code: SYS03113
+                    argumentList: []
+                    message: 'acceptanceGroupCodeList[0].acceptanceGroupCode must not be null, blank, or empty'
+                    detailList: []
+                  - target: 'billToCodeList[0].billToCode'
+                    code: SYS03113
+                    argumentList: []
+                    message: 'billToCodeList[0].billToCode must not be null, blank, or empty'
+                    detailList: []
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 1
+      description: ソート順
+    max_count:
+      name: max_count
+      in: query
+      schema:
+        type: integer
+      description: 最大表示件数
+    start_index:
+      name: start_index
+      in: query
+      schema:
+        type: integer
+      description: スタートインデックス
+    display_count:
+      name: display_count
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: 表示件数
+tags:
+  - name: AcceptanceGroupInternal
+  - name: BillToInternal
+  - name: IncomingPaymentGroupMasterInternal

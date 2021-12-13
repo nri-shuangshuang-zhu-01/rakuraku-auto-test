@@ -1,0 +1,3 @@
+http://localhost:4010/internal/v1/ccy/search
+http://localhost:4020/v1/bill-to/get?bill_to_code=558814
+http://localhost:4010/internal/v1/rate/get?rate_type_code=KKRM&before_convert_ccy_code=CAD&after_convert_ccy_code=CAS&effective_start_date=2021-09-11

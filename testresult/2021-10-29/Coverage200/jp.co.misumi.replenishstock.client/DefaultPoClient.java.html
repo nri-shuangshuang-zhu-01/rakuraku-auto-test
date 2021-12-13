@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultPoClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client</a> &gt; <span class="el_source">DefaultPoClient.java</span></div><h1>DefaultPoClient.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client;
+
+import java.util.Map;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.rest.api.client.context.HttpHeaderMapCreator;
+import jp.co.misumi.replenishstock.client.rest.purchaseorder.internal.api.PoApi;
+import jp.co.misumi.replenishstock.client.value.ClientEndpoint;
+import jp.co.misumi.replenishstock.domain.client.PoClient;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.SearchDetailAllPoInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.purchaseorder.internal.SearchDetailAllPoInternalResponseV1;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.client.RestClientException;
+
+/**
+ * 過少値算出.
+ *
+ * @author sho.daii
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+public class DefaultPoClient implements PoClient {
+  /**
+   * 発注詳細全体検索API 発注詳細全体検索API（ID:MAPPOPO250）
+   *
+   * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 発注詳細全体検索APIレスポンス
+   *
+   * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - エラーレスポンス
+   *
+   * @param context The RequestContext of this request
+   * @param searchDetailAllPoInternalRequestV1 発注詳細全体検索APIリクエスト (optional)
+   * @return SearchDetailAllPoInternalResponseV1
+   * @throws RestClientException if an error occurs while attempting to invoke the API
+   */
+  private final HttpHeaderMapCreator httpHeaderMapCreator;
+
+  private final PoApi poApi;
+
+  @Override
+  public SearchDetailAllPoInternalResponseV1 searchDetailAllPoV1(
+      RequestContext context, SearchDetailAllPoInternalRequestV1 mappRequest)
+      throws RestClientException {
+<span class="nc" id="L44">    Map&lt;String, Object&gt; headerMap = httpHeaderMapCreator.createHeaderMap(context, null);</span>
+<span class="nc" id="L45">    return poApi.searchDetailAllPoV1(</span>
+<span class="nc" id="L46">        context, ClientEndpoint.CLIENT_ENDPOINT_MAPPOP_O250.getValue(), headerMap, mappRequest);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

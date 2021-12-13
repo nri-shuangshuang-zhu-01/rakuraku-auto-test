@@ -1,0 +1,1774 @@
+openapi: 3.0.0
+info:
+  title: gw-service
+  version: '1.0'
+  description: 顧客サービス用の Public API です。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /newtonApi/shipmentfailupdateSynchronous:
+    parameters: []
+    post:
+      summary: 出荷不可入力更新(MS→GW)
+      operationId: shipmentfailupdateSynchronousNewtonApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ShipmentfailupdateSynchronousResponse'
+              examples:
+                example-1:
+                  value:
+                    resultList:
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                example-2:
+                  value:
+                    resultList:
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000024
+                        soSlipNumber: A078
+                        soLineKey: 1234
+                        inputProcessDate: '20210224'
+                        resultStatus: OK
+                example-3:
+                  value:
+                    resultList:
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: NG
+                        errorCd: NSSS4U0001E
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 1
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                example-4:
+                  value:
+                    resultList:
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: NSCSS4U0005E
+                        errorCd: '001'
+                example-5:
+                  value:
+                    resultList:
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                example-6:
+                  value:
+                    resultList:
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: NG
+                        errorCd: '004'
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                example-7:
+                  value:
+                    resultList:
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                      - subsidiaryCd: MJP
+                        globalNo: CA000032000086
+                        soSlipNumber: a5678
+                        soLineKey: 0
+                        inputProcessDate: '20190824'
+                        resultStatus: OK
+                example-8:
+                  value:
+                    resultList:
+                      - subsidiaryCd: string
+                        globalNo: string
+                        soSlipNumber: string
+                        soLineKey: 0
+                        inputProcessDate: string
+                        resultStatus: string
+                        errorCd: string
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Error1'
+      description: 出荷不可入力更新を行う
+      parameters: []
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ShipmentfailupdateSynchronousRequest'
+            examples: {}
+        description: MSからGWに出荷不可入力更新リクエスト電文
+      tags:
+        - Newton
+  /newtonApi/shipmentfailview:
+    post:
+      summary: 出荷・出荷不可参照(MS→GW)
+      operationId: shipmentfailviewNewtonApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ShipmentfailviewResponse'
+              examples:
+                example-1:
+                  value:
+                    shipmentFailList:
+                      - subsidiaryCd: JPN
+                        globalNo: CA000032000086
+                        inputProcessDate: '2019-08-24'
+                        plantCd: '0001'
+                        orderAttribution: string
+                        locationCd: string
+                        custCd: '123456'
+                        custsubSubsidiaryCd: string
+                        supplierCd: supp
+                        voucherDiv: string
+                        voucherSend: string
+                        wmsConnectionDiv: string
+                        vsd: '2019-08-24'
+                        vrd: '2019-08-24'
+                        crd: '2019-08-24'
+                        ssd: '2019-08-24'
+                        stockDiv: string
+                        componentFlg: '4'
+                        weight: 0
+                        shipmentQty: 0
+                        soQty: 0
+                        productCd: string
+                        brandCd: stri
+                        gInnerCd: string
+                        soInputDate: '2019-08-24'
+                        custSubRef: string
+                        custAttention: string
+                        outputDiv: string
+                        outputFlg: string
+                        reasonCd: A1234
+                        commentNote: string
+                        classifyCd: string
+                        productControlDepCode: string
+                        deliDiv: string
+                        shipmentPlace: string
+                        fax: string
+                        soDate: '2019-08-24'
+                        arrivalFixDate: '2019-08-24'
+                        updCount: 0
+                        delFlg: string
+                        regUsr: string
+                        regSysTime: '2019-08-24T14:15:22Z'
+                        regSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        regLocalTime: '2019-08-24T14:15:22Z'
+                        regPg: string
+                        updUsr: string
+                        updSysTime: '2019-08-24T14:15:22Z'
+                        updSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        updLocalTime: '2019-08-24T14:15:22Z'
+                        updPg: string
+                        shipmentTimingDiv: st
+                        shipDecisionFlg: string
+                        supplierInvNo: string
+                        deliNoteNo: string
+                        tShipmentUpdCount: 0
+                        tShipmentDelFlg: string
+                example-2:
+                  value:
+                    shipmentFailList:
+                      - subsidiaryCd: JPN
+                        globalNo: CA000032000024
+                        inputProcessDate: '2019-08-24'
+                        plantCd: '0001'
+                        orderAttribution: string
+                        locationCd: string
+                        custCd: '123456'
+                        custsubSubsidiaryCd: string
+                        supplierCd: supp
+                        voucherDiv: string
+                        voucherSend: string
+                        wmsConnectionDiv: string
+                        vsd: '2019-02-24'
+                        vrd: '2019-03-24'
+                        crd: '2019-04-24'
+                        ssd: '2019-05-24'
+                        stockDiv: string
+                        componentFlg: '4'
+                        weight: 0
+                        shipmentQty: 0
+                        soQty: 0
+                        productCd: string
+                        brandCd: 1CH1
+                        gInnerCd: string
+                        soInputDate: '2021-10-24'
+                        custSubRef: string
+                        custAttention: string
+                        outputDiv: string
+                        outputFlg: string
+                        reasonCd: A1234
+                        commentNote: string
+                        classifyCd: string
+                        productControlDepCode: string
+                        deliDiv: string
+                        shipmentPlace: string
+                        fax: string
+                        soDate: '2019-02-04'
+                        arrivalFixDate: '2019-08-13'
+                        updCount: 0
+                        delFlg: string
+                        regUsr: string
+                        regSysTime: '2019-08-04T14:15:22Z'
+                        regSubsidiaryTime: '2019-01-24T14:15:22Z'
+                        regLocalTime: '2019-08-22T14:15:22Z'
+                        regPg: string
+                        updUsr: string
+                        updSysTime: '2019-03-24T14:15:22Z'
+                        updSubsidiaryTime: '2019-04-04T14:15:22Z'
+                        updLocalTime: '2009-05-24T14:15:22Z'
+                        updPg: string
+                        shipmentTimingDiv: st
+                        shipDecisionFlg: string
+                        supplierInvNo: string
+                        deliNoteNo: string
+                        tShipmentUpdCount: 0
+                        tShipmentDelFlg: string
+                example-3:
+                  value:
+                    shipmentFailList:
+                      - subsidiaryCd: JPN
+                        globalNo: CA000032000086
+                        inputProcessDate: '2019-08-24'
+                        plantCd: '0001'
+                        orderAttribution: string
+                        locationCd: string
+                        custCd: '123456'
+                        custsubSubsidiaryCd: string
+                        supplierCd: sup
+                        voucherDiv: string
+                        voucherSend: string
+                        wmsConnectionDiv: string
+                        vsd: '2019-08-24'
+                        vrd: '2019-08-24'
+                        crd: '2019-08-24'
+                        ssd: '2019-08-24'
+                        stockDiv: string
+                        componentFlg: '4'
+                        weight: 0
+                        shipmentQty: 0
+                        soQty: 0
+                        productCd: string
+                        brandCd: stri
+                        gInnerCd: string
+                        soInputDate: '2019-08-24'
+                        custSubRef: string
+                        custAttention: string
+                        outputDiv: string
+                        outputFlg: string
+                        reasonCd: A1234
+                        commentNote: string
+                        classifyCd: string
+                        productControlDepCode: string
+                        deliDiv: string
+                        shipmentPlace: string
+                        fax: string
+                        soDate: '2019-08-24'
+                        arrivalFixDate: '2019-08-24'
+                        updCount: 0
+                        delFlg: string
+                        regUsr: string
+                        regSysTime: '2019-08-24T14:15:22Z'
+                        regSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        regLocalTime: '2019-08-24T14:15:22Z'
+                        regPg: string
+                        updUsr: string
+                        updSysTime: '2019-08-24T14:15:22Z'
+                        updSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        updLocalTime: '2019-08-24T14:15:22Z'
+                        updPg: string
+                        shipmentTimingDiv: st
+                        shipDecisionFlg: string
+                        supplierInvNo: string
+                        deliNoteNo: string
+                        tShipmentUpdCount: 0
+                        tShipmentDelFlg: string
+                example-4:
+                  value:
+                    shipmentFailList:
+                      - subsidiaryCd: JPN
+                        globalNo: CA000032000086
+                        inputProcessDate: '2019-08-24'
+                        plantCd: ''
+                        orderAttribution: string
+                        locationCd: string
+                        custCd: '123456'
+                        custsubSubsidiaryCd: string
+                        supplierCd: supp
+                        voucherDiv: string
+                        voucherSend: string
+                        wmsConnectionDiv: string
+                        vsd: '2019-08-24'
+                        vrd: '2019-08-24'
+                        crd: '2019-08-24'
+                        ssd: '2019-08-24'
+                        stockDiv: string
+                        componentFlg: '4'
+                        weight: 0
+                        shipmentQty: 0
+                        soQty: 0
+                        productCd: string
+                        brandCd: stri
+                        gInnerCd: string
+                        soInputDate: '2019-08-24'
+                        custSubRef: string
+                        custAttention: string
+                        outputDiv: string
+                        outputFlg: string
+                        reasonCd: A1234
+                        commentNote: string
+                        classifyCd: string
+                        productControlDepCode: string
+                        deliDiv: string
+                        shipmentPlace: string
+                        fax: string
+                        soDate: '2019-08-24'
+                        arrivalFixDate: '2019-08-24'
+                        updCount: 0
+                        delFlg: string
+                        regUsr: string
+                        regSysTime: '2019-08-24T14:15:22Z'
+                        regSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        regLocalTime: '2019-08-24T14:15:22Z'
+                        regPg: string
+                        updUsr: string
+                        updSysTime: '2019-08-24T14:15:22Z'
+                        updSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        updLocalTime: '2019-08-24T14:15:22Z'
+                        updPg: string
+                        shipmentTimingDiv: st
+                        shipDecisionFlg: string
+                        supplierInvNo: string
+                        deliNoteNo: string
+                        tShipmentUpdCount: 0
+                        tShipmentDelFlg: string
+                example-5:
+                  value:
+                    shipmentFailList:
+                      - subsidiaryCd: JPN
+                        globalNo: CA000032000086
+                        inputProcessDate: '2019-08-24'
+                        plantCd: '0001'
+                        orderAttribution: string
+                        locationCd: string
+                        custCd: '123456'
+                        custsubSubsidiaryCd: string
+                        supplierCd: supp
+                        voucherDiv: string
+                        voucherSend: string
+                        wmsConnectionDiv: string
+                        vsd: '2019-08-24'
+                        vrd: '2019-08-24'
+                        crd: '2019-08-24'
+                        ssd: '2019-08-24'
+                        stockDiv: string
+                        componentFlg: '4'
+                        weight: 0
+                        shipmentQty: 0
+                        soQty: 0
+                        productCd: string
+                        brandCd: stri
+                        gInnerCd: string
+                        soInputDate: '2019-08-24'
+                        custSubRef: string
+                        custAttention: string
+                        outputDiv: string
+                        outputFlg: string
+                        reasonCd: A1234
+                        commentNote: string
+                        classifyCd: string
+                        productControlDepCode: string
+                        deliDiv: string
+                        shipmentPlace: string
+                        fax: string
+                        soDate: '2019-08-24'
+                        arrivalFixDate: '2019-08-24'
+                        updCount: 0
+                        delFlg: string
+                        regUsr: string
+                        regSysTime: '2019-08-24T14:15:22Z'
+                        regSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        regLocalTime: '2019-08-24T14:15:22Z'
+                        regPg: string
+                        updUsr: string
+                        updSysTime: '2019-08-24T14:15:22Z'
+                        updSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        updLocalTime: '2019-08-24T14:15:22Z'
+                        updPg: string
+                        shipmentTimingDiv: st
+                        shipDecisionFlg: string
+                        supplierInvNo: string
+                        deliNoteNo: string
+                        tShipmentUpdCount: 0
+                        tShipmentDelFlg: string
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Error1'
+      description: 出荷不可入力参照を行う
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ShipmentfailviewRequest'
+            examples: {}
+        description: MSからGWに出荷・出荷不可情報の参照リクエスト電文
+      tags:
+        - Newton
+    parameters: []
+  /newtonApi/shipmentfailsearch:
+    post:
+      summary: 出荷不可検索(MS→GW)
+      operationId: shipmentfailsearchNewtonApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ShipmentfailsearchResponse'
+              examples:
+                example-1:
+                  value:
+                    shipmentFailList:
+                      - shipSubsidiaryCd: string
+                        shipGlobalNo: string
+                        shipInputProcessDate: '20190824'
+                        shipCustCd: string
+                        shipSupplierCd: stri
+                        shipVoucherDiv: str
+                        shipVsd: '20190824'
+                        shipVrd: '20190824'
+                        shipStockDiv: string
+                        shipShipmentQty: 0
+                        shipSoQty: 0
+                        shipProductCd: string
+                        shipBrandCd: stri
+                        shipOutputDiv: string
+                        shipOutputFlg: string
+                        shipReasonCd: strin
+                        shipClassifyCd: string
+                        shipStorckCode: string
+                        shipSoDate: '20190824'
+                        shipUpdCount: 0
+                        shipDelFlg: string
+                        shipPlantCode: stri
+                        shipOrderAttribution: string
+                        shipLocationCd: stri
+                        shipVoucherSend: string
+                        shipShipmentPlace: string
+                        shipRegUsr: string
+                        shipRegSysTime: '2019-08-24T14:15:22Z'
+                        shipRegSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        shipRegLocalTime: '2019-08-24T14:15:22Z'
+                        shipUpdUsr: string
+                        shipUpdSubsidiaryTime: '2019-08-24T14:15:22Z'
+                        soSubsidiaryCd: string
+                        soGlobalNo: string
+                        soSupplierCd: stri
+                        soSlipType: str
+                        soVsd: '20190824'
+                        soVrd: '20190824'
+                        soSoQty: 0
+                        inputProductCode: string
+                        soBrandCd: stri
+                        soReasonType: strin
+                        soClassifyCd: string
+                        soProductcontroldepartmentCd: string
+                        soStorckCode: string
+                        soUpdCount: 0
+                        soDelFlg: string
+                        soPlantCode: string
+                        soOrderAttribute: string
+                        soLocationCd: string
+                        soVoucherSend: string
+                        soShipmentPlaceCode: string
+                        soUpdateUser: string
+                        soUpdLocalTime: '2019-08-24T14:15:22Z'
+                        soSupplierIVNo: string
+                    totalNum: 1
+                    hasnextFlg: string
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Error1'
+      description: 出荷不可検索を行う
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ShipmentfailsearchRequest'
+            examples:
+              example-1:
+                value:
+                  subsidiaryCd: string
+                  globalNo: string
+                  custCd: string
+                  supplierCd: string
+                  voucherDiv: string
+                  vsd:
+                    - '20190824'
+                  vrd:
+                    - '20190824'
+                  stockDiv: string
+                  outputFlg: string
+                  classifyCd: string
+                  deliDiv: string
+                  delFlg: string
+                  plantCd: string
+                  voucherSend: string
+                  shipmentPlace: string
+                  regUsr: string
+                  updUsr: string
+                  orderAttribute:
+                    - string
+                  supplierIVNo: string
+                  orderDiv: string
+                  showhistoryDiv: string
+                  orgVsd: '20190824'
+                  orgchangeVsd: '20190824'
+                  orgdelFlg: string
+                  limit: 0
+                  offSet: 0
+                  sort:
+                    - string
+        description: MSからGWに出荷不可情報の検索リクエスト電文
+      tags:
+        - Newton
+    parameters: []
+  /newtonApi/stockUpdateTransfer:
+    post:
+      summary: 在庫更新・在庫移動API（同期）(MS→GW)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/StockUpdateTransferResponse'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Error1'
+      operationId: stockUpdateTransferNewtonApi
+      description: MSからGWに在庫調整履歴の更新リクエストを実施する。
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/StockUpdateTransferRequest'
+            examples: {}
+      tags:
+        - Newton
+    parameters: []
+  /newtonApi/stockUpdateInventory:
+    post:
+      summary: 在庫更新・棚卸（同期）(GW→MS)
+      tags:
+        - Newton
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/StockUpdateInventoryResponse'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Error1'
+      operationId: stockUpdateInventoryNewtonApi
+      description: GWからMSに在庫調整履歴のレスポンスを実施する。
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/StockUpdateInventoryRequest'
+            examples: {}
+        description: ''
+    parameters: []
+components:
+  schemas:
+    Error1:
+      title: Error1
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の最上位JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error2'
+    Error2:
+      title: Error2
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の2階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error3'
+    Error3:
+      title: Error3
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の3階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error4'
+    Error4:
+      title: Error4
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の4階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error5'
+    Error5:
+      title: Error5
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の5階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+    ShipmentfailupdateSynchronousRequest:
+      title: ShipmentfailupdateSynchronousRequest
+      description: MSからGWに出荷不可入力更新リクエスト電文
+      type: object
+      properties:
+        processDiv:
+          type: string
+          description: 更新処理区分
+        shipmentFailList:
+          type: array
+          description: 出荷不可情報リスト
+          items:
+            $ref: '#/components/schemas/ShipmentfailupdateSynchronousShipmentFailList'
+    ShipmentfailupdateSynchronousShipmentFailList:
+      title: ShipmentfailupdateSynchronousShipmentFailList
+      type: object
+      description: 出荷不可情報リスト
+      properties:
+        subsidiaryCd:
+          type: string
+          description: 現法コード
+        globalNo:
+          type: string
+          description: グローバル番号
+        soSlipNumber:
+          type: string
+          description: 受注伝票番号
+        soLineKey:
+          type: integer
+          description: 受注明細キー
+        inputProcessDate:
+          type: string
+          description: 入力日付
+        plantCd:
+          type: string
+          description: 置場コード
+        orderAttribution:
+          type: string
+          description: 調達方法区分
+        locationCd:
+          type: string
+          description: 保管場所コード
+        custCd:
+          type: string
+          description: 得意先コード
+        custsubSubsidiaryCd:
+          type: string
+          description: 得意先現法コード
+        supplierCd:
+          type: string
+          description: 仕入先コード
+        voucherDiv:
+          type: string
+          description: 伝票区分
+        voucherSend:
+          type: string
+          description: 伝票送付区分
+        wmsConnectionDiv:
+          type: string
+          description: WMS連携区分
+        vsd:
+          type: string
+          description: VSD
+        vrd:
+          type: string
+          description: VRD
+        crd:
+          type: string
+          description: CRD
+        ssd:
+          type: string
+          description: SSD
+        stockDiv:
+          type: string
+          description: 在庫区分
+        componentFlg:
+          type: string
+          description: 部材品フラグ
+        weight:
+          type: string
+          description: 商品重量
+          x-validate-digits.integer: 9
+          x-validate-digits.fraction: 2
+          format: number
+        shipmentQty:
+          type: integer
+          description: 出荷数
+        soQty:
+          type: integer
+          description: 受注数量
+        productCd:
+          type: string
+          description: 商品コード
+        brandCd:
+          type: string
+          description: ブランドコード
+        gInnerCd:
+          type: string
+          description: 統合インナーコード
+        innerCd:
+          type: string
+          description: インナーコード
+        soInputDate:
+          type: string
+          description: 受注入力日
+        custSubRef:
+          type: string
+          description: 注文番号（子）
+        custAttention:
+          type: string
+          description: 注文者氏名（カナ／英字）
+        outputDiv:
+          type: string
+          description: 出力区分
+        outputFlg:
+          type: string
+          description: 出力フラグ
+        reasonCd:
+          type: string
+          description: 理由区分
+        commentNote:
+          type: string
+          description: コメント
+        classifyCd:
+          type: string
+          description: 分析コード
+        productControlDepCode:
+          type: string
+          description: 商品所管部門コード
+        deliDiv:
+          type: string
+          description: ストークコード
+        shipmentPlace:
+          type: string
+          description: 出荷方法コード
+        fax:
+          type: string
+          description: FAX番号
+        soDate:
+          type: string
+          description: 受注日
+        arrivalFixDate:
+          type: string
+          description: 入荷確定日
+        updCount:
+          type: integer
+          description: 更新回数
+        delFlg:
+          type: string
+          description: 削除フラグ
+        regUsr:
+          type: string
+          description: 登録者
+        regSysTime:
+          type: string
+          description: 登録日時（システム日時）
+        regSubsidiaryTime:
+          type: string
+          description: 登録日時（現法日時）
+        regLocalTime:
+          type: string
+          description: 登録日時（ロケール日時）
+        regPg:
+          type: string
+          description: 登録プログラム
+        updUsr:
+          type: string
+          description: 更新者
+        updSysTime:
+          type: string
+          description: 更新日時（システム日時）
+        updSubsidiaryTime:
+          type: string
+          description: 更新日時（現法日時）
+        updLocalTime:
+          type: string
+          description: 更新日時（ロケール日時）
+        updPg:
+          type: string
+          description: 更新プログラム
+    ShipmentfailupdateSynchronousResponse:
+      title: ShipmentfailupdateSynchronousResponse
+      type: object
+      description: GWからMFSに出荷不可リスポンス電文
+      properties:
+        resultList:
+          type: array
+          description: 更新可否リスト
+          items:
+            $ref: '#/components/schemas/ShipmentfailupdateSynchronousResultList'
+    ShipmentfailupdateSynchronousResultList:
+      title: ShipmentfailupdateSynchronousResultList
+      type: object
+      description: 更新可否リスト
+      properties:
+        subsidiaryCd:
+          type: string
+          description: 現法コード
+        globalNo:
+          type: string
+          description: グローバル番号
+        soSlipNumber:
+          type: string
+          description: 受注伝票番号
+        soLineKey:
+          type: integer
+          description: 受注明細キー
+        inputProcessDate:
+          type: string
+          description: 入力日付
+        resultStatus:
+          type: string
+          description: 結果ステータス
+        errorCd:
+          type: string
+          description: エラーコード
+    ShipmentfailviewRequest:
+      title: ShipmentfailviewRequest
+      type: object
+      description: MSからGWに出荷・出荷不可情報の参照リクエスト電文
+      properties:
+        requestList:
+          type: array
+          description: 出荷不可情報リスト
+          items:
+            $ref: '#/components/schemas/ShipmentfailviewRequestList'
+        limit:
+          type: integer
+          description: 参照最大件数
+        sort:
+          description: ソート条件
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+    ShipmentfailviewRequestList:
+      title: ShipmentfailviewRequestList
+      type: object
+      description: 出荷不可情報リスト
+      properties:
+        subsidiaryCd:
+          type: string
+          description: 現法コード
+        globalNo:
+          type: string
+          description: グローバル番号
+        inputProcessDate:
+          type: string
+          description: 入力日付
+        soDate:
+          type: string
+          description: 受注日
+        delFlg:
+          type: string
+          description: 削除フラグ
+    ShipmentfailviewResponse:
+      title: ShipmentfailviewResponse
+      type: object
+      description: MSからGWに出荷・出荷不可情報の参照レスポンス電文
+      properties:
+        shipmentFailList:
+          type: array
+          description: 出荷不可情報リスト
+          items:
+            $ref: '#/components/schemas/ShipmentfailviewShipmentFailList'
+      x-examples: {}
+    ShipmentfailviewShipmentFailList:
+      title: ShipmentfailviewShipmentFailList
+      type: object
+      description: 出荷不可情報リスト
+      properties:
+        subsidiaryCd:
+          type: string
+          description: 現法コード
+        globalNo:
+          type: string
+          description: グローバル番号
+        inputProcessDate:
+          type: string
+          description: 入力日付
+        plantCd:
+          type: string
+          description: 置場コード
+        orderAttribution:
+          type: string
+          description: 調達方法区分
+        locationCd:
+          type: string
+          description: 保管場所コード
+        custCd:
+          type: string
+          description: 得意先コード
+        custsubSubsidiaryCd:
+          type: string
+          description: 得意先現法コード
+        supplierCd:
+          type: string
+          description: 仕入先コード
+        voucherDiv:
+          type: string
+          description: 伝票区分
+        voucherSend:
+          type: string
+          description: 伝票送付
+        wmsConnectionDiv:
+          type: string
+          description: WMS連携区分
+        vsd:
+          type: string
+          description: VSD
+        vrd:
+          type: string
+          description: VRD
+        crd:
+          type: string
+          description: CRD
+        ssd:
+          type: string
+          description: SSD
+        stockDiv:
+          type: string
+          description: 在庫区分
+        componentFlg:
+          type: string
+          description: 部材品フラグ
+        weight:
+          type: integer
+          description: 商品重量
+        shipmentQty:
+          type: integer
+          description: 出荷数
+        soQty:
+          type: integer
+          description: 受注数量
+        productCd:
+          type: string
+          description: 商品コード
+        brandCd:
+          type: string
+          description: ブランドコード
+        gInnerCd:
+          type: string
+          description: 統合インナーコード
+        innerCd:
+          type: string
+          description: インナーコード
+        soInputDate:
+          type: string
+          description: 受注入力日
+        custSubRef:
+          type: string
+          description: 注文番号（子）
+        custAttention:
+          type: string
+          description: 注文者氏名（カナ／英字）
+        outputDiv:
+          type: string
+          description: 出力区分
+        outputFlg:
+          type: string
+          description: 出力フラグ
+        reasonCd:
+          type: string
+          description: 理由区分
+        commentNote:
+          type: string
+          description: コメント
+        classifyCd:
+          type: string
+          description: 分析コード
+        productControlDepCode:
+          type: string
+          description: 商品所管部門コード
+        deliDiv:
+          type: string
+          description: ストークコード
+        shipmentPlace:
+          type: string
+          description: 出荷方法
+        fax:
+          type: string
+          description: ＦＡＸ番号
+        soDate:
+          type: string
+          description: 受注日
+        arrivalFixDate:
+          type: string
+          description: 入荷確定日
+        updCount:
+          type: integer
+          description: 更新回数
+        delFlg:
+          type: string
+          description: 削除フラグ
+        regUsr:
+          type: string
+          description: 登録者
+        regSysTime:
+          type: string
+          description: 登録日時（システム日時）
+        regSubsidiaryTime:
+          type: string
+          description: 登録日時（現法日時）
+        regLocalTime:
+          type: string
+          description: 登録日時（ロケール日時）
+        regPg:
+          type: string
+          description: 登録プログラム
+        updUsr:
+          type: string
+          description: 更新者
+        updSysTime:
+          type: string
+          description: 更新日時（システム日時）
+        updSubsidiaryTime:
+          type: string
+          description: 更新日時（現法日時）
+        updLocalTime:
+          type: string
+          description: 更新日時（ロケール日時）
+        updPg:
+          type: string
+          description: 更新プログラム
+        shipmentTimingDiv:
+          type: string
+          description: 当当区分
+        shipDecisionFlg:
+          type: string
+          description: 出荷指示済フラグ
+        supplierInvNo:
+          type: string
+          description: Supplier Invoice No
+        deliNoteNo:
+          type: string
+          description: 納品書番号
+        tShipmentDelFlg:
+          type: string
+          description: 出荷テーブル_削除フラグ
+    ShipmentfailsearchRequest:
+      title: ShipmentfailsearchRequest
+      description: MSからGWに出荷不可情報の検索リクエスト電文
+      type: object
+      x-examples: {}
+      properties:
+        subsidiaryCd:
+          type: string
+          description: 現法コード
+        globalNo:
+          type: string
+          description: グローバル番号
+        custCd:
+          type: string
+          description: 得意先コード
+        supplierCd:
+          type: string
+          description: 仕入先コード
+        voucherDiv:
+          type: string
+          description: 伝票区分
+        vsd:
+          type: array
+          description: VSD
+          items:
+            type: string
+        vrd:
+          type: array
+          description: VRD
+          items:
+            type: string
+        stockDiv:
+          type: string
+          description: 在庫区分
+        outputFlg:
+          type: string
+          description: 出力フラグ
+        classifyCd:
+          type: string
+          description: 分析コード
+        deliDiv:
+          type: string
+          description: ストークコード
+        delFlg:
+          type: string
+          description: 削除フラグ
+        plantCd:
+          type: string
+          description: 置場コード
+        voucherSend:
+          type: string
+          description: 伝票送付区分
+        shipmentPlace:
+          type: string
+          description: 出荷方法コード
+        regUsr:
+          type: string
+          description: 登録者
+        updUsr:
+          type: string
+          description: 更新者
+        orderAttribute:
+          description: 調達方法区分
+          type: array
+          items:
+            type: string
+        supplierIVNo:
+          type: string
+          description: Supplier Invoice No
+        orderDiv:
+          type: string
+          description: 受注のみ要否区分
+        showhistoryDiv:
+          type: string
+          description: 履歴表示区分
+        orgVsd:
+          type: string
+          description: 元データVSD
+        orgchangeVsd:
+          type: string
+          description: 元データVSD変更済
+        orgdelFlg:
+          type: string
+          description: 元データ削除フラグ
+        limit:
+          type: integer
+          description: 取得件数
+        offSet:
+          type: integer
+          description: 取得開始位置
+        sort:
+          type: array
+          description: ソート条件
+          items:
+            type: array
+            items:
+              type: string
+    ShipmentfailsearchResponse:
+      title: ShipmentfailsearchResponse
+      type: object
+      description: GWからMSに出荷不可情報のレスポンス電文
+      properties:
+        shipmentFailList:
+          type: array
+          description: 出荷不可情報リスト
+          items:
+            $ref: '#/components/schemas/ShipmentfailsearchShipmentFailList'
+        totalNum:
+          type: integer
+          description: 総件数
+        hasnextFlg:
+          type: string
+          description: 次データ取得要否
+    ShipmentfailsearchShipmentFailList:
+      title: ShipmentfailsearchShipmentFailList
+      type: object
+      description: 出荷不可情報リスト
+      properties:
+        shipSubsidiaryCd:
+          type: string
+          description: 出荷不可_現法コード
+        shipGlobalNo:
+          type: string
+          description: 出荷不可_グローバル番号
+        shipInputProcessDate:
+          type: string
+          description: 出荷不可_入力日付
+        shipCustCd:
+          type: string
+          description: 出荷不可_得意先コード
+        shipSupplierCd:
+          type: string
+          description: 出荷不可_仕入先コード
+        shipVoucherDiv:
+          type: string
+          description: 出荷不可_伝票区分
+        shipVsd:
+          type: string
+          description: 出荷不可_VSD
+        shipVrd:
+          type: string
+          description: 出荷不可_VRD
+        shipStockDiv:
+          type: string
+          description: 出荷不可_在庫区分
+        shipShipmentQty:
+          type: integer
+          description: 出荷不可_出荷数
+        shipSoQty:
+          type: integer
+          description: 出荷不可_受注数量
+        shipProductCd:
+          type: string
+          description: 出荷不可_商品コード
+        shipBrandCd:
+          type: string
+          description: 出荷不可_ブランドコード
+        shipOutputDiv:
+          type: string
+          description: 出荷不可_出力区分
+        shipOutputFlg:
+          type: string
+          description: 出荷不可_出力フラグ
+        shipReasonCd:
+          type: string
+          description: 出荷不可_理由区分
+        shipClassifyCd:
+          type: string
+          description: 出荷不可_分析コード
+        shipStorckCode:
+          type: string
+          description: 出荷不可_ストークコード
+        shipSoDate:
+          type: string
+          description: 出荷不可_受注日
+        shipUpdCount:
+          type: integer
+          description: 出荷不可_更新回数
+        shipDelFlg:
+          type: string
+          description: 出荷不可_削除フラグ
+        shipPlantCode:
+          type: string
+          description: 出荷不可_置場コード
+        shipOrderAttribution:
+          type: string
+          description: 出荷不可_調達方法区分
+        shipLocationCd:
+          type: string
+          description: 出荷不可_保管場所コード
+        shipVoucherSend:
+          type: string
+          description: 出荷不可_伝票送付
+        shipShipmentPlace:
+          type: string
+          description: 出荷不可_出荷方法コード
+        shipRegUsr:
+          type: string
+          description: 出荷不可_登録者
+        shipRegSysTime:
+          type: string
+          description: 出荷不可_登録日時（システム日時）
+        shipRegSubsidiaryTime:
+          type: string
+          description: 出荷不可_登録日時（現法日時）
+        shipRegLocalTime:
+          type: string
+          description: 出荷不可_登録日時（ロケール日時）
+        shipUpdUsr:
+          type: string
+          description: 出荷不可_更新者
+        shipUpdSubsidiaryTime:
+          type: string
+          description: 出荷不可_更新日時（現法日時）
+        soSubsidiaryCd:
+          type: string
+          description: 受注明細_現法コード
+        soGlobalNo:
+          type: string
+          description: 受注明細_グローバル番号
+        soSupplierCd:
+          type: string
+          description: 受注ヘッダ_仕入先コード
+        soSlipType:
+          type: string
+          description: 受注明細_伝票区分
+        soVsd:
+          type: string
+          description: 受注明細_VSD
+        soVrd:
+          type: string
+          description: 受注明細_VRD
+        soSoQty:
+          type: integer
+          description: 受注明細_受注数量
+        inputProductCode:
+          type: string
+          description: 受注明細_入力商品コード
+        soBrandCd:
+          type: string
+          description: 受注明細_ブランドコード
+        soReasonType:
+          type: string
+          description: 受注明細_理由区分
+        soClassifyCd:
+          type: string
+          description: 受注明細_分析コード
+        soProductcontroldepartmentCd:
+          type: string
+          description: 受注明細_商品所管部門コード
+        soStorckCode:
+          type: string
+          description: 受注明細_ストークコード
+        soUpdCount:
+          type: integer
+          description: 受注明細_更新回数
+        soDelFlg:
+          type: string
+          description: 受注明細_削除フラグ
+        soPlantCode:
+          type: string
+          description: 受注明細_置場コード
+        soOrderAttribute:
+          type: string
+          description: 受注明細_調達方法区分
+        soLocationCd:
+          type: string
+          description: 受注明細_保管場所コード
+        soVoucherSend:
+          type: string
+          description: 受注明細_伝票送付
+        soShipmentPlaceCode:
+          type: string
+          description: 受注明細_出荷方法コード
+        soUpdateUser:
+          type: string
+          description: 受注明細_更新者
+        soUpdLocalTime:
+          type: string
+          description: 受注明細_更新日時（現法日時）
+        soSupplierIVNo:
+          type: string
+          description: SupplierI/V No
+    StockUpdateInventoryRequest:
+      title: StockUpdateInventoryRequest
+      type: object
+      description: 在庫更新・棚卸（同期）(MS→GW)のリクエスト項目
+      properties:
+        stockAdjustHistoryList:
+          type: array
+          description: 在庫調整履歴情報リスト
+          items:
+            $ref: '#/components/schemas/StockUpdateInventoryStockAdjustHistory'
+    StockUpdateInventoryStockAdjustHistory:
+      title: StockUpdateInventoryStockAdjustHistory
+      type: object
+      x-examples: {}
+      description: 在庫調整履歴情報
+      properties:
+        vouverDate:
+          type: string
+          description: 伝票日付
+        plantCd:
+          type: string
+          description: 置場コード
+        locationCd:
+          type: string
+          description: 保管場所
+        gInnerCd:
+          type: string
+          description: 統合インナーコード
+        inputUnitQty:
+          type: integer
+          description: 入力単位数量
+        beforeCurrentStockQtyCheck:
+          type: integer
+          description: チェック時調整前現在庫数
+        afterCurrentStockQtyCheck:
+          type: integer
+          description: チェック時調整後現在庫数
+        evaluationUnitPriceCheck:
+          type: string
+          format: number
+          x-validate-digits.integer: 9
+          x-validate-digits.fraction: 3
+          description: チェック時評価単価
+        reasonCd:
+          type: string
+          description: 理由区分
+        voucherDiv:
+          type: string
+          description: 伝票区分
+        responsibilityDivisionCd:
+          type: string
+          description: 責任部署コード
+        productCd:
+          type: string
+          description: 商品コード
+        brandCd:
+          type: string
+          description: ブランドコード
+        marketCd:
+          type: string
+          description: 市場コード
+        productControlDepCode:
+          type: string
+          description: 商品所管部門コード
+        ccyCd:
+          type: string
+          description: 通貨コード
+        subsidiaryCd:
+          type: string
+          description: 現法コード
+        delFlg:
+          type: string
+          description: 削除フラグ
+        regUsr:
+          type: string
+          description: 登録者
+        regSubsidiaryTime:
+          type: string
+          description: 登録日時（現法日時）
+        regLocalTime:
+          type: string
+          description: 登録日時（ロケール日時）
+        regPg:
+          type: string
+          description: 登録プログラム
+        updUsr:
+          type: string
+          description: 更新者
+        updSubsidiaryTime:
+          type: string
+          description: 更新日時（現法日時）
+        updLocalTime:
+          type: string
+          description: 更新日時（ロケール日時）
+        updPg:
+          type: string
+          description: 更新プログラム
+    StockUpdateInventoryResponse:
+      title: StockUpdateInventoryResponse
+      type: object
+      description: 在庫更新・棚卸（同期）(MS→GW)のレスポンス項目
+      properties:
+        resultList:
+          type: array
+          description: 更新可否リスト
+          items:
+            $ref: '#/components/schemas/StockUpdateInventoryResult'
+    StockUpdateInventoryResult:
+      title: StockUpdateInventoryResult
+      type: object
+      description: 更新可否
+      properties:
+        adjustVoucherNo:
+          type: string
+          description: ロジ伝票番号
+        adjustVoucherNoSeq:
+          type: string
+          description: ロジ伝票明細番号
+        plantCd:
+          type: string
+          description: 置場コード
+        locationCd:
+          type: string
+          description: 保管場所コード
+        inventoryVoucherNo:
+          type: string
+          description: 棚卸伝票番号
+        gInnerCd:
+          type: string
+          description: 統合インナーコード
+        beforeCurrentStockQty:
+          type: integer
+          description: 調整前現在庫数
+        afterCurrentStockQty:
+          type: integer
+          description: 調整後現在庫数
+        evaluationUnitPrice:
+          type: string
+          description: 評価単価
+        adjustDate:
+          type: string
+          description: 調整日付
+        status:
+          type: string
+          description: 更新結果
+        errorCode:
+          type: string
+          description: エラーコード
+    StockUpdateTransferRequest:
+      title: StockUpdateTransferRequest
+      type: object
+      description: 在庫更新・在庫移動API（同期）(MS→GW)のリクエスト項目
+      properties:
+        stockAdjustHistoryList:
+          type: array
+          description: 在庫調整履歴情報リスト
+          items:
+            $ref: '#/components/schemas/StockUpdateTransferStockAdjustHistory'
+    StockUpdateTransferStockAdjustHistory:
+      title: StockUpdateTransferStockAdjustHistory
+      type: object
+      description: 在庫調整履歴情報
+      properties:
+        migoAction:
+          type: string
+          description: MIGOアクション
+        reasonCd:
+          type: string
+          description: 理由区分
+        vouverDate:
+          type: string
+          description: 伝票日付
+        inputUnitQty:
+          type: integer
+          description: 入力単位数量
+        plantCd:
+          type: string
+          description: 置場コード
+        locationCd:
+          type: string
+          description: 保管場所
+        stockType:
+          type: string
+          description: 在庫タイプ
+        gInnerCd:
+          type: string
+          description: 統合インナーコード
+        beforeCurrentStockQtyCheck:
+          type: integer
+          description: チェック時調整前現在庫数
+        afterCurrentStockQtyCheck:
+          type: integer
+          description: チェック時調整後現在庫数
+        evaluationUnitPriceCheck:
+          type: string
+          format: number
+          x-validate-digits.integer: 9
+          x-validate-digits.fraction: 3
+          description: チェック時評価単価
+        voucherDiv:
+          type: string
+          description: 伝票区分
+        responsibilityDivisionCd:
+          type: string
+          description: 責任部署コード
+        productCd:
+          type: string
+          description: 商品コード
+        brandCd:
+          type: string
+          description: ブランドコード
+        marketCd:
+          type: string
+          description: 市場コード
+        productControlDepCode:
+          type: string
+          description: 商品所管部門コード
+        ccyCd:
+          type: string
+          description: 通貨コード
+        subsidiaryCd:
+          type: string
+          description: 現法コード
+        delFlg:
+          type: string
+          description: |
+            削除フラグ
+        regUsr:
+          type: string
+          description: 登録者
+        regSubsidiaryTime:
+          type: string
+          description: 登録日時（現法日時）
+        regLocalTime:
+          type: string
+          description: 登録日時（ロケール日時）
+        regPg:
+          type: string
+          description: 登録プログラム
+        updUsr:
+          type: string
+          description: 更新者
+        updSubsidiaryTime:
+          type: string
+          description: 更新日時（現法日時）
+        updLocalTime:
+          type: string
+          description: 更新日時（ロケール日時）
+        updPg:
+          type: string
+          description: 更新プログラム
+    StockUpdateTransferResponse:
+      title: StockUpdateTransferResponse
+      type: object
+      description: 在庫更新・在庫移動API（同期）(MS→GW)のレスポンス項目
+      properties:
+        resultList:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockUpdateTransferResult'
+    StockUpdateTransferResult:
+      title: StockUpdateTransferResult
+      type: object
+      properties:
+        adjustVoucherNo:
+          type: string
+          description: ロジ伝票番号
+        adjustVoucherNoSeq:
+          type: string
+          description: ロジ伝票明細番号
+        inPlantCd:
+          type: string
+          description: 置場コード
+        inStorageLocation:
+          type: string
+          description: 保管場所コード
+        gInnerCd:
+          type: string
+          description: 統合インナーコード
+        innerCd:
+          type: string
+          description: インナーコード
+        stockAdjustVoucherNo:
+          type: string
+          description: 入出庫伝票番号
+        beforeCurrentStockQty:
+          type: integer
+          description: 調整前現在庫数
+        afterCurrentStockQty:
+          type: integer
+          description: 調整後現在庫数
+        beforeHoldStockQty:
+          type: integer
+          description: 調整前保留在庫数
+        afterHoldStockQty:
+          type: integer
+          description: 調整後保留在庫数
+        evaluationUnitPrice:
+          type: string
+          description: 評価単価
+        adjustDate:
+          type: string
+          description: 調整日付
+        status:
+          type: string
+          description: 更新結果
+        errorCode:
+          type: string
+          description: エラーコード
+      description: 更新可否
+  responses: {}
+  parameters: {}
+tags:
+  - name: Newton

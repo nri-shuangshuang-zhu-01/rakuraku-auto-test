@@ -1,0 +1,25 @@
+■api名称：　登录
+■api Request：　/internal/v1/stock-adjustment/reference
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.26.10&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=1&&Prefer=/internal/v1/subsidiary/get->1&/internal/v1/reason-type/get-list->2&/internal/v1/product/search->1&/internal/v1/product-control-department/get-list->2&/internal/v1/brand/get-list->2&/internal/v1/ginner-info/get-list->2&/internal/v1/type-code/get-list->2&/internal/v1/product-classification/get-list->2
+■api Body：　{  "businessSceneType": "11",  "stockAdjustmentInfoList": [    {      "plantCode": "1234",      "reasonType": "A1234",      "responsibilityDepartmentCode": "1",      "processMode": "1",      "ginnerCode": "MDM1004000750凌",      "productCode": "1",      "brandCode": "MSM1",      "currentStockQty": 9999919,      "stockDifferenceQty": 9999999    }  ]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "N0000000003E",
+  "message": "Constraint violation",
+  "detailList": [
+    {
+      "target": "stockAdjustmentInfoList[0].ginnerCode",
+      "detailList": [
+        {
+          "code": "N0000003101E",
+          "argumentList": [
+            []
+          ],
+          "message": "stockAdjustmentInfoList[0].ginnerCode is invalid format"
+        }
+      ]
+    }
+  ]
+}

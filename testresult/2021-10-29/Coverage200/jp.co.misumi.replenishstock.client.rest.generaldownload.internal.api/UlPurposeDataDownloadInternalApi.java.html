@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UlPurposeDataDownloadInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.generaldownload.internal.api</a> &gt; <span class="el_source">UlPurposeDataDownloadInternalApi.java</span></div><h1>UlPurposeDataDownloadInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.generaldownload.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.generaldownload.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.DeleteUlPurposeDataDownloadInternalReponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.ExcuteUlPurposeDataDownloadInternalReponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.ReferenceUlPurposeDataDownloadInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SaveUlPurposeDataDownloadInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.generaldownload.internal.SearchGeneralDounloadInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:18.435742800+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.generaldownload.internal.api.UlPurposeDataDownloadInternalApi&quot;)
+public class UlPurposeDataDownloadInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L42">    public UlPurposeDataDownloadInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L43">        this.apiClient = apiClient;</span>
+<span class="fc" id="L44">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L47">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L51">        this.apiClient = apiClient;</span>
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * 共通_UL用/UL結果データダウンロード実行API
+     * 画面のリクエストを参照し、ファイルをダウンロードし、ファイルのステータスを変更する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param excuteOrRemoveUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return ExcuteUlPurposeDataDownloadInternalReponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ExcuteUlPurposeDataDownloadInternalReponseV1 excuteUlPurposeDataDownloadInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1 excuteOrRemoveUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L70">        return excuteUlPurposeDataDownloadInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, excuteOrRemoveUlPurposeDataDownloadInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 共通_UL用/UL結果データダウンロード実行API
+     * 画面のリクエストを参照し、ファイルをダウンロードし、ファイルのステータスを変更する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param excuteOrRemoveUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;ExcuteUlPurposeDataDownloadInternalReponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;ExcuteUlPurposeDataDownloadInternalReponseV1&gt; excuteUlPurposeDataDownloadInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1 excuteOrRemoveUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L89">        Object postBody = excuteOrRemoveUlPurposeDataDownloadInternalRequestV1;</span>
+        
+<span class="nc" id="L91">        String path = apiClient.expandPath(&quot;/internal/v1/ul-purpose-data-download/excute&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L93">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L94">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L95">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L96">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L101">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L103">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L105">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L107">            });</span>
+        }
+
+<span class="nc" id="L110">        final String[] localVarAccepts = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L113">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L114">        final String[] contentTypes = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L117">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L119">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L121">        ParameterizedTypeReference&lt;ExcuteUlPurposeDataDownloadInternalReponseV1&gt; returnType = new ParameterizedTypeReference&lt;ExcuteUlPurposeDataDownloadInternalReponseV1&gt;() {};</span>
+<span class="nc" id="L122">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 共通_UL用/UL結果データダウンロード参照API
+     * UL用/UL結果データダウンロード参照APIを呼び出して、UL用/UL結果データダウンロード情報を参照する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param offset 取得開始位置 (required)
+     
+     * @param limit 返却件数 (required)
+     
+     * @param sortby2 ソート順2 (required)
+     
+     * @param sortby ソート順1 (optional)
+     
+     * @param referenceUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return SearchGeneralDounloadInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchGeneralDounloadInternalResponseV1 referenceUlPurposeDataDownloadInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, Integer offset, Integer limit, String sortby2, String sortby, ReferenceUlPurposeDataDownloadInternalRequestV1 referenceUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L147">        return referenceUlPurposeDataDownloadInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, offset, limit, sortby2, sortby, referenceUlPurposeDataDownloadInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 共通_UL用/UL結果データダウンロード参照API
+     * UL用/UL結果データダウンロード参照APIを呼び出して、UL用/UL結果データダウンロード情報を参照する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param offset 取得開始位置 (required)
+     
+     * @param limit 返却件数 (required)
+     
+     * @param sortby2 ソート順2 (required)
+     
+     * @param sortby ソート順1 (optional)
+     
+     * @param referenceUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchGeneralDounloadInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchGeneralDounloadInternalResponseV1&gt; referenceUlPurposeDataDownloadInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, Integer offset, Integer limit, String sortby2, String sortby, ReferenceUlPurposeDataDownloadInternalRequestV1 referenceUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L173">        Object postBody = referenceUlPurposeDataDownloadInternalRequestV1;</span>
+        
+        // verify the required parameter 'offset' is set
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (offset == null) {</span>
+<span class="nc" id="L177">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'offset' when calling referenceUlPurposeDataDownloadInternalV1&quot;);</span>
+        }
+        
+        // verify the required parameter 'limit' is set
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        if (limit == null) {</span>
+<span class="nc" id="L182">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'limit' when calling referenceUlPurposeDataDownloadInternalV1&quot;);</span>
+        }
+        
+        // verify the required parameter 'sortby2' is set
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (sortby2 == null) {</span>
+<span class="nc" id="L187">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'sortby2' when calling referenceUlPurposeDataDownloadInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L190">        String path = apiClient.expandPath(&quot;/internal/v1/ul-purpose-data-download/reference&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L192">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L193">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L194">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L195">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L197">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;offset&quot;, offset));</span>
+<span class="nc" id="L198">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;limit&quot;, limit));</span>
+<span class="nc" id="L199">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;sortby&quot;, sortby));</span>
+<span class="nc" id="L200">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;sortby2&quot;, sortby2));</span>
+
+        
+
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L205">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L207">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L209">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L211">            });</span>
+        }
+
+<span class="nc" id="L214">        final String[] localVarAccepts = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L217">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L218">        final String[] contentTypes = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L221">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L223">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L225">        ParameterizedTypeReference&lt;SearchGeneralDounloadInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchGeneralDounloadInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L226">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 共通_UL用/UL結果データダウンロード削除API
+     * UL用/UL結果データダウンロードファイル制御の情報内容を削除する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param excuteOrRemoveUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return DeleteUlPurposeDataDownloadInternalReponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public DeleteUlPurposeDataDownloadInternalReponseV1 removeUlPurposeDataDownloadInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1 excuteOrRemoveUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L244">        return removeUlPurposeDataDownloadInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, excuteOrRemoveUlPurposeDataDownloadInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 共通_UL用/UL結果データダウンロード削除API
+     * UL用/UL結果データダウンロードファイル制御の情報内容を削除する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param excuteOrRemoveUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;DeleteUlPurposeDataDownloadInternalReponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;DeleteUlPurposeDataDownloadInternalReponseV1&gt; removeUlPurposeDataDownloadInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, ExcuteOrRemoveUlPurposeDataDownloadInternalRequestV1 excuteOrRemoveUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L263">        Object postBody = excuteOrRemoveUlPurposeDataDownloadInternalRequestV1;</span>
+        
+<span class="nc" id="L265">        String path = apiClient.expandPath(&quot;/internal/v1/ul-purpose-data-download/remove&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L267">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L268">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L269">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L270">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L274" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L275">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L277">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L279">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L281">            });</span>
+        }
+
+<span class="nc" id="L284">        final String[] localVarAccepts = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L287">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L288">        final String[] contentTypes = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L291">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L293">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L295">        ParameterizedTypeReference&lt;DeleteUlPurposeDataDownloadInternalReponseV1&gt; returnType = new ParameterizedTypeReference&lt;DeleteUlPurposeDataDownloadInternalReponseV1&gt;() {};</span>
+<span class="nc" id="L296">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 共通_UL用/UL結果データダウンロード_登録更新API
+     * UL用/UL結果データダウンロード制御に対し、ダウンロードファイルの情報を登録またはステータスの更新を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param saveUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return SaveUlPurposeDataDownloadInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SaveUlPurposeDataDownloadInternalResponseV1 saveUlPurposeDataDownloadInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, SaveUlPurposeDataDownloadInternalRequestV1 saveUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L314">        return saveUlPurposeDataDownloadInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, saveUlPurposeDataDownloadInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 共通_UL用/UL結果データダウンロード_登録更新API
+     * UL用/UL結果データダウンロード制御に対し、ダウンロードファイルの情報を登録またはステータスの更新を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param saveUlPurposeDataDownloadInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;SaveUlPurposeDataDownloadInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SaveUlPurposeDataDownloadInternalResponseV1&gt; saveUlPurposeDataDownloadInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, SaveUlPurposeDataDownloadInternalRequestV1 saveUlPurposeDataDownloadInternalRequestV1) throws RestClientException {
+<span class="nc" id="L333">        Object postBody = saveUlPurposeDataDownloadInternalRequestV1;</span>
+        
+<span class="nc" id="L335">        String path = apiClient.expandPath(&quot;/internal/v1/ul-purpose-data-download/save&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L337">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L338">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L339">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L340">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L344" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L345">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L346" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L347">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L349">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L351">            });</span>
+        }
+
+<span class="nc" id="L354">        final String[] localVarAccepts = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L357">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L358">        final String[] contentTypes = { </span>
+            &quot;application/json; charset=UTF-8&quot;
+         };
+<span class="nc" id="L361">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L363">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L365">        ParameterizedTypeReference&lt;SaveUlPurposeDataDownloadInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SaveUlPurposeDataDownloadInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L366">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

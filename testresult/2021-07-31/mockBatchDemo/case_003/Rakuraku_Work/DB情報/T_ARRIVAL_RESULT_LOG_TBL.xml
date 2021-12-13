@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_ARRIVAL_RESULT_LOGColName field="subsidiary_code"/>
+  <T_ARRIVAL_RESULT_LOGColName field="g_inner_code"/>
+  <T_ARRIVAL_RESULT_LOGColName field="plant_code"/>
+  <T_ARRIVAL_RESULT_LOGColName field="arrival_fix_date"/>
+  <T_ARRIVAL_RESULT_LOGColName field="inner_code"/>
+  <T_ARRIVAL_RESULT_LOGColName field="total_arrival_qty"/>
+  <T_ARRIVAL_RESULT_LOGColName field="update_count"/>
+  <T_ARRIVAL_RESULT_LOGColName field="delete_flag"/>
+  <T_ARRIVAL_RESULT_LOGColName field="register_user"/>
+  <T_ARRIVAL_RESULT_LOGColName field="register_system_time"/>
+  <T_ARRIVAL_RESULT_LOGColName field="register_time"/>
+  <T_ARRIVAL_RESULT_LOGColName field="register_local_time"/>
+  <T_ARRIVAL_RESULT_LOGColName field="register_program"/>
+  <T_ARRIVAL_RESULT_LOGColName field="update_user"/>
+  <T_ARRIVAL_RESULT_LOGColName field="update_system_time"/>
+  <T_ARRIVAL_RESULT_LOGColName field="update_time"/>
+  <T_ARRIVAL_RESULT_LOGColName field="update_local_time"/>
+  <T_ARRIVAL_RESULT_LOGColName field="update_program"/>
+</dataset>

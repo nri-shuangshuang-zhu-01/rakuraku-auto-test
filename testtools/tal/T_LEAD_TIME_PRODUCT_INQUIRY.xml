@@ -1,0 +1,143 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+納期型番確認ID::lead_time_product_inquiry_id::bigserial::NOT NULL(PK)
+納期型番確認グループ区分::lead_time_product_inquiry_group_type::char(1)::NOT NULL
+納期型番確認区分::lead_time_product_inquiry_type::char(2)::NOT NULL
+納期型番確認ステージ::lead_time_product_inquiry_stage::char(2)::NOT NULL
+納期型番確認ステータス::lead_time_product_inquiry_status::char(2)::NOT NULL
+POC/事業部回答済フラグ::poc_business_unit_replied_flag::char(1)::NOT NULL
+仕入先回答済フラグ::supplier_replied_flag::char(1)::NOT NULL
+受注区分::order_type::char(1)::NULL
+見積伝票番号::qt_slip_number::varchar(12)::NULL
+見積明細キー::qt_line_key::integer::NULL
+見積明細番号::qt_line_number::integer::NULL
+受注伝票番号::so_slip_number::varchar(12)::NULL
+受注明細キー::so_line_key::integer::NULL
+受注明細番号::so_line_number::integer::NULL
+既受注見積フラグ::registered_so_qt_flag::char(1)::NOT NULL
+元グローバルNo::original_global_no::char(14)::NULL
+納期型番確認受付番号::lead_time_product_inquiry_receive_number::char(6)::NOT NULL
+受付日時::receive_date_time::timestamp with time zone::NOT NULL
+受付担当者ID::receive_pic_id::varchar(6)::NOT NULL
+依頼日時::request_date_time::timestamp with time zone::NULL
+依頼担当者ID::request_pic_id::varchar(6)::NULL
+回答日時::reply_date_time::timestamp with time zone::NULL
+回答担当者ID::reply_pic_id::varchar(6)::NULL
+確定日時::complete_date_time::timestamp with time zone::NULL
+確定担当者ID::complete_pic_id::varchar(6)::NULL
+見積時納期型番確認ID::qt_lead_time_product_inquiry_id::bigint::NULL
+見積時受付番号::qt_receive_number::char(6)::NULL
+見積時受付日時::qt_receive_date_time::timestamp with time zone::NULL
+IOエラーフラグ::io_error_flag::char(1)::NULL
+Sub1グローバル番号::sub1_global_number::char(14)::NULL
+Sub1見積時納期型番確認受付番号::sub1_qt_lead_time_product_inquiry_receive_number::char(6)::NULL
+Sub1受注時納期型番確認受付番号::sub1_so_lead_time_product_inquiry_receive_number::char(6)::NULL
+得意先現法得意先コード::customer_subsidiary_customer_code::char(6)::NULL
+得意先現法配送先コード::customer_subsidiary_direct_ship_to_code::char(6)::NULL
+得意先現法置場コード::customer_subsidiary_plant_code::char(4)::NULL
+得意先コード::customer_code::char(6)::NULL
+配送先コード::ship_to_code::char(6)::NULL
+注文者部課::order_department::varchar(120)::NULL
+注文担当者名::order_pic_name::varchar(80)::NULL
+納入担当者部課::customer_delivery_pic_department::varchar(120)::NULL
+納入担当者コード::customer_delivery_pic_code::char(6)::NULL
+納入担当者氏名::customer_delivery_pic_name::varchar(80)::NULL
+扱い便区分::shipmode_type::char(3)::NULL
+FAX番号::fax::varchar(20)::NULL
+顧客非課税区分::customer_tax_free_type::char(1)::NULL
+顧客注文番号（親番）::customer_item_reference::varchar(35)::NULL
+顧客注文番号（枝番）::customer_item_sub_reference::varchar(54)::NULL
+顧客注文番号（枝番）（現地語）::customer_item_sub_reference_native::varchar(54)::NULL
+在庫区分::stock_type::char(1)::NULL
+部材品区分::component_type::char(1)::NULL
+商品コード::product_code::varchar(234)::NULL
+ストークコード::stork_code::char(2)::NULL
+出荷方法コード::shipment_method_code::char(2)::NULL
+ブランドコード::brand_code::char(4)::NULL
+統合インナーコード::ginner_code::varchar(14)::NULL
+分析コード::classify_code::varchar(8)::NULL
+商品所管部門コード::product_control_department_code::varchar(6)::NULL
+数量::qty::numeric(7,0)::NULL
+パック数量::pack_qty::numeric(7,0)::NULL
+受注単位数量::so_unit_qty::numeric(7,0)::NULL
+自動送信情報FAX::auto_send_info_fax::varchar(60)::NULL
+受信番号::receive_number::varchar(36)::NULL
+依頼元現法コード::original_request_subsidiary_code::char(3)::NULL
+依頼元納期型番確認ID::original_request_lead_time_product_inquiry_id::bigint::NULL
+受信媒体::receive_media_type::varchar(2)::NULL
+売単価::sales_unit_price::numeric(14,3)::NULL
+売単価通貨コード::sales_unit_price_ccy_code::char(3)::NULL
+仕入単価::purchase_unit_price::numeric(14,3)::NULL
+仕入単価通貨コード::purchase_unit_price_ccy_code::char(3)::NULL
+最短VSD::earliest_vsd::date::NULL
+最短SSD::earliest_ssd::date::NULL
+指定SSD::specified_ssd::date::NULL
+指定VRD::specified_vrd::date::NULL
+指定VSD::specified_vsd::date::NULL
+指定CRD::specified_crd::date::NULL
+出荷設定区分::shipping_preference_type::char(1)::NULL
+媒体区分::media_type::char(2)::NULL
+市場コード::market_code::char(4)::NULL
+仕入先コード::supplier_code::char(4)::NULL
+重量::weight::numeric(13,2)::NULL
+在庫切れフラグ::out_of_stock_flag::char(1)::NULL
+土祝非カウントフラグ::saturday_holiday_no_count_flag::char(1)::NULL
+伝票区分::slip_type::char(3)::NULL
+置場コード::plant_code::char(4)::NULL
+参考売単価::reference_sales_unit_price::numeric(14,3)::NULL
+参考売値::reference_sales_amount::numeric(18,3)::NULL
+参考仕入単価::reference_purchase_unit_price::numeric(14,3)::NULL
+参考売単価通貨コード::reference_sales_unit_price_ccy_code::char(3)::NULL
+参考仕入単価通貨コード::reference_purchase_unit_price_ccy_code::char(3)::NULL
+見積時グローバル番号::qt_global_number::char(14)::NULL
+値引率::discount_rate::numeric(5,2)::NULL
+値引額::discounted_amount::numeric(18,3)::NULL
+特別値引率::special_discount_rate::numeric(5,2)::NULL
+特別値引額::special_discounted_amount::numeric(18,3)::NULL
+媒体値引率::media_discount_rate::numeric(5,2)::NULL
+媒体値引額::media_discounted_amount::numeric(18,3)::NULL
+決済形態::settlement_method::varchar(3)::NULL
+支払手段::payment_means::varchar(2)::NULL
+クーポン値引額::coupon_discounted_amount::numeric(18,3)::NULL
+クーポン込み値引率::discount_rate_including_coupon::numeric(5,2)::NULL
+キャンペーン基準日::campaign_base_date::date::NULL
+市場セルコード::market_cell_code::char(4)::NULL
+分納フラグ::partial_delivery_flag::char(1)::NULL
+分納連番::partial_delivery_seq::integer::NULL
+分納前数量::qty_before_partial_delivery::numeric(7,0)::NULL
+クーポンコード::coupon_code::char(20)::NULL
+元納期型番確認ID::original_lead_time_product_inquiry_id::bigint::NULL
+元納期型番確認受付番号::original_lead_time_product_inquiry_receive_number::char(6)::NULL
+元受付日時::original_receive_date_time::timestamp with time zone::NULL
+元有効期限日時::original_expiration_date_time::timestamp with time zone::NULL
+顧客ヘッダー注文番号::customer_item_header_reference::varchar(35)::NULL
+特注区分::special_order_type::char(1)::NULL
+自動送信::auto_send_type::char(1)::NULL
+自動送信情報メールアドレス(TO)::auto_send_info_email_address_to::varchar(256)::NULL
+自動送信情報メールアドレス(CC)::auto_send_info_email_address_cc::varchar(256)::NULL
+GTI適用フラグ::gti_flag::char(1)::NULL
+GTI受注締め時刻::gti_closing_time::timestamp with time zone::NULL
+受注単位::so_unit::numeric(10,2)::NULL
+明細コメント::dtl_comment::varchar::NULL
+指定仕入先出荷実動::specified_sslt::numeric(3,0)::NULL
+指定実働出荷日数::specified_actual_days_to_ship::numeric(3,0)::NULL
+再依頼納期型番確認ID::re_lead_time_product_inquiry_id::bigint::NULL
+再依頼受付日時::re_receive_date_time::timestamp with time zone::NULL
+承認日時::approve_date_time::timestamp with time zone::NULL
+承認担当者ID::approve_pic_id::varchar(6)::NULL
+削除日時::delete_date_time::timestamp with time zone::NULL
+削除担当者ID::delete_pic_id::varchar(6)::NULL
+仕入先回答日時::supplier_reply_date_time::timestamp with time zone::NULL
+仕入先回答担当者ID::supplier_reply_pic_id::varchar(6)::NULL
+顧客担当者ID::customer_pic_id::varchar(6)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

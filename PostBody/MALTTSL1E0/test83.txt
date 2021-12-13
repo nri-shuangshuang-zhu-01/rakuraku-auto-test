@@ -1,0 +1,18 @@
+{
+  "localCorporationCode": "str",
+  "accessIpAddress": "string",
+  "sessionId": "string",
+  "screenId": "string",
+  "processId": "string",
+  "programType": "a",
+  "createDate": "20190824",
+  "registerMode": "0",
+  "detailInformationList": [
+    {
+      "detailNumber": "1",
+      "globalNumber": "CA000032000086",
+      "internalExternalType": "0",
+      "invoiceNoDetailInformationList": null
+    }
+  ]
+}

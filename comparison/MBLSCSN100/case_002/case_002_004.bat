@@ -1,0 +1,3 @@
+set JAVA_HOME=D:\pleiades\jdk11.0.3_7
+set PATH=%JAVA_HOME%;%JAVA_HOME%\bin;
+java -javaagent:D:\pleiades\workspace\rakuraku-core\src\test\resources\selenium-2\lib\org.jacoco.agent-0.8.5-runtime.jar=includes=*,destfile=D:\newton-20210201\rakuraku-auto-test/testresult/2021-09-11/MBLSCSN100/jacoco.exec,append=true -jar "D:\misumi-org\shipment-control-service\shipment-control-batch\build\libs\shipment-control-batch-1.0.0-SNAPSHOT.jar"  "arrivalCompletedShipmentJob" "--job-execution-id=12345" "--subsidiary-code=JPN" "--job-net-id=100" > D:\newton-20210201\rakuraku-auto-test/testresult/2021-09-11/MBLSCSN100/case_002/case_002_005.log

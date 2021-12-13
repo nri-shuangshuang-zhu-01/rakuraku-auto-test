@@ -1,0 +1,2 @@
+http://localhost:4010/internal/v1/area/search?area_type=3
+http://localhost:4010/internal/v1/plant/search?plant_code=Test&sortby=

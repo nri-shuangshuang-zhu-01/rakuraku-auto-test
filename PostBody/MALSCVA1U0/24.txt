@@ -1,0 +1,36 @@
+{
+"stockAdjustment":[
+	{
+	"slipDate":"2020-09-15",
+	"operationDate":"2020-09-15",
+	"stockType":"s",
+	"registrationDate":"2020-09-15",
+	"registrationTime":"16:00:00",
+	"plantCode":"1234",
+	"plantName":"ABCDEFG1234",
+	"storageLocationCode":"ｚ",
+	"storageLocationName":"EFRTGHTYF",
+	"id":"123456789101112",
+	"reasonType":"CVB",
+	"reasonTypeName":"DSFSDGTR",
+	"processMode":"1",
+	"processModeName":"AB",
+	"responsibilityDepartmentCode":"3654",
+	"responsibilityDepartmentName":"SAHDUASGBF456",
+	"productCode":"789754542",
+	"ginnerCode":"UIOSAH78954",
+	"brandCode":"YUIP",
+	"brandName":"ASDZCFDVWR",
+	"currentStockQty":12,
+	"stockDifferenceQty":34,
+	"ccy":"CAD",
+	"productControlDepartmentCode":"STRING",
+	"productControlDepartmentName":"CTRLB",
+	"currentStockQtyBeforeAdjust":9991,
+	"currentStockQtyAfterAdjust":9992,
+	"evaluationUnitPrice":"1.1",
+	"marketCode":"16",
+	"updateDateTime":"2000-10-31T01:30:00.000-05:00"
+	}
+]
+}

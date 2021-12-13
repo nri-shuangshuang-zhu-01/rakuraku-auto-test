@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SHIPPING_DATE_AREA_SHIPMENT_COUNT_SUMMARY subsidiary_code='JPN' vsd='2020-08-24' plant_code='PC01' ship_to_area_code='   ' supply_type='01' shipment_count_summary_display_type='09' customer_code='CSCC01' ship_to_code='CSSTC1' summary_qty='3' update_count='0' delete_flag='0' register_user_type='Batch' register_user='MBLSCSR100' register_date_time='2020-08-24' register_program='« NULL »' register_client_program='MBLSCSR100' update_user_type='Batch' update_user='MBLSCSR100' update_date_time='2020-08-24' update_program='« NULL »' update_client_program='MBLSCSR100' />
+</dataset>

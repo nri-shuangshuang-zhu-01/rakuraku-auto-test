@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <C_PROCESS_PARAMETERColName field="parameter_code"/>
+  <C_PROCESS_PARAMETERColName field="language_code"/>
+  <C_PROCESS_PARAMETERColName field="parameter_seq"/>
+  <C_PROCESS_PARAMETERColName field="subsidiary_code"/>
+  <C_PROCESS_PARAMETERColName field="parameter_key1"/>
+  <C_PROCESS_PARAMETERColName field="parameter_key2"/>
+  <C_PROCESS_PARAMETERColName field="parameter_key3"/>
+  <C_PROCESS_PARAMETERColName field="parameter_key4"/>
+  <C_PROCESS_PARAMETERColName field="parameter_key5"/>
+  <C_PROCESS_PARAMETERColName field="usage_explanation"/>
+  <C_PROCESS_PARAMETERColName field="setting_value_reference1"/>
+  <C_PROCESS_PARAMETERColName field="setting_value_reference2"/>
+  <C_PROCESS_PARAMETERColName field="setting_value_reference3"/>
+  <C_PROCESS_PARAMETERColName field="setting_value_reference4"/>
+  <C_PROCESS_PARAMETERColName field="setting_value_reference5"/>
+  <C_PROCESS_PARAMETERColName field="update_count"/>
+  <C_PROCESS_PARAMETERColName field="delete_flag"/>
+  <C_PROCESS_PARAMETERColName field="register_user_type"/>
+  <C_PROCESS_PARAMETERColName field="register_user"/>
+  <C_PROCESS_PARAMETERColName field="register_date_time"/>
+  <C_PROCESS_PARAMETERColName field="register_program"/>
+  <C_PROCESS_PARAMETERColName field="register_client_program"/>
+  <C_PROCESS_PARAMETERColName field="update_user_type"/>
+  <C_PROCESS_PARAMETERColName field="update_user"/>
+  <C_PROCESS_PARAMETERColName field="update_date_time"/>
+  <C_PROCESS_PARAMETERColName field="update_program"/>
+  <C_PROCESS_PARAMETERColName field="update_client_program"/>
+</dataset>

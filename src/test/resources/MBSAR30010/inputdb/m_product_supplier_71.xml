@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <m_product_supplier subsidiary_code='CHN' ginner_code='MDM00000000001' supplier_choice_area_code='001' supplier_code='sc01' product_supplier_type='4' po_lead_time='123' direct_shipment_change_time='' same_day_so_closing_time='' so_same_day_cancel_rate='0.5' so_next_day_cancel_rate='0.5' so_date_after_3day_cancel_rate='0.1' io_supply_means_code='' supply_pattern='' production_days='100' purchase_unit_price_ccy_code='' country_of_origin_code='' supplier_shipping_point_code='' estimated_days='99' control_unit_code='' load_accumulation_flag='1' update_count='0' delete_flag='0' register_user_type='Office' register_user='LKG001' register_date_time='2021-10-11 16:45:34' register_program='DeadStockTool' register_client_program='DeadStockTool' update_user_type='Office' update_user='LKG001' update_date_time='2021-10-11 16:45:34' update_program='DeadStockTool' update_client_program='DeadStockTool' />
+</dataset>

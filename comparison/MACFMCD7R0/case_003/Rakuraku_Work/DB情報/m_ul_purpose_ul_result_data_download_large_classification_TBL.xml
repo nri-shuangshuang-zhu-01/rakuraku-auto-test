@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="subsidiary_code" comment="現法コード:データの現法を一意に特定するコード"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="data_large_classification_code" comment="データ大分類コード:データ大分類を示すコード"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="display_order" comment="表示順:コンボボックスの内容の表示順"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="data_large_classification_name_japanese" comment="データ大分類名（日本語）:データ大分類の名称　　※日本語漢字を想定"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="data_large_classification_name_english" comment="データ大分類名（英語）:データ大分類の名称"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="register_date_time" comment="登録日時"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="register_program" comment="登録プログラム"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="update_date_time" comment="更新日時"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="update_program" comment="更新プログラム"/>
+  <m_ul_purpose_ul_result_data_download_large_classificationColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

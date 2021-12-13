@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <idempotent_requestsColName field="id"/>
+  <idempotent_requestsColName field="key"/>
+  <idempotent_requestsColName field="target_id"/>
+  <idempotent_requestsColName field="method"/>
+  <idempotent_requestsColName field="status"/>
+  <idempotent_requestsColName field="processor_name"/>
+  <idempotent_requestsColName field="result"/>
+  <idempotent_requestsColName field="result_type_name"/>
+  <idempotent_requestsColName field="retry_count"/>
+  <idempotent_requestsColName field="request_context"/>
+  <idempotent_requestsColName field="request_context_type_name"/>
+  <idempotent_requestsColName field="request_data"/>
+  <idempotent_requestsColName field="request_data_type_name"/>
+  <idempotent_requestsColName field="last_run_at"/>
+  <idempotent_requestsColName field="register_date_time"/>
+  <idempotent_requestsColName field="register_user"/>
+  <idempotent_requestsColName field="register_user_type"/>
+  <idempotent_requestsColName field="register_client_program"/>
+  <idempotent_requestsColName field="register_program"/>
+  <idempotent_requestsColName field="update_date_time"/>
+  <idempotent_requestsColName field="update_user"/>
+  <idempotent_requestsColName field="update_user_type"/>
+  <idempotent_requestsColName field="update_client_program"/>
+  <idempotent_requestsColName field="update_program"/>
+  <idempotent_requestsColName field="update_count"/>
+  <idempotent_requestsColName field="delete_flag"/>
+  <idempotent_requestsColName field="state_data"/>
+  <idempotent_requestsColName field="state_data_type_name"/>
+  <idempotent_requestsColName field="running"/>
+  <idempotent_requestsColName field="auto_retry_enabled"/>
+  <idempotent_requestsColName field="status_log"/>
+  <idempotent_requestsColName field="version"/>
+</dataset>

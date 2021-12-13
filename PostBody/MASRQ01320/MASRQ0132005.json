@@ -1,0 +1,28 @@
+{
+  "urgentFlag": "0",
+  "customerName": "",
+  "shipToName": "",
+  "shipToCode": "",
+  "departmentName": "",
+  "picName": "",
+  "sendMediaType": "01",
+  "faxSendToNumber": "",
+  "emailAddressTo": "",
+  "emailAddressCc": "",
+  "userReplyLimit": "",
+  "inquiryDetailsList": [
+    {
+      "leadTimeProductInquiryId": "",
+      "dunningFlag": "1",
+      "qty": "",
+      "customerItemReference": "",
+      "productCode": "",
+      "storkCode": "",
+      "shippingPointCode": "",
+      "bulkPartialDeliveryType": "1",
+      "salesUnitPrice": "",
+      "sendType": "",
+      "inquiryContent": ""
+    }
+  ]
+}

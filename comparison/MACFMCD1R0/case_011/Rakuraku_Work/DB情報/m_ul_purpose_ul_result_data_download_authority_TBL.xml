@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="subsidiary_code"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="authority_code"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="medium_classification_code"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="data_code"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="display_order"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="data_name_japanese"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="data_name_english"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="file_retain_deadline"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="update_count"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="delete_flag"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="register_user_type"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="register_user"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="register_date_time"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="register_program"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="register_client_program"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="update_user_type"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="update_user"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="update_date_time"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="update_program"/>
+  <m_ul_purpose_ul_result_data_download_authorityColName field="update_client_program"/>
+</dataset>

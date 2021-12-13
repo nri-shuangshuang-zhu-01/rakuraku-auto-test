@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MybatisWeeklyMonthlyPoolDateLogicPlantReplaceRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.store.repository.mybatis</a> &gt; <span class="el_source">MybatisWeeklyMonthlyPoolDateLogicPlantReplaceRepository.java</span></div><h1>MybatisWeeklyMonthlyPoolDateLogicPlantReplaceRepository.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.store.repository.mybatis;
+
+import java.time.ZonedDateTime;
+import java.util.Optional;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.iterable.CloseableIterable;
+import jp.co.misumi.fw.core.iterable.DelegatingCloseableIterable;
+import jp.co.misumi.fw.core.time.DefaultTimeProvider;
+import jp.co.misumi.fw.core.time.TimeProvider;
+import jp.co.misumi.replenishstock.domain.entity.ShipmentActualPoolDataFor12monthsEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointPoolDataMonthlyEntity;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyMonthlyPoolDateLogicPlantReplaceRepository;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Delegate;
+
+/**
+ * MybatisWeeklyMonthlyPoolDateLogicPlantReplaceRepository.
+ *
+ * &lt;p&gt;coding by LKG張
+ *
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+public class MybatisWeeklyMonthlyPoolDateLogicPlantReplaceRepository
+    implements WeeklyMonthlyPoolDateLogicPlantReplaceRepository {
+
+  @Delegate private final MybatisWeeklyMonthlyPoolDateLogicPlantReplaceMapper mapper;
+
+  /**
+   * 出荷実績POOLデータ（12月分）を検索.
+   *
+   * @param subsidiaryCode 現法コード
+   * @return 処理結果
+   */
+  @Override
+  public CloseableIterable&lt;ShipmentActualPoolDataFor12monthsEntity&gt; searchShipmentActualPoolData(
+<span class="nc bnc" id="L38" title="All 2 branches missed.">      @NonNull String subsidiaryCode) {</span>
+<span class="nc" id="L39">    return new DelegatingCloseableIterable&lt;&gt;(mapper.selectShipmentActualPoolData(subsidiaryCode));</span>
+  }
+
+  /**
+   * PKを渡しての検索.
+   *
+   * @param subsidiaryCode 現法コード
+   * @param ginnerCode 統合インナーコード
+   * @param plantCode 置場コード
+   * @return 処理結果
+   */
+  @Override
+  public Optional&lt;WeeklyReorderPointPoolDataMonthlyEntity&gt; searchShipmentActualPoolMergeData(
+<span class="nc bnc" id="L52" title="All 6 branches missed.">      @NonNull String subsidiaryCode, @NonNull String ginnerCode, @NonNull String plantCode) {</span>
+<span class="nc" id="L53">    return Optional.ofNullable(</span>
+<span class="nc" id="L54">        mapper.selectShipmentActualPoolMergeData(subsidiaryCode, ginnerCode, plantCode));</span>
+  }
+
+  /**
+   * エンティティを渡して更新.
+   *
+   * @param requestContext requestContext
+   * @param weeklyReorderPointPoolDataMonthlyEntity WeeklyReorderPointPoolDataMonthlyEntity
+   * @param shipmentActualPoolDataFor12monthsEntity ShipmentActualPoolDataFor12monthsEntity
+   * @return 処理結果
+   */
+  @Override
+  public Integer saveMonthlyReorderPointPoolData(
+      RequestContext requestContext,
+      WeeklyReorderPointPoolDataMonthlyEntity weeklyReorderPointPoolDataMonthlyEntity,
+      ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity) {
+<span class="nc" id="L70">    setCommonColumn(requestContext, weeklyReorderPointPoolDataMonthlyEntity);</span>
+<span class="nc" id="L71">    return mapper.updateMonthlyReorderPointPoolData(</span>
+        weeklyReorderPointPoolDataMonthlyEntity, shipmentActualPoolDataFor12monthsEntity);
+  }
+
+  /**
+   * エンティティを渡して挿入.
+   *
+   * @param requestContext requestContext
+   * @param shipmentActualPoolDataFor12monthsEntity ShipmentActualPoolDataFor12monthsEntity
+   * @return 処理結果
+   */
+  @Override
+  public Integer registerMonthlyReorderPointPoolData(
+      RequestContext requestContext,
+      ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity) {
+<span class="nc" id="L86">    setCommonColumn(requestContext, shipmentActualPoolDataFor12monthsEntity);</span>
+<span class="nc" id="L87">    return mapper.insertMonthlyReorderPointPoolData(shipmentActualPoolDataFor12monthsEntity);</span>
+  }
+
+  private void setCommonColumn(
+      RequestContext context,
+      WeeklyReorderPointPoolDataMonthlyEntity weeklyReorderPointPoolDataMonthlyEntity) {
+    // 現在日時の取得
+<span class="nc" id="L94">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L95">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+    // 更新日時
+<span class="nc" id="L97">    weeklyReorderPointPoolDataMonthlyEntity.setUpdateDateTime(dateTime);</span>
+    // 登録日時
+<span class="nc" id="L99">    weeklyReorderPointPoolDataMonthlyEntity.setRegisterDateTime(dateTime);</span>
+    // 更新者
+<span class="nc" id="L101">    weeklyReorderPointPoolDataMonthlyEntity.setUpdateUser(context.getOperatorId());</span>
+    // 登録者
+<span class="nc" id="L103">    weeklyReorderPointPoolDataMonthlyEntity.setRegisterUser(context.getOperatorId());</span>
+    // 更新者区分
+<span class="nc" id="L105">    weeklyReorderPointPoolDataMonthlyEntity.setUpdateUserType(context.getOperatorType());</span>
+    // 登録者区分
+<span class="nc" id="L107">    weeklyReorderPointPoolDataMonthlyEntity.setRegisterUserType(context.getOperatorType());</span>
+    // 更新呼び出し元プログラム
+<span class="nc" id="L109">    weeklyReorderPointPoolDataMonthlyEntity.setUpdateClientProgram(context.getClientProgram());</span>
+    // 登録呼び出し元プログラム
+<span class="nc" id="L111">    weeklyReorderPointPoolDataMonthlyEntity.setRegisterClientProgram(context.getClientProgram());</span>
+    // 更新プログラム
+<span class="nc" id="L113">    weeklyReorderPointPoolDataMonthlyEntity.setUpdateProgram(&quot;null&quot;);</span>
+    // 登録プログラム
+<span class="nc" id="L115">    weeklyReorderPointPoolDataMonthlyEntity.setRegisterProgram(&quot;null&quot;);</span>
+<span class="nc" id="L116">  }</span>
+
+  private void setCommonColumn(
+      RequestContext context,
+      ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity) {
+    // 現在日時の取得
+<span class="nc" id="L122">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L123">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+    // 更新日時
+<span class="nc" id="L125">    shipmentActualPoolDataFor12monthsEntity.setUpdateDateTime(dateTime);</span>
+    // 登録日時
+<span class="nc" id="L127">    shipmentActualPoolDataFor12monthsEntity.setRegisterDateTime(dateTime);</span>
+    // 更新者
+<span class="nc" id="L129">    shipmentActualPoolDataFor12monthsEntity.setUpdateUser(context.getOperatorId());</span>
+    // 登録者
+<span class="nc" id="L131">    shipmentActualPoolDataFor12monthsEntity.setRegisterUser(context.getOperatorId());</span>
+    // 更新者区分
+<span class="nc" id="L133">    shipmentActualPoolDataFor12monthsEntity.setUpdateUserType(context.getOperatorType());</span>
+    // 登録者区分
+<span class="nc" id="L135">    shipmentActualPoolDataFor12monthsEntity.setRegisterUserType(context.getOperatorType());</span>
+    // 更新呼び出し元プログラム
+<span class="nc" id="L137">    shipmentActualPoolDataFor12monthsEntity.setUpdateClientProgram(context.getClientProgram());</span>
+    // 登録呼び出し元プログラム
+<span class="nc" id="L139">    shipmentActualPoolDataFor12monthsEntity.setRegisterClientProgram(context.getClientProgram());</span>
+    // 更新プログラム
+<span class="nc" id="L141">    shipmentActualPoolDataFor12monthsEntity.setUpdateProgram(&quot;null&quot;);</span>
+    // 登録プログラム
+<span class="nc" id="L143">    shipmentActualPoolDataFor12monthsEntity.setRegisterProgram(&quot;null&quot;);</span>
+<span class="nc" id="L144">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JunitAssert.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util.other</a> &gt; <span class="el_source">JunitAssert.java</span></div><h1>JunitAssert.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util.other;
+
+import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
+
+import junit.framework.Assert;
+
+@SuppressWarnings(&quot;deprecation&quot;)
+<span class="nc" id="L17">public class JunitAssert {</span>
+
+    public static void assertData(Object expected, Object actual) throws Exception {
+<span class="nc" id="L20">        assertData(&quot;&quot;, expected, actual, new String[] {});</span>
+<span class="nc" id="L21">    }</span>
+
+    public static void assertData(Object expected, Object actual, String... notAssertColumns) throws Exception {
+<span class="nc" id="L24">        assertData(&quot;&quot;, expected, actual, notAssertColumns);</span>
+<span class="nc" id="L25">    }</span>
+
+    public static void assertData(String info, Object expected, Object actual) throws Exception {
+<span class="nc" id="L28">        assertData(info, expected, actual, new String[] {});</span>
+<span class="nc" id="L29">    }</span>
+
+    /**
+     * Compare for actual data and expected data(LIST MAP TableRecord)
+     *
+     * @param info Assert errot info
+     * @param actual Data
+     * @param expected Data
+     * @throws Exception
+     */
+    @SuppressWarnings({ &quot;rawtypes&quot; })
+    public static void assertData(String info, Object expected, Object actual, String... notAssertColumns)
+            throws Exception {
+
+<span class="nc bnc" id="L43" title="All 4 branches missed.">        if (actual != null &amp;&amp; expected != null) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (!actual.getClass().toString().equals(expected.getClass().toString())) {</span>
+<span class="nc" id="L45">                Assert.fail(</span>
+<span class="nc" id="L46">                        info + &quot;のJAVA形比較失敗&quot; + &quot;expected &quot; + expected.getClass() + &quot; but actual &quot; + actual.getClass());</span>
+            } else {
+<span class="nc" id="L48">                if (actual.getClass().toString()</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">                        .matches(&quot;int|char|short|byte|long|float|double|boolean|(class java\\.(math|lang)\\..*)&quot;)) {</span>
+<span class="nc" id="L50">                    Assert.assertEquals(info + &quot;の値&quot;, expected, actual);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                } else if (actual.getClass().toString().matches(&quot;class java.+Timestamp||class java.+Date&quot;)) {</span>
+<span class="nc" id="L52">                    Assert.assertEquals(info + &quot;の値&quot;, expected.toString(), actual.toString());</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">                } else if ((actual.getClass().toString().indexOf(&quot;[&quot;) != -1)</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                        &amp;&amp; (!actual.getClass().toString().startsWith(&quot;class&quot;))) {</span>
+<span class="nc" id="L55">                    Assert.assertEquals(info + &quot;の配列レングス&quot;, ((Object[]) expected).length, ((Object[]) actual).length);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                    for (int i = 0; i &lt; ((Object[]) actual).length; i++) {</span>
+<span class="nc" id="L57">                        assertData(info + &quot;[&quot; + i + &quot;]&quot;, ((Object[]) expected)[i], ((Object[]) actual)[i],</span>
+                                notAssertColumns);
+                    }
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                } else if (actual.getClass().toString().matches(&quot;(interface|class) java\\.util\\.(List|ArrayList)&quot;)) {</span>
+<span class="nc" id="L61">                    List datalist = (List) actual;</span>
+<span class="nc" id="L62">                    List exptlist = (List) expected;</span>
+<span class="nc" id="L63">                    Assert.assertEquals(info + &quot;のリストサイズ&quot;, exptlist.size(), datalist.size());</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">                    for (int i = 0; i &lt; datalist.size(); i++) {</span>
+<span class="nc" id="L65">                        assertData(info + &quot;{List&lt;&quot; + datalist.get(i).getClass() + &quot;&gt;}(&quot; + i + &quot;)&quot;, exptlist.get(i),</span>
+<span class="nc" id="L66">                                datalist.get(i), notAssertColumns);</span>
+                    }
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                } else if (actual.getClass().toString().matches(&quot;(interface|class) java\\.util\\.(Map|HashMap)&quot;)) {</span>
+<span class="nc" id="L69">                    Map datamap = (Map) actual;</span>
+<span class="nc" id="L70">                    Map exptmap = (Map) expected;</span>
+
+<span class="nc" id="L72">                    Assert.assertEquals(info + &quot;のマップサイズ&quot;, exptmap.keySet().toArray().length,</span>
+<span class="nc" id="L73">                            datamap.keySet().toArray().length);</span>
+
+<span class="nc" id="L75">                    Iterator iterator = datamap.keySet().iterator();</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                    while (iterator.hasNext()) {</span>
+<span class="nc" id="L77">                        Object key = iterator.next();</span>
+<span class="nc" id="L78">                        Boolean flag = true;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                        for (String notAssertKey : notAssertColumns) {</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                            if (notAssertKey.equals(key)) {</span>
+<span class="nc" id="L81">                                flag = false;</span>
+<span class="nc" id="L82">                                break;</span>
+                            }
+                        }
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                        if (flag) {</span>
+<span class="nc" id="L86">                            Assert.assertEquals(info + &quot;に[key=&quot; + key + &quot;]のExists&quot;, exptmap.containsKey(key),</span>
+<span class="nc" id="L87">                                    datamap.containsKey(key));</span>
+<span class="nc" id="L88">                            assertData(info + &quot;に[key=&quot; + key + &quot;]のValue&quot;, exptmap.get(key), datamap.get(key),</span>
+                                    notAssertColumns);
+                        }
+<span class="nc" id="L91">                    }</span>
+
+<span class="nc" id="L93">                    iterator = exptmap.keySet().iterator();</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">                    while (iterator.hasNext()) {</span>
+<span class="nc" id="L95">                        Object key = iterator.next();</span>
+<span class="nc" id="L96">                        Boolean assertFlag = true;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">                        for (String notAssertKey : notAssertColumns) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">                            if (notAssertKey.equals(key)) {</span>
+<span class="nc" id="L99">                                assertFlag = false;</span>
+<span class="nc" id="L100">                                break;</span>
+                            }
+                        }
+<span class="nc bnc" id="L103" title="All 2 branches missed.">                        if (assertFlag) {</span>
+<span class="nc" id="L104">                            Assert.assertEquals(info + &quot;に[key=&quot; + key + &quot;]のExists&quot;, exptmap.containsKey(key),</span>
+<span class="nc" id="L105">                                    datamap.containsKey(key));</span>
+<span class="nc" id="L106">                            assertData(info + &quot;に[key=&quot; + key + &quot;]のValue&quot;, exptmap.get(key), datamap.get(key),</span>
+                                    notAssertColumns);
+                        }
+<span class="nc" id="L109">                    }</span>
+                    // }else
+                    // if(actual.getClass().toString().matches(&quot;.+TableRecord&quot;)){
+                    // Method[] ms = actual.getClass().getDeclaredMethods();
+                    // for(int i = 0; i &lt; ms.length ; i++){
+                    // if(ms[i].getName().matches(&quot;get.+&quot;) &amp;&amp;
+                    // !ms[i].getName().equals(&quot;getPKeyData&quot;) &amp;&amp;
+                    // !ms[i].getName().equals(&quot;getValueData&quot;)){
+                    // ms[i].setAccessible(true);
+                    // assertData(info+&quot;にTableRecordの&quot; +
+                    // ms[i].getName().replaceFirst(&quot;get&quot;,
+                    // &quot;&quot;),ms[i].invoke(expected),ms[i].invoke(actual));
+                    // }
+                    // }
+<span class="nc" id="L123">                } else {</span>
+<span class="nc" id="L124">                    Field[] fields = actual.getClass().getDeclaredFields();</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">                    for (int i = 0; i &lt; fields.length; i++) {</span>
+<span class="nc" id="L126">                        fields[i].setAccessible(true);</span>
+
+                        // whether comparing flag
+<span class="nc" id="L129">                        boolean assertFlg = getAssertFlg(fields[i].getName(), notAssertColumns);</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                        if (!assertFlg) {</span>
+                            // when flag = false,not comparing
+<span class="nc" id="L132">                            System.out.println(&quot;比較不要：&quot; + fields[i].getName());</span>
+<span class="nc" id="L133">                            continue;</span>
+                        }
+
+<span class="nc" id="L136">                        assertData(info + &quot;の&quot; + fields[i].getName(), fields[i].get(expected), fields[i].get(actual),</span>
+                                notAssertColumns);
+                    }
+<span class="nc bnc" id="L139" title="All 2 branches missed.">                    if (!actual.getClass().getSuperclass().toString().matches(&quot;java..+&quot;)) {</span>
+<span class="nc" id="L140">                        fields = actual.getClass().getSuperclass().getDeclaredFields();</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">                        for (int i = 0; i &lt; fields.length; i++) {</span>
+<span class="nc" id="L142">                            fields[i].setAccessible(true);</span>
+
+                            // whether comparing flag
+<span class="nc" id="L145">                            boolean assertFlg = getAssertFlg(fields[i].getName(), notAssertColumns);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">                            if (!assertFlg) {</span>
+                                // when flag = false,not comparing
+<span class="nc" id="L148">                                System.out.println(&quot;比較不要：&quot; + fields[i].getName());</span>
+<span class="nc" id="L149">                                continue;</span>
+                            }
+
+<span class="nc" id="L152">                            assertData(info + &quot;の&quot; + fields[i].getName(), Util.getObject(expected, fields[i].getName()),</span>
+<span class="nc" id="L153">                                    Util.getObject(actual, fields[i].getName()), notAssertColumns);</span>
+                        }
+                    }
+<span class="nc" id="L156">                }</span>
+            }
+<span class="nc bnc" id="L158" title="All 4 branches missed.">        } else if (actual != null || expected != null) {</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            Assert.fail(info + &quot;:&quot; + &quot;expected &quot; + (expected == null ? &quot;null&quot; : expected.toString()) + &quot; but actual &quot;</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">                    + (actual == null ? &quot;null&quot; : actual.toString()));</span>
+        }
+<span class="nc" id="L162">    }</span>
+
+    /**
+     * whether comparing flag
+     *
+     * @param fieldNm
+     * @param notAssertColumns
+     * @return
+     */
+    public static boolean getAssertFlg(String fieldNm, String... notAssertColumns) {
+<span class="nc" id="L172">        boolean assertFlg = true;// whether comparing flag initial</span>
+
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (notAssertColumns == null) {</span>
+<span class="nc" id="L175">            return assertFlg;</span>
+        }
+
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        for (String notAssertColumn : notAssertColumns) {</span>
+<span class="nc bnc" id="L179" title="All 4 branches missed.">            if (fieldNm.equals(notAssertColumn) || fieldNm.equals(&quot;m_&quot; + notAssertColumn)) {</span>
+<span class="nc" id="L180">                assertFlg = false;</span>
+<span class="nc" id="L181">                break;</span>
+            }
+        }
+
+<span class="nc" id="L185">        return assertFlg;</span>
+    }
+
+    public static void assertJsonStr(String jsonExpt, String jsonActual, String[] notAssertColumns) throws Exception {
+<span class="nc" id="L189">        JSONObject jsonObjExpt = new JSONObject(jsonExpt);</span>
+<span class="nc" id="L190">        JSONObject jsonObjActual = new JSONObject(jsonActual);</span>
+<span class="nc" id="L191">        Map&lt;String, Object&gt; exptMap = jsonObjExpt.toMap();</span>
+<span class="nc" id="L192">        Map&lt;String, Object&gt; actualMap = jsonObjActual.toMap();</span>
+<span class="nc" id="L193">        assertJsonMap(exptMap, actualMap, notAssertColumns, &quot;APIの戻りJSON対象&quot;);</span>
+<span class="nc" id="L194">    }</span>
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public static void assertJsonMap(Map&lt;String, Object&gt; exptMap, Map&lt;String, Object&gt; actualMap,
+            String[] notAssertColumns, String msgInfo) throws Exception {
+        // 比較したくない項目をリスト化にする
+<span class="nc" id="L200">        List&lt;String&gt; notAssertList = new ArrayList&lt;String&gt;(Arrays.asList(notAssertColumns));</span>
+        // サイズ比較
+<span class="nc" id="L202">        assertData(msgInfo + &quot;のサイズ&quot;, exptMap.size(), actualMap.size());</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">        for (Map.Entry&lt;String, Object&gt; entry : exptMap.entrySet()) {</span>
+<span class="nc" id="L204">            String keyExpt = entry.getKey();</span>
+            // 比較したくない項目をスキップする
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            if (notAssertList.contains(keyExpt)) {</span>
+<span class="nc" id="L207">                continue;</span>
+            }
+<span class="nc" id="L209">            Object vlObjExpt = entry.getValue();</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (vlObjExpt instanceof String) {</span>
+<span class="nc" id="L211">                String vlExpt = (String) vlObjExpt;</span>
+<span class="nc" id="L212">                String vlActual = (String) actualMap.getOrDefault(keyExpt, &quot;実際値が取得されていません&quot;);</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">                if (isDateTimeStr(vlActual)) {</span>
+<span class="nc" id="L214">                    continue;</span>
+                }
+<span class="nc" id="L216">                assertData(msgInfo + &quot;の項目&quot; + keyExpt, vlExpt, vlActual, notAssertColumns);</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            } else if (vlObjExpt instanceof ArrayList) {</span>
+<span class="nc" id="L218">                ArrayList&lt;Map&lt;String, Object&gt;&gt; jsonListExpt = (ArrayList&lt;Map&lt;String, Object&gt;&gt;) vlObjExpt;</span>
+<span class="nc" id="L219">                ArrayList&lt;Map&lt;String, Object&gt;&gt; jsonListActual = (ArrayList&lt;Map&lt;String, Object&gt;&gt;) actualMap</span>
+<span class="nc" id="L220">                        .getOrDefault(keyExpt, &quot;実際値が取得されていません&quot;);</span>
+<span class="nc" id="L221">                assertData(msgInfo + &quot;の項目&quot; + keyExpt + &quot;に対するリストサイズ&quot;, jsonListExpt.size(), jsonListActual.size());</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">                for (int i = 0; i &lt; jsonListExpt.size(); i++) {</span>
+<span class="nc" id="L223">                    Map&lt;String, Object&gt; jsonObjExpt = (Map&lt;String, Object&gt;) jsonListExpt.get(i);</span>
+<span class="nc" id="L224">                    Map&lt;String, Object&gt; jsonObjActual = (Map&lt;String, Object&gt;) jsonListActual.get(i);</span>
+                    // 再帰呼び出す
+<span class="nc" id="L226">                    assertJsonMap(jsonObjExpt, jsonObjActual, notAssertColumns,</span>
+                            msgInfo + &quot;の項目&quot; + keyExpt + &quot;に対するリストの&quot; + (i + 1) + &quot;個目対象&quot;);
+                }
+<span class="nc" id="L229">            } else {</span>
+<span class="nc" id="L230">                assertData(msgInfo + &quot;の項目&quot; + keyExpt, vlObjExpt, actualMap.getOrDefault(keyExpt, &quot;実際値が取得されていません&quot;),</span>
+                        notAssertColumns);
+            }
+<span class="nc" id="L233">        }</span>
+<span class="nc" id="L234">    }</span>
+
+    public static boolean isDateTimeStr(String inputStr) {
+<span class="nc" id="L237">        List&lt;String&gt; formatList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L238">        formatList.add(&quot;yyyyMMddHHmmssSSS&quot;);</span>
+<span class="nc" id="L239">        formatList.add(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc" id="L240">        formatList.add(&quot;yyyy-MM-dd HH:mm:ss,SSS&quot;);</span>
+<span class="nc" id="L241">        formatList.add(&quot;yyyy/MM/dd HH:mm:ss.SSS&quot;);</span>
+<span class="nc" id="L242">        formatList.add(&quot;yyyy/MM/dd HH:mm:ss,SSS&quot;);</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">        for (String format : formatList) {</span>
+            try {
+<span class="nc" id="L245">                new SimpleDateFormat(format).parse(inputStr);</span>
+<span class="nc" id="L246">                return true;</span>
+<span class="nc" id="L247">            } catch (Exception e) {</span>
+            }
+<span class="nc" id="L249">        }</span>
+<span class="nc" id="L250">        return false;</span>
+    }
+
+    public static void main(String[] args) throws ParseException {
+<span class="nc" id="L254">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

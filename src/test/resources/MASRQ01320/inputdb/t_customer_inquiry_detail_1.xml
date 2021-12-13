@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry_detail subsidiary_code='' inquiry_id='' inquiry_line_number='' lead_time_product_inquiry_id='' remind_flag='' customer_item_reference='' brand_code='' brand_name='' product_code='' shipment_method_code='' stork_code='' bulk_partial_delivery_type='' sales_unit_price='' send_type='' qty='' inquiry_content='' sales_unit_price_including_tax='' sales_unit_price_ccy_code='' update_count='' delete_flag='' register_user_type='' register_user='' register_date_time='' register_program='' register_client_program='' update_user_type='' update_user='' update_date_time='' update_program='' update_client_program='' />
+</dataset>

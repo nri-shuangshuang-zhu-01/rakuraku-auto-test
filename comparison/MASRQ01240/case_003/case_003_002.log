@@ -1,0 +1,13 @@
+■api名称：　URL取得
+■api Request：　/internal/v1/supplier-reply-file-url?leadTimeProductInquiryId=101
+■api方法：　GET
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Application-Id=string&&X-Client-Program=string&&
+■api Body：　-
+■loginUser：　
+■api Response：<?xml version="1.0" encoding="UTF-8"?>
+<Error>
+    <Code>NoSuchBucket</Code>
+    <Message>The specified bucket does not exist</Message>
+    <BucketName>store</BucketName>
+    <RequestID>7a62c49f-347e-4fc4-9331-6e8eEXAMPLE</RequestID>
+</Error>

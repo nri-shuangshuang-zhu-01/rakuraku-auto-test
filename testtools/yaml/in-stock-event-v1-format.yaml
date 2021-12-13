@@ -1,0 +1,41 @@
+title: InStockEvent
+type: object
+event:
+  type: in-stock-event
+  version: 1
+components:
+  schemas:
+    inStockList:
+      title: inStockItem
+      type: object
+      description: イベント連携情報リスト
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        arrivalFlag:
+          type: string
+          description: 入荷済みフラグ
+          maxLength: 1
+      required:
+        - globalNumber
+        - plantCode
+        - shipmentFlag
+description: 入荷済みイベントデータJson Schemas
+properties:
+  subsidiaryCode:
+    type: string
+    description: 現法コード
+    maxLength: 3
+  inStockList:
+    type: array
+    description: 入荷済み情報
+    items:
+      $ref: '#/components/schemas/inStockList'
+required:
+  - subsidiaryCode

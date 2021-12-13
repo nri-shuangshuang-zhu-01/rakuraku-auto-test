@@ -1,0 +1,433 @@
+openapi: 3.0.0
+info:
+  title: システム管理 帳票 API
+  version: '1.0'
+  description: |-
+    共通業務として、システムが行う帳票の作成を本APIを経由して実行する。
+    また、作成に必要なテンプレートの管理も行い、帳票とテンプレートの情報を確認する機能も用意する。
+servers:
+  - url: 'http://localhost:3000/common-report'
+tags:
+  - name: ReportInternal
+paths:
+  /internal/v1/report/search:
+    post:
+      tags:
+        - ReportInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      summary: A2 検索
+      operationId: searchReportInternalV1
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchReportResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponseV1'
+      parameters:
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchReportRequestV1'
+        description: ''
+      description: |-
+        付与された検索条件によって、帳票検索テーブルを検索する。
+        以下の業務エラーが発生する可能性があります。
+          - FRM000101 : 入力チェック（桁数チェック）
+  /internal/v1/report/find:
+    get:
+      tags:
+        - ReportInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      summary: A3 詳細情報取得
+      responses:
+        '200':
+          $ref: '#/components/responses/FindReportResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponseV1'
+      operationId: findReportInternalV1
+      parameters:
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: id
+          description: 帳票ID
+          required: true
+      description: |-
+        指定された帳票IDの詳細情報を取得する。
+        以下の業務エラーが発生する可能性があります。
+          - FRM000101 : 入力チェック（桁数チェック）
+          - FRM004100 : 入力チェック（相関性チェック）
+  /internal/v1/report/print:
+    post:
+      tags:
+        - ReportInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      summary: A4 帳票作成
+      operationId: printReportInternalV1
+      responses:
+        '200':
+          $ref: '#/components/responses/PrintReportResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponseV1'
+      parameters:
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrintReportRequestV1'
+            examples:
+              '1':
+                value:
+                  name: stringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringst
+                  reportText: '[SoReportDataEntity(contactId=4, urgent=[急件!!], urgentBox=null, creationDate=2021-11-08, page=null, reportTitleLbl=null, reportTitle=null, incNm=null, incAddress1=null null, incAddress2=null null, incPhone=null, incFax=null, addCorpNm=department_name01, addNm=pic_name01, soPendingKbnLbl=null, soPendingKbnBox=null, cusCdLbl=null, cusCd=22    , shipCdLbl=null, shipCd=S00001, qtSoNoLbl=null, qtSoNo=QSN000000101, cusRefLbl=null, cusRef=null, infomation1=null, infomation2=null, infomation3=null, infomation4=null, infomation5=null, detailNoLbl=null, cusItemRefLbl=null, brandNmLbl=null, productCdLbl=null, reqDeliDateLbl=null, storkLbl=null, shipmentMethodCodeLbl=null, shippingPointLbl=null, receptNoLbl=null, unfitCommentLbl=null, cusCommentLbl=null, detailNo=*, cusItemRef=customer_item_reference01, brandNm=null, productCd=product_code01, reqDeliDate=2021-10-10, stork=A1, shipmentMethodCode=A0, shippingPoint=100, receptNo=45, catalogueNm=null, cataloguePage=null, unfitComment=問合せ内容, unfitComment2=, cusComment=null, incFaxFootBox=null, incFaxFootLbl=null, incFaxFoot=null, infoPattern1=感謝您今天訂購我們的產品,因下列商品還是有部分不正確內容,我們先暫時將訂單保留, infoPattern2=為了能緊急處理,請您儘快利用傳真02-25703767回覆給我們。, infoPattern3=請注意!!  若未能收到您的回覆,或是商品仍然交涉無庫存時,交期的部分,仍可能會有異動,請您見諒!!, infoPattern4=由於必須緊急處理處理,為了能對應時間,請您儘快利用傳真02-25703767回覆並通知我們。, infoPattern5=親愛的客戶您好, infoPattern6=感謝您今天訂購我們的產品, infoPattern7=很抱歉!!以下您訂購的產品，由於並未在最後截止時間內到得到您的回覆，以致內容無成完成,。, dateFormatKbn=null, totalPage=null, nowPage=null, incCd=null, soPendingKbn=null)]'
+                  reportTemplateName: stringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringst
+              '2':
+                value:
+                  name: s
+                  reportText: '1'
+                  reportTemplateName: s
+      description: |-
+        付与された検索条件によって、帳票検索を実施する。
+        以下の業務エラーが発生する可能性があります。
+          - FRM000101 : 入力チェック（桁数チェック）
+          - FRM000102 : 入力チェック（値チェック）
+          - FRM000103 : ファイルチェック
+          - FRM006100 : 入力チェック（相関性チェック）
+    parameters: []
+  /internal/v1/report/download:
+    parameters: []
+    get:
+      tags:
+        - ReportInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      summary: A5 ファイル取得
+      responses:
+        '200':
+          $ref: '#/components/responses/DownloadReportResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponseV1'
+      operationId: downloadReportInternalV1
+      description: |-
+        指定された帳票IDで帳票ファイルを取得する。
+        以下の業務エラーが発生する可能性があります。
+          - FRM000101 : 入力チェック（桁数チェック）
+          - FRM007100 : 入力チェック（相関性チェック）
+      parameters:
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: fileId
+          description: ファイルID
+          required: true
+  /internal/v1/report/remove:
+    parameters: []
+    post:
+      tags:
+        - ReportInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      summary: A6 ファイル削除
+      operationId: removeReportInternalV1
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponseV1'
+      description: |-
+        指定された帳票IDの帳票ファイルを削除する。
+        以下の業務エラーが発生する可能性があります。
+          - FRM000101 : 入力チェック（桁数チェック）
+          - FRM007100 : 入力チェック（相関性チェック）
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveReportRequestV1'
+            examples: {}
+        description: ''
+      parameters:
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+components:
+  schemas:
+    SearchReportResponseV1:
+      title: SearchReportResponseV1
+      type: object
+      description: 帳票「A2 検索API」レスポンスボディ
+      properties:
+        id:
+          type: array
+          description: 帳票ID
+          format: uuid
+          minItems: 1
+          items:
+            type: string
+            format: uuid
+    SearchReportRequestV1:
+      title: SearchReportRequestV1
+      type: object
+      description: 帳票「A2 検索API」リクエストボディ
+      properties:
+        createDateTimeFrom:
+          type: string
+          description: '作成日時(FROM)[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        createDateTimeTo:
+          type: string
+          description: '作成日時(TO)[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        reportTemplateName:
+          type: string
+          description: 帳票テンプレート名
+          minLength: 1
+          maxLength: 200
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: 帳票名
+        reportText:
+          type: string
+          description: キーワード(帳票データファイル)
+          minLength: 1
+          maxLength: 200
+        asyncStartTime:
+          type: string
+          description: '非同期処理開始時間[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        asyncEndTime:
+          type: string
+          description: '非同期処理終了時間[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        status:
+          type: integer
+          minimum: 0
+          maximum: 9
+          description: |-
+            帳票の作成状況
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 9 - 異常終了
+    PrintReportRequestV1:
+      title: PrintReportRequestV1
+      type: object
+      description: 帳票「A4 帳票作成API」リクエストボディ
+      properties:
+        name:
+          type: string
+          description: 帳票名
+          minLength: 1
+          maxLength: 200
+        reportText:
+          type: string
+          description: |-
+            帳票データ
+            ※ファイル仕様はSVFのデータファイル準拠のもの
+            https://cs.wingarc.com/manual/svf/svf10/ja/csv-data-file.html
+        reportTemplateName:
+          type: string
+          description: 帳票テンプレート名
+          minLength: 1
+          maxLength: 200
+      required:
+        - name
+        - reportText
+        - reportTemplateName
+    FindReportResponseV1:
+      title: FindReportResponseV1
+      type: object
+      description: 帳票「A3 詳細情報取得API」レスポンスボディ
+      properties:
+        name:
+          type: string
+          description: 帳票名
+        createDateTime:
+          type: string
+          description: '作成日時[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        reportText:
+          type: string
+          description: 帳票本文
+        reportTemplateName:
+          type: string
+          description: 帳票テンプレートID
+        asyncStartTime:
+          type: string
+          description: '非同期処理開始時間[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        asyncEndTime:
+          type: string
+          description: '非同期処理終了時間[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        status:
+          type: integer
+          description: |-
+            帳票の作成状況
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 9 - 異常終了
+          minimum: 0
+          maximum: 9
+        fileId:
+          type: array
+          format: uuid
+          description: ファイルID
+          items:
+            type: string
+            format: uuid
+      required:
+        - name
+        - createDateTime
+        - reportText
+        - reportTemplateName
+    RemoveReportRequestV1:
+      title: RemoveReportRequestV1
+      type: object
+      description: 帳票「A6 ファイル削除API」リクエストボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: 帳票ID
+      required:
+        - id
+    printReportResponseV1:
+      title: printReportResponseV1
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+      required:
+        - id
+      description: 帳票「A4 帳票作成API」レスポンスボディ
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: 一度の検索で取得する最大件数
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 0
+      description: 検索結果の取得開始位置
+  responses:
+    ErrorResponseV1:
+      description: エラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../../lead-time-product-inquiry-model/client-api-spec/common-spec.yaml#/components/schemas/Error1
+    SearchReportResponseV1:
+      description: 帳票「A2 検索API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchReportResponseV1'
+    FindReportResponseV1:
+      description: 帳票「A3 詳細情報取得API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FindReportResponseV1'
+          examples:
+            '1':
+              name: string
+              createDateTime: string
+              reportText: string
+              reportTemplateName: string
+              asyncStartTime: string
+              asyncEndTime: string
+              status: 0
+              fileId:
+                - 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    DownloadReportResponseV1:
+      description: 帳票「A5 ファイル取得API」レスポンス
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+            description: 帳票ファイル
+          examples:
+            '1': string
+            example-2: string
+      headers:
+        Content-Disposition:
+          schema:
+            type: string
+          description: attachment; filename="*"
+    PrintReportResponseV1:
+      description: 帳票「A4 帳票作成API」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/printReportResponseV1'
+          examples:
+            '1':
+              id: 497f6eca-6276-4993-bfeb-53cbbbba6f08

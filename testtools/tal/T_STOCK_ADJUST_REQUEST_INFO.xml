@@ -1,0 +1,34 @@
+受付No::receive_number::char(10)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+商品コード::product_code::varchar(234)::NOT NULL(PK)
+ブランドコード::brand_code::char(4)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+置場名::plant_name::varchar(45)::NOT NULL
+保管場所コード::storage_location_code::char(4)::NOT NULL
+保管場所名::storage_location_name::varchar(45)::NULL
+入力日::input_date::date::NULL
+入力時間::input_time::timestamp with time zone::NULL
+ID::id::char(4)::NOT NULL
+理由区分::reason_type::char(3)::NULL
+理由区分名::reason_type_name::varchar(40)::NULL
+処理モード::process_mode::char(1)::NOT NULL
+責任部署コード::responsibility_department_code::char(4)::NOT NULL
+責任部署名::responsibility_department_name::varchar(13)::NULL
+ブランド名::brand_name::varchar(200)::NULL
+通貨::ccy::varchar(3)::NULL
+商品所管部門コード::product_control_department_code::varchar(6)::NULL
+商品所管部門名::product_control_department_name::varchar(20)::NULL
+エラーコード::error_code::char(6)::NULL
+エラーメッセージ::error_message::varchar(1000)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RateInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api</a> &gt; <span class="el_source">RateInternalApi.java</span></div><h1>RateInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetRateInternalResponseV1;
+import java.time.LocalDate;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:18.711785900+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api.RateInternalApi&quot;)
+public class RateInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L37">    public RateInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L38">        this.apiClient = apiClient;</span>
+<span class="fc" id="L39">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L42">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L46">        this.apiClient = apiClient;</span>
+<span class="nc" id="L47">    }</span>
+
+    /**
+     * レート情報取得API
+     * 以下のマスタの情報を返却するAPIです。   レートマスタ M_RATE
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param rateTypeCode レートタイプコード (required)
+     
+     * @param beforeConvertCcyCode 変換元通貨コード (required)
+     
+     * @param afterConvertCcyCode 変換先通貨コード (required)
+     
+     * @param effectiveStartDate 適用開始日 (required)
+     
+     * @return GetRateInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetRateInternalResponseV1 getRateInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String rateTypeCode, String beforeConvertCcyCode, String afterConvertCcyCode, LocalDate effectiveStartDate) throws RestClientException {
+<span class="nc" id="L70">        return getRateInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, rateTypeCode, beforeConvertCcyCode, afterConvertCcyCode, effectiveStartDate).getBody();</span>
+    }
+
+    /**
+     * レート情報取得API
+     * 以下のマスタの情報を返却するAPIです。   レートマスタ M_RATE
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param rateTypeCode レートタイプコード (required)
+     
+     * @param beforeConvertCcyCode 変換元通貨コード (required)
+     
+     * @param afterConvertCcyCode 変換先通貨コード (required)
+     
+     * @param effectiveStartDate 適用開始日 (required)
+     
+     * @return ResponseEntity&amp;lt;GetRateInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetRateInternalResponseV1&gt; getRateInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String rateTypeCode, String beforeConvertCcyCode, String afterConvertCcyCode, LocalDate effectiveStartDate) throws RestClientException {
+<span class="nc" id="L94">        Object postBody = null;</span>
+        
+        // verify the required parameter 'rateTypeCode' is set
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (rateTypeCode == null) {</span>
+<span class="nc" id="L98">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'rateTypeCode' when calling getRateInternalV1&quot;);</span>
+        }
+        
+        // verify the required parameter 'beforeConvertCcyCode' is set
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (beforeConvertCcyCode == null) {</span>
+<span class="nc" id="L103">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'beforeConvertCcyCode' when calling getRateInternalV1&quot;);</span>
+        }
+        
+        // verify the required parameter 'afterConvertCcyCode' is set
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (afterConvertCcyCode == null) {</span>
+<span class="nc" id="L108">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'afterConvertCcyCode' when calling getRateInternalV1&quot;);</span>
+        }
+        
+        // verify the required parameter 'effectiveStartDate' is set
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if (effectiveStartDate == null) {</span>
+<span class="nc" id="L113">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'effectiveStartDate' when calling getRateInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L116">        String path = apiClient.expandPath(&quot;/internal/v1/rate/get&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L118">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L119">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L120">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L121">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L123">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;rate_type_code&quot;, rateTypeCode));</span>
+<span class="nc" id="L124">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;before_convert_ccy_code&quot;, beforeConvertCcyCode));</span>
+<span class="nc" id="L125">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;after_convert_ccy_code&quot;, afterConvertCcyCode));</span>
+<span class="nc" id="L126">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;effective_start_date&quot;, effectiveStartDate));</span>
+
+        
+
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L131">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L133">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L135">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L137">            });</span>
+        }
+
+<span class="nc" id="L140">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L143">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L144">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L145">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L147">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L149">        ParameterizedTypeReference&lt;GetRateInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetRateInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L150">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

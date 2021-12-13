@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RakurakuJacobExcelUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util</a> &gt; <span class="el_source">RakurakuJacobExcelUtils.java</span></div><h1>RakurakuJacobExcelUtils.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util;
+
+import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.ComThread;
+import com.jacob.com.Dispatch;
+import com.jacob.com.Variant;
+import com.linkage.rakuraku.exp.RakurakuException;
+
+<span class="nc" id="L9">public class RakurakuJacobExcelUtils {</span>
+
+<span class="nc" id="L11">    private ActiveXComponent xl = null; // Excelアプリケーション</span>
+
+<span class="nc" id="L13">    private Dispatch workbooks = null; // ワークブック</span>
+
+<span class="nc" id="L15">    private Dispatch workbook = null; // ワークブック</span>
+
+<span class="nc" id="L17">    private Dispatch sheets = null;// ワークシート</span>
+
+<span class="nc" id="L19">    private Dispatch currentSheet = null;// 活動ワークシート</span>
+
+    public ActiveXComponent getXl() {
+<span class="nc" id="L22">        return xl;</span>
+    }
+
+    public Dispatch getWorkbooks() {
+<span class="nc" id="L26">        return workbooks;</span>
+    }
+
+    public Dispatch getWorkbook() {
+<span class="nc" id="L30">        return workbook;</span>
+    }
+
+    /**
+     * 
+     * Excelファイルを開く
+     * 
+     * @param filepath
+     * ファイルパス
+     * @param visible
+     * 表示フラグ
+     * @param readonly
+     * 編集フラグ
+     * 
+     */
+
+    public void OpenExcel(String filepath, boolean visible, boolean readonly) {
+        try {
+<span class="nc" id="L48">            initComponents();</span>
+<span class="nc" id="L49">            ComThread.InitSTA();</span>
+            // ComThread.InitMTA(true);
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (xl == null)</span>
+<span class="nc" id="L52">                xl = new ActiveXComponent(&quot;Excel.Application&quot;); // Excelアプリケーション初期化</span>
+<span class="nc" id="L53">            xl.setProperty(&quot;Visible&quot;, new Variant(visible));// Excelファイル表示するかどうか確定</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if (workbooks == null)</span>
+<span class="nc" id="L55">                workbooks = xl.getProperty(&quot;Workbooks&quot;).toDispatch();</span>
+<span class="nc" id="L56">            workbook = Dispatch.invoke(workbooks, &quot;Open&quot;, Dispatch.Method,</span>
+                    new Object[] { filepath, new Variant(false), new Variant(readonly) }, // Excelファイルを開く
+<span class="nc" id="L58">                    new int[1]).toDispatch();</span>
+<span class="nc" id="L59">        } catch (Exception e) {</span>
+<span class="nc" id="L60">            e.printStackTrace();</span>
+<span class="nc" id="L61">            releaseSource();</span>
+<span class="nc" id="L62">        }</span>
+<span class="nc" id="L63">    }</span>
+
+    /**
+     * 
+     * Excelファイルを保存する
+     * 
+     * @param filePath
+     * ファイルパス
+     * 
+     */
+    public void SaveAs(String filePath) {
+<span class="nc" id="L74">        Dispatch.invoke(workbook, &quot;SaveAs&quot;, Dispatch.Method, new Object[] { filePath, new Variant(44) }, new int[1]);</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * 
+     * Excelファイルを閉じる
+     * 
+     * @param
+     */
+
+    public void CloseExcel(boolean f, boolean quitXl) {
+        try {
+            // Dispatch.call(workbook, &quot;Save&quot;);
+<span class="nc" id="L87">            Dispatch.call(workbook, &quot;Close&quot;, new Variant(f));</span>
+<span class="nc" id="L88">        } catch (Exception e) {</span>
+<span class="nc" id="L89">            e.printStackTrace();</span>
+        } finally {
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (quitXl) {</span>
+<span class="nc" id="L92">                releaseSource();</span>
+            }
+        }
+<span class="nc" id="L95">    }</span>
+
+    /**
+     * 
+     * Excelファイルをリリース
+     * 
+     */
+    public void releaseSource() {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (xl != null) {</span>
+<span class="nc" id="L104">            xl.invoke(&quot;Quit&quot;, new Variant[] {});</span>
+<span class="nc" id="L105">            xl = null;</span>
+        }
+<span class="nc" id="L107">        workbooks = null;</span>
+<span class="nc" id="L108">        ComThread.Release();</span>
+<span class="nc" id="L109">        System.gc();</span>
+<span class="nc" id="L110">    }</span>
+
+    /**
+     * 
+     * Excelファイルにシートを新規追加する
+     * 
+     */
+    public Dispatch addSheet() {
+<span class="nc" id="L118">        return Dispatch.get(Dispatch.get(workbook, &quot;sheets&quot;).toDispatch(), &quot;add&quot;).toDispatch();</span>
+    }
+
+    /**
+     * 
+     * 活動シートの名称を改修する
+     * 
+     * @param newName
+     * 
+     */
+    public void modifyCurrentSheetName(String newName) {
+<span class="nc" id="L129">        Dispatch.put(getCurrentSheet(), &quot;name&quot;, newName);</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * 
+     * 活動シートの名称を取得する
+     * 
+     * @return
+     * 
+     */
+    public String getCurrentSheetName() {
+<span class="nc" id="L140">        return Dispatch.get(getCurrentSheet(), &quot;name&quot;).toString();</span>
+    }
+
+    /**
+     * 
+     * ワークブックの名称を取得する
+     * 
+     * @return
+     * 
+     */
+    public String getWorkbookName() {
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if (workbook == null)</span>
+<span class="nc" id="L152">            return null;</span>
+<span class="nc" id="L153">        return Dispatch.get(workbook, &quot;name&quot;).toString();</span>
+
+    }
+
+    /**
+     * 
+     * すべてのワークシートを取得する
+     * 
+     * @return
+     * 
+     */
+    public Dispatch getSheets() {
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        if (sheets == null)</span>
+<span class="nc" id="L166">            sheets = Dispatch.get(workbook, &quot;sheets&quot;).toDispatch();</span>
+<span class="nc" id="L167">        return sheets;</span>
+    }
+
+    /**
+     * 
+     * 活動シートを取得する
+     * 
+     * @return
+     * 
+     */
+    public Dispatch getCurrentSheet() {
+<span class="nc" id="L178">        currentSheet = Dispatch.get(workbook, &quot;ActiveSheet&quot;).toDispatch();</span>
+<span class="nc" id="L179">        return currentSheet;</span>
+    }
+
+    /**
+     * 
+     * シート名称によりワークシートを取得する
+     * 
+     * @param name
+     * sheetName
+     * @return
+     * 
+     */
+    public Dispatch getSheetByName(String name) {
+<span class="nc" id="L192">        return Dispatch.invoke(getSheets(), &quot;Item&quot;, Dispatch.Get, new Object[] { name }, new int[1]).toDispatch();</span>
+    }
+
+    /**
+     * 
+     * シートインデックスによりワークシートを取得する
+     * 
+     * @param index
+     * @return sheet・ｽ・ｽ・ｽ・ｽ
+     * 
+     */
+
+    public Dispatch getSheetByIndex(Integer index) {
+<span class="nc" id="L205">        return Dispatch.invoke(getSheets(), &quot;Item&quot;, Dispatch.Get, new Object[] { index }, new int[1]).toDispatch();</span>
+    }
+
+    /**
+     * 
+     * シート数を取得する
+     * 
+     * @return
+     * 
+     */
+
+    public int getSheetCount() {
+        @SuppressWarnings(&quot;deprecation&quot;)
+<span class="nc" id="L218">        int count = Dispatch.get(getSheets(), &quot;count&quot;).toInt();</span>
+<span class="nc" id="L219">        return count;</span>
+    }
+
+    /**
+     * 
+     * マクロを呼出す
+     * 
+     * @param macroName
+     * マクロ名称
+     * 
+     */
+    public void callMacro(String macroName) {
+<span class="nc" id="L231">        Dispatch.call(xl, &quot;Run&quot;, new Variant(macroName));</span>
+<span class="nc" id="L232">    }</span>
+
+    /**
+     * 
+     * マクロを呼出す
+     * 
+     * @param macroName
+     * マクロ名称
+     * @param param
+     * マクロパラメータ
+     */
+    public void callMacro(String macroName, Object param) throws Exception {
+<span class="nc" id="L244">        Variant variant = Dispatch.call(xl, &quot;Run&quot;, new Variant(macroName), new Variant(param));</span>
+<span class="nc" id="L245">        System.out.println(variant);</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        if (!variant.toString().contains(&quot;作成完了&quot;)) {</span>
+<span class="nc" id="L247">            throw new RakurakuException(variant.toString());</span>
+        }
+<span class="nc" id="L249">    }</span>
+
+    /**
+     * 
+     * 値を設定する
+     * 
+     * @param sheet
+     * ワークシート
+     * @param position
+     * 位置
+     * @param type
+     * バリュータイプ
+     * @param value
+     * 
+     */
+
+    public void setValue(Dispatch sheet, String position, String type, Object value) {
+<span class="nc" id="L266">        Dispatch cell = Dispatch.invoke(sheet, &quot;Range&quot;, Dispatch.Get, new Object[] { position }, new int[1])</span>
+<span class="nc" id="L267">                .toDispatch();</span>
+<span class="nc" id="L268">        Dispatch.put(cell, type, value);</span>
+<span class="nc" id="L269">    }</span>
+
+    /**
+     * 
+     * 値を取得する
+     * 
+     * @param position
+     * 位置
+     * @param sheet
+     * @return
+     * 
+     */
+    public Variant getValue(String position, Dispatch sheet) {
+<span class="nc" id="L282">        Dispatch cell = Dispatch.invoke(sheet, &quot;Range&quot;, Dispatch.Get, new Object[] { position }, new int[1])</span>
+<span class="nc" id="L283">                .toDispatch();</span>
+<span class="nc" id="L284">        Variant value = Dispatch.get(cell, &quot;Value&quot;);</span>
+<span class="nc" id="L285">        return value;</span>
+
+    }
+
+    private void initComponents() {
+<span class="nc" id="L290">        workbook = null;</span>
+<span class="nc" id="L291">        currentSheet = null;</span>
+<span class="nc" id="L292">        sheets = null;</span>
+<span class="nc" id="L293">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

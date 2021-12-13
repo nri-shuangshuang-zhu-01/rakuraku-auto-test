@@ -1,0 +1,18 @@
+{
+  "dunningLetterDownloadList": [
+    {
+      "billToCode": "IkLsaS",
+      "level": "t",
+      "delayDays": "1",
+      "invoiceNumber": "GDwUBZsJpRHMZNjr",
+      "invoiceIssueDate": "2000-05-08",
+      "subsidiaryCode": "JPN",
+      "loginUser": "wangcl",
+      "promisedpaymentDate": "2021-01-01",
+      "sendMedia": "PR",
+      "fax": "fax",
+      "emailTo": "user@emailto.com",
+      "emailCc": "user@emailto.com"
+    }
+  ]
+}

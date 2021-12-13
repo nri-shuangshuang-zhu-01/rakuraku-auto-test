@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <produced_events_1 id='' idempotency_key='' target_id='' destination='' partition_key='' payload='' created_at='' retry_count='' has_error='' error_reason='' />
+</dataset>

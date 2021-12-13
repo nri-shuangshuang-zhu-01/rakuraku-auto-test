@@ -1,0 +1,5 @@
+ケース番号=No.039;実施開始時間=2021-11-15 21:14:24.442;実施終了時間=2021-11-15 21:14:25.129;実施結果=NG.
+【操作(DB準備)】【テーブル：T_NON_PAYMENT_MANAGEMENT,DB状態：39】の操作に失敗しました。
+org.dbunit.DatabaseUnitException: t_non_payment_management.DUNNING_LETTER_SEND_MEDIA -  (Non-uppercase input column: dunning_letter_send_media) in ColumnNameToIndexes cache map. Note that the map's column names are NOT case sensitive.
+======以下はアクション毎の確認ログ。======
+【実行結果=NG】【操作(DB準備)】【テーブル：T_NON_PAYMENT_MANAGEMENT,DB状態：39】:開始時間=2021-11-15 21:14:24.488;終了時間=2021-11-15 21:14:25.125

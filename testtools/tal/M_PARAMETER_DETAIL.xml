@@ -1,0 +1,23 @@
+変換辞書キー::convert_dictionary_key::varchar(8)::NOT NULL(PK)
+パラメータID::parameter_id::varchar(3)::NOT NULL(PK)
+アイテム連番::item_seq::numeric(10,0)::NOT NULL(PK)
+種類コード::kind_code::char(1)::NULL
+無記入フラグ::blank_flag::char(1)::NULL
+無記入時変換後::blank_converted::varchar(50)::NULL
+最小文字数1::min_number_of_characters1::numeric(4,0)::NULL
+最大文字数1::max_number_of_characters1::numeric(4,0)::NULL
+最小文字数2::min_number_of_characters2::numeric(4,0)::NULL
+最大文字数2::max_number_of_characters2::numeric(4,0)::NULL
+区切り文字::delimiter::varchar(75)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

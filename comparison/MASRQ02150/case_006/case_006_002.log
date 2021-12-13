@@ -1,0 +1,11 @@
+■api名称：　登录
+■api Request：　/supplier/v1/supplier-reply-file-url?leadTimeProductInquiryId=101
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=1&&X-Application-Id=string&&X-User-Type=Supplier&&Idempotency-Key=121&&Prefer=/supplier/v1/supplier-user/search->null
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "code": "NRQ02150001E",
+  "argumentList": [],
+  "message": "対象ファイルが存在しません。"
+}

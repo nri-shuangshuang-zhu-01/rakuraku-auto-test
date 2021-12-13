@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry subsidiary_code='' inquiry_id='' urgent_flag='' customer_code='' customer_name='' ship_to_code='' ship_to_name='' department_name='' pic_name='' send_media_type='' fax_send_to_number='' email_address_to='' email_address_cc='' inquiry_reply_limit='' qt_expiration_date_time='' contact_id='' update_count='' delete_flag='' register_user_type='' register_user='' register_date_time='' register_program='' register_client_program='' update_user_type='' update_user='' update_date_time='' update_program='' update_client_program='' />
+</dataset>

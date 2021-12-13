@@ -1,0 +1,19 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+グローバル番号::global_number::char(14)::NOT NULL
+購買伝票番号::purchase_slip_number::char(10)::NOT NULL(PK)
+購買伝票明細番号::purchase_slip_line_number::integer::NOT NULL(PK)
+入荷確定日::receiving_fix_date::date::NULL
+入荷数量::receiving_qty::numeric(7,0)::NULL
+調達区分::supply_type::char(2)::NULL
+入荷確定処理日::receiving_fix_process_date::date::NULL
+入荷仕入金額::receiving_purchase_amount::numeric(18,3)::NULL
+入荷仕入先現法レート::receiving_supplier_subsidiary_rate::numeric(23,9)::NULL
+入荷運賃仕入先レート::receiving_freight_supplier_rate::numeric(23,9)::NULL
+入荷発注先現法仕入先レート::receiving_supplier_subsidiary_supplier_rate::numeric(23,9)::NULL
+入荷運賃発注先現法レート::receiving_freight_supplier_subsidiary_rate::numeric(23,9)::NULL
+入荷商品仕入先レート::receiving_product_supplier_rate::numeric(23,9)::NULL
+データHUB更新済フラグ::data_hub_updated_flag::char(1)::NOT NULL
+登録日時(システム日時)::register_system_date_time::timestamp with time zone::NOT NULL
+更新日時(システム日時)::update_system_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL

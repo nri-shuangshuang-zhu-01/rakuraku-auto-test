@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_AR_BALANCE_SUMMARY subsidiary_code='JPN' bill_to_code='100001' summary_date='2021-08-12' non_payment_amount='0.00' shipped_invoice_unissued_amount='0.00' unsettled_note_amount='0.00' update_count='1' delete_flag='0' register_user_type='Batch' register_user='MBSCR40010' register_date_time='2021-08-12 00:00:00.0' register_program='MBSCR40010' register_client_program='MBSCR40010' update_user_type='Batch' update_user='MBSCR40010' update_date_time='2021-08-12 00:00:00.0' update_program='MBSCR40010' update_client_program='MBSCR40010' />
+</dataset>

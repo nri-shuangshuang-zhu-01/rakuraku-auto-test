@@ -1,0 +1,498 @@
+openapi: 3.0.0
+info:
+  title: API-013
+  version: '1.0'
+  description: 出荷不可入力用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /internal/v1/stop-shipment/save:
+    post:
+      summary: 出荷不可_入力更新API
+      operationId: saveStopShipmentInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveStopShipmentInternalResponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 出荷不可データの登録/更新を行う(同期更新API)
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SaveStopShipmentInternalRequestV1'
+            examples: {}
+        description: ''
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      tags:
+        - StopShipmentInternal
+    parameters: []
+  /internal/v1/stop-shipment/check:
+    post:
+      summary: 出荷不可_入力チェックAPI
+      operationId: checkStopShipmentInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/CheckStopShipmentInternalResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 受注参照API、社内移動照会API、各マスタ参照API、出荷不可照会API、出荷照会APIを呼び出し、出荷不可入力チェック処理を行う。(同期参照API)
+      x-channel:
+        - internal
+      requestBody:
+        content:
+          application/json; charset=UTF-8:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CheckStopShipmentInternalRequestV1'
+        description: ''
+      tags:
+        - StopShipmentInternal
+    parameters: []
+components:
+  schemas:
+    SaveStopShipmentInternalRequestV1:
+      title: SaveStopShipmentInternalRequestV1
+      type: object
+      description: 出荷不可_入力更新APIリクエスト項目
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        processType:
+          type: string
+          description: 処理区分
+          maxLength: 1
+        reasonType:
+          type: string
+          description: 理由区分
+          maxLength: 5
+        commentNote:
+          type: string
+          description: コメント
+          maxLength: 150
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        storageLocationCode:
+          type: string
+          description: 保管場所コード
+          maxLength: 4
+        soQty:
+          type: integer
+          description: 受注数量
+          maximum: 9999999
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        supplierName:
+          type: string
+          description: 仕入先名
+          maxLength: 200
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランド
+          maxLength: 4
+        brandName:
+          type: string
+          description: ブランド名(英語)
+          maxLength: 15
+        customerCode:
+          type: string
+          description: 得意先
+          maxLength: 6
+        customerName:
+          type: string
+          description: 得意先名
+          maxLength: 200
+        stockType:
+          type: string
+          description: 在庫区分
+          maxLength: 1
+        componentFlag:
+          type: string
+          description: 部材品
+          maxLength: 1
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+        updateCount:
+          type: integer
+          maximum: 9999
+          description: 更新回数
+        updateTime:
+          type: string
+          description: 更新日時
+          format: date-time
+      required:
+        - globalNumber
+        - processType
+        - reasonType
+        - updateCount
+        - updateTime
+    CheckStopShipmentInternalInputListV1:
+      title: CheckStopShipmentInternalInputListV1
+      type: object
+      x-examples: {}
+      description: 出荷不可入力リスト
+      properties:
+        checkResult:
+          type: string
+          description: チェック可否
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        supplyMeansType:
+          type: string
+          description: 調達方法区分
+          maxLength: 2
+        storageLocationCode:
+          type: string
+          description: 保管場所コード
+          maxLength: 4
+        plantName:
+          type: string
+          description: 置場名
+          maxLength: 45
+        storageLocationName:
+          type: string
+          description: 保管場所名
+          maxLength: 45
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        soQty:
+          type: integer
+          description: 受注数量
+          maximum: 9999999
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+        supplierName:
+          type: string
+          description: 仕入先名
+          maxLength: 200
+        gInnerCode:
+          type: string
+          description: 統合インナーコード
+          maxLength: 14
+        productCode:
+          type: string
+          description: 商品コード
+          maxLength: 234
+        brandCode:
+          type: string
+          description: ブランドコード
+          maxLength: 4
+        nativeBrandName:
+          type: string
+          description: ブランド名(現地語)
+          maxLength: 200
+        brandName:
+          type: string
+          description: ブランド名（英語）
+          maxLength: 15
+        customerCode:
+          type: string
+          description: 得意先コード
+          maxLength: 6
+        customerName:
+          type: string
+          description: 得意先名
+          maxLength: 200
+        stockType:
+          type: string
+          description: 在庫区分
+          maxLength: 1
+        stockTypeName:
+          type: string
+          description: 在庫区分名
+        componentFlg:
+          type: string
+          description: 部材品フラグ
+          maxLength: 1
+        componentName:
+          type: string
+          description: 部材品名
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+        customerSubsidiaryCode:
+          type: string
+          description: 得意先現法コード
+          maxLength: 3
+        voucherType:
+          type: string
+          description: 伝票区分
+          maxLength: 3
+        sendSlip:
+          type: string
+          description: 伝票送付
+          maxLength: 1
+        vsd:
+          type: string
+          description: VSD
+          format: date
+          minLength: 8
+          maxLength: 8
+        vrd:
+          type: string
+          description: VRD
+          format: date
+          minLength: 8
+          maxLength: 8
+        crd:
+          type: string
+          description: CRD
+          format: date
+          minLength: 8
+          maxLength: 8
+        ssd:
+          type: string
+          description: SSD
+          format: date
+          minLength: 8
+          maxLength: 8
+        productWeight:
+          type: string
+          description: 商品重量
+          maxLength: 9
+        shipmentQty:
+          type: integer
+          description: 出荷数
+          maximum: 9999999
+        soInputDate:
+          type: string
+          description: 受注入力日
+          format: date-time
+        custSubRef:
+          type: string
+          description: 注文番号（子）
+          maxLength: 162
+        custAttention:
+          type: string
+          description: 注文者氏名（カナ／英字）
+          maxLength: 60
+        analysisCode:
+          type: string
+          description: 分析コード
+          maxLength: 8
+        productControlDepartmentCode:
+          type: string
+          description: 商品所管部門コード
+          maxLength: 6
+        storkCode:
+          type: string
+          description: ストークコード
+          maxLength: 2
+        shipmentMeansCode:
+          type: string
+          description: 出荷方法コード
+          maxLength: 4
+        faxNumber:
+          type: string
+          description: FAX番号
+          maxLength: 60
+        soDate:
+          type: string
+          description: 受注日
+          format: date
+        arrivalFixDate:
+          type: string
+          description: 入荷確定日
+          format: date
+        soVoucherNumber:
+          type: string
+          maxLength: 12
+          description: 受注伝票番号
+        soLineNumber:
+          type: string
+          maxLength: 5
+          description: 受注明細番号
+        stopShipmentUpdateCount:
+          type: integer
+          description: 出荷不可更新回数
+          maximum: 9999
+      required:
+        - checkResult
+        - plantCode
+        - supplyMeansType
+        - storageLocationCode
+        - plantName
+        - storageLocationName
+        - globalNumber
+        - soQty
+        - supplierCode
+        - supplierName
+        - gInnerCode
+        - productCode
+        - brandCode
+        - nativeBrandName
+        - brandName
+        - customerCode
+        - customerName
+        - stockType
+        - stockTypeName
+        - componentFlg
+        - componentName
+        - inputProcessDate
+        - customerSubsidiaryCode
+        - voucherType
+        - sendSlip
+        - vsd
+        - vrd
+        - crd
+        - ssd
+        - productWeight
+        - shipmentQty
+        - soInputDate
+        - custSubRef
+        - custAttention
+        - analysisCode
+        - productControlDepartmentCode
+        - storkCode
+        - shipmentMeansCode
+        - faxNumber
+        - soDate
+        - arrivalFixDate
+        - soVoucherNumber
+        - soLineNumber
+        - stopShipmentUpdateCount
+    CheckStopShipmentInternalResponseV1:
+      title: CheckStopShipmentInternalResponseV1
+      type: object
+      description: 出荷不可_入力チェックAPIレスポンス項目
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        reasonTypeName:
+          type: string
+          description: 理由区分名
+        japaneseReasonTypeName1:
+          type: string
+          description: 理由区分名（日本語）
+        stopShipmentInputList:
+          type: array
+          description: 出荷不可入力リスト
+          items:
+            $ref: '#/components/schemas/CheckStopShipmentInternalInputListV1'
+        errorList:
+          description: エラーリスト
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckStopShipmentInternalErrorListV1'
+      required:
+        - subsidiaryCode
+        - reasonTypeName
+        - japaneseReasonTypeName1
+    CheckStopShipmentInternalRequestV1:
+      title: CheckStopShipmentInternalRequestV1
+      type: object
+      description: 出荷不可_入力チェックAPIリクエスト項目
+      properties:
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+          maxLength: 2
+        reasonType:
+          type: string
+          maxLength: 3
+          description: 理由区分
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        processType:
+          type: string
+          description: 処理区分
+          maxLength: 1
+      required:
+        - businessSceneType
+        - reasonType
+        - globalNumber
+        - processType
+    CheckStopShipmentInternalErrorListV1:
+      title: CheckStopShipmentInternalErrorListV1
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+    SaveStopShipmentInternalResponseV1:
+      title: SaveStopShipmentInternalResponseV1
+      type: object
+      properties:
+        updateResult:
+          type: string
+          description: 更新結果
+        errorList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaveStopShipmentInternalErrorListV1'
+      required:
+        - updateResult
+    SaveStopShipmentInternalErrorListV1:
+      title: SaveStopShipmentInternalErrorListV1
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+  parameters: {}
+tags:
+  - name: StopShipmentInternal

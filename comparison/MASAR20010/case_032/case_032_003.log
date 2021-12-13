@@ -1,0 +1,12 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment/get
+■api方法：　POST
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=temp&&Content-Type=application/json&&Prefer=/v1/ccy/get->1
+■api Body：　{  "billToCode": "BILLTO",  "date": "Due",  "paymentDueDateFrom": "20210607",  "promisedPaymentDateFrom": "string",  "paymentDueDateTo": "20211010",  "promisedPaymentDateTo": "string",  "incomingPaymentStatus": "1",  "level": "Dunning",  "dunningLevel": "D",  "titleLevel": "s",  "ininChargeId": "0",  "mainDepartmentCode": "ardp",  "tradeStatus": "TR",  "nonPaymentAmountExtractFrom": "800",  "nonPaymentAmountExtractTo": "30000",  "settlementMethodList": [    {      "settlementMethod": "SET"    }  ],  "paymentMeansList": [    {      "paymentMeans": "YM"    }  ],  "subsidiaryCode": "MJP",  "systemDate": "2021-09-16",  "sortField": "Non-Payment Amoun",  "sortOrder": "0",  "pageNumber": "1",  "displayCount": 0,  "responseType": "0"}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NAR20010001W",
+  "argumentList": [],
+  "message": "指定された検索条件による該当件数は0件でした。"
+}

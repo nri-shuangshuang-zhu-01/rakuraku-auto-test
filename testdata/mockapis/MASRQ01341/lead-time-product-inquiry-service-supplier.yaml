@@ -1,0 +1,4336 @@
+openapi: 3.0.0
+info:
+  title: lead-time-product-inquiry-supplier API
+  version: '1.0'
+  description: 納期・型番確認サービス用の サプライヤ向けAPI です。
+  contact:
+    name: dummy
+  termsOfService: dummy
+servers:
+  - url: 'https://localhost:3000/lead-time-product-inquiry'
+    description: 納期・型番確認サービスAPI
+paths:
+  /supplier/v1/lead-time-product-inquiry/search:
+    parameters: []
+    get:
+      summary: 型番訂正・納期調整検索（サプライヤ）API
+      operationId: searchLeadTimeProductInquirySupplierV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquirySupplierResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryDetailsList:
+                    - soType: '1'
+                      leadTimeProductInquiryReceiveNumber: '1234567890'
+                      leadTimeProductInquiryId: 1234567890
+                      ioErrorFlag: '1'
+                      leadTimeProductInquiryStatus: '1'
+                      leadTimeProductInquiryStatusName: 未処理
+                      leadTimeProductInquiryStage: '01'
+                      leadTimeProductInquiryStageName: 顧客担当確認
+                      leadTimeProductInquiryGroupType: '1'
+                      leadTimeProductInquiryGroupName: 納期確認
+                      leadTimeProductInquiryType: '1'
+                      leadTimeProductInquiryName: 納期短縮
+                      attachmentFileId: e0788ada-bee7-5d17-d946-2d3d02c11894
+                      originalRecvNumber: '12345678901234'
+                      originalRecvDateTime: '2019-08-24T14:15:22Z'
+                      originalGlobalNumber: '12345678901234'
+                      originalLeadTimeProductInquiryId: 1234567890
+                      pocBusinessUnitReplyFlag: '1'
+                      updateDateTime: '2019-08-24T14:15:22'
+                      updateCount: 1
+                      soSlipNumber: '123456789012'
+                      soLineKey: 123456789012
+                      soLineNumber: 123456789012
+                      qtSlipNumber: '123456789012'
+                      qtLineKey: 123456789012
+                      qtLineNumber: 123456789012
+                      completeDateTime: '2019-08-24T14:15:22Z'
+                      completePicId: '1234567890'
+                      errorMessageList:
+                        - code: string
+                          message: string
+                      warningMessageList:
+                        - code: string
+                          message: string
+                      infoMessageList:
+                        - code: string
+                          message: string
+                      specificationCheckMessageList:
+                        - code: string
+                          message: string
+                      receive:
+                        customerItemReference: '1234567890'
+                        customerItemSubReference: '1234567890'
+                        specialOrderType: '0'
+                        slipType: '123'
+                        slipTypeName: 伝票区分名
+                        mediaType: W1
+                        mediaTypeName: ミスミサイト（EC経由）受注
+                        cooperationMediaType: '1'
+                        cooperationMediaTypeName: FAX
+                        qtExpirationDateTime: '2019-08-24T14:15:22Z'
+                        requestReplyExpirationDate: '2019-08-24T14:15:22Z'
+                        requestSupplier: '2019-08-24'
+                        supplierFixContact: 仕入先確定連絡
+                        customer:
+                          customerSubsidiaryCode: TIW
+                          customerCode: '123456'
+                          customerName: 得意先名
+                          customerType: TA
+                          customerTel: '08012345678'
+                          shipTo:
+                            shipToSubsidiaryCode: TIW
+                            shipToCode: '123456'
+                            shipToName: 配送先名
+                            shipToTel: '08012345678'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                        product:
+                          productCode: '1234567890'
+                          qty: 1
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          marketCode: '01'
+                          marketName: Press Die
+                          weight: '10.00'
+                          ginnerCode: 12345678901234
+                        stork:
+                          stork: T0
+                          storkName: T0
+                          shipmentMethodCode: '00'
+                          shipmentMethodName: 通常
+                        trade:
+                          plantCode: '1234'
+                          plantName: 置場名
+                        leadTime:
+                          requestVsd: '2019-08-24'
+                          sslt: 5
+                          ssd: '2019-08-24'
+                          vrd: '2019-08-24'
+                          actualShippingDays: 5
+                          vsd: '2019-08-24'
+                          crd: '2019-08-24'
+                        supplier:
+                          supplierCode: '1234'
+                          supplierName: 仕入先名
+                        discount:
+                          campaignBaseDate: '2019-08-24'
+                          discountType: string
+                          discountRate: 10
+                          couponDiscountAmount: '123'
+                          couponDiscountTotalAmount: '123'
+                          couponDiscountBeforeSalesUnitPrice: '123'
+                          specialDiscount: '123'
+                      inquiryReply:
+                        reasonCodeCause: string
+                        reasonCodeReason: string
+                        originalReceiveNumber: '1234567890'
+                        originalQtExpirationDate: '2019-08-24'
+                        soDate: '2019-08-24'
+                        mcComment: 顧客担当コメント
+                        inquirySupplierCode: '1234'
+                        inquiryReason: 依頼理由名'
+                        requestCount: 1
+                        stockType: 在庫区分
+                        stockTypeName: 在庫区分名
+                        componentType: '01'
+                        componentTypeName: 部材品区分名
+                        productDelivery: 商品納入
+                        productionDays: 100
+                        gtiCatalogDays: 50
+                        productTypeName: string
+                        availableSlideList:
+                          - minQty: 0
+                            maxQty: 99999
+                            salesUnitPrice: string
+                            salesUnitPriceIncludingTax: string
+                        availableStorkList:
+                          - storkCode: T0
+                            storkDisplay: string
+                            storkClosingTime: stri
+                            storkChargeAmount: string
+                        supplier:
+                          supplierRequestDateTime: '2019-08-24T14:15:22Z'
+                          supplierRequestPicId: '123'
+                          supplierRequestPicName: 仕入先依頼担当者名
+                          supplierQtExpirationDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyPicId: '1234567890'
+                          supplierReplyPicName: '1234567890'
+                          supplierComment1: 仕入先コメント1
+                          supplierComment2: 仕入先コメント2
+                          supplierComment3: 仕入先コメント3
+                          supplierCommentFree: 仕入先コメント自由入力
+                          businessComment: 事業部コメント
+                        product:
+                          productCode: '1234567890'
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          packQty: 1
+                          bigOrderMinThresholdQty: 1
+                          bigOrderMaxThresholdQty: 1
+                        bulkPartialDeliveryList:
+                          bulkPartialDeliveryType: '1'
+                          partialDeliverySeq: 1
+                          allocationType: '1'
+                          qty: 1
+                          allocationAvailableQty: 10
+                          stork:
+                            stork: T0
+                            storkName: T0
+                            shipmentMethodCode: '00'
+                            shipmentMethodName: 通常
+                          leadTime:
+                            vsd: '2019-08-24'
+                            actualShippingDays: 5
+                            ssd: '2019-08-24'
+                            sslt: 5
+                          salesPrice:
+                            salesUnitPrice: 123
+                            salesUnitPriceCcyCode: str
+                          purchasePrice:
+                            purchaseUnitPrice: '123'
+                            purchaseUnitPriceCcyCode: str
+                            supplierSalesUnitPrice: '123'
+                            extraPurchaseUnitCharge: '123.00'
+                            supplierSalesUnitPriceCcyCode: TWD
+                          supplier:
+                            supplierCode: '1234'
+                            supplierName: 仕入先名
+                          factoryName: 工場名
+                          supplierReplyType: ''
+                          supplierReplyTypeName: ''
+                          manualCompleteFlag: '1'
+                          plantCode: '1234'
+                      complete:
+                        quoteSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+                        soSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+      description: 型番訂正・納期調整の検索する際に利用するAPI
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - schema:
+            type: array
+            items:
+              type: integer
+            example:
+              - 100
+              - 200
+          in: query
+          name: leadTimeProductInquiryId
+          description: 納期型番確認ID
+        - schema:
+            type: array
+            items:
+              type: string
+            example:
+              - '1'
+          in: query
+          name: soType
+          description: '受注区分 01:見積 02:受注'
+        - schema:
+            type: string
+            example: '223445'
+          in: query
+          name: leadTimeProductInquiryReceiveNumber
+          description: 納期型番確認受付番号
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+            example: '223445'
+          in: query
+          name: customerCode
+          description: 得意先コード
+        - schema:
+            type: array
+            items:
+              type: string
+            example:
+              - '1'
+              - '2'
+          in: query
+          name: leadTimeProductInquiryStatus
+          description: '納期型番確認ステータス ※複数指定可能 1:未処理 2:処理中 3:調整済 4:QT/SO確定 5:削除済'
+        - schema:
+            type: array
+            items:
+              type: string
+            example:
+              - '1'
+              - '2'
+          in: query
+          name: leadTimeProductInquiryStage
+          description: '納期型番確認ステージ ※複数指定可能 01:顧客担当確認中 02:発注担当確認中 03:商品担当確認中 04:メーカー確認中 05:輸出現法発注担当確認中 06:輸出現法商品担当確認中 07:輸出現法メーカー確認中 08:顧客確認中'
+        - schema:
+            type: array
+            items:
+              type: string
+            example:
+              - '1'
+              - '2'
+          in: query
+          name: leadTimeProductInquiryType
+          description: '納期型番確認区分 ※複数指定可能 1:納期短縮 2:大口 3:特注 4:規格外 5:複数 6:事業部 7:その他 90:都度（過渡期用）'
+        - schema:
+            type: string
+            example: BKA5
+            maxLength: 78
+          in: query
+          name: productCode
+          description: 商品コード
+        - schema:
+            type: array
+            items:
+              type: string
+            example:
+              - '01'
+              - '02'
+          in: query
+          name: marketCode
+          description: '市場コード ※複数指定可能 01:Press Die 02:Plastic Mold 03:FA 04:PC Controls 05:Wiring 06:Milling 12:meviy 21:VONA FA 22:VONA Electronics 23:VONA Factory Supply'
+        - schema:
+            type: string
+            example: '001'
+          in: query
+          name: supplierCode
+          description: 仕入先コード
+        - schema:
+            type: string
+            format: date
+            example: '2021-01-01'
+          in: query
+          name: requestVsdFrom
+          description: 希望vsdFrom
+        - schema:
+            type: string
+            format: date
+            example: '2021-01-01'
+          in: query
+          name: requestVsdTo
+          description: 希望vsdTo
+        - schema:
+            type: string
+            format: date-time
+            example: '2021-01-01 10:00:00'
+          in: query
+          name: supplierRequestDateTimeFrom
+          description: 仕入先依頼日時From
+        - schema:
+            type: string
+            format: date-time
+            example: '2021-01-01 10:00:00'
+          in: query
+          name: supplierRequestDateTimeTo
+          description: 仕入先依頼日時To
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+            example: '123456'
+          in: query
+          name: shipToCode
+          description: 配送先コード
+        - schema:
+            type: string
+            example: MSM1
+          in: query
+          name: brandCode
+          description: ブランドコード
+        - schema:
+            type: string
+            minLength: 14
+            maxLength: 14
+            example: '12345678901234'
+          in: query
+          name: globalNumber
+          description: グローバル番号
+        - schema:
+            type: string
+          in: query
+          name: customerType
+          description: 顧客区分
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+      tags:
+        - LeadTimeProductInquirySupplier
+  /supplier/v1/lead-time-product-inquiry-history/search:
+    get:
+      summary: 型番訂正・納期調整履歴検索（サプライヤ）API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquirySupplierResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryDetailsList:
+                    - soType: '1'
+                      leadTimeProductInquiryReceiveNumber: '1234567890'
+                      leadTimeProductInquiryId: 1234567890
+                      ioErrorFlag: '1'
+                      leadTimeProductInquiryStatus: '1'
+                      leadTimeProductInquiryStatusName: 未処理
+                      leadTimeProductInquiryStage: '01'
+                      leadTimeProductInquiryStageName: 顧客担当確認
+                      leadTimeProductInquiryGroupType: '1'
+                      leadTimeProductInquiryGroupName: 納期確認
+                      leadTimeProductInquiryType: '1'
+                      leadTimeProductInquiryName: 納期短縮
+                      attachmentFileId: e0788ada-bee7-5d17-d946-2d3d02c11894
+                      originalRecvNumber: '12345678901234'
+                      originalRecvDateTime: '2019-08-24T14:15:22Z'
+                      originalGlobalNumber: '12345678901234'
+                      originalLeadTimeProductInquiryId: 1234567890
+                      pocBusinessUnitReplyFlag: '1'
+                      updateDateTime: '2019-08-24T14:15:22'
+                      updateCount: 1
+                      soSlipNumber: '123456789012'
+                      soLineKey: 123456789012
+                      soLineNumber: 123456789012
+                      qtSlipNumber: '123456789012'
+                      qtLineKey: 123456789012
+                      qtLineNumber: 123456789012
+                      completeDateTime: '2019-08-24T14:15:22Z'
+                      completePicId: '1234567890'
+                      errorMessageList:
+                        - code: string
+                          message: string
+                      warningMessageList:
+                        - code: string
+                          message: string
+                      infoMessageList:
+                        - code: string
+                          message: string
+                      specificationCheckMessageList:
+                        - code: string
+                          message: string
+                      receive:
+                        customerItemReference: '1234567890'
+                        customerItemSubReference: '1234567890'
+                        specialOrderType: '0'
+                        slipType: '123'
+                        slipTypeName: 伝票区分名
+                        mediaType: W1
+                        mediaTypeName: ミスミサイト（EC経由）受注
+                        cooperationMediaType: '1'
+                        cooperationMediaTypeName: FAX
+                        qtExpirationDateTime: '2019-08-24T14:15:22Z'
+                        requestReplyExpirationDate: '2019-08-24T14:15:22Z'
+                        requestSupplier: '2019-08-24'
+                        supplierFixContact: 仕入先確定連絡
+                        customer:
+                          customerSubsidiaryCode: TIW
+                          customerCode: '123456'
+                          customerName: 得意先名
+                          customerType: TA
+                          customerTel: '08012345678'
+                          shipTo:
+                            shipToSubsidiaryCode: TIW
+                            shipToCode: '123456'
+                            shipToName: 配送先名
+                            shipToTel: '08012345678'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                        product:
+                          productCode: '1234567890'
+                          qty: 1
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          marketCode: '01'
+                          marketName: Press Die
+                          weight: '10.00'
+                          ginnerCode: 12345678901234
+                        stork:
+                          stork: T0
+                          storkName: T0
+                          shipmentMethodCode: '00'
+                          shipmentMethodName: 通常
+                        trade:
+                          plantCode: '1234'
+                          plantName: 置場名
+                        leadTime:
+                          requestVsd: '2019-08-24'
+                          sslt: 5
+                          ssd: '2019-08-24'
+                          vrd: '2019-08-24'
+                          actualShippingDays: 5
+                          vsd: '2019-08-24'
+                          crd: '2019-08-24'
+                        supplier:
+                          supplierCode: '1234'
+                          supplierName: 仕入先名
+                        discount:
+                          campaignBaseDate: '2019-08-24'
+                          discountType: string
+                          discountRate: 10
+                          couponDiscountAmount: '123'
+                          couponDiscountTotalAmount: '123'
+                          couponDiscountBeforeSalesUnitPrice: '123'
+                          specialDiscount: '123'
+                      inquiryReply:
+                        reasonCodeCause: string
+                        reasonCodeReason: string
+                        originalReceiveNumber: '1234567890'
+                        originalQtExpirationDate: '2019-08-24'
+                        soDate: '2019-08-24'
+                        mcComment: 顧客担当コメント
+                        inquirySupplierCode: '1234'
+                        inquiryReason: 依頼理由名'
+                        requestCount: 1
+                        stockType: 在庫区分
+                        stockTypeName: 在庫区分名
+                        componentType: '01'
+                        componentTypeName: 部材品区分名
+                        productDelivery: 商品納入
+                        productionDays: 100
+                        gtiCatalogDays: 50
+                        productTypeName: string
+                        availableSlideList:
+                          - minQty: 0
+                            maxQty: 99999
+                            salesUnitPrice: string
+                            salesUnitPriceIncludingTax: string
+                        availableStorkList:
+                          - storkCode: T0
+                            storkDisplay: string
+                            storkClosingTime: stri
+                            storkChargeAmount: string
+                        supplier:
+                          supplierRequestDateTime: '2019-08-24T14:15:22Z'
+                          supplierRequestPicId: '123'
+                          supplierRequestPicName: 仕入先依頼担当者名
+                          supplierQtExpirationDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyPicId: '1234567890'
+                          supplierReplyPicName: '1234567890'
+                          supplierComment1: 仕入先コメント1
+                          supplierComment2: 仕入先コメント2
+                          supplierComment3: 仕入先コメント3
+                          supplierCommentFree: 仕入先コメント自由入力
+                          businessComment: 事業部コメント
+                        product:
+                          productCode: '1234567890'
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          packQty: 1
+                          bigOrderMinThresholdQty: 1
+                          bigOrderMaxThresholdQty: 1
+                        bulkPartialDeliveryList:
+                          bulkPartialDeliveryType: '1'
+                          partialDeliverySeq: 1
+                          allocationType: '1'
+                          qty: 1
+                          allocationAvailableQty: 10
+                          stork:
+                            stork: T0
+                            storkName: T0
+                            shipmentMethodCode: '00'
+                            shipmentMethodName: 通常
+                          leadTime:
+                            vsd: '2019-08-24'
+                            actualShippingDays: 5
+                            ssd: '2019-08-24'
+                            sslt: 5
+                          salesPrice:
+                            salesUnitPrice: 123
+                            salesUnitPriceCcyCode: str
+                          purchasePrice:
+                            purchaseUnitPrice: '123'
+                            purchaseUnitPriceCcyCode: str
+                            supplierSalesUnitPrice: '123'
+                            extraPurchaseUnitCharge: '123.00'
+                            supplierSalesUnitPriceCcyCode: TWD
+                          supplier:
+                            supplierCode: '1234'
+                            supplierName: 仕入先名
+                          factoryName: 工場名
+                          supplierReplyType: ''
+                          supplierReplyTypeName: ''
+                          manualCompleteFlag: '1'
+                          plantCode: '1234'
+                      complete:
+                        quoteSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+                        soSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                API000208:
+                  $ref: '#/components/examples/API000208'
+      operationId: searchLeadTimeProductInquiryHistorySupplierV1
+      description: 型番訂正・納期調整（サプライヤ）の履歴を検索する際に利用するAPI
+      parameters:
+        - schema:
+            type: integer
+            example: 100
+          in: query
+          name: leadTimeProductInquiryId
+          description: 納期型番確認ID
+          required: true
+        - schema:
+            type: integer
+            example: 1
+          in: query
+          name: updateCount
+          description: 更新回数
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      x-channel:
+        - supplier
+      tags:
+        - LeadTimeProductInquiryHistorySupplier
+  /supplier/v1/lead-time-inquiry/reply:
+    post:
+      summary: 納期調整回答（サプライヤ）API
+      operationId: replyLeadTimeInquirySupplierV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquirySupplierResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryDetailsList:
+                    - soType: '1'
+                      leadTimeProductInquiryReceiveNumber: '1234567890'
+                      leadTimeProductInquiryId: 1234567890
+                      ioErrorFlag: '1'
+                      leadTimeProductInquiryStatus: '1'
+                      leadTimeProductInquiryStatusName: 未処理
+                      leadTimeProductInquiryStage: '01'
+                      leadTimeProductInquiryStageName: 顧客担当確認
+                      leadTimeProductInquiryGroupType: '1'
+                      leadTimeProductInquiryGroupName: 納期確認
+                      leadTimeProductInquiryType: '1'
+                      leadTimeProductInquiryName: 納期短縮
+                      attachmentFileId: e0788ada-bee7-5d17-d946-2d3d02c11894
+                      originalRecvNumber: '12345678901234'
+                      originalRecvDateTime: '2019-08-24T14:15:22Z'
+                      originalGlobalNumber: '12345678901234'
+                      originalLeadTimeProductInquiryId: 1234567890
+                      pocBusinessUnitReplyFlag: '1'
+                      updateDateTime: '2019-08-24T14:15:22'
+                      updateCount: 1
+                      soSlipNumber: '123456789012'
+                      soLineKey: 123456789012
+                      soLineNumber: 123456789012
+                      qtSlipNumber: '123456789012'
+                      qtLineKey: 123456789012
+                      qtLineNumber: 123456789012
+                      completeDateTime: '2019-08-24T14:15:22Z'
+                      completePicId: '1234567890'
+                      errorMessageList:
+                        - code: string
+                          message: string
+                      warningMessageList:
+                        - code: string
+                          message: string
+                      infoMessageList:
+                        - code: string
+                          message: string
+                      specificationCheckMessageList:
+                        - code: string
+                          message: string
+                      receive:
+                        customerItemReference: '1234567890'
+                        customerItemSubReference: '1234567890'
+                        specialOrderType: '0'
+                        slipType: '123'
+                        slipTypeName: 伝票区分名
+                        mediaType: W1
+                        mediaTypeName: ミスミサイト（EC経由）受注
+                        cooperationMediaType: '1'
+                        cooperationMediaTypeName: FAX
+                        qtExpirationDateTime: '2019-08-24T14:15:22Z'
+                        requestReplyExpirationDate: '2019-08-24T14:15:22Z'
+                        requestSupplier: '2019-08-24'
+                        supplierFixContact: 仕入先確定連絡
+                        customer:
+                          customerSubsidiaryCode: TIW
+                          customerCode: '123456'
+                          customerName: 得意先名
+                          customerType: TA
+                          customerTel: '08012345678'
+                          shipTo:
+                            shipToSubsidiaryCode: TIW
+                            shipToCode: '123456'
+                            shipToName: 配送先名
+                            shipToTel: '08012345678'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                        product:
+                          productCode: '1234567890'
+                          qty: 1
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          marketCode: '01'
+                          marketName: Press Die
+                          weight: '10.00'
+                          ginnerCode: 12345678901234
+                        stork:
+                          stork: T0
+                          storkName: T0
+                          shipmentMethodCode: '00'
+                          shipmentMethodName: 通常
+                        trade:
+                          plantCode: '1234'
+                          plantName: 置場名
+                        leadTime:
+                          requestVsd: '2019-08-24'
+                          sslt: 5
+                          ssd: '2019-08-24'
+                          vrd: '2019-08-24'
+                          actualShippingDays: 5
+                          vsd: '2019-08-24'
+                          crd: '2019-08-24'
+                        supplier:
+                          supplierCode: '1234'
+                          supplierName: 仕入先名
+                        discount:
+                          campaignBaseDate: '2019-08-24'
+                          discountType: string
+                          discountRate: 10
+                          couponDiscountAmount: '123'
+                          couponDiscountTotalAmount: '123'
+                          couponDiscountBeforeSalesUnitPrice: '123'
+                          specialDiscount: '123'
+                      inquiryReply:
+                        reasonCodeCause: string
+                        reasonCodeReason: string
+                        originalReceiveNumber: '1234567890'
+                        originalQtExpirationDate: '2019-08-24'
+                        soDate: '2019-08-24'
+                        mcComment: 顧客担当コメント
+                        inquirySupplierCode: '1234'
+                        inquiryReason: 依頼理由名'
+                        requestCount: 1
+                        stockType: 在庫区分
+                        stockTypeName: 在庫区分名
+                        componentType: '01'
+                        componentTypeName: 部材品区分名
+                        productDelivery: 商品納入
+                        productionDays: 100
+                        gtiCatalogDays: 50
+                        productTypeName: string
+                        availableSlideList:
+                          - minQty: 0
+                            maxQty: 99999
+                            salesUnitPrice: string
+                            salesUnitPriceIncludingTax: string
+                        availableStorkList:
+                          - storkCode: T0
+                            storkDisplay: string
+                            storkClosingTime: stri
+                            storkChargeAmount: string
+                        supplier:
+                          supplierRequestDateTime: '2019-08-24T14:15:22Z'
+                          supplierRequestPicId: '123'
+                          supplierRequestPicName: 仕入先依頼担当者名
+                          supplierQtExpirationDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyPicId: '1234567890'
+                          supplierReplyPicName: '1234567890'
+                          supplierComment1: 仕入先コメント1
+                          supplierComment2: 仕入先コメント2
+                          supplierComment3: 仕入先コメント3
+                          supplierCommentFree: 仕入先コメント自由入力
+                          businessComment: 事業部コメント
+                        product:
+                          productCode: '1234567890'
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          packQty: 1
+                          bigOrderMinThresholdQty: 1
+                          bigOrderMaxThresholdQty: 1
+                        bulkPartialDeliveryList:
+                          bulkPartialDeliveryType: '1'
+                          partialDeliverySeq: 1
+                          allocationType: '1'
+                          qty: 1
+                          allocationAvailableQty: 10
+                          stork:
+                            stork: T0
+                            storkName: T0
+                            shipmentMethodCode: '00'
+                            shipmentMethodName: 通常
+                          leadTime:
+                            vsd: '2019-08-24'
+                            actualShippingDays: 5
+                            ssd: '2019-08-24'
+                            sslt: 5
+                          salesPrice:
+                            salesUnitPrice: 123
+                            salesUnitPriceCcyCode: str
+                          purchasePrice:
+                            purchaseUnitPrice: '123'
+                            purchaseUnitPriceCcyCode: str
+                            supplierSalesUnitPrice: '123'
+                            extraPurchaseUnitCharge: '123.00'
+                            supplierSalesUnitPriceCcyCode: TWD
+                          supplier:
+                            supplierCode: '1234'
+                            supplierName: 仕入先名
+                          factoryName: 工場名
+                          supplierReplyType: ''
+                          supplierReplyTypeName: ''
+                          manualCompleteFlag: '1'
+                          plantCode: '1234'
+                      complete:
+                        quoteSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+                        soSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                API000208:
+                  $ref: '#/components/examples/API000208'
+      description: サプライヤの納期調整の回答をするAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplyLeadTimeInquirySupplierRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryId: 1234567890
+                  supplierQtExpirationDateTime: '2019-08-24T14:15:22'
+                  supplierComment1: 仕入先コメント1
+                  supplierComment2: 仕入先コメント2
+                  supplierComment3: 仕入先コメント3
+                  supplierCommentFree: 仕入先コメント自由入力欄
+                  updateDateTime: '2019-08-24T14:15:22'
+                  updateCount: 1
+                  fileId: e0788ada-bee7-5d17-d946-2d3d02c11894
+                  replyDetailList:
+                    - bulkPartialDeliveryType: '1'
+                      qty: 1
+                      storkCode: T0
+                      shipmentMethodCode: '00'
+                      ssd: '2019-08-24'
+                      sslt: 10
+                      vsd: '2019-08-24'
+                      actualShippingDays: 0
+                      purchaseUnitPrice: '123.00'
+                      extraPurchaseUnitCharge: '123.00'
+                      supplierReply: 仕入先回答
+                      remarks: 備考
+                      allocationAvailableQty: 10
+        description: API個別
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+      tags:
+        - LeadTimeInquirySupplier
+    parameters: []
+  /supplier/v1/lead-time-inquiry/reply-check:
+    post:
+      summary: 納期調整回答チェック（サプライヤ）API
+      operationId: replyCheckLeadTimeInquirySupplierV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquirySupplierResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryDetailsList:
+                    - soType: '1'
+                      leadTimeProductInquiryReceiveNumber: '1234567890'
+                      leadTimeProductInquiryId: 1234567890
+                      ioErrorFlag: '1'
+                      leadTimeProductInquiryStatus: '1'
+                      leadTimeProductInquiryStatusName: 未処理
+                      leadTimeProductInquiryStage: '01'
+                      leadTimeProductInquiryStageName: 顧客担当確認
+                      leadTimeProductInquiryGroupType: '1'
+                      leadTimeProductInquiryGroupName: 納期確認
+                      leadTimeProductInquiryType: '1'
+                      leadTimeProductInquiryName: 納期短縮
+                      attachmentFileId: e0788ada-bee7-5d17-d946-2d3d02c11894
+                      originalRecvNumber: '12345678901234'
+                      originalRecvDateTime: '2019-08-24T14:15:22Z'
+                      originalGlobalNumber: '12345678901234'
+                      originalLeadTimeProductInquiryId: 1234567890
+                      pocBusinessUnitReplyFlag: '1'
+                      updateDateTime: '2019-08-24T14:15:22'
+                      updateCount: 1
+                      soSlipNumber: '123456789012'
+                      soLineKey: 123456789012
+                      soLineNumber: 123456789012
+                      qtSlipNumber: '123456789012'
+                      qtLineKey: 123456789012
+                      qtLineNumber: 123456789012
+                      completeDateTime: '2019-08-24T14:15:22Z'
+                      completePicId: '1234567890'
+                      errorMessageList:
+                        - code: string
+                          message: string
+                      warningMessageList:
+                        - code: string
+                          message: string
+                      infoMessageList:
+                        - code: string
+                          message: string
+                      specificationCheckMessageList:
+                        - code: string
+                          message: string
+                      receive:
+                        customerItemReference: '1234567890'
+                        customerItemSubReference: '1234567890'
+                        specialOrderType: '0'
+                        slipType: '123'
+                        slipTypeName: 伝票区分名
+                        mediaType: W1
+                        mediaTypeName: ミスミサイト（EC経由）受注
+                        cooperationMediaType: '1'
+                        cooperationMediaTypeName: FAX
+                        qtExpirationDateTime: '2019-08-24T14:15:22Z'
+                        requestReplyExpirationDate: '2019-08-24T14:15:22Z'
+                        requestSupplier: '2019-08-24'
+                        supplierFixContact: 仕入先確定連絡
+                        customer:
+                          customerSubsidiaryCode: TIW
+                          customerCode: '123456'
+                          customerName: 得意先名
+                          customerType: TA
+                          customerTel: '08012345678'
+                          shipTo:
+                            shipToSubsidiaryCode: TIW
+                            shipToCode: '123456'
+                            shipToName: 配送先名
+                            shipToTel: '08012345678'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                        product:
+                          productCode: '1234567890'
+                          qty: 1
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          marketCode: '01'
+                          marketName: Press Die
+                          weight: '10.00'
+                          ginnerCode: 12345678901234
+                        stork:
+                          stork: T0
+                          storkName: T0
+                          shipmentMethodCode: '00'
+                          shipmentMethodName: 通常
+                        trade:
+                          plantCode: '1234'
+                          plantName: 置場名
+                        leadTime:
+                          requestVsd: '2019-08-24'
+                          sslt: 5
+                          ssd: '2019-08-24'
+                          vrd: '2019-08-24'
+                          actualShippingDays: 5
+                          vsd: '2019-08-24'
+                          crd: '2019-08-24'
+                        supplier:
+                          supplierCode: '1234'
+                          supplierName: 仕入先名
+                        discount:
+                          campaignBaseDate: '2019-08-24'
+                          discountType: string
+                          discountRate: 10
+                          couponDiscountAmount: '123'
+                          couponDiscountTotalAmount: '123'
+                          couponDiscountBeforeSalesUnitPrice: '123'
+                          specialDiscount: '123'
+                      inquiryReply:
+                        reasonCodeCause: string
+                        reasonCodeReason: string
+                        originalReceiveNumber: '1234567890'
+                        originalQtExpirationDate: '2019-08-24'
+                        soDate: '2019-08-24'
+                        mcComment: 顧客担当コメント
+                        inquirySupplierCode: '1234'
+                        inquiryReason: 依頼理由名'
+                        requestCount: 1
+                        stockType: 在庫区分
+                        stockTypeName: 在庫区分名
+                        componentType: '01'
+                        componentTypeName: 部材品区分名
+                        productDelivery: 商品納入
+                        productionDays: 100
+                        gtiCatalogDays: 50
+                        productTypeName: string
+                        availableSlideList:
+                          - minQty: 0
+                            maxQty: 99999
+                            salesUnitPrice: string
+                            salesUnitPriceIncludingTax: string
+                        availableStorkList:
+                          - storkCode: T0
+                            storkDisplay: string
+                            storkClosingTime: stri
+                            storkChargeAmount: string
+                        supplier:
+                          supplierRequestDateTime: '2019-08-24T14:15:22Z'
+                          supplierRequestPicId: '123'
+                          supplierRequestPicName: 仕入先依頼担当者名
+                          supplierQtExpirationDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyDateTime: '2019-08-24T14:15:22Z'
+                          supplierReplyPicId: '1234567890'
+                          supplierReplyPicName: '1234567890'
+                          supplierComment1: 仕入先コメント1
+                          supplierComment2: 仕入先コメント2
+                          supplierComment3: 仕入先コメント3
+                          supplierCommentFree: 仕入先コメント自由入力
+                          businessComment: 事業部コメント
+                        product:
+                          productCode: '1234567890'
+                          brandCode: '1234'
+                          brandName: ブランド名
+                          packQty: 1
+                          bigOrderMinThresholdQty: 1
+                          bigOrderMaxThresholdQty: 1
+                        bulkPartialDeliveryList:
+                          bulkPartialDeliveryType: '1'
+                          partialDeliverySeq: 1
+                          allocationType: '1'
+                          qty: 1
+                          allocationAvailableQty: 10
+                          stork:
+                            stork: T0
+                            storkName: T0
+                            shipmentMethodCode: '00'
+                            shipmentMethodName: 通常
+                          leadTime:
+                            vsd: '2019-08-24'
+                            actualShippingDays: 5
+                            ssd: '2019-08-24'
+                            sslt: 5
+                          salesPrice:
+                            salesUnitPrice: 123
+                            salesUnitPriceCcyCode: str
+                          purchasePrice:
+                            purchaseUnitPrice: '123'
+                            purchaseUnitPriceCcyCode: str
+                            supplierSalesUnitPrice: '123'
+                            extraPurchaseUnitCharge: '123.00'
+                            supplierSalesUnitPriceCcyCode: TWD
+                          supplier:
+                            supplierCode: '1234'
+                            supplierName: 仕入先名
+                          factoryName: 工場名
+                          supplierReplyType: ''
+                          supplierReplyTypeName: ''
+                          manualCompleteFlag: '1'
+                          plantCode: '1234'
+                      complete:
+                        quoteSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+                        soSlip:
+                          - shipToCode: '123456'
+                            deliveryDepartmentCode: 納入部署
+                            deliveryPicName: 納入担当者名
+                            detailList:
+                              - customerItemReference: '1234567890'
+                                customerItemSubReference: '1234567890'
+                                stockType: 在庫区分
+                                stockTypeName: 在庫区分名
+                                componentType: '01'
+                                componentTypeName: 部材品名
+                                partialDeliverySeq: 1
+                                allocationType: '1'
+                                factoryName: 工場名
+                                supplierReplyType: ''
+                                manualCompleteFlag: '1'
+                                plantCode: '1234'
+                                specialOrderType: '0'
+                                globalNumber: '12345678901234'
+                                completeReceiveNumber: '1234567890'
+                                product:
+                                  qty: 1
+                                  brandCode: '1234'
+                                  weight: '10.00'
+                                  ginnerCode: 12345678901234
+                                leadTime:
+                                  vrd: '2019-08-24'
+                                  crd: '2019-08-24'
+                                  vsd: '2019-08-24'
+                                  actualDaysToShip: '5'
+                                  ssd: '2019-08-24'
+                                  sslt: 5
+                                salesPrice:
+                                  salesUnitPrice: 123
+                                  salesUnitPriceCcyCode: str
+                                purchasePrice:
+                                  purchaseUnitPrice: '123'
+                                  purchaseUnitPriceCcyCode: str
+                                  purchaseExtraPrice: '123'
+                                  supplierSalesUnitPrice: '123'
+                                  supplierSalesUnitPriceCcyCode: str
+                                supplier:
+                                  supplierCode: '1234'
+                                  supplierName: 仕入先名
+                                stork:
+                                  storkcode: T0
+                                  shipmentMethodCode: '00'
+                                  shipmentMethodName: 通常
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                API000208:
+                  $ref: '#/components/examples/API000208'
+      description: サプライヤの納期調整回答のチェックするAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplyCheckLeadTimeInquirySupplierRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryId: 1234567890
+                  supplierQtExpirationDateTime: '2019-08-24T14:15:22'
+                  supplierComment1: 仕入先コメント1
+                  supplierComment2: 仕入先コメント2
+                  supplierComment3: 仕入先コメント3
+                  supplierCommentFree: 仕入先コメント自由入力
+                  replyDetailList:
+                    - bulkPartialDeliveryType: '1'
+                      qty: 1
+                      storkCode: T0
+                      shippingPoint: '00'
+                      ssd: '2019-08-24'
+                      sslt: 5
+                      vrd: '2019-08-24'
+                      actualDaysToShip: '5'
+                      purchaseUnitPrice: '100'
+                      purchaseExtraPrice: '123'
+                      supplierReply: 仕入先回答
+                      remarks: 備考
+        description: API個別
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+      tags:
+        - LeadTimeInquirySupplier
+    parameters: []
+  /supplier/v1/lead-time-inquiry/assign-pic:
+    post:
+      summary: 納期調整担当立て（サプライヤ）API
+      operationId: assignPicLeadTimeInquiryInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignPicLeadTimeInquirySupplierResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryId: 1234567890
+                    supplierQtExpirationDateTime: '2019-08-24T14:15:22Z'
+                    supplierComment1: 仕入先コメント1
+                    supplierComment2: 仕入先コメント2
+                    supplierComment3: 仕入先コメント3
+                    supplierCommentFree: 仕入先コメント自由入力欄
+                    updateCount: 1
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                API000208:
+                  $ref: '#/components/examples/API000208'
+      description: サプライヤの納期調整担当者を割り当てるAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignPicLeadTimeInquirySupplierRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryId: 1234567890
+                  supplierQtExpirationDateTime: '2019-08-24T14:15:22'
+                  supplierComment1: 仕入先コメント1
+                  supplierComment2: 仕入先コメント2
+                  supplierComment3: 仕入先コメント3
+                  supplierCommentFree: 仕入先コメント自由入力
+                  updateCount: 1
+        description: API個別
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+      tags:
+        - LeadTimeInquirySupplier
+    parameters: []
+  /supplier/v1/supplier-reply-file-url:
+    get:
+      summary: サプライヤ回答ファイルURL取得（サプライヤ）API
+      operationId: supplierReplyFileUrlSupplierV1
+      responses:
+        '307':
+          description: Temporary Redirect
+          headers:
+            Location:
+              schema:
+                type: string
+              description: サプライヤ回答ファイルURL
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+              examples:
+                API000208:
+                  $ref: '#/components/examples/API000208'
+      description: 仕入先向けに作成された見積依頼書を取得するAPI。
+      parameters:
+        - schema:
+            type: string
+            example: '1234567890'
+          in: query
+          description: 納期型番確認ID
+          name: leadTimeProductInquiryId
+          required: true
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+      tags:
+        - SupplierReplyFileUrlSupplier
+  /supplier/v1/lead-time-product-inquiry-code/search:
+    get:
+      summary: 納期型番確認コード検索（サプライヤ）API
+      tags:
+        - LeadTimeProductInquiryCodeSupplier
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLeadTimeProductInquiryCodeSupplierResponseV1'
+              examples:
+                example:
+                  value:
+                    leadTimeProductInquiryCodeList:
+                      - generalPurposeKey1: 汎用キー１
+                        generalPurposeKey2: 汎用キー２
+                        generalPurposeKey3: 汎用キー３
+                        generalPurposeKey4: 汎用キー４
+                        generalPurposeKey5: 汎用キー５
+                        codeValueReference1: コード値リファレンス１
+                        codeValueReference2: コード値リファレンス2
+                        codeValueReference3: コード値リファレンス3
+                        codeValueReference4: コード値リファレンス4
+                        codeValueReference5: コード値リファレンス5
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                API000208:
+                  $ref: '#/components/examples/API000208'
+      operationId: searchLeadTimeProductInquiryCodeSupplierV1
+      description: 検索条件に紐づく納期型番確認コードの一覧を返却するAPI。
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: generalPurposeKey1
+          description: 汎用キー１
+          required: true
+        - schema:
+            type: string
+          in: query
+          description: 汎用キー２
+          name: generalPurposeKey2
+        - schema:
+            type: string
+          in: query
+          description: 汎用キー３
+          name: generalPurposeKey3
+        - schema:
+            type: string
+          in: query
+          description: 汎用キー４
+          name: generalPurposeKey4
+        - schema:
+            type: string
+          in: query
+          description: 汎用キー５
+          name: generalPurposeKey5
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+  /supplier/v1/supplier-lead-time-inquiry-form/generate/request:
+    post:
+      summary: サプライヤ納期確認依頼書生成依頼(サプライヤ)
+      operationId: requestGenerateSupplierLeadTimeInquiryFormSupplierV1
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+          headers: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: サプライヤが、サプライヤ向け納期確認依頼書を作成するAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: '#/components/parameters/XApplicationId'
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestSupplierLeadTimeInquiryFormSupplierRequestV1'
+            examples:
+              example:
+                value:
+                  leadTimeProductInquiryId: 1234567890
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: API個別
+      tags:
+        - SupplierLeadTimeInquiryFormSupplier
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+    parameters: []
+  /supplier/v1/supplier-lead-time-inquiry-form/generate/request/result:
+    get:
+      summary: サプライヤ納期確認依頼書生成依頼結果取得(サプライヤ)API
+      operationId: resultRequestGenerateSupplierLeadTimeInquiryFormSupplierV1
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResultRequestGenerateSupplierLeadTimeInquiryFormSupplierResponseV1'
+              examples:
+                example:
+                  value:
+                    processStatus: '1'
+        '307':
+          description: Temporary Redirect
+          headers:
+            Location:
+              schema:
+                type: string
+              description: サプライヤ納期確認依頼書URL
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: サプライヤが、サプライヤ向け納期確認依頼書を取得するAPI。
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ./lead-time-product-inquiry-service-customer.yaml#/components/parameters/XApplicationId
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      x-channel:
+        - supplier
+      x-subsidiary:
+        - TIW
+      tags:
+        - SupplierLeadTimeInquiryFormSupplier
+    parameters: []
+components:
+  schemas:
+    Error:
+      title: ErrorV1
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用のJSONスキーマ定義
+      properties:
+        target:
+          type: string
+          description: 項目名
+        code:
+          type: string
+          description: エラーコード
+        arguments:
+          type: array
+          description: パラメータ
+          items: {}
+        message:
+          type: string
+          description: エラーメッセージ
+        details:
+          type: array
+          description: 詳細メッセージ
+          items:
+            $ref: '#/components/schemas/Error'
+      x-examples:
+        example:
+          value:
+            target: string
+            code: string
+            arguments:
+              - null
+            message: string
+            details:
+              - target: string
+                code: string
+                arguments:
+                  - null
+                message: string
+                details:
+                  - {}
+    ReplyLeadTimeInquirySupplierRequestV1:
+      title: ReplyLeadTimeInquirySupplierRequestV1
+      type: object
+      description: 納期調整回答（サプライヤ）APIのリクエスト
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryId: 1234567890
+            supplierQtExpirationDateTime: '2019-08-24T14:15:22'
+            supplierComment1: 仕入先コメント1
+            supplierComment2: 仕入先コメント2
+            supplierComment3: 仕入先コメント3
+            supplierCommentFree: 仕入先コメント自由入力欄
+            updateDateTime: '2019-08-24T14:15:22'
+            updateCount: 1
+            fileId: e0788ada-bee7-5d17-d946-2d3d02c11894
+            replyDetailList:
+              bulkPartialDeliveryType: '1'
+              qty: 1
+              storkCode: T0
+              shipmentMethodCode: '00'
+              ssd: '2019-08-24'
+              sslt: 10
+              vsd: '2019-08-24'
+              actualShippingDays: -2147483648
+              purchaseUnitPrice: '123.00'
+              extraPurchaseUnitCharge: '123.00'
+              supplierReply: 仕入先回答
+              remarks: 備考
+      properties:
+        leadTimeProductInquiryId:
+          type: integer
+          description: 納期型番確認ID
+          example: 1234567890
+        supplierQtExpirationDateTime:
+          type: string
+          format: date-time
+          description: 仕入先見積有効期限日時
+          example: '2019-08-24T14:15:22'
+        supplierComment1:
+          type: string
+          description: 仕入先コメント1
+          example: 仕入先コメント1
+        supplierComment2:
+          type: string
+          description: 仕入先コメント2
+          example: 仕入先コメント2
+        supplierComment3:
+          type: string
+          description: 仕入先コメント3
+          example: 仕入先コメント3
+        supplierCommentFree:
+          type: string
+          description: 仕入先コメント自由入力
+          example: 仕入先コメント自由入力欄
+        updateDateTime:
+          type: string
+          description: 更新日時
+          format: date-time
+          example: '2019-08-24T14:15:22'
+        updateCount:
+          type: integer
+          description: 更新回数
+          example: 1
+        fileId:
+          type: string
+          description: フアイルID
+          example: e0788ada-bee7-5d17-d946-2d3d02c11894
+        replyDetailList:
+          type: array
+          title: ReplySupplierLeadTimeInquiryInternalRequestReplyDetailV1
+          description: 回答明細リスト
+          items:
+            type: object
+            properties:
+              bulkPartialDeliveryType:
+                type: string
+                description: |-
+                  一括分納タイプ
+                  ・1：一括納入
+                  ・2：分割納入
+                example: '1'
+                enum:
+                  - '1'
+                  - '2'
+              qty:
+                type: integer
+                format: int32
+                maximum: 99999
+                minimum: 1
+                description: 数量
+              storkCode:
+                $ref: '#/components/schemas/StorkCode'
+              shipmentMethodCode:
+                $ref: '#/components/schemas/ShipmentMethodCode'
+              ssd:
+                type: string
+                format: date
+                description: SSD：仕入先出荷日
+              sslt:
+                type: integer
+                format: int32
+                example: 10
+                description: sslt
+              vsd:
+                type: string
+                format: date
+                description: VSD：倉庫出荷日
+              actualShippingDays:
+                type: integer
+                format: int32
+                description: 実働出荷日数
+              purchaseUnitPrice:
+                type: string
+                format: decimal
+                description: 仕入単価
+                example: '123.00'
+              extraPurchaseUnitCharge:
+                type: string
+                format: decimal
+                description: 仕入割増
+                example: '123.00'
+              supplierReply:
+                type: string
+                description: 仕入先回答
+                example: 仕入先回答
+              remarks:
+                type: string
+                description: 備考
+                example: 備考
+              allocationAvailableQty:
+                type: integer
+                description: 引当可能数
+                example: 10
+    AssignPicLeadTimeInquirySupplierResponseV1:
+      title: AssignPicLeadTimeInquirySupplierResponseV1
+      type: object
+      description: 納期調整担当立て（サプライヤ）APIの正常終了レスポンス
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryId: 1234567890
+            supplierQtExpirationDateTime: '2019-08-24T14:15:22Z'
+            supplierComment1: 仕入先コメント1
+            supplierComment2: 仕入先コメント2
+            supplierComment3: 仕入先コメント3
+            supplierCommentFree: 仕入先コメント自由入力欄
+            updateCount: 1
+      properties:
+        leadTimeProductInquiryId:
+          type: integer
+          description: 納期型番確認ID
+          example: 1234567890
+        supplierQtExpirationDateTime:
+          type: string
+          format: date-time
+          description: 仕入先見積有効期限日時
+        supplierComment1:
+          type: string
+          description: 仕入先コメント1
+          example: 仕入先コメント1
+        supplierComment2:
+          type: string
+          description: 仕入先コメント2
+          example: 仕入先コメント2
+        supplierComment3:
+          type: string
+          description: 仕入先コメント3
+          example: 仕入先コメント3
+        supplierCommentFree:
+          type: string
+          description: 仕入先コメント自由入力
+          example: 仕入先コメント自由入力欄
+        updateCount:
+          type: integer
+          description: 更新回数
+          example: 1
+        supplierReplyPicId:
+          type: string
+          description: 仕入先回答担当者ID
+          example: '123456'
+    ReplyCheckLeadTimeInquirySupplierRequestV1:
+      title: ReplyCheckLeadTimeInquirySupplierRequestV1
+      type: object
+      description: 納期調整回答チェック（サプライヤ）APIのリクエスト
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryId: 1234567890
+            supplierQtExpirationDateTime: '2019-08-24T14:15:22'
+            supplierComment1: 仕入先コメント1
+            supplierComment2: 仕入先コメント2
+            supplierComment3: 仕入先コメント3
+            supplierCommentFree: 仕入先コメント自由入力
+            replyDetailList:
+              bulkPartialDeliveryType: '1'
+              qty: 1
+              storkCode: T0
+              shippingPoint: '00'
+              ssd: '2019-08-24'
+              sslt: 5
+              vrd: '2019-08-24'
+              actualDaysToShip: '5'
+              purchaseUnitPrice: '100'
+              purchaseExtraPrice: '123'
+              supplierReply: 仕入先回答
+              remarks: 備考
+      properties:
+        leadTimeProductInquiryId:
+          type: integer
+          description: 納期型番確認ID
+          example: 1234567890
+        supplierQtExpirationDateTime:
+          type: string
+          format: date-time
+          description: 仕入先見積有効期限日時
+          example: '2019-08-24T14:15:22'
+        supplierComment1:
+          type: string
+          description: 仕入先コメント1
+          example: 仕入先コメント1
+        supplierComment2:
+          type: string
+          description: 仕入先コメント2
+          example: 仕入先コメント2
+        supplierComment3:
+          type: string
+          description: 仕入先コメント3
+          example: 仕入先コメント3
+        supplierCommentFree:
+          type: string
+          description: 仕入先コメント自由入力
+          example: 仕入先コメント自由入力
+        replyDetailList:
+          type: array
+          title: ReplyCheckSupplierLeadTimeInquiryInternalRequestReplyDetailV1
+          description: 回答明細リスト
+          items:
+            type: object
+            properties:
+              bulkPartialDeliveryType:
+                type: string
+                description: |-
+                  一括分納タイプ
+                  ・1：一括納入
+                  ・2：分割納入
+                example: '1'
+                enum:
+                  - '1'
+                  - '2'
+              qty:
+                type: integer
+                format: int32
+                maximum: 99999
+                minimum: 1
+                description: 数量
+              storkCode:
+                $ref: '#/components/schemas/StorkCode'
+              shipmentMethodCode:
+                $ref: '#/components/schemas/ShipmentMethodCode'
+              ssd:
+                type: string
+                format: date
+                description: SSD：仕入先出荷日
+              sslt:
+                type: integer
+                format: int32
+                example: 5
+                description: sslt
+              vsd:
+                type: string
+                format: date
+                description: VSD：倉庫出荷日
+              actualShippingDays:
+                type: integer
+                format: int32
+                description: 実働出荷日数
+                example: 5
+              purchaseUnitPrice:
+                type: string
+                description: 仕入単価
+                example: '123.00'
+              extraPurchaseUnitCharge:
+                type: string
+                format: decimal
+                description: 仕入割増
+                example: '123.00'
+              supplierReply:
+                type: string
+                description: 仕入先回答
+                example: 仕入先回答
+              remarks:
+                type: string
+                description: 備考
+                example: 備考
+    AssignPicLeadTimeInquirySupplierRequestV1:
+      title: AssignPicLeadTimeInquirySupplierRequestV1
+      type: object
+      description: 納期調整担当立て（サプライヤ）APIのリクエスト
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryId: 1234567890
+            supplierQtExpirationDateTime: '2019-08-24T14:15:22'
+            supplierComment1: 仕入先コメント1
+            supplierComment2: 仕入先コメント2
+            supplierComment3: 仕入先コメント3
+            supplierCommentFree: 仕入先コメント自由入力
+            updateCount: 1
+      properties:
+        leadTimeProductInquiryId:
+          type: integer
+          description: 納期型番確認ID
+          example: 1234567890
+        supplierQtExpirationDateTime:
+          type: string
+          format: date-time
+          description: 仕入先見積有効期限日時
+          example: '2019-08-24T14:15:22'
+        supplierComment1:
+          type: string
+          description: 仕入先コメント1
+          example: 仕入先コメント1
+        supplierComment2:
+          type: string
+          description: 仕入先コメント2
+          example: 仕入先コメント2
+        supplierComment3:
+          type: string
+          description: 仕入先コメント3
+          example: 仕入先コメント3
+        supplierCommentFree:
+          type: string
+          description: 仕入先コメント自由入力
+          example: 仕入先コメント自由入力
+        updateCount:
+          type: integer
+          description: 更新回数
+          example: 1
+    LeadTimeProductInquiryStatus:
+      type: string
+      title: LeadTimeProductInquiryStatus
+      description: |-
+        納期型番確認ステータス
+        1: 未処理
+        2: 処理中
+        3: 調整済
+        4: QT/SO確定
+        5: 削除済
+      enum:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+        - '5'
+      x-enum-varnames:
+        - BACKLOG
+        - PROCESSING
+        - ADJUSTED
+        - QTSOFIX
+        - DELETED
+      x-enum-descriptions:
+        - 未処理
+        - 処理中
+        - 調整済
+        - QT/SO確定
+        - 削除済
+    LeadTimeProductInquiryStage:
+      title: LeadTimeProductInquiryStage
+      type: string
+      description: |-
+        納期型番確認ステージ
+        01: 顧客担当確認
+        02: 発注担当確認
+        03: 商品担当確認
+        04: メーカー確認
+        05: 輸出現法発注担当確認
+        06: 輸出現法商品担当確認
+        07: 輸出現法メーカー確認
+        08: 顧客確認
+      enum:
+        - '01'
+        - '02'
+        - '03'
+        - '04'
+        - '05'
+        - '06'
+        - '07'
+        - '08'
+      x-enum-varnames:
+        - CUSTOMER_PIC_CONFIRMATION
+        - PO_PIC_CONFIRMATION
+        - PRODUCT_PIC_CONFIRMATION
+        - SUPPLIER_CONFIRMATION
+        - EXPORT_SUBSIDIARY_PO_PIC_CONFIRMATION
+        - EXPORT_SUBSIDIARY_PRODUCT_PIC_CONFIRMATION
+        - EXPORT_SUBSIDIARY_SUPPLIER_CONFIRMATION
+        - CUSTOMER_CONFIRMATION
+      x-enum-descriptions:
+        - 顧客担当確認
+        - 発注担当確認
+        - 商品担当確認
+        - メーカー確認
+        - 輸出現法発注担当確認
+        - 輸出現法商品担当確認
+        - 輸出現法メーカー確認
+        - 顧客確認
+    LeadTimeProductInquiryType:
+      title: LeadTimeProductInquiryType
+      type: string
+      description: |-
+        納期型番確認区分
+        1: 納期短縮
+        2: 大口
+        3: 特注
+        4: 規格外
+        5: 複数
+        6: 事業部
+        7: その他
+        90: 都度（過渡期用）
+      enum:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+        - '5'
+        - '6'
+        - '7'
+        - '90'
+      x-enum-varnames:
+        - LEAD_TIME_SHORTENING
+        - BIG_ORDER
+        - SPECIAL_ORDER
+        - NON_STANDARD
+        - MULTIPLE
+        - BISINESS_UNIT
+        - EACH
+        - OTHER
+      x-enum-descriptions:
+        - 納期短縮
+        - 大口
+        - 特注
+        - 規格外
+        - 複数
+        - 事業部
+        - 都度
+        - その他
+    CooperationMediaType:
+      title: CooperationMediaType
+      type: string
+      description: |-
+        連携媒体
+        1: WEB
+        2: FAX
+        3: メール
+        4: 未設定
+      enum:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+      x-enum-varnames:
+        - ALL
+        - WEB
+        - FAX
+        - EMAIL
+        - NOT_SET
+      x-enum-descriptions:
+        - WEB
+        - FAX
+        - メール
+        - 未設定
+    StorkCode:
+      title: StorkCode
+      type: string
+      description: |-
+        ストークコード
+        T0: Tストーク
+        A0: Aストーク
+        A1: Aストーク早割
+        B0: Bストーク
+        C0: Cストーク
+        デフォルトはストークなし
+      enum:
+        - T0
+        - A0
+        - A1
+        - B0
+        - C0
+      x-enum-varnames:
+        - T0
+        - A0
+        - A1
+        - B0
+        - C0
+      x-enum-descriptions:
+        - Tストーク
+        - Aストーク
+        - Aストーク早割
+        - Bストーク
+        - Cストーク
+    ShipmentMethodCode:
+      title: ShipmentMethodCode
+      type: string
+      default: '00'
+      description: |-
+        出荷方法コード
+        00: 通常
+        01: 緊急
+        10: 常時メーカ直送
+        11: 臨時メーカ直送
+        デフォルトは00
+      enum:
+        - '00'
+        - '01'
+        - '10'
+        - '11'
+      x-enum-varnames:
+        - NORMAL
+        - EMERGENCY
+        - DIRECT_SHIPPING
+        - TEMP_DIRECT_SHIPPING
+      x-enum-descriptions:
+        - 通常
+        - 緊急
+        - 常時メーカ直送
+        - 臨時メーカ直送
+    MarketCode:
+      type: string
+      title: MarketCode
+      description: |-
+        市場コード
+          01:Press Die
+          02:Plastic Mold
+          03:FA
+          04:PC Controls
+          05:Wiring
+          06:Milling
+          12:meviy
+          21:VONA FA
+          22:VONA Electronics
+          23:VONA Factory Supply
+      enum:
+        - '01'
+        - '02'
+        - '03'
+        - '04'
+        - '05'
+        - '06'
+        - '12'
+        - '17'
+        - '21'
+        - '22'
+        - '23'
+      x-enum-descriptions:
+        - Press Die
+        - Plastic Mold
+        - FA
+        - PC Controls
+        - Wiring
+        - Milling
+        - meviy
+        - VONA FA
+        - VONA Electronics
+        - VONA Factory Supply
+      example: '01'
+    SearchLeadTimeProductInquiryCodeSupplierResponseV1:
+      title: SearchLeadTimeProductInquiryCodeSupplierResponseV1
+      type: object
+      description: 納期型番確認コード検索（サプライヤ）API用レスポンス
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryCodeList:
+              - generalPurposeKey1: 汎用キー１
+                generalPurposeKey2: 汎用キー２
+                generalPurposeKey3: 汎用キー３
+                generalPurposeKey4: 汎用キー４
+                generalPurposeKey5: 汎用キー５
+                codeValueReference1: コード値リファレンス１
+                codeValueReference2: コード値リファレンス2
+                codeValueReference3: コード値リファレンス3
+                codeValueReference4: コード値リファレンス4
+                codeValueReference5: コード値リファレンス5
+      properties:
+        leadTimeProductInquiryCodeList:
+          type: array
+          description: 納期型番確認コードリスト
+          items:
+            $ref: '#/components/schemas/SearchLeadTimeProductInquiryCodeSupplierResponseLeadTimeProductInquiryCodeV1'
+    SearchLeadTimeProductInquiryCodeSupplierResponseLeadTimeProductInquiryCodeV1:
+      title: SearchLeadTimeProductInquiryCodeSupplierResponseLeadTimeProductInquiryCodeV1
+      type: object
+      description: 納期型番確認コード検索項目
+      properties:
+        generalPurposeKey1:
+          type: string
+          description: 汎用キー１
+          example: 汎用キー１
+        generalPurposeKey2:
+          type: string
+          description: 汎用キー２
+          example: 汎用キー２
+        generalPurposeKey3:
+          type: string
+          description: 汎用キー３
+          example: 汎用キー３
+        generalPurposeKey4:
+          type: string
+          description: 汎用キー４
+          example: 汎用キー４
+        generalPurposeKey5:
+          type: string
+          description: 汎用キー５
+          example: 汎用キー５
+        codeValueReference1:
+          type: string
+          description: コード値リファレンス１
+          example: コード値リファレンス１
+        codeValueReference2:
+          type: string
+          description: コード値リファレンス２
+          example: コード値リファレンス2
+        codeValueReference3:
+          type: string
+          description: コード値リファレンス３
+          example: コード値リファレンス3
+        codeValueReference4:
+          type: string
+          description: コード値リファレンス４
+          example: コード値リファレンス4
+        codeValueReference5:
+          type: string
+          description: コード値リファレンス５
+          example: コード値リファレンス5
+      required:
+        - generalPurposeKey1
+      x-examples:
+        example:
+          value:
+            generalPurposeKey1: 汎用キー１
+            generalPurposeKey2: 汎用キー２
+            generalPurposeKey3: 汎用キー３
+            generalPurposeKey4: 汎用キー４
+            generalPurposeKey5: 汎用キー５
+            codeValueReference1: コード値リファレンス１
+            codeValueReference2: コード値リファレンス2
+            codeValueReference3: コード値リファレンス3
+            codeValueReference4: コード値リファレンス4
+            codeValueReference5: コード値リファレンス5
+    SearchLeadTimeProductInquirySupplierResponseV1:
+      title: SearchLeadTimeProductInquirySupplierResponseV1
+      type: object
+      description: 型番訂正・納期調整検索（サプライヤ）APIの正常終了レスポンス
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryDetailsList:
+              - soType: '1'
+                leadTimeProductInquiryReceiveNumber: '1234567890'
+                leadTimeProductInquiryId: 1234567890
+                ioErrorFlag: '1'
+                leadTimeProductInquiryStatus: '1'
+                leadTimeProductInquiryStatusName: 未処理
+                leadTimeProductInquiryStage: '01'
+                leadTimeProductInquiryStageName: 顧客担当確認
+                leadTimeProductInquiryGroupType: '0'
+                leadTimeProductInquiryGroupName: 納期確認
+                leadTimeProductInquiryType: '1'
+                leadTimeProductInquiryName: 納期短縮
+                attachmentFileId: e0788ada-bee7-5d17-d946-2d3d02c11894
+                originalRecvNumber: '12345678901234'
+                originalRecvDateTime: '2019-08-24T14:15:22Z'
+                originalGlobalNumber: '12345678901234'
+                originalLeadTimeProductInquiryId: 1234567890
+                pocBusinessUnitReplyFlag: '1'
+                updateDateTime: '2019-08-24T14:15:22'
+                updateCount: 1
+                soSlipNumber: '123456789012'
+                soLineKey: 123456789012
+                soLineNumber: 123456789012
+                qtSlipNumber: '123456789012'
+                qtLineKey: 123456789012
+                qtLineNumber: 123456789012
+                completeDateTime: '2019-08-24T14:15:22Z'
+                completePicId: '1234567890'
+                errorMessageList:
+                  - code: string
+                    message: string
+                warningMessageList:
+                  - code: string
+                    message: string
+                infoMessageList:
+                  - code: string
+                    message: string
+                specificationCheckMessageList:
+                  - code: string
+                    message: string
+                receive:
+                  customerItemReference: '1234567890'
+                  customerItemSubReference: '1234567890'
+                  specialOrderType: '0'
+                  slipType: '123'
+                  slipTypeName: 伝票区分名
+                  mediaType: W1
+                  mediaTypeName: ミスミサイト（EC経由）受注
+                  cooperationMediaType: '1'
+                  cooperationMediaTypeName: FAX
+                  qtExpirationDateTime: '2019-08-24T14:15:22Z'
+                  requestReplyExpirationDate: '2019-08-24T14:15:22Z'
+                  requestSupplier: '2019-08-24'
+                  supplierFixContact: 仕入先確定連絡
+                  customer:
+                    customerSubsidiaryCode: TIW
+                    customerCode: '123456'
+                    customerName: 得意先名
+                    customerType: TA
+                    customerTel: '08012345678'
+                    shipTo:
+                      shipToSubsidiaryCode: TIW
+                      shipToCode: '123456'
+                      shipToName: 配送先名
+                      shipToTel: '08012345678'
+                      deliveryDepartmentCode: 納入部署
+                      deliveryPicName: 納入担当者名
+                  product:
+                    productCode: '1234567890'
+                    qty: 1
+                    brandCode: '1234'
+                    brandName: ブランド名
+                    marketCode: '01'
+                    marketName: Press Die
+                    weight: '10.00'
+                    ginnerCode: 12345678901234
+                  stork:
+                    stork: T0
+                    storkName: T0
+                    shipmentMethodCode: '00'
+                    shipmentMethodName: 通常
+                  trade:
+                    plantCode: '1234'
+                    plantName: 置場名
+                  leadTime:
+                    requestVsd: '2019-08-24'
+                    sslt: 5
+                    ssd: '2019-08-24'
+                    vrd: '2019-08-24'
+                    actualShippingDays: 5
+                    vsd: '2019-08-24'
+                    crd: '2019-08-24'
+                  supplier:
+                    supplierCode: '1234'
+                    supplierName: 仕入先名
+                  discount:
+                    campaignBaseDate: '2019-08-24'
+                    discountType: string
+                    discountRate: 10
+                    couponDiscountAmount: '123'
+                    couponDiscountTotalAmount: '123'
+                    couponDiscountBeforeSalesUnitPrice: '123'
+                    specialDiscount: '123'
+                inquiryReply:
+                  reasonCodeCause: string
+                  reasonCodeReason: string
+                  originalReceiveNumber: '1234567890'
+                  originalQtExpirationDate: '2019-08-24'
+                  soDate: '2019-08-24'
+                  mcComment: 顧客担当コメント
+                  inquirySupplierCode: '1234'
+                  inquiryReason: 依頼理由名'
+                  requestCount: 1
+                  stockType: 在庫区分
+                  stockTypeName: 在庫区分名
+                  componentType: '01'
+                  componentTypeName: 部材品区分名
+                  productDelivery: 商品納入
+                  productionDays: 100
+                  gtiCatalogDays: 50
+                  productTypeName: string
+                  availableSlideList:
+                    - minQty: -2147483648
+                      maxQty: -2147483648
+                      salesUnitPrice: string
+                      salesUnitPriceIncludingTax: string
+                  availableStorkList:
+                    - storkCode: T0
+                      storkDisplay: string
+                      storkClosingTime: stri
+                      storkChargeAmount: string
+                  supplier:
+                    supplierRequestDateTime: '2019-08-24T14:15:22Z'
+                    supplierRequestPicId: '123'
+                    supplierRequestPicName: 仕入先依頼担当者名
+                    supplierQtExpirationDateTime: '2019-08-24T14:15:22Z'
+                    supplierReplyDateTime: '2019-08-24T14:15:22Z'
+                    supplierReplyPicId: '1234567890'
+                    supplierReplyPicName: '1234567890'
+                    supplierComment1: 仕入先コメント1
+                    supplierComment2: 仕入先コメント2
+                    supplierComment3: 仕入先コメント3
+                    supplierCommentFree: 仕入先コメント自由入力
+                    businessComment: 事業部コメント
+                  product:
+                    productCode: '1234567890'
+                    brandCode: '1234'
+                    brandName: ブランド名
+                    packQty: 1
+                    bigOrderMinThresholdQty: 1
+                    bigOrderMaxThresholdQty: 1
+                  bulkPartialDeliveryList:
+                    bulkPartialDeliveryType: '1'
+                    partialDeliverySeq: 1
+                    allocationType: '1'
+                    qty: 1
+                    stork:
+                      stork: T0
+                      storkName: T0
+                      shipmentMethodCode: '00'
+                      shipmentMethodName: 通常
+                    leadTime:
+                      vsd: '2019-08-24'
+                      actualShippingDays: 5
+                      ssd: '2019-08-24'
+                      sslt: 5
+                    salesPrice:
+                      salesUnitPrice: 123
+                      salesUnitPriceCcyCode: str
+                    purchasePrice:
+                      purchaseUnitPrice: '123'
+                      purchaseUnitPriceCcyCode: str
+                      supplierSalesUnitPrice: '123'
+                      extraPurchaseUnitCharge: '123.00'
+                      supplierSalesUnitPriceCcyCode: TWD
+                    supplier:
+                      supplierCode: '1234'
+                      supplierName: 仕入先名
+                    factoryName: 工場名
+                    supplierReplyType: ''
+                    supplierReplyTypeName: ''
+                    manualCompleteFlag: '0'
+                    plantCode: '1234'
+                complete:
+                  quoteSlip:
+                    shipToCode: '123456'
+                    deliveryDepartmentCode: 納入部署
+                    deliveryPicName: 納入担当者名
+                    detailList:
+                      - customerItemReference: '1234567890'
+                        customerItemSubReference: '1234567890'
+                        stockType: 在庫区分
+                        stockTypeName: 在庫区分名
+                        componentType: '01'
+                        componentTypeName: 部材品名
+                        partialDeliverySeq: 1
+                        allocationType: '1'
+                        factoryName: 工場名
+                        supplierReplyType: ''
+                        manualCompleteFlag: '0'
+                        plantCode: '1234'
+                        specialOrderType: '0'
+                        globalNumber: '12345678901234'
+                        completeReceiveNumber: '1234567890'
+                        product:
+                          qty: 1
+                          brandCode: '1234'
+                          weight: '10.00'
+                          ginnerCode: 12345678901234
+                        leadTime:
+                          vrd: '2019-08-24'
+                          crd: '2019-08-24'
+                          vsd: '2019-08-24'
+                          actualDaysToShip: '5'
+                          ssd: '2019-08-24'
+                          sslt: 5
+                        salesPrice:
+                          salesUnitPrice: 123
+                          salesUnitPriceCcyCode: str
+                        purchasePrice:
+                          purchaseUnitPrice: '123'
+                          purchaseUnitPriceCcyCode: str
+                          purchaseExtraPrice: '123'
+                          supplierSalesUnitPrice: '123'
+                          supplierSalesUnitPriceCcyCode: str
+                        supplier:
+                          supplierCode: '1234'
+                          supplierName: 仕入先名
+                        stork:
+                          storkcode: T0
+                          shipmentMethodCode: '00'
+                          shipmentMethodName: 通常
+                  soSlip:
+                    shipToCode: '123456'
+                    deliveryDepartmentCode: 納入部署
+                    deliveryPicName: 納入担当者名
+                    detailList:
+                      - customerItemReference: '1234567890'
+                        customerItemSubReference: '1234567890'
+                        stockType: 在庫区分
+                        stockTypeName: 在庫区分名
+                        componentType: '01'
+                        componentTypeName: 部材品名
+                        partialDeliverySeq: 1
+                        allocationType: '1'
+                        factoryName: 工場名
+                        supplierReplyType: ''
+                        manualCompleteFlag: '0'
+                        plantCode: '1234'
+                        specialOrderType: '0'
+                        globalNumber: '12345678901234'
+                        completeReceiveNumber: '1234567890'
+                        product:
+                          qty: 1
+                          brandCode: '1234'
+                          weight: '10.00'
+                          ginnerCode: 12345678901234
+                        leadTime:
+                          vrd: '2019-08-24'
+                          crd: '2019-08-24'
+                          vsd: '2019-08-24'
+                          actualDaysToShip: '5'
+                          ssd: '2019-08-24'
+                          sslt: 5
+                        salesPrice:
+                          salesUnitPrice: 123
+                          salesUnitPriceCcyCode: str
+                        purchasePrice:
+                          purchaseUnitPrice: '123'
+                          purchaseUnitPriceCcyCode: str
+                          purchaseExtraPrice: '123'
+                          supplierSalesUnitPrice: '123'
+                          supplierSalesUnitPriceCcyCode: str
+                        supplier:
+                          supplierCode: '1234'
+                          supplierName: 仕入先名
+                        stork:
+                          storkcode: T0
+                          shipmentMethodCode: '00'
+                          shipmentMethodName: 通常
+      properties:
+        leadTimeProductInquiryDetailsList:
+          description: 型番訂正納期調整詳細リスト
+          type: array
+          items:
+            type: object
+            properties:
+              soType:
+                type: string
+                description: |-
+                  受注区分
+                  1:見積
+                  2:受注
+                example: '1'
+                enum:
+                  - '1'
+                  - '2'
+              leadTimeProductInquiryReceiveNumber:
+                type: string
+                description: 納期型番確認受付番号
+                example: '1234567890'
+              leadTimeProductInquiryId:
+                type: integer
+                description: 納期型番確認ID
+                example: 1234567890
+              ioErrorFlag:
+                type: string
+                description: |-
+                  IOエラーフラグ
+                  0:IOエラーなし
+                  1:IOエラーあり
+                example: '1'
+                minLength: 1
+                maxLength: 1
+              leadTimeProductInquiryStatus:
+                $ref: '#/components/schemas/LeadTimeProductInquiryStatus'
+              leadTimeProductInquiryStatusName:
+                type: string
+                description: 納期型番確認ステータス名
+                example: 未処理
+              leadTimeProductInquiryStage:
+                $ref: '#/components/schemas/LeadTimeProductInquiryStage'
+              leadTimeProductInquiryStageName:
+                type: string
+                description: 納期型番確認ステージ名
+                example: 顧客担当確認
+              leadTimeProductInquiryGroupType:
+                type: string
+                description: |-
+                  納期型番確認グループ区分
+                  0: 納期型番確認でない
+                  1: 納期確認
+                  2: 型番確認
+                  ※本APIでは 0 は返却しない
+                example: '1'
+                enum:
+                  - '0'
+                  - '1'
+                  - '2'
+              leadTimeProductInquiryGroupName:
+                type: string
+                description: 納期型番確認グループ区分名
+                example: 納期確認
+              leadTimeProductInquiryType:
+                $ref: '#/components/schemas/LeadTimeProductInquiryType'
+              leadTimeProductInquiryName:
+                type: string
+                description: 納期型番確認区分名
+                example: 納期短縮
+              attachmentFileId:
+                type: string
+                description: 添付フアイルID
+                example: e0788ada-bee7-5d17-d946-2d3d02c11894
+              originalLeadTimeProductInquiryReceiveNumber:
+                type: string
+                description: 元納期型番確認受付番号(業務キー)
+                example: '12345678901234'
+              originalRecvDateTime:
+                type: string
+                description: 元受付日時(業務キー)
+                format: date-time
+              originalGlobalNumber:
+                type: string
+                minLength: 14
+                maxLength: 14
+                description: 元グローバル番号
+                example: '12345678901234'
+              originalLeadTimeProductInquiryId:
+                type: integer
+                description: 元納期型番確認ID(システムキー)
+                example: 1234567890
+              pocBusinessUnitReplyFlag:
+                type: string
+                minLength: 1
+                maxLength: 1
+                description: |-
+                  POC/事業部回答済フラグ
+                  0:POC/事業部回答済ではない
+                  1:POC/事業部回答済
+                example: '1'
+              updateDateTime:
+                type: string
+                description: 更新日時
+                format: date-time
+                example: '2019-08-24T14:15:22'
+              updateCount:
+                type: integer
+                description: 更新回数
+                example: 1
+              soSlipNumber:
+                type: string
+                description: 受注伝票番号
+                example: '123456789012'
+                minLength: 10
+                maxLength: 12
+              soLineKey:
+                type: integer
+                description: 受注明細キー
+                example: 123456789012
+              soLineNumber:
+                type: integer
+                description: 受注明細番号
+                example: 123456789012
+              qtSlipNumber:
+                type: string
+                description: 見積伝票番号
+                example: '123456789012'
+                minLength: 10
+                maxLength: 12
+              qtLineKey:
+                type: integer
+                description: 見積明細キー
+                example: 123456789012
+              qtLineNumber:
+                type: integer
+                description: 見積明細番号
+                example: 123456789012
+              completeDateTime:
+                type: string
+                description: 確定日時
+                format: date-time
+              completePicId:
+                type: string
+                description: 確定担当者ID
+                example: '1234567890'
+              errorMessageList:
+                type: array
+                description: エラーメッセージリスト
+                items:
+                  $ref: '#/components/schemas/Message'
+              warningMessageList:
+                type: array
+                description: 警告メッセージリスト
+                items:
+                  $ref: '#/components/schemas/Message'
+              infoMessageList:
+                type: array
+                description: 情報メッセージリスト
+                items:
+                  $ref: '#/components/schemas/Message'
+              specificationCheckMessageList:
+                type: array
+                description: 規格チェックメッセージリスト
+                items:
+                  $ref: '#/components/schemas/Message'
+              receive:
+                type: object
+                description: 受付
+                title: SearchLeadTimeProductInquirySupplierResponseBaseReceiveV1
+                properties:
+                  customerItemReference:
+                    type: string
+                    description: 顧客注文番号（親番）
+                    maxLength: 35
+                    example: '1234567890'
+                  customerItemSubReference:
+                    type: string
+                    maxLength: 54
+                    description: 顧客注文番号（枝番）
+                    example: '1234567890'
+                  specialOrderType:
+                    $ref: '#/components/schemas/SpecialOrderType'
+                  slipType:
+                    type: string
+                    minLength: 3
+                    maxLength: 3
+                    description: 伝票区分
+                    example: '123'
+                  slipTypeName:
+                    type: string
+                    description: 伝票区分名
+                    example: 伝票区分名
+                  mediaType:
+                    $ref: '#/components/schemas/MediaType'
+                  mediaTypeName:
+                    type: string
+                    description: 媒体区分名
+                    example: ミスミサイト（EC経由）受注
+                  cooperationMediaType:
+                    $ref: '#/components/schemas/CooperationMediaType'
+                  cooperationMediaTypeName:
+                    type: string
+                    description: 連携媒体名
+                    example: FAX
+                  qtExpirationDateTime:
+                    type: string
+                    description: 見積有効期限日時
+                    format: date-time
+                  requestReplyExpirationDate:
+                    type: string
+                    description: 希望回答期限日時
+                    format: date-time
+                  requestSupplier:
+                    type: string
+                    description: |-
+                      希望SSD
+                      希望仕入先出荷日
+                    format: date
+                  supplierFixContact:
+                    type: string
+                    description: 仕入先確定連絡
+                    example: 仕入先確定連絡
+                  customer:
+                    type: object
+                    description: 得意先
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseCustomerV1
+                    properties:
+                      customerSubsidiaryCode:
+                        type: string
+                        maxLength: 3
+                        minLength: 3
+                        description: 得意先現法コード
+                        example: TIW
+                      customerCode:
+                        type: string
+                        description: 得意先コード
+                        minLength: 6
+                        maxLength: 6
+                        example: '123456'
+                      customerName:
+                        type: string
+                        description: 得意先名
+                        example: 得意先名
+                      customerType:
+                        type: string
+                        description: 顧客区分
+                        example: TA
+                      customerTel:
+                        type: string
+                        maxLength: 60
+                        description: 得意先電話番号
+                        example: '08012345678'
+                      shipTo:
+                        type: object
+                        description: 配送先
+                        title: SearchLeadTimeProductInquirySupplierResponseBaseCustomerShipToV1
+                        properties:
+                          shipToSubsidiaryCode:
+                            type: string
+                            maxLength: 3
+                            minLength: 3
+                            description: 配送先現法コード
+                            example: TIW
+                          shipToCode:
+                            type: string
+                            description: 配送先コード
+                            minLength: 6
+                            maxLength: 6
+                            example: '123456'
+                          shipToName:
+                            type: string
+                            maxLength: 80
+                            description: 配送先名
+                            example: 配送先名
+                          shipToTel:
+                            type: string
+                            maxLength: 60
+                            description: 配送先電話番号
+                            example: '08012345678'
+                          deliveryDepartmentCode:
+                            type: string
+                            description: 納入部署
+                            example: 納入部署
+                          deliveryPicName:
+                            type: string
+                            maxLength: 20
+                            description: 納入担当者名
+                            example: 納入担当者名
+                  product:
+                    type: object
+                    description: 商品
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailProductV1
+                    properties:
+                      productCode:
+                        type: string
+                        description: 商品コード
+                        example: '1234567890'
+                      qty:
+                        type: integer
+                        minLength: 1
+                        maxLength: 99999
+                        description: 数量
+                        example: 1
+                      brandCode:
+                        type: string
+                        minLength: 4
+                        maxLength: 4
+                        description: ブランドコード
+                        example: '1234'
+                      brandName:
+                        type: string
+                        maxLength: 15
+                        description: ブランド名
+                        example: ブランド名
+                      marketCode:
+                        $ref: '#/components/schemas/MarketCode'
+                      marketName:
+                        type: string
+                        description: 市場名
+                        example: Press Die
+                      weight:
+                        type: string
+                        format: decimal
+                        description: |-
+                          重量
+                          商品重量
+                        example: '10.00'
+                      ginnerCode:
+                        type: integer
+                        minLength: 14
+                        maxLength: 14
+                        description: 総合インナーコード
+                        example: 12345678901234
+                  stork:
+                    type: object
+                    description: ストーク
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailStorkV1
+                    properties:
+                      stork:
+                        $ref: '#/components/schemas/StorkCode'
+                      storkName:
+                        type: string
+                        description: ストーク名
+                        example: T0
+                      shipmentMethodCode:
+                        $ref: '#/components/schemas/ShipmentMethodCode'
+                      shipmentMethodName:
+                        type: string
+                        description: 出荷方法名
+                        example: 通常
+                  trade:
+                    type: object
+                    description: 取引
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailTradeV1
+                    properties:
+                      plantCode:
+                        type: string
+                        minLength: 4
+                        maxLength: 4
+                        description: 置場コード
+                        example: '1234'
+                      plantName:
+                        type: string
+                        maxLength: 45
+                        description: 置場名
+                        example: 置場名
+                  leadTime:
+                    type: object
+                    description: 納期
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailLeadTimeV1
+                    properties:
+                      requestVsd:
+                        type: string
+                        description: 希望VSD
+                        format: date
+                      sslt:
+                        type: integer
+                        format: int32
+                        example: 5
+                        description: sslt
+                      ssd:
+                        type: string
+                        format: date
+                        description: SSD：仕入先出荷日
+                      vrd:
+                        type: string
+                        description: VRD：倉庫到着日
+                        format: date
+                      actualShippingDays:
+                        type: integer
+                        format: int32
+                        description: 実働出荷日数
+                        example: 5
+                      vsd:
+                        type: string
+                        description: VSD：倉庫出荷日
+                        format: date
+                      crd:
+                        type: string
+                        description: CRD：顧客到着日
+                        format: date
+                  supplier:
+                    type: object
+                    description: 仕入先
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailSupplierV1
+                    properties:
+                      supplierCode:
+                        type: string
+                        maxLength: 4
+                        minLength: 4
+                        description: 仕入先コード
+                        example: '1234'
+                      supplierName:
+                        type: string
+                        description: 仕入先名
+                        example: 仕入先名
+                  discount:
+                    type: object
+                    description: 値引
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailDiscountV1
+                    properties:
+                      campaignBaseDate:
+                        type: string
+                        description: キャンペーン基準日
+                        format: date
+                      discountType:
+                        type: string
+                        description: 値引区分
+                      discountRate:
+                        type: integer
+                        description: 値引率
+                        example: 10
+                      couponDiscountAmount:
+                        type: string
+                        description: クーポン値引額
+                        example: '123'
+                      couponDiscountTotalAmount:
+                        type: string
+                        description: クーポン値引額（合計）
+                        example: '123'
+                      couponDiscountBeforeSalesUnitPrice:
+                        type: string
+                        description: クーポン値引前売単価
+                        example: '123'
+                      specialDiscount:
+                        type: string
+                        description: 特別値引
+                        example: '123'
+              inquiryReply:
+                type: object
+                description: 依頼回答
+                title: SearchLeadTimeProductInquirySupplierResponseBaseInquiryReplyV1
+                properties:
+                  reasonCodeCause:
+                    type: string
+                    description: 依頼コード（起因）
+                  reasonCodeReason:
+                    type: string
+                    description: 依頼コード（事由）
+                  originalLeadTimeProductInquiryReceiveNumber:
+                    type: string
+                    description: 元納期型番確認受付番号
+                    example: '1234567890'
+                  originalQtExpirationDate:
+                    type: string
+                    description: 元メーカー見積有効期限
+                    format: date
+                  soDate:
+                    type: string
+                    description: 受注日
+                    format: date
+                  mcComment:
+                    type: string
+                    description: 顧客担当コメント
+                    example: 顧客担当コメント
+                  inquirySupplierCode:
+                    type: string
+                    maxLength: 4
+                    minLength: 4
+                    description: 依頼仕入先コード
+                    example: '1234'
+                  inquiryReason:
+                    type: string
+                    description: 依頼理由名
+                    example: 依頼理由名'
+                  requestCount:
+                    type: integer
+                    description: 依頼回数
+                    example: 1
+                  stockType:
+                    type: string
+                    description: 在庫区分
+                    example: 在庫区分
+                  stockTypeName:
+                    type: string
+                    description: 在庫区分名
+                    example: 在庫区分名
+                  componentType:
+                    type: string
+                    description: 部材品区分
+                    example: '01'
+                  componentTypeName:
+                    type: string
+                    description: 部材品区分名
+                    example: 部材品区分名
+                  productDelivery:
+                    type: string
+                    description: 商品納入
+                    example: 商品納入
+                  productionDays:
+                    type: integer
+                    format: int32
+                    maximum: 999
+                    minimum: 0
+                    description: 製作日数
+                    example: 100
+                  gtiCatalogDays:
+                    type: integer
+                    format: int32
+                    description: 標準納期
+                    example: 50
+                  productTypeName:
+                    type: string
+                    description: 商品区分名
+                  availableSlideList:
+                    type: array
+                    description: 利用可能スライドリスト
+                    items:
+                      type: object
+                      title: SearchLeadTimeProductInquirySupplierResponseBaseInquiryReplyAvailableSlideV1
+                      description: 利用可能スライド
+                      properties:
+                        minQty:
+                          type: integer
+                          format: int32
+                          description: |-
+                            最小数量
+                            スライド適用の閾値下限
+                        maxQty:
+                          type: integer
+                          format: int32
+                          maximum: 99999
+                          description: |-
+                            最大数量
+                            スライド適用の閾値上限
+                        salesUnitPrice:
+                          type: string
+                          format: decimal
+                          description: |-
+                            売単価
+                            スライドごとの売単価
+                        salesUnitPriceIncludingTax:
+                          type: string
+                          format: decimal
+                          description: |-
+                            売単価（税込）
+                            スライドごとの税込売単価
+                  availableStorkList:
+                    type: array
+                    description: 利用可能ストークリスト
+                    items:
+                      type: object
+                      title: SearchLeadTimeProductInquirySupplierResponseBaseInquiryReplyStorkV1
+                      description: 利用可能ストーク
+                      properties:
+                        storkCode:
+                          $ref: '#/components/schemas/StorkCode'
+                        storkName:
+                          type: string
+                          description: ストーク名
+                          example: T0
+                        storkDisplay:
+                          type: string
+                          description: ストーク表示文言
+                        storkClosingTime:
+                          type: string
+                          maxLength: 4
+                          description: |-
+                            ストーク締時刻
+                            ストークの締時刻(HHMM)
+                        storkChargeAmount:
+                          type: string
+                          format: decimal
+                          description: ストーク料金
+                      required:
+                        - storkCode
+                        - storkDisplay
+                        - storkClosingTime
+                        - storkChargeAmount
+                  supplier:
+                    type: object
+                    description: 仕入先
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailInquiryReplySupplierV1
+                    properties:
+                      supplierRequestDateTime:
+                        type: string
+                        description: 仕入先依頼日時
+                        format: date-time
+                      supplierRequestPicId:
+                        type: string
+                        description: 仕入先依頼担当者ID
+                        example: '123'
+                      supplierRequestPicName:
+                        type: string
+                        description: 仕入先依頼担当者名
+                        example: 仕入先依頼担当者名
+                      supplierQtExpirationDateTime:
+                        type: string
+                        description: 仕入先見積有効期限日時
+                        format: date-time
+                      supplierReplyDateTime:
+                        type: string
+                        description: 仕入先回答日時
+                        format: date-time
+                      supplierReplyPicId:
+                        type: string
+                        description: 仕入先回答担当者ID
+                        example: '1234567890'
+                      supplierReplyPicName:
+                        type: string
+                        description: 仕入先回答担当者名
+                        example: '1234567890'
+                      supplierComment1:
+                        type: string
+                        description: 仕入先コメント1
+                        example: 仕入先コメント1
+                      supplierComment2:
+                        type: string
+                        description: 仕入先コメント2
+                        example: 仕入先コメント2
+                      supplierComment3:
+                        type: string
+                        description: 仕入先コメント3
+                        example: 仕入先コメント3
+                      supplierCommentFree:
+                        type: string
+                        description: 仕入先コメント自由入力
+                        example: 仕入先コメント自由入力
+                      businessComment:
+                        type: string
+                        description: 事業部コメント
+                        example: 事業部コメント
+                  product:
+                    type: object
+                    description: 商品
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseDetailInquiryReplyProductV1
+                    properties:
+                      productCode:
+                        type: string
+                        description: 商品コード
+                        example: '1234567890'
+                      brandCode:
+                        type: string
+                        minLength: 4
+                        maxLength: 4
+                        description: ブランドコード
+                        example: '1234'
+                      brandName:
+                        type: string
+                        maxLength: 15
+                        description: ブランド名
+                        example: ブランド名
+                      packQty:
+                        type: integer
+                        description: パック数量
+                        example: 1
+                      bigOrderMinThresholdQty:
+                        type: integer
+                        format: int32
+                        maximum: 99999
+                        minimum: 1
+                        description: 大口下限数量
+                      bigOrderMaxThresholdQty:
+                        type: integer
+                        format: int32
+                        maximum: 99999
+                        minimum: 1
+                        description: 大口上限数量
+                  bulkPartialDeliveryList:
+                    type: object
+                    description: 一括分納
+                    title: SearchLeadTimeProductInquirySupplierResponseBaseBulkPartialDeliveryV1
+                    properties:
+                      bulkPartialDeliveryType:
+                        type: string
+                        description: |-
+                          一括分納タイプ
+                          1：一括納入
+                          2：分割納入
+                        example: '1'
+                        enum:
+                          - '1'
+                          - '2'
+                      partialDeliverySeq:
+                        type: integer
+                        minLength: 1
+                        description: 分納連番
+                        example: 1
+                      allocationType:
+                        type: string
+                        description: |-
+                          引当区分
+                          1：在庫
+                          2：発注
+                        example: '1'
+                        enum:
+                          - '1'
+                          - '2'
+                      qty:
+                        type: integer
+                        minLength: 1
+                        maxLength: 99999
+                        description: 数量
+                        example: 1
+                      allocationAvailableQty:
+                        type: integer
+                        description: 引当可能数
+                        example: 10
+                      stork:
+                        type: object
+                        description: ストーク
+                        title: SearchLeadTimeProductInquirySupplierResponseBaseBulkPartialDeliveryStorkV1
+                        properties:
+                          stork:
+                            $ref: '#/components/schemas/StorkCode'
+                          storkName:
+                            type: string
+                            description: ストーク名
+                            example: T0
+                          shipmentMethodCode:
+                            $ref: '#/components/schemas/ShipmentMethodCode'
+                          shipmentMethodName:
+                            type: string
+                            description: 出荷方法名
+                            example: 通常
+                      leadTime:
+                        type: object
+                        description: 納期
+                        title: SearchLeadTimeProductInquirySupplierResponseBaseBulkPartialDeliveryLeadTimeV1
+                        properties:
+                          vsd:
+                            type: string
+                            description: VSD：倉庫出荷日
+                            format: date
+                          actualShippingDays:
+                            type: integer
+                            format: int32
+                            description: 実働出荷日数
+                            example: 5
+                          ssd:
+                            type: string
+                            format: date
+                            description: SSD：仕入先出荷日
+                          sslt:
+                            type: integer
+                            format: int32
+                            example: 5
+                            description: sslt
+                      salesPrice:
+                        type: object
+                        description: 売値
+                        title: SearchLeadTimeProductInquirySupplierResponseBaseBulkPartialDeliverySalesPriceV1
+                        properties:
+                          salesUnitPrice:
+                            type: integer
+                            description: 売単価
+                            example: 123
+                          salesUnitPriceCcyCode:
+                            type: string
+                            minLength: 3
+                            maxLength: 3
+                            description: 売単価通貨コード
+                      purchasePrice:
+                        type: object
+                        description: 仕入値
+                        title: SearchLeadTimeProductInquirySupplierResponseBaseBulkPartialDeliveryPurchasePriceV1
+                        properties:
+                          purchaseUnitPrice:
+                            type: string
+                            description: 仕入単価
+                            example: '123'
+                          purchaseUnitPriceCcyCode:
+                            type: string
+                            minLength: 3
+                            maxLength: 3
+                            description: 仕入単価通貨コード
+                          supplierSalesUnitPrice:
+                            type: string
+                            description: 仕入先売単価
+                            example: '123'
+                          extraPurchaseUnitCharge:
+                            type: string
+                            format: decimal
+                            description: 仕入割増
+                            example: '123.00'
+                          supplierSalesUnitPriceCcyCode:
+                            type: string
+                            minLength: 3
+                            maxLength: 3
+                            description: 仕入先売単価通貨コード
+                            example: TWD
+                      supplier:
+                        type: object
+                        description: 仕入先
+                        title: SearchLeadTimeProductInquirySupplierResponseBaseBulkPartialDeliverySupplierV1
+                        properties:
+                          supplierCode:
+                            type: string
+                            maxLength: 4
+                            minLength: 4
+                            description: 仕入先コード
+                            example: '1234'
+                          supplierName:
+                            type: string
+                            description: 仕入先名
+                            example: 仕入先名
+                      factoryName:
+                        type: string
+                        description: 工場名
+                        example: 工場名
+                      supplierReplyType:
+                        type: string
+                        description: 仕入先回答
+                        example: ''
+                      supplierReplyTypeName:
+                        type: string
+                        description: 仕入先回答名
+                        example: ''
+                      manualCompleteFlag:
+                        type: string
+                        description: |-
+                          手動確定フラグ
+                          0：手動確定しない
+                          1：手動確定する
+                        example: '1'
+                        enum:
+                          - '0'
+                          - '1'
+                      plantCode:
+                        type: string
+                        minLength: 4
+                        maxLength: 4
+                        description: 置場コード
+                        example: '1234'
+              complete:
+                type: object
+                description: 確定
+                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteV1
+                properties:
+                  quoteSlip:
+                    type: array
+                    description: 見積伝票リスト
+                    items:
+                      type: object
+                      properties:
+                        shipToCode:
+                          type: string
+                          description: 配送先コード
+                          minLength: 6
+                          maxLength: 6
+                          example: '123456'
+                        deliveryDepartmentCode:
+                          type: string
+                          description: 納入部署
+                          example: 納入部署
+                        deliveryPicName:
+                          type: string
+                          maxLength: 20
+                          description: 納入担当者名
+                          example: 納入担当者名
+                        detailList:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              customerItemReference:
+                                type: string
+                                description: 顧客注文番号（親番）
+                                maxLength: 35
+                                example: '1234567890'
+                              customerItemSubReference:
+                                type: string
+                                maxLength: 54
+                                description: 顧客注文番号（枝番）
+                                example: '1234567890'
+                              stockType:
+                                type: string
+                                description: 在庫区分
+                                example: 在庫区分
+                              stockTypeName:
+                                type: string
+                                description: 在庫区分名
+                                example: 在庫区分名
+                              componentType:
+                                type: string
+                                description: 部材品区分
+                                example: '01'
+                              componentTypeName:
+                                type: string
+                                description: 部材品区分名
+                                example: 部材品名
+                              partialDeliverySeq:
+                                type: integer
+                                minLength: 1
+                                description: 分納連番
+                                example: 1
+                              allocationType:
+                                type: string
+                                description: |-
+                                  引当区分
+                                  1：在庫
+                                  2：発注
+                                example: '1'
+                                enum:
+                                  - '1'
+                                  - '2'
+                              factoryName:
+                                type: string
+                                description: 工場名
+                                example: 工場名
+                              supplierReplyType:
+                                type: string
+                                description: 仕入先回答
+                                example: ''
+                              manualCompleteFlag:
+                                type: string
+                                description: |-
+                                  手動確定フラグ
+                                  0：手動確定しない
+                                  1：手動確定する
+                                example: '1'
+                                enum:
+                                  - '0'
+                                  - '1'
+                              plantCode:
+                                type: string
+                                minLength: 4
+                                maxLength: 4
+                                description: 置場コード
+                                example: '1234'
+                              specialOrderType:
+                                $ref: '#/components/schemas/SpecialOrderType'
+                              globalNumber:
+                                type: string
+                                minLength: 14
+                                maxLength: 14
+                                description: グローバル番号
+                                example: '12345678901234'
+                              completeReceiveNumber:
+                                type: string
+                                description: 確定受付番号
+                                example: '1234567890'
+                              product:
+                                type: object
+                                description: 商品
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteProductV1
+                                properties:
+                                  qty:
+                                    type: integer
+                                    minLength: 1
+                                    maxLength: 99999
+                                    description: 数量
+                                    example: 1
+                                  brandCode:
+                                    type: string
+                                    minLength: 4
+                                    maxLength: 4
+                                    description: ブランドコード
+                                    example: '1234'
+                                  weight:
+                                    type: string
+                                    format: decimal
+                                    description: |-
+                                      重量
+                                      商品重量
+                                    example: '10.00'
+                                  ginnerCode:
+                                    type: integer
+                                    minLength: 14
+                                    maxLength: 14
+                                    description: 総合インナーコード
+                                    example: 12345678901234
+                              leadTime:
+                                type: object
+                                description: 納期
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteLeadTimeV1
+                                properties:
+                                  vrd:
+                                    type: string
+                                    description: VRD
+                                    format: date
+                                  crd:
+                                    type: string
+                                    description: CRD
+                                    format: date
+                                  vsd:
+                                    type: string
+                                    description: VSD
+                                    format: date
+                                  actualDaysToShip:
+                                    type: string
+                                    description: 実働出荷日数
+                                    example: '5'
+                                  ssd:
+                                    type: string
+                                    format: date
+                                    description: ssd
+                                  sslt:
+                                    type: integer
+                                    format: int32
+                                    example: 5
+                                    description: sslt
+                              salesPrice:
+                                type: object
+                                description: 売値
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteSalesPriceV1
+                                properties:
+                                  salesUnitPrice:
+                                    type: integer
+                                    description: 売単価
+                                    example: 123
+                                  salesUnitPriceCcyCode:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                    description: 売単価通貨コード
+                              purchasePrice:
+                                type: object
+                                description: 仕入値
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompletePurchasePriceV1
+                                properties:
+                                  purchaseUnitPrice:
+                                    type: string
+                                    description: 仕入単価
+                                    example: '123'
+                                  purchaseUnitPriceCcyCode:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                    description: 仕入単価通貨コード
+                                  purchaseExtraPrice:
+                                    type: string
+                                    description: 仕入割増価格
+                                    example: '123'
+                                  supplierSalesUnitPrice:
+                                    type: string
+                                    description: 仕入先売単価
+                                    example: '123'
+                                  supplierSalesUnitPriceCcyCode:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                    description: 仕入先売単価通貨コード
+                              supplier:
+                                type: object
+                                description: 仕入先
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteSupplierV1
+                                properties:
+                                  supplierCode:
+                                    type: string
+                                    maxLength: 4
+                                    minLength: 4
+                                    description: 仕入先コード
+                                    example: '1234'
+                                  supplierName:
+                                    type: string
+                                    description: 仕入先名
+                                    example: 仕入先名
+                              stork:
+                                type: object
+                                description: ストーク
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteStorkV1
+                                properties:
+                                  storkcode:
+                                    $ref: '#/components/schemas/StorkCode'
+                                  storkName:
+                                    type: string
+                                    description: ストーク名
+                                    example: T0
+                                  shipmentMethodCode:
+                                    $ref: '#/components/schemas/ShipmentMethodCode'
+                                  shipmentMethodName:
+                                    type: string
+                                    description: 出荷方法名
+                                    example: 通常
+                  soSlip:
+                    type: array
+                    description: 受注伝票リスト
+                    items:
+                      type: object
+                      properties:
+                        shipToCode:
+                          type: string
+                          description: 配送先コード
+                          minLength: 6
+                          maxLength: 6
+                          example: '123456'
+                        deliveryDepartmentCode:
+                          type: string
+                          description: 納入部署
+                          example: 納入部署
+                        deliveryPicName:
+                          type: string
+                          maxLength: 20
+                          description: 納入担当者名
+                          example: 納入担当者名
+                        detailList:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              customerItemReference:
+                                type: string
+                                description: 顧客注文番号（親番）
+                                maxLength: 35
+                                example: '1234567890'
+                              customerItemSubReference:
+                                type: string
+                                maxLength: 54
+                                description: 顧客注文番号（枝番）
+                                example: '1234567890'
+                              stockType:
+                                type: string
+                                description: 在庫区分
+                                example: 在庫区分
+                              stockTypeName:
+                                type: string
+                                description: 在庫区分名
+                                example: 在庫区分名
+                              componentType:
+                                type: string
+                                description: 部材品区分
+                                example: '01'
+                              componentTypeName:
+                                type: string
+                                description: 部材品区分名
+                                example: 部材品名
+                              partialDeliverySeq:
+                                type: integer
+                                minLength: 1
+                                description: 分納連番
+                                example: 1
+                              allocationType:
+                                type: string
+                                description: |-
+                                  引当区分
+                                  1：在庫
+                                  2：発注
+                                example: '1'
+                                enum:
+                                  - '1'
+                                  - '2'
+                              factoryName:
+                                type: string
+                                description: 工場名
+                                example: 工場名
+                              supplierReplyType:
+                                type: string
+                                description: 仕入先回答
+                                example: ''
+                              manualCompleteFlag:
+                                type: string
+                                description: |-
+                                  手動確定フラグ
+                                  0：手動確定しない
+                                  1：手動確定する
+                                example: '1'
+                                enum:
+                                  - '0'
+                                  - '1'
+                              plantCode:
+                                type: string
+                                minLength: 4
+                                maxLength: 4
+                                description: 置場コード
+                                example: '1234'
+                              specialOrderType:
+                                $ref: '#/components/schemas/SpecialOrderType'
+                              globalNumber:
+                                type: string
+                                minLength: 14
+                                maxLength: 14
+                                description: グローバル番号
+                                example: '12345678901234'
+                              completeReceiveNumber:
+                                type: string
+                                description: 確定受付番号
+                                example: '1234567890'
+                              product:
+                                type: object
+                                description: 商品
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteProductV1
+                                properties:
+                                  qty:
+                                    type: integer
+                                    minLength: 1
+                                    maxLength: 99999
+                                    description: 数量
+                                    example: 1
+                                  brandCode:
+                                    type: string
+                                    minLength: 4
+                                    maxLength: 4
+                                    description: ブランドコード
+                                    example: '1234'
+                                  weight:
+                                    type: string
+                                    format: decimal
+                                    description: |-
+                                      重量
+                                      商品重量
+                                    example: '10.00'
+                                  ginnerCode:
+                                    type: integer
+                                    minLength: 14
+                                    maxLength: 14
+                                    description: 総合インナーコード
+                                    example: 12345678901234
+                              leadTime:
+                                type: object
+                                description: 納期
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteLeadTimeV1
+                                properties:
+                                  vrd:
+                                    type: string
+                                    description: VRD
+                                    format: date
+                                  crd:
+                                    type: string
+                                    description: CRD
+                                    format: date
+                                  vsd:
+                                    type: string
+                                    description: VSD
+                                    format: date
+                                  actualDaysToShip:
+                                    type: string
+                                    description: 実働出荷日数
+                                    example: '5'
+                                  ssd:
+                                    type: string
+                                    format: date
+                                    description: ssd
+                                  sslt:
+                                    type: integer
+                                    format: int32
+                                    example: 5
+                                    description: sslt
+                              salesPrice:
+                                type: object
+                                description: 売値
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteSalesPriceV1
+                                properties:
+                                  salesUnitPrice:
+                                    type: integer
+                                    description: 売単価
+                                    example: 123
+                                  salesUnitPriceCcyCode:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                    description: 売単価通貨コード
+                              purchasePrice:
+                                type: object
+                                description: 仕入値
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompletePurchasePriceV1
+                                properties:
+                                  purchaseUnitPrice:
+                                    type: string
+                                    description: 仕入単価
+                                    example: '123'
+                                  purchaseUnitPriceCcyCode:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                    description: 仕入単価通貨コード
+                                  purchaseExtraPrice:
+                                    type: string
+                                    description: 仕入割増価格
+                                    example: '123'
+                                  supplierSalesUnitPrice:
+                                    type: string
+                                    description: 仕入先売単価
+                                    example: '123'
+                                  supplierSalesUnitPriceCcyCode:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                    description: 仕入先売単価通貨コード
+                              supplier:
+                                type: object
+                                description: 仕入先
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteSupplierV1
+                                properties:
+                                  supplierCode:
+                                    type: string
+                                    maxLength: 4
+                                    minLength: 4
+                                    description: 仕入先コード
+                                    example: '1234'
+                                  supplierName:
+                                    type: string
+                                    description: 仕入先名
+                                    example: 仕入先名
+                              stork:
+                                type: object
+                                description: ストーク
+                                title: SearchLeadTimeProductInquirySupplierResponseBaseCompleteStorkV1
+                                properties:
+                                  storkcode:
+                                    $ref: '#/components/schemas/StorkCode'
+                                  storkName:
+                                    type: string
+                                    description: ストーク名
+                                    example: T0
+                                  shipmentMethodCode:
+                                    $ref: '#/components/schemas/ShipmentMethodCode'
+                                  shipmentMethodName:
+                                    type: string
+                                    description: 出荷方法名
+                                    example: 通常
+    RequestSupplierLeadTimeInquiryFormSupplierRequestV1:
+      title: RequestSupplierLeadTimeInquiryFormSupplierRequestV1
+      type: object
+      description: サプライヤ納期確認依頼書生成依頼(サプライヤ)APIのリクエスト
+      x-examples:
+        example:
+          value:
+            leadTimeProductInquiryId: 1234567890
+      properties:
+        leadTimeProductInquiryId:
+          type: integer
+          description: 納期型番確認ID
+          example: 1234567890
+    GetResultRequestGenerateSupplierLeadTimeInquiryFormSupplierResponseV1:
+      title: GetResultRequestGenerateSupplierLeadTimeInquiryFormSupplierResponseV1
+      type: object
+      description: サプライヤ納期確認依頼書生成依頼結果取得(サプライヤ)APIの正常終了レスポンス
+      x-examples:
+        example:
+          value:
+            processStatus: '1'
+      properties:
+        processStatus:
+          type: string
+          description: |-
+            処理ステータス
+
+              1: 処理中
+              2: 異常終了
+          example: '1'
+    SpecialOrderType:
+      title: SpecialOrderType
+      type: string
+      default: '0'
+      description: |-
+        特注区分
+        0:通常
+        1:特注
+        デフォルトは0
+      enum:
+        - '0'
+        - '1'
+      x-enum-varnames:
+        - NORMAL
+        - SPECIAL
+      x-enum-descriptions:
+        - 通常
+        - 特注
+    MediaType:
+      title: MediaType
+      type: string
+      description: |-
+        媒体区分
+        W1: ミスミサイト（EC経由）受注
+        W2: ミスミサイト（ﾓﾊﾞｲﾙｱﾌﾟﾘ経由）受注
+        A1: ＡＳＰ受注
+        P1: ＰＡＳＳ受注
+        M1: メール受注　手動
+        M2: メール受注　半自動
+        M3: メール受注　自動
+        F1: ＦＡＸ受注/ＩＥ発注書
+        B1: ＦＡＸ受注/ＩＥ発注書
+        E1: 汎用EDI　手動
+        E2: 汎用EDI　半自動
+        E3: 汎用EDI　自動
+        E4: 汎用EDI　OCR
+        T1: 電話注文
+        K1: 現法間取引専用媒体
+      enum:
+        - W1
+        - W2
+        - A1
+        - P1
+        - M1
+        - M2
+        - M3
+        - F1
+        - B1
+        - E1
+        - E2
+        - E3
+        - E4
+        - T1
+        - K1
+      x-enum-varnames:
+        - MISUMI_EC
+        - MISUMI_MOBILE
+        - ASP
+        - PASS
+        - EMAIL_MANUAL
+        - EMAIL_SEMI_AUTO
+        - EMAIL_AUTO
+        - FAX_CUSTOMER_SPEC
+        - FAX_IE
+        - POST_MAIL_SLIP
+        - EDI_MANUAL
+        - EDI_SEMI_AUTO
+        - EDI_AUTO
+        - EDI_OCR
+        - TEL
+        - IO
+      x-enum-descriptions:
+        - ミスミサイト（EC経由）受注
+        - ミスミサイト（ﾓﾊﾞｲﾙｱﾌﾟﾘ経由）受注
+        - ＡＳＰ受注
+        - ＰＡＳＳ受注
+        - メール受注　手動
+        - メール受注　半自動
+        - メール受注　自動
+        - ＦＡＸ受注　顧客仕様
+        - ＦＡＸ受注　ＩＥ
+        - 伝票受注
+        - 汎用EDI　手動
+        - 汎用EDI　半自動
+        - 汎用EDI　自動
+        - 汎用EDI　OCR
+        - 電話注文
+        - 現法間取引専用媒体
+    Message:
+      title: Message
+      type: object
+      properties:
+        code:
+          type: string
+          maxLength: 8
+          description: コード
+        message:
+          type: string
+          maxLength: 1000
+          description: メッセージ
+      required:
+        - code
+        - message
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: 1ページ内件数
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: string
+      description: 取得開始位置
+    XApplicationId:
+      schema:
+        type: string
+      in: header
+      name: X-Application-Id
+      description: アプリケーションID
+      required: true
+  responses: {}
+  securitySchemes: {}
+  examples:
+    API000208:
+      value:
+        target: ''
+        code: API000208
+        arguments: []
+        message: 権限がありません。
+        details:
+          - {}
+tags:
+  - name: LeadTimeInquirySupplier
+  - name: SupplierReplyFileUrlSupplier
+  - name: LeadTimeProductInquirySupplier
+  - name: LeadTimeProductInquiryHistorySupplier
+  - name: LeadTimeProductInquiryCodeSupplier
+  - name: SupplierLeadTimeInquiryFormSupplier

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_STOCK_SETTING_MASTER_REPLICAColName field="subsidiary_code" comment="現法コード"/>
+  <T_STOCK_SETTING_MASTER_REPLICAColName field="plant_code" comment="置場コード"/>
+  <T_STOCK_SETTING_MASTER_REPLICAColName field="ginner_code" comment="統合インナーコード"/>
+  <T_STOCK_SETTING_MASTER_REPLICAColName field="data_hub_updated_flag" comment="データHUB更新済フラグ"/>
+  <T_STOCK_SETTING_MASTER_REPLICAColName field="register_system_date_time" comment="登録日時(システム日時)"/>
+  <T_STOCK_SETTING_MASTER_REPLICAColName field="update_system_date_time" comment="更新日時(システム日時)"/>
+  <T_STOCK_SETTING_MASTER_REPLICAColName field="update_program" comment="更新プログラム"/>
+</dataset>

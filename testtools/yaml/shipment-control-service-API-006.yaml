@@ -1,0 +1,342 @@
+openapi: 3.0.0
+info:
+  title: API-006
+  version: '1.0'
+  description: 別納出荷出力指示用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /v1/arranged-shipment/shipment-search:
+    get:
+      summary: 別納_出荷参照API
+      tags:
+        - ArrangedShipment
+      operationId: shipmentSearchArrangedShipmentV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentSearchArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 別納情報、仕入先マスタ情報、得意先マスタ情報、置場マスタの登録内容を参照する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          description: 現法コード
+          required: true
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: confirmDeliveryTime
+          description: 確定納期
+          required: true
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: oldPlantCode
+          description: 旧置場コード
+          required: true
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          name: outputFlag
+          description: 出力状況
+        - schema:
+            type: string
+          in: query
+          description: 受注種別
+          name: soType
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: maxCount
+          description: 参照最大件数
+          required: true
+        - schema:
+            type: string
+            maxLength: 2
+          in: query
+          description: 業務シーン区分
+          name: businessSceneType
+          required: true
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+    parameters: []
+  /v1/arranged-shipment/output:
+    post:
+      summary: 別納_連絡リスト出力API
+      tags:
+        - ArrangedShipment
+      operationId: outputArrangedShipmentV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputArrangedShipmentResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 各種情報を取得して帳票を出力し、更新可否結果を取得する。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutputArrangedShipmentRequestV1'
+    parameters: []
+components:
+  schemas:
+    ShipmentSearchArrangedShipmentResponseV1:
+      title: ShipmentSearchArrangedShipmentResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        searchResultDisplayList:
+          type: array
+          description: 検索結果表示リスト
+          items:
+            $ref: '#/components/schemas/ShipmentSearchArrangedShipmentResDisplayListV1'
+    ShipmentSearchArrangedShipmentResDisplayListV1:
+      title: ShipmentSearchArrangedShipmentResDisplayListV1
+      type: object
+      properties:
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        customerCode:
+          type: string
+          maxLength: 6
+          description: 得意先コード
+        nativeCustomerName1:
+          type: string
+          maxLength: 200
+          description: 得意先名（現地語１）
+        productCode:
+          type: string
+          maxLength: 234
+          description: 商品コード
+        estShipQty:
+          type: integer
+          minimum: 0
+          maximum: 9999999
+          description: 出荷予定数
+        reasonCode:
+          type: string
+          maxLength: 5
+          description: 理由コード
+        reasonName:
+          type: string
+          maxLength: 40
+          description: 理由名
+        plantCode:
+          type: string
+          maxLength: 4
+          description: 置場コード
+        plantName:
+          type: string
+          maxLength: 45
+          description: 置場名
+        storageLocationCode:
+          type: string
+          maxLength: 4
+          description: 保管場所コード
+        supplierCode:
+          type: string
+          maxLength: 4
+          description: 仕入先コード
+        native1CompanyName:
+          type: string
+          maxLength: 200
+          description: 企業名（現地名）
+        soDate:
+          type: string
+          description: 受注日
+          format: date
+        vsd:
+          type: string
+          description: VSD
+          format: date
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+        updateCount:
+          type: integer
+          minimum: 0
+          maximum: 9999
+          description: 更新回数
+    OutputArrangedShipmentRequestV1:
+      title: OutputArrangedShipmentRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        soType:
+          type: string
+          description: 受注種別
+        oldPlantCode:
+          type: string
+          maxLength: 4
+          description: 旧置場
+        searchResultDisplayList:
+          type: array
+          description: 検索結果表示リスト
+          items:
+            $ref: '#/components/schemas/OutputArrangedShipmentSearchResDisplayListV1'
+        updateId:
+          type: string
+          maxLength: 6
+          description: 更新者ID
+        updateTime:
+          type: string
+          format: date-time
+          minLength: 14
+          maxLength: 14
+          description: 更新日時
+        updateProgram:
+          type: string
+          maxLength: 15
+          description: 更新プログラム
+      required:
+        - subsidiaryCode
+        - soType
+        - oldPlantCode
+        - updateId
+        - updateProgram
+        - updateTime
+    OutputArrangedShipmentSearchResDisplayListV1:
+      title: OutputArrangedShipmentSearchResDisplayListV1
+      type: object
+      properties:
+        globalNumber:
+          type: string
+          maxLength: 14
+          description: グローバル番号
+        customerCode:
+          type: string
+          maxLength: 6
+          description: 得意先コード
+        productCd:
+          type: string
+          maxLength: 234
+          description: 商品コード
+        estShipQty:
+          type: integer
+          maximum: 9999999
+          description: 出荷予定数
+        reasonCode:
+          type: string
+          maxLength: 5
+          description: 理由
+        statusFlag:
+          type: string
+          maxLength: 1
+          description: 別納状況
+        supplierCode:
+          type: string
+          maxLength: 4
+          description: 仕入先コード
+        soDate:
+          type: string
+          description: 受注日
+          format: date
+        deliveryTime:
+          type: string
+          description: 納期
+          format: date
+        updateCount:
+          type: integer
+          description: 更新回数
+          maximum: 9999
+        inputProcessDate:
+          type: string
+          description: 入力日付
+          format: date
+      required:
+        - globalNumber
+        - customerCode
+        - productCd
+        - estShipQty
+        - reasonCode
+        - statusFlag
+        - supplierCode
+        - soDate
+        - deliveryTime
+        - updateCount
+        - inputProcessDate
+    OutputArrangedShipmentResponseV1:
+      title: OutputArrangedShipmentResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        updatePrintResult:
+          type: string
+          description: 更新印刷可否
+      required:
+        - subsidiaryCode
+        - updatePrintResult
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: true
+      schema:
+        type: string
+      description: ソート順1
+tags:
+  - name: ArrangedShipment

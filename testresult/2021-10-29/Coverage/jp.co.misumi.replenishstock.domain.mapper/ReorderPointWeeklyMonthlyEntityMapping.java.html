@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReorderPointWeeklyMonthlyEntityMapping.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.mapper</a> &gt; <span class="el_source">ReorderPointWeeklyMonthlyEntityMapping.java</span></div><h1>ReorderPointWeeklyMonthlyEntityMapping.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.mapper;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import jp.co.misumi.replenishstock.domain.entity.ReorderPointWeeklyMonthlyEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointPoolDataMonthlyEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointPoolDataWeeklyEntity;
+import org.mapstruct.AfterMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
+
+@Mapper(componentModel = &quot;spring&quot;)
+public interface ReorderPointWeeklyMonthlyEntityMapping {
+
+  @Mappings({
+      @Mapping(target = &quot;stockShipmentQtyList&quot;,ignore = true),
+      @Mapping(target = &quot;mtoModeShipmentQtyList&quot;,ignore = true),
+  })
+  ReorderPointWeeklyMonthlyEntity databaseToReorderPointEntity(
+      WeeklyReorderPointPoolDataWeeklyEntity weeklyReorderPointPoolDataWeeklyEntity,
+      WeeklyReorderPointPoolDataMonthlyEntity reorderPointPoolDataMonthlyEntity);
+
+  @AfterMapping
+  default void setDataToList(
+      @MappingTarget ReorderPointWeeklyMonthlyEntity reorderPointWeeklyEntity,
+      WeeklyReorderPointPoolDataWeeklyEntity weeklyDatabaseEntity,
+      WeeklyReorderPointPoolDataMonthlyEntity monthlyDatabaseEntity) {
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">    if(weeklyDatabaseEntity!=null){</span>
+
+      /** 在庫出荷数リスト　 */
+<span class="nc" id="L35">      List&lt;BigDecimal&gt; stockShipmentQtyList = new ArrayList&lt;&gt;();</span>
+
+      /** 製作品扱い出荷数リスト　 */
+<span class="nc" id="L38">      List&lt;BigDecimal&gt; mtoModeShipmentQtyList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L40">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty1());</span>
+<span class="nc" id="L41">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty2());</span>
+<span class="nc" id="L42">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty3());</span>
+<span class="nc" id="L43">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty4());</span>
+<span class="nc" id="L44">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty5());</span>
+<span class="nc" id="L45">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty6());</span>
+<span class="nc" id="L46">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty7());</span>
+<span class="nc" id="L47">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty8());</span>
+<span class="nc" id="L48">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty9());</span>
+<span class="nc" id="L49">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty10());</span>
+<span class="nc" id="L50">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty11());</span>
+<span class="nc" id="L51">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty12());</span>
+<span class="nc" id="L52">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty13());</span>
+<span class="nc" id="L53">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty14());</span>
+<span class="nc" id="L54">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty15());</span>
+<span class="nc" id="L55">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty16());</span>
+<span class="nc" id="L56">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty17());</span>
+<span class="nc" id="L57">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty18());</span>
+<span class="nc" id="L58">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty19());</span>
+<span class="nc" id="L59">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty20());</span>
+<span class="nc" id="L60">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty21());</span>
+<span class="nc" id="L61">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty22());</span>
+<span class="nc" id="L62">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty23());</span>
+<span class="nc" id="L63">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty24());</span>
+<span class="nc" id="L64">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty25());</span>
+<span class="nc" id="L65">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty26());</span>
+<span class="nc" id="L66">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty27());</span>
+<span class="nc" id="L67">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty28());</span>
+<span class="nc" id="L68">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty29());</span>
+<span class="nc" id="L69">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty30());</span>
+<span class="nc" id="L70">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty31());</span>
+<span class="nc" id="L71">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty32());</span>
+<span class="nc" id="L72">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty33());</span>
+<span class="nc" id="L73">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty34());</span>
+<span class="nc" id="L74">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty35());</span>
+<span class="nc" id="L75">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty36());</span>
+<span class="nc" id="L76">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty37());</span>
+<span class="nc" id="L77">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty38());</span>
+<span class="nc" id="L78">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty39());</span>
+<span class="nc" id="L79">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty40());</span>
+<span class="nc" id="L80">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty41());</span>
+<span class="nc" id="L81">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty42());</span>
+<span class="nc" id="L82">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty43());</span>
+<span class="nc" id="L83">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty44());</span>
+<span class="nc" id="L84">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty45());</span>
+<span class="nc" id="L85">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty46());</span>
+<span class="nc" id="L86">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty47());</span>
+<span class="nc" id="L87">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty48());</span>
+<span class="nc" id="L88">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty49());</span>
+<span class="nc" id="L89">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty50());</span>
+<span class="nc" id="L90">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty51());</span>
+<span class="nc" id="L91">      stockShipmentQtyList.add(weeklyDatabaseEntity.getStockShipmentQty52());</span>
+
+<span class="nc" id="L93">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty1());</span>
+<span class="nc" id="L94">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty2());</span>
+<span class="nc" id="L95">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty3());</span>
+<span class="nc" id="L96">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty4());</span>
+<span class="nc" id="L97">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty5());</span>
+<span class="nc" id="L98">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty6());</span>
+<span class="nc" id="L99">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty7());</span>
+<span class="nc" id="L100">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty8());</span>
+<span class="nc" id="L101">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty9());</span>
+<span class="nc" id="L102">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty10());</span>
+<span class="nc" id="L103">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty11());</span>
+<span class="nc" id="L104">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty12());</span>
+<span class="nc" id="L105">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty13());</span>
+<span class="nc" id="L106">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty14());</span>
+<span class="nc" id="L107">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty15());</span>
+<span class="nc" id="L108">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty16());</span>
+<span class="nc" id="L109">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty17());</span>
+<span class="nc" id="L110">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty18());</span>
+<span class="nc" id="L111">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty19());</span>
+<span class="nc" id="L112">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty20());</span>
+<span class="nc" id="L113">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty21());</span>
+<span class="nc" id="L114">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty22());</span>
+<span class="nc" id="L115">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty23());</span>
+<span class="nc" id="L116">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty24());</span>
+<span class="nc" id="L117">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty25());</span>
+<span class="nc" id="L118">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty26());</span>
+<span class="nc" id="L119">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty27());</span>
+<span class="nc" id="L120">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty28());</span>
+<span class="nc" id="L121">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty29());</span>
+<span class="nc" id="L122">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty30());</span>
+<span class="nc" id="L123">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty31());</span>
+<span class="nc" id="L124">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty32());</span>
+<span class="nc" id="L125">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty33());</span>
+<span class="nc" id="L126">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty34());</span>
+<span class="nc" id="L127">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty35());</span>
+<span class="nc" id="L128">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty36());</span>
+<span class="nc" id="L129">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty37());</span>
+<span class="nc" id="L130">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty38());</span>
+<span class="nc" id="L131">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty39());</span>
+<span class="nc" id="L132">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty40());</span>
+<span class="nc" id="L133">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty41());</span>
+<span class="nc" id="L134">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty42());</span>
+<span class="nc" id="L135">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty43());</span>
+<span class="nc" id="L136">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty44());</span>
+<span class="nc" id="L137">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty45());</span>
+<span class="nc" id="L138">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty46());</span>
+<span class="nc" id="L139">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty47());</span>
+<span class="nc" id="L140">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty48());</span>
+<span class="nc" id="L141">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty49());</span>
+<span class="nc" id="L142">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty50());</span>
+<span class="nc" id="L143">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty51());</span>
+<span class="nc" id="L144">      mtoModeShipmentQtyList.add(weeklyDatabaseEntity.getMtoModeShipmentQty52());</span>
+
+<span class="nc" id="L146">      reorderPointWeeklyEntity.setMtoModeShipmentQtyList(mtoModeShipmentQtyList);</span>
+<span class="nc" id="L147">      reorderPointWeeklyEntity.setStockShipmentQtyList(stockShipmentQtyList);</span>
+    }
+
+<span class="nc bnc" id="L150" title="All 2 branches missed.">    if(monthlyDatabaseEntity!=null){</span>
+      /** 在庫出荷数リスト　 */
+<span class="nc" id="L152">      List&lt;BigDecimal&gt; stockShipmentQtyList = new ArrayList&lt;&gt;();</span>
+
+      /** 製作品扱い出荷数リスト　 */
+<span class="nc" id="L155">      List&lt;BigDecimal&gt; mtoModeShipmentQtyList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L157">      stockShipmentQtyList.add(monthlyDatabaseEntity.getStockShipmentQty1());</span>
+<span class="nc" id="L158">      stockShipmentQtyList.add(monthlyDatabaseEntity.getStockShipmentQty2());</span>
+<span class="nc" id="L159">      stockShipmentQtyList.add(monthlyDatabaseEntity.getStockShipmentQty3());</span>
+<span class="nc" id="L160">      stockShipmentQtyList.add(monthlyDatabaseEntity.getStockShipmentQty4());</span>
+<span class="nc" id="L161">      stockShipmentQtyList.add(monthlyDatabaseEntity.getStockShipmentQty5());</span>
+<span class="nc" id="L162">      stockShipmentQtyList.add(monthlyDatabaseEntity.getStockShipmentQty6());</span>
+<span class="nc" id="L163">      stockShipmentQtyList.add(monthlyDatabaseEntity.getStockShipmentQty7());</span>
+
+<span class="nc" id="L165">      mtoModeShipmentQtyList.add(monthlyDatabaseEntity.getMtoModeShipmentQty1());</span>
+<span class="nc" id="L166">      mtoModeShipmentQtyList.add(monthlyDatabaseEntity.getMtoModeShipmentQty2());</span>
+<span class="nc" id="L167">      mtoModeShipmentQtyList.add(monthlyDatabaseEntity.getMtoModeShipmentQty3());</span>
+<span class="nc" id="L168">      mtoModeShipmentQtyList.add(monthlyDatabaseEntity.getMtoModeShipmentQty4());</span>
+<span class="nc" id="L169">      mtoModeShipmentQtyList.add(monthlyDatabaseEntity.getMtoModeShipmentQty5());</span>
+<span class="nc" id="L170">      mtoModeShipmentQtyList.add(monthlyDatabaseEntity.getMtoModeShipmentQty6());</span>
+<span class="nc" id="L171">      mtoModeShipmentQtyList.add(monthlyDatabaseEntity.getMtoModeShipmentQty7());</span>
+
+<span class="nc" id="L173">      reorderPointWeeklyEntity.setMtoModeShipmentQtyList(mtoModeShipmentQtyList);</span>
+<span class="nc" id="L174">      reorderPointWeeklyEntity.setStockShipmentQtyList(stockShipmentQtyList);</span>
+    }
+
+<span class="nc" id="L177">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

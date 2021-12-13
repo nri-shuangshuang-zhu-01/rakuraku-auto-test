@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SHIPMENT_ACTUAL_WORK subsidiary_code='CHN' ginner_code='12345600002001' plant_code='2001' shipment_fix_date='2020-02-10' date_shipment_qty_total='100' date_shipment_count_total='10' update_count='11' delete_flag='0' register_user_type='' register_user='LOGON_USER' register_date_time='2021-06-20 11:20:01' register_program='JOB001' register_client_program='CJOB001' update_user_type='' update_user='UPDATE_USER' update_date_time='2021-06-30 11:20:01' update_program='JOB101' update_client_program='CJOB101' />
+</dataset>

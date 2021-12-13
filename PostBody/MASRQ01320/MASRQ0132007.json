@@ -1,0 +1,28 @@
+{
+  "urgentFlag": "0",
+  "customerName": "株式会社TEST",
+  "shipToName": "札幌支社",
+  "shipToCode": "123456",
+  "departmentName": "システム開発部",
+  "picName": "BTC太郎",
+  "sendMediaType": "01",
+  "faxSendToNumber": "011-555-6666",
+  "emailAddressTo": "emailTo@email.com",
+  "emailAddressCc": "emailCc@email.com",
+  "userReplyLimit": "3日以内に注文してください",
+  "inquiryDetailsList": [
+    {
+      "leadTimeProductInquiryId": 1234567,
+      "dunningFlag": "1",
+      "qty": 100,
+      "customerItemReference": "123456",
+      "productCode": "SFJ-10",
+      "storkCode": "T00",
+      "shippingPointCode": "01",
+      "bulkPartialDeliveryType": "1",
+      "salesUnitPrice": "100",
+      "sendType": "1",
+      "inquiryContent": "8/5までに注文をお願いします。"
+    }
+  ]
+}

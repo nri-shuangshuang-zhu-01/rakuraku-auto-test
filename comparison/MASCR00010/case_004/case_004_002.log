@@ -1,0 +1,20 @@
+■api名称：　検索
+■api Request：　/internal/v1/screen-field-display/get
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=test&&x-Client-Program=test&&
+■api Body：　{  "subsidiaryCode":"JPN",  "generalKeyList":[{      "olDisplayElementIdentifier":null,      "generalKey1":"11112",      "generalKey2":null,      "generalKey3":null,      "generalKey4":null,      "generalKey5":null  }]  }
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "ScreenFieldDisplayInternalList": [
+    {
+      "ScreenFieldDisplayInternalListIdentifier": [
+        {
+          "generalKey1": "11112",
+          "codeValueReference1": "3005"
+        }
+      ]
+    }
+  ],
+  "errorList": []
+}

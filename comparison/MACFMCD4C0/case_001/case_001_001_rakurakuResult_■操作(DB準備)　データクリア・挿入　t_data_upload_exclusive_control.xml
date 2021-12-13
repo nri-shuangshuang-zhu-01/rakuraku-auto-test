@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_data_upload_exclusive_control control_seq_number='1234567890' data_upload_exclusive_control_seq='1234567891' subsidiary_code='JPN' data_code='12345' mail_address='1001' temp_file_code='1002' file_path='1003' signature='1004' input_file_name='1005' status_code='0' process_result_code='0' update_count='0' delete_flag='0' register_user_type='1006' register_user='1007' register_date_time='2021-09-06 00:00:00' register_program='1008' register_client_program='1009' update_user_type='1010' update_user='1011' update_date_time='2021-01-06 00:00:00' update_program='1012' update_client_program='1013' />
+</dataset>

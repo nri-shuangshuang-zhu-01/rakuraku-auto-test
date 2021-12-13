@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry subsidiary_code='JPN' inquiry_id='0' urgent_flag='0' customer_code='' customer_name='' ship_to_code='' ship_to_name='' department_name='' pic_name='' send_media_type='' fax_send_to_number='' email_address_to='' email_address_cc='' inquiry_reply_limit='' qt_expiration_date_time='2021-08-28 08:00:00' contact_id='' update_count='0' delete_flag='0' register_user_type='0' register_user='0' register_date_time='2021-08-28 08:00:00' register_program='0' register_client_program='0' update_user_type='0' update_user='0' update_date_time='2021-08-28 08:00:00' update_program='0' update_client_program='0' />
+</dataset>

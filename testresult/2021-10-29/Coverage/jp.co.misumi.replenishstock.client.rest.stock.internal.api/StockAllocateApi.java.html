@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StockAllocateApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.stock.internal.api</a> &gt; <span class="el_source">StockAllocateApi.java</span></div><h1>StockAllocateApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.stock.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.stock.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CancelStockAllocateRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CancelStockAllocateResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.ChangeStockAllocateRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.ChangeStockAllocateResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CheckStockAllocateRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CheckStockAllocateResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CompleteStockAllocateRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.CompleteStockAllocateResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.stock.internal.Error1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:22.851771600+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.stock.internal.api.StockAllocateApi&quot;)
+public class StockAllocateApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L43">    public StockAllocateApi(ApiClient apiClient) {</span>
+<span class="fc" id="L44">        this.apiClient = apiClient;</span>
+<span class="fc" id="L45">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L48">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L52">        this.apiClient = apiClient;</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * 在庫引当取消API
+     * 在庫引当取消API（ID:MAMIV00022） 在庫の引当情報の取消を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当取消APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param cancelStockAllocateRequestV1 在庫引当取消APIリクエスト (optional)
+     
+     * @return CancelStockAllocateResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CancelStockAllocateResponseV1 cancelStockAllocateV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CancelStockAllocateRequestV1 cancelStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L76">        return cancelStockAllocateV1WithHttpInfo(context, endpoint, additionalHeaderMap, fields, cancelStockAllocateRequestV1).getBody();</span>
+    }
+
+    /**
+     * 在庫引当取消API
+     * 在庫引当取消API（ID:MAMIV00022） 在庫の引当情報の取消を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当取消APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param cancelStockAllocateRequestV1 在庫引当取消APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CancelStockAllocateResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CancelStockAllocateResponseV1&gt; cancelStockAllocateV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CancelStockAllocateRequestV1 cancelStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L100">        Object postBody = cancelStockAllocateRequestV1;</span>
+        
+<span class="nc" id="L102">        String path = apiClient.expandPath(&quot;/internal/v1/stock-allocate/cancel&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L104">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L105">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L106">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L107">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L109">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;fields&quot;, fields));</span>
+
+        
+
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L114">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L116">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L118">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L120">            });</span>
+        }
+
+<span class="nc" id="L123">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L126">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L127">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L130">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L132">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L134">        ParameterizedTypeReference&lt;CancelStockAllocateResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CancelStockAllocateResponseV1&gt;() {};</span>
+<span class="nc" id="L135">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 在庫引当変更API
+     * 在庫引当変更API（ID:MAMIV00021） 在庫の引当情報の変更を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当変更APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param changeStockAllocateRequestV1 在庫引当変更APIリクエスト (optional)
+     
+     * @return ChangeStockAllocateResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ChangeStockAllocateResponseV1 changeStockAllocateV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, ChangeStockAllocateRequestV1 changeStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L158">        return changeStockAllocateV1WithHttpInfo(context, endpoint, additionalHeaderMap, fields, changeStockAllocateRequestV1).getBody();</span>
+    }
+
+    /**
+     * 在庫引当変更API
+     * 在庫引当変更API（ID:MAMIV00021） 在庫の引当情報の変更を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当変更APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param changeStockAllocateRequestV1 在庫引当変更APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;ChangeStockAllocateResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;ChangeStockAllocateResponseV1&gt; changeStockAllocateV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, ChangeStockAllocateRequestV1 changeStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L182">        Object postBody = changeStockAllocateRequestV1;</span>
+        
+<span class="nc" id="L184">        String path = apiClient.expandPath(&quot;/internal/v1/stock-allocate/change&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L186">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L187">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L188">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L189">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L191">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;fields&quot;, fields));</span>
+
+        
+
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L196">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L198">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L200">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L202">            });</span>
+        }
+
+<span class="nc" id="L205">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L208">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L209">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L212">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L214">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L216">        ParameterizedTypeReference&lt;ChangeStockAllocateResponseV1&gt; returnType = new ParameterizedTypeReference&lt;ChangeStockAllocateResponseV1&gt;() {};</span>
+<span class="nc" id="L217">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 在庫引当チェックAPI
+     * 在庫引当チェックAPI（ID:MAMIV00010） 統合インナーコードおよび置場のリストを指定し、引当可能な置場および日付をチェックする
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当チェックAPIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param checkStockAllocateRequestV1 在庫引当チェックAPIリクエスト (optional)
+     
+     * @return CheckStockAllocateResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CheckStockAllocateResponseV1 checkStockAllocateV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CheckStockAllocateRequestV1 checkStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L239">        return checkStockAllocateV1WithHttpInfo(context, endpoint, additionalHeaderMap, fields, checkStockAllocateRequestV1).getBody();</span>
+    }
+
+    /**
+     * 在庫引当チェックAPI
+     * 在庫引当チェックAPI（ID:MAMIV00010） 統合インナーコードおよび置場のリストを指定し、引当可能な置場および日付をチェックする
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当チェックAPIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param checkStockAllocateRequestV1 在庫引当チェックAPIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CheckStockAllocateResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CheckStockAllocateResponseV1&gt; checkStockAllocateV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CheckStockAllocateRequestV1 checkStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L262">        Object postBody = checkStockAllocateRequestV1;</span>
+        
+<span class="nc" id="L264">        String path = apiClient.expandPath(&quot;/internal/v1/stock-allocate/check&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L266">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L267">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L268">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L269">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L271">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;fields&quot;, fields));</span>
+
+        
+
+<span class="nc bnc" id="L275" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L276">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L278">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L280">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L282">            });</span>
+        }
+
+<span class="nc" id="L285">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L288">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L289">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L292">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L294">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L296">        ParameterizedTypeReference&lt;CheckStockAllocateResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CheckStockAllocateResponseV1&gt;() {};</span>
+<span class="nc" id="L297">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 在庫引当API
+     * 在庫引当API（ID:MAMIV00020） 在庫引当チェックAPIでチェックした引当可能な置場および日付で、在庫の引き当て処理を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param completeStockAllocateRequestV1 在庫引当APIリクエスト (optional)
+     
+     * @return CompleteStockAllocateResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CompleteStockAllocateResponseV1 completeStockAllocateV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CompleteStockAllocateRequestV1 completeStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L320">        return completeStockAllocateV1WithHttpInfo(context, endpoint, additionalHeaderMap, fields, completeStockAllocateRequestV1).getBody();</span>
+    }
+
+    /**
+     * 在庫引当API
+     * 在庫引当API（ID:MAMIV00020） 在庫引当チェックAPIでチェックした引当可能な置場および日付で、在庫の引き当て処理を行う
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - 在庫引当APIレスポンス
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * &lt;p&gt;&lt;b&gt;401&lt;/b&gt; - Unauthorized
+     * &lt;p&gt;&lt;b&gt;403&lt;/b&gt; - Forbidden
+     * &lt;p&gt;&lt;b&gt;409&lt;/b&gt; - Conflict
+     * &lt;p&gt;&lt;b&gt;500&lt;/b&gt; - Internal Server Error
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param fields レスポンスボディのフィールド指定をするためのクエリパラメータ (optional)
+     
+     * @param completeStockAllocateRequestV1 在庫引当APIリクエスト (optional)
+     
+     * @return ResponseEntity&amp;lt;CompleteStockAllocateResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CompleteStockAllocateResponseV1&gt; completeStockAllocateV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String fields, CompleteStockAllocateRequestV1 completeStockAllocateRequestV1) throws RestClientException {
+<span class="nc" id="L344">        Object postBody = completeStockAllocateRequestV1;</span>
+        
+<span class="nc" id="L346">        String path = apiClient.expandPath(&quot;/internal/v1/stock-allocate/complete&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L348">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L349">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L350">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L351">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L353">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;fields&quot;, fields));</span>
+
+        
+
+<span class="nc bnc" id="L357" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L358">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L359" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L360">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L361" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L362">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L364">            });</span>
+        }
+
+<span class="nc" id="L367">        final String[] localVarAccepts = { </span>
+            &quot;application/json&quot;, &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L370">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L371">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L374">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L376">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L378">        ParameterizedTypeReference&lt;CompleteStockAllocateResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CompleteStockAllocateResponseV1&gt;() {};</span>
+<span class="nc" id="L379">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

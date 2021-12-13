@@ -1,0 +1,24 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-level/up
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=test&&Idempotency-Key=4a037a9e-2500-4724-a005-997a1ab13a11&&
+■api Body：　{  "requestDataList":[{      "billToCode":"123457",      "level":"2",      "delayDays":"st",      "invoiceNumber":"101011",      "invoiceIssueDate":"2020-02-03",      "subsidiaryCode":"JPN",      "loginUser":"string",      "promisedPaymentDate":"2020-09-11",      "sendMedia":"",      "fax":"string",      "emailTo":"user@example.com",      "emailCc":"user@example.com"  },{      "billToCode":"123458",      "level":"3",      "delayDays":"st",      "invoiceNumber":"101012",      "invoiceIssueDate":"2020-02-04",      "subsidiaryCode":"JPN",      "loginUser":"string",      "promisedPaymentDate":"2020-09-12",      "sendMedia":"",      "fax":"string",      "emailTo":"user@example.com",      "emailCc":"user@example.com"  },{      "billToCode":"123459",      "level":"4",      "delayDays":"st",      "invoiceNumber":"101013",      "invoiceIssueDate":"2020-02-05",      "subsidiaryCode":"JPN",      "loginUser":"string",      "promisedPaymentDate":"2020-09-13",      "sendMedia":"",      "fax":"string",      "emailTo":"user@example.com",      "emailCc":"user@example.com"  }],  "dunningLetterOutputType":"0"	}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "code": "NAR20020001W",
+  "argumentList": [],
+  "message": "督促レベルが他者により更新されています。表示内容を更新し、督促レベルをご確認ください。",
+  "detailList": [
+    {
+      "code": "NAR20020001W",
+      "argumentList": [],
+      "message": "督促レベルが他者により更新されています。表示内容を更新し、督促レベルをご確認ください。"
+    },
+    {
+      "code": "NAR20020001W",
+      "argumentList": [],
+      "message": "督促レベルが他者により更新されています。表示内容を更新し、督促レベルをご確認ください。"
+    }
+  ]
+}

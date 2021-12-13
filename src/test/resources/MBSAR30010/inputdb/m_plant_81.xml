@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <m_plant plant_code='P001' subsidiary_code='CHN' plant_name='置場名1' plant_name_native='' plant_abbreviation_native='' plant_number='null' shipping_days_area_code='sd1' supplier_choice_area_code='1' address1_native='null' address2_native='null' address3_native='null' address4_native='null' tel='null' fax='null' postal_code='null' other_plant_reference_priority='1' so_stop_flag='null' update_count='0' delete_flag='0' register_user_type='Office' register_user='LKG001' register_date_time='2021/10/11 16:45:34' register_program='DeadStockTool' register_client_program='DeadStockTool' update_user_type='Office' update_user='LKG001' update_date_time='2021/10/11 16:45:34' update_program='DeadStockTool' update_client_program='DeadStockTool' />
+</dataset>

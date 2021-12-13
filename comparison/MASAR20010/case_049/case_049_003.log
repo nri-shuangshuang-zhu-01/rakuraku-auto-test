@@ -1,0 +1,54 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment/get
+■api方法：　POST
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=temp&&Content-Type=application/json&&Prefer=/v1/ccy/get->1
+■api Body：　{  "billToCode": "BILLTO",  "date": "Due",  "paymentDueDateFrom": "20210607",  "promisedPaymentDateFrom": "string",  "paymentDueDateTo": "20211010",  "promisedPaymentDateTo": "string",  "incomingPaymentStatus": "1",  "level": "Dunning",  "dunningLevel": "D",  "titleLevel": "s",  "ininChargeId": "0",  "mainDepartmentCode": "ardp",  "tradeStatus": "TR",  "nonPaymentAmountExtractFrom": "26549.1",  "nonPaymentAmountExtractTo": "30000",  "settlementMethodList": [    {      "settlementMethod": "SET"    }  ],  "paymentMeansList": [    {      "paymentMeans": "YM"    }  ],  "subsidiaryCode": "MJP",  "systemDate": "2021-09-16",  "sortField": "Dunning Level",  "sortOrder": "0",  "pageNumber": "1",  "displayCount": 0,  "responseType": "0"}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "nonPaymentInfoList": [
+    {
+      "subsidiaryCode": "MJP",
+      "billToCode": "BILLTO",
+      "nativeBillToName": "billNmNative",
+      "billToName": "billtoname",
+      "staffId": "0",
+      "invoiceNumber": "INVOICE000000001",
+      "invoiceDate": "2021-05-27",
+      "ccyCodeCustomerCcy": "CAD",
+      "billedAmountCustomerCcy": 8523.25,
+      "nonPaymentAmountCustomerCcy": 9325.33,
+      "incomingPaymentAmountCustomerCcy": 5864.23,
+      "billedAmountSubsidiaryCcy": 6458.18,
+      "ccyCodeSubsidiaryCcy": "CAD",
+      "nonPaymentAmountSubsidiaryCcy": 26549.10,
+      "paymentDueDate": "2021-06-08",
+      "promisedPaymentDate": "2021-09-15",
+      "incomingPaymentCompleteDate": "2021-06-26",
+      "dunningLetterSendMedia": "DU",
+      "dunningLetterSendUserId": "DUNNIN",
+      "dunningLetterSendRequestDate": "2021-08-26",
+      "dunningLevel": "D",
+      "titleLevel": "s",
+      "mainDepartmentCode": "ardp",
+      "acceptanceType": "C",
+      "settlementMethod": "SET",
+      "paymentMeans": "YM",
+      "tradeStatusType": "TR",
+      "delayReasonType": "REA",
+      "customerPoReference": "CUSTOMERPO0000001",
+      "customerItemReference": "CUSTOMERITEMREFERENCE",
+      "updateCount": 1,
+      "deleteFlag": "0",
+      "registerUser": "USER",
+      "registerSystemDateTime": "2021-06-02T01:00:00+09:00",
+      "registerProgram": "MASAR20010",
+      "updateUser": "ABC",
+      "updateSystemDateTime": "2021-06-02T01:00:00+09:00",
+      "updateProgram": "JOB101",
+      "delayDays": "18",
+      "dunningLetterSendType": "0"
+    }
+  ],
+  "errorList": []
+}

@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_SHIPMENT_COUNT subsidiary_code='CHN' ginner_code='12345600003601' plant_code='3601' shipment_count1='0' shipment_count2='0' shipment_count3='0' shipment_count4='0' shipment_count5='0' shipment_count6='0' shipment_count7='0' shipment_count8='0' shipment_count9='0' shipment_count10='0' shipment_count11='0' shipment_count12='0' update_count='23' delete_flag='0' register_user_type='' register_user='LOGON_USER' register_date_time='2020-02-08 11:20:01' register_program='JOB001' register_client_program='CJOB001' update_user_type='' update_user='UPDATE_USER' update_date_time='2020-02-18 11:20:01' update_program='JOB002' update_client_program='CJOB002' />
+</dataset>

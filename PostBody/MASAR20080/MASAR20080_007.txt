@@ -1,0 +1,18 @@
+{
+  "dunningLetterDownloadList": [
+    {
+      "billToCode": "1",
+      "level": "1",
+      "delayDays": "1",
+      "invoiceNumber": 1,
+      "invoiceIssueDate": "2021-01-01",
+      "subsidiaryCode": "JPN",
+      "loginUser": "wangcl",
+      "promisedpaymentDate": "2021-01-01",
+      "sendMedia": "2",
+      "fax": "fax",
+      "emailTo": "user@emailTo.com",
+      "emailCc": "user@emailCc.com"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "localCorporationCode": "str",
+  "accessIpAddress": "string",
+  "sessionId": "string",
+  "screenId": "string",
+  "processId": "string",
+  "programType": "a",
+  "createDate": "",
+  "registerMode": "1",
+  "detailInformationList": [
+    {
+      "detailNumber": "1",
+      "globalNumber": "CA000032000086",
+      "internalExternalType": "0",
+      "invoiceNoDetailInformationList": [
+        {
+          "no": "1",
+          "deleteType": "0",
+          "carrierInvoiceNumber": "001@a",
+          "plantCode": "00T0",
+          "vsd": "20190820",
+          "packingControlNumber": "45",
+          "shipmodeCode": "0",
+          "qty": null,
+          "supplierCode": "0010"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+http://localhost:4015/v1/product/get-list{"getListProductInternalRequestV1DetailList":[{"ginnerCode":"MDM10040007505"}]}
+http://localhost:4014/v1/delivery-destination/search
+http://localhost:4010/v1/plant/search
+http://localhost:4015/v1/stock-setting/get?ginner_code=MDM10040007505&plant_code=1234

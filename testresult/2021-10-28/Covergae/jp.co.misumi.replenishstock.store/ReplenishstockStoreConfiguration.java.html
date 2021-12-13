@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplenishstockStoreConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.store</a> &gt; <span class="el_source">ReplenishstockStoreConfiguration.java</span></div><h1>ReplenishstockStoreConfiguration.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.store;
+
+import javax.annotation.Generated;
+import jp.co.misumi.replenishstock.domain.repository.CreateWeeklyOrderDlFileRepository;
+import jp.co.misumi.replenishstock.domain.repository.CreateWeeklyPoolRepository;
+import jp.co.misumi.replenishstock.domain.repository.DemandForecastDataDeleteRepository;
+import jp.co.misumi.replenishstock.domain.repository.DemandForecastRepository;
+import jp.co.misumi.replenishstock.domain.repository.DemandForecastWeeklyPoolRepository;
+import jp.co.misumi.replenishstock.domain.repository.EvaluationUnitPriceRepository;
+import jp.co.misumi.replenishstock.domain.repository.ExclusionCaseCountRepository;
+import jp.co.misumi.replenishstock.domain.repository.ExclusionCaseWeeklyProcessRepository;
+import jp.co.misumi.replenishstock.domain.repository.RankSettingConditionRepository;
+import jp.co.misumi.replenishstock.domain.repository.ReceivingAndShipmentAccumulationRepository;
+import jp.co.misumi.replenishstock.domain.repository.RegistWeeklyOrderTimeExclusionDlServiceRepository;
+import jp.co.misumi.replenishstock.domain.repository.SafetyCoefficientRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualNarrowDownConditionRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualPoolDataFor12monthsCountRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualPoolDataFor12monthsRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualPoolDataFor52weeksCountRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualPoolDataFor52weeksRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualPoolDataForFifTwoWeeksRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualPoolDataForTwelveMonthsRepository;
+import jp.co.misumi.replenishstock.domain.repository.ShipmentActualRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyMonthlyPoolDateLogicPlantReplaceRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointDemandForecastRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointExcludeConditionProcessRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointExcludeConditionRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointPoolDataMonthlyRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointPoolDataWeeklyRepository;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyReorderPointPoolMonthlyRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisCalculateMinimumValueMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisCalculateMinimumValueRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisCreateWeeklyOrderDlFileMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisCreateWeeklyOrderDlFileRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisCreateWeeklyPoolMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisCreateWeeklyPoolRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDeleteWeeklyReorderPointDemandForecastDataMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDeleteWeeklyReorderPointDemandForecastDataRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDemandForecastDataDeleteMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDemandForecastDataDeleteRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDemandForecastMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDemandForecastRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDemandForecastWeeklyPoolMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisDemandForecastWeeklyPoolRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisEvaluationUnitPriceMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisEvaluationUnitPriceRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisExclusionCaseCountMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisExclusionCaseCountRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisExclusionCaseWeeklyProcessMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisExclusionCaseWeeklyProcessRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisRankSettingConditionMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisRankSettingConditionRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisReceivingAndShipmentAccumulationMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisReceivingAndShipmentAccumulationRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisRegistWeeklyOrderTimeExclusionDlServiceMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisRegistWeeklyOrderTimeExclusionDlServiceRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisSafetyCoefficientMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisSafetyCoefficientRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualNarrowDownConditionMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualNarrowDownConditionRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor12monthsCountMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor12monthsCountRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor12monthsMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor12monthsRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor52weeksCountMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor52weeksCountRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor52weeksMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataFor52weeksRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataForFifTwoWeeksMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataForFifTwoWeeksRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataForTwelveMonthsMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualPoolDataForTwelveMonthsRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisShipmentActualRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyMonthlyPoolDateLogicPlantReplaceMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyMonthlyPoolDateLogicPlantReplaceRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyPoolDataLogicalPlantReplaceMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyPoolDataLogicalPlantReplaceRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointDemandForecastMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointDemandForecastRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointExcludeConditionMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointExcludeConditionProcessMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointExcludeConditionProcessRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointExcludeConditionRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointPoolDataMonthlyMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointPoolDataMonthlyRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointPoolDataWeeklyMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointPoolDataWeeklyRepository;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointPoolMonthlyMapper;
+import jp.co.misumi.replenishstock.store.repository.mybatis.MybatisWeeklyReorderPointPoolMonthlyRepository;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * DB操作自動設定クラス.
+ *
+ * &lt;p&gt;generated by LKG tool
+ *
+ * @since 1.0.0
+ */
+@Generated(
+    comments = &quot;自動生成されたクラスです。対象クラスにコピーしてください。&quot;,
+    date = &quot;2021/09/06&quot;,
+    value = {&quot;Respository自動生成ツール&quot;})
+@Configuration(proxyBeanMethods = false)
+<span class="fc" id="L107">public class ReplenishstockStoreConfiguration {</span>
+
+  /**
+   * MyBatis関連の設定.
+   */
+  @MapperScan(basePackages = {&quot;jp.co.misumi.replenishstock.store.repository.mybatis&quot;})
+<span class="fc" id="L113">  public static class MyBatisConfiguration {</span>
+
+    @Bean
+    EvaluationUnitPriceRepository evaluationUnitPriceRepository(
+        MybatisEvaluationUnitPriceMapper mybatisEvaluationUnitPriceMapper) {
+<span class="fc" id="L118">      return new MybatisEvaluationUnitPriceRepository(mybatisEvaluationUnitPriceMapper);</span>
+    }
+
+    @Bean
+    RankSettingConditionRepository rankSettingConditionRepository(
+        MybatisRankSettingConditionMapper mybatisRankSettingConditionMapper) {
+<span class="fc" id="L124">      return new MybatisRankSettingConditionRepository(mybatisRankSettingConditionMapper);</span>
+    }
+
+    @Bean
+    ReceivingAndShipmentAccumulationRepository receivingAndShipmentAccumulationRepository(
+        MybatisReceivingAndShipmentAccumulationMapper
+            mybatisReceivingAndShipmentAccumulationMapper) {
+<span class="fc" id="L131">      return new MybatisReceivingAndShipmentAccumulationRepository(</span>
+          mybatisReceivingAndShipmentAccumulationMapper);
+    }
+
+    @Bean
+    SafetyCoefficientRepository safetyCoefficientRepository(
+        MybatisSafetyCoefficientMapper mybatisSafetyCoefficientMapper) {
+<span class="fc" id="L138">      return new MybatisSafetyCoefficientRepository(mybatisSafetyCoefficientMapper);</span>
+    }
+
+    @Bean
+    ShipmentActualRepository shipmentActualRepository(
+        MybatisShipmentActualMapper mybatisShipmentActualMapper) {
+<span class="fc" id="L144">      return new MybatisShipmentActualRepository(mybatisShipmentActualMapper);</span>
+    }
+
+    @Bean
+    ShipmentActualNarrowDownConditionRepository shipmentActualNarrowDownConditionRepository(
+        MybatisShipmentActualNarrowDownConditionMapper
+            mybatisShipmentActualNarrowDownConditionMapper) {
+<span class="fc" id="L151">      return new MybatisShipmentActualNarrowDownConditionRepository(</span>
+          mybatisShipmentActualNarrowDownConditionMapper);
+    }
+
+    @Bean
+    ShipmentActualPoolDataFor12monthsRepository shipmentActualPoolDataFor12monthsRepository(
+        MybatisShipmentActualPoolDataFor12monthsMapper
+            mybatisShipmentActualPoolDataFor12monthsMapper) {
+<span class="fc" id="L159">      return new MybatisShipmentActualPoolDataFor12monthsRepository(</span>
+          mybatisShipmentActualPoolDataFor12monthsMapper);
+    }
+
+    @Bean
+    ShipmentActualPoolDataFor52weeksRepository shipmentActualPoolDataFor52weeksRepository(
+        MybatisShipmentActualPoolDataFor52weeksMapper
+            mybatisShipmentActualPoolDataFor52weeksMapper) {
+<span class="fc" id="L167">      return new MybatisShipmentActualPoolDataFor52weeksRepository(</span>
+          mybatisShipmentActualPoolDataFor52weeksMapper);
+    }
+
+    @Bean
+    WeeklyReorderPointDemandForecastRepository weeklyReorderPointDemandForecastRepository(
+        MybatisWeeklyReorderPointDemandForecastMapper
+            mybatisWeeklyReorderPointDemandForecastMapper) {
+<span class="fc" id="L175">      return new MybatisWeeklyReorderPointDemandForecastRepository(</span>
+          mybatisWeeklyReorderPointDemandForecastMapper);
+    }
+
+    @Bean
+    WeeklyReorderPointPoolDataMonthlyRepository weeklyReorderPointPoolDataMonthlyRepository(
+        MybatisWeeklyReorderPointPoolDataMonthlyMapper
+            mybatisWeeklyReorderPointPoolDataMonthlyMapper) {
+<span class="fc" id="L183">      return new MybatisWeeklyReorderPointPoolDataMonthlyRepository(</span>
+          mybatisWeeklyReorderPointPoolDataMonthlyMapper);
+    }
+
+    @Bean
+    WeeklyReorderPointPoolDataWeeklyRepository weeklyReorderPointPoolDataWeeklyRepository(
+        MybatisWeeklyReorderPointPoolDataWeeklyMapper
+            mybatisWeeklyReorderPointPoolDataWeeklyMapper) {
+<span class="fc" id="L191">      return new MybatisWeeklyReorderPointPoolDataWeeklyRepository(</span>
+          mybatisWeeklyReorderPointPoolDataWeeklyMapper);
+    }
+
+    @Bean
+    WeeklyReorderPointExcludeConditionRepository weeklyReorderPointExcludeConditionRepository(
+        MybatisWeeklyReorderPointExcludeConditionMapper
+            mybatisWeeklyReorderPointExcludeConditionMapper) {
+<span class="fc" id="L199">      return new MybatisWeeklyReorderPointExcludeConditionRepository(</span>
+          mybatisWeeklyReorderPointExcludeConditionMapper);
+    }
+
+    @Bean
+    DemandForecastRepository demandForecastRepository(
+        MybatisDemandForecastMapper mybatisDemandForecastMapper) {
+<span class="fc" id="L206">      return new MybatisDemandForecastRepository(mybatisDemandForecastMapper);</span>
+    }
+
+    @Bean
+    CreateWeeklyOrderDlFileRepository createWeeklyOrderDlFileRepository(
+        MybatisCreateWeeklyOrderDlFileMapper mybatisCreateWeeklyOrderDlFileMapper) {
+<span class="fc" id="L212">      return new MybatisCreateWeeklyOrderDlFileRepository(mybatisCreateWeeklyOrderDlFileMapper);</span>
+    }
+
+    @Bean
+    RegistWeeklyOrderTimeExclusionDlServiceRepository
+    registWeeklyOrderTimeExclusiondlServiceRepository(
+        MybatisRegistWeeklyOrderTimeExclusionDlServiceMapper
+            mybatisRegistWeeklyOrderTimeExclusiondlServiceMapper) {
+<span class="fc" id="L220">      return new MybatisRegistWeeklyOrderTimeExclusionDlServiceRepository(</span>
+          mybatisRegistWeeklyOrderTimeExclusiondlServiceMapper);
+    }
+
+    @Bean
+    MybatisCalculateMinimumValueRepository mybatisCalculateMinimumValueRepository(
+        MybatisCalculateMinimumValueMapper mybatisCalculateMinimumValueMapper) {
+<span class="fc" id="L227">      return new MybatisCalculateMinimumValueRepository(mybatisCalculateMinimumValueMapper);</span>
+    }
+
+    @Bean
+    MybatisDeleteWeeklyReorderPointDemandForecastDataRepository
+    mybatisDeleteWeeklyReorderPointDemandForecastDataRepository(
+        MybatisDeleteWeeklyReorderPointDemandForecastDataMapper
+            mybatisDeleteWeeklyReorderPointDemandForecastDataMapper) {
+<span class="fc" id="L235">      return new MybatisDeleteWeeklyReorderPointDemandForecastDataRepository(</span>
+          mybatisDeleteWeeklyReorderPointDemandForecastDataMapper);
+    }
+
+    @Bean
+    MybatisWeeklyPoolDataLogicalPlantReplaceRepository
+    mybatisWeeklyPoolDataLogicalPlantReplaceRepository(
+        MybatisWeeklyPoolDataLogicalPlantReplaceMapper
+            mybatisWeeklyPoolDataLogicalPlantReplaceMapper) {
+<span class="fc" id="L244">      return new MybatisWeeklyPoolDataLogicalPlantReplaceRepository(</span>
+          mybatisWeeklyPoolDataLogicalPlantReplaceMapper);
+    }
+
+    @Bean
+    CreateWeeklyPoolRepository shipmentActualInNarrowDownConditionRepository(
+        MybatisCreateWeeklyPoolMapper mybatisCreateWeeklyPoolMapper) {
+<span class="fc" id="L251">      return new MybatisCreateWeeklyPoolRepository(mybatisCreateWeeklyPoolMapper);</span>
+    }
+
+    @Bean
+    ExclusionCaseCountRepository exclusionCaseCountRepository(
+        MybatisExclusionCaseCountMapper mybatisExclusionCaseCountMapper) {
+<span class="fc" id="L257">      return new MybatisExclusionCaseCountRepository(mybatisExclusionCaseCountMapper);</span>
+    }
+
+    @Bean
+    ShipmentActualPoolDataFor52weeksCountRepository actualPoolDataFor52weeksCountRepository(
+        MybatisShipmentActualPoolDataFor52weeksCountMapper
+            mybatisShipmentActualPoolDataFor52weeksCountMapper) {
+<span class="fc" id="L264">      return new MybatisShipmentActualPoolDataFor52weeksCountRepository(</span>
+          mybatisShipmentActualPoolDataFor52weeksCountMapper);
+    }
+
+    @Bean
+    ShipmentActualPoolDataFor12monthsCountRepository
+    shipmentActualPoolDataFor12monthsCountRepository(
+        MybatisShipmentActualPoolDataFor12monthsCountMapper
+            mybatisShipmentActualPoolDataFor12monthsCountMapper) {
+<span class="fc" id="L273">      return new MybatisShipmentActualPoolDataFor12monthsCountRepository(</span>
+          mybatisShipmentActualPoolDataFor12monthsCountMapper);
+    }
+
+    @Bean
+    ShipmentActualPoolDataForTwelveMonthsRepository shipmentActualPoolDataForTwelveMonthsRepository(
+        MybatisShipmentActualPoolDataForTwelveMonthsMapper
+            mybatisShipmentActualPoolDataForTwelveMonthsMapper) {
+<span class="fc" id="L281">      return new MybatisShipmentActualPoolDataForTwelveMonthsRepository(</span>
+          mybatisShipmentActualPoolDataForTwelveMonthsMapper);
+    }
+
+    @Bean
+    ExclusionCaseWeeklyProcessRepository exclusionCaseWeeklyProcessRepository(
+        MybatisExclusionCaseWeeklyProcessMapper mybatisExclusionCaseWeeklyProcessMapper) {
+<span class="fc" id="L288">      return new MybatisExclusionCaseWeeklyProcessRepository(</span>
+          mybatisExclusionCaseWeeklyProcessMapper);
+    }
+
+    @Bean
+    DemandForecastWeeklyPoolRepository demandForecastWeeklyPoolRepository(
+        MybatisDemandForecastWeeklyPoolMapper mybatisDemandForecastWeeklyPoolMapper) {
+<span class="fc" id="L295">      return new MybatisDemandForecastWeeklyPoolRepository(mybatisDemandForecastWeeklyPoolMapper);</span>
+    }
+
+    @Bean
+    ShipmentActualPoolDataForFifTwoWeeksRepository shipmentActualPoolDataForFifTwoWeeksRepository(
+        MybatisShipmentActualPoolDataForFifTwoWeeksMapper
+            mybatisShipmentActualPoolDataForFifTwoWeeksMapper) {
+<span class="fc" id="L302">      return new MybatisShipmentActualPoolDataForFifTwoWeeksRepository(</span>
+          mybatisShipmentActualPoolDataForFifTwoWeeksMapper);
+    }
+
+    @Bean
+    WeeklyReorderPointExcludeConditionProcessRepository
+    weeklyReorderPointExcludeConditionProcessRepository(
+        MybatisWeeklyReorderPointExcludeConditionProcessMapper
+            mybatisWeeklyReorderPointExcludeConditionProcessMapper) {
+<span class="fc" id="L311">      return new MybatisWeeklyReorderPointExcludeConditionProcessRepository(</span>
+          mybatisWeeklyReorderPointExcludeConditionProcessMapper);
+    }
+
+    @Bean
+    DemandForecastDataDeleteRepository demandForecastDataDeleteRepository(
+        MybatisDemandForecastDataDeleteMapper mybatisDemandForecastDataDeleteMapper) {
+<span class="fc" id="L318">      return new MybatisDemandForecastDataDeleteRepository(mybatisDemandForecastDataDeleteMapper);</span>
+    }
+
+    @Bean
+    WeeklyMonthlyPoolDateLogicPlantReplaceRepository weeklyMonthlyPoolDateLogicPlantReplaceRepository(
+        MybatisWeeklyMonthlyPoolDateLogicPlantReplaceMapper mybatisWeeklyMonthlyPoolDateLogicPlantReplaceMapper) {
+<span class="fc" id="L324">      return new MybatisWeeklyMonthlyPoolDateLogicPlantReplaceRepository(</span>
+          mybatisWeeklyMonthlyPoolDateLogicPlantReplaceMapper);
+    }
+
+    @Bean
+    WeeklyReorderPointPoolMonthlyRepository weeklyReorderPointPoolMonthlyRepository(
+        MybatisWeeklyReorderPointPoolMonthlyMapper mybatisWeeklyReorderPointPoolMonthlyMapper) {
+<span class="fc" id="L331">      return new MybatisWeeklyReorderPointPoolMonthlyRepository(</span>
+          mybatisWeeklyReorderPointPoolMonthlyMapper);
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,12 @@
+{
+  "registerObjectList": [
+    {
+      "subsidiaryCode": "JPN",
+      "billToCode": "123456",
+      "invoiceNumber": "123457",
+      "invoiceIssueDate": "2019-08-24"
+    }
+  ],
+  "registerDataList": {
+  }
+}

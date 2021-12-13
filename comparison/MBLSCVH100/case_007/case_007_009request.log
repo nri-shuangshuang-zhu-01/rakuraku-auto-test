@@ -1,0 +1,2 @@
+http://localhost:4025/v1/MAPPOPO250{"cPoInfo":[{"SubsidiaryCode":"JPN","globalNo":"CA000032000086"}],"deleteFlag":"0","cpoInfo":[{"SubsidiaryCode":"JPN","globalNo":"CA000032000086"}]}
+http://localhost:4024/internal/v1/sales-order/search?globalNumber=CA000032000086&soLineStatus=3

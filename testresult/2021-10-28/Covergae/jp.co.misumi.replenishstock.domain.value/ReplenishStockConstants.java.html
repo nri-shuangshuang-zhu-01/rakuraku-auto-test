@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplenishStockConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.value</a> &gt; <span class="el_source">ReplenishStockConstants.java</span></div><h1>ReplenishStockConstants.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.value;
+
+import java.math.BigDecimal;
+
+<span class="nc" id="L5">public class ReplenishStockConstants {</span>
+  public static final String SUBSIDIARY_CODE = &quot;現法コード&quot;;
+  public static final String CUSTOMER_CODE = &quot;得意先コード&quot;;
+  public static final String SHIP_TO_CODE = &quot;配送先コード&quot;;
+  public static final String GINNER_CODE = &quot;統合インナーコード&quot;;
+  public static final String CLASSIFY_CODE = &quot;分析コード&quot;;
+  public static final String PLANT_CODE = &quot;置場コード&quot;;
+  public static final String SUPPLY_TYPE = &quot;調達区分&quot;;
+  public static final String EFFECTIVE_DATE_FROM = &quot;適用開始日&quot;;
+  public static final String DELETE_FLAG = &quot;削除フラグ&quot;;
+  public static final String MESSAGE_ID = &quot;メッセージID&quot;;
+  public static final String MESSAGE_TEXT = &quot;メッセージ文言&quot;;
+  public static final String UPDATE_COUNT = &quot;更新回数&quot;;
+  public static final String REGISTER_USER_TYPE = &quot;登録者区分&quot;;
+  public static final String REGISTER_USER = &quot;登録者&quot;;
+  public static final String REGISTER_DATE_TIME = &quot;登録日時&quot;;
+  public static final String REGISTER_PROGRAM = &quot;登録プログラム&quot;;
+  public static final String REGISTER_CLIENT_PROGRAM = &quot;登録呼び出し元プログラム&quot;;
+  public static final String UPDATE_USER_TYPE = &quot;更新者区分&quot;;
+  public static final String UPDATE_USER = &quot;更新者&quot;;
+  public static final String UPDATE_DATE_TIME = &quot;更新日時&quot;;
+  public static final String UPDATE_PROGRAM = &quot;更新プログラム&quot;;
+  public static final String UPDATE_CLIENT_PROGRAM = &quot;更新呼び出し元プログラム&quot;;
+  public static final String CONCERT_JSON_CHARACTER_ONE = &quot;{\&quot;&quot;;
+  public static final String CONCERT_JSON_CHARACTER_SECOND = &quot;,&quot;;
+  public static final String CONCERT_JSON_CHARACTER_THIRD = &quot;\&quot;}&quot;;
+  public static final String CONCERT_JSON_CHARACTER_FOURTH = &quot;=&quot;;
+  public static final String CONCERT_JSON_CHARACTER_FIFTH = &quot;\&quot;:\&quot;&quot;;
+  public static final String CONCERT_JSON_CHARACTER_SIXTH = &quot;\&quot;[&quot;;
+  public static final String CONCERT_JSON_CHARACTER_SEVENTH = &quot;[\&quot;&quot;;
+  public static final String CONCERT_JSON_CHARACTER_EIGHTH = &quot;\&quot;,\&quot;&quot;;
+  public static final String CONCERT_JSON_CHARACTER_NINTH = &quot;]\&quot;&quot;;
+  public static final String CONCERT_JSON_CHARACTER_TENTH = &quot;\&quot;]&quot;;
+  public static final String CONCERT_JSON_CHARACTER_THIRTEENTH = &quot;\&quot;null\&quot;&quot;;
+  public static final String CONCERT_JSON_CHARACTER_FOURTEENTH = &quot;null&quot;;
+  public static final String FILE_NAME_CHARACTER_UNDERLINE = &quot;_&quot;;
+  public static final String FILE_NAME_RES = &quot;RES&quot;;
+  public static final String FILE_UPLOAD_NAME = &quot;週次発注点除外条件UL結果&quot;;
+  public static final String BATCH_ID_WEEKLY_ORDER_DL_FILE = &quot;MAPIROP080_&quot;;
+  public static final String TXT_FILE_SUFFIX = &quot;.txt&quot;;
+  public static final String CONCERT_JSON_SUBSIDIARY_CODE = &quot;subsidiaryCode=&quot;;
+  public static final String CONCERT_JSON_CUSTOMER_CODE = &quot;customer_Code=&quot;;
+  public static final String CONCERT_JSON_SHIP_TO_CODE = &quot;ship_to_code=&quot;;
+  public static final String CONCERT_JSON_GINNER_CODE = &quot;ginner_code=&quot;;
+  public static final String CONCERT_JSON_CLASSIFY_CODE_FROME = &quot;classify_code_FROM=&quot;;
+  public static final String CONCERT_JSON_CLASSIFY_CODE_TO = &quot;classify_code_TO=&quot;;
+  public static final String CONCERT_JSON_PLANT_CODE_LIST = &quot;plant_code_LIST=&quot;;
+  public static final String CONCERT_JSON_EFFECTIVE_DATE_FROM = &quot;effective_start_date_FROM=&quot;;
+  public static final String CONCERT_JSON_EFFECTIVE_DATE_TO = &quot;effective_start_date_TO=&quot;;
+  public static final String CONCERT_JSON_DELETE_FLAG = &quot;delete_flag=&quot;;
+  public static final String ASTERISK_SHIP_TO_CODE = &quot;******&quot;;
+  public static final String ASTERISK_GINNER_CODE = &quot;**************&quot;;
+  public static final String ASTERISK_PLANT_CODE_LIST = &quot;****&quot;;
+  public static final String ASTERISK_CLASSIFY_CODE = &quot;********&quot;;
+  public static final String QUOTATION_MASKS = &quot;&quot;;
+  public static final String RESULT_CODE_SUCCESS = &quot;1&quot;;
+  public static final String RESULT_CODE_ERROR = &quot;2&quot;;
+  public static final String BATCH_RESULT_ERROR = &quot;1&quot;;
+  public static final String CHAR_COMMA = &quot;,&quot;;
+<span class="fc" id="L64">  public static final Integer INT_0 = 0;</span>
+<span class="fc" id="L65">  public static final Integer INT_1 = 1;</span>
+<span class="fc" id="L66">  public static final Integer INT_2 = 2;</span>
+<span class="fc" id="L67">  public static final Integer INT_3 = 3;</span>
+<span class="fc" id="L68">  public static final Integer INT_4 = 4;</span>
+<span class="fc" id="L69">  public static final Integer INT_5 = 5;</span>
+<span class="fc" id="L70">  public static final Integer INT_6 = 6;</span>
+<span class="fc" id="L71">  public static final Integer INT_7 = 7;</span>
+<span class="fc" id="L72">  public static final Integer INT_8 = 8;</span>
+<span class="fc" id="L73">  public static final Integer INT_9 = 9;</span>
+<span class="fc" id="L74">  public static final Integer INT_14 = 14;</span>
+<span class="fc" id="L75">  public static final Integer INT_22 = 22;</span>
+<span class="fc" id="L76">  public static final Integer MAX_RECORD = 5000;</span>
+  public static final String STRING_1 = &quot;1&quot;;
+  public static final String STRING_2 = &quot;2&quot;;
+  public static final String STRING_Z = &quot;Z&quot;;
+  public static final String STRING_0 = &quot;0&quot;;
+  public static final String STRING_999 = &quot;999&quot;;
+  public static final String M_DEMAND_FORECAST = &quot;需要予測マスタ&quot;;
+  public static final String T_WEEKLY_REORDER_POINT_DEMAND_FORECAST = &quot;週次発注点用需要予測&quot;;
+  public static final String MAPPOPO250 = &quot;&lt;発注詳細全体検索API&gt;&quot;;
+  public static final String STOCKINFOAPI = &quot;&lt;在庫情報参照API&gt;&quot;;
+  public static final String PRODUCTINFO = &quot;&lt;商品情報取得API（List）&gt;&quot;;
+  public static final String PRODUCTSUPPLIER = &quot;&lt;商品別仕入先情報取得API（List）&gt;&quot;;
+  public static final String SEARCH = &quot;検索&quot;;
+  public static final String SAVE = &quot;更新&quot;;
+  public static final String REGIST = &quot;登録&quot;;
+  public static final String ERROR_CODE1 = &quot;ED001&quot;;
+  public static final String ERROR_CODE2 = &quot;ED002&quot;;
+  public static final String ERROR_CODE3 = &quot;ED003&quot;;
+  public static final String ERROR_CODE4 = &quot;ED004&quot;;
+  public static final String M_WEEKLY_REORDER_POINT_EXCLUDE_CONDITION = &quot;週次発注点除外条件マスタ&quot;;
+  public static final String DEFAULT_CALCULATE_MINIMUM_VALUE_ERROR = &quot;過少値算出が異常終了しました。&quot;;
+  public static final String DEFAULT_CALCULATE_MINIMUM_VALUE_START = &quot;過少値算出が開始しました。&quot;;
+  public static final String DEFAULT_CALCULATE_MINIMUM_VALUE_SUCCESS = &quot;過少値算出処理が終了しました。&quot;;
+  public static final String DEFAULT_SLIDE_POOL_DATA_ERROR = &quot;週次・月次POOLデータ実績スライド処理が異常終了しました。&quot;;
+  public static final String DEFAULT_SLIDE_POOL_DATA_START = &quot;週次・月次POOLデータ実績スライド処理が開始しました。&quot;;
+  public static final String DEFAULT_SLIDE_POOL_DATA_SUCCESS = &quot;週次・月次POOLデータ実績スライド処理が終了しました。&quot;;
+  public static final String DEFAULT_CREATE_WEEKLY_POOL_ERROR = &quot;週次POOLデータ作成処理が異常終了しました。&quot;;
+  public static final String DEFAULT_CREATE_WEEKLY_POOL_START = &quot;週次POOLデータ作成処理が開始しました。&quot;;
+  public static final String DEFAULT_CREATE_WEEKLY_POOL_SUCCESS = &quot;週次POOLデータ作成処理が終了しました。&quot;;
+  public static final String DEFAULT_CREATE_FORECAST_DATA_ERROR = &quot;週次発注点用需要予測データ作成処理が異常終了しました。&quot;;
+  public static final String DEFAULT_CREATE_FORECAST_DATA_START = &quot;週次発注点用需要予測データ作成処理が開始しました。&quot;;
+  public static final String DEFAULT_CREATE_FORECAST_DATA_SUCCESS = &quot;週次発注点用需要予測データ作成成処理が終了しました。&quot;;
+  public static final String NORM_DATE_PATTERN = &quot;yyyy-MM-dd&quot;;
+  public static final String CHAR_DASH = &quot;-&quot;;
+  public static final String DATE_CODE = &quot;XXX&quot;;
+  /* 日付形式チェック  正規表現 */
+  public static final String REGULAR_DATECHECK = &quot;^[0-9]{8}$&quot;;
+  /* 英数字チェック  正規表現 */
+  public static final String REGULAR_CHARCHECK = &quot;^[A-Z0-9]*$&quot;;
+  public static final char CHAR_A = 'A';
+  public static final char CHAR_Z = 'Z';
+  public static final char CHAR_0 = '0';
+  public static final char CHAR_9 = '9';
+  public static final char CHAR_MI = '*';
+  public static final String STRING_X = &quot;X&quot;;
+  public static final String STRING_Y = &quot;Y&quot;;
+  public static final String RANK_E = &quot;E&quot;;
+
+  public static final String BLANK = &quot;&quot;;
+  public static final String TAB_SEPARATOR = &quot;\t&quot;;
+  public static final String LINE_SEPARATOR = &quot;\n&quot;;
+  public static final String STR_NG = &quot;NG&quot;;
+  public static final String STR_OK = &quot;OK&quot;;
+  public static final String STR_STS = &quot;DETAIL_STATUS&quot;;
+  public static final String PURE_DATE_PATTERN = &quot;yyyyMMdd&quot;;
+
+  public static final String HANDLE_RESULT_FAILED = &quot;2&quot;;
+  public static final String ORDER_DESC = &quot;desc&quot;;
+  /* チェック可否:FALSE */
+  public static final String CHECK_RESULT_FALSE = &quot;FALSE&quot;;
+  /* チェック可否:TRUE */
+  public static final String CHECK_RESULT_TRUE = &quot;TRUE&quot;;
+
+  /** 週次発注点計算 */
+  public static final String SUPPLIER_CHOICE_AREA_CODE = &quot;999&quot;;
+  /** 発注点．ランク */
+  public static final String REORDER_POINT_RANK = &quot;Z&quot;;
+  /** 製作品扱除外フラグ 0 */
+  public static final String PRODUCT_EXCLUDE_FLAG_ZERO = &quot;0&quot;;
+  /** 製作品扱除外フラグ 1 */
+  public static final String PRODUCT_EXCLUDE_FLAG_ONE = &quot;1&quot;;
+  /** ランク X */
+  public static final String RANK_X = &quot;X&quot;;
+  /** ランク Y */
+  public static final String RANK_Y = &quot;Y&quot;;
+  /** 安全係数 */
+<span class="fc" id="L152">  public static final BigDecimal SAFETY_COEFFICIENT = BigDecimal.valueOf(3);</span>
+  /** 需要予測数量 0 */
+<span class="fc" id="L154">  public static final BigDecimal DEMAND_FORECAST_QTY = BigDecimal.ZERO;</span>
+  /** 発注点 0 */
+<span class="fc" id="L156">  public static final Integer REORDER_POINT_ZERO = 0;</span>
+  /** 想定抽出条件 X */
+  public static final String STOCK_EXTRACT_X = &quot;X&quot;;
+  /** 想定抽出条件 Y */
+  public static final String STOCK_EXTRACT_Y = &quot;Y&quot;;
+  /** 想定抽出条件 Z */
+  public static final String STOCK_EXTRACT_Z = &quot;Z&quot;;
+  /** 発注点ロジックフラグ = &quot;2&quot; */
+  public static final String REORDER_POINT_LOGIC_RANK = &quot;2&quot;;
+  /** 検索パラメータ.ランク */
+  public static final String SEARCH_PARAM_RANK = &quot;Z&quot;;
+  /** 内部変数.最大月間出荷数 */
+<span class="fc" id="L168">  public static final BigDecimal MAXIMUM_MONTHLY_SHIPMENT = BigDecimal.ZERO;</span>
+  /** 日付フォーマット　 */
+  public static final String ZONE_DATE_TIME_FORMAT = &quot;yyyyMMddHHmmssSSS&quot;;
+
+  public static final String RESULTCODESTR = &quot;結果コード : '9'（システムエラー）&quot;;
+  public static final String ERRORCODE = &quot;エラーリスト.エラーコード : ED001&quot;;
+  public static final String ERRORLEVEL = &quot;エラーリスト.エラーレベル ： '9'&quot;;
+  public static final String ERRORPARAMETERS = &quot;エラーリスト.エラーパラメータ ： 週次発注点除外条件マスタ&quot;;
+
+  /** 調達区分 */
+  public static final String SUPPLY_TYPE_01 = &quot;01&quot;;
+
+  public static final String SUPPLY_TYPE_02 = &quot;02&quot;;
+  public static final String VOUCHER_DIV_311 = &quot;311&quot;;
+
+  /** マイナス */
+<span class="fc" id="L184">  public static final BigDecimal MINUS_01 = BigDecimal.valueOf(-1);</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

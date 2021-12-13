@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <t_data_upload_exclusive_controlColName field="control_seq_number"/>
+  <t_data_upload_exclusive_controlColName field="data_upload_exclusive_control_seq"/>
+  <t_data_upload_exclusive_controlColName field="subsidiary_code"/>
+  <t_data_upload_exclusive_controlColName field="data_code"/>
+  <t_data_upload_exclusive_controlColName field="mail_address"/>
+  <t_data_upload_exclusive_controlColName field="temp_file_code"/>
+  <t_data_upload_exclusive_controlColName field="file_path"/>
+  <t_data_upload_exclusive_controlColName field="signature"/>
+  <t_data_upload_exclusive_controlColName field="input_file_name"/>
+  <t_data_upload_exclusive_controlColName field="status_code"/>
+  <t_data_upload_exclusive_controlColName field="process_result_code"/>
+  <t_data_upload_exclusive_controlColName field="update_count"/>
+  <t_data_upload_exclusive_controlColName field="delete_flag"/>
+  <t_data_upload_exclusive_controlColName field="register_user_type"/>
+  <t_data_upload_exclusive_controlColName field="register_user"/>
+  <t_data_upload_exclusive_controlColName field="register_date_time"/>
+  <t_data_upload_exclusive_controlColName field="register_program"/>
+  <t_data_upload_exclusive_controlColName field="register_client_program"/>
+  <t_data_upload_exclusive_controlColName field="update_user_type"/>
+  <t_data_upload_exclusive_controlColName field="update_user"/>
+  <t_data_upload_exclusive_controlColName field="update_date_time"/>
+  <t_data_upload_exclusive_controlColName field="update_program"/>
+  <t_data_upload_exclusive_controlColName field="update_client_program"/>
+</dataset>

@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <t_customer_inquiry_detail subsidiary_code='ABC' inquiry_id='1001' inquiry_line_number='1' lead_time_product_inquiry_id='2' remind_flag='3' customer_item_reference='4' brand_code='5   ' brand_name='6   ' product_code='7' shipment_method_code='8 ' stork_code='9 ' bulk_partial_delivery_type='1' sales_unit_price='2' send_type='3' qty='4' inquiry_content='5' sales_unit_price_including_tax='6' sales_unit_price_ccy_code='7  ' update_count='0' delete_flag='0' register_user_type='Office' register_user='user' register_date_time='2021-10-30 15:07:21.0' register_program='MASRQ01334' register_client_program='MASRQ01334' update_user_type='Office' update_user='user' update_date_time='2021-10-30 15:07:21.0' update_program='MASRQ01334' update_client_program='MASRQ01334' />
+</dataset>

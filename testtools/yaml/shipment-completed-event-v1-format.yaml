@@ -1,0 +1,48 @@
+type: object
+title: ShipmentCompletedEvent
+event:
+  type: shipment-completed-event
+  version: 1
+components:
+  schemas:
+    shipmentCompletedList:
+      title: shipmentCompletedList
+      type: object
+      description: イベント連携情報リスト
+      properties:
+        globalNumber:
+          type: string
+          description: グローバル番号
+          maxLength: 14
+        plantCode:
+          type: string
+          description: 置場コード
+          maxLength: 4
+        shippedFlag:
+          type: string
+          description: 出荷済みフラグ
+          maxLength: 1
+        deliveryNoteNumber:
+          type: string
+          description: 納品書番号
+          maxLength: 13
+      required:
+        - globalNumber
+        - plantCode
+        - shippedFlag
+        - deliveryNoteNumber
+description: 出荷済みイベントデータJson Schemas
+maxProperties: 3
+properties:
+  subsidiaryCode:
+    type: string
+    description: 現法コード
+    maxLength: 3
+  shipmentCompletedList:
+    type: array
+    description: 出荷済みイベント情報リスト
+    items:
+      $ref: '#/components/schemas/shipmentCompletedList'
+required:
+  - subsidiaryCode
+  - shipmentCompletedList

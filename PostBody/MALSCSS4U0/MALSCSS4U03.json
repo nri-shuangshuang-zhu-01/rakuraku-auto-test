@@ -1,0 +1,40 @@
+{
+  "soSlipNumber": [
+    {
+      "soSlipNumber": "a5678",
+      "soLineKey": 0,
+      "globalNumber": "CA000032000086",
+      "inputProcessDate": "2021-02-24",
+      "plantCode": "A123",
+      "supplyType": "01",
+      "storageLocationCode": "stri",
+      "customerCode": "123456",
+      "customerSubsidiaryCode": "123",
+      "supplierCode": "1234",
+      "slipType": "321",
+      "slipSendType": "1",
+      "vsd": "2019-02-24",
+      "vrd": "2019-03-24",
+      "crd": "2019-04-24",
+      "ssd": "2019-05-24",
+      "stockType": "1",
+      "componentFlag": "1",
+      "productWeight": "123456789",
+      "soQty": 1234567,
+      "productCode": "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234",
+      "brandCode": "str2",
+      "ginnerCode": "12345678901234",
+      "soInputDate": "2021-10-24",
+      "customerItemSubReference": "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012",
+      "nativeOrderPicName": "123456789012345678901234567890123456789012345678901234567890",
+      "reasonType": "12345",
+      "analisysCode": "12345678",
+      "productControlDepartmentCode": "654321",
+      "storkCode": "02",
+      "shipmentMeansCode": "13",
+      "faxNumber": "543216789012345678901234567890123456789012345678901234567890",
+      "soDate": "2020-08-24",
+      "marketCode": "s2"
+    }
+  ]
+}

@@ -1,0 +1,1536 @@
+openapi: 3.0.0
+info:
+  title: 請求サービス用API
+  version: '1.0'
+  description: 請求サービス用API
+servers:
+  - url: 'http://localhost:3000/accounts-receivable'
+paths:
+  /v1/nopymt/search:
+    parameters: []
+    post:
+      summary: 未入金管理情報取得API
+      operationId: searchNopymtV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchNopymtResponseV1'
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: リクエスト項目に応じた未入金管理情報を、未入金管理テーブルおよび売掛先マスタより取得する
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchNopymtRequestV1'
+            examples: {}
+        description: ''
+      tags:
+        - Nopymt
+  /v1/nopymt/level-up:
+    post:
+      summary: 未入金管理情報レベルUPAPI
+      operationId: levelUpNopymtV1
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 対象未入金データの督促レベルをUPする
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LevelupNopymtRequestV1'
+        description: ''
+      tags:
+        - Nopymt
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/nopymt/level-down:
+    post:
+      summary: 未入金管理情報レベルDOWNAPI
+      operationId: levelDownNopymtV1
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 対象未入金データの督促レベルをDOWNする。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LeveldownNopymtRequestV1'
+      tags:
+        - Nopymt
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/reprint/save-without-download:
+    post:
+      summary: 督促状発行(ダウンロード無し)API
+      operationId: saveWithoutDownloadReprintV1
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: 対象未入金データの督促状を作成し、指定の媒体で出力する。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SaveWithoutDownloadReprintRequestV1'
+      tags:
+        - Reprint
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/reprint/save-with-download:
+    post:
+      summary: 督促状発行(ダウンロード含む)API
+      operationId: saveWithDownloadReprintV1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SaveWithDownloadReprintRequestV1'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+          text/html:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      description: 対象未入金データの督促状を作成し、指定の媒体で出力する。
+      x-channel:
+        - office
+        - supplier
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      tags:
+        - Reprint
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/nopymt/search-detail:
+    get:
+      summary: 未入金詳細情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchDetailNopymtResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchDetailNopymtV1
+      parameters:
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          name: subsidiaryCode
+          required: true
+          description: 現法コード
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          name: billToCode
+          required: true
+          description: 売掛先コード
+        - schema:
+            type: string
+            maxLength: 12
+          in: query
+          name: invoiceNo
+          description: インボイスNo
+        - schema:
+            type: string
+          in: query
+          name: invoiceStatus
+          description: インボイスステータス
+        - schema:
+            type: string
+          in: query
+          name: startIndex
+          description: 取得開始位置
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: responseNumber
+          description: 返却件数
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+          description: ソート順
+          required: true
+      description: リクエスト項目に応じた、売掛先単位の未入金管理情報を取得する。
+      x-channel:
+        - office
+        - supplier
+      tags:
+        - Nopymt
+    parameters: []
+  /v1/nopymt/save-info:
+    post:
+      summary: 未入金管理情報更新API
+      operationId: saveInfoNopymtV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveInfoNopymtRequestV1'
+        description: ''
+      description: 対象未入金データのコンタクト履歴を登録する。
+      x-channel:
+        - office
+        - supplier
+      tags:
+        - Nopymt
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/Customer-Statement/search:
+    parameters: []
+    post:
+      summary: CustomerStatement検索API
+      operationId: searchCustomerStatementV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCustomerStatementResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCustomerStatementRequestV1'
+      description: リクエスト項目に応じたCustomer Statement情報の件数を、未入金管理テーブル、入金アンマッチデータより取得する
+      x-channel:
+        - office
+        - supplier
+      tags:
+        - CustomerStatement
+  /v1/reprint/output:
+    post:
+      summary: CustomerStatement出力API
+      operationId: outputReprintV1
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      description: リクエスト項目に応じたCustomer Statement情報を送付方法（印刷、メール、FAX）に従い出力する。
+      x-channel:
+        - office
+        - supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutputReprintRequestV1'
+      tags:
+        - Reprint
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+    parameters: []
+  /v1/reprint/search:
+    get:
+      summary: 再印刷検索データ取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchReprintResponseV1'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchReprintV1
+      description: リクエスト項目を基に再印刷テーブル、社員マスタ、汎用マスタから検索を行う。
+      x-channel:
+        - office
+        - supplier
+      parameters:
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          description: 出力区分
+          name: outputDiv
+          required: true
+        - schema:
+            type: string
+            maxLength: 3
+          in: query
+          description: 現法コード
+          name: subsidiaryCode
+          required: true
+        - schema:
+            type: string
+            format: date
+            maxLength: 8
+          in: query
+          description: 作成日（自）
+          name: createDateFrom
+          required: true
+        - schema:
+            type: string
+            format: date
+            maxLength: 8
+          in: query
+          description: 作成日（至）
+          name: createDateTo
+          required: true
+        - schema:
+            type: string
+          in: query
+          description: 帳票種別
+          name: reportDiv
+          required: true
+        - schema:
+            type: string
+            maxLength: 100
+          in: query
+          description: 検索キーワード
+          name: searchKey
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          description: 作成者ID
+          name: createUserId
+        - schema:
+            type: string
+            maxLength: 1
+          in: query
+          description: 出力状況
+          name: outputStatus
+          required: true
+        - schema:
+            type: string
+            maxLength: 6
+          in: query
+          description: 売掛先コード
+          name: billToCode
+        - schema:
+            type: string
+          in: query
+          description: ページ番号
+          name: pageNumber
+          required: true
+        - schema:
+            type: integer
+            maxLength: 10
+          in: query
+          description: 表示件数
+          name: displayCount
+          required: true
+      tags:
+        - Reprint
+    parameters: []
+  /v1/reprint/save:
+    post:
+      summary: 再印刷API
+      operationId: SaveReprintV1
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SaveReprintRequestV1'
+        description: ''
+      description: 帳票の再印刷を行う。
+      x-channel:
+        - office
+        - supplier
+      tags:
+        - Reprint
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+components:
+  schemas:
+    SearchNopymtRequestV1:
+      title: SearchNopymtRequestV1
+      type: object
+      description: ''
+      properties:
+        bIllToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        date:
+          type: string
+          description: 日付
+        pymtDuescheduledDateFrom:
+          type: string
+          format: date
+          description: 支払期日(From)
+        pymtDuePromiseDateFrom:
+          type: string
+          format: date
+          description: 支払約束日(From)
+        pymtDuescheduledDateTo:
+          type: string
+          format: date
+          description: 支払期日(To)
+        pymtDuePromiseDateTo:
+          type: string
+          format: date
+          description: 支払約束日(To)
+        pymtState:
+          type: string
+          description: 入金状況
+        level:
+          type: string
+          description: レベル
+        dunningLevel:
+          type: string
+          maxLength: 1
+          description: 督促レベル
+        titlelevel:
+          type: string
+          description: タイトルレベル
+          maxLength: 1
+        chargeId:
+          type: string
+          description: 担当ID
+        buCode:
+          type: string
+          description: 主管部署コード
+        tradeSts:
+          type: string
+          maxLength: 2
+          description: 取引状態
+        nonPymtAmtExtractionFrom:
+          type: string
+          maxLength: 23
+          description: 未入金額抽出 (From)
+        nonPymtAmtExtractionTo:
+          type: string
+          maxLength: 23
+          description: 未入金額抽出 (To)
+        settlementMethodList:
+          type: array
+          description: 決済形態リスト
+          items:
+            type: object
+            properties:
+              settlementMethod:
+                type: string
+                description: 決済形態
+                maxLength: 3
+        paymentMeansList:
+          description: 支払手段リスト
+          type: array
+          items:
+            type: object
+            properties:
+              paymentMeans:
+                type: string
+                maxLength: 2
+                description: 支払手段
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        subsidiaryDate:
+          type: string
+          format: date
+          description: 当日（現法日付）
+        sortItem:
+          type: string
+          description: ソート項目
+        sortOrder:
+          type: string
+          description: ソート順序
+        pageNumber:
+          type: string
+          description: ページ番号
+        displayCount:
+          type: integer
+          description: 表示件数
+        responseType:
+          type: string
+          description: レスポンス種別
+      required:
+        - date
+        - pymtState
+        - level
+        - dunningLevel
+        - titlelevel
+        - tradeSts
+        - subsidiaryCode
+        - subsidiaryDate
+        - sortItem
+        - sortOrder
+        - pageNumber
+        - displayCount
+        - responseType
+    SearchNopymtResponseV1:
+      title: SearchNopymtResponseV1
+      type: object
+      description: レスポンスデータ
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        nativeBillToName:
+          type: string
+          description: 売掛先名（現地語）
+          maxLength: 200
+        billToName:
+          type: string
+          description: 売掛先名
+          maxLength: 60
+        staffId:
+          type: string
+          description: Staff ID
+        invoiceNo:
+          type: string
+          description: インボイス番号
+          maxLength: 12
+        invoiceDate:
+          type: string
+          description: インボイス日付
+          maxLength: 12
+        billDateYm:
+          type: string
+          description: 請求年月
+          maxLength: 6
+        custCurrencyCode:
+          type: string
+          description: 顧客通貨情報_通貨コード
+          maxLength: 3
+        billAmt:
+          type: string
+          description: 請求金額
+          maxLength: 23
+        nonPymtAmt:
+          type: string
+          description: 未入金額
+          maxLength: 23
+        pymtAmtCust:
+          type: string
+          description: 入金額（顧客通貨）
+          maxLength: 23
+        subCurrencyCd:
+          type: string
+          description: 現法通貨情報_通貨コード
+          maxLength: 3
+        billAmtSubsidialy:
+          type: string
+          description: 請求金額（現法通貨）
+          maxLength: 23
+        nonPymtAmtSubsidialy:
+          type: string
+          description: 未入金金額（現法通貨）
+          maxLength: 23
+        pymtDueScheduledDate:
+          type: string
+          description: 支払期日
+          format: date
+        pymtDuePromiseDate:
+          type: string
+          description: 支払約束日
+          format: date
+        pymtCompleteDate:
+          type: string
+          description: 入金完了日
+          format: date
+        dunningSendMedia:
+          type: string
+          description: 督促状送付媒体
+          maxLength: 2
+        dunningSendId:
+          type: string
+          description: 督促状送信者ＩＤ
+          maxLength: 6
+        dunningSendRequestDate:
+          type: string
+          description: 督促状送信依頼日
+          format: date
+        dunningLevel:
+          type: string
+          description: 督促レベル
+          maxLength: 1
+        titleLevel:
+          type: string
+          description: タイトルレベル
+          maxLength: 1
+        buCode:
+          type: string
+          description: 主管部署コード
+        acceptDiv:
+          type: string
+          description: 検収区分
+          maxLength: 1
+        settlementMethod:
+          type: string
+          description: 決済形態
+          maxLength: 3
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+        tradeStsDiv:
+          type: string
+          description: 取引状態区分
+          maxLength: 2
+        delayReasonDiv:
+          type: string
+          description: 遅延理由区分
+          maxLength: 3
+        headerRef:
+          type: string
+          description: ヘッダー注文番号
+          maxLength: 100
+        customerRefNtv:
+          type: string
+          description: 注文番号(親)(明細)
+          maxLength: 60
+        custSubRef:
+          type: string
+          description: 注文番号（子）
+          maxLength: 162
+        updateCount:
+          type: string
+          description: 更新回数
+          maxLength: 4
+        deleteFlag:
+          type: string
+          description: 削除フラグ
+          maxLength: 1
+        registerUser:
+          type: string
+          description: 登録者
+          maxLength: 256
+        registerSystemTime:
+          type: string
+          description: 登録日時（システム日時）
+          format: date-time
+        registerTime:
+          type: string
+          description: 登録日時（現法日時）
+          format: date-time
+        registerLocalTime:
+          type: string
+          description: 登録日時（ロケール日時）
+          format: date-time
+        registerProgram:
+          type: string
+          description: 登録プログラム
+          maxLength: 15
+        updateUser:
+          type: string
+          description: 更新者
+          maxLength: 256
+        updateSystemTime:
+          type: string
+          description: 更新日時（システム日時）
+          format: date-time
+        updateTime:
+          type: string
+          description: 更新日時（現法日時）
+          format: date-time
+        updateLocalTime:
+          type: string
+          description: 更新日時（ロケール日時）
+          format: date-time
+        updateProgram:
+          type: string
+          description: 更新プログラム
+          maxLength: 15
+        arrears:
+          type: string
+          description: 遅延日数
+          maxLength: 2
+      required:
+        - subsidiaryCode
+        - billToCode
+        - billToName
+        - invoiceNo
+        - invoiceDate
+        - updateCount
+        - deleteFlag
+        - registerUser
+        - registerSystemTime
+        - registerTime
+        - registerLocalTime
+        - registerProgram
+        - updateUser
+        - updateSystemTime
+        - updateTime
+        - updateLocalTime
+        - updateProgram
+        - arrears
+    LevelupNopymtRequestV1:
+      title: LevelupNopymtRequestV1
+      type: object
+      description: ''
+      properties:
+        requestDateList:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestDateListV1'
+        dunningOutputDiv:
+          type: string
+          description: 督促状出力区分
+      required:
+        - requestDateList
+        - dunningOutputDiv
+    LeveldownNopymtRequestV1:
+      title: LeveldownNopymtRequestV1
+      description: リクエストデータ
+      type: object
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        level:
+          type: string
+          description: レベル
+        invoiceIssuanceDate:
+          type: string
+          description: Invoice発行日
+          format: date
+        invoiceNo:
+          type: string
+          description: Invoice番号
+          maxLength: 12
+        pymtDuePromiseDate:
+          type: string
+          description: 支払約束日
+          maxLength: 8
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+    SaveWithoutDownloadReprintRequestV1:
+      title: SaveWithoutDownloadReprintRequestV1
+      type: object
+      description: リクエストデータ
+      properties:
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        level:
+          type: string
+          description: レベル
+        arrears:
+          type: string
+          maxLength: 2
+          description: 遅延日数
+        invoiceNo:
+          type: string
+          maxLength: 12
+          description: Invoice番号
+        invoiceIssuanceDate:
+          type: string
+          format: date
+          description: Invoice発行日
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        loginUser:
+          type: string
+          description: ログインユーザ
+        pymtDuePromiseDate:
+          type: string
+          format: date
+          description: 支払約束日
+      required:
+        - billToCode
+        - level
+        - arrears
+        - invoiceNo
+        - invoiceIssuanceDate
+        - subsidiaryCode
+        - loginUser
+        - pymtDuePromiseDate
+    SaveWithDownloadReprintRequestV1:
+      title: SaveWithDownloadReprintRequestV1
+      type: object
+      description: リクエストデータ
+      properties:
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        level:
+          type: string
+          description: レベル
+        arrears:
+          type: string
+          maxLength: 2
+          description: 遅延日数
+        invoiceNo:
+          type: string
+          maxLength: 12
+          description: Invoice番号
+        invoiceIssuanceDate:
+          type: string
+          format: date
+          description: Invoice発行日
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        loginUser:
+          type: string
+          description: ログインユーザ
+        pymtDuePromiseDate:
+          type: string
+          format: date
+          description: 支払約束日
+        sendMedia:
+          type: string
+          maxLength: 2
+          description: 送信媒体
+        fax:
+          type: string
+          maxLength: 60
+          description: FAX
+        emailTo:
+          type: string
+          maxLength: 256
+          format: email
+          description: e-mail To
+        emailCc:
+          type: string
+          maxLength: 256
+          format: email
+          description: e-mail Cc
+      required:
+        - billToCode
+        - level
+        - arrears
+        - invoiceNo
+        - invoiceIssuanceDate
+        - subsidiaryCode
+        - loginUser
+        - pymtDuePromiseDate
+        - sendMedia
+    SearchDetailNopymtResponseV1:
+      title: SearchDetailNopymtResponseV1
+      type: object
+      description: ''
+      properties:
+        billToData:
+          $ref: '#/components/schemas/BillToDataV1'
+        noPaymentInfo:
+          type: array
+          description: 未入金管理情報
+          items:
+            $ref: '#/components/schemas/NoPaymentInfoV1'
+      required:
+        - billToData
+        - noPaymentInfo
+    SaveInfoNopymtRequestV1:
+      title: SaveInfoRequestV1
+      type: object
+      properties:
+        loginObjectList:
+          type: array
+          description: 登録対象情報
+          items:
+            $ref: '#/components/schemas/LoginObjectListV1'
+        loginDataList:
+          type: array
+          description: 登録データ
+          items:
+            $ref: '#/components/schemas/LoginDataListV1'
+      required:
+        - loginObjectList
+    SearchCustomerStatementResponseV1:
+      title: SearchCustomerStatementResponseV1
+      type: object
+      properties:
+        searchCount:
+          type: integer
+          description: 検索結果件数
+        customerStatementSendMediaFlag:
+          type: string
+          maxLength: 1
+          description: カスタマーステートメント送付媒体区分
+        emailBillTo:
+          type: string
+          format: email
+          maxLength: 256
+          description: 売掛先メールアドレス(To)
+        accountsReceivableEmailCc:
+          type: string
+          format: email
+          maxLength: 256
+          description: 売掛先メールアドレス(Cc)
+        faxNumberBillTo:
+          type: string
+          maxLength: 60
+          description: 売掛先ＦＡＸ番号
+      required:
+        - searchCount
+    SearchCustomerStatementRequestV1:
+      title: SearchCustomerStatementRequestV1
+      type: object
+      description: ''
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        billToCodeFrom:
+          type: string
+          description: 売掛先コード(From)
+          maxLength: 6
+        billToCodeTo:
+          type: string
+          description: 売掛先コード(To)
+          maxLength: 6
+        billToCloseDate:
+          type: string
+          description: 売掛先締日
+          format: date
+        chargeId:
+          type: string
+          description: 担当ID
+        pymtDuescheduledDateFrom:
+          type: string
+          description: 支払期日 (From)
+          format: date
+        pymtDuescheduledDateTo:
+          type: string
+          description: 支払期日 (To)
+          format: date
+        invoiceNoFrom:
+          type: string
+          description: Invoice番号 (From)
+          maxLength: 12
+        invoiceNoTo:
+          type: string
+          description: Invoice番号 (To)
+          maxLength: 12
+        invoiceDateFrom:
+          type: string
+          description: Invoice日付 (From)
+          format: date
+        invoiceDateTo:
+          type: string
+          description: Invoice日付 (To)
+          format: date
+        InvoiceDisplayObject:
+          type: string
+          description: Invoice表示対象
+        billToCodeList:
+          type: array
+          description: 売掛先コードリスト
+          items:
+            $ref: '#/components/schemas/BillToCodeListV1'
+        displayDataFlagInvoice:
+          type: string
+          description: 表示データフラグ_Invoice
+        displayDataFlagPrePymt:
+          type: string
+          description: 表示データフラグ_前受金
+        displayDataFlagKariPymt:
+          type: string
+          description: 表示データフラグ_仮受金
+        billToDirectFlag:
+          type: string
+          description: 売掛先直接指定フラグ
+      required:
+        - subsidiaryCode
+    OutputReprintRequestV1:
+      title: OutputReprintRequestV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        loginUser:
+          type: string
+          description: ログインユーザ
+        billToCodeFrom:
+          type: string
+          maxLength: 6
+          description: 売掛先コード(From)
+        billToCodeTo:
+          type: string
+          maxLength: 6
+          description: 売掛先コード(To)
+        billToCloseDate:
+          type: string
+          format: date
+          description: 売掛先締日
+        ChargeId:
+          type: string
+          description: 担当ID
+        pymtDuescheduledDateFrom:
+          type: string
+          format: date
+          description: 支払期日 (From)
+        pymtDuescheduledDateTo:
+          type: string
+          format: date
+          description: 支払期日 (To)
+        invoiceNoFrom:
+          type: string
+          maxLength: 12
+          description: Invoice番号 (From)
+        invoiceNoTo:
+          type: string
+          maxLength: 12
+          description: Invoice番号 (To)
+        invoiceDateFrom:
+          type: string
+          format: date
+          description: Invoice日付 (From)
+        invoiceDateTo:
+          type: string
+          format: date
+          description: Invoice日付 (To)
+        invoiceDisplayObject:
+          type: string
+          maxLength: 1
+          description: Invoice表示対象
+        billToCodeList:
+          type: array
+          description: 売掛先コードリスト
+          items:
+            $ref: '#/components/schemas/BillToCodeListV1'
+        issuanceDate:
+          type: string
+          format: date
+          description: 発行日
+        sendWay:
+          type: string
+          maxLength: 1
+          description: 送付方法
+        emailTo:
+          type: string
+          maxLength: 256
+          format: email
+          description: E-mail_To
+        emailCc:
+          type: string
+          format: email
+          maxLength: 256
+          description: E-mail_Cc
+        fax:
+          type: string
+          maxLength: 60
+          description: Fax
+        displayDataFlagInvoice:
+          type: string
+          description: 表示データフラグ_Invoice
+        displayDataFlagPrePymt:
+          type: string
+          description: 表示データフラグ_前受金
+        displayDataFlagKariPymt:
+          type: string
+          description: 表示データフラグ_仮受金
+        billToDirectFlag:
+          type: string
+          description: 売掛先直接指定フラグ
+      required:
+        - subsidiaryCode
+        - loginUser
+        - sendWay
+    SearchReprintResponseV1:
+      title: SearchReprintResponseV1
+      description: 再印刷情報
+      type: object
+      properties:
+        outputDiv:
+          type: string
+          description: 出力区分
+          maxLength: 1
+        createDate:
+          type: string
+          description: 作成日
+          format: date
+        reportDiv:
+          type: string
+          description: 帳票種別
+        searchKey:
+          type: string
+          description: 検索キーワード
+          maxLength: 100
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        outputStatus:
+          type: string
+          description: 出力状況
+          maxLength: 1
+        createUserId:
+          type: string
+          description: 作成者ID
+        createUserName:
+          type: string
+          description: 作成者名
+        reprintuserId:
+          type: string
+          description: 再印刷者ID
+          maxLength: 6
+        reprintedName:
+          type: string
+          description: 再印刷者
+        reprintCount:
+          type: string
+          description: 再印刷回数
+          maxLength: 3
+        reprintId:
+          type: string
+          description: 再印刷ID
+          maxLength: 10
+      required:
+        - outputDiv
+        - reportDiv
+        - outputStatus
+        - createUserId
+        - reprintCount
+        - reprintId
+    SaveReprintRequestV1:
+      title: SaveReprintRequestV1
+      description: 再印刷情報
+      type: object
+      properties:
+        reprintId:
+          type: string
+          description: 再印刷ID
+          maxLength: 10
+        outputDiv:
+          type: string
+          description: 出力区分
+          maxLength: 1
+        loginUser:
+          type: string
+          description: ログインユーザ
+        outputStatus:
+          type: string
+          description: 出力状況
+          maxLength: 1
+        reprintCount:
+          type: string
+          description: 再印刷回数
+          maxLength: 3
+      required:
+        - reprintId
+        - outputDiv
+        - loginUser
+        - outputStatus
+        - reprintCount
+    PaymentMeansListV1:
+      title: PaymentMeansListV1
+      type: object
+      properties:
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+    RequestDateListV1:
+      title: RequestDateListV1
+      type: object
+      description: ''
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+        level:
+          type: string
+          description: レベル
+        arrears:
+          type: string
+          description: 遅延日数
+          maxLength: 2
+        invoiceNo:
+          type: string
+          description: Invoice番号
+          maxLength: 12
+        invoiceIssuanceDate:
+          type: string
+          description: Invoice発行日
+          format: date
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        loginUser:
+          type: string
+          description: ログインユーザ
+        pymtDuePromiseDate:
+          type: string
+          description: 支払約束日
+          format: date
+        sendMedia:
+          type: string
+          description: 送信媒体
+          maxLength: 2
+        fax:
+          type: string
+          description: FAX
+          maxLength: 60
+        emailTo:
+          type: string
+          description: e-mail To
+          format: email
+          maxLength: 256
+        emailCc:
+          type: string
+          description: e-mail Cc
+          format: email
+          maxLength: 256
+      required:
+        - billToCode
+        - level
+        - arrears
+        - invoiceNo
+        - invoiceIssuanceDate
+        - subsidiaryCode
+        - loginUser
+        - pymtDuePromiseDate
+    BillToDataV1:
+      title: billToDataV1
+      type: object
+      properties:
+        billToName:
+          type: string
+          description: 売掛先名
+          maxLength: 60
+        tradingSts:
+          type: string
+          description: 取引状態
+          maxLength: 2
+        telNumber:
+          type: string
+          description: TEL
+          maxLength: 60
+        fax:
+          type: string
+          description: FAX
+          maxLength: 60
+        emailTo:
+          type: string
+          description: E_Mail(To)
+          format: email
+          maxLength: 256
+        emailCc:
+          type: string
+          description: E_Mail(Cc)
+          format: email
+          maxLength: 256
+        sendMedia:
+          type: string
+          description: 送信媒体
+          maxLength: 2
+        paymentTerm:
+          type: string
+          description: 支払条件
+          maxLength: 42
+        tradeCurrency:
+          type: string
+          description: 取引通貨
+          maxLength: 3
+        nativeMainBusinessDepartment:
+          type: string
+          description: 主管事業部
+          maxLength: 80
+        matchingFlag:
+          type: string
+          description: 検収有無
+          maxLength: 1
+        amount:
+          type: string
+          description: 手形金額
+          maxLength: 23
+      required:
+        - billToName
+        - paymentTerm
+    NoPaymentInfoV1:
+      title: NoPaymentInfoV1
+      type: object
+      properties:
+        invoiceNo:
+          type: string
+          description: Invoice No
+          maxLength: 12
+        invoiceDate:
+          type: string
+          description: Invoice Date
+          format: date
+        paymentMeans:
+          type: string
+          description: 支払手段
+          maxLength: 2
+        dunningLevel:
+          type: string
+          description: 督促レベル
+          maxLength: 1
+        pymtDuescheduledDate:
+          type: string
+          description: 支払期日
+          format: date
+        arrears:
+          type: string
+          description: 遅延日数
+          maxLength: 2
+        billingAmount:
+          type: string
+          description: 請求金額
+          maxLength: 23
+        nonPymtAmt:
+          type: string
+          description: 未入金額
+          maxLength: 23
+        paymentAmount:
+          type: string
+          description: 入金額
+          maxLength: 23
+        comp.Date:
+          type: string
+          description: 支払完了日
+          format: date
+        delayReasonDiv:
+          type: string
+          description: 遅延理由区分
+          maxLength: 3
+        paymentTerms:
+          type: string
+          description: 支払条件
+          maxLength: 42
+        dunningSendMedia:
+          type: string
+          description: 督促状送付媒体
+          maxLength: 2
+        updateTime:
+          type: string
+          description: 更新日時（現法日時）
+          format: date-time
+        updateUser:
+          type: string
+          description: 更新者
+          maxLength: 256
+        tradingSts:
+          type: string
+          description: 取引状態
+          maxLength: 2
+      required:
+        - invoiceNo
+        - invoiceDate
+    LoginObjectListV1:
+      title: loginObjectListV1
+      type: object
+      description: 登録対象情報
+      properties:
+        subsidiaryCode:
+          type: string
+          maxLength: 3
+          description: 現法コード
+        billToCode:
+          type: string
+          maxLength: 6
+          description: 売掛先コード
+        invoiceNo:
+          type: string
+          maxLength: 12
+          description: Invoice番号
+        invoiceIssuanceDate:
+          type: string
+          format: date
+          description: Invoice発行日
+      required:
+        - subsidiaryCode
+        - billToCode
+        - invoiceNo
+        - invoiceIssuanceDate
+    LoginDataListV1:
+      title: LoginDataListV1
+      type: object
+      description: 登録データ
+      properties:
+        tradingSts:
+          type: string
+          description: 取引状態
+          maxLength: 2
+        delayReason:
+          type: string
+          description: 遅延理由
+          maxLength: 3
+        pymtDuePromiseDate:
+          type: string
+          format: date
+          description: 支払約束日
+    BillToCodeListV1:
+      title: BillToCodeListV1
+      type: object
+      properties:
+        billToCode:
+          type: string
+          description: 売掛先コード
+          maxLength: 6
+  parameters: {}
+tags:
+  - name: Nopymt
+  - name: Reprint
+  - name: CustomerStatement

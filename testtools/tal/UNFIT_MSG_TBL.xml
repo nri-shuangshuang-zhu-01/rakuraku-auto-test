@@ -1,0 +1,22 @@
+現法コード::subsidiary_cd::char(3)::NOT NULL(PK)
+受付番号::rcv_num::char(6)::NOT NULL(PK)
+受付日時::inpt_wk_date::timestamp with time zone::NOT NULL(PK)
+メッセージ番号::msg_seq::numeric(3)::NOT NULL(PK)
+アンフィット区分::uf_kbn::char(1)::NULL
+メッセージ区分::msg_kbn::char(1)::NULL
+エラー区分::err_kbn::char(1)::NULL
+エラーコード::err_cd::varchar(8)::NULL
+優先フラグ::pri_flg::char(1)::NULL
+エラーメッセージパラメータ::msg_param::varchar(500)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

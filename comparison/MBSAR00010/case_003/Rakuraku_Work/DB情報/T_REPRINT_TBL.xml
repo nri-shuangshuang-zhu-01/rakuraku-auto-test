@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_REPRINTColName field="reprint_id" comment="再印刷ID:再印刷テーブルを一元管理するＰＫ"/>
+  <T_REPRINTColName field="report_id" comment="帳票ID:出力した帳票（PDF）のID。"/>
+  <T_REPRINTColName field="file_id" comment="ファイルID"/>
+  <T_REPRINTColName field="report_template_name" comment="帳票テンプレート名"/>
+  <T_REPRINTColName field="user_id" comment="ユーザーID:利用者のID"/>
+  <T_REPRINTColName field="output_type" comment="出力区分:出力（印刷）媒体の区分。※コード内容はコード一覧参照"/>
+  <T_REPRINTColName field="output_status" comment="出力状況"/>
+  <T_REPRINTColName field="report_type" comment="帳票種類:帳票種類"/>
+  <T_REPRINTColName field="subsidiary_code" comment="現法コード:現法コード"/>
+  <T_REPRINTColName field="send_email_id" comment="送信メールID:媒体がメールの場合、メールアドレスの送信先"/>
+  <T_REPRINTColName field="email_template_id" comment="メールテンプレートID:媒体がメールの場合、メールアドレスの送信先"/>
+  <T_REPRINTColName field="send_email_server_category" comment="送信メールサーバ種別:媒体がメールの場合、メールアドレスの送信先"/>
+  <T_REPRINTColName field="service_type" comment="サービス区分"/>
+  <T_REPRINTColName field="email_address_to" comment="メールアドレス（TO）"/>
+  <T_REPRINTColName field="email_address_cc" comment="メールアドレス（CC）"/>
+  <T_REPRINTColName field="email_address_bcc" comment="メールアドレス（BCC）"/>
+  <T_REPRINTColName field="email_address_from" comment="メールアドレス（FROM）"/>
+  <T_REPRINTColName field="email_address_reply_to" comment="メールアドレス（REPLYTO）"/>
+  <T_REPRINTColName field="email_title" comment="メール題名"/>
+  <T_REPRINTColName field="email_body" comment="メール本文"/>
+  <T_REPRINTColName field="pdf_file_name" comment="PDFファイル名:PDF添付するファイル名(メールに表示される)｡※出力区分がメールは必須"/>
+  <T_REPRINTColName field="qt_or_so_number" comment="見積／受注番号:QT／SO番号"/>
+  <T_REPRINTColName field="send_fax_id" comment="送信FAXID"/>
+  <T_REPRINTColName field="fax_customer_code" comment="FAX顧客コード:FAX送信ファイル名用の顧客コード"/>
+  <T_REPRINTColName field="fax" comment="FAX番号:媒体がFAXの場合、FAX番号"/>
+  <T_REPRINTColName field="search_keyword" comment="検索キーワード:検索用の帳票を特定するキーワード、帳票名等"/>
+  <T_REPRINTColName field="reprint_count" comment="再印刷回数:再印刷した回数"/>
+  <T_REPRINTColName field="report_create_date" comment="帳票作成日:出力した帳票（PDF)の日時"/>
+  <T_REPRINTColName field="reprint_staff_id" comment="再印刷者ID:直近で再印刷したユーザのID"/>
+  <T_REPRINTColName field="bill_to_code" comment="売掛先コード"/>
+  <T_REPRINTColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <T_REPRINTColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_REPRINTColName field="register_user_type" comment="登録者区分:Office：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_REPRINTColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <T_REPRINTColName field="register_date_time" comment="登録日時"/>
+  <T_REPRINTColName field="register_program" comment="登録プログラム"/>
+  <T_REPRINTColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <T_REPRINTColName field="update_user_type" comment="更新者区分:Office：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <T_REPRINTColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <T_REPRINTColName field="update_date_time" comment="更新日時"/>
+  <T_REPRINTColName field="update_program" comment="更新プログラム"/>
+  <T_REPRINTColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

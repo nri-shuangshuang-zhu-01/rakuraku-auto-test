@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <B_STOCK_SETTING subsidiary_code="CHN" plant_code="1001" g_inner_code="12345600000001" update_hub_flag="1" register_system_time="2021-06-20 11:20:01.0" update_system_time="2021-06-30 11:20:01.0" update_program="JOB101"/>
+  <B_STOCK_SETTING subsidiary_code="CHN" plant_code="1003" g_inner_code="12345600000003" update_hub_flag="1" register_system_time="2021-06-20 11:20:02.0" update_system_time="2021-06-30 11:20:02.0" update_program="JOB102"/>
+  <B_STOCK_SETTING subsidiary_code="CHN" plant_code="1004" g_inner_code="12345600000004" update_hub_flag="1" register_system_time="2021-06-20 11:20:03.0" update_system_time="2021-06-30 11:20:03.0" update_program="JOB103"/>
+  <B_STOCK_SETTING subsidiary_code="CHN" plant_code="1002" g_inner_code="12345600000002" update_hub_flag="1" register_system_time="2021-06-20 11:20:04.0" update_system_time="2021-06-30 11:20:04.0" update_program="JOB104"/>
+  <B_STOCK_SETTING subsidiary_code="CHN" plant_code="1002" g_inner_code="12345600000001" update_hub_flag="1" register_system_time="2021-06-20 11:20:05.0" update_system_time="2021-06-30 11:20:05.0" update_program="JOB105"/>
+  <B_STOCK_SETTING subsidiary_code="CHN" plant_code="1001" g_inner_code="12345600000002" update_hub_flag="1" register_system_time="2021-06-20 11:20:06.0" update_system_time="2021-06-30 11:20:06.0" update_program="JOB106"/>
+  <B_STOCK_SETTING subsidiary_code="THA" plant_code="1004" g_inner_code="12345600000004" update_hub_flag="1" register_system_time="2021-06-20 11:20:07.0" update_system_time="2021-06-30 11:20:07.0" update_program="JOB107"/>
+  <B_STOCK_SETTING subsidiary_code="TIW" plant_code="1005" g_inner_code="12345600000005" update_hub_flag="1" register_system_time="2021-06-20 11:20:08.0" update_system_time="2021-06-30 11:20:08.0" update_program="JOB108"/>
+  <B_STOCK_SETTING subsidiary_code="TIW" plant_code="1001" g_inner_code="12345600000001" update_hub_flag="1" register_system_time="2021-06-20 11:20:09.0" update_system_time="2021-06-30 11:20:09.0" update_program="JOB109"/>
+</dataset>

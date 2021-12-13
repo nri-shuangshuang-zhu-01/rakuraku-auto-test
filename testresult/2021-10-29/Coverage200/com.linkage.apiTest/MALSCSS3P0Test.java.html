@@ -1,0 +1,1624 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MALSCSS3P0Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.apiTest</a> &gt; <span class="el_source">MALSCSS3P0Test.java</span></div><h1>MALSCSS3P0Test.java</h1><pre class="source lang-java linenums">package com.linkage.apiTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MALSCSS3P0機能確認&quot;)
+@DisplayName(&quot;MALSCSS3P0機能確認&quot;)
+<span class="nc" id="L15">public class MALSCSS3P0Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MALSCSS3P0&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MALSCSS3P0&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-1-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-1-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-1-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-1-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-1-----/v1/mail-template/preview;;メールプレビューAPI;;example-1-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-1-----/v1/report/print;;帳票作成API;;example-1-----/v1/report/download;;帳票ファイル取得API呼出;;example-1-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-1*****2+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****3+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-3*****4+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-4*****5+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****6+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-1*****7+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-1*****8+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-1*****9+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-3-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****10+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-3-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****11+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-3-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****12+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-3-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****13+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-3-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****14+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****15+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****16+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****17+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****18+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****19+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****20+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****21+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****22+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****23+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****24+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****25+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2*****26+++++/v1/gw-stop-shipment/reference;;出荷不可参照API;;example-2-----/internal/v1/product-classification/get-list;;製品分類マスタ参照API;;example-2-----/internal/v1/reason-type/get-list;;理由区分マスタ参照API;;example-2-----/internal/v1/supplier/get-list;;仕入先マスタ参照API;;example-2-----/internal/v1/plant/get-list;;置場マスタ参照API;;example-2-----/v1/mail-template/preview;;メールプレビューAPI;;example-2-----/v1/report/find;;帳票テンプレート詳細情報取得API;;example-2-----/v1/report/print;;帳票作成API;;example-2-----/v1/report/download;;帳票ファイル取得API呼出;;example-2-----/v1/mail/send;;メール送信API;;example-1-----/v1/gw-stop-shipment/save;;出荷不可入力更新(MFS→GW)API;;example-2&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;test0001&quot;)
+	@DisplayName(&quot;test0001&quot;)
+	public void testMALSCSS3P0_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L52">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L55">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L58">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L61">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L64">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L67">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L70">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L73">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L76">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L79">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L82">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L85">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L88">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L91">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L94">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L96">	}</span>
+
+	@Test
+	@Tag(&quot;test0002&quot;)
+	@DisplayName(&quot;test0002&quot;)
+	public void testMALSCSS3P0_002() throws Exception {
+
+<span class="nc" id="L103">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L107">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L110">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L113">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L116">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L119">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L122">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L125">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L128">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L131">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L134">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L137">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L140">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L143">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L146">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L149">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L152">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L155">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L157">	}</span>
+
+	@Test
+	@Tag(&quot;test0003&quot;)
+	@DisplayName(&quot;test0003&quot;)
+	public void testMALSCSS3P0_003() throws Exception {
+
+<span class="nc" id="L164">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L168">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L171">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L174">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L177">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L180">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L183">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L186">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L189">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L192">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L195">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L198">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L201">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L204">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L207">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L210">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L213">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L216">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L218">	}</span>
+
+	@Test
+	@Tag(&quot;test0004&quot;)
+	@DisplayName(&quot;test0004&quot;)
+	public void testMALSCSS3P0_004() throws Exception {
+
+<span class="nc" id="L225">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L229">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L232">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L235">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L238">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L241">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L244">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L247">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L250">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L253">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L256">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L259">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L262">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L265">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L268">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L271">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L274">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L277">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L279">	}</span>
+
+	@Test
+	@Tag(&quot;test0005&quot;)
+	@DisplayName(&quot;test0005&quot;)
+	public void testMALSCSS3P0_005() throws Exception {
+
+<span class="nc" id="L286">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L290">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L293">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L296">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L299">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L302">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L305">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L308">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L311">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L314">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L317">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L320">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L323">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L326">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L329">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L332">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L335">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L338">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L340">	}</span>
+
+	@Test
+	@Tag(&quot;test0006&quot;)
+	@DisplayName(&quot;test0006&quot;)
+	public void testMALSCSS3P0_006() throws Exception {
+
+<span class="nc" id="L347">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L351">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L354">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L357">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L360">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L363">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L366">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L369">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L372">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L375">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L378">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L381">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L384">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L387">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L390">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L393">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L396">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L399">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L401">	}</span>
+
+	@Test
+	@Tag(&quot;test0007&quot;)
+	@DisplayName(&quot;test0007&quot;)
+	public void testMALSCSS3P0_007() throws Exception {
+
+<span class="nc" id="L408">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L412">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L415">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L418">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L421">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L424">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L427">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L430">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L433">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L436">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L439">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L442">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L445">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L448">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L451">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L454">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L457">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L460">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L462">	}</span>
+
+	@Test
+	@Tag(&quot;test0008&quot;)
+	@DisplayName(&quot;test0008&quot;)
+	public void testMALSCSS3P0_008() throws Exception {
+
+<span class="nc" id="L469">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L473">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L476">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L479">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L482">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L485">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L488">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L491">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L494">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L497">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L500">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L503">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L506">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L509">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L512">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L515">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L518">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L521">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L523">	}</span>
+
+	@Test
+	@Tag(&quot;test0009&quot;)
+	@DisplayName(&quot;test0009&quot;)
+	public void testMALSCSS3P0_009() throws Exception {
+
+<span class="nc" id="L530">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L534">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L537">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L540">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L543">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L546">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L549">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L552">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L555">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L558">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L561">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L564">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L567">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L570">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L573">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L576">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L579">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L582">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P01.json&quot;);</span>
+
+<span class="nc" id="L584">	}</span>
+
+	@Test
+	@Tag(&quot;test0010&quot;)
+	@DisplayName(&quot;test0010&quot;)
+	public void testMALSCSS3P0_010() throws Exception {
+
+<span class="nc" id="L591">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L595">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L598">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L601">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L604">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L607">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L610">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L613">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L616">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L619">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L622">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L625">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L628">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L631">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L634">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L637">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L640">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L643">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L645">	}</span>
+
+	@Test
+	@Tag(&quot;test0011&quot;)
+	@DisplayName(&quot;test0011&quot;)
+	public void testMALSCSS3P0_011() throws Exception {
+
+<span class="nc" id="L652">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L656">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L659">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L662">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L665">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L668">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L671">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L674">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L677">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L680">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L683">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L686">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L689">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L692">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L695">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L698">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L701">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L704">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L706">	}</span>
+
+	@Test
+	@Tag(&quot;test0012&quot;)
+	@DisplayName(&quot;test0012&quot;)
+	public void testMALSCSS3P0_012() throws Exception {
+
+<span class="nc" id="L713">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L717">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L720">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L723">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L726">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L729">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L732">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L735">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L738">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L741">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L744">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L747">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L750">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L753">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L756">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L759">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L762">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L765">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L767">	}</span>
+
+	@Test
+	@Tag(&quot;test0013&quot;)
+	@DisplayName(&quot;test0013&quot;)
+	public void testMALSCSS3P0_013() throws Exception {
+
+<span class="nc" id="L774">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L778">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L781">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L784">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L787">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L790">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L793">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L796">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L799">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L802">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L805">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L808">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L811">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L814">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L817">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L820">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L823">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L826">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L828">	}</span>
+
+	@Test
+	@Tag(&quot;test0014&quot;)
+	@DisplayName(&quot;test0014&quot;)
+	public void testMALSCSS3P0_014() throws Exception {
+
+<span class="nc" id="L835">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L839">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L842">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L845">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L848">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L851">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L854">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L857">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L860">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L863">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L866">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L869">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L872">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L875">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L878">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L881">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L884">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L887">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L889">	}</span>
+
+	@Test
+	@Tag(&quot;test0015&quot;)
+	@DisplayName(&quot;test0015&quot;)
+	public void testMALSCSS3P0_015() throws Exception {
+
+<span class="nc" id="L896">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L900">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L903">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L906">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L909">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L912">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L915">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L918">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L921">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L924">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L927">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L930">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L933">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L936">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L939">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L942">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L945">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L948">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L950">	}</span>
+
+	@Test
+	@Tag(&quot;test0016&quot;)
+	@DisplayName(&quot;test0016&quot;)
+	public void testMALSCSS3P0_016() throws Exception {
+
+<span class="nc" id="L957">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L961">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L964">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L967">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L970">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L973">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L976">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L979">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L982">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L985">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L988">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L991">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L994">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L997">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1000">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1003">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1006">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1009">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1011">	}</span>
+
+	@Test
+	@Tag(&quot;test0017&quot;)
+	@DisplayName(&quot;test0017&quot;)
+	public void testMALSCSS3P0_017() throws Exception {
+
+<span class="nc" id="L1018">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1022">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1025">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1028">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1031">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1034">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1037">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1040">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1043">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1046">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1049">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1052">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1055">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1058">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1061">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1064">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1067">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1070">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1072">	}</span>
+
+	@Test
+	@Tag(&quot;test0018&quot;)
+	@DisplayName(&quot;test0018&quot;)
+	public void testMALSCSS3P0_018() throws Exception {
+
+<span class="nc" id="L1079">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1083">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1086">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1089">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1092">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1095">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1098">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1101">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1104">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1107">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1110">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1113">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1116">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1119">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1122">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1125">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1128">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1131">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1133">	}</span>
+
+	@Test
+	@Tag(&quot;test0019&quot;)
+	@DisplayName(&quot;test0019&quot;)
+	public void testMALSCSS3P0_019() throws Exception {
+
+<span class="nc" id="L1140">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_019/case_019_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1144">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1147">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1150">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1153">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1156">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;9&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1159">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1162">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1165">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1168">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1171">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1174">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1177">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1180">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1183">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1186">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1189">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1192">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1194">	}</span>
+
+	@Test
+	@Tag(&quot;test0020&quot;)
+	@DisplayName(&quot;test0020&quot;)
+	public void testMALSCSS3P0_020() throws Exception {
+
+<span class="nc" id="L1201">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_020/case_020_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1205">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1208">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1211">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1214">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1217">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;10&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1220">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1223">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1226">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1229">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1232">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1235">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1238">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1241">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1244">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1247">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1250">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1253">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1255">	}</span>
+
+	@Test
+	@Tag(&quot;test0021&quot;)
+	@DisplayName(&quot;test0021&quot;)
+	public void testMALSCSS3P0_021() throws Exception {
+
+<span class="nc" id="L1262">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_021/case_021_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1266">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1269">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1272">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1275">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1278">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;11&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1281">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1284">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1287">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1290">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1293">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1296">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1299">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1302">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1305">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1308">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1311">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1314">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1316">	}</span>
+
+	@Test
+	@Tag(&quot;test0022&quot;)
+	@DisplayName(&quot;test0022&quot;)
+	public void testMALSCSS3P0_022() throws Exception {
+
+<span class="nc" id="L1323">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_022/case_022_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1327">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1330">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1333">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1336">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1339">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;12&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1342">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1345">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1348">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1351">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1354">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1357">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1360">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1363">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1366">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1369">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1372">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1375">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1377">	}</span>
+
+	@Test
+	@Tag(&quot;test0023&quot;)
+	@DisplayName(&quot;test0023&quot;)
+	public void testMALSCSS3P0_023() throws Exception {
+
+<span class="nc" id="L1384">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_023/case_023_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1388">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1391">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1394">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1397">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1400">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;13&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1403">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1406">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1409">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1412">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1415">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1418">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1421">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1424">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1427">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1430">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1433">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1436">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1438">	}</span>
+
+	@Test
+	@Tag(&quot;test0024&quot;)
+	@DisplayName(&quot;test0024&quot;)
+	public void testMALSCSS3P0_024() throws Exception {
+
+<span class="nc" id="L1445">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_024/case_024_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1449">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1452">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1455">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1458">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1461">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;14&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1464">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1467">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1470">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1473">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1476">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1479">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1482">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1485">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1488">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1491">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1494">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1497">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1499">	}</span>
+
+	@Test
+	@Tag(&quot;test0025&quot;)
+	@DisplayName(&quot;test0025&quot;)
+	public void testMALSCSS3P0_025() throws Exception {
+
+<span class="nc" id="L1506">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_025/case_025_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1510">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1513">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1516">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1519">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1522">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;15&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1525">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1528">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1531">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1534">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1537">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1540">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1543">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1546">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1549">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1552">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1555">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1558">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1560">	}</span>
+
+	@Test
+	@Tag(&quot;test0026&quot;)
+	@DisplayName(&quot;test0026&quot;)
+	public void testMALSCSS3P0_026() throws Exception {
+
+<span class="nc" id="L1567">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MALSCSS3P0/case_026/case_026_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → c_process_parameter → データクリア・挿入 */
+<span class="nc" id="L1571">		rakurakuCore.operateDBPrepare(&quot;c_process_parameter&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → c_email_function → データクリア・挿入 */
+<span class="nc" id="L1574">		rakurakuCore.operateDBPrepare(&quot;c_email_function&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(DB準備) → c_email_send_group → データクリア・挿入 */
+<span class="nc" id="L1577">		rakurakuCore.operateDBPrepare(&quot;c_email_send_group&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(DB準備) → c_email_to → データクリア・挿入 */
+<span class="nc" id="L1580">		rakurakuCore.operateDBPrepare(&quot;c_email_to&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(DB準備) → c_email_template → データクリア・挿入 */
+<span class="nc" id="L1583">		rakurakuCore.operateDBPrepare(&quot;c_email_template&quot;, &quot;データクリア・挿入&quot;, &quot;16&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/reference → 出荷不可参照API */
+<span class="nc" id="L1586">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/reference&quot;, &quot;出荷不可参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/product-classification/get-list → 製品分類マスタ参照API */
+<span class="nc" id="L1589">		rakurakuCore.operateMockApi(&quot;/internal/v1/product-classification/get-list&quot;, &quot;製品分類マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/reason-type/get-list → 理由区分マスタ参照API */
+<span class="nc" id="L1592">		rakurakuCore.operateMockApi(&quot;/internal/v1/reason-type/get-list&quot;, &quot;理由区分マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/supplier/get-list → 仕入先マスタ参照API */
+<span class="nc" id="L1595">		rakurakuCore.operateMockApi(&quot;/internal/v1/supplier/get-list&quot;, &quot;仕入先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/plant/get-list → 置場マスタ参照API */
+<span class="nc" id="L1598">		rakurakuCore.operateMockApi(&quot;/internal/v1/plant/get-list&quot;, &quot;置場マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail-template/preview → メールプレビューAPI */
+<span class="nc" id="L1601">		rakurakuCore.operateMockApi(&quot;/v1/mail-template/preview&quot;, &quot;メールプレビューAPI&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/find → 帳票テンプレート詳細情報取得API */
+<span class="nc" id="L1604">		rakurakuCore.operateMockApi(&quot;/v1/report/find&quot;, &quot;帳票テンプレート詳細情報取得API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/print → 帳票作成API */
+<span class="nc" id="L1607">		rakurakuCore.operateMockApi(&quot;/v1/report/print&quot;, &quot;帳票作成API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/report/download → 帳票ファイル取得API呼出 */
+<span class="nc" id="L1610">		rakurakuCore.operateMockApi(&quot;/v1/report/download&quot;, &quot;帳票ファイル取得API呼出&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/mail/send → メール送信API */
+<span class="nc" id="L1613">		rakurakuCore.operateMockApi(&quot;/v1/mail/send&quot;, &quot;メール送信API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/gw-stop-shipment/save → 出荷不可入力更新(MFS→GW)API */
+<span class="nc" id="L1616">		rakurakuCore.operateMockApi(&quot;/v1/gw-stop-shipment/save&quot;, &quot;出荷不可入力更新(MFS→GW)API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(api) → 印刷 → internal/v1/stop-shipment/print → POST → Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=* /*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14 */
+<span class="nc" id="L1619">		rakurakuCore.operateApi(&quot;印刷&quot;, &quot;internal/v1/stop-shipment/print&quot;, &quot;POST&quot;, &quot;Content-Type=application/json&amp;&amp;User-Agent=PostmanRuntime/7.28.4&amp;&amp;Accept=*/*&amp;&amp;Accept-Encoding=gzip, deflate, br&amp;&amp;Connection=keep-alive&amp;&amp;X-Client-Program=1&amp;&amp;Idempotency-Key=14&quot;, &quot;&quot;, &quot;D:\\pleiades\\workspace\\rakuraku-auto-test\\PostBody\\MALSCSS3P0\\MALSCSS3P00.json&quot;);</span>
+
+<span class="nc" id="L1621">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

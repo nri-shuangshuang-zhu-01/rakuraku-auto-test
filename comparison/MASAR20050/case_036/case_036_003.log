@@ -1,0 +1,27 @@
+■api名称：　登录
+■api Request：　/internal/v1/non-payment-detail/get?subsidiaryCode=747&billToCode=777888&startIndex=1&responseCount=2&sortOrder=Due Date
+■api方法：　GET
+■api Headers：　User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=test&&Idempotency-Key=6a037a9e-2500-4724-a005-998a1ab13a46&&Prefer=/internal/v1/ccy/search->1
+■api Body：　-
+■loginUser：　UserLoginInfo
+■api Response：{
+  "billToData": {
+    "billToName": "060",
+    "paymentTerms": "042",
+    "tradeCurrency": "123",
+    "acceptanceExist": "0",
+    "dunningLetterSendType": "1"
+  },
+  "noPaymentInfo": [
+    {
+      "invoiceNumber": "15",
+      "invoiceDate": "2021-03-12",
+      "nonPaymentAmount": 0,
+      "billedAmount": 0,
+      "incomingPaymentAmount": 0,
+      "updateTime": "2021-09-10T01:00:00+09:00",
+      "updateUser": "256"
+    }
+  ],
+  "errorList": []
+}

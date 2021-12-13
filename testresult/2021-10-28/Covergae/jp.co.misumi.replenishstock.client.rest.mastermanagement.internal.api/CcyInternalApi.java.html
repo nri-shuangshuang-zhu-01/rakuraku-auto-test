@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CcyInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api</a> &gt; <span class="el_source">CcyInternalApi.java</span></div><h1>CcyInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetCcyInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListCcyInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.GetListCcyInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.mastermanagement.internal.SearchCcyInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:18.711785900+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.mastermanagement.internal.api.CcyInternalApi&quot;)
+public class CcyInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L39">    public CcyInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L40">        this.apiClient = apiClient;</span>
+<span class="fc" id="L41">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L44">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L48">        this.apiClient = apiClient;</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * 通貨情報取得API
+     * 以下のマスタの情報を返却するAPIです。   通貨マスタ M_CCY
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ccyCode 通貨コード (required)
+     
+     * @return GetCcyInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetCcyInternalResponseV1 getCcyInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ccyCode) throws RestClientException {
+<span class="nc" id="L66">        return getCcyInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, ccyCode).getBody();</span>
+    }
+
+    /**
+     * 通貨情報取得API
+     * 以下のマスタの情報を返却するAPIです。   通貨マスタ M_CCY
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ccyCode 通貨コード (required)
+     
+     * @return ResponseEntity&amp;lt;GetCcyInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetCcyInternalResponseV1&gt; getCcyInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ccyCode) throws RestClientException {
+<span class="nc" id="L84">        Object postBody = null;</span>
+        
+        // verify the required parameter 'ccyCode' is set
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (ccyCode == null) {</span>
+<span class="nc" id="L88">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'ccyCode' when calling getCcyInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L91">        String path = apiClient.expandPath(&quot;/internal/v1/ccy/get&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L93">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L94">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L95">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L96">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L98">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;ccy_code&quot;, ccyCode));</span>
+
+        
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L103">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L105">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L107">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L109">            });</span>
+        }
+
+<span class="nc" id="L112">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L115">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L116">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L117">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L119">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L121">        ParameterizedTypeReference&lt;GetCcyInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetCcyInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L122">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 通貨情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。   通貨マスタ　M_CCY
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListCcyInternalRequestV1 通貨情報取得API（List）のリクエスト電文 (required)
+     
+     * @return GetListCcyInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public GetListCcyInternalResponseV1 getListCcyInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListCcyInternalRequestV1 getListCcyInternalRequestV1) throws RestClientException {
+<span class="nc" id="L139">        return getListCcyInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, getListCcyInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * 通貨情報取得API（List）
+     * 以下のマスタの情報を返却するAPIです。   通貨マスタ　M_CCY
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param getListCcyInternalRequestV1 通貨情報取得API（List）のリクエスト電文 (required)
+     
+     * @return ResponseEntity&amp;lt;GetListCcyInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;GetListCcyInternalResponseV1&gt; getListCcyInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, GetListCcyInternalRequestV1 getListCcyInternalRequestV1) throws RestClientException {
+<span class="nc" id="L157">        Object postBody = getListCcyInternalRequestV1;</span>
+        
+        // verify the required parameter 'getListCcyInternalRequestV1' is set
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        if (getListCcyInternalRequestV1 == null) {</span>
+<span class="nc" id="L161">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'getListCcyInternalRequestV1' when calling getListCcyInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L164">        String path = apiClient.expandPath(&quot;/internal/v1/ccy/get-list&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L166">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L167">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L168">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L169">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L174">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L176">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L178">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L180">            });</span>
+        }
+
+<span class="nc" id="L183">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L186">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L187">        final String[] contentTypes = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L190">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L192">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L194">        ParameterizedTypeReference&lt;GetListCcyInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;GetListCcyInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L195">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * 通貨情報検索API
+     * 以下のマスタの情報を返却するAPIです。   通貨マスタ M_CCY
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ccyCode 通貨コード (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return SearchCcyInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchCcyInternalResponseV1 searchCcyInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ccyCode, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="nc" id="L218">        return searchCcyInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, ccyCode, offset, limit, sortby).getBody();</span>
+    }
+
+    /**
+     * 通貨情報検索API
+     * 以下のマスタの情報を返却するAPIです。   通貨マスタ M_CCY
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param ccyCode 通貨コード (optional)
+     
+     * @param offset 取得開始位置 (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @param sortby ソート順 (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchCcyInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchCcyInternalResponseV1&gt; searchCcyInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String ccyCode, Integer offset, Integer limit, String sortby) throws RestClientException {
+<span class="nc" id="L242">        Object postBody = null;</span>
+        
+<span class="nc" id="L244">        String path = apiClient.expandPath(&quot;/internal/v1/ccy/search&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L246">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L247">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L248">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L249">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L251">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;ccy_code&quot;, ccyCode));</span>
+<span class="nc" id="L252">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;offset&quot;, offset));</span>
+<span class="nc" id="L253">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;limit&quot;, limit));</span>
+<span class="nc" id="L254">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;sortby&quot;, sortby));</span>
+
+        
+
+<span class="nc bnc" id="L258" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L259">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L261">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L263">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L265">            });</span>
+        }
+
+<span class="nc" id="L268">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L271">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L272">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L273">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L275">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L277">        ParameterizedTypeReference&lt;SearchCcyInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchCcyInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L278">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SO_BALANCEColName field="subsidiary_code"/>
+  <T_SO_BALANCEColName field="customer_code"/>
+  <T_SO_BALANCEColName field="so_balance_amount"/>
+  <T_SO_BALANCEColName field="update_count"/>
+  <T_SO_BALANCEColName field="delete_flag"/>
+  <T_SO_BALANCEColName field="register_user_type"/>
+  <T_SO_BALANCEColName field="register_user"/>
+  <T_SO_BALANCEColName field="register_date_time"/>
+  <T_SO_BALANCEColName field="register_program"/>
+  <T_SO_BALANCEColName field="register_client_program"/>
+  <T_SO_BALANCEColName field="update_user_type"/>
+  <T_SO_BALANCEColName field="update_user"/>
+  <T_SO_BALANCEColName field="update_date_time"/>
+  <T_SO_BALANCEColName field="update_program"/>
+  <T_SO_BALANCEColName field="update_client_program"/>
+</dataset>

@@ -1,0 +1,3 @@
+http://localhost:4013/internal/v1/customer/get?customer_code=123456
+http://localhost:4012/internal/v1/fax/send{"faxSendType":"0","fileId":"e0788ada-bee7-5d17-d946-2d3d02c15849","sendInfo":"0_MJP_99999999999_123456_08012345678$20211123.11:14:43.GUEST"}
+http://localhost:4012/internal/v1/fax/find?sendReceiveType=0&id=497f6eca-6276-4993-bfeb-53cbbbba6f08

@@ -1,0 +1,26 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+納期型番確認ID::lead_time_product_inquiry_id::bigint::NOT NULL(PK)
+得意先コード::customer_code::char(6)::NULL
+配送先コード::ship_to_code::char(6)::NULL
+注文者部課::orderer_department::varchar(120)::NULL
+注文担当者名::order_pic_name::varchar(80)::NULL
+納入担当者部課::customer_delivery_pic_department::varchar(120)::NULL
+納入担当者コード::customer_delivery_pic_code::char(6)::NULL
+納入担当者氏名::customer_delivery_pic_name::varchar(80)::NULL
+FAX番号::fax::varchar(20)::NULL
+顧客非課税区分::customer_tax_free_type::char(1)::NULL
+支払手段::payment_means::varchar(2)::NULL
+納期確認確定区分::lead_time_complete_type::char(1)::NULL
+回答単価変更理由::sales_unit_price_change_reason::char(4)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

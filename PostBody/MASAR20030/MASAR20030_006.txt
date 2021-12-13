@@ -1,0 +1,12 @@
+{
+  "downNonPaymentLevelList": [
+    {
+      "billToCode": "123457",
+      "level": "2",
+      "invoiceIssueDate": "2020-02-03",
+      "invoiceNumber": "1234567890123456",
+      "promisedPaymentDate": "2020-09-11",
+      "subsidiaryCode": "TIW"
+    }
+  ]
+}

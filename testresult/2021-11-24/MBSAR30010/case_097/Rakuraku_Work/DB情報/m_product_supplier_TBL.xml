@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <m_product_supplierColName field="subsidiary_code" comment="現法コード:現地法人を一意に特定するコード。"/>
+  <m_product_supplierColName field="ginner_code" comment="統合インナーコード:MDMによって新規導入された、現法間をまたいでグローバルで一意に商品を特定するためのキー項目。先頭3桁が&apos;MDM&apos;固定、後続の11桁が桁に意味なし（自動発番）の数字で構成される。"/>
+  <m_product_supplierColName field="supplier_choice_area_code" comment="調達先選定用エリアコード:商品別仕入先区分が「通常仕入先」「ストーク仕入先」「大口仕入先」「Zストーク仕入先」「先納期移管仕入先」「RBS仕入先」の場合はダミー値として「999」を設定&#xD;&#xA;※新MEETの商品別仕入先マスタで設定された「ストーク仕入先」の場合は、エリアコードの設定が必要"/>
+  <m_product_supplierColName field="supplier_code" comment="仕入先コード:商品の優先仕入先を表す。G新基幹では、メーカーコードを仕入先コードと定義している。"/>
+  <m_product_supplierColName field="product_supplier_type" comment="商品別仕入先区分:1:通常仕入先　2:大口仕入先 3:Zストーク仕入先　4:エリア別仕入先 5:先納期移管仕入先 6:RBS仕入先 7:ストーク仕入先"/>
+  <m_product_supplierColName field="po_lead_time" comment="発注納期:在庫品の調達納期（日数）で、発注日翌日を起算日としてミスミ倉庫に納品されるまでの日数"/>
+  <m_product_supplierColName field="direct_shipment_change_time" comment="直送切替時刻:標準納期が１日の商品での受注が出荷センター出荷から仕入先直送扱いに切り替わる受注締め時刻（0：0000　1：1230　2：1400　3：1500　4：1530　5：1600　6：1630　7：1734　8：1800　9：1900）"/>
+  <m_product_supplierColName field="same_day_so_closing_time" comment="当日受注締時刻:標準納期が１日の商品での受注が当日扱いから翌日扱いに切り替わる受注締め時刻（0：0000　1：1230　2：1400　3：1500　4：1530　5：1600　6：1630　7：1734　8：1800　9：1900）"/>
+  <m_product_supplierColName field="so_same_day_cancel_rate" comment="受注当日キャンセル時掛率:受注当日キャンセルの掛け率（単位：％）"/>
+  <m_product_supplierColName field="so_next_day_cancel_rate" comment="受注翌日キャンセル時掛率:受注翌日キャンセルの掛け率（単位：％）"/>
+  <m_product_supplierColName field="so_date_after_3day_cancel_rate" comment="受注日３日目以降キャンセル時掛率:受注日３日目以降キャンセルの掛け率（単位：％）"/>
+  <m_product_supplierColName field="io_supply_means_code" comment="IO調達方法コード:IO調達方法管理マスタに登録されているＩＯ調達方法コード"/>
+  <m_product_supplierColName field="supply_pattern" comment="調達パターン:初期値：0(現法：MJP)　海外商品マスタの調達パターン　A：日本から調達（売単価のみ指定通貨に固定）　B：現地調達（売・仕入単価共に指定通貨に固定）"/>
+  <m_product_supplierColName field="production_days" comment="製作日数:製作にかかる日数"/>
+  <m_product_supplierColName field="purchase_unit_price_ccy_code" comment="仕入単価通貨コード:仕入先で使用される通貨コード"/>
+  <m_product_supplierColName field="country_of_origin_code" comment="原産国コード:国マスタに存在する国コード"/>
+  <m_product_supplierColName field="supplier_shipping_point_code" comment="仕入先出荷場所コード:着日表示案件にて追加 仕入先に対し、出荷場所を付与するため、新規追加マスタである「仕入先出荷場所」マスタのPKとなる出荷場所コードを追加する"/>
+  <m_product_supplierColName field="estimated_days" comment="目安納期日数:仕入先コード、大口仕入先コード、早割仕入先コード、裏仕入先コードのそれぞれに対して目安納期フラグと目安納期日数（目安納期適用時の期間（加算日数））の項目を追加する。ACE処理で該当する仕入先に決定した場合に目安納期フラグと日数を利用し目安納期有無と目安納期のToの日数を計算する ・都度設定区分を、非在庫品（完成品）の場合に設定不可とする。 ※（本目安納期の要件ではないが、在庫・MTO区分に非在庫品（受注製作品）と非在庫品（完成品）が追加される想定"/>
+  <m_product_supplierColName field="control_unit_code" comment="管理単位コード:管理単位を一意に特定するコード。設備コードと呼ぶ場合がある。"/>
+  <m_product_supplierColName field="load_accumulation_flag" comment="負荷積上対象フラグ:0:負荷積上対象ではない　1:負荷積上対象&#xD;&#xA;※商品別仕入先区分が「RBS仕入先」の場合のみ設定。"/>
+  <m_product_supplierColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <m_product_supplierColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <m_product_supplierColName field="register_user_type" comment="登録者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_product_supplierColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <m_product_supplierColName field="register_date_time" comment="登録日時"/>
+  <m_product_supplierColName field="register_program" comment="登録プログラム"/>
+  <m_product_supplierColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <m_product_supplierColName field="update_user_type" comment="更新者区分:Internal：社内&#xD;&#xA;Customer：社外&#xD;&#xA;Supplier：サプライヤ&#xD;&#xA;System：システム&#xD;&#xA;Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <m_product_supplierColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <m_product_supplierColName field="update_date_time" comment="更新日時"/>
+  <m_product_supplierColName field="update_program" comment="更新プログラム"/>
+  <m_product_supplierColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

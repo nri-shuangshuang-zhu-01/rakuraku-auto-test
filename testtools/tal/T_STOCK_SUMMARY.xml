@@ -1,0 +1,115 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+年::year::char(4)::NOT NULL(PK)
+月::month::varchar(2)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+置場コード::plant_code::char(4)::NOT NULL(PK)
+仕入先コード::supplier_code::char(4)::NOT NULL
+分析コード::classify_code::varchar(8)::NOT NULL
+商品コード::product_code::varchar(234)::NOT NULL
+ランク::rank::char(1)::NULL
+前回発注点::previous_reorder_point::numeric(7,0)::NULL
+発注点::reorder_point::numeric(7,0)::NULL
+発注数::po_qty::numeric(7,0)::NULL
+最適発注数::ideal_po_qty::numeric(7,0)::NULL
+警告数::warning_qty::numeric(7,0)::NULL
+自動発注区分::automatic_po_type::char(1)::NULL
+評価単価::evaluation_unit_price::numeric(14,3)::NULL
+月初在庫数::month_begin_stock_qty::integer::NULL
+当月入荷数::this_month_receiving_qty::numeric(7,0)::NULL
+最新入荷日::latest_receiving_date::date::NULL
+最新入荷数::latest_receiving_qty::numeric(7,0)::NULL
+当月出荷数::this_month_shipment_qty::numeric(7,0)::NULL
+最終出荷日::final_shipping_date::date::NULL
+社内移動（＋）::transfer_plus::integer::NULL
+社内移動（－）::transfer_minus::integer::NULL
+在庫調整（＋）::stock_adjust_plus::integer::NULL
+在庫調整（－）::stock_adjust_minus::integer::NULL
+返品数（＋）::return_qty_plus::integer::NULL
+返品数（－）::return_qty_minus::integer::NULL
+総在庫数::total_stock_qty::integer::NULL
+総引当数::total_allocated_qty::integer::NULL
+総有効数::total_available_qty::integer::NULL
+現在庫数::current_stock_qty::integer::NULL
+当月在庫金額::this_month_stock_amount::numeric(26,3)::NULL
+当年月別・入庫数1::this_year_month_receiving_qty1::numeric(15,0)::NULL
+当年月別・出庫数1::this_year_month_shipping_qty1::numeric(15,0)::NULL
+当年月別・入庫数2::this_year_month_receiving_qty2::numeric(15,0)::NULL
+当年月別・出庫数2::this_year_month_shipping_qty2::numeric(15,0)::NULL
+当年月別・入庫数3::this_year_month_receiving_qty3::numeric(15,0)::NULL
+当年月別・出庫数3::this_year_month_shipping_qty3::numeric(15,0)::NULL
+当年月別・入庫数4::this_year_month_receiving_qty4::numeric(15,0)::NULL
+当年月別・出庫数4::this_year_month_shipping_qty4::numeric(15,0)::NULL
+当年月別・入庫数5::this_year_month_receiving_qty5::numeric(15,0)::NULL
+当年月別・出庫数5::this_year_month_shipping_qty5::numeric(15,0)::NULL
+当年月別・入庫数6::this_year_month_receiving_qty6::numeric(15,0)::NULL
+当年月別・出庫数6::this_year_month_shipping_qty6::numeric(15,0)::NULL
+当年月別・入庫数7::this_year_month_receiving_qty7::numeric(15,0)::NULL
+当年月別・出庫数７::this_year_month_shipping_qty7::numeric(15,0)::NULL
+当年月別・入庫数8::this_year_month_receiving_qty8::numeric(15,0)::NULL
+当年月別・出庫数8::this_year_month_shipping_qty8::numeric(15,0)::NULL
+当年月別・入庫数9::this_year_month_receiving_qty9::numeric(15,0)::NULL
+当年月別・出庫数9::this_year_month_shipping_qty9::numeric(15,0)::NULL
+当年月別・入庫数10::this_year_month_receiving_qty10::numeric(15,0)::NULL
+当年月別・出庫数10::this_year_month_shipping_qty10::numeric(15,0)::NULL
+当年月別・入庫数11::this_year_month_receiving_qty11::numeric(15,0)::NULL
+当年月別・出庫数11::this_year_month_shipping_qty11::numeric(15,0)::NULL
+当年月別・入庫数12::this_year_month_receiving_qty12::numeric(15,0)::NULL
+当年月別・出庫数12::this_year_month_shipping_qty12::numeric(15,0)::NULL
+当年計・入庫数::this_year_total_receiving_qty::numeric(17,0)::NULL
+当年計・出庫数::this_year_total_shipping_qty::numeric(17,0)::NULL
+前年月別・入庫数1::last_year_month_receiving_qty1::numeric(15,0)::NULL
+前年月別・出庫数1::last_year_month_shipping_qty1::numeric(15,0)::NULL
+前年月別・入庫数2::last_year_month_receiving_qty2::numeric(15,0)::NULL
+前年月別・出庫数2::last_year_month_shipping_qty2::numeric(15,0)::NULL
+前年月別・入庫数3::last_year_month_receiving_qty3::numeric(15,0)::NULL
+前年月別・出庫数3::last_year_month_shipping_qty3::numeric(15,0)::NULL
+前年月別・入庫数4::last_year_month_receiving_qty4::numeric(15,0)::NULL
+前年月別・出庫数4::last_year_month_shipping_qty4::numeric(15,0)::NULL
+前年月別・入庫数5::last_year_month_receiving_qty5::numeric(15,0)::NULL
+前年月別・出庫数5::last_year_month_shipping_qty5::numeric(15,0)::NULL
+前年月別・入庫数6::last_year_month_receiving_qty6::numeric(15,0)::NULL
+前年月別・出庫数6::last_year_month_shipping_qty6::numeric(15,0)::NULL
+前年月別・入庫数7::last_year_month_receiving_qty7::numeric(15,0)::NULL
+前年月別・出庫数7::last_year_month_shipping_qty7::numeric(15,0)::NULL
+前年月別・入庫数8::last_year_month_receiving_qty8::numeric(15,0)::NULL
+前年月別・出庫数8::last_year_month_shipping_qty8::numeric(15,0)::NULL
+前年月別・入庫数9::last_year_month_receiving_qty9::numeric(15,0)::NULL
+前年月別・出庫数9::last_year_month_shipping_qty9::numeric(15,0)::NULL
+前年月別・入庫数10::last_year_month_receiving_qty10::numeric(15,0)::NULL
+前年月別・出庫数10::last_year_month_shipping_qty10::numeric(15,0)::NULL
+前年月別・入庫数11::last_year_month_receiving_qty11::numeric(15,0)::NULL
+前年月別・出庫数11::last_year_month_shipping_qty11::numeric(15,0)::NULL
+前年月別・入庫数12::last_year_month_receiving_qty12::numeric(15,0)::NULL
+前年月別・出庫数12::last_year_month_shipping_qty12::numeric(15,0)::NULL
+前年計・入庫数::last_year_total_receiving_qty::numeric(17,0)::NULL
+前年計・出庫数::last_year_total_shipping_qty::numeric(17,0)::NULL
+前日評価単価::previous_day_evaluation_unit_price::numeric(14,3)::NULL
+前日残数::previous_day_qty::integer::NULL
+出荷頻度ランク::shipment_frequency_rank::char(1)::NULL
+出荷回数1::shipment_count1::integer::NULL
+出荷回数2::shipment_count2::integer::NULL
+出荷回数3::shipment_count3::integer::NULL
+出荷回数4::shipment_count4::integer::NULL
+出荷回数5::shipment_count5::integer::NULL
+出荷回数6::shipment_count6::integer::NULL
+出荷回数7::shipment_count7::integer::NULL
+出荷回数8::shipment_count8::integer::NULL
+出荷回数9::shipment_count9::integer::NULL
+出荷回数10::shipment_count10::integer::NULL
+出荷回数11::shipment_count11::integer::NULL
+出荷回数12::shipment_count12::integer::NULL
+契約発注数量::contract_po_qty::numeric(7,0)::NULL
+商品所管部門コード::product_control_department_code::varchar(6)::NULL
+ブランドコード::brand_code::char(4)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

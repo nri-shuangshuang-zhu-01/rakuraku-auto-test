@@ -1,0 +1,53 @@
+■api名称：　検索
+■api Request：　/internal/v1/ul-data-download-pulldown/get
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=temp&&
+■api Body：　{  "authorityCode": [    "1234567"  ]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "largeClassificationList": [
+    {
+      "dataLargeClassificationCode": "a1",
+      "dataLargeClassificationNameJapanese": "a234567890123456789012341",
+      "dataLargeClassificationNameEnglish": "a2345678901234567890123456789012345678901234567890",
+      "mediumClassificationList": [
+        {
+          "dataMediumClassificationCode": "qqq1",
+          "dataMediumClassificationNameJapanese": "a234567890123456789012341",
+          "dataMediumClassificationNameEnglish": "a2345678901234567890123456789012345678901234567890",
+          "dataList": [
+            {
+              "dataCode": "wwww1",
+              "dataNameJapanese": "a234567890123456789012341",
+              "dataNameEnglish": "a2345678901234567890123456789012345678901234567890"
+            },
+            {
+              "dataCode": "wwww2",
+              "dataNameJapanese": "d234567890123456789012344",
+              "dataNameEnglish": "a2345678901234567890123456789012345678901234567893"
+            },
+            {
+              "dataCode": "wwww3",
+              "dataNameJapanese": "c234567890123456789012343",
+              "dataNameEnglish": "a2345678901234567890123456789012345678901234567892"
+            }
+          ]
+        },
+        {
+          "dataMediumClassificationCode": "qqq2",
+          "dataMediumClassificationNameJapanese": "b234567890123456789012342",
+          "dataMediumClassificationNameEnglish": "a2345678901234567890123456789012345678901234567891",
+          "dataList": [
+            {
+              "dataCode": "wwww1",
+              "dataNameJapanese": "b234567890123456789012342",
+              "dataNameEnglish": "a2345678901234567890123456789012345678901234567891"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errorList": []
+}

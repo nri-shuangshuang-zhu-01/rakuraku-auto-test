@@ -1,0 +1,2 @@
+http://localhost:4012/internal/v1/ccy/search
+http://localhost:4016/internal/v1/bill-to/get-list{"getListBillToInternalRequestV1DetailList":[{"billToCode":"558814"},{"billToCode":"558814"},{"billToCode":"558814"},{"billToCode":"558814"},{"billToCode":"558814"},{"billToCode":"558814"}]}

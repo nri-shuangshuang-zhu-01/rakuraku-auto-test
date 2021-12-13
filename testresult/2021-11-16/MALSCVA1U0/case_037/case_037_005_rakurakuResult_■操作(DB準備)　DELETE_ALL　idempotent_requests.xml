@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <idempotent_requests id='' key='' target_id='' method='' status='' processor_name='' result='' result_type_name='' retry_count='' request_context='' request_context_type_name='' request_data='' request_data_type_name='' last_run_at='' register_date_time='' register_user='' register_user_type='' register_client_program='' register_program='' update_date_time='' update_user='' update_user_type='' update_client_program='' update_program='' update_count='' delete_flag='' state_data='' state_data_type_name='' running='' auto_retry_enabled='' status_log='' version='' />
+</dataset>

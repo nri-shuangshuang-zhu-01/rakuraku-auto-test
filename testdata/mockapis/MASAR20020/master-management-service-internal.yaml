@@ -1,0 +1,4315 @@
+openapi: 3.0.0
+info:
+  title: master-management-service-internal
+  version: '1.0'
+  description: マスタサービス用の Public API です。
+  contact:
+    name: dummy
+servers:
+  - url: 'http://localhost:3000/master'
+paths:
+  /internal/v1/ti-ship-to-convert/search:
+    parameters: []
+    get:
+      summary: TI配送先変換情報検索API
+      operationId: searchTiShipToConvertInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTiShipToConvertInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    tiShipToConvertInternalV1List:
+                      - subsidiaryCodeFrom: MJP
+                        subsidiaryCodeTo: MJP
+                        beforeConvertShipToCode: '999991'
+                        convertedShipToCode: '999999'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          TI配送先変換マスタ M_TI_SHIP_TO_CONVERT
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: 現法コードFROM
+          name: subsidiary_code_from
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: 現法コードTO
+          name: subsidiary_code_to
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          description: 変換前配送先コード
+          name: before_convert_ship_to_code
+        - schema:
+            type: string
+            minLength: 6
+            maxLength: 6
+          in: query
+          description: 変換後配送先コード
+          name: converted_ship_to_code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - TiShipToConvertInternal
+      x-channel:
+        - internal
+  /internal/v1/io-customer-convert/search:
+    get:
+      summary: IO用得意先変換検索API
+      operationId: searchIoCustomerConvertInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchIoCustomerConvertInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    ioCustomerConvertInternalV1List:
+                      - sub1SubsidiaryCode: JPN
+                        sub1SupplierCode: abcd
+                        sub2SubsidiaryCode: JPN
+                        sub2CustomerCode: dummy1
+                        ccyCode: KRW
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          IO用得意先変換マスタ M_IO_CUSTOMER_CONVERT
+      tags:
+        - IoCustomerConvertInternal
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: SUB1側現法コード
+          name: sub1_subsidiary_code
+        - schema:
+            type: string
+            minLength: 4
+            maxLength: 4
+          in: query
+          description: SUB1側仕入先コード
+          name: sub1_supplier_code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+    parameters: []
+  /internal/v1/supplier-shipping-days/get-list:
+    post:
+      summary: 仕入先配送日数情報取得API（List）
+      operationId: getListSupplierShippingDaysInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListSupplierShippingDaysInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListSupplierShippingDaysInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        supplierShippingDaysInternalV1:
+                          subsidiaryCode: JKT
+                          supplierCode: '01'
+                          deliveryDestinationPlantCode: C2
+                          transportMeans: A1
+                          shipmentPlaceCode: '01'
+                          transportChannelName1: AIR
+                          transportDays1: 1
+                          transportChannelCalendarCode1: '01'
+                          interposedDayOffFlag1: '0'
+                          transportChannelName2: CAR
+                          transportDays2: 2
+                          transportChannelCalendarCode2: '02'
+                          interposedDayOffFlag2: '1'
+                          transportChannelName3: CAR
+                          transportDays3: 3
+                          transportChannelCalendarCode3: '03'
+                          interposedDayOffFlag3: '1'
+                          transportChannelName4: CAR
+                          transportDays4: 4
+                          transportChannelCalendarCode4: '04'
+                          interposedDayOffFlag4: '1'
+                          transportChannelName5: CAR
+                          transportDays5: 5
+                          transportChannelCalendarCode5: '05'
+                          interposedDayOffFlag5: '1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListSupplierShippingDaysInternalRequestV1'
+        description: 仕入先配送日数情報取得API（List）の検索リクエスト電文
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          仕入先配送日数マスタ M_SUPPLIER_SHIPPING_DAYS
+      tags:
+        - SupplierShippingDaysInternal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/io-supply-means-control/get-list:
+    post:
+      summary: IO調達方法管理情報取得API（List）
+      operationId: getListIoSupplyMeansControlInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListIoSupplyMeansControlInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListIoSupplyMeansControlInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        ioSupplyMeansControltInternalV1List:
+                          sub1SubsidiaryCode: MJP
+                          ioSupplyMeansCode: H01
+                          sub2SubsidiaryCode: THA
+                          ioSupplyMeansName: From THA H2 to MJP Air
+                          ioSupplyMeansNameNative: From THA H2 to MJP Air
+                          defaultFlag: '1'
+                          transportMeans: A1
+                          costPlusCalculationKeyType: A
+                          shippingDateAdjustFlag: '0'
+                          directShipmentType: W
+                          sub1HideFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListIoSupplyMeansControlInternalRequestV1'
+        description: IO調達方法管理情報取得API（List）のリクエスト電文
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          IO調達方法管理マスタ M_IO_SUPPLY_MEANS_CONTROL
+      tags:
+        - IoSupplyMeansControlInternal
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+    parameters: []
+  /internal/v1/calendar/search:
+    parameters: []
+    get:
+      summary: カレンダー情報検索API
+      operationId: searchCalendarInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCalendarInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    calendarInternalV1List:
+                      - calendarCode: H0A69
+                        subsidiaryCode: CHN
+                        calendarCategory: Z
+                        calendarName: H-NARITA CALENDAR
+                        globalFlag: '1'
+                        calendarDate: '2019-08-24'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        カレンダコードまたはカレンダ種別を指定して、基準日から指定した日数後までのカレンダー情報を検索するAPIです。
+          カレンダー名マスタ M_CALENDAR_NAME
+          カレンダーマスタ M_CALENDAR
+      parameters:
+        - schema:
+            type: string
+            minLength: 5
+            maxLength: 5
+          in: query
+          description: カレンダコード
+          name: calendar_code
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 1
+          in: query
+          name: calendar_category
+          description: カレンダ種別
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: base_date
+          description: 基準日　※省略した場合は当日
+        - schema:
+            type: integer
+            minimum: 1
+          in: query
+          name: days
+          description: 日数
+          required: true
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      tags:
+        - CalendarInternal
+      x-internal: false
+      x-channel:
+        - internal
+  /internal/v1/rate/get:
+    get:
+      summary: レート情報取得API
+      tags:
+        - RateInternal
+      x-channel:
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRateInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    rateInternalV1:
+                      rateTypeCode: M
+                      beforeConvertCcyCode: VND
+                      afterConvertCcyCode: PLN
+                      effectiveStartDate: '2012-02-01'
+                      rate: '0.00016'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getRateInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          レートマスタ M_RATE
+      parameters:
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 4
+            example: 'M   '
+          in: query
+          name: rate_type_code
+          description: レートタイプコード
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+            example: VND
+          in: query
+          name: before_convert_ccy_code
+          description: 変換元通貨コード
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+            example: PLN
+          in: query
+          name: after_convert_ccy_code
+          description: 変換先通貨コード
+          required: true
+        - schema:
+            type: string
+            format: date
+            example: '2012-02-01'
+          in: query
+          name: effective_start_date
+          required: true
+          description: 適用開始日
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+    parameters: []
+  /internal/v1/subsidiary/get:
+    get:
+      summary: 現法情報取得API
+      tags:
+        - SubsidiaryInternal
+      x-channel:
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSubsidiaryInternalResponseV1'
+              examples:
+                '1':
+                  value:
+                    recordCount: 1
+                    subsidiaryInternalV1:
+                      subsidiaryCode: TIW
+                      subsidiaryName: MISUMI TAIWAN CORP.
+                      subsidiaryNameNative: 台灣三住股莉ｽ有限公司
+                      countryCode: '106'
+                      languageCode: JPN
+                      licenseNumber: '23225712'
+                      taxRegisterNumber: 'null'
+                      address1: '9F-1, No126,Nanjing E. Rd.,4,'
+                      address2: 'Taipei 10595, Taiwan R.O.C.'
+                      address3: 'null'
+                      address4: 'null'
+                      address1Native: 台北市南京東路
+                      address2Native: 四段126號9樓之1
+                      address3Native: 'null'
+                      address4Native: 'null'
+                      postalCode: '10595'
+                      tel: 02-2570-3767
+                      fax: 02-2570-3767
+                      ccyCode: TWD
+                      dateFormat: YYYYMMDD
+                      timeZone: Asia/Taipei
+                      holdPeriodApplyCalendarCode: TCCCC
+                      fiscalStartYear: 2006
+                      fiscalStartMonth: 4
+                      settlementMonth: 3
+                      packingWeight: '0'
+                      subsidiarySystemType: '1'
+                      sortOrder: 1
+                    subsidiaryControlInternalV1List:
+                      - subsidiaryCode: TIW
+                        controlCode: dummy
+                        flag: '0'
+                        type: '45'
+                        value: '3'
+                        fieldNameEnglish: DEF
+                        fieldType: '1'
+                        remarks: aa
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getSubsidiaryInternalV1
+      description: |-
+        以下のマスタの情報を返却します。
+          現法マスタ M_SUBSIDIARY
+          現法制御マスタ M_SUBSIDIARY_CONTROL
+          現法制御項目マスタ M_SUBSIDIARY_CONTROL_FIELD
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 80
+          in: query
+          description: 制御コード
+          name: control_code
+    parameters: []
+  /internal/v1/language/search:
+    parameters: []
+    get:
+      summary: 言語情報検索API
+      tags:
+        - LanguageInternal
+      x-channel:
+        - internal
+      operationId: searchLanguageInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchLanguageInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    languageInternalV1List:
+                      - subsidiaryCode: MJP
+                        languageCode: JPN
+                        languageName: jpn
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          言語マスタ M_LANGUAGE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: 言語コード
+          name: language_code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+  /internal/v1/plant/search:
+    parameters: []
+    get:
+      summary: 置場情報検索API
+      tags:
+        - PlantInternal
+      x-channel:
+        - internal
+      operationId: searchPlantInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPlantInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    plantInternalV1List:
+                      - plantCode: '0001'
+                        subsidiaryCode: MJP
+                        plantName: QCT
+                        plantNameNative: ＱＣＴ　（東京MC）
+                        plantAbbreviationNative: string
+                        plantNumber: ＱＣＴ
+                        shippingDaysAreaCode: '52'
+                        supplierChoiceAreaCode: '52'
+                        address1Native: 台北市南京東路
+                        address2Native: 四段126號9樓之1
+                        address3Native: 'null'
+                        address4Native: 'null'
+                        tel: 02-2570-3767
+                        fax: 02-2570-3767
+                        postalCode: string
+                        otherPlantReferencePriority: string
+                        soStopFlag: '10595'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          置場マスタ M_PLANT
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 4
+            maxLength: 4
+          in: query
+          description: 置場コード
+          name: plant_code
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 3
+          in: query
+          name: subsidiary_code
+          description: 現法コード
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          name: supplier_choice_area_code
+          description: 調達先選定用エリアコード
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+  /internal/v1/plant/get:
+    parameters: []
+    get:
+      summary: 置場情報取得API
+      tags:
+        - PlantInternal
+      x-channel:
+        - internal
+      operationId: getPlantInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPlantInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    plantInternalV1:
+                      plantCode: '0001'
+                      subsidiaryCode: MJP
+                      plantName: QCT
+                      plantNameNative: ＱＣＴ　（東京MC）
+                      plantAbbreviationNative: string
+                      plantNumber: ＱＣＴ
+                      shippingDaysAreaCode: '52'
+                      supplierChoiceAreaCode: '52'
+                      address1Native: 台北市南京東路
+                      address2Native: 四段126號9樓之1
+                      address3Native: 'null'
+                      address4Native: 'null'
+                      tel: 02-2570-3767
+                      fax: 02-2570-3767
+                      postalCode: string
+                      otherPlantReferencePriority: string
+                      soStopFlag: '10595'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          置場マスタ M_PLANT
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 4
+            maxLength: 4
+          in: query
+          description: 置場コード
+          name: plant_code
+          required: true
+  /internal/v1/plant/get-list:
+    parameters: []
+    post:
+      summary: 置場情報取得API（List）
+      tags:
+        - PlantInternal
+      x-channel:
+        - internal
+      operationId: getListPlantInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListPlantInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListPlantInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        plantInternalV1:
+                          plantCode: '0001'
+                          subsidiaryCode: MJP
+                          plantName: QCT
+                          plantNameNative: ＱＣＴ　（東京MC）
+                          plantAbbreviationNative: string
+                          plantNumber: ＱＣＴ
+                          shippingDaysAreaCode: '52'
+                          supplierChoiceAreaCode: '52'
+                          address1Native: 台北市南京東路
+                          address2Native: 四段126號9樓之1
+                          address3Native: 'null'
+                          address4Native: 'null'
+                          tel: 02-2570-3767
+                          fax: 02-2570-3767
+                          postalCode: string
+                          otherPlantReferencePriority: string
+                          soStopFlag: '10595'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          置場マスタ M_PLANT
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListPlantInternalRequestV1'
+        description: 置場情報取得API（List）のリクエスト電文
+  /internal/v1/ccy/get:
+    get:
+      summary: 通貨情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCcyInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    ccyInternalV1:
+                      ccyCode: CAD
+                      ccyAbbreviation: Canadian Dollar
+                      precisionColumnLength: 2
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getCcyInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          通貨マスタ M_CCY
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 3
+            example: CAD
+            minLength: 3
+          in: query
+          name: ccy_code
+          description: 通貨コード
+          required: true
+      tags:
+        - CcyInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/ccy/search:
+    get:
+      summary: 通貨情報検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCcyInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    ccyInternalV1List:
+                      - ccyCode: CAD
+                        ccyAbbreviation: Canadian Dollar
+                        precisionColumnLength: 2
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchCcyInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          通貨マスタ M_CCY
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 3
+            example: CAD
+            minLength: 3
+          in: query
+          name: ccy_code
+          description: 通貨コード
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - CcyInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/closing-time/get-list:
+    parameters: []
+    post:
+      summary: 締め時刻情報取得API（List）
+      operationId: getListClosingTimeInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListClosingTimeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListClosingTimeInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        closingTimeInternalV1:
+                          subsidiaryCode: CHN
+                          closingTimeCategory: BAFT
+                          type: '1'
+                          closingTime01: '1000'
+                          closingTime02: '1000'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          締め時刻マスタ M_CLOSING_TIME
+      tags:
+        - ClosingTimeInternal
+      x-channel:
+        - internal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListClosingTimeInternalRequestV1'
+            examples: {}
+        description: 締め時刻情報取得API（List）のリクエスト電文
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+  /internal/v1/slip-type/search:
+    get:
+      summary: 伝票区分情報検索API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSlipTypeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    slipTypeInternalV1List:
+                      - slipType: '130'
+                        slipTypeName: RETURNED STOCK SENDING
+                        slipTypeNameNative: 返品(在庫品）  送付要
+                        slipTypeNameHankakuKana: ﾍﾝﾋﾟﾝ ｿｳﾌﾖｳ
+                        classificationType: '0'
+                        classificationTypeName: ﾍﾝﾋﾟﾝ ｿｳﾌﾖｳ
+                        processType: '1'
+                        processTypeName: '1'
+                        salesDebitCreditType: '1'
+                        purchaseDebitCreditType: '1'
+                        creditAndDebitInvoiceFlag: '1'
+                        freightOrExpensesOrInsuranceReplaceSlipType: '193'
+                        freightOrExpensesOrInsuranceFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchSlipTypeInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          伝票区分マスタ M_SLIP_TYPE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 3
+            example: '130'
+            minLength: 3
+          in: query
+          name: slip_type
+          description: 伝票区分
+        - schema:
+            type: string
+            example: '1'
+            maxLength: 1
+            minLength: 1
+          in: query
+          name: sales_debit_credit_type
+          description: 売上デビクレ区分　※0：－　　1：＋
+        - schema:
+            type: string
+            example: '2'
+            maxLength: 1
+            minLength: 1
+          in: query
+          name: purchase_debit_credit_type
+          description: 仕入デビクレ区分　※0：－　　1：＋
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 1
+          in: query
+          description: 赤黒請求書フラグ　※0 ：非作成　　1 ：作成
+          name: credit_and_debit_invoice_flag
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 1
+          in: query
+          description: 運賃／雑費／保険料フラグ　※1：運賃/雑費/保険料の伝区　0： それ以外の伝区
+          name: freight_or_expenses_or_insurance_flag
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - SlipTypeInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/slip-type/get:
+    get:
+      summary: 伝票区分情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSlipTypeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    slipTypeInternalV1:
+                      slipType: '130'
+                      slipTypeName: RETURNED STOCK SENDING
+                      slipTypeNameNative: 返品(在庫品）  送付要
+                      slipTypeNameHankakuKana: ﾍﾝﾋﾟﾝ ｿｳﾌﾖｳ
+                      classificationType: '0'
+                      classificationTypeName: ﾍﾝﾋﾟﾝ ｿｳﾌﾖｳ
+                      processType: '1'
+                      processTypeName: '1'
+                      salesDebitCreditType: '1'
+                      purchaseDebitCreditType: '1'
+                      creditAndDebitInvoiceFlag: '1'
+                      freightOrExpensesOrInsuranceReplaceSlipType: '193'
+                      freightOrExpensesOrInsuranceFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getSlipTypeInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          伝票区分マスタ M_SLIP_TYPE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 3
+            example: '130'
+            minLength: 3
+          in: query
+          name: slip_type
+          description: 伝票区分
+          required: true
+      tags:
+        - SlipTypeInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/shipmode/search:
+    parameters: []
+    get:
+      summary: 扱い便情報検索API
+      operationId: searchShipmodeInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchShipmodeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    shipmodeInternalV1List:
+                      - subsidiaryCode: CHN
+                        shipmodeCode: FDX
+                        shippingCompanyNameNative: 聯邦派送（中国）有限公司
+                        shippingCompanyNameAbbreviationNative: 聯邦派送
+                        shippingCompanyName: FEDEX EXPRESS(CHINA)COMPANY LTD
+                        shippingCompanyNameAbbreviation: FEDEX
+                        shippingCompanyUrl: 'http://www.fedex.com.cn/'
+                        carrierAccountNumberMandatoryFlag: '0'
+                        shippingFreeFlag: '0'
+                        sortOrder: 1
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          扱い便マスタ M_SHIPMODE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 3
+            minLength: 1
+          in: query
+          name: shipmode_code
+          description: 扱い便コード
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - ShipmodeInternal
+      x-channel:
+        - internal
+  /internal/v1/reason-type/get-list:
+    parameters: []
+    post:
+      summary: 理由区分情報取得API（List）
+      operationId: getListReasonTypeInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListReasonTypeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListReasonTypeInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        reasonTypeInternalV1List:
+                          - businessSceneType: '01'
+                            causeType: '02'
+                            seq: 16
+                            reasonType: A12
+                            reasonTypeName: 理由内容（英語）
+                            reasonTypeNameJapanese: 理由内容（日本語）
+                            reasonTypeNameKana: 理由内容（半角カナ）
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          理由区分マスタ M_REASON_TYPE
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListReasonTypeInternalRequestV1'
+            examples: {}
+        description: 理由区分情報取得API（List）の検索リクエスト電文
+      tags:
+        - ReasonTypeInternal
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+  /internal/v1/reason-type/search:
+    parameters: []
+    get:
+      summary: 理由区分情報検索API
+      operationId: searchReasonTypeInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchReasonTypeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    reasonTypeInternalV1List:
+                      - businessSceneType: '01'
+                        causeType: '02'
+                        seq: SS
+                        reasonType: A12
+                        reasonTypeName: 理由内容（英語）
+                        reasonTypeNameJapanese: 理由内容（日本語）
+                        reasonTypeNameKana: 理由内容（半角カナ）
+                        updateCount: 0
+                        deleteFlag: string
+                        registerUserType: string
+                        registerUser: string
+                        registerDateTime: '2019-08-24T14:15:22Z'
+                        registerProgram: string
+                        registerClientProgram: string
+                        updateUserType: string
+                        updateUser: string
+                        updateDateTime: '2019-08-24T14:15:22Z'
+                        updateProgram: string
+                        updateClientProgram: string
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの一覧を返却します。
+          理由区分マスタ M_REASON_TYPE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 2
+            minLength: 2
+          in: query
+          name: business_scene_type
+          description: 業務シーン区分
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 1
+          in: query
+          description: 起因区分
+          name: cause_type
+        - schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+          in: query
+          name: seq
+          description: 事由区分
+        - schema:
+            type: string
+            maxLength: 5
+            minLength: 5
+          in: query
+          description: 理由区分
+          name: reason_type
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 40
+          in: query
+          description: 理由区分名
+          name: reason_type_name
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+      tags:
+        - ReasonTypeInternal
+      x-channel:
+        - internal
+  /internal/v1/area/search:
+    parameters: []
+    get:
+      summary: エリア情報検索API
+      tags:
+        - AreaInternal
+      x-channel:
+        - internal
+      operationId: searchAreaInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAreaInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    areaInternalV1List:
+                      - subsidiaryCode: MJP
+                        areaCode: '999'
+                        areaType: '1'
+                        areaNameEnglish: japan
+                        areaNameNative: 日本
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          エリアマスタ M_AREA
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: エリアコード
+          name: area_code
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 1
+          in: query
+          description: 'エリア区分 1:配送日数用エリア 2:調達先選定用エリア 3:出荷仕分用エリア'
+          name: area_type
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+  /internal/v1/code/search:
+    parameters: []
+    get:
+      summary: コード情報検索API
+      tags:
+        - CodeInternal
+      x-channel:
+        - internal
+      operationId: searchCodeInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCodeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    codeInternalV1List:
+                      - classificationCode: '001'
+                        code: USA
+                        codeNameJapanese: USA
+                        codeNameEnglish: subsidiaryCode
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          コードマスタ M_CODE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 80
+          in: query
+          description: 分類コード
+          name: classification_code
+        - schema:
+            type: string
+            maxLength: 80
+            minLength: 1
+          in: query
+          description: コード
+          name: code
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sortby'
+  /internal/v1/code/get-list:
+    parameters: []
+    post:
+      summary: コード情報取得API（List）
+      operationId: getListCodeInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListCodeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListCodeInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        codeInternalV1:
+                          classificationCode: '001'
+                          code: USA
+                          codeNameJapanese: 現法コード
+                          codeNameEnglish: subsidiaryCode
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          コードマスタ M_CODE
+      tags:
+        - CodeInternal
+      x-channel:
+        - internal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListCodeInternalRequestV1'
+        description: コード情報取得API（List）リクエスト電文
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+  /internal/v1/message-words/get:
+    parameters: []
+    get:
+      summary: メッセージ文言情報取得API
+      operationId: getMessageWordsInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMessageWordsInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    MessageWordsInternalV1:
+                      subsidiaryCode: MJP
+                      messageWordsCode: MSG00001
+                      languageCode: MJP
+                      internalMessageNative: メッセージ
+                      customerMessageQtNative: メッセージ
+                      customerMessageSoNative: メッセージ
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          メッセージ文言マスタ M_MESSAGE_WORDS
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            maxLength: 8
+            minLength: 1
+          in: query
+          name: message_words_code
+          description: メッセージ文言コード
+          required: true
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          name: language_code
+          description: 言語コード
+          required: true
+      tags:
+        - MessageWordsInternal
+      x-channel:
+        - internal
+  /internal/v1/message-words/get-list:
+    parameters: []
+    post:
+      summary: メッセージ文言情報取得API（List）
+      operationId: getListMessageWordsInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListMessageWordsInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListMessageWordsInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        MessageWordsInternalV1:
+                          subsidiaryCode: MJP
+                          messageWordsCode: MSG00001
+                          languageCode: MJP
+                          internalMessageNative: メッセージ
+                          customerMessageQtNative: メッセージ
+                          customerMessageSoNative: メッセージ
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          メッセージ文言マスタ M_MESSAGE_WORDS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListMessageWordsInternalRequestV1'
+        description: メッセージ文言情報取得API（List）リクエスト電文
+      tags:
+        - MessageWordsInternal
+      x-channel:
+        - internal
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+  /internal/v1/transport-means/get:
+    get:
+      summary: 輸送手段情報取得API
+      tags:
+        - TransportMeansInternal
+      x-channel:
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransportMeansInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    transportMeansInternalV1:
+                      transportMeans: A1
+                      transportMeansName: dummy1
+                      transportMeansNameJapanese: dummy2
+                      costPlusCalculationKeyType: A
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getTransportMeansInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          輸送手段マスタ M_TRANSPORT_MEANS
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 2
+          in: query
+          name: transport_means
+          description: 輸送手段
+          required: true
+  /internal/v1/country/get:
+    get:
+      summary: 国情報取得API
+      tags:
+        - CountryInternal
+      x-channel:
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCountryInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    countryInternalV1:
+                      countryCode: CHN
+                      upsCountryCode: CN
+                      countryName: china
+                      countryNameJapanese: dummy1
+                      countryNameKana: dummy2
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getCountryInternalV1
+      description: |-
+        以下のマスタの情報を返却します。
+          国マスタ M_COUNTRY
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          description: 国コード
+          name: country_code
+          required: true
+  /internal/v1/postal-code/get:
+    get:
+      summary: 郵便番号情報取得API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPostalCodeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    postalCodeInternalV1:
+                      subsidiaryCode: MJP
+                      countryCode: MJP
+                      postalCode: dummy1
+                      cityCode: dummy
+                      address1Native: dummy2
+                      address2Native: dummy3
+                      address1: dummy4
+                      address2: dummy5
+                      address3Native: WOSaa
+                      address4Native: WOSaabb
+                      address3: WOSaabbcc
+                      address4: WOSaabbccdd
+                      shippingDaysAreaCode: ccc
+                      supplierChoiceAreaCode: bbb
+                      shipmentClassificationAreaCode: aaa
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getPostalCodeInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          郵便番号マスタ M_POSTAL_CODE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+          in: query
+          name: country_code
+          description: 国コード
+          required: true
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 10
+          in: query
+          name: postal_code
+          description: 郵便番号
+          required: true
+      tags:
+        - PostalCodeInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/transitional-period-code-convert/get:
+    get:
+      summary: 過渡期用コード変換情報取得API
+      tags:
+        - TransitionalPeriodCodeConvertInternal
+      x-channel:
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransitionalPeriodCodeConvertInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    transitionalPeriodCodeConvertInternalV1:
+                      codeCategory: string
+                      seq: 1
+                      zettaCode1Name: zettaCode1Name
+                      zettaCode2Name: zettaCode2Name
+                      zettaCode3Name: zettaCode3Name
+                      zettaCode1Value: zettaCode1Value
+                      zettaCode2Value: zettaCode2Value
+                      zettaCode3Value: zettaCode3Value
+                      newtonCode1Name: newtonCode1Name
+                      newtonCode2Name: newtonCode2Name
+                      newtonCode3Name: newtonCode3Name
+                      newtonCode1Value: newtonCode1Value
+                      newtonCode2Value: newtonCode2Value
+                      newtonCode3Value: newtonCode3Value
+                      priorityFlag: '1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getTransitionalPeriodCodeConvertInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          過渡期用コード変換マスタ M_TRANSITIONAL_PERIOD_CODE_CONVERT
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 100
+          in: query
+          description: コード種別
+          name: code_category
+          required: true
+        - schema:
+            type: integer
+          in: query
+          description: 連番
+          name: seq
+          required: true
+  /internal/v1/transitional-period-code-convert/get-list:
+    post:
+      summary: 過渡期用コード変換情報取得API（List）
+      operationId: getListTransitionalPeriodCodeConvertInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListTransitionalPeriodCodeConvertInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListTransitionalPeriodCodeConvertInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        transitionalPeriodCodeConvertInternalV1:
+                          codeCategory: string
+                          seq: 1
+                          zettaCode1Name: zettaCode1Name
+                          zettaCode2Name: zettaCode2Name
+                          zettaCode3Name: zettaCode3Name
+                          zettaCode1Value: zettaCode1Value
+                          zettaCode2Value: zettaCode2Value
+                          zettaCode3Value: zettaCode3Value
+                          newtonCode1Name: newtonCode1Name
+                          newtonCode2Name: newtonCode2Name
+                          newtonCode3Name: newtonCode3Name
+                          newtonCode1Value: newtonCode1Value
+                          newtonCode2Value: newtonCode2Value
+                          newtonCode3Value: newtonCode3Value
+                          priorityFlag: '1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      tags:
+        - TransitionalPeriodCodeConvertInternal
+      x-channel:
+        - internal
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          過渡期用コード変換マスタ M_TRANSITIONAL_PERIOD_CODE_CONVERT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListTransitionalPeriodCodeConvertInternalRequestV1'
+        description: 過渡期用コード変換情報取得API（List）のリクエスト電文
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+  /internal/v1/internal-user-authority/search:
+    get:
+      summary: 社内ユーザー権限情報検索API
+      tags:
+        - InternalUserAuthorityInternal
+      x-channel:
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchInternalUserAuthorityInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 3
+                    internalUserAuthorityInternalV1:
+                      - authorityCode: MISC_REF
+                      - authorityCode: CUSTOMER_REF
+                      - authorityCode: PRODUCT_REF
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: searchInternalUserAuthorityInternalV1
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          社内ユーザー権限マスタ M_INTERNAL_USER_AUTHORITY
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 256
+          in: query
+          name: id
+          description: 社内ユーザID
+    parameters: []
+  /internal/v1/slip-type/get-list:
+    post:
+      summary: 伝票区分情報取得API（List）
+      operationId: getListSlipTypeInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListSlipTypeInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListSlipTypeInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        slipTypeInternalV1:
+                          slipType: '130'
+                          slipTypeName: RETURNED STOCK SENDING
+                          slipTypeNameNative: 返品(在庫品）  送付要
+                          slipTypeNameHankakuKana: ﾍﾝﾋﾟﾝ ｿｳﾌﾖｳ
+                          classificationType: '0'
+                          classificationTypeName: ﾍﾝﾋﾟﾝ ｿｳﾌﾖｳ
+                          processType: '1'
+                          processTypeName: '1'
+                          salesDebitCreditType: '1'
+                          purchaseDebitCreditType: '1'
+                          creditAndDebitInvoiceFlag: '1'
+                          freightOrExpensesOrInsuranceReplaceSlipType: '193'
+                          freightOrExpensesOrInsuranceFlag: '0'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          伝票区分マスタ　M_SLIP_TYPE
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListSlipTypeInternalRequestV1'
+        description: 伝票区分情報取得API（List）のリクエスト電文
+      tags:
+        - SlipTypeInternal
+      x-channel:
+        - Internal
+  /internal/v1/ccy/get-list:
+    post:
+      summary: 通貨情報取得API（List）
+      operationId: getListCcyInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListCcyInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    getListCcyInternalResponseV1DetailList:
+                      - lineNo: 1
+                        recordCount: 1
+                        ccyInternalV1:
+                          ccyCode: CAD
+                          ccyAbbreviation: Canadian Dollar
+                          precisionColumnLength: 2
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          通貨マスタ　M_CCY
+      tags:
+        - CcyInternal
+      x-channel:
+        - Internal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetListCcyInternalRequestV1'
+        description: 通貨情報取得API（List）のリクエスト電文
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+  /internal/v1/next-business-day/search:
+    post:
+      summary: 翌営業日情報検索API
+      operationId: searchNextBusinessDayInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchNextBusinessDayInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    date: '2019-08-24'
+                    businessDay: '2019-08-24'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          カレンダー名マスタ M_CALENDAR_NAME
+          カレンダーマスタ M_CALENDAR
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchNextBusinessDayInternalRequestV1'
+        description: 翌営業日情報検索APIのリクエスト電文
+      x-channel:
+        - Internal
+      tags:
+        - CalendarInternal
+  /internal/v1/shipmode/searchmu:
+    get:
+      summary: 扱い便区分情報検索（MU）API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetShipmodeInternalResponseV1'
+              examples:
+                '@example':
+                  value:
+                    recordCount: '1'
+                    shipmodeList:
+                      - shipmodeCode: aaa
+                        shippingCompanyNameNative: bbb
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      operationId: getShipmodeInternalV1
+      description: 扱い便区分情報を参照する
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 3
+          in: query
+          name: freightAreaCode
+          description: 運賃エリアコード
+          required: true
+      tags:
+        - ShipmodeInternal
+      x-channel:
+        - internal
+    parameters: []
+  /internal/v1/begin-of-month-business-day/search:
+    post:
+      summary: 月初営業日情報検索API
+      operationId: searchBeginOfMonthBusinessDayInternalV1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchBeginOfMonthBusinessDayInternalResponseV1'
+              examples:
+                '@Example':
+                  value:
+                    recordCount: 1
+                    date: '2019-08-24'
+                    businessDay: '2019-08-24'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        以下のマスタの情報を返却するAPIです。
+          カレンダー名マスタ M_CALENDAR_NAME
+          カレンダーマスタ M_CALENDAR
+      parameters:
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Subsidiary-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Language-Code
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Debug
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/parameters/Cache-Control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchBeginOfMonthBusinessDayInternalRequestV1'
+        description: 月初営業日情報検索APIのリクエスト電文
+      x-channel:
+        - Internal
+      tags:
+        - CalendarInternal
+    parameters: []
+components:
+  schemas:
+    SearchTiShipToConvertInternalResponseV1:
+      type: object
+      title: SearchTiShipToConvertInternalResponseV1
+      description: TI配送先変換情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        tiShipToConvertInternalV1List:
+          type: array
+          description: TI配送先変換情報リスト
+          items:
+            $ref: '#/components/schemas/TiShipToConvertInternalV1'
+      required:
+        - recordCount
+    TiShipToConvertInternalV1:
+      title: TiShipToConvertInternalV1
+      type: object
+      description: TI配送先変換情報
+      x-examples: {}
+      properties:
+        subsidiaryCodeFrom:
+          type: string
+          description: 現法コードFROM
+        subsidiaryCodeTo:
+          type: string
+          description: 現法コードTO
+        beforeConvertShipToCode:
+          type: string
+          description: 変換前配送先コード
+        convertedShipToCode:
+          type: string
+          description: 変換後配送先コード
+      required:
+        - subsidiaryCodeFrom
+        - subsidiaryCodeTo
+        - beforeConvertShipToCode
+        - convertedShipToCode
+    SupplierShippingDaysInternalV1:
+      title: SupplierShippingDaysInternalV1
+      type: object
+      description: 仕入先配送日数情報
+      x-examples: {}
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        supplierCode:
+          type: string
+          description: 仕入先コード
+        deliveryDestinationPlantCode:
+          type: string
+          description: 納入先置場コード
+        transportMeans:
+          type: string
+          description: 輸送手段
+        shipmentPlaceCode:
+          type: string
+          description: 出荷場所コード
+        transportChannelName1:
+          type: string
+          description: 輸送経路名1
+        transportDays1:
+          type: integer
+          description: 輸送日数1
+        transportChannelCalendarCode1:
+          type: string
+          description: 輸送経路カレンダーコード1
+        interposedDayOffFlag1:
+          type: string
+          description: 途中休日考慮フラグ1
+        transportChannelName2:
+          type: string
+          description: 輸送経路名2
+        transportDays2:
+          type: integer
+          description: 輸送日数2
+        transportChannelCalendarCode2:
+          type: string
+          description: 輸送経路カレンダーコード2
+        interposedDayOffFlag2:
+          type: string
+          description: 途中休日考慮フラグ2
+        transportChannelName3:
+          type: string
+          description: 輸送経路名3
+        transportDays3:
+          type: integer
+          description: 輸送日数3
+        transportChannelCalendarCode3:
+          type: string
+          description: 輸送経路カレンダーコード3
+        interposedDayOffFlag3:
+          type: string
+          description: 途中休日考慮フラグ3
+        transportChannelName4:
+          type: string
+          description: 輸送経路名4
+        transportDays4:
+          type: integer
+          description: 輸送日数4
+        transportChannelCalendarCode4:
+          type: string
+          description: 輸送経路カレンダーコード4
+        interposedDayOffFlag4:
+          type: string
+          description: 途中休日考慮フラグ4
+        transportChannelName5:
+          type: string
+          description: 輸送経路名5
+        transportDays5:
+          type: integer
+          description: 輸送日数5
+        transportChannelCalendarCode5:
+          type: string
+          description: 輸送経路カレンダーコード5
+        interposedDayOffFlag5:
+          type: string
+          description: 途中休日考慮フラグ5
+      required:
+        - subsidiaryCode
+        - supplierCode
+        - deliveryDestinationPlantCode
+        - transportMeans
+        - shipmentPlaceCode
+        - transportChannelName1
+        - transportDays1
+        - transportChannelCalendarCode1
+        - interposedDayOffFlag1
+    GetListSupplierShippingDaysInternalRequestV1:
+      title: GetListSupplierShippingDaysInternalRequestV1
+      type: object
+      description: 仕入先配送日数情報取得API（List）のリクエスト電文
+      properties:
+        getListSupplierShippingDaysInternalRequestV1DetailList:
+          type: array
+          description: 仕入先配送日数情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListSupplierShippingDaysInternalRequestV1Detail'
+      required:
+        - getListSupplierShippingDaysInternalRequestV1DetailList
+    GetListSupplierShippingDaysInternalRequestV1Detail:
+      title: GetListSupplierShippingDaysInternalRequestV1Detail
+      type: object
+      description: 仕入先配送日数情報取得API（List）のリクエスト電文詳細
+      properties:
+        supplierCode:
+          type: string
+          description: 仕入先コード
+          maxLength: 4
+          example: '9572'
+          minLength: 4
+        deliveryDestinationPlantCode:
+          type: string
+          description: 納入先置場コード
+          maxLength: 4
+          minLength: 4
+        transportMeans:
+          type: string
+          description: '輸送手段 ※仕入先のカテゴリコードが01 02の場合 A1：ＡＩＲ（通常混載便）　　A2：AIR（危険品）　　A3：ＡＩＲ（個別便）　O1：OCEAN（通常混載便）　仕入先のカテゴリコードが上記以外の場合 XX:固定'
+          maxLength: 2
+          minLength: 1
+        shipmentPlaceCode:
+          type: string
+          description: 出荷場所コード
+          maxLength: 4
+          minLength: 4
+      required:
+        - supplierCode
+        - deliveryDestinationPlantCode
+        - transportMeans
+        - shipmentPlaceCode
+    GetListSupplierShippingDaysInternalResponseV1:
+      title: GetListSupplierShippingDaysInternalResponseV1
+      type: object
+      description: 仕入先配送日数情報取得API（List）のレスポンス電文
+      properties:
+        getListSupplierShippingDaysInternalResponseV1DetailList:
+          type: array
+          description: 仕入先配送日数情報リスト
+          items:
+            $ref: '#/components/schemas/GetListSupplierShippingDaysInternalResponseV1Detail'
+    GetListSupplierShippingDaysInternalResponseV1Detail:
+      title: GetListSupplierShippingDaysInternalResponseV1Detail
+      type: object
+      description: 仕入先配送日数情報取得API（List）のレスポンス電文詳細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        supplierShippingDaysInternalV1:
+          $ref: '#/components/schemas/SupplierShippingDaysInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    SearchIoCustomerConvertInternalResponseV1:
+      title: SearchIoCustomerConvertInternalResponseV1
+      type: object
+      description: IO用得意先変換検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        ioCustomerConvertInternalV1List:
+          type: array
+          description: IO用得意先変換情報リスト
+          items:
+            $ref: '#/components/schemas/IoCustomerConvertInternalV1'
+      required:
+        - recordCount
+    IoCustomerConvertInternalV1:
+      title: IoCustomerConvertInternalV1
+      type: object
+      description: IO用得意先変換情報
+      properties:
+        sub1SubsidiaryCode:
+          type: string
+          description: SUB1側現法コード
+        sub1SupplierCode:
+          type: string
+          description: SUB1側仕入先コード
+        sub2SubsidiaryCode:
+          type: string
+          description: SUB2側現法コード
+        sub2CustomerCode:
+          type: string
+          description: SUB2側得意先コード
+        ccyCode:
+          type: string
+          description: 通貨コード
+      required:
+        - sub1SubsidiaryCode
+        - sub1SupplierCode
+        - sub2SubsidiaryCode
+        - sub2CustomerCode
+        - ccyCode
+    IoSupplyMeansControlInternalV1:
+      title: IoSupplyMeansControlInternalV1
+      type: object
+      description: IO調達方法管理情報
+      properties:
+        sub1SubsidiaryCode:
+          type: string
+          description: SUB1側現法コード
+        ioSupplyMeansCode:
+          type: string
+          description: IO調達方法コード
+        sub2SubsidiaryCode:
+          type: string
+          description: SUB2側現法コード
+        ioSupplyMeansName:
+          type: string
+          description: IO調達方法名
+        ioSupplyMeansNameNative:
+          type: string
+          description: IO調達方法名（現地語）
+        defaultFlag:
+          type: string
+          description: デフォルトフラグ
+        transportMeans:
+          type: string
+          description: 輸送手段
+        costPlusCalculationKeyType:
+          type: string
+          description: コストプラス算出キー区分
+        shippingDateAdjustFlag:
+          type: string
+          description: 出荷日調整フラグ
+        directShipmentType:
+          type: string
+          description: 直送区分
+        sub1HideFlag:
+          type: string
+          description: SUB1非表示フラグ
+      required:
+        - sub1SubsidiaryCode
+        - ioSupplyMeansCode
+        - sub2SubsidiaryCode
+        - ioSupplyMeansName
+        - defaultFlag
+        - transportMeans
+        - costPlusCalculationKeyType
+        - shippingDateAdjustFlag
+        - directShipmentType
+        - sub1HideFlag
+    CalendarInternalV1:
+      title: CalendarInternalV1
+      type: object
+      description: カレンダー情報
+      x-examples: {}
+      properties:
+        calendarCode:
+          type: string
+          description: カレンダコード
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        calendarCategory:
+          type: string
+          description: カレンダ種別
+        calendarName:
+          type: string
+          description: カレンダ名
+        globalFlag:
+          type: string
+          description: グローバルフラグ
+        calendarDate:
+          type: string
+          format: date
+          description: カレンダ年月日
+      required:
+        - calendarCode
+        - subsidiaryCode
+        - calendarCategory
+        - calendarName
+        - globalFlag
+        - calendarDate
+    RateInternalV1:
+      title: RateInternalV1
+      type: object
+      description: レート情報
+      properties:
+        rateTypeCode:
+          type: string
+          description: レートタイプコード
+        beforeConvertCcyCode:
+          type: string
+          description: 変換元通貨コード
+        afterConvertCcyCode:
+          type: string
+          description: 変換先通貨コード
+        effectiveStartDate:
+          type: string
+          description: 適用開始日
+          format: date
+        rate:
+          type: string
+          description: レート
+          format: decimal
+      required:
+        - rateTypeCode
+        - beforeConvertCcyCode
+        - afterConvertCcyCode
+        - effectiveStartDate
+        - rate
+    SubsidiaryInternalV1:
+      title: SubsidiaryInternalV1
+      type: object
+      description: 現法情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        subsidiaryName:
+          type: string
+          description: 現地法人名
+        subsidiaryNameNative:
+          type: string
+          description: 現地法人名（現地語）
+        countryCode:
+          type: string
+          description: 国コード
+        languageCode:
+          type: string
+          description: 言語コード
+        licenseNumber:
+          type: string
+          description: ライセンス番号
+        taxRegisterNumber:
+          type: string
+          description: 税登録番号
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        postalCode:
+          type: string
+          description: 郵便番号
+        tel:
+          type: string
+          description: 電話番号
+        fax:
+          type: string
+          description: FAX番号
+        ccyCode:
+          type: string
+          description: 通貨コード
+        dateFormat:
+          type: string
+          description: 日付形式
+        timeZone:
+          type: string
+          description: タイムゾーン
+        holdPeriodApplyCalendarCode:
+          type: string
+          description: 保留期間適用カレンダコード
+        fiscalStartYear:
+          type: integer
+          description: 会計開始年度
+        fiscalStartMonth:
+          description: 会計開始月
+          type: integer
+        settlementMonth:
+          description: 決算月
+          type: integer
+        packingWeight:
+          type: string
+          description: 梱包重量
+          format: decimal
+        subsidiarySystemType:
+          type: string
+          description: 現法システム区分
+        sortOrder:
+          type: integer
+          description: 並び順
+      required:
+        - subsidiaryCode
+        - subsidiaryName
+        - subsidiaryNameNative
+        - countryCode
+        - languageCode
+        - address1
+        - address1Native
+        - tel
+        - fax
+        - ccyCode
+        - dateFormat
+        - holdPeriodApplyCalendarCode
+        - fiscalStartYear
+        - fiscalStartMonth
+        - settlementMonth
+        - packingWeight
+        - subsidiarySystemType
+    LanguageInternalV1:
+      title: LanguageInternalV1
+      type: object
+      description: 言語情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        languageCode:
+          type: string
+          description: 言語コード
+        languageName:
+          type: string
+          description: 言語名
+      required:
+        - subsidiaryCode
+        - languageCode
+        - languageName
+    PlantInternalV1:
+      title: PlantInternalV1
+      type: object
+      description: 置場情報
+      x-examples: {}
+      properties:
+        plantCode:
+          type: string
+          description: 置場コード
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        plantName:
+          type: string
+          description: 置場名
+        plantNameNative:
+          type: string
+          description: 置場名（現地語）
+        plantAbbreviationNative:
+          type: string
+          description: 置場略称（現地語）
+        plantNumber:
+          type: string
+          description: 置場番号
+        shippingDaysAreaCode:
+          type: string
+          description: 配送日数用エリアコード
+        supplierChoiceAreaCode:
+          type: string
+          description: 調達先選定用エリアコード
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        tel:
+          type: string
+          description: 電話番号
+        fax:
+          type: string
+          description: FAX番号
+        postalCode:
+          type: string
+          description: 郵便番号
+        otherPlantReferencePriority:
+          type: string
+          description: 他置場参照優先順位
+        soStopFlag:
+          type: string
+          description: 受注停止フラグ
+      required:
+        - plantCode
+        - subsidiaryCode
+        - plantName
+        - shippingDaysAreaCode
+        - supplierChoiceAreaCode
+        - otherPlantReferencePriority
+    CcyInternalV1:
+      title: CcyInternalV1
+      type: object
+      description: 通貨情報
+      properties:
+        ccyCode:
+          type: string
+          description: 通貨コード
+        ccyAbbreviation:
+          type: string
+          description: 通貨略称
+        precisionColumnLength:
+          type: integer
+          description: 小数点以下桁数
+      required:
+        - ccyCode
+        - ccyAbbreviation
+        - precisionColumnLength
+    ClosingTimeInternalV1:
+      title: ClosingTimeInternalV1
+      type: object
+      description: 締め時刻情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        closingTimeCategory:
+          type: string
+          description: 締時刻種別
+        type:
+          type: string
+          description: 区分
+        closingTime01:
+          type: string
+          description: 締時刻01
+        closingTime02:
+          type: string
+          description: 締時刻02
+      required:
+        - subsidiaryCode
+        - closingTimeCategory
+        - type
+        - closingTime01
+    SlipTypeInternalV1:
+      title: SlipTypeInternalV1
+      type: object
+      description: 伝票区分情報
+      properties:
+        slipType:
+          type: string
+          description: 伝票区分
+        slipTypeName:
+          type: string
+          description: 伝票区分名
+        slipTypeNameNative:
+          type: string
+          description: 伝票区分名（現地語）
+        slipTypeNameHankakuKana:
+          type: string
+          description: 伝票区分名（半角カナ）
+        classificationType:
+          type: string
+          description: 分類区分
+        classificationTypeName:
+          type: string
+          description: 分類区分名
+        processType:
+          type: string
+          description: プロセス区分
+        processTypeName:
+          type: string
+          description: プロセス区分名
+        salesDebitCreditType:
+          type: string
+          description: 売上デビクレ区分
+        purchaseDebitCreditType:
+          type: string
+          description: 仕入デビクレ区分
+        creditAndDebitInvoiceFlag:
+          type: string
+          description: 赤黒請求書フラグ
+        freightOrExpensesOrInsuranceReplaceSlipType:
+          type: string
+          description: 運賃／雑費／保険料置換伝区
+        freightOrExpensesOrInsuranceFlag:
+          type: string
+          description: 運賃／雑費／保険料フラグ
+      required:
+        - slipType
+        - slipTypeName
+        - slipTypeNameNative
+        - slipTypeNameHankakuKana
+        - creditAndDebitInvoiceFlag
+        - freightOrExpensesOrInsuranceFlag
+    ShipmodeInternalV1:
+      title: ShipmodeInternalV1
+      type: object
+      description: 扱い便情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        shipmodeCode:
+          type: string
+          description: 扱い便コード
+        shippingCompanyNameNative:
+          type: string
+          description: 配送業者名（現地語）
+        shippingCompanyNameAbbreviationNative:
+          type: string
+          description: 配送業者名略称（現地語）
+        shippingCompanyName:
+          type: string
+          description: 配送業者名
+        shippingCompanyNameAbbreviation:
+          type: string
+          description: 配送業者名略称
+        shippingCompanyUrl:
+          type: string
+          description: 配送業者URL
+        carrierAccountNumberMandatoryFlag:
+          type: string
+          description: 配送業者顧客番号必須フラグ
+        shippingFreeFlag:
+          type: string
+          description: 配送無料フラグ
+        sortOrder:
+          type: integer
+          description: 並び順
+      required:
+        - subsidiaryCode
+        - shipmodeCode
+        - shippingCompanyNameNative
+        - shippingCompanyNameAbbreviationNative
+        - shippingCompanyName
+        - shippingCompanyNameAbbreviation
+        - carrierAccountNumberMandatoryFlag
+    GetListReasonTypeInternalRequestV1:
+      title: GetListReasonTypeInternalRequestV1
+      type: object
+      description: 理由区分情報取得API（List）のリクエスト電文
+      x-examples: {}
+      properties:
+        getListReasonTypeInternalRequestV1DetailList:
+          type: array
+          description: 理由区分情報取得API（List）の情報リスト
+          items:
+            $ref: '#/components/schemas/GetListReasonTypeInternalRequestV1Detail'
+      required:
+        - getListReasonTypeInternalRequestV1DetailList
+    ReasonTypeInternalV1:
+      title: ReasonTypeInternalV1
+      type: object
+      description: 理由区分情報
+      properties:
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+        causeType:
+          type: string
+          description: 起因区分
+        seq:
+          type: string
+          description: 事由区分
+        reasonType:
+          type: string
+          description: 理由区分
+        reasonTypeName:
+          type: string
+          description: 理由区分名
+        reasonTypeNameJapanese:
+          type: string
+          description: 理由区分名（日本語）
+        reasonTypeNameKana:
+          type: string
+          description: 理由区分名（カナ）
+      required:
+        - businessSceneType
+        - causeType
+        - seq
+        - reasonType
+        - reasonTypeName
+        - reasonTypeNameJapanese
+        - reasonTypeNameKana
+    ReasonTypeAllInternalV1:
+      title: ReasonTypeAllInternalV1
+      type: object
+      description: 理由区分情報
+      properties:
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+        causeType:
+          type: string
+          description: 起因区分
+        seq:
+          description: 事由区分
+          type: string
+        reasonType:
+          type: string
+          description: 理由区分
+        reasonTypeName:
+          type: string
+          description: 理由区分名
+        reasonTypeNameJapanese:
+          type: string
+          description: 理由区分名（日本語）
+        reasonTypeNameKana:
+          type: string
+          description: 理由区分名（カナ）
+        updateCount:
+          type: integer
+          description: 更新回数
+        deleteFlag:
+          type: string
+          description: 削除フラグ
+        registerUserType:
+          type: string
+          description: 登録者区分
+        registerUser:
+          type: string
+          description: 登録者
+        registerDateTime:
+          type: string
+          description: 登録日時
+          format: date-time
+        registerProgram:
+          type: string
+          description: 登録プログラム
+        registerClientProgram:
+          type: string
+          description: 登録呼び出し元プログラム
+        updateUserType:
+          type: string
+          description: 更新者区分
+        updateUser:
+          type: string
+          description: 更新者
+        updateDateTime:
+          type: string
+          description: 更新日時
+          format: date-time
+        updateProgram:
+          type: string
+          description: 更新プログラム
+        updateClientProgram:
+          type: string
+          description: 更新呼び出し元プログラム
+      required:
+        - businessSceneType
+        - causeType
+        - seq
+        - reasonType
+        - reasonTypeName
+        - reasonTypeNameJapanese
+        - reasonTypeNameKana
+        - updateCount
+        - deleteFlag
+        - registerUserType
+        - registerUser
+        - registerDateTime
+        - registerProgram
+        - registerClientProgram
+        - updateUserType
+        - updateUser
+        - updateDateTime
+        - updateProgram
+        - updateClientProgram
+    SubsidiaryControlInternalV1:
+      title: SubsidiaryControlInternalV1
+      type: object
+      description: 現法制御情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        controlCode:
+          type: string
+          description: 制御コード
+        flag:
+          type: string
+          description: フラグ
+        type:
+          type: string
+          description: 区分
+        value:
+          type: string
+          description: 値
+        fieldNameEnglish:
+          type: string
+          description: 項目名(英語)
+        fieldType:
+          type: string
+          description: 項目区分
+        remarks:
+          type: string
+          description: 備考
+      required:
+        - subsidiaryCode
+        - controlCode
+    AreaInternalV1:
+      title: AreaInternalV1
+      type: object
+      description: エリア情報
+      x-examples: {}
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        areaCode:
+          type: string
+          description: エリアコード
+        areaType:
+          type: string
+          description: エリア区分
+        areaNameEnglish:
+          type: string
+          description: エリア名（英語）
+        areaNameNative:
+          type: string
+          description: エリア名（現地語）
+      required:
+        - subsidiaryCode
+        - areaCode
+        - areaType
+    CodeInternalV1:
+      title: CodeInternalV1
+      type: object
+      description: コード情報
+      x-examples: {}
+      properties:
+        classificationCode:
+          type: string
+          description: 分類コード
+        code:
+          type: string
+          description: コード
+        codeNameJapanese:
+          type: string
+          description: コード名称（日本語）
+        codeNameEnglish:
+          type: string
+          description: コード名称（英語）
+      required:
+        - classificationCode
+        - code
+        - codeNameJapanese
+    MessageWordsInternalV1:
+      title: MessageWordsInternalV1
+      type: object
+      description: メッセージ文言情報
+      x-examples: {}
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        messageWordsCode:
+          type: string
+          description: メッセージ文言コード
+        languageCode:
+          type: string
+          description: 言語コード
+        internalMessageNative:
+          type: string
+          description: 社内用メッセージ（現地語）
+        customerMessageQtNative:
+          type: string
+          description: 顧客用メッセージ（見積用）（現地語）
+        customerMessageSoNative:
+          type: string
+          description: 顧客用メッセージ（受注用）（現地語）
+      required:
+        - subsidiaryCode
+        - messageWordsCode
+        - languageCode
+    GetListIoSupplyMeansControlInternalRequestV1:
+      title: GetListIoSupplyMeansControlInternalRequestV1
+      type: object
+      description: IO調達方法管理情報取得API（List）のリクエスト電文
+      properties:
+        getListIoSupplyMeansControlInternalRequestV1DetailList:
+          type: array
+          description: IO調達方法管理情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListIoSupplyMeansControlInternalRequestV1Detail'
+      required:
+        - getListIoSupplyMeansControlInternalRequestV1DetailList
+    GetListIoSupplyMeansControlInternalResponseV1Detail:
+      title: GetListIoSupplyMeansControlInternalResponseV1Detail
+      type: object
+      description: IO調達方法管理情報明細
+      properties:
+        lineNo:
+          description: 明細番号
+          type: integer
+        recordCount:
+          description: レコード件数
+          type: integer
+        ioSupplyMeansControlInternalV1:
+          $ref: '#/components/schemas/IoSupplyMeansControlInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    GetCcyInternalResponseV1:
+      title: GetCcyInternalResponseV1
+      type: object
+      description: 通貨情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        ccyInternalV1:
+          $ref: '#/components/schemas/CcyInternalV1'
+      required:
+        - recordCount
+    SearchCalendarInternalResponseV1:
+      type: object
+      title: SearchCalendarInternalResponseV1
+      description: カレンダー情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        calendarInternalV1List:
+          type: array
+          description: カレンダー情報リスト
+          items:
+            $ref: '#/components/schemas/CalendarInternalV1'
+      required:
+        - recordCount
+    GetListClosingTimeInternalResponseV1:
+      type: object
+      description: 締め時刻情報取得API（List）のレスポンス電文
+      title: GetListClosingTimeInternalResponseV1
+      properties:
+        getListClosingTimeInternalResponseV1DetailList:
+          type: array
+          description: 締め時刻情報リスト
+          items:
+            $ref: '#/components/schemas/GetListClosingTimeInternalResponseV1Detail'
+    SearchLanguageInternalResponseV1:
+      type: object
+      title: SearchLanguageInternalResponseV1
+      description: 言語情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        languageInternalV1List:
+          type: array
+          description: 言語情報リスト
+          items:
+            $ref: '#/components/schemas/LanguageInternalV1'
+      required:
+        - recordCount
+    GetRateInternalResponseV1:
+      title: GetRateInternalResponseV1
+      description: レート情報取得APIのレスポンス電文
+      type: object
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        rateInternalV1:
+          $ref: '#/components/schemas/RateInternalV1'
+      required:
+        - recordCount
+    GetSubsidiaryInternalResponseV1:
+      title: GetSubsidiaryInternalResponseV1
+      description: 現法情報取得APIのレスポンス電文
+      type: object
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        subsidiaryInternalV1:
+          $ref: '#/components/schemas/SubsidiaryInternalV1'
+        subsidiaryControlInternalV1List:
+          type: array
+          description: 現法制御情報リスト
+          items:
+            $ref: '#/components/schemas/SubsidiaryControlInternalV1'
+      required:
+        - recordCount
+    SearchPlantInternalResponseV1:
+      title: SearchPlantInternalResponseV1
+      type: object
+      description: 置場情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        plantInternalV1List:
+          type: array
+          description: 置場情報リスト
+          items:
+            $ref: '#/components/schemas/PlantInternalV1'
+      required:
+        - recordCount
+    GetPlantInternalResponseV1:
+      title: GetPlantInternalResponseV1
+      type: object
+      description: 置場情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        plantInternalV1:
+          $ref: '#/components/schemas/PlantInternalV1'
+      required:
+        - recordCount
+    GetListPlantInternalRequestV1:
+      title: GetListPlantInternalRequestV1
+      description: 置場情報取得API（List）のリクエスト電文
+      type: object
+      properties:
+        getListPlantInternalRequestV1DetailList:
+          type: array
+          description: 置場情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListPlantInternalRequestV1Detail'
+      required:
+        - getListPlantInternalRequestV1DetailList
+    GetListPlantInternalResponseV1:
+      title: GetListPlantInternalResponseV1
+      type: object
+      description: 置場情報取得API（List）のレスポンス電文
+      properties:
+        getListPlantInternalResponseV1DetailList:
+          type: array
+          description: 置場情報リスト
+          items:
+            $ref: '#/components/schemas/GetListPlantInternalResponseV1Detail'
+    GetListPlantInternalResponseV1Detail:
+      title: GetListPlantInternalResponseV1Detail
+      type: object
+      description: 置場情報取得API（List）のレスポンス電文詳細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        plantInternalV1:
+          $ref: '#/components/schemas/PlantInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    SearchSlipTypeInternalResponseV1:
+      title: SearchSlipTypeInternalResponseV1
+      description: 伝票区分情報検索APIのレスポンス電文
+      type: object
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        slipTypeInternalV1List:
+          type: array
+          description: 伝票区分情報リスト
+          items:
+            $ref: '#/components/schemas/SlipTypeInternalV1'
+      required:
+        - recordCount
+    GetSlipTypeInternalResponseV1:
+      title: GetSlipTypeInternalResponseV1
+      description: 伝票区分情報取得APIのレスポンス電文
+      type: object
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        slipTypeInternalV1:
+          $ref: '#/components/schemas/SlipTypeInternalV1'
+      required:
+        - recordCount
+    SearchShipmodeInternalResponseV1:
+      title: SearchShipmodeInternalResponseV1
+      type: object
+      description: 扱い便情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        shipmodeInternalV1List:
+          type: array
+          description: 扱い便区分情報リスト
+          items:
+            $ref: '#/components/schemas/ShipmodeInternalV1'
+      required:
+        - recordCount
+    GetListReasonTypeInternalResponseV1:
+      title: GetListReasonTypeInternalResponseV1
+      type: object
+      description: 理由区分情報取得API（List）のレスポンス電文
+      properties:
+        getListReasonTypeInternalResponseV1DetailList:
+          type: array
+          description: 理由区分情報取得API（List）のレスポンス電文詳細
+          items:
+            $ref: '#/components/schemas/GetListReasonTypeInternalResponseV1Detail'
+    GetListReasonTypeInternalResponseV1Detail:
+      title: GetListReasonTypeInternalResponseV1Detail
+      type: object
+      description: 理由区分情報詳細
+      properties:
+        lineNo:
+          description: 明細番号
+          type: integer
+        recordCount:
+          description: レコード件数
+          type: integer
+        reasonTypeInternalV1:
+          $ref: '#/components/schemas/ReasonTypeInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    SearchReasonTypeInternalResponseV1:
+      title: SearchReasonTypeInternalResponseV1
+      type: object
+      description: 理由区分情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        reasonTypeInternalV1List:
+          type: array
+          description: 理由区分情報リスト
+          items:
+            $ref: '#/components/schemas/ReasonTypeAllInternalV1'
+      required:
+        - recordCount
+    GetListIoSupplyMeansControlInternalRequestV1Detail:
+      title: GetListIoSupplyMeansControlInternalRequestV1Detail
+      type: object
+      description: IO調達方法管理情報取得API（List）のリクエスト電文詳細
+      properties:
+        sub1SubsidiaryCode:
+          type: string
+          description: SUB1側現法コード
+          maxLength: 3
+          example: MJP
+          minLength: 3
+        ioSupplyMeansCode:
+          type: string
+          description: IO調達方法コード
+          minLength: 3
+          maxLength: 3
+      required:
+        - sub1SubsidiaryCode
+        - ioSupplyMeansCode
+    GetListPlantInternalRequestV1Detail:
+      title: GetListPlantInternalRequestV1Detail
+      type: object
+      description: 置場情報取得API（List）のリクエスト電文詳細
+      properties:
+        plantCode:
+          type: string
+          description: 置場コード
+          minLength: 4
+          maxLength: 4
+          example: '0001'
+      required:
+        - plantCode
+    GetListReasonTypeInternalRequestV1Detail:
+      title: GetListReasonTypeInternalRequestV1Detail
+      type: object
+      description: 理由区分情報取得API（List）のリクエスト電文詳細
+      properties:
+        businessSceneType:
+          type: string
+          description: 業務シーン区分
+          maxLength: 2
+          minLength: 2
+        reasonType:
+          type: string
+          description: 理由区分
+          minLength: 5
+          maxLength: 5
+      required:
+        - reasonType
+    SearchCcyInternalResponseV1:
+      title: SearchCcyInternalResponseV1
+      type: object
+      description: 通貨情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        ccyInternalV1List:
+          type: array
+          description: 通貨情報リスト
+          items:
+            $ref: '#/components/schemas/CcyInternalV1'
+      required:
+        - recordCount
+    SearchAreaInternalResponseV1:
+      type: object
+      title: SearchAreaInternalResponseV1
+      description: エリア情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        areaInternalV1List:
+          type: array
+          description: エリア情報リスト
+          items:
+            $ref: '#/components/schemas/AreaInternalV1'
+      required:
+        - recordCount
+    SearchCodeInternalResponseV1:
+      type: object
+      title: SearchCodeInternalResponseV1
+      description: コード情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          description: レコード件数
+          type: integer
+        codeInternalV1List:
+          type: array
+          description: コード情報リスト
+          items:
+            $ref: '#/components/schemas/CodeInternalV1'
+      required:
+        - recordCount
+    GetListClosingTimeInternalRequestV1:
+      title: GetListClosingTimeInternalRequestV1
+      type: object
+      description: 締め時刻情報取得API（List）のリクエスト電文
+      properties:
+        getListClosingTimeInternalRequestV1DetailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetListClosingTimeInternalRequestV1Detail'
+      required:
+        - getListClosingTimeInternalRequestV1DetailList
+    GetListClosingTimeInternalRequestV1Detail:
+      title: GetListClosingTimeInternalRequestV1Detail
+      type: object
+      description: 締め時刻情報取得API（List）のリクエスト電文詳細
+      properties:
+        type:
+          type: string
+          description: 区分　※BAFTの場合　0～9　EODの場合　00～09
+          example: '09'
+          minLength: 2
+          maxLength: 2
+        closingTimeCategory:
+          type: string
+          description: 締時刻種別　※BAFT：短納期用
+          minLength: 1
+          maxLength: 4
+      required:
+        - type
+        - closingTimeCategory
+    GetListClosingTimeInternalResponseV1Detail:
+      title: GetListClosingTimeInternalResponseV1Detail
+      type: object
+      description: 締め時刻情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        closingTimeInternalV1:
+          $ref: '#/components/schemas/ClosingTimeInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    GetListIoSupplyMeansControlInternalResponseV1:
+      title: GetListIoSupplyMeansControlInternalResponseV1
+      type: object
+      description: IO調達方法管理情報取得API（List）のレスポンス電文
+      properties:
+        getListIoSupplyMeansControlInternalResponseV1DetailList:
+          type: array
+          description: IO調達方法管理情報リスト
+          items:
+            $ref: '#/components/schemas/GetListIoSupplyMeansControlInternalResponseV1Detail'
+    GetListCodeInternalRequestV1:
+      title: GetListCodeInternalRequestV1
+      description: コード情報取得API（List）のリクエスト電文
+      type: object
+      properties:
+        getListCodeInternalRequestV1DetailList:
+          type: array
+          description: コード情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListCodeInternalRequestV1Detail'
+      required:
+        - getListCodeInternalRequestV1DetailList
+    GetListCodeInternalRequestV1Detail:
+      title: GetListCodeInternalRequestV1Detail
+      type: object
+      description: コード情報取得API（List）のリクエスト電文詳細
+      properties:
+        classificationCode:
+          type: string
+          description: 分類コード
+          minLength: 1
+          maxLength: 80
+        code:
+          type: string
+          minLength: 1
+          maxLength: 80
+          description: コード
+      required:
+        - classificationCode
+        - code
+    GetListCodeInternalResponseV1:
+      title: GetListCodeInternalResponseV1
+      type: object
+      description: コード情報取得API（List）のレスポンス電文
+      properties:
+        getListCodeInternalResponseV1DetailList:
+          type: array
+          description: コード情報リスト
+          items:
+            $ref: '#/components/schemas/GetListCodeInternalResponseV1Detail'
+    GetListCodeInternalResponseV1Detail:
+      title: GetListCodeInternalResponseV1Detail
+      type: object
+      description: コード情報取得API（List）のレスポンス電文詳細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        codeInternalV1:
+          $ref: '#/components/schemas/CodeInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    GetListMessageWordsInternalRequestV1:
+      title: GetListMessageWordsInternalRequestV1
+      description: メッセージ文言情報取得API（List）のリクエスト電文
+      type: object
+      properties:
+        getListMessageWordsInternalRequestV1DetailList:
+          type: array
+          description: メッセージ文言情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListMessageWordsInternalRequestV1Detail'
+      required:
+        - getListMessageWordsInternalRequestV1DetailList
+    GetListMessageWordsInternalRequestV1Detail:
+      title: GetListMessageWordsInternalRequestV1Detail
+      type: object
+      description: メッセージ文言情報取得API（List）のリクエスト電文詳細
+      properties:
+        messageWordsCode:
+          type: string
+          description: メッセージ文言コード
+          minLength: 1
+          maxLength: 8
+        languageCode:
+          type: string
+          minLength: 3
+          maxLength: 3
+          description: 言語コード
+      required:
+        - messageWordsCode
+        - languageCode
+    GetListMessageWordsInternalResponseV1:
+      title: GetListMessageWordsInternalResponseV1
+      type: object
+      description: メッセージ文言情報取得API（List）のレスポンス電文
+      properties:
+        getListMessageWordsInternalResponseV1DetailList:
+          type: array
+          description: メッセージ文言情報リスト
+          items:
+            $ref: '#/components/schemas/GetListMessageWordsInternalResponseV1Detail'
+    GetListMessageWordsInternalResponseV1Detail:
+      title: GetListMessageWordsInternalResponseV1Detail
+      type: object
+      description: メッセージ文言情報取得API（List）のレスポンス電文詳細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        MessageWordsInternalV1:
+          $ref: '#/components/schemas/MessageWordsInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    GetMessageWordsInternalResponseV1:
+      title: GetMessageWordsInternalResponseV1
+      type: object
+      description: メッセージ文言情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        MessageWordsInternalV1:
+          $ref: '#/components/schemas/MessageWordsInternalV1'
+      required:
+        - recordCount
+    GetTransportMeansInternalResponseV1:
+      title: GetTransportMeansInternalResponseV1
+      type: object
+      description: 輸送手段情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        transportMeansInternalV1:
+          $ref: '#/components/schemas/TransportMeansInternalV1'
+      required:
+        - recordCount
+    TransportMeansInternalV1:
+      title: TransportMeansInternalV1
+      type: object
+      description: 輸送手段情報
+      properties:
+        transportMeans:
+          type: string
+          description: 輸送手段
+        transportMeansName:
+          type: string
+          description: 輸送手段名
+        transportMeansNameJapanese:
+          type: string
+          description: 輸送手段名（日本語）
+        costPlusCalculationKeyType:
+          type: string
+          description: コストプラス算出キー区分
+      required:
+        - transportMeans
+        - transportMeansName
+        - transportMeansNameJapanese
+        - costPlusCalculationKeyType
+    GetCountryInternalResponseV1:
+      title: GetCountryInternalResponseV1
+      type: object
+      description: 国情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        countryInternalV1:
+          $ref: '#/components/schemas/CountryInternalV1'
+      required:
+        - recordCount
+    CountryInternalV1:
+      title: CountryInternalV1
+      type: object
+      description: 国情報
+      properties:
+        countryCode:
+          type: string
+          description: 国コード
+        upsCountryCode:
+          type: string
+          description: UPS国コード
+        countryName:
+          type: string
+          description: 国名
+        countryNameJapanese:
+          type: string
+          description: 国名（日本語）
+        countryNameKana:
+          type: string
+          description: 国名（カナ）
+      required:
+        - countryCode
+        - countryName
+        - countryNameJapanese
+        - countryNameKana
+    GetPostalCodeInternalResponseV1:
+      title: GetPostalCodeInternalResponseV1
+      type: object
+      description: 郵便番号情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        postalCodeInternalV1:
+          $ref: '#/components/schemas/PostalCodeInternalV1'
+      required:
+        - recordCount
+    PostalCodeInternalV1:
+      title: PostalCodeInternalV1
+      type: object
+      description: 郵便番号情報
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        countryCode:
+          type: string
+          description: 国コード
+        postalCode:
+          type: string
+          description: 郵便番号
+        cityCode:
+          type: string
+          description: 市町村コード
+        address1Native:
+          type: string
+          description: 住所1（現地語）
+        address2Native:
+          type: string
+          description: 住所2（現地語）
+        address1:
+          type: string
+          description: 住所1
+        address2:
+          type: string
+          description: 住所2
+        address3Native:
+          type: string
+          description: 住所3（現地語）
+        address4Native:
+          type: string
+          description: 住所4（現地語）
+        address3:
+          type: string
+          description: 住所3
+        address4:
+          type: string
+          description: 住所4
+        shippingDaysAreaCode:
+          type: string
+          description: 配送日数用エリアコード
+        supplierChoiceAreaCode:
+          type: string
+          description: 調達先選定用エリアコード
+        shipmentClassificationAreaCode:
+          type: string
+          description: 出荷仕分用エリアコード
+      required:
+        - subsidiaryCode
+        - countryCode
+        - postalCode
+        - address1Native
+        - address2Native
+        - address1
+        - address2
+        - shippingDaysAreaCode
+        - supplierChoiceAreaCode
+        - shipmentClassificationAreaCode
+    GetTransitionalPeriodCodeConvertInternalResponseV1:
+      title: GetTransitionalPeriodCodeConvertInternalResponseV1
+      type: object
+      description: 過渡期用コード変換情報取得APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        transitionalPeriodCodeConvertInternalV1:
+          $ref: '#/components/schemas/TransitionalPeriodCodeConvertInternalV1'
+      required:
+        - recordCount
+    TransitionalPeriodCodeConvertInternalV1:
+      title: TransitionalPeriodCodeConvertInternalV1
+      type: object
+      description: 過渡期用コード変換情報
+      properties:
+        codeCategory:
+          type: string
+          description: コード種別
+        seq:
+          type: integer
+          description: 連番
+        zettaCode1Name:
+          type: string
+          description: ZETTAコード1名
+        zettaCode2Name:
+          type: string
+          description: ZETTAコード2名
+        zettaCode3Name:
+          type: string
+          description: ZETTAコード3名
+        zettaCode1Value:
+          type: string
+          description: ZETTAコード1値
+        zettaCode2Value:
+          type: string
+          description: ZETTAコード2値
+        zettaCode3Value:
+          type: string
+          description: ZETTAコード3値
+        newtonCode1Name:
+          type: string
+          description: NEWTONコード1名
+        newtonCode2Name:
+          type: string
+          description: NEWTONコード2名
+        newtonCode3Name:
+          type: string
+          description: NEWTONコード3名
+        newtonCode1Value:
+          type: string
+          description: NEWTONコード1値
+        newtonCode2Value:
+          type: string
+          description: NEWTONコード2値
+        newtonCode3Value:
+          type: string
+          description: NEWTONコード3値
+        priorityFlag:
+          type: string
+          description: 優先フラグ
+      required:
+        - codeCategory
+        - seq
+    GetListTransitionalPeriodCodeConvertInternalRequestV1:
+      title: GetListTransitionalPeriodCodeConvertInternalRequestV1
+      type: object
+      description: 過渡期用コード変換情報取得API（List）のリクエスト電文
+      properties:
+        getListTransitionalPeriodCodeConvertInternalRequestV1DetailList:
+          type: array
+          description: 過渡期用コード変換情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListTransitionalPeriodCodeConvertInternalRequestV1Detail'
+      required:
+        - getListTransitionalPeriodCodeConvertInternalRequestV1DetailList
+    GetListTransitionalPeriodCodeConvertInternalRequestV1Detail:
+      title: GetListTransitionalPeriodCodeConvertInternalRequestV1Detail
+      type: object
+      description: 過渡期用コード変換情報取得API（List）のリクエスト電文詳細
+      properties:
+        codeCategory:
+          type: string
+          description: コード種別
+          minLength: 1
+          maxLength: 100
+        seq:
+          type: integer
+          description: 連番
+      required:
+        - codeCategory
+        - seq
+    GetListTransitionalPeriodCodeConvertInternalResponseV1:
+      title: GetListTransitionalPeriodCodeConvertInternalResponseV1
+      type: object
+      description: 過渡期用コード変換情報取得API（List）のレスポンス電文
+      properties:
+        getListTransitionalPeriodCodeConvertInternalResponseV1DetailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetListTransitionalPeriodCodeConvertInternalResponseV1Detail'
+    GetListTransitionalPeriodCodeConvertInternalResponseV1Detail:
+      title: GetListTransitionalPeriodCodeConvertInternalResponseV1Detail
+      type: object
+      description: 過渡期用コード変換情報詳細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        transitionalPeriodCodeConvertInternalV1:
+          $ref: '#/components/schemas/TransitionalPeriodCodeConvertInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    SearchInternalUserAuthorityInternalResponseV1:
+      title: SearchInternalUserAuthorityInternalResponseV1
+      type: object
+      description: 社内ユーザー権限情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        internalUserAuthorityInternalV1List:
+          type: array
+          description: 社内ユーザー権限情報リスト
+          items:
+            $ref: '#/components/schemas/InternalUserAuthorityInternalV1'
+      required:
+        - recordCount
+    InternalUserAuthorityInternalV1:
+      title: InternalUserAuthorityInternalV1
+      type: object
+      description: 社内ユーザー権限情報
+      properties:
+        authorityCode:
+          type: string
+          description: 権限コード
+      required:
+        - authorityCode
+    GetListSlipTypeInternalRequestV1:
+      title: GetListSlipTypeInternalRequestV1
+      type: object
+      description: 伝票区分情報取得API（List）のリクエスト電文
+      properties:
+        getListSlipTypeInternalRequestV1DetailList:
+          type: array
+          description: 伝票区分情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListSlipTypeInternalRequestV1Detail'
+      required:
+        - getListSlipTypeInternalRequestV1DetailList
+    GetListSlipTypeInternalRequestV1Detail:
+      title: GetListSlipTypeInternalRequestV1Detail
+      type: object
+      description: 伝票区分情報取得API（List）のリクエスト電文詳細
+      properties:
+        slipType:
+          type: string
+          description: 伝票区分
+          minLength: 3
+          maxLength: 3
+      required:
+        - slipType
+    GetListSlipTypeInternalResponseV1:
+      title: GetListSlipTypeInternalResponseV1
+      type: object
+      description: 伝票区分情報取得API（List）のレスポンス電文
+      properties:
+        getListSlipTypeInternalResponseV1DetailList:
+          type: array
+          description: 伝票区分情報リスト
+          items:
+            $ref: '#/components/schemas/GetListSlipTypeInternalResponseV1Detail'
+      required:
+        - getListSlipTypeInternalResponseV1DetailList
+    GetListSlipTypeInternalResponseV1Detail:
+      title: GetListSlipTypeInternalResponseV1Detail
+      type: object
+      description: 伝票区分情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        slipTypeInternalV1:
+          $ref: '#/components/schemas/SlipTypeInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    GetListCcyInternalRequestV1:
+      title: GetListCcyInternalRequestV1
+      type: object
+      description: 通貨情報取得API（List）のリクエスト電文
+      properties:
+        getListCcyInternalRequestV1DetailList:
+          type: array
+          description: 通貨情報取得API（List）のリクエスト電文詳細リスト
+          items:
+            $ref: '#/components/schemas/GetListCcyInternalRequestV1Detail'
+      required:
+        - getListCcyInternalRequestV1DetailList
+    GetListCcyInternalRequestV1Detail:
+      title: GetListCcyInternalRequestV1Detail
+      type: object
+      description: 通貨情報取得API（List）のリクエスト電文詳細
+      properties:
+        ccyCode:
+          type: string
+          description: 通貨コード
+          minLength: 3
+          maxLength: 3
+      required:
+        - ccyCode
+    GetListCcyInternalResponseV1:
+      title: GetListCcyInternalResponseV1
+      type: object
+      description: 通貨情報取得API（List）のレスポンス電文
+      properties:
+        getListCcyInternalResponseV1DetailList:
+          type: array
+          description: 通貨情報リスト
+          items:
+            $ref: '#/components/schemas/GetListCcyInternalResponseV1Detail'
+      required:
+        - getListCcyInternalResponseV1DetailList
+    GetListCcyInternalResponseV1Detail:
+      title: GetListCcyInternalResponseV1Detail
+      type: object
+      description: 通貨情報明細
+      properties:
+        lineNo:
+          type: integer
+          description: 明細番号
+        recordCount:
+          type: integer
+          description: レコード件数
+        ccyInternalV1:
+          $ref: '#/components/schemas/CcyInternalV1'
+      required:
+        - lineNo
+        - recordCount
+    SearchNextBusinessDayInternalRequestV1:
+      title: SearchNextBusinessDayInternalRequestV1
+      type: object
+      description: 翌営業日情報検索APIのリクエスト電文
+      properties:
+        date:
+          type: string
+          description: 日付
+          format: date
+        searchNextBusinessDayInternalRequestV1DetailList:
+          type: array
+          description: カレンダ種別リスト
+          items:
+            $ref: '#/components/schemas/SearchNextBusinessDayInternalRequestV1Detail'
+      required:
+        - date
+        - searchNextBusinessDayInternalRequestV1DetailList
+    SearchNextBusinessDayInternalRequestV1Detail:
+      title: SearchNextBusinessDayInternalRequestV1Detail
+      type: object
+      description: 翌営業日情報検索APIのリクエスト項目電文詳細のカレンダ種別情報
+      properties:
+        calendarCategory:
+          type: string
+          description: |-
+            カレンダ種別 カレンダ種別はA～Gまで指定可能（Zは指定不可）
+            　　A：ミスミ休日カレンダ
+            　　B：センター非出荷日カレンダ（通常品）
+            　　C：センター非出荷日カレンダ（ストーク品）
+            　　D：特別出荷の非出荷日カレンダ
+            　　E：土祝非カウントカレンダ
+            　　F：土曜日非カウントカレンダ
+            　　G：祝日非カウントカレンダ
+            　　Z：個別カレンダ
+          minLength: 1
+          maxLength: 1
+      required:
+        - calendarCategory
+    SearchNextBusinessDayInternalResponseV1:
+      title: SearchNextBusinessDayInternalResponseV1
+      type: object
+      description: 翌営業日情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        date:
+          type: string
+          description: 日付
+        businessDay:
+          type: string
+          description: 営業日
+          format: date
+      required:
+        - recordCount
+        - date
+    GetShipmodeInternalResponseV1:
+      title: GetShipmodeInternalResponseV1
+      type: object
+      description: 扱い便区分情報参照のレスポンス項目
+      properties:
+        recordCount:
+          type: string
+          description: レコード件数
+        shipmodeList:
+          type: array
+          description: 扱い便区分情報リスト
+          items:
+            type: object
+            properties:
+              shipmodeCode:
+                type: string
+                description: 扱い便区分
+              shippingCompanyNameNative:
+                type: string
+                description: 配送業者名（現地語）
+            required:
+              - shipmodeCode
+    SearchBeginOfMonthBusinessDayInternalRequestV1:
+      title: SearchBeginOfMonthBusinessDayInternalRequestV1
+      type: object
+      description: 月初営業日情報検索APIのリクエスト電文
+      properties:
+        date:
+          type: string
+          description: 日付
+          maxLength: 6
+          minLength: 6
+        searchBeginOfMonthBusinessDayInternalRequestV1DetailList:
+          type: array
+          description: カレンダ種別リスト
+          items:
+            $ref: '#/components/schemas/SearchBeginOfMonthBusinessDayInternalRequestV1Detail'
+      required:
+        - date
+        - searchBeginOfMonthBusinessDayInternalRequestV1DetailList
+    SearchBeginOfMonthBusinessDayInternalRequestV1Detail:
+      title: SearchBeginOfMonthBusinessDayInternalRequestV1Detail
+      type: object
+      description: 月初営業日情報検索APIのリクエスト項目電文詳細のカレンダ種別情報
+      properties:
+        calendarCategory:
+          type: string
+          description: |-
+            カレンダ種別 カレンダ種別はA～Gまで指定可能（Zは指定不可）
+            　　A：ミスミ休日カレンダ
+            　　B：センター非出荷日カレンダ（通常品）
+            　　C：センター非出荷日カレンダ（ストーク品）
+            　　D：特別出荷の非出荷日カレンダ
+            　　E：土祝非カウントカレンダ
+            　　F：土曜日非カウントカレンダ
+            　　G：祝日非カウントカレンダ
+            　　Z：個別カレンダ
+          minLength: 1
+          maxLength: 1
+      required:
+        - calendarCategory
+    SearchBeginOfMonthBusinessDayInternalResponseV1:
+      title: SearchBeginOfMonthBusinessDayInternalResponseV1
+      type: object
+      description: 月初営業日情報検索APIのレスポンス電文
+      properties:
+        recordCount:
+          type: integer
+          description: レコード件数
+        date:
+          type: string
+          description: 日付
+        businessDay:
+          type: string
+          description: 営業日
+          format: date
+      required:
+        - recordCount
+        - date
+  responses:
+    ErrorResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+          examples:
+            '@Example':
+              value:
+                target: ''
+                code: SYS00003
+                argumentList: []
+                message: Constraint violation
+                detailList:
+                  - target: transportMeans
+                    code: SYS03100
+                    argumentList: []
+                    message: 'transportMeans must not be null, blank, or empty'
+                    detailList:
+                      - target: ''
+                        code: ''
+                        argumentList: []
+                        message: ''
+                        detailList:
+                          - target: ''
+                            code: ''
+                            argumentList: []
+                            message: ''
+                            detailList:
+                              - target: ''
+                                code: ''
+                                argumentList: []
+                                message: ''
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 取得開始位置
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: 返却件数
+    sortby:
+      name: sortby
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 1
+      description: ソート順
+tags:
+  - name: AreaInternal
+  - name: BusinessDayInternal
+  - name: CalendarInternal
+  - name: CcyInternal
+  - name: ClosingTimeInternal
+  - name: CodeInternal
+  - name: CountryInternal
+  - name: InternalUserAuthorityInternal
+  - name: IoSupplyMeansControlInternal
+  - name: LanguageInternal
+  - name: MessageWordsInternal
+  - name: PlantInternal
+  - name: PostalCodeInternal
+  - name: RateInternal
+  - name: ReasonTypeInternal
+  - name: ShipmodeInternal
+  - name: SlipTypeInternal
+  - name: SubsidiaryInternal
+  - name: TransitionalPeriodCodeConvertInternal
+  - name: TransportMeansInternal
+  - name: IoCustomerConvertInternal
+  - name: SupplierShippingDaysInternal
+  - name: TiShipToConvertInternal

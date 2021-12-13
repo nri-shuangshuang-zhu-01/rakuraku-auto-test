@@ -1,0 +1,450 @@
+openapi: 3.0.0
+info:
+  title: API-010
+  version: '1.0'
+  description: 出荷REC情報照会用API
+servers:
+  - url: 'http://localhost:3000/shipment-control'
+paths:
+  /internal/v1/shipment-info-inq/search:
+    get:
+      summary: 当当区分別受注集計_参照API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SearchShipmentInfoInqInternalResponseV1'
+              examples:
+                example-1:
+                  value:
+                    subsidiaryCode: CHN
+                    shipmentCenter: AABB
+                    shipmentDate: '2020-01-02'
+                    resultCount: 5
+                    internalShipmentAreaList:
+                      - shippingDestinationCode: DDC
+                        shippingDestinationName: 大阪
+                        stockBefore: 6000
+                        mtoBefore: 600
+                        stock1st: 6600
+                        stock2nd: 6900
+                        stock3rd: 7200
+                        stock4th: 7500
+                        recQtySubtotal: 34800
+                        rcQty: 15
+                        storkRecQty: 6300
+                        storkRcQty: 3
+                        recQtyTotal: 34863
+                        rcQtyTotal: 18
+                      - shippingDestinationCode: DDD
+                        shippingDestinationName: 青森
+                        stockBefore: 15000
+                        mtoBefore: 1500
+                        stock1st: 15600
+                        stock2nd: 15900
+                        stock3rd: 16200
+                        stock4th: 16500
+                        recQtySubtotal: 80700
+                        rcQty: 15
+                        storkRecQty: 15300
+                        storkRcQty: 3
+                        recQtyTotal: 80853
+                        rcQtyTotal: 18
+                      - shippingDestinationCode: DDE
+                        shippingDestinationName: 東京
+                        stockBefore: 24000
+                        mtoBefore: 2400
+                        stock1st: 24600
+                        stock2nd: 24900
+                        stock3rd: 25200
+                        stock4th: 25500
+                        recQtySubtotal: 126600
+                        rcQty: 15
+                        storkRecQty: 24300
+                        storkRcQty: 3
+                        recQtyTotal: 126843
+                        rcQtyTotal: 18
+                    internalShipmentAreaSubtotalList:
+                      stockBeforeRecQtySubtotal: 45000
+                      mtoBeforeRecQtySubtotal: 4500
+                      stock1stSubtotal: 46800
+                      stock2ndSubtotal: 47700
+                      stock3rdSubtotal: 48600
+                      stock4thSubtotal: 49500
+                      recRecQtySubtotal: 242100
+                      recRcQtySubtotal: 45
+                      storkRecQtySubtotal: 45900
+                      storkRcQtySubtotal: 9
+                      totalRecQtySubtotal: 242559
+                      totalRcQtySubtotal: 54
+                    overseasShipmentAreaList:
+                      - shippingDestinationCode: CCC
+                        shippingDestinationName: 苏州
+                        stockBefore: 6000
+                        mtoBefore: 600
+                        stock1st: 6600
+                        stock2nd: 6900
+                        stock3rd: 7200
+                        stock4th: 7500
+                        recQtySubtotal: 34800
+                        rcQty: 15
+                        storkRecQty: 6300
+                        storkRcQty: 3
+                        recQtyTotal: 34863
+                        rcQtyTotal: 18
+                      - shippingDestinationCode: CCD
+                        shippingDestinationName: 上海
+                        stockBefore: 24000
+                        mtoBefore: 2400
+                        stock1st: 24600
+                        stock2nd: 24900
+                        stock3rd: 25200
+                        stock4th: 25500
+                        recQtySubtotal: 126600
+                        rcQty: 15
+                        storkRecQty: 24300
+                        storkRcQty: 3
+                        recQtyTotal: 126663
+                        rcQtyTotal: 18
+                    overseasShipmentAreaSubtotalList:
+                      stockBeforeRecQtySubtotal: 30000
+                      mtoBeforeRecQtySubtotal: 3000
+                      stock1stSubtotal: 31200
+                      stock2ndSubtotal: 31800
+                      stock3rdSubtotal: 32400
+                      stock4thSubtotal: 33000
+                      recRecQtySubtotal: 161400
+                      recRcQtySubtotal: 30
+                      storkRecQtySubtotal: 30600
+                      storkRcQtySubtotal: 6
+                      totalRecQtySubtotalSubtotal: 161526
+                      totalRcQtySubtotal: 36
+                    internalOverseasAreaTotalList:
+                      stockBeforeRecQtyTotal: 75000
+                      mtoBeforeRecQtyTotal: 7500
+                      stock1stTotal: 78000
+                      stock2ndTotal: 79500
+                      stock3rdTotal: 81000
+                      stock4thTotal: 82500
+                      recRecQtyTotal: 403500
+                      recRcQtyTotal: 75
+                      storkRecQtyTotal: 76500
+                      storkRcQtyTotal: 15
+                      totalRecQtyTotal: 404085
+                      totalRcQtyTotal: 90
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: ../../misumi-api-spec/common-spec/common-spec.yaml#/components/schemas/Error1
+      operationId: searchShipmentInfoInqInternalV1
+      description: 当当区分別受注集計情報を参照する。
+      x-channel:
+        - internal
+      parameters:
+        - schema:
+            type: string
+            maxLength: 4
+          in: query
+          name: shipmentCenter
+          description: 出荷センター
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: shipmentDate
+          required: true
+          description: 出荷日
+      tags:
+        - ShipmentInfoInqInternal
+    parameters: []
+components:
+  schemas:
+    SearchShipmentInfoInqInternalResponseV1:
+      title: SearchShipmentInfoInqInternalResponseV1
+      type: object
+      properties:
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+          maxLength: 3
+        shipmentCenter:
+          type: string
+          description: 出荷センター
+          maxLength: 4
+        shipmentDate:
+          type: string
+          description: 出荷日
+          format: date
+        resultCount:
+          type: integer
+          description: 取得件数
+        internalShipmentAreaList:
+          type: array
+          description: 国内出荷仕分用領域リスト
+          items:
+            $ref: '#/components/schemas/SearchShipmentInfoInqInternalShipmentAreaListV1'
+        internalShipmentAreaSubtotalList:
+          $ref: '#/components/schemas/SearchShipmentInfoInqInternalShipmentAreaSubtotalListV1'
+        overseasShipmentAreaList:
+          type: array
+          description: 海外出荷仕分用領域リスト
+          items:
+            $ref: '#/components/schemas/SearchShipmentInfoInqInternalOverseasShipmentAreaListV1'
+        overseasShipmentAreaSubtotalList:
+          $ref: '#/components/schemas/SearchShipmentInfoInqInternalOverseasShipmentAreaSubtotalListV1'
+        internalOverseasAreaTotalList:
+          $ref: '#/components/schemas/SearchShipmentInfoInqInternalOverseasAreaTotalListV1'
+        errorCode:
+          type: string
+          description: エラーコード
+        errorMessage:
+          type: string
+          description: エラーメッセージ
+      required:
+        - subsidiaryCode
+        - shipmentCenter
+        - shipmentDate
+        - resultCount
+    SearchShipmentInfoInqInternalShipmentAreaListV1:
+      title: SearchShipmentInfoInqInternalShipmentAreaListV1
+      type: object
+      description: 国内MCリスト
+      properties:
+        shipToAreaCode:
+          type: string
+          description: 出荷先エリアコード
+          maxLength: 4
+        shipToAreaName:
+          type: string
+          description: 出荷先エリア名
+          maxLength: 45
+        stockBefore:
+          description: 前当在庫品
+          type: integer
+        mtoBefore:
+          type: integer
+          description: 前当MTO品
+        stock1st:
+          type: integer
+          description: 当当1回目在庫品
+        stock2nd:
+          type: integer
+          description: 当当2回目在庫品
+        stock3rd:
+          type: integer
+          description: 当当3回目在庫品
+        stock4th:
+          type: integer
+          description: 当当4回目在庫品
+        urgentShipmentStock:
+          type: integer
+          description: 緊急出荷在庫品
+        RcShipmentrecQtySubtotal:
+          type: integer
+          description: RC出荷REC数小計
+        rcQty:
+          type: integer
+          description: RC出荷届け先数
+        storkRecQty:
+          type: integer
+          description: 直送REC数
+        storkRcQty:
+          type: integer
+          description: 直送届け先数
+        recQtyTotal:
+          type: integer
+          description: 合計REC数
+        rcQtyTotal:
+          type: integer
+          description: 合計届け先数
+    SearchShipmentInfoInqInternalOverseasShipmentAreaListV1:
+      title: SearchShipmentInfoInqInternalOverseasShipmentAreaListV1
+      type: object
+      description: 海外出荷仕分用領域リスト
+      properties:
+        shipToAreaCode:
+          type: string
+          description: 出荷先エリアコード
+          maxLength: 4
+        shipToAreaName:
+          type: string
+          description: 出荷先エリア名
+          maxLength: 45
+        stockBefore:
+          type: integer
+          description: 前当在庫品
+        mtoBefore:
+          type: integer
+          description: 前当製作品
+        stock1st:
+          type: integer
+          description: 当当1回目在庫品
+        stock2nd:
+          type: integer
+          description: 当当2回目在庫品
+        stock3rd:
+          type: integer
+          description: 当当3回目在庫品
+        stock4th:
+          type: integer
+          description: 当当4回目在庫品
+        urgentShipmentStock:
+          type: integer
+          description: 緊急出荷在庫品
+        recQtySubtotal:
+          type: integer
+          description: RC出荷REC数小計
+        rcQty:
+          type: integer
+          description: RC出荷届け先数
+        storkRecQty:
+          type: integer
+          description: 直送REC数
+        storkRcQty:
+          type: integer
+          description: 直送届け先数
+        recQtyTotal:
+          type: integer
+          description: 合計REC数
+        rcQtyTotal:
+          type: integer
+          description: 合計届け先数
+    SearchShipmentInfoInqInternalOverseasShipmentAreaSubtotalListV1:
+      title: SearchShipmentInfoInqInternalOverseasShipmentAreaSubtotalListV1
+      type: object
+      description: 海外出荷仕分用領域小計リスト
+      properties:
+        stockBeforeRecQtySubtotal:
+          type: integer
+          description: 前当・在庫品REC数小計
+        mtoBeforeRecQtySubtotal:
+          type: integer
+          description: 前当・MTO品REC数小計
+        stock1stSubtotal:
+          type: integer
+          description: 当当・1回目・在庫品REC数小計
+        stock2ndSubtotal:
+          type: integer
+          description: 当当・2回目・在庫品REC数小計
+        stock3rdSubtotal:
+          type: integer
+          description: 当当・3回目・在庫品REC数小計
+        stock4thSubtotal:
+          type: integer
+          description: 当当・4回目・在庫品REC数小計
+        urgentShipmentStockRecSubtotal:
+          type: integer
+          description: 緊急出荷・在庫品REC数小計
+        recRecQtySubtotal:
+          type: integer
+          description: RC出荷・REC数小計・小計
+        recRcQtySubtotal:
+          type: integer
+          description: RC出荷・届け先数・小計
+        storkRecQtySubtotal:
+          type: integer
+          description: 直送・REC数小計・小計
+        storkRcQtySubtotal:
+          type: integer
+          description: 直送・届け先数・小計
+        totalRecQtySubtotalSubtotal:
+          type: integer
+          description: 合計・REC数・小計
+        totalRcQtySubtotal:
+          type: integer
+          description: 合計・届け先数・小計
+    SearchShipmentInfoInqInternalOverseasAreaTotalListV1:
+      title: SearchShipmentInfoInqInternalOverseasAreaTotalListV1
+      type: object
+      description: ''
+      properties:
+        stockBeforeRecQtyTotal:
+          description: 前当・在庫品REC数合計
+          type: integer
+        mtoBeforeRecQtyTotal:
+          description: 前当・MTO品REC数合計
+          type: integer
+        stock1stTotal:
+          description: 当当・1回目・在庫品REC数合計
+          type: integer
+        stock2ndTotal:
+          description: 当当・2回目・在庫品REC数合計
+          type: integer
+        stock3rdTotal:
+          description: 当当・3回目・在庫品REC数合計
+          type: integer
+        stock4thTotal:
+          description: 当当・4回目・在庫品REC数合計
+          type: integer
+        urgentShipmentsStockRecQtyTotal:
+          type: integer
+          description: 緊急出荷・在庫品REC数合計
+        recRecQtyTotal:
+          description: RC出荷・REC数小計・合計
+          type: integer
+        recRcQtyTotal:
+          description: RC出荷・届け先数・合計
+          type: integer
+        storkRecQtyTotal:
+          description: 直送・REC数小計・合計
+          type: integer
+        storkRcQtyTotal:
+          description: 直送・届け先数・合計
+          type: integer
+        totalRecQtyTotal:
+          description: 合計・REC数小計・合計
+          type: integer
+        totalRcQtyTotal:
+          description: 合計・届け先数・合計
+          type: integer
+    SearchShipmentInfoInqInternalShipmentAreaSubtotalListV1:
+      title: SearchShipmentInfoInqInternalShipmentAreaSubtotalListV1
+      type: object
+      description: 国内出荷仕分用領域小計リスト
+      properties:
+        stockBeforeRecQtySubtotal:
+          description: 前当・MTO品REC数小計
+          type: integer
+        mtoBeforeRecQtySubtotal:
+          type: integer
+          description: 前当・製作品REC数小計
+        stock1stSubtotal:
+          type: integer
+          description: 当当・1回目・在庫品REC数小計
+        stock2ndSubtotal:
+          type: integer
+          description: 当当・2回目・在庫品REC数小計
+        stock3rdSubtotal:
+          type: integer
+          description: 当当・3回目・在庫品REC数小計
+        stock4thSubtotal:
+          type: integer
+          description: 当当・4回目・在庫品REC数小計
+        urgentShipmentStockRecSubtotal:
+          type: integer
+          description: 緊急出荷・在庫品REC数小計
+        recRecQtySubtotal:
+          type: integer
+          description: 出荷REC・REC数小計・小計
+        recRcQtySubtotal:
+          type: integer
+          description: 出荷REC・届け先数・小計
+        storkRecQtySubtotal:
+          type: integer
+          description: 直送・REC数小計・小計
+        storkRcQtySubtotal:
+          type: integer
+          description: 直送・届け先数・小計
+        totalRecQtySubtotal:
+          type: integer
+          description: 合計・REC数・小計
+        totalRcQtySubtotal:
+          type: integer
+          description: 合計・届け先数・小計
+  parameters: {}
+tags:
+  - name: ShipmentInfoInqInternal

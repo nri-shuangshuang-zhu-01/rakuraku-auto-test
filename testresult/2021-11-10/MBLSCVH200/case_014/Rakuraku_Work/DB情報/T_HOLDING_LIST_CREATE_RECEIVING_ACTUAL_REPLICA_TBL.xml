@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="subsidiary_code" comment="現法コード"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="plant_code" comment="置場コード"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="global_number" comment="グローバル番号"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="purchase_slip_number" comment="購買伝票番号"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="po_line_number" comment="購買明細番号"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_fix_date" comment="入荷確定日"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_qty" comment="入荷数量"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="supply_type" comment="調達区分:01：在庫品、02：在庫品受注製作品扱い、 03：MTO品、 04：非在庫品"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_fix_process_date" comment="入荷確定処理日"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_purchase_amount" comment="入荷仕入金額"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_supplier_subsidiary_rate" comment="入荷仕入先現法レート"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_freight_supplier_rate" comment="入荷運賃仕入先レート"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_supplier_subsidiary_supplier_rate" comment="入荷発注先現法仕入先レート"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_freight_supplier_subsidiary_rate" comment="入荷運賃発注先現法レート"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="receiving_product_supplier_rate" comment="入荷商品仕入先レート"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="data_hub_updated_flag" comment="データHUB更新済フラグ:データHubから登録または更新時に&quot;1&quot;をセット"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="register_system_date_time" comment="登録日時(システム日時):データHubから登録時にシステム日付をセット"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="update_system_date_time" comment="更新日時(システム日時):データHubから登録、更新時にシステム日付をセット"/>
+  <T_HOLDING_LIST_CREATE_RECEIVING_ACTUAL_REPLICAColName field="update_program" comment="更新プログラム:データHubから登録、更新時にプログラムをセット"/>
+</dataset>

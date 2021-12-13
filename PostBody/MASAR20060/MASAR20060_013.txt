@@ -1,0 +1,8 @@
+{
+  "registerObjectList": null,
+  "registerDataList": {
+    "tradeStatus": "st",
+    "delayReason": "str",
+    "promisedpaymentDate": "2019-08-24"
+  }
+}

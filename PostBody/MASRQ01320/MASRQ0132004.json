@@ -1,0 +1,28 @@
+{
+  "urgentFlag": "0",
+  "customerName": null,
+  "shipToName": null,
+  "shipToCode": null,
+  "departmentName": null,
+  "picName": null,
+  "sendMediaType": "01",
+  "faxSendToNumber": null,
+  "emailAddressTo": null,
+  "emailAddressCc": null,
+  "userReplyLimit": null,
+  "inquiryDetailsList": [
+    {
+      "leadTimeProductInquiryId": null,
+      "dunningFlag": "1",
+      "qty": null,
+      "customerItemReference": null,
+      "productCode": null,
+      "storkCode": null,
+      "shippingPointCode": null,
+      "bulkPartialDeliveryType": "1",
+      "salesUnitPrice": null,
+      "sendType": null,
+      "inquiryContent": null
+    }
+  ]
+}

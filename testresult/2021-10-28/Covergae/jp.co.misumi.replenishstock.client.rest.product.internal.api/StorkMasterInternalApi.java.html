@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StorkMasterInternalApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.client.rest.product.internal.api</a> &gt; <span class="el_source">StorkMasterInternalApi.java</span></div><h1>StorkMasterInternalApi.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.client.rest.product.internal.api;
+
+import jp.co.misumi.replenishstock.client.rest.product.internal.ApiClient;
+
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.CheckStorkMasterInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.CheckStorkMasterInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.Error1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.SearchStorkMasterInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.UpdateStorkMasterInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.UpdateStorkMasterInternalResponseV1;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+@javax.annotation.Generated(value = &quot;org.openapitools.codegen.languages.JavaClientCodegen&quot;, date = &quot;2021-10-25T19:53:19.954741600+08:00[Asia/Shanghai]&quot;)
+@Component(&quot;jp.co.misumi.replenishstock.client.rest.product.internal.api.StorkMasterInternalApi&quot;)
+public class StorkMasterInternalApi {
+    private ApiClient apiClient;
+
+    @Autowired
+<span class="fc" id="L40">    public StorkMasterInternalApi(ApiClient apiClient) {</span>
+<span class="fc" id="L41">        this.apiClient = apiClient;</span>
+<span class="fc" id="L42">    }</span>
+
+    public ApiClient getApiClient() {
+<span class="nc" id="L45">        return apiClient;</span>
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+<span class="nc" id="L49">        this.apiClient = apiClient;</span>
+<span class="nc" id="L50">    }</span>
+
+    /**
+     * ストークマスタ_業務チェックAPI
+     * リクエスト項目により、業務チェックを行い、データとともにチェック結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkStorkMasterInternalRequestV1  (optional)
+     
+     * @return CheckStorkMasterInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public CheckStorkMasterInternalResponseV1 checkStorkMasterInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckStorkMasterInternalRequestV1 checkStorkMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L67">        return checkStorkMasterInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, checkStorkMasterInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * ストークマスタ_業務チェックAPI
+     * リクエスト項目により、業務チェックを行い、データとともにチェック結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param checkStorkMasterInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;CheckStorkMasterInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;CheckStorkMasterInternalResponseV1&gt; checkStorkMasterInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, CheckStorkMasterInternalRequestV1 checkStorkMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L85">        Object postBody = checkStorkMasterInternalRequestV1;</span>
+        
+<span class="nc" id="L87">        String path = apiClient.expandPath(&quot;/internal/v1/master/stork/check&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L89">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L90">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L91">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L92">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L97">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L99">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L101">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L103">            });</span>
+        }
+
+<span class="nc" id="L106">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L109">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L110">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L113">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L115">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L117">        ParameterizedTypeReference&lt;CheckStorkMasterInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;CheckStorkMasterInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L118">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * ストークマスタ_一覧検索API
+     * リクエスト項目の検索条件により、ストークマスタを検索し結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param subsidiaryCode 現法コード (required)
+     
+     * @param storkCode ストークコード (optional)
+     
+     * @param useType 利用区分 (optional)
+     
+     * @param validFlag 有効フラグ (optional)
+     
+     * @param deleteFlag 削除フラグ (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @return SearchStorkMasterInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public SearchStorkMasterInternalResponseV1 searchStorkMasterInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String subsidiaryCode, String storkCode, String useType, String validFlag, String deleteFlag, Integer limit) throws RestClientException {
+<span class="nc" id="L145">        return searchStorkMasterInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, subsidiaryCode, storkCode, useType, validFlag, deleteFlag, limit).getBody();</span>
+    }
+
+    /**
+     * ストークマスタ_一覧検索API
+     * リクエスト項目の検索条件により、ストークマスタを検索し結果を返却する
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param subsidiaryCode 現法コード (required)
+     
+     * @param storkCode ストークコード (optional)
+     
+     * @param useType 利用区分 (optional)
+     
+     * @param validFlag 有効フラグ (optional)
+     
+     * @param deleteFlag 削除フラグ (optional)
+     
+     * @param limit 返却件数 (optional)
+     
+     * @return ResponseEntity&amp;lt;SearchStorkMasterInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;SearchStorkMasterInternalResponseV1&gt; searchStorkMasterInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, String subsidiaryCode, String storkCode, String useType, String validFlag, String deleteFlag, Integer limit) throws RestClientException {
+<span class="nc" id="L173">        Object postBody = null;</span>
+        
+        // verify the required parameter 'subsidiaryCode' is set
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (subsidiaryCode == null) {</span>
+<span class="nc" id="L177">            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, &quot;Missing the required parameter 'subsidiaryCode' when calling searchStorkMasterInternalV1&quot;);</span>
+        }
+        
+<span class="nc" id="L180">        String path = apiClient.expandPath(&quot;/internal/v1/master/stork/search&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L182">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L183">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L184">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L185">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+<span class="nc" id="L187">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;subsidiary_code&quot;, subsidiaryCode));</span>
+<span class="nc" id="L188">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;stork_code&quot;, storkCode));</span>
+<span class="nc" id="L189">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;use_type&quot;, useType));</span>
+<span class="nc" id="L190">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;valid_flag&quot;, validFlag));</span>
+<span class="nc" id="L191">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;delete_flag&quot;, deleteFlag));</span>
+<span class="nc" id="L192">        queryParams.putAll(apiClient.parameterToMultiValueMap(null, &quot;limit&quot;, limit));</span>
+
+        
+
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L197">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L199">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L201">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L203">            });</span>
+        }
+
+<span class="nc" id="L206">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L209">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L210">        final String[] contentTypes = {  };</span>
+<span class="nc" id="L211">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L213">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L215">        ParameterizedTypeReference&lt;SearchStorkMasterInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;SearchStorkMasterInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L216">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.GET, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+    /**
+     * ストークマスタ_DB登録API
+     * リクエスト項目により、ストークマスタ（新規・変更・削除・復活）に反映する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param updateStorkMasterInternalRequestV1  (optional)
+     
+     * @return UpdateStorkMasterInternalResponseV1
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public UpdateStorkMasterInternalResponseV1 updateStorkMasterInternalV1(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, UpdateStorkMasterInternalRequestV1 updateStorkMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L233">        return updateStorkMasterInternalV1WithHttpInfo(context, endpoint, additionalHeaderMap, updateStorkMasterInternalRequestV1).getBody();</span>
+    }
+
+    /**
+     * ストークマスタ_DB登録API
+     * リクエスト項目により、ストークマスタ（新規・変更・削除・復活）に反映する。
+     * &lt;p&gt;&lt;b&gt;200&lt;/b&gt; - OK
+     * &lt;p&gt;&lt;b&gt;400&lt;/b&gt; - Bad Request
+     * @param context The RequestContext of this request
+     * @param endpoint The endpoint name
+     * @param additionalHeaderMap additional headerParams
+     
+     * @param updateStorkMasterInternalRequestV1  (optional)
+     
+     * @return ResponseEntity&amp;lt;UpdateStorkMasterInternalResponseV1&amp;gt;
+     * @throws RestClientException if an error occurs while attempting to invoke the API
+     */
+    public ResponseEntity&lt;UpdateStorkMasterInternalResponseV1&gt; updateStorkMasterInternalV1WithHttpInfo(RequestContext context, String endpoint, Map&lt;String, Object&gt; additionalHeaderMap, UpdateStorkMasterInternalRequestV1 updateStorkMasterInternalRequestV1) throws RestClientException {
+<span class="nc" id="L251">        Object postBody = updateStorkMasterInternalRequestV1;</span>
+        
+<span class="nc" id="L253">        String path = apiClient.expandPath(&quot;/internal/v1/master/stork/update&quot;, Collections.&lt;String, Object&gt;emptyMap());</span>
+
+<span class="nc" id="L255">        final MultiValueMap&lt;String, String&gt; queryParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L256">        final HttpHeaders headerParams = new HttpHeaders();</span>
+<span class="nc" id="L257">        final MultiValueMap&lt;String, String&gt; cookieParams = new LinkedMultiValueMap&lt;String, String&gt;();</span>
+<span class="nc" id="L258">        final MultiValueMap&lt;String, Object&gt; formParams = new LinkedMultiValueMap&lt;String, Object&gt;();</span>
+
+        
+
+<span class="nc bnc" id="L262" title="All 2 branches missed.">        if (!additionalHeaderMap.isEmpty()) {</span>
+<span class="nc" id="L263">            additionalHeaderMap.forEach((k, v) -&gt; {</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">                if (v == null) {</span>
+<span class="nc" id="L265">                    headerParams.add(k, null);</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">                } else if (v instanceof String) {</span>
+<span class="nc" id="L267">                    headerParams.add(k, (String) v);</span>
+                }
+<span class="nc" id="L269">            });</span>
+        }
+
+<span class="nc" id="L272">        final String[] localVarAccepts = { </span>
+            &quot;application/json;charset=utf-8&quot;
+         };
+<span class="nc" id="L275">        final List&lt;MediaType&gt; localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);</span>
+<span class="nc" id="L276">        final String[] contentTypes = { </span>
+            &quot;application/json&quot;
+         };
+<span class="nc" id="L279">        final MediaType contentType = apiClient.selectHeaderContentType(contentTypes);</span>
+
+<span class="nc" id="L281">        String[] authNames = new String[] {  };</span>
+
+<span class="nc" id="L283">        ParameterizedTypeReference&lt;UpdateStorkMasterInternalResponseV1&gt; returnType = new ParameterizedTypeReference&lt;UpdateStorkMasterInternalResponseV1&gt;() {};</span>
+<span class="nc" id="L284">        return apiClient.invokeAPI(context, endpoint, path, HttpMethod.POST, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, contentType, authNames, returnType);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsCoverage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.rakuraku.util.other</a> &gt; <span class="el_source">JsCoverage.java</span></div><h1>JsCoverage.java</h1><pre class="source lang-java linenums">package com.linkage.rakuraku.util.other;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import com.linkage.rakuraku.util.RakurakuWebUtils;
+
+<span class="nc" id="L8">public class JsCoverage {</span>
+
+    public static final String HOME_PAGE = &quot;/jscoverage.html&quot;;
+    public static final String DELETE_LOCAL_STORAGE = &quot;/jscoverage-clear-local-storage.html&quot;;
+    public static final String SAVE_LOCAL_STORAGE = &quot;/jscoverage-save-local-storage.html&quot;;
+    public static final String REMOTE_HOST_DOMAIN = &quot;http://localhost-proxy:8080&quot;;
+
+    public static String getCoverageURL() {
+<span class="nc" id="L16">        return REMOTE_HOST_DOMAIN + &quot;/xxx/app/AAAAA0000&quot;;</span>
+    }
+
+    /**
+     * invalid method
+     * 
+     * @param driver
+     */
+    @SuppressWarnings(&quot;unused&quot;)
+    @Deprecated
+    private static void clearLocalStorage(WebDriver driver) {
+<span class="nc" id="L27">        String deleteUrl = REMOTE_HOST_DOMAIN + DELETE_LOCAL_STORAGE;</span>
+<span class="nc" id="L28">        driver.get(deleteUrl);</span>
+<span class="nc" id="L29">        RakurakuWebUtils.waitForLoad(driver);</span>
+<span class="nc" id="L30">        sleep(1000);</span>
+<span class="nc" id="L31">        saveLocalStorage(driver);</span>
+<span class="nc" id="L32">    }</span>
+
+    public static void saveLocalStorage(WebDriver driver) {
+<span class="nc" id="L35">        String saveUrl = REMOTE_HOST_DOMAIN + SAVE_LOCAL_STORAGE;</span>
+<span class="nc" id="L36">        driver.get(saveUrl);</span>
+<span class="nc" id="L37">        RakurakuWebUtils.waitForLoad(driver);</span>
+<span class="nc" id="L38">    }</span>
+
+    public static void saveLocalStorageOld(WebDriver driver) {
+<span class="nc" id="L41">        String homeUrl = REMOTE_HOST_DOMAIN + HOME_PAGE;</span>
+<span class="nc" id="L42">        driver.get(homeUrl);</span>
+<span class="nc" id="L43">        RakurakuWebUtils.waitForLoad(driver);</span>
+<span class="nc" id="L44">        driver.findElement(By.id(&quot;storeTab&quot;)).click();</span>
+<span class="nc" id="L45">        sleep(500);</span>
+<span class="nc" id="L46">        driver.findElement(By.id(&quot;storeButton&quot;)).click();</span>
+<span class="nc" id="L47">    }</span>
+
+    public static void sleep(long millseconds) {
+        try {
+<span class="nc" id="L51">            Thread.sleep(millseconds);</span>
+<span class="nc" id="L52">        } catch (InterruptedException e) {</span>
+<span class="nc" id="L53">            e.printStackTrace();</span>
+<span class="nc" id="L54">        }</span>
+<span class="nc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

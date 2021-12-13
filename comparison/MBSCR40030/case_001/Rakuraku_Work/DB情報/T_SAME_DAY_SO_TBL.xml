@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_SAME_DAY_SOColName field="subsidiary_code"/>
+  <T_SAME_DAY_SOColName field="global_number"/>
+  <T_SAME_DAY_SOColName field="so_date"/>
+  <T_SAME_DAY_SOColName field="summary_date"/>
+  <T_SAME_DAY_SOColName field="store_key"/>
+  <T_SAME_DAY_SOColName field="customer_code"/>
+  <T_SAME_DAY_SOColName field="input_type"/>
+  <T_SAME_DAY_SOColName field="so_amount_before_change_including_tax"/>
+  <T_SAME_DAY_SOColName field="so_amount_after_change_including_tax"/>
+  <T_SAME_DAY_SOColName field="slip_type"/>
+  <T_SAME_DAY_SOColName field="settlement_method"/>
+  <T_SAME_DAY_SOColName field="so_difference_amount"/>
+  <T_SAME_DAY_SOColName field="update_count"/>
+  <T_SAME_DAY_SOColName field="delete_flag"/>
+  <T_SAME_DAY_SOColName field="register_user_type"/>
+  <T_SAME_DAY_SOColName field="register_user"/>
+  <T_SAME_DAY_SOColName field="register_date_time"/>
+  <T_SAME_DAY_SOColName field="register_program"/>
+  <T_SAME_DAY_SOColName field="register_client_program"/>
+  <T_SAME_DAY_SOColName field="update_user_type"/>
+  <T_SAME_DAY_SOColName field="update_user"/>
+  <T_SAME_DAY_SOColName field="update_date_time"/>
+  <T_SAME_DAY_SOColName field="update_program"/>
+  <T_SAME_DAY_SOColName field="update_client_program"/>
+</dataset>

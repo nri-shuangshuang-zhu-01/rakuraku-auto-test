@@ -1,0 +1,11 @@
+■api名称：　検索
+■api Request：　/internal/v1/data-upload/register
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=temp&&Idempotency-Key=11111350&&
+■api Body：　{  "dataCode": "12345",  "mailAddress": "1001",  "tempFileCode": "1002",  "filePath": "1003",  "signature": "1004",  "inputFileName": "1005"}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "controlSeqNumber": "10",
+  "updateResult": "0"
+}

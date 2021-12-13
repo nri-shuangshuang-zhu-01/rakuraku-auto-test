@@ -1,0 +1,11 @@
+{
+  "subsidiaryCode":"JPN",
+  "generalKeyList":[{
+      "olDisplayElementIdentifier":null,
+      "generalKey1":"11112",
+      "generalKey2":null,
+      "generalKey3":null,
+      "generalKey4":null,
+      "generalKey5":null
+  }]  
+}

@@ -1,0 +1,12 @@
+■api名称：　通知送信
+■api Request：　/internal/v1/notification/send
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&X-Client-Program=offset&&Idempotency-Key=string&&X-Application-Id=X-Application-Id&&Prefer=/internal/v1/customer/get->1&/internal/v1/mail/send->1&/internal/v1/mail/find->1&/internal/v1/fax/send->1&/internal/v1/fax/find->1
+■api Body：　{  "sendMediaType": "01",  "fax": "08012345678",  "emailAddressTo": "to-mail@nri.co.jp",  "emailAddressCc": "cc-mail@nri.co.jp",  "from": "from-mail@misumi.co.jp",  "replyTo": "reply-to-mail@misumi.co.jp",  "subject": "メール件名",  "body": "メール本文",  "attachFileIdList": [    {      "fileId": "e0788adav2+++2d2bf70afda0b0682447b507671cc7243dd26f6f0d376c3dd8ff508ce72247f2"    }  ],  "inquiryId": 1234567,  "emailTemplateId": "497f6eca-6276-4993-bfeb-53cbbbba6f08"}
+■loginUser：　
+■Response：：
+{
+  "code": "NRQ01341003E",
+  "argumentList": [],
+  "message": "アップロードファイルの取得に失敗しました。"
+}

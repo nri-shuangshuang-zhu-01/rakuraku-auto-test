@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultWeeklyMonthlyPoolDateLogicPlantReplaceService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.domain.service</a> &gt; <span class="el_source">DefaultWeeklyMonthlyPoolDateLogicPlantReplaceService.java</span></div><h1>DefaultWeeklyMonthlyPoolDateLogicPlantReplaceService.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.domain.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import javax.inject.Named;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.exception.BusinessException;
+import jp.co.misumi.fw.core.iterable.CloseableIterable;
+import jp.co.misumi.fw.core.logging.MessageLogger;
+import jp.co.misumi.fw.core.logging.MessageLoggerFactory;
+import jp.co.misumi.fw.core.util.StringUtil;
+import jp.co.misumi.replenishstock.domain.client.ProductInternalClient;
+import jp.co.misumi.replenishstock.domain.entity.RepaintPlantResponseEntity;
+import jp.co.misumi.replenishstock.domain.entity.RepaintShipmentRecordPoolPlantEntity;
+import jp.co.misumi.replenishstock.domain.entity.ShipmentActualPoolDataFor12monthsEntity;
+import jp.co.misumi.replenishstock.domain.entity.WeeklyReorderPointPoolDataMonthlyEntity;
+import jp.co.misumi.replenishstock.domain.repository.WeeklyMonthlyPoolDateLogicPlantReplaceRepository;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockConstants;
+import jp.co.misumi.replenishstock.domain.value.ReplenishStockMessages;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalRequestV1Detail;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1;
+import jp.co.misumi.replenishstock.model.rest.client.product.internal.GetListProductInternalResponseV1Detail;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.kafka.common.utils.Utils;
+import org.springframework.context.MessageSource;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+/**
+ * DefaultWeeklyMonthlyPoolDateLogicPlantReplaceService.
+ *
+ * &lt;p&gt;coding by LKG張
+ *
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+@Named
+public class DefaultWeeklyMonthlyPoolDateLogicPlantReplaceService
+    implements WeeklyMonthlyPoolDateLogicPlantReplaceService {
+  private final Log log =
+      LogFactory.getLog(DefaultWeeklyMonthlyPoolDateLogicPlantReplaceService.class);
+<span class="fc" id="L48">  private static final MessageLogger messageLogger =</span>
+<span class="fc" id="L49">      MessageLoggerFactory.getLogger(DefaultWeeklyMonthlyPoolDateLogicPlantReplaceService.class);</span>
+  private final MessageSource messageSource;
+
+  private final WeeklyMonthlyPoolDateLogicPlantReplaceRepository
+      weeklyMonthlyPoolDateLogicPlantReplaceRepository;
+  // 商品情報取得API（List）
+  private final ProductInternalClient productInternalClient;
+  // 出荷実績POOL置場塗り替え
+  private final RepaintShipmentRecordPoolPlantService repaintShipmentRecordPoolPlantService;
+
+  @Override
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+  public boolean weeklyMonthlyPoolDateLogicPlantReplace(
+      RequestContext requestContext, String subsidiaryCode) throws BusinessException {
+<span class="nc" id="L63">    log.info(&quot;週次・月次POOLデータ論理置場塗替え・集計処理が開始しました。&quot;);</span>
+    // 出荷実績POOLデータ（12月分）件数
+<span class="nc" id="L65">    int shipmentActualPoolCount = ReplenishStockConstants.INT_0;</span>
+    // 週次発注点計算用POOLデータ件数
+<span class="nc" id="L67">    int monthlyReorderPointPoolCount = ReplenishStockConstants.INT_0;</span>
+
+    // 2.1. 出荷実績POOLデータを取得する。
+<span class="nc" id="L70">    List&lt;ShipmentActualPoolDataFor12monthsEntity&gt; shipmentActualPoolDataEntityList =</span>
+<span class="nc" id="L71">        searchShipmentActualPoolData(subsidiaryCode);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (!CollectionUtils.isEmpty(shipmentActualPoolDataEntityList)) {</span>
+<span class="nc" id="L73">      shipmentActualPoolCount = shipmentActualPoolDataEntityList.size();</span>
+    }
+
+    // 2.2. 取得した出荷実績POOLデータを元に、検索用のリストを作成し、商品情報取得API（List）を呼出、商品マスタ取得を行う。
+<span class="nc" id="L77">    GetListProductInternalResponseV1 productResponse =</span>
+<span class="nc" id="L78">        callProductInternalClient(requestContext, shipmentActualPoolDataEntityList);</span>
+
+    // 商品マスタのタ取得件数
+<span class="nc" id="L81">    int responseV1DetailListCount = ReplenishStockConstants.INT_0;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    if (!CollectionUtils.isEmpty(productResponse.getGetListProductInternalResponseV1DetailList())) {</span>
+<span class="nc" id="L83">      responseV1DetailListCount =</span>
+<span class="nc" id="L84">          productResponse.getGetListProductInternalResponseV1DetailList().size();</span>
+    }
+
+    // 2.2.対象データが1件以上存在する場合
+<span class="nc bnc" id="L88" title="All 2 branches missed.">    if (responseV1DetailListCount &gt; ReplenishStockConstants.INT_0) {</span>
+      // 3.週次発注点計算用POOLデータ（月次）を更新する
+      // 3.1. 置場塗り替え事前処理として、下記情報を一括取得する。
+<span class="nc" id="L91">      RepaintPlantResponseEntity responseEntityFirst =</span>
+<span class="nc" id="L92">          firstCallRecordPoolService(requestContext, subsidiaryCode);</span>
+<span class="nc" id="L93">      Map&lt;String, String&gt; deliMap = responseEntityFirst.getDeliMap(); // 納入先情報</span>
+<span class="nc" id="L94">      List&lt;String&gt; plantList = responseEntityFirst.getPlantList(); // 置場情報</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">      if (CollectionUtils.isEmpty(deliMap) &amp;&amp; CollectionUtils.isEmpty(plantList)) {</span>
+<span class="nc" id="L96">        messageLogger.log(</span>
+            messageSource,
+            ReplenishStockMessages.BIRBO120007I,
+            null,
+<span class="nc" id="L100">            shipmentActualPoolCount,</span>
+<span class="nc" id="L101">            monthlyReorderPointPoolCount);</span>
+<span class="nc" id="L102">        return true;</span>
+      }
+
+      // リクエストの初期化
+      RepaintShipmentRecordPoolPlantEntity repaintShipmentRecordPoolPlantEntitySecond;
+<span class="nc" id="L107">      List&lt;GetListProductInternalResponseV1Detail&gt; responseList =</span>
+<span class="nc" id="L108">          productResponse.getGetListProductInternalResponseV1DetailList();</span>
+
+      for (ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity :
+<span class="nc bnc" id="L111" title="All 2 branches missed.">          shipmentActualPoolDataEntityList) {</span>
+
+        // 出荷実績POOL置場塗り替えAPIのリクエスト項目を設定
+<span class="nc" id="L114">        repaintShipmentRecordPoolPlantEntitySecond =</span>
+<span class="nc" id="L115">            secondRecordPoolRequest(</span>
+                shipmentActualPoolDataFor12monthsEntity, responseList, responseEntityFirst);
+
+        // 3.2.1. 出荷実績POOL置場塗替え処理の実行
+<span class="nc" id="L119">        RepaintPlantResponseEntity repaintPlantResponseEntitySecond =</span>
+<span class="nc" id="L120">            repaintShipmentRecordPoolPlantService.repaintShipmentRecordPoolPlant(</span>
+                requestContext, repaintShipmentRecordPoolPlantEntitySecond);
+
+        // 出荷実績POOL置場塗替え処理の取得した塗り替え後論理置場が空文字の場合、以後の処理を行わない、continueする。
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if (!StringUtil.isEmpty(repaintPlantResponseEntitySecond.getRepaintAfterPlant())) {</span>
+
+          // 3.2.2. 週次発注点用POOLデータ（月次）の登録・更新
+<span class="nc" id="L127">          loginAndUpdateWeeklyReorderPointPoolData(</span>
+              requestContext,
+              shipmentActualPoolDataFor12monthsEntity,
+              repaintPlantResponseEntitySecond);
+          // 週次発注点計算用POOLデータ（月次）出力件数カウンターアップ
+<span class="nc" id="L132">          monthlyReorderPointPoolCount++;</span>
+        }
+<span class="nc" id="L134">      }</span>
+    }
+
+    // 4.終了メッセージと入出力件数を表示する。
+<span class="nc" id="L138">    messageLogger.log(</span>
+        messageSource,
+        ReplenishStockMessages.BIRBO120007I,
+        null,
+<span class="nc" id="L142">        shipmentActualPoolCount,</span>
+<span class="nc" id="L143">        monthlyReorderPointPoolCount);</span>
+<span class="nc" id="L144">    return true;</span>
+  }
+
+  /**
+   * searchShipmentActualPoolData 出荷実績POOLデータ（12月分）の検索する.
+   *
+   * @param subsidiaryCode 現法コード
+   * @return ShipmentActualPoolDataFor12monthsEntity 出荷実績POOLデータ
+   * @throws BusinessException 異常
+   */
+  private List&lt;ShipmentActualPoolDataFor12monthsEntity&gt; searchShipmentActualPoolData(
+      String subsidiaryCode) throws BusinessException {
+
+    // 2.1. 出荷実績POOLデータを取得する。
+    CloseableIterable&lt;ShipmentActualPoolDataFor12monthsEntity&gt; searchResult;
+    try {
+<span class="nc" id="L160">      searchResult =</span>
+<span class="nc" id="L161">          weeklyMonthlyPoolDateLogicPlantReplaceRepository.searchShipmentActualPoolData(</span>
+              subsidiaryCode);
+<span class="nc" id="L163">    } catch (Exception e) {</span>
+<span class="nc" id="L164">      log.info(&quot;週次・月次POOLデータ論理置場塗替え・集計検索処理が異常終了しました&quot;);</span>
+<span class="nc" id="L165">      messageLogger.log(messageSource, ReplenishStockMessages.BIRBO120005E, e);</span>
+<span class="nc" id="L166">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO120005E, null);</span>
+<span class="nc" id="L167">    }</span>
+
+    // 2.2. 取得した出荷実績POOLデータを元に、検索用のリストを作成
+    List&lt;ShipmentActualPoolDataFor12monthsEntity&gt; shipmentActualPoolDataFor12monthsEntityList;
+<span class="nc" id="L171">    shipmentActualPoolDataFor12monthsEntityList = Utils.toList(searchResult.iterator());</span>
+<span class="nc" id="L172">    return shipmentActualPoolDataFor12monthsEntityList;</span>
+  }
+
+  /**
+   * callProductInternalClient 商品情報取得API（List）を呼出.
+   *
+   * @param requestContext RequestContext
+   * @param shipmentActualPoolDataFor12monthsEntityList 出荷実績POOLデータ.
+   * @return GetListProductInternalResponseV1 商品情報取得API（List）の商品マスタ
+   * @throws BusinessException 異常
+   */
+  private GetListProductInternalResponseV1 callProductInternalClient(
+      RequestContext requestContext,
+      List&lt;ShipmentActualPoolDataFor12monthsEntity&gt; shipmentActualPoolDataFor12monthsEntityList)
+      throws BusinessException {
+
+    // 商品情報取得API（List）のリクエスト初期化
+<span class="nc" id="L189">    GetListProductInternalRequestV1 productRequest = new GetListProductInternalRequestV1();</span>
+<span class="nc" id="L190">    List&lt;GetListProductInternalRequestV1Detail&gt; productDetailList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L191">    GetListProductInternalRequestV1Detail productRequestDetail =</span>
+        new GetListProductInternalRequestV1Detail();
+
+    // 商品情報取得API（List）のリクエスト設定
+    for (ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity :
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        shipmentActualPoolDataFor12monthsEntityList) {</span>
+<span class="nc" id="L197">      productRequestDetail.setGinnerCode(shipmentActualPoolDataFor12monthsEntity.getGinnerCode());</span>
+<span class="nc" id="L198">      productDetailList.add(productRequestDetail);</span>
+<span class="nc" id="L199">    }</span>
+<span class="nc" id="L200">    productRequest.setGetListProductInternalRequestV1DetailList(productDetailList);</span>
+
+    // 商品情報取得API（List）を呼出、商品マスタ取得を行う。
+    GetListProductInternalResponseV1 productResponse;
+    try {
+<span class="nc" id="L205">      productResponse =</span>
+<span class="nc" id="L206">          productInternalClient.getListProductrInternalV1(requestContext, productRequest);</span>
+<span class="nc" id="L207">    } catch (Exception e) {</span>
+      // 以上の結果がエラーかどうかを判定する。
+<span class="nc" id="L209">      log.info(&quot;週次・月次POOLデータ論理置場塗替え・集計の商品情報取得API（List）が異常終了しました。&quot;);</span>
+<span class="nc" id="L210">      messageLogger.log(messageSource, ReplenishStockMessages.BIRBO120006E, e);</span>
+<span class="nc" id="L211">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO120006E, null);</span>
+<span class="nc" id="L212">    }</span>
+<span class="nc" id="L213">    return productResponse;</span>
+  }
+
+  /**
+   * firstCallRecordPoolService 置場塗り替え事前処理.
+   *
+   * @param context RequestContext
+   * @param subsidiaryCode 現法コード
+   * @return RepaintPlantResponseEntity 置場塗り替え事前処理の情報
+   * @throws BusinessException 異常
+   */
+  private RepaintPlantResponseEntity firstCallRecordPoolService(
+      RequestContext context, String subsidiaryCode) throws BusinessException {
+
+    // 3.1. 置場塗り替え事前処理として
+<span class="nc" id="L228">    RepaintShipmentRecordPoolPlantEntity repaintShipmentRecordPoolPlantEntityFirst =</span>
+        new RepaintShipmentRecordPoolPlantEntity();
+<span class="nc" id="L230">    repaintShipmentRecordPoolPlantEntityFirst.setSubsidiaryCode(subsidiaryCode);</span>
+<span class="nc" id="L231">    repaintShipmentRecordPoolPlantEntityFirst.setProcessType(ReplenishStockConstants.STRING_0);</span>
+<span class="nc" id="L232">    repaintShipmentRecordPoolPlantEntityFirst.setImplementDiv(ReplenishStockConstants.STRING_1);</span>
+
+<span class="nc" id="L234">    return repaintShipmentRecordPoolPlantService.repaintShipmentRecordPoolPlant(</span>
+        context, repaintShipmentRecordPoolPlantEntityFirst);
+  }
+
+  /**
+   * secondRecordPoolRequest 置場塗り替え事前処理のリクエスト項目を設定.
+   *
+   * @param shipmentActualPoolDataFor12monthsEntity 出荷実績POOLデータ（12月分）
+   * @param responseList 商品情報明細リスト
+   * @param responseEntityFirst 出荷実績POOL置場塗り替えResponseEntity
+   * @return RepaintShipmentRecordPoolPlantEntity 出荷実績POOL置場塗り替え
+   */
+  private RepaintShipmentRecordPoolPlantEntity secondRecordPoolRequest(
+      ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity,
+      List&lt;GetListProductInternalResponseV1Detail&gt; responseList,
+      RepaintPlantResponseEntity responseEntityFirst) {
+<span class="nc" id="L250">    RepaintShipmentRecordPoolPlantEntity repaintShipmentRecordPoolPlantEntitySecond =</span>
+        new RepaintShipmentRecordPoolPlantEntity();
+<span class="nc" id="L252">    repaintShipmentRecordPoolPlantEntitySecond.setSubsidiaryCode(</span>
+<span class="nc" id="L253">        shipmentActualPoolDataFor12monthsEntity.getSubsidiaryCode());</span>
+<span class="nc" id="L254">    repaintShipmentRecordPoolPlantEntitySecond.setGinnerCode(</span>
+<span class="nc" id="L255">        shipmentActualPoolDataFor12monthsEntity.getGinnerCode());</span>
+<span class="nc" id="L256">    repaintShipmentRecordPoolPlantEntitySecond.setPlantCode(</span>
+<span class="nc" id="L257">        shipmentActualPoolDataFor12monthsEntity.getPlantCode());</span>
+<span class="nc" id="L258">    repaintShipmentRecordPoolPlantEntitySecond.setProcessType(ReplenishStockConstants.STRING_0);</span>
+<span class="nc" id="L259">    repaintShipmentRecordPoolPlantEntitySecond.setDeliMap(responseEntityFirst.getDeliMap());</span>
+<span class="nc" id="L260">    repaintShipmentRecordPoolPlantEntitySecond.setPlantList(responseEntityFirst.getPlantList());</span>
+<span class="nc" id="L261">    repaintShipmentRecordPoolPlantEntitySecond.setImplementDiv(ReplenishStockConstants.STRING_2);</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">    for (GetListProductInternalResponseV1Detail responseEntity : responseList) {</span>
+<span class="nc" id="L263">      if (responseEntity</span>
+<span class="nc" id="L264">          .getProductInternalV1()</span>
+<span class="nc" id="L265">          .getGinnerCode()</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">          .equals(shipmentActualPoolDataFor12monthsEntity.getGinnerCode())) {</span>
+<span class="nc" id="L267">        repaintShipmentRecordPoolPlantEntitySecond.setDeliveryDiv(</span>
+<span class="nc" id="L268">            responseEntity.getProductInternalV1().getDeliveryNoteDestinationType());</span>
+      }
+<span class="nc" id="L270">    }</span>
+<span class="nc" id="L271">    return repaintShipmentRecordPoolPlantEntitySecond;</span>
+  }
+
+  /**
+   * loginAndUpdateWeeklyReorderPointPoolData 週次発注点用POOLデータ（月次）の登録・更新.
+   *
+   * @param requestContext RequestContext
+   * @param shipmentActualPoolDataFor12monthsEntity 出荷実績POOLデータ（12月分）
+   * @param repaintPlantResponseEntitySecond 出荷実績POOL置場塗り替えResponseEntity
+   * @throws BusinessException 異常
+   */
+  private void loginAndUpdateWeeklyReorderPointPoolData(
+      RequestContext requestContext,
+      ShipmentActualPoolDataFor12monthsEntity shipmentActualPoolDataFor12monthsEntity,
+      RepaintPlantResponseEntity repaintPlantResponseEntitySecond)
+      throws BusinessException {
+
+    Optional&lt;WeeklyReorderPointPoolDataMonthlyEntity&gt; searchShipmentActualResult;
+    try {
+      // 3.2.2. 週次発注点用POOLデータ（月次）の登録・更新のマージ処理
+<span class="nc" id="L291">      searchShipmentActualResult =</span>
+<span class="nc" id="L292">          weeklyMonthlyPoolDateLogicPlantReplaceRepository.searchShipmentActualPoolMergeData(</span>
+<span class="nc" id="L293">              shipmentActualPoolDataFor12monthsEntity.getSubsidiaryCode(),</span>
+<span class="nc" id="L294">              shipmentActualPoolDataFor12monthsEntity.getGinnerCode(),</span>
+<span class="nc" id="L295">              repaintPlantResponseEntitySecond.getRepaintAfterPlant());</span>
+<span class="nc" id="L296">    } catch (Exception e) {</span>
+<span class="nc" id="L297">      log.info(&quot;週次・月次POOLデータ論理置場塗替え・集計マージ処理が異常終了しました。&quot;);</span>
+      // 3.2.2. 週次発注点用POOLデータ（月次）マージ結果の判定
+<span class="nc" id="L299">      messageLogger.log(messageSource, ReplenishStockMessages.BIRBO120004E, e);</span>
+<span class="nc" id="L300">      throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO120004E, null);</span>
+<span class="nc" id="L301">    }</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">    if (searchShipmentActualResult.isPresent()) {</span>
+      try {
+        // 3.2.2. 週次・月次POOLデータ論理置場塗替え・集計の更新処理
+<span class="nc" id="L305">        weeklyMonthlyPoolDateLogicPlantReplaceRepository.saveMonthlyReorderPointPoolData(</span>
+            requestContext,
+<span class="nc" id="L307">            searchShipmentActualResult.get(),</span>
+            shipmentActualPoolDataFor12monthsEntity);
+<span class="nc" id="L309">      } catch (Exception e) {</span>
+<span class="nc" id="L310">        log.info(&quot;週次・月次POOLデータ論理置場塗替え・集計更新処理が異常終了しました。&quot;);</span>
+        // 3.2.2. 週次発注点用POOLデータ（月次）更新結果の判定
+<span class="nc" id="L312">        messageLogger.log(messageSource, ReplenishStockMessages.BIRBO120002E, e);</span>
+<span class="nc" id="L313">        throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO120002E, null);</span>
+<span class="nc" id="L314">      }</span>
+    } else {
+      try {
+        // 3.2.2. 週次・月次POOLデータ論理置場塗替え・集計の登録処理
+<span class="nc" id="L318">        weeklyMonthlyPoolDateLogicPlantReplaceRepository.registerMonthlyReorderPointPoolData(</span>
+            requestContext, shipmentActualPoolDataFor12monthsEntity);
+<span class="nc" id="L320">      } catch (Exception e) {</span>
+<span class="nc" id="L321">        log.info(&quot;週次・月次POOLデータ論理置場塗替え・集計登録処理が異常終了しました。&quot;);</span>
+        // 3.2.2. 週次発注点用POOLデータ（月次）登録結果の判定
+<span class="nc" id="L323">        messageLogger.log(messageSource, ReplenishStockMessages.BIRBO120003E, e);</span>
+<span class="nc" id="L324">        throw new BusinessException(messageSource, ReplenishStockMessages.BIRBO120003E, null);</span>
+<span class="nc" id="L325">      }</span>
+    }
+<span class="nc" id="L327">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

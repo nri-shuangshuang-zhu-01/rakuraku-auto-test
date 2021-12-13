@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_STOCK_SETTING_MASTER_REPLICA subsidiary_code='CHN' plant_code='2601' ginner_code='12345600002601' data_hub_updated_flag='1' register_system_date_time='2021-06-20 11:20:02' update_system_date_time='2021-06-30 11:20:02' update_program='JOB102' />
+</dataset>

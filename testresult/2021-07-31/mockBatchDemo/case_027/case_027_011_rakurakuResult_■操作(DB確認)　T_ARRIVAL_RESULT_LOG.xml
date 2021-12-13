@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_ARRIVAL_RESULT_LOG subsidiary_code="CHN" g_inner_code="12345600000001" plant_code="1001" arrival_fix_date="2020-01-01" total_arrival_qty="30" update_count="0" delete_flag="0" register_user="" register_system_time="2021-07-31 10:58:09.496" register_time="2021-07-31 10:58:09.496" register_local_time="2021-07-31 10:58:09.496" register_program="JOB001" update_user="" update_system_time="2021-07-31 10:58:09.496" update_time="2021-07-31 10:58:09.496" update_local_time="2021-07-31 10:58:09.496" update_program="JOB001"/>
+</dataset>

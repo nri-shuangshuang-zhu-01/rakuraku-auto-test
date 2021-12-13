@@ -1,0 +1,230 @@
+openapi: 3.0.0
+info:
+  title: common-spec
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Error1:
+      title: Error1
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の最上位JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error2'
+    Error2:
+      title: Error2
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の2階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error3'
+    Error3:
+      title: Error3
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の3階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error4'
+    Error4:
+      title: Error4
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の4階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+        detailList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error5'
+    Error5:
+      title: Error5
+      type: object
+      description: 【標準化提供部品】サービス間で共通のエラーレスポンス用の5階層目JSONスキーマ定義
+      properties:
+        target:
+          type: string
+        code:
+          type: string
+        argumentList:
+          type: array
+          items: {}
+        message:
+          type: string
+  parameters:
+    X-Auth-Method:
+      x-no-generated: true
+      name: X-Auth-Method
+      in: header
+      schema:
+        type: string
+      description: Apigeeでの認証方式を特定する文字列。RequestContextの上書きを判断するためのパラメータ。MS層内のサービスから別のMS層のサービスにリクエストを送信する場合はヘッダ付与必須。
+      required: false
+    X-Access-Token:
+      x-no-generated: true
+      name: X-Access-Token
+      in: header
+      schema:
+        type: string
+      description: ユーザ認証を行うためのアクセストークンを含むヘッダ。MS層外部からリクエストをする場合はヘッダ付与必須。ただしIPアドレス認証によるアクセスパターンやゲストアクセスの場合は不要。、
+      required: false
+    X-Api-Key:
+      x-no-generated: true
+      name: X-Api-Key
+      in: header
+      schema:
+        type: string
+      description: 呼び出し元のAPIを特定する文字列を含むヘッダ。MS層内のサービスから別のMS層のサービスにリクエストを送信する場合はヘッダ付与必須。
+      required: false
+    X-User-Type:
+      x-no-generated: true
+      name: X-User-Type
+      in: header
+      schema:
+        type: string
+      description: 権限の種別を区別するための値。MS層内のサービスから別のMS層のサービスにリクエストを送信する場合はヘッダ付与必須。
+      required: false
+    X-Auth-Id:
+      x-no-generated: true
+      name: X-Auth-Id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: アクセス元を表すID文字列。MS層内のサービスから別のMS層のサービスにリクエストを送信する場合はヘッダ付与必須。
+    Authorization:
+      name: Authorization
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 認証トークンを含むヘッダ。MS層外部からリクエストをする場合はヘッダ付与必須。
+    Idempotency-Key:
+      x-no-generated: true
+      name: Idempotency-Key
+      in: header
+      schema:
+        type: string
+      description: 更新系で冪等性を担保するためのキー。
+      required: true
+    Idempotency-Key-Target-Id:
+      x-no-generated: true
+      name: Idempotency-Key-Target-Id
+      in: header
+      schema:
+        type: string
+      description: 冪等性キー対象者ID。冪等性リクエストの呼び出し元ID。
+      required: false
+    X-Subsidiary-Code:
+      x-no-generated: true
+      name: X-Subsidiary-Code
+      in: header
+      schema:
+        type: string
+      description: 現法コードを指定するためのヘッダ
+      required: false
+    X-Language-Code:
+      x-no-generated: true
+      name: X-Language-Code
+      in: header
+      schema:
+        type: string
+      description: 言語コードを指定するためのヘッダ
+      required: false
+    X-Debug:
+      x-no-generated: true
+      name: X-Debug
+      in: header
+      schema:
+        type: string
+      description: デバッグ情報を出力するか否かを指定するためのヘッダ
+      required: false
+    X-Operator-Id:
+      x-no-generated: true
+      name: X-Operator-Id
+      in: header
+      schema:
+        type: string
+      description: アクセス元を表すID文字列のヘッダ
+      required: false
+    X-Operator-Type:
+      x-no-generated: true
+      name: X-Operator-Type
+      in: header
+      schema:
+        type: string
+      description: アクセス元の種別を区別するためのヘッダ
+      required: false
+    X-Client-Program:
+      x-no-generated: true
+      name: X-Client-Program
+      in: header
+      schema:
+        type: string
+      description: 各APIを呼び出した起点プログラムを特定するためのヘッダ
+      required: true
+    x-datadog-trace-id:
+      x-no-generated: true
+      name: x-datadog-trace-id
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Datadogでトレースをするためのヘッダ。
+    Cache-Control:
+      name: Cache-Control
+      in: header
+      required: false
+      schema:
+        type: string
+      description: HTTPキャッシュのディレクティブを格納するヘッダ。レスポンスヘッダーにのみ付与。
+    fields:
+      name: fields
+      in: query
+      required: false
+      schema:
+        type: string
+      description: レスポンスボディのフィールド指定をするためのクエリパラメータ

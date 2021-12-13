@@ -1,0 +1,1 @@
+http://localhost:4012/internal/v1/sales-order/search?slipType=CC&slipType=CD&salesOrderDateFrom=2021-09-11

@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_CARRIER_INVOICE subsidiary_code="JPN" global_number="1             " create_date="2021-08-31" carrier_invoice_number="1" program_type="1" internal_external_type="1" qty="1" update_count="2" delete_flag="0" register_user_type="Batch" register_user="MBLTTSL100" register_date_time="2021-08-30 20:00:20.0" register_program="1" register_client_program="MBLTTSL100" update_user_type="Batch" update_user="MBLTTSL100" update_date_time="2021-10-28 18:31:57.880043" update_program="MBLTTSL100" update_client_program="MBLTTSL100"/>
+</dataset>

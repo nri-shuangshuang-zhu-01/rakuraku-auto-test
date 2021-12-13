@@ -1,0 +1,82 @@
+■api名称：　検索
+■api Request：　/internal/v1/ul-data-download-pulldown/get
+■api方法：　POST
+■api Headers：　Content-Type=application/json&&User-Agent=PostmanRuntime/7.28.4&&Accept=*/*&&Accept-Encoding=gzip, deflate, br&&Connection=keep-alive&&x-Client-Program=temp&&
+■api Body：　{  "authorityCode": [    "1234567"  ]}
+■loginUser：　UserLoginInfo
+■Response：：
+{
+  "largeClassificationList": [
+    {
+      "dataLargeClassificationCode": "a1",
+      "dataLargeClassificationNameJapanese": "日",
+      "dataLargeClassificationNameEnglish": "englishNomberOne",
+      "mediumClassificationList": [
+        {
+          "dataMediumClassificationCode": "qqq1",
+          "dataMediumClassificationNameJapanese": "日本語",
+          "dataMediumClassificationNameEnglish": "englishNumberThree",
+          "dataList": [
+            {
+              "dataCode": "wwww1",
+              "dataNameJapanese": "日本語漢字を",
+              "dataNameEnglish": "englishNumberFive"
+            },
+            {
+              "dataCode": "wwww2",
+              "dataNameJapanese": "日本語漢字を想",
+              "dataNameEnglish": "englishNumberSix"
+            },
+            {
+              "dataCode": "wwww3",
+              "dataNameJapanese": "日本語漢字を想定",
+              "dataNameEnglish": "englishNumberSeven"
+            }
+          ]
+        },
+        {
+          "dataMediumClassificationCode": "qqq2",
+          "dataMediumClassificationNameJapanese": "日本語漢",
+          "dataMediumClassificationNameEnglish": "englishNomberFour",
+          "dataList": [
+            {
+              "dataCode": "wwww1",
+              "dataNameJapanese": "日本語漢字を",
+              "dataNameEnglish": "englishNumberFive"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dataLargeClassificationCode": "a2",
+      "dataLargeClassificationNameJapanese": "日本",
+      "dataLargeClassificationNameEnglish": "englishNomberTwo",
+      "mediumClassificationList": [
+        {
+          "dataMediumClassificationCode": "qqq1",
+          "dataMediumClassificationNameJapanese": "日本語",
+          "dataMediumClassificationNameEnglish": "englishNomberFive",
+          "dataList": [
+            {
+              "dataCode": "wwww1",
+              "dataNameJapanese": "日本語漢字を",
+              "dataNameEnglish": "englishNumberFive"
+            },
+            {
+              "dataCode": "wwww2",
+              "dataNameJapanese": "日本語漢字を想",
+              "dataNameEnglish": "englishNumberSix"
+            },
+            {
+              "dataCode": "wwww3",
+              "dataNameJapanese": "日本語漢字を想定",
+              "dataNameEnglish": "englishNumberSeven"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errorList": []
+}

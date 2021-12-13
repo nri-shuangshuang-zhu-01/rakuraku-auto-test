@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_CARRIER_INVOICE_REPLICA subsidiary_code='JPN' global_number='1             ' create_date='2021-08-31' carrier_invoice_number='1' program_type='1' internal_external_type='1' plant_code='44  ' vsd='2021-08-31' packing_control_number='55' shipmode_code='3' qty='1' process_type='0' delete_flag='0' data_hub_updated_flag='1' register_system_date_time='2021-08-31 00:00:00.0' update_system_date_time='2021-08-30 20:01:20.0' update_program='1' />
+</dataset>

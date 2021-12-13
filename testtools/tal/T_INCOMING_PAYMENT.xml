@@ -1,0 +1,34 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+検収グループコード::acceptance_group_code::varchar(6)::NOT NULL(PK)
+照合管理番号::matching_control_number::char(12)::NOT NULL(PK)
+入金予定明細番号::incoming_payment_scheduled_line_number::char(6)::NOT NULL(PK)
+通貨コード（顧客通貨）::ccy_code_customer_ccy::char(3)::NULL
+売掛先コード::bill_to_code::char(6)::NULL
+請求締日::bill_closing_day::date::NULL
+検収日付::acceptance_date::date::NULL
+インボイス番号::invoice_number::varchar(16)::NULL
+受注伝票番号::so_slip_number::char(10)::NULL
+受注伝票明細番号::so_slip_line_number::integer::NULL
+前受フラグ::advance_payment_flag::char(1)::NULL
+入金方法::incoming_payment_method::char(4)::NULL
+支払期日::payment_due_date::date::NULL
+入金予定額::scheduled_incoming_payment_amount::numeric(24,3)::NULL
+相殺額::offset_amount::numeric(24,3)::NULL
+入金額（顧客通貨）::incoming_payment_amount_customer_ccy::numeric(24,3)::NULL
+会計伝票番号::accounting_document_number::char(10)::NULL
+会計年度::fiscal_year::char(4)::NULL
+入金日::incoming_payment_date::date::NULL
+照合管理番号（前受相殺）::matching_control_number_advance_offset::char(12)::NULL
+処理フラグ::process_flag::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

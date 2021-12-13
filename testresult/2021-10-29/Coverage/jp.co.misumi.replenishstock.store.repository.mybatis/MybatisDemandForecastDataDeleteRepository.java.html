@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MybatisDemandForecastDataDeleteRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">jp.co.misumi.replenishstock.store.repository.mybatis</a> &gt; <span class="el_source">MybatisDemandForecastDataDeleteRepository.java</span></div><h1>MybatisDemandForecastDataDeleteRepository.java</h1><pre class="source lang-java linenums">package jp.co.misumi.replenishstock.store.repository.mybatis;
+
+import java.time.ZonedDateTime;
+import jp.co.misumi.fw.common.context.domain.RequestContext;
+import jp.co.misumi.fw.core.time.DefaultTimeProvider;
+import jp.co.misumi.fw.core.time.TimeProvider;
+import jp.co.misumi.replenishstock.domain.entity.DemandForecastEntity;
+import jp.co.misumi.replenishstock.domain.repository.DemandForecastDataDeleteRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Delegate;
+
+/**
+ * MybatisDemandForecastDataDeleteRepository.
+ *
+ * &lt;p&gt;coding by LKG黄
+ *
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+public class MybatisDemandForecastDataDeleteRepository
+    implements DemandForecastDataDeleteRepository {
+
+  @Delegate private final MybatisDemandForecastDataDeleteMapper mapper;
+
+  /**
+   * 需要予測マスタの物理削除.
+   *
+   * @param context context
+   * @param subsidiaryCd 現法コード
+   * @param operationDate 運用日
+   * @param jobId ジョブID
+   * @return 処理結果
+   */
+  @Override
+  public Integer removeDemandForecastPhysically(
+      RequestContext context, String subsidiaryCd, String operationDate, String jobId) {
+<span class="nc" id="L37">    return mapper.deleteDemandForecastPhysically(subsidiaryCd, operationDate, jobId);</span>
+  }
+
+  /**
+   * 需要予測マスタの論理削除.
+   *
+   * @param context context
+   * @param entity 　entity
+   * @return 処理結果
+   */
+  @Override
+  public Integer saveDemandForecastData(RequestContext context, DemandForecastEntity entity) {
+<span class="nc" id="L49">    setCommonColumn(context, entity);</span>
+<span class="nc" id="L50">    return mapper.updateDemandForecastData(entity);</span>
+  }
+
+  private void setCommonColumn(RequestContext context, DemandForecastEntity entity) {
+    // 現在日時の取得
+<span class="nc" id="L55">    TimeProvider timeProvider = new DefaultTimeProvider(null, null);</span>
+<span class="nc" id="L56">    ZonedDateTime dateTime = timeProvider.currentZonedDateTime();</span>
+<span class="nc" id="L57">    entity.setUpdateDateTime(dateTime);</span>
+<span class="nc" id="L58">    entity.setUpdateUser(context.getOperatorId());</span>
+<span class="nc" id="L59">    entity.setUpdateUserType(context.getOperatorType());</span>
+<span class="nc" id="L60">    entity.setUpdateClientProgram(context.getClientProgram());</span>
+    // entity.setUpdateProgram(context.getExecutionProgram());
+<span class="nc" id="L62">    entity.setUpdateProgram(&quot;test&quot;);</span>
+<span class="nc" id="L63">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,4 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <c_lt_screen_field_display control_seq_number='1' subsidiary_code='MJP' language_code='JPN' general_purpose_key1='k' general_purpose_key2='null' general_purpose_key3='null' general_purpose_key4='null' general_purpose_key5='null' code_value_reference1='A' code_value_reference2='null' code_value_reference3='null' code_value_reference4='null' code_value_reference5='null' display_order='3' update_count='0' delete_flag='0' register_user_type='API' register_user='LKI' register_date_time='2021-9-22 19:19:47.0' register_program='LKI' register_client_program='LKI' update_user_type='API' update_user='LKI' update_date_time='2021-9-22 19:20:18.0' update_program='LKI' update_client_program='LKI' />
+</dataset>

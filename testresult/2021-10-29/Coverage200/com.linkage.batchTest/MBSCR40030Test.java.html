@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBSCR40030Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBSCR40030Test.java</span></div><h1>MBSCR40030Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;MBSCR40030機能確認&quot;)
+@DisplayName(&quot;MBSCR40030機能確認&quot;)
+<span class="nc" id="L15">public class MBSCR40030Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBSCR40030&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBSCR40030&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;0件確認&quot;)
+	@DisplayName(&quot;0件確認&quot;)
+	public void testMBSCR40030_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L52">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L55">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L58">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L61">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--operation-date=20211009,--subsidiary-code=JPN,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L64">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L67">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L70">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L73">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L76">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L78">	}</span>
+
+	@Test
+	@Tag(&quot;1件確認&quot;)
+	@DisplayName(&quot;1件確認&quot;)
+	public void testMBSCR40030_002() throws Exception {
+
+<span class="nc" id="L85">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L89">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L92">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L95">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L98">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L101">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L104">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--operation-date=20211009,--subsidiary-code=JPN,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L107">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L110">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L113">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L116">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L119">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L121">	}</span>
+
+	@Test
+	@Tag(&quot;複数件確認&quot;)
+	@DisplayName(&quot;複数件確認&quot;)
+	public void testMBSCR40030_003() throws Exception {
+
+<span class="nc" id="L128">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L132">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L135">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L138">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L141">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L144">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L147">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--operation-date=20211009,--subsidiary-code=JPN,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L150">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L153">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L156">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L159">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L162">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L164">	}</span>
+
+	@Test
+	@Tag(&quot;1件確認2&quot;)
+	@DisplayName(&quot;1件確認2&quot;)
+	public void testMBSCR40030_004() throws Exception {
+
+<span class="nc" id="L171">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L175">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L178">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L181">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L184">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L187">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L190">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--operation-date=20211010,--subsidiary-code=JPN,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L193">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L196">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L199">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L202">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L205">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L207">	}</span>
+
+	@Test
+	@Tag(&quot;起動パラメータ：空白の場合 &quot;)
+	@DisplayName(&quot;起動パラメータ：空白の場合 &quot;)
+	public void testMBSCR40030_005() throws Exception {
+
+<span class="nc" id="L214">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L218">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L221">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L224">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L227">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L230">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L233">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--operation-date=,--subsidiary-code=JPN,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L236">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L239">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L242">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L245">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L248">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L250">	}</span>
+
+	@Test
+	@Tag(&quot;起動パラメータ：空白の場合 &quot;)
+	@DisplayName(&quot;起動パラメータ：空白の場合 &quot;)
+	public void testMBSCR40030_006() throws Exception {
+
+<span class="nc" id="L257">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_006/ca006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L261">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L264">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L267">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L270">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L273">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L276">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--operation-date=,--subsidiary-code=,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L279">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L282">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L285">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L288">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L291">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L293">	}</span>
+
+	@Test
+	@Tag(&quot;起動パラメータ：nullの場合&quot;)
+	@DisplayName(&quot;起動パラメータ：nullの場合&quot;)
+	public void testMBSCR40030_007() throws Exception {
+
+<span class="nc" id="L300">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L304">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L307">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L310">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L313">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L316">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L319">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--subsidiary-code=JPN,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L322">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L325">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L328">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L331">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L334">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L336">	}</span>
+
+	@Test
+	@Tag(&quot;起動パラメータ：nullの場合2&quot;)
+	@DisplayName(&quot;起動パラメータ：nullの場合2&quot;)
+	public void testMBSCR40030_008() throws Exception {
+
+<span class="nc" id="L343">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBSCR40030/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → データクリア・挿入 */
+<span class="nc" id="L347">		rakurakuCore.operateDBPrepare(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SAME_DAY_SO → データクリア・挿入 */
+<span class="nc" id="L350">		rakurakuCore.operateDBPrepare(&quot;T_SAME_DAY_SO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_SO_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L353">		rakurakuCore.operateDBPrepare(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_AR_BALANCE_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L356">		rakurakuCore.operateDBPrepare(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_INCOMING_PAYMENT_SUMMARY → データクリア・挿入 */
+<span class="nc" id="L359">		rakurakuCore.operateDBPrepare(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L362">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;creditManagementDateProcessJob,--job-net-id=&lt;jobNetId&gt;,--job-execution-id=&lt;creditManagementDateProcessJob&gt;&quot;);</span>
+
+		/* 操作(DB確認) → C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE → NOT_ASSERT_COLUMN */
+<span class="nc" id="L365">		rakurakuCore.operateDBConfirm(&quot;C_CREDIT_LIMIT_MANAGEMENT_SUMMARY_DATE&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SAME_DAY_SO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L368">		rakurakuCore.operateDBConfirm(&quot;T_SAME_DAY_SO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_SO_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L371">		rakurakuCore.operateDBConfirm(&quot;T_SO_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_AR_BALANCE_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L374">		rakurakuCore.operateDBConfirm(&quot;T_AR_BALANCE_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_INCOMING_PAYMENT_SUMMARY → NOT_ASSERT_COLUMN */
+<span class="nc" id="L377">		rakurakuCore.operateDBConfirm(&quot;T_INCOMING_PAYMENT_SUMMARY&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L379">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

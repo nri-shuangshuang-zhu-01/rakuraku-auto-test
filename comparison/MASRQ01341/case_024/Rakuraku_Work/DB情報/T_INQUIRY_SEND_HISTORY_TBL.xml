@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_INQUIRY_SEND_HISTORYColName field="subsidiary_code"/>
+  <T_INQUIRY_SEND_HISTORYColName field="inquiry_send_id"/>
+  <T_INQUIRY_SEND_HISTORYColName field="history_seq"/>
+  <T_INQUIRY_SEND_HISTORYColName field="inquiry_id"/>
+  <T_INQUIRY_SEND_HISTORYColName field="send_mail_id"/>
+  <T_INQUIRY_SEND_HISTORYColName field="send_date_time"/>
+  <T_INQUIRY_SEND_HISTORYColName field="send_media_type"/>
+  <T_INQUIRY_SEND_HISTORYColName field="email_template_id"/>
+  <T_INQUIRY_SEND_HISTORYColName field="fax"/>
+  <T_INQUIRY_SEND_HISTORYColName field="update_count"/>
+  <T_INQUIRY_SEND_HISTORYColName field="delete_flag"/>
+  <T_INQUIRY_SEND_HISTORYColName field="register_user_type"/>
+  <T_INQUIRY_SEND_HISTORYColName field="register_user"/>
+  <T_INQUIRY_SEND_HISTORYColName field="register_date_time"/>
+  <T_INQUIRY_SEND_HISTORYColName field="register_program"/>
+  <T_INQUIRY_SEND_HISTORYColName field="register_client_program"/>
+  <T_INQUIRY_SEND_HISTORYColName field="update_user_type"/>
+  <T_INQUIRY_SEND_HISTORYColName field="update_user"/>
+  <T_INQUIRY_SEND_HISTORYColName field="update_date_time"/>
+  <T_INQUIRY_SEND_HISTORYColName field="update_program"/>
+  <T_INQUIRY_SEND_HISTORYColName field="update_client_program"/>
+</dataset>

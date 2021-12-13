@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <c_email_send_groupColName field="subsidiary_code" comment="現法コード"/>
+  <c_email_send_groupColName field="email_send_unit_code" comment="メール送信単位コード"/>
+  <c_email_send_groupColName field="email_send_unit_seq" comment="メール送信単位SEQ"/>
+  <c_email_send_groupColName field="email_function_code" comment="メール機能コード"/>
+  <c_email_send_groupColName field="email_send_unit_name" comment="メール送信単位名:数字が大きいレコードを上位に表示する"/>
+  <c_email_send_groupColName field="email_send_unit_code_key1" comment="メール送信単位コードキー1"/>
+  <c_email_send_groupColName field="email_send_unit_code_key2" comment="メール送信単位コードキー2"/>
+  <c_email_send_groupColName field="email_send_unit_code_key3" comment="メール送信単位コードキー3"/>
+  <c_email_send_groupColName field="email_send_unit_code_key4" comment="メール送信単位コードキー4"/>
+  <c_email_send_groupColName field="email_send_unit_code_key5" comment="メール送信単位コードキー5"/>
+  <c_email_send_groupColName field="update_count" comment="更新回数:インサート時は0。更新するたびにカウントアップしていく"/>
+  <c_email_send_groupColName field="delete_flag" comment="削除フラグ:0：生存　1：削除"/>
+  <c_email_send_groupColName field="register_user_type" comment="登録者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_email_send_groupColName field="register_user" comment="登録者:RFC 2821 SMTP から256文字に設定"/>
+  <c_email_send_groupColName field="register_date_time" comment="登録日時"/>
+  <c_email_send_groupColName field="register_program" comment="登録プログラム"/>
+  <c_email_send_groupColName field="register_client_program" comment="登録呼び出し元プログラム"/>
+  <c_email_send_groupColName field="update_user_type" comment="更新者区分:Internal：社内　Customer：顧客　Supplier：サプライヤSystem：システム　Batch：バッチ ※利便性のためシステムから切り出し"/>
+  <c_email_send_groupColName field="update_user" comment="更新者:RFC 2821 SMTP から256文字に設定"/>
+  <c_email_send_groupColName field="update_date_time" comment="更新日時"/>
+  <c_email_send_groupColName field="update_program" comment="更新プログラム"/>
+  <c_email_send_groupColName field="update_client_program" comment="更新呼び出し元プログラム"/>
+</dataset>

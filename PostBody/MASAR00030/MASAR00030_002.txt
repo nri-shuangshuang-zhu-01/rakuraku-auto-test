@@ -1,0 +1,25 @@
+{
+  "reprintList": [
+    {
+      "reprintId": "1234567890",
+      "outputType": "1",
+      "loginUser": "123",
+      "outputStatus": "1",
+      "reprintCount": "1"
+    },
+ {
+      "reprintId": "1234567891",
+      "outputType": "1",
+      "loginUser": "123",
+      "outputStatus": "1",
+      "reprintCount": "1"
+    },
+ {
+      "reprintId": "1234567892",
+      "outputType": "1",
+      "loginUser": "123",
+      "outputStatus": "1",
+      "reprintCount": "1"
+    }
+  ]
+}

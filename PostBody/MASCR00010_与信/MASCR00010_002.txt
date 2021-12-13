@@ -1,0 +1,29 @@
+{
+  "subsidiaryCode":"",
+  "generalKeyList":[
+{
+      "olDisplayElementIdentifier":"ab",
+      "generalKey1":"11112",
+      "generalKey2":"3334",
+      "generalKey3":"3335",
+      "generalKey4":"3336",
+      "generalKey5":"3337"
+  },
+{
+      "olDisplayElementIdentifier":"st",
+      "generalKey1":"11113",
+      "generalKey2":"3335",
+      "generalKey3":"3336",
+      "generalKey4":"3337",
+      "generalKey5":"3338"
+  },
+{
+      "olDisplayElementIdentifier":"qw",
+      "generalKey1":"11114",
+      "generalKey2":"3336",
+      "generalKey3":"3337",
+      "generalKey4":"3338",
+      "generalKey5":"3339"
+  }
+]  
+}

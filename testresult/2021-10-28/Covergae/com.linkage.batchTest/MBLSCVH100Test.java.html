@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MBLSCVH100Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.linkage.batchTest</a> &gt; <span class="el_source">MBLSCVH100Test.java</span></div><h1>MBLSCVH100Test.java</h1><pre class="source lang-java linenums">package com.linkage.batchTest;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import com.linkage.rakuraku.core.RakurakuCore;
+
+@Tag(&quot;Example機能確認&quot;)
+@DisplayName(&quot;Example機能確認&quot;)
+<span class="nc" id="L15">public class MBLSCVH100Test {</span>
+
+	@BeforeAll
+	public static void initialize() throws Exception {
+<span class="nc" id="L19">		RakurakuCore.initialize(&quot;dbunit&quot;,&quot;MBLSCVH100&quot;);</span>
+<span class="nc" id="L20">	}</span>
+
+	@BeforeEach
+	public void setUp() throws Exception {
+<span class="nc" id="L24">		RakurakuCore.setUp(&quot;dbunit&quot;,&quot;MBLSCVH100&quot;);</span>
+<span class="nc" id="L25">	}</span>
+
+	@AfterEach
+	public void tearDown() throws Exception {
+<span class="nc" id="L29">		RakurakuCore.tearDown();</span>
+<span class="nc" id="L30">	}</span>
+
+	@AfterAll
+	public static void release() throws Exception {
+<span class="nc" id="L34">		RakurakuCore.release(&quot;1+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****2+++++/v1/MAPPOPO250;;発注情報照会API;;example-2-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-2-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-2-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-2-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-2-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-2-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-2*****3+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****4+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****5+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****6+++++/v1/MAPPOPO250;;発注情報照会API;;example-3-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****7+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-3-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****8+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-3-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****9+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-3-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****10+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-3-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****11+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-3-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****12+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-3*****13+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****14+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****15+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-1-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****16+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-4-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-1-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-1*****17+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-5-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-4-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-4*****18+++++/v1/MAPPOPO250;;発注情報照会API;;example-2-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-2-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-2-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-2-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-2-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-2-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-2*****19+++++/v1/MAPPOPO250;;発注情報照会API;;example-1-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-5-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-4-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-1-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-4*****20+++++/v1/MAPPOPO250;;発注情報照会API;;example-4-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-6-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-1-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-4-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-4-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-5*****21+++++/v1/MAPPOPO250;;発注情報照会API;;example-5-----/internal/v1/sales-order/search;;受注明細情報照会API;;example-7-----/internal/v1/subsidiary/get;;現法マスタ参照API;;example-4-----/internal/v1/ginner-info/get-list;;統合インナーコード変換API;;example-1-----/internal/v1/type-code/get-list;;タイプコードマスタ参照API;;example-5-----/internal/v1/customer/get-list;;得意先マスタ参照API;;example-5-----/internal/v1/ship-to/get-list;;配送先マスタ参照API;;example-6&quot;);</span>
+<span class="nc" id="L35">	}</span>
+
+	@Test
+	@Tag(&quot;TEST001&quot;)
+	@DisplayName(&quot;TEST001&quot;)
+	public void testMBLSCVH100_001() throws Exception {
+
+<span class="nc" id="L42">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_001/case_001_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L46">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L49">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L52">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L55">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L58">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L61">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L64">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L67">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L70">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L73">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L76">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L79">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L82">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L85">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L87">	}</span>
+
+	@Test
+	@Tag(&quot;TEST002&quot;)
+	@DisplayName(&quot;TEST002&quot;)
+	public void testMBLSCVH100_002() throws Exception {
+
+<span class="nc" id="L94">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_002/case_002_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L98">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L101">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L104">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L107">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L110">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L113">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L116">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L119">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L122">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L125">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L128">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L131">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L134">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L137">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L139">	}</span>
+
+	@Test
+	@Tag(&quot;TEST003&quot;)
+	@DisplayName(&quot;TEST003&quot;)
+	public void testMBLSCVH100_003() throws Exception {
+
+<span class="nc" id="L146">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_003/case_003_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L150">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L153">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L156">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L159">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L162">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L165">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L168">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L171">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L174">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L177">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L180">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L183">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L186">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L189">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L191">	}</span>
+
+	@Test
+	@Tag(&quot;TEST004&quot;)
+	@DisplayName(&quot;TEST004&quot;)
+	public void testMBLSCVH100_004() throws Exception {
+
+<span class="nc" id="L198">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_004/case_004_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L202">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L205">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L208">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L211">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L214">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L217">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L220">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L223">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L226">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L229">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L232">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L235">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L238">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L241">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L243">	}</span>
+
+	@Test
+	@Tag(&quot;TEST005&quot;)
+	@DisplayName(&quot;TEST005&quot;)
+	public void testMBLSCVH100_005() throws Exception {
+
+<span class="nc" id="L250">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_005/case_005_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L254">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L257">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L260">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L263">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L266">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L269">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L272">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L275">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L278">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L281">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L284">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L287">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L290">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L293">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L295">	}</span>
+
+	@Test
+	@Tag(&quot;TEST006&quot;)
+	@DisplayName(&quot;TEST006&quot;)
+	public void testMBLSCVH100_006() throws Exception {
+
+<span class="nc" id="L302">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_006/case_006_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L306">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L309">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L312">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L315">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L318">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L321">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L324">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L327">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L330">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L333">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L336">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L339">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L342">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L345">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L347">	}</span>
+
+	@Test
+	@Tag(&quot;TEST007&quot;)
+	@DisplayName(&quot;TEST007&quot;)
+	public void testMBLSCVH100_007() throws Exception {
+
+<span class="nc" id="L354">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_007/case_007_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L358">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L361">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L364">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L367">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L370">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L373">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L376">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L379">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L382">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L385">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L388">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L391">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L394">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L397">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L399">	}</span>
+
+	@Test
+	@Tag(&quot;TEST008&quot;)
+	@DisplayName(&quot;TEST008&quot;)
+	public void testMBLSCVH100_008() throws Exception {
+
+<span class="nc" id="L406">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_008/case_008_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L410">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L413">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L416">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L419">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L422">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L425">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L428">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L431">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L434">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L437">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L440">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L443">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L446">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L449">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L451">	}</span>
+
+	@Test
+	@Tag(&quot;TEST009&quot;)
+	@DisplayName(&quot;TEST009&quot;)
+	public void testMBLSCVH100_009() throws Exception {
+
+<span class="nc" id="L458">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_009/case_009_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L462">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L465">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L468">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L471">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L474">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L477">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L480">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L483">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L486">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L489">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L492">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L495">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L498">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L501">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L503">	}</span>
+
+	@Test
+	@Tag(&quot;TEST010&quot;)
+	@DisplayName(&quot;TEST010&quot;)
+	public void testMBLSCVH100_010() throws Exception {
+
+<span class="nc" id="L510">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_010/case_010_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L514">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L517">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L520">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L523">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L526">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L529">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L532">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L535">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L538">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L541">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L544">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L547">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L550">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L553">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L555">	}</span>
+
+	@Test
+	@Tag(&quot;TEST011&quot;)
+	@DisplayName(&quot;TEST011&quot;)
+	public void testMBLSCVH100_011() throws Exception {
+
+<span class="nc" id="L562">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_011/case_011_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L566">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L569">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L572">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L575">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L578">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L581">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L584">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L587">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L590">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L593">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L596">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L599">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L602">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L605">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L607">	}</span>
+
+	@Test
+	@Tag(&quot;TEST012&quot;)
+	@DisplayName(&quot;TEST012&quot;)
+	public void testMBLSCVH100_012() throws Exception {
+
+<span class="nc" id="L614">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_012/case_012_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L618">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L621">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L624">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L627">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L630">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L633">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L636">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L639">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L642">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L645">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-3&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L648">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L651">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L654">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L657">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L659">	}</span>
+
+	@Test
+	@Tag(&quot;TEST013&quot;)
+	@DisplayName(&quot;TEST013&quot;)
+	public void testMBLSCVH100_013() throws Exception {
+
+<span class="nc" id="L666">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_013/case_013_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L670">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L673">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L676">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;3&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L679">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L682">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L685">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L688">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L691">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L694">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L697">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L700">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L703">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L706">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L709">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L711">	}</span>
+
+	@Test
+	@Tag(&quot;TEST014&quot;)
+	@DisplayName(&quot;TEST014&quot;)
+	public void testMBLSCVH100_014() throws Exception {
+
+<span class="nc" id="L718">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_014/case_014_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L722">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L725">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L728">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;4&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L731">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L734">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L737">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L740">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L743">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L746">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L749">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L752">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L755">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L758">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L761">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L763">	}</span>
+
+	@Test
+	@Tag(&quot;TEST015&quot;)
+	@DisplayName(&quot;TEST015&quot;)
+	public void testMBLSCVH100_015() throws Exception {
+
+<span class="nc" id="L770">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_015/case_015_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L774">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L777">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L780">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;5&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L783">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L786">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L789">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L792">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L795">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L798">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L801">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L804">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L807">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L810">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L813">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L815">	}</span>
+
+	@Test
+	@Tag(&quot;TEST016&quot;)
+	@DisplayName(&quot;TEST016&quot;)
+	public void testMBLSCVH100_016() throws Exception {
+
+<span class="nc" id="L822">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_016/case_016_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L826">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L829">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L832">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L835">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L838">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L841">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L844">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L847">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L850">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L853">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L856">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L859">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L862">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L865">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L867">	}</span>
+
+	@Test
+	@Tag(&quot;TEST017&quot;)
+	@DisplayName(&quot;TEST017&quot;)
+	public void testMBLSCVH100_017() throws Exception {
+
+<span class="nc" id="L874">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_017/case_017_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L878">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L881">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L884">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L887">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L890">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L893">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L896">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L899">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L902">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L905">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L908">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L911">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L914">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L917">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L919">	}</span>
+
+	@Test
+	@Tag(&quot;TEST018&quot;)
+	@DisplayName(&quot;TEST018&quot;)
+	public void testMBLSCVH100_018() throws Exception {
+
+<span class="nc" id="L926">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_018/case_018_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L930">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L933">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;2&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L936">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;6&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L939">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L942">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L945">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L948">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L951">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L954">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L957">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-2&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L960">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L963">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L966">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L969">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L971">	}</span>
+
+	@Test
+	@Tag(&quot;TEST019&quot;)
+	@DisplayName(&quot;TEST019&quot;)
+	public void testMBLSCVH100_019() throws Exception {
+
+<span class="nc" id="L978">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_019/case_019_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L982">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L985">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L988">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L991">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L994">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L997">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L1000">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L1003">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L1006">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L1009">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1012">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1015">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1018">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1021">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1023">	}</span>
+
+	@Test
+	@Tag(&quot;TEST020&quot;)
+	@DisplayName(&quot;TEST020&quot;)
+	public void testMBLSCVH100_020() throws Exception {
+
+<span class="nc" id="L1030">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_020/case_020_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L1034">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L1037">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1040">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L1043">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L1046">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-6&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L1049">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L1052">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L1055">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L1058">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L1061">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-5&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1064">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1067">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1070">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1073">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1075">	}</span>
+
+	@Test
+	@Tag(&quot;TEST021&quot;)
+	@DisplayName(&quot;TEST021&quot;)
+	public void testMBLSCVH100_021() throws Exception {
+
+<span class="nc" id="L1082">		RakurakuCore rakurakuCore = new RakurakuCore(&quot;/MBLSCVH100/case_021/case_021_&quot;, &quot;&quot;);// ケース番号の設定</span>
+
+		// ここから自動化打鍵開始
+		/* 操作(DB準備) → T_HOLDING_LIST → データクリア・挿入 */
+<span class="nc" id="L1086">		rakurakuCore.operateDBPrepare(&quot;T_HOLDING_LIST&quot;, &quot;データクリア・挿入&quot;, &quot;1&quot;);</span>
+
+		/* 操作(DB準備) → T_RECEIVED_NOT_SHIPPED_MTO → データクリア・挿入 */
+<span class="nc" id="L1089">		rakurakuCore.operateDBPrepare(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;データクリア・挿入&quot;, &quot;8&quot;);</span>
+
+		/* 操作(DB準備) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → データクリア・挿入 */
+<span class="nc" id="L1092">		rakurakuCore.operateDBPrepare(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;データクリア・挿入&quot;, &quot;7&quot;);</span>
+
+		/* 操作(apiMock) → /v1/MAPPOPO250 → 発注情報照会API */
+<span class="nc" id="L1095">		rakurakuCore.operateMockApi(&quot;/v1/MAPPOPO250&quot;, &quot;発注情報照会API&quot;, &quot;example-5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/sales-order/search → 受注明細情報照会API */
+<span class="nc" id="L1098">		rakurakuCore.operateMockApi(&quot;/internal/v1/sales-order/search&quot;, &quot;受注明細情報照会API&quot;, &quot;example-7&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/subsidiary/get → 現法マスタ参照API */
+<span class="nc" id="L1101">		rakurakuCore.operateMockApi(&quot;/internal/v1/subsidiary/get&quot;, &quot;現法マスタ参照API&quot;, &quot;example-4&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ginner-info/get-list → 統合インナーコード変換API */
+<span class="nc" id="L1104">		rakurakuCore.operateMockApi(&quot;/internal/v1/ginner-info/get-list&quot;, &quot;統合インナーコード変換API&quot;, &quot;example-1&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/type-code/get-list → タイプコードマスタ参照API */
+<span class="nc" id="L1107">		rakurakuCore.operateMockApi(&quot;/internal/v1/type-code/get-list&quot;, &quot;タイプコードマスタ参照API&quot;, &quot;example-5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/customer/get-list → 得意先マスタ参照API */
+<span class="nc" id="L1110">		rakurakuCore.operateMockApi(&quot;/internal/v1/customer/get-list&quot;, &quot;得意先マスタ参照API&quot;, &quot;example-5&quot;);</span>
+
+		/* 操作(apiMock) → /internal/v1/ship-to/get-list → 配送先マスタ参照API */
+<span class="nc" id="L1113">		rakurakuCore.operateMockApi(&quot;/internal/v1/ship-to/get-list&quot;, &quot;配送先マスタ参照API&quot;, &quot;example-6&quot;);</span>
+
+		/* 操作(バッチ) → 契約取得バッチ */
+<span class="nc" id="L1116">		rakurakuCore.operateBatch(&quot;契約取得バッチ&quot;,&quot;〇&quot; , &quot;holdingListRegisterJob,--job-execution-id=JOB001,--user-code=999,--subsidiary-code=JPN,--operation-date=20210101&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDING_LIST → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1119">		rakurakuCore.operateDBConfirm(&quot;T_HOLDING_LIST&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_RECEIVED_NOT_SHIPPED_MTO → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1122">		rakurakuCore.operateDBConfirm(&quot;T_RECEIVED_NOT_SHIPPED_MTO&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+		/* 操作(DB確認) → T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA → NOT_ASSERT_COLUMN */
+<span class="nc" id="L1125">		rakurakuCore.operateDBConfirm(&quot;T_HOLDINGLIST_M_PRODUCT_CONTROL_DEPT_GINNER_CONTROL_REPLICA&quot;, &quot;NOT_ASSERT_COLUMN&quot;, &quot;〇&quot;);</span>
+
+<span class="nc" id="L1127">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

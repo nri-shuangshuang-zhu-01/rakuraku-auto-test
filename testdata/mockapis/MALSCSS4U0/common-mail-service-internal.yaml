@@ -1,0 +1,1070 @@
+openapi: 3.0.0
+info:
+  title: システム管理 メール API
+  description: |-
+    システム管理として、システムが行うメール送信を本APIを介してSendGrid／Office365に連携する。
+    また、メールの送受信の記録を保存し、情報の参照を行う。
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:3000/common-mail'
+    description: ApigeeでのAPI公開URL
+security: []
+tags:
+  - name: MailInternal
+  - name: MailTemplateInternal
+paths:
+  /internal/v1/mail-template/register:
+    post:
+      summary: A1 テンプレート登録
+      tags:
+        - MailTemplateInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      description: |-
+        メールテンプレート情報を登録する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000020E：メールテンプレート本文 バイト数チェックエラー
+      operationId: registerMailTemplateInternalV1
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterMailTemplateRequestV1'
+        description: ''
+      responses:
+        '200':
+          $ref: '#/components/responses/RegisterMailTemplateResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail-template/search:
+    post:
+      summary: A2 メール検索(テンプレート)
+      tags:
+        - MailTemplateInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      description: |-
+        指定された条件に該当するメールテンプレート情報を検索する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000020E：メールテンプレート本文 バイト数チェックエラー
+      operationId: searchMailTemplateInternalV1
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMailRequestV1'
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchMailResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail/search:
+    post:
+      summary: A2 メール検索(受信メール／送信メール)
+      tags:
+        - MailInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: searchMailInternalV1
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchMailResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+      description: |-
+        指定された条件に該当する受信メール／送信メール情報を検索する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000012E：送受信種別／状況 書式チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMailRequestV1'
+  /internal/v1/mail-template/find:
+    get:
+      summary: A3 詳細情報取得(メールテンプレート)
+      tags:
+        - MailTemplateInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      description: |-
+        指定された条件に該当するメールテンプレートの詳細情報を取得する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000021E：メールテンプレート情報 存在チェックエラー
+      operationId: findMailTemplateInternalV1
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: uuid
+          description: メールテンプレートID
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/FindMailResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail/find:
+    get:
+      summary: A3 詳細情報取得(受信メール／送信メール)
+      tags:
+        - MailInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: findMailInternalV1
+      description: |-
+        指定された条件に該当する受信メール／送信メールの詳細情報を取得する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000012E：送受信種別 書式チェックエラー
+        - NML00000021E：受信／送信メール情報 存在チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - $ref: '#/components/parameters/sendReceiveType'
+        - in: query
+          name: id
+          description: メールID
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/FindMailResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail/send:
+    post:
+      summary: A4 メール送信
+      tags:
+        - MailInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: sendMailInternalV1
+      description: |-
+        Sendgrid・Office365へメール情報を連携する。
+        送信メール情報を登録する。添付ファイルがある場合はS3へ格納する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000011E：冪等性キー／メールデータ（FROM／件名／本文） 必須チェックエラー
+        - NML00000012E：送信メールサーバ 書式チェックエラー
+        - NML00000020E：メールデータ バイト数チェックエラー
+        - NML00000021E：メールテンプレート情報 存在チェックエラー
+        - NML00600001E：冪等性キー 整合性チェックエラー
+        - NML00600003E：添付ファイル数 上限チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Idempotency-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Idempotency-Key-Target-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMailRequestV1'
+      responses:
+        '200':
+          $ref: '#/components/responses/SendMailResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail-template/modify:
+    post:
+      summary: A6 テンプレート更新
+      tags:
+        - MailTemplateInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: modifyMailTemplateInternalV1
+      description: |-
+        指定された条件に該当するメールテンプレート情報を更新する。 
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000020E：メールテンプレート本文 バイト数チェックエラー
+        - NML00000021E：メールテンプレート情報 存在チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyMailTemplateRequestV1'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail/modify:
+    post:
+      summary: A7 メール情報更新
+      tags:
+        - MailInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: modifyMailInternalV1
+      description: 指定された条件に該当する送信メール情報を更新する。(SendGrid Webhook専用)
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyMailRequestV1'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail-template/remove:
+    post:
+      summary: A8 メール削除(メールテンプレート)
+      tags:
+        - MailTemplateInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: removeMailTemplateInternalV1
+      description: |-
+        指定された条件に該当するメールテンプレート情報を削除する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000021E：メールテンプレート情報 存在チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveMailRequestV1'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail/remove:
+    post:
+      summary: A8 メール削除(受信メール／送信メール)
+      tags:
+        - MailInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: removeMailInternalV1
+      description: |-
+        指定された条件に該当する受信メール／送信メール情報を削除する。添付ファイルがある場合はS3のファイルを削除する。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000012E：送受信種別 書式チェックエラー
+        - NML00000021E：受信／送信メール情報 存在チェックエラー
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveMailRequestV1'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail-template/preview:
+    post:
+      summary: A9 メールプレビュー
+      tags:
+        - MailTemplateInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: previewMailTemplateInternalV1
+      description: |-
+        登録済のメールテンプレートに指定された置換文字列を設定し返却する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000012E：置換文字列セット 書式チェックエラー
+        - NML00000021E：メールテンプレート情報 存在チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreviewMailTemplateRequestV1'
+      responses:
+        '200':
+          $ref: '#/components/responses/PreviewMailTemplateResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+  /internal/v1/mail/download:
+    get:
+      summary: A10 ファイル取得
+      tags:
+        - MailInternal
+      x-subsidiary: TIW
+      x-channel: internal
+      operationId: downloadMailInternalV1
+      description: |-
+        指定された条件に該当する受信メール／送信メールの添付ファイルを取得する。
+        以下の業務エラーが発生する可能性があります。
+        - N0000000003E：制約違反
+          - N0000003100E：必須チェック
+          - N0000003101E：書式チェック
+          - N0000003125E：桁数チェック
+        - N0000000004E：構文構造エラー
+        - NML00000021E：ファイル情報 存在チェックエラー
+      parameters:
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Method
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Access-Token
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Api-Key
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-User-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Auth-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/Authorization
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Id
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Operator-Type
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/X-Client-Program
+        - $ref: ../../common-spec/common-spec.yaml#/components/parameters/x-datadog-trace-id
+        - in: query
+          schema:
+            type: string
+            format: uuid
+          description: ファイルID
+          required: true
+          name: fileId
+      responses:
+        '200':
+          $ref: '#/components/responses/DownloadMailResponseV1'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    RegisterMailTemplateRequestV1:
+      title: RegisterMailTemplateRequestV1
+      type: object
+      description: メール「A1 テンプレート登録API」リクエストボディ
+      properties:
+        serviceCode:
+          type: string
+          description: サービス区分
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+        name:
+          type: string
+          description: メールテンプレート名
+          minLength: 1
+          maxLength: 200
+        title:
+          type: string
+          description: |
+            メールテンプレート件名（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+          minLength: 1
+          maxLength: 998
+        body:
+          type: string
+          description: |
+            メールテンプレート本文（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z]+$'
+        mimeType:
+          type: string
+          description: メール本文のMIMEタイプ。指定が無い場合「text/html」となります。
+          maxLength: 100
+      required:
+        - serviceCode
+        - name
+        - title
+        - body
+        - language
+    SearchMailRequestV1:
+      title: SearchMailRequestV1
+      type: object
+      description: メール「A2 メール検索API」リクエストボディ
+      properties:
+        sendReceiveType:
+          type: integer
+          description: |
+            送受信種別。メール送信、受信検索時は必須。
+             * 0 - 受信
+             * 1 - 送信
+        status:
+          type: integer
+          description: |
+            メール送信の処理状況。メール送信検索のみ有効。
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 8 - 再リクエスト待ち
+             * 9 - 異常終了
+        createDateTimeFrom:
+          type: string
+          description: '作成日時(FROM)[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        createDateTimeTo:
+          type: string
+          description: '作成日時(TO)[YYYY-mm-ddTHH:MM:SS]'
+          format: date-time
+        asyncStartTimeFrom:
+          type: string
+          description: '非同期処理開始時間(FROM)[YYYY-mm-ddTHH:MM:SS]。メール送信検索のみ有効。'
+          format: date-time
+        asyncStartTimeTo:
+          type: string
+          description: '非同期処理開始時間(TO)[YYYY-mm-ddTHH:MM:SS]。メール送信検索のみ有効。'
+          format: date-time
+        asyncEndTimeFrom:
+          type: string
+          description: '非同期処理終了時間(FROM)[YYYY-mm-ddTHH:MM:SS]。メール送信検索のみ有効。'
+          format: date-time
+        asyncEndTimeTo:
+          type: string
+          description: '非同期処理終了時間(TO)[YYYY-mm-ddTHH:MM:SS]。メール送信検索のみ有効。'
+          format: date-time
+        serviceCode:
+          type: string
+          minLength: 3
+          maxLength: 3
+          description: サービス区分
+          pattern: '^[a-zA-Z0-9]+$'
+        id:
+          type: string
+          description: メールテンプレートID。メール送信検索のみ有効。
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: メールテンプレート名。テンプレート検索のみ有効
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z]+$'
+        mailTitle:
+          type: string
+          maxLength: 200
+          description: 件名。メール送信、受信検索で有効。
+          minLength: 1
+        from:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 送信元(From)。メール送信、受信検索で有効。
+        to:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 送信元(To)。メール送信、受信検索で有効。
+        cc:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 送信元(Cc)。メール送信、受信検索で有効。
+        bcc:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 送信元(Bcc)。メール送信検索のみ有効。
+        replyTo:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 返信先(Reply-To)。メール送信検索のみ有効。
+        body:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: メール本文。メール本文内を全文検索。メール送信、受信検索で有効。
+        messageId:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: メッセージ識別ID。メール受信検索のみ有効。
+        references:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: 返信元メッセージ識別ID。メール送信、受信検索で有効。
+        destinationType:
+          type: string
+          description: 送信先種別
+          maxLength: 36
+        destinationCode:
+          type: string
+          description: 送信先コード
+          maxLength: 36
+        sourceType:
+          type: string
+          description: 送信元種別
+          maxLength: 36
+        sourceCode:
+          type: string
+          description: 送信元コード
+          maxLength: 36
+        sendUserId:
+          type: string
+          description: 送信者ID
+          maxLength: 256
+      required:
+        - serviceCode
+    SendMailRequestV1:
+      title: SendMailRequestV1
+      type: object
+      description: メール「A4 メール送信API」リクエストボディ
+      properties:
+        serviceCode:
+          type: string
+          description: サービス区分
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+        mailServerType:
+          type: string
+          description: |
+            送信メールサーバ種別
+             * 0 - SendGrid
+             * 1 - Office365
+        mailTemplateId:
+          type: string
+          description: |
+            メールテンプレートID。指定されない場合は下記requestパラメータ内の「content」の内容が利用されます。
+          format: uuid
+        request:
+          type: string
+          description: |-
+            メールデータ。
+            フォーマットについては[SendGridリファレンス](https://sendgrid.api-docs.io/v3.0/mail-send) 参照。
+            差出人名、メールアドレスについてデフォルト設定機能がある。詳細は[ガイドライン](https://tickets.tools.misumi.jp/confluence/pages/viewpage.action?pageId=86495220)参照。
+        destinationType:
+          type: string
+          description: 送信先種別
+          maxLength: 36
+        destinationCode:
+          type: string
+          description: 送信先コード
+          maxLength: 36
+        sourceType:
+          type: string
+          description: 送信元種別
+          maxLength: 36
+        sourceCode:
+          type: string
+          description: 送信元コード
+          maxLength: 36
+      required:
+        - serviceCode
+        - mailServerType
+        - request
+    ModifyMailTemplateRequestV1:
+      title: ModifyMailTemplateRequestV1
+      type: object
+      description: メール「A6 テンプレート更新API」リクエストボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: メールテンプレートID
+        name:
+          type: string
+          description: メールテンプレート名
+          minLength: 1
+          maxLength: 200
+        serviceCode:
+          type: string
+          description: サービス区分
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+        title:
+          type: string
+          description: |
+            メールテンプレート件名（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+          minLength: 1
+          maxLength: 998
+        body:
+          type: string
+          description: |
+            メールテンプレート本文（置換キーを含む）
+            詳細は[https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html](https://sendgrid.kke.co.jp/docs/Tutorials/A_Transaction_Mail/send_with_substitution.html) 参照。
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z]+$'
+        mimeType:
+          type: string
+          description: メール本文のMIMEタイプ。指定が無い場合「text/html」となります。
+          maxLength: 100
+      required:
+        - id
+        - name
+        - serviceCode
+        - title
+        - body
+        - language
+    ModifyMailRequestV1:
+      title: ModifyMailRequestV1
+      type: object
+      description: メール「A7 メール情報更新API」リクエストボディ
+      properties:
+        events:
+          type: array
+          description: SendGrid Webhookイベント情報
+          items:
+            $ref: '#/components/schemas/SendGridEventV1'
+    RemoveMailRequestV1:
+      title: RemoveMailRequestV1
+      type: object
+      description: メール「A8 メール削除API」リクエストボディ
+      properties:
+        sendReceiveType:
+          type: integer
+          description: |
+            送受信種別。メール削除時は必須。
+             * 0 - 受信
+             * 1 - 送信
+        id:
+          type: string
+          format: uuid
+          description: メール・メールテンプレートID
+      required:
+        - id
+    PreviewMailTemplateRequestV1:
+      title: PreviewMailTemplateRequestV1
+      type: object
+      description: メール「A9　メールプレビューAPI」リクエストボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: メールテンプレートID
+        substitutions:
+          type: array
+          description: '置換文字列セット["key":"value"]'
+          items:
+            type: string
+      required:
+        - id
+    RegisterMailTemplateResponseV1:
+      title: RegisterMailTemplateResponseV1
+      type: object
+      description: メール「A1 テンプレート登録API」レスポンスボディ
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: メールテンプレートID
+      required:
+        - id
+    SearchMailResponseV1:
+      title: SearchMailResponseV1
+      type: object
+      description: メール「A2 メール検索API」レスポンスボディ
+      properties:
+        id:
+          type: array
+          description: メール・メールテンプレートID
+          items:
+            type: string
+            format: uuid
+    FindMailResponseV1:
+      title: FindMailResponseV1
+      type: object
+      description: メール「A3 詳細情報取得API」レスポンスボディ
+      properties:
+        createDateTime:
+          type: string
+          description: '作成日時[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        asyncStartTime:
+          type: string
+          description: '非同期処理開始時間[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        asyncEndTime:
+          type: string
+          description: '非同期処理終了時間[YYYY-mm-ddTHH:MM:SS±HH:MM]'
+          format: zoned-date-time
+        status:
+          type: integer
+          description: |
+            メール送信の処理状況。メール送信の詳細情報取得のみ有効。
+             * 0 - 正常終了
+             * 1 - 処理中
+             * 8 - 再リクエスト待ち
+             * 9 - 異常終了
+        serviceCode:
+          type: string
+          minLength: 3
+          maxLength: 3
+          pattern: '^[a-zA-Z0-9]+$'
+          description: サービス区分
+        mailTemplateId:
+          type: string
+          format: uuid
+          description: メールテンプレートID。メール送信の詳細情報取得のみ有効。
+        name:
+          type: string
+          description: メールテンプレート名。テンプレート詳細情報取得のみ有効。
+        language:
+          type: string
+          description: 言語コード（ISO 639-2）。テンプレート詳細情報取得のみ有効。
+        updateNumber:
+          type: integer
+          description: 更新番号。テンプレート詳細情報取得のみ有効。
+        mailTitle:
+          type: string
+          description: 件名。メール送信、受信の詳細情報取得のみ有効。
+        from:
+          type: string
+          minLength: 1
+          maxLength: 1000
+          description: 送信元(From)。メール送信、受信の詳細情報取得のみ有効。
+          format: email
+        to:
+          type: string
+          description: 送信先(To)。メール送信、受信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 1000
+          format: email
+        cc:
+          type: string
+          description: 送信先(Cc)。メール送信、受信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 1000
+          format: email
+        bcc:
+          type: string
+          description: 送信先(Bcc)。メール送信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 1000
+          format: email
+        replyTo:
+          type: string
+          description: 返信先(Reply-To)。メール送信、受信の詳細情報取得のみ有効。
+          minLength: 1
+          maxLength: 1000
+          format: email
+        mailText:
+          type: string
+          description: メール本文。メール送信、受信の詳細情報取得のみ有効。
+        mailTemplateTitle:
+          type: string
+          description: メールテンプレート件名。テンプレート詳細情報取得のみ有効。
+        mailTemplateText:
+          type: string
+          description: メールテンプレート本文。テンプレート詳細情報取得のみ有効。
+        mimeType:
+          type: string
+          description: MIMEタイプ。テンプレート詳細情報取得のみ有効。
+        messageId:
+          type: string
+          description: メッセージ識別ID。メール受信の詳細情報取得のみ有効。
+        references:
+          type: string
+          description: 返信元メッセージ識別ID。メール送信、受信の詳細情報取得のみ有効。
+        request:
+          type: string
+          description: メールデータ。メール送信の詳細情報取得のみ有効。
+        errorReason:
+          type: string
+          description: エラー理由。メール送信の詳細情報取得のみ有効。
+        destinationType:
+          type: string
+          description: 送信先種別。メール送信の詳細情報取得のみ有効。
+          maxLength: 36
+        destinationCode:
+          type: string
+          description: 送信先コード。メール送信の詳細情報取得のみ有効。
+          maxLength: 36
+        sourceType:
+          type: string
+          description: 送信元種別。メール送信の詳細情報取得のみ有効。
+          maxLength: 36
+        sourceCode:
+          type: string
+          description: 送信元コード。メール送信の詳細情報取得のみ有効。
+          maxLength: 36
+        sendUserId:
+          type: string
+          description: 送信者ID。メール送信の詳細情報取得のみ有効。
+          maxLength: 256
+        originalFileId:
+          type: string
+          format: uuid
+          description: ファイルID(生データ)。メール受信の詳細情報取得のみ有効。
+        fileId:
+          format: uuid
+          description: ファイルID(添付ファイル)。メール詳細情報取得のみ有効。
+          type: array
+          items:
+            type: string
+            format: uuid
+    SendMailResponseV1:
+      title: SendMailResponseV1
+      type: object
+      description: メール「A4 メール送信API」レスポンスボディ
+      properties:
+        id:
+          format: uuid
+          description: 送信メールID
+          type: array
+          items:
+            type: string
+    SendGridEventV1:
+      title: SendGridEventV1
+      type: object
+      description: SendGrid Webhookイベント情報
+      properties:
+        mailId:
+          type: string
+          description: メールID
+        subsidiaryCode:
+          type: string
+          description: 現法コード
+        email:
+          type: string
+          description: メールアドレス
+        sgEventId:
+          type: string
+          description: イベントID
+        event:
+          type: string
+          description: イベント
+    PreviewMailTemplateResponseV1:
+      title: PreviewMailTemplateResponseV1
+      type: object
+      description: メール「A9 メールプレビューAPI」レスポンスボディ
+      properties:
+        mailTitle:
+          type: string
+          description: 件名（置換後の件名）
+        mailText:
+          type: string
+          description: メール本文（置換後の本文）
+      x-examples:
+        example-1:
+          value: string
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+        format: int32
+      description: 一度の検索で取得する最大件数。
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 0
+        format: int32
+      description: 検索結果の取得開始位置。
+    sendReceiveType:
+      name: sendReceiveType
+      in: query
+      required: true
+      schema:
+        type: integer
+      description: |
+        送受信種別。
+         * 0 - 受信
+         * 1 - 送信
+  responses:
+    RegisterMailTemplateResponseV1:
+      description: メール「A1 テンプレート登録API」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/RegisterMailTemplateResponseV1'
+    SearchMailResponseV1:
+      description: メール「A2 メール検索API」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/SearchMailResponseV1'
+    FindMailResponseV1:
+      description: メール「A3 詳細情報取得API」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/FindMailResponseV1'
+    SendMailResponseV1:
+      description: メール「A4 メール送信API」レスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: '#/components/schemas/SendMailResponseV1'
+    PreviewMailTemplateResponseV1:
+      description: メール「A9 メールプレビューAPI」レスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PreviewMailTemplateResponseV1'
+    DownloadMailResponseV1:
+      description: メール「A10 ファイル取得API」レスポンス
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+            description: 添付ファイル
+      headers:
+        Content-Disposition:
+          schema:
+            type: string
+          description: attachment; filename="*"
+    ErrorResponse:
+      description: エラーレスポンス
+      content:
+        application/json; charset=UTF-8:
+          schema:
+            $ref: ../../common-spec/common-spec.yaml#/components/schemas/Error1

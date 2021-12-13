@@ -1,0 +1,32 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+統合インナーコード::ginner_code::varchar(14)::NOT NULL(PK)
+調達先選定用エリアコード::supplier_choice_area_code::char(3)::NOT NULL(PK)
+仕入先コード::supplier_code::char(4)::NOT NULL(PK)
+商品別仕入先区分::product_supplier_type::char(1)::NOT NULL(PK)
+発注納期::po_lead_time::numeric(3,0)::NULL
+直送切替時刻::direct_shipment_change_time::char(1)::NULL
+当日受注締時刻::same_day_so_closing_time::char(1)::NULL
+受注当日キャンセル時掛率::so_same_day_cancel_rate::numeric(5,2)::NULL
+受注翌日キャンセル時掛率::so_next_day_cancel_rate::numeric(5,2)::NULL
+受注日３日目以降キャンセル時掛率::so_date_after_3day_cancel_rate::numeric(5,2)::NULL
+IO調達方法コード::io_supply_means_code::char(3)::NULL
+調達パターン::supply_pattern::char(1)::NULL
+製作日数::production_days::numeric(3,0)::NULL
+仕入単価通貨コード::purchase_unit_price_ccy_code::char(3)::NULL
+原産国コード::country_of_origin_code::char(3)::NULL
+仕入先出荷場所コード::supplier_shipping_point_code::char(4)::NULL
+目安納期日数::estimated_days::numeric(3,0)::NULL
+管理単位コード::control_unit_code::char(3)::NULL
+負荷積上対象フラグ::load_accumulation_flag::char(1)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

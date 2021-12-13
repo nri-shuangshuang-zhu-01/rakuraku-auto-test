@@ -1,0 +1,56 @@
+現法コード::subsidiary_code::char(3)::NOT NULL(PK)
+納期型番確認ID::lead_time_product_inquiry_id::bigint::NOT NULL(PK)
+分納連番::partial_delivery_seq::integer::NOT NULL(PK)
+顧客注文番号（親番）::customer_item_reference::varchar(35)::NULL
+顧客注文番号（枝番）::customer_item_sub_reference::varchar(54)::NULL
+顧客注文番号（枝番）（現地語）::customer_item_sub_reference_native::varchar(54)::NULL
+在庫区分::stock_type::char(1)::NULL
+部材品区分::component_type::char(1)::NULL
+商品コード::product_code::varchar(234)::NULL
+特注区分::special_order_type::char(1)::NULL
+IOエラーフラグ::ioerror_flag::char(1)::NULL
+ストークコード::stork_code::char(2)::NULL
+出荷方法コード::shipment_method_code::char(2)::NULL
+ブランドコード::brand_code::char(4)::NULL
+統合インナーコード::ginner_code::varchar(14)::NULL
+数量::qty::numeric(7,0)::NULL
+パック数量::pack_qty::numeric(7,0)::NULL
+売単価::sales_unit_price::numeric(14,3)::NULL
+売単価通貨コード::sales_unit_price_ccy_code::char(3)::NULL
+仕入単価::purchase_unit_price::numeric(14,3)::NULL
+仕入単価通貨コード::purchase_unit_price_ccy_code::char(3)::NULL
+sslt::sslt::numeric(3,0)::NULL
+ssd::ssd::date::NULL
+vrd::vrd::date::NULL
+vslt::vslt::numeric(3,0)::NULL
+vsd::vsd::date::NULL
+crd::crd::date::NULL
+特別値引率::special_discount_rate::numeric(5,2)::NULL
+特別値引額::special_discounted_amount::numeric(18,3)::NULL
+媒体値引率::media_discount_rate::numeric(5,2)::NULL
+媒体値引額::media_discounted_amount::numeric(18,3)::NULL
+回答売単価::reply_sales_unit_price::numeric(14,3)::NULL
+明細コメント::detail_comment::varchar::NULL
+商品(セグメント)値引率::product_segment_discount_rate::numeric(5,2)::NULL
+商品(顧客)値引率::product_customer_discount_rate::numeric(5,2)::NULL
+引当区分::draw_type::char(1)::NULL
+仕入先売単価::supplier_sales_unit_price::numeric(14,3)::NULL
+仕入割増価格::purchase_extra_price::numeric(18,3)::NULL
+仕入先売単価通貨コード::supplier_sales_unit_price_ccy_code::char(3)::NULL
+仕入先コード::supplier_code::char(4)::NULL
+仕入先回答::supplier_reply_type::char(1)::NULL
+置場コード::plant_code::char(4)::NULL
+重量::weight::numeric(13,2)::NULL
+実動出荷日数::actual_days_to_ship::numeric(3,0)::NULL
+更新回数::update_count::integer::NOT NULL
+削除フラグ::delete_flag::char(1)::NOT NULL
+登録者区分::register_user_type::varchar(15)::NOT NULL
+登録者::register_user::varchar(256)::NOT NULL
+登録日時::register_date_time::timestamp with time zone::NOT NULL
+登録プログラム::register_program::varchar(15)::NOT NULL
+登録呼び出し元プログラム::register_client_program::varchar(15)::NOT NULL
+更新者区分::update_user_type::varchar(15)::NOT NULL
+更新者::update_user::varchar(256)::NOT NULL
+更新日時::update_date_time::timestamp with time zone::NOT NULL
+更新プログラム::update_program::varchar(15)::NOT NULL
+更新呼び出し元プログラム::update_client_program::varchar(15)::NOT NULL

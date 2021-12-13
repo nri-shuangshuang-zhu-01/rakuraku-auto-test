@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="subsidiary_code"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="ginner_code"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="plant_code"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="product_code"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="shipment_frequency_rank"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="update_count"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="delete_flag"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="register_user_type"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="register_user"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="register_date_time"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="register_program"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="register_client_program"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="update_user_type"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="update_user"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="update_date_time"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="update_program"/>
+  <T_MONTHLY_STOCK_COUNT_RANKColName field="update_client_program"/>
+</dataset>

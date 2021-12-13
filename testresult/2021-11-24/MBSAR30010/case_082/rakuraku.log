@@ -1,0 +1,5 @@
+ケース番号=No.082;実施開始時間=2021-11-24 15:49:26.300;実施終了時間=2021-11-24 15:49:26.313;実施結果=NG.
+【操作(DB準備)】【テーブル：m_stock_setting,DB状態：82】の操作に失敗しました。
+org.dbunit.DatabaseUnitException: Error casting value for table 'm_stock_setting' and column 'update_date_time_for_master_maintenance'
+======以下はアクション毎の確認ログ。======
+【実行結果=NG】【操作(DB準備)】【テーブル：m_stock_setting,DB状態：82】:開始時間=2021-11-24 15:49:26.302;終了時間=2021-11-24 15:49:26.312

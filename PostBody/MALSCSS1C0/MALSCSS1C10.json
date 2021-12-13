@@ -1,0 +1,9 @@
+{
+  "stopShipmentInfo": [
+    {
+      "businessSceneType": "12",
+      "reasonType": "A1234",
+      "processType": "1"
+    }
+  ]
+}
